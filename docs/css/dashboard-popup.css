@@ -2,7 +2,7 @@
     width: 100%;
     border: none;
     color: white;
-    background-color: #4CAF50;
+    background-color: #379AFF;
     border-radius: 100px;
     padding: 5px 15px;
     text-decoration: none;
@@ -10,13 +10,13 @@
 }
 
 #RegexSearchSettings:hover {
-    background-color: #409943;
+    background-color: #3975FF;
 }
 
 #info {
     position: fixed;
     z-index: 4;
-    text-align: center;
+    text-align: left;
     margin-top: -5px;
     margin-left: 290px;
     display: block;
@@ -37,7 +37,7 @@
 
 #popup-header {
     display: flex;
-    align-items: center;
+    align-items: left;
 }
 
 .popup {
@@ -75,14 +75,14 @@
 }
 
 .Setting {
-    align-items: center;
+    align-items: left;
     width: 190px;
     margin: 5px 0px 5px 0px;
 }
 
 .settings-row {
     display: flex;
-    align-items: center;
+    align-items: left;
     column-gap: 50px;
 }
 
@@ -90,7 +90,7 @@
     width: 100%;
     border: none;
     color: white;
-    background-color: #4CAF50;
+    background-color: #379AFF;
     border-radius: 100px;
     padding: 5px 15px;
     text-decoration: none;
@@ -108,7 +108,7 @@
     width: 700px;
     background-color: #e7e7e7;
     color: #000000;
-    text-align: center;
+    text-align: left;
     font-size: 12px;
     border-radius: 6px;
     padding: 8px 0;

@@ -13,7 +13,7 @@
     flex: 5;
     position: relative;
     /*display: inline-flex;*/
-    align-items: center;
+    align-items: left;
 }
 
 #clear-search {
@@ -26,7 +26,7 @@
     color: #fff;
     background-color: #8b1708;
     font: 22px monospace;
-    text-align: center;
+    text-align: left;
     line-height: 1em;
     cursor: pointer;
     visibility: hidden;
@@ -68,7 +68,7 @@
     width: 100%;
     border: none;
     color: white;
-    background-color: #4CAF50;
+    background-color: #379AFF;
     border-radius: 100px;
     padding: 5px 15px;
     text-decoration: none;
@@ -98,7 +98,7 @@
     background-color: rgba(0, 0, 0, 0);
     color: red;
     padding: 5px 15px;
-    text-align: center;
+    text-align: left;
     display: none;
     text-decoration: none;
     border-radius: 100px;
@@ -126,7 +126,7 @@
     width: 100%;
     border: none;
     color: white;
-    background-color: #4CAF50;
+    background-color: #379AFF;
     border-radius: 100px;
     padding: 5px 15px;
     text-decoration: none;
@@ -134,18 +134,18 @@
 }
 
 #updatable-button:hover {
-    background-color: #409943;
+    background-color: #3975FF;
 }
 
 #regex-search-container {
     flex: 1;
     display: flex;
-    align-items: center;
+    align-items: left;
     /* Aligns the label and switch vertically */
     width: 100%;
     border: none;
     color: white;
-    background-color: #4CAF50;
+    background-color: #379AFF;
     border-radius: 100px;
     padding: 5px 10px 5px 5px;
     text-decoration: none;

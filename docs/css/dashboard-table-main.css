@@ -49,7 +49,7 @@ th,
 td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: center;
+    text-align: left;
 }
 
 td:nth-child(1) {
@@ -98,7 +98,7 @@ th {
 #preview-overlay {
     display: none;
     align-content: center;
-    text-align: center;
+    text-align: left;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -138,11 +138,11 @@ th {
 /* Copy appfilter button*/
 .copy-button {
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: #379AFF;
     color: white;
     border: none;
     padding: 5px 15px;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
@@ -151,12 +151,12 @@ th {
 }
 
 .copy-button:hover {
-    background-color: #409943;
+    background-color: #3975FF;
 }
 
 #copy-notification {
     display: none;
-    background-color: #4CAF50;
+    background-color: #379AFF;
     color: white;
     padding: 10px;
     position: fixed;

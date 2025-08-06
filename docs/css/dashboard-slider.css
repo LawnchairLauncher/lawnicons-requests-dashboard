@@ -1,6 +1,6 @@
 /* The switch - the box around the slider */
 .switch {
-  text-align: center;
+  text-align: left;
   position: relative;
   display: inline-block;
   width: 66px !important;
@@ -42,11 +42,11 @@
 }
 
 input:checked+.slider {
-  background-color: #4CAF50;
+  background-color: #379AFF;
 }
 
 input:focus+.slider {
-  box-shadow: 0 0 2px #4CAF50;
+  box-shadow: 0 0 2px #379AFF;
 }
 
 input:checked+.slider:before {

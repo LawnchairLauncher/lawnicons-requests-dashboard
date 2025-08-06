@@ -51,7 +51,7 @@ th,
 td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: center;
+    text-align: left;
 }
 
 td:nth-child(1) {
@@ -109,7 +109,7 @@ th {
 #preview-overlay {
     display: none;
     align-content: center;
-    text-align: center;
+    text-align: left;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -147,11 +147,11 @@ th {
 
 .copy-button {
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: #379AFF;
     color: white;
     border: none;
     padding: 5px 15px;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
@@ -163,7 +163,7 @@ th {
     background: none;
     border: none;
     padding: 2px 10px;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
     display: flex;
     
@@ -175,7 +175,7 @@ th {
     display: flex;
     width: 100%;
     margin: 0 auto;
-    align-items: center;
+    align-items: left;
     justify-content: center;
     padding-left: 34px;
 }
@@ -183,17 +183,17 @@ th {
 .package-name {
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: center;
 }
 
 .copy-button:hover {
-    background-color: #409943;
+    background-color: #3975FF;
 }
 
 #copy-notification {
     display: none;
-    background-color: #4CAF50;
+    background-color: #379AFF;
     color: white;
     padding: 10px;
     position: fixed;
