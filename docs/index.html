@@ -18,8 +18,11 @@
 
     <!-- Header -->
     <div class="header-logo">
-        <h1 id="header">Lawnicons</h1>
-        <p id="header_description">30K requests</p>
+        <img src="./img/requests/favicon.png" alt="Logo Lawnicons" class="logo-lawnicons">
+        <div class="logo-text">
+            <h1 id="header">Lawnicons</h1>
+            <p id="header_description">30K requests</p>
+        </div>
     </div>
 
     <div class="header-container">
@@ -29,53 +32,7 @@
             <span id="clear-search"
                 onclick="var input = this.previousElementSibling; input.value = ''; input.focus();">x</span>
         </span>
-        <div id="regex-search-container">
-            <button id="RegexSearchSettings">Regex Search</button>
-            <div id="myPopup" class="popup">
-                <div class="popup-content">
-                    <div class="info-popup" id="info" onclick="showInfo()">i
-                        <span class="popuptext" id="infotext">
-                            <p style="font-size: 18px; font-weight: bold;">The Regex Search matches against:</p>
-                            <p>&lt;!-- AppName --&ZeroWidthSpace;&#62;&lt;item
-                                component=&quot;ComponentInfo{packageName/activityName}&quot;
-                                drawable=&quot;drawableName&quot;/&gt;
-                            </p>
-                        </span>
-                    </div>
-                    <h1 style="width: 100%;">
-                        Regex Flags
-                    </h1>
-                    <div class="settings-row">
-                        <p class="Setting">Insensitive <br> Case insensitive match</p>
-                        <!-- Rounded switch -->
-                        <label class="switch">
-                            <input type="checkbox" id="caseInsensitive-switch" checked="true">
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
-                    <hr width="100%" size="2" class="separator" noshade>
-                    <div class="settings-row">
-                        <p class="Setting">Unicode <br> Match with full unicode</p>
-                        <!-- Rounded switch -->
-                        <label class="switch">
-                            <input type="checkbox" id="caseUnicode-switch" checked="true">
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
-                    <hr width="100%" size="2" class="separator" noshade>
-                    <button id="closePopup">
-                        Close
-                    </button>
-                </div>
-            </div>
-            <span>
-                <!-- Rounded switch -->
-                <label class="switch">
-                    <input type="checkbox" id="regex-switch">
-                    <span class="slider round"></span>
-                </label>
-            </span>
-        </div>
+    
         <div id="random-container">
             <button id="random-reset-button">Reset &#10006;</button>
             <!-- Number of icons to random -->
