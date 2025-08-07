@@ -1,3 +1,5 @@
+@import url('variables.css');
+
 /* The switch - the box around the slider */
 .switch {
   text-align: left;
@@ -36,7 +38,7 @@
   width: 34px;
   left: -1px;
   bottom: -1px;
-  background-color: white;
+  background-color: var(--on-background);
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -72,6 +74,6 @@ input:checked+.slider:before {
   }
 
   .slider:before {
-    background-color: #171717;
+    background-color: var(--background);
   }
 }

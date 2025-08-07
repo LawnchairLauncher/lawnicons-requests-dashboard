@@ -1,7 +1,9 @@
+@import url('variables.css');
+
 #RegexSearchSettings {
     width: 100%;
     border: none;
-    color: white;
+    color: var(--on-background);
     background-color: #379AFF;
     border-radius: 100px;
     padding: 5px 15px;
@@ -57,7 +59,7 @@
 
 .popup-content {
     z-index: 2;
-    background-color: white;
+    background-color: var(--on-background);
     margin: 250px auto;
     padding: 20px;
     border: 1px solid #888888;
@@ -89,7 +91,7 @@
 #closePopup {
     width: 100%;
     border: none;
-    color: white;
+    color: var(--on-background);
     background-color: #379AFF;
     border-radius: 100px;
     padding: 5px 15px;
@@ -164,7 +166,7 @@
 @media (prefers-color-scheme: dark) {
     .popup-content {
         background-color: #0f0f0f;
-        color: white
+        color: var(--on-background)
     }
 
     .info-popup .popuptext {
@@ -173,9 +175,9 @@
     }
 
     #info {
-        color: white;
+        color: var(--on-background);
         background-color: rgba(255, 255, 255, 0);
-        border: white solid 3px;
+        border: var(--on-background) solid 3px;
     }
 
     .info-popup .popuptext::after {

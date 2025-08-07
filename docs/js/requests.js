@@ -35,8 +35,7 @@ fetch(`assets/requests.txt`)
         // Call this function to change the header text
         const headertext = appEntries[0].trim().split('\n')[1].trim();
         const iconcount = headertext.trim().split(' ')[0].trim();
-        updateHeaderText(`${iconcount} Requested Apps Pending`);
-        document.getElementById('date_header').innerText = headertext.trim().split('(')[1].trim().split(')')[0].trim();
+        updateHeaderText(`${iconcount} requests`);
 
         // Process each entry and store data
         appEntries.slice(1).forEach(entry => {
@@ -88,7 +87,7 @@ fetch(`assets/requests.txt`)
                 const filteredData = filterAppfilter(appEntriesData, appfilterContent);
                 appEntriesData = filteredData;
                 appEntriesDataGlobal = filteredData;
-                updateHeaderText(`${appEntriesData.length} Requested Apps Pending`);
+                updateHeaderText(`${appEntriesData.length} requests`);
                 const table = document.querySelector('table');
                 const headers = table.querySelectorAll('thead th');
                 headers[sortingColumnIndex].classList.add(sortingDirection);

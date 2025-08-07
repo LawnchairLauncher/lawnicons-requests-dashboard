@@ -1,3 +1,4 @@
+@import url('variables.css');
 
 .table-container {
     width:100%;
@@ -97,11 +98,11 @@ th {
     }
 
     .asc::after {
-        border-bottom: 4px solid white;
+        border-bottom: 4px solid var(--on-background);
     }
 
     .desc::after {
-        border-top: 4px solid white;
+        border-top: 4px solid var(--on-background);
     }
 }
 
@@ -135,7 +136,7 @@ th {
     position: absolute;
     top: 20px;
     right: 20px;
-    color: white;
+    color: var(--on-background);
     font-size: 30px;
     cursor: pointer;
   }
@@ -148,7 +149,7 @@ th {
 .copy-button {
     cursor: pointer;
     background-color: #379AFF;
-    color: white;
+    color: var(--on-background);
     border: none;
     padding: 5px 15px;
     text-align: left;
@@ -194,7 +195,7 @@ th {
 #copy-notification {
     display: none;
     background-color: #379AFF;
-    color: white;
+    color: var(--on-background);
     padding: 10px;
     position: fixed;
     bottom: 10px;
