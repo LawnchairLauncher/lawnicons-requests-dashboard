@@ -78,8 +78,8 @@ td:nth-child(6) {
     ;
 }
 
-tr:nth-child(even) {
-    background-color: #ebebeb;
+tr:last-child {
+  border-bottom: none;
 }
 
 th {
@@ -165,9 +165,9 @@ th {
 }
 /*Dark mode theming */
 @media (prefers-color-scheme: dark) {
-
-    tr:nth-child(even) {
-        background-color: rgb(37, 37, 37);
+    
+    tr:last-child td{
+        border-bottom: none;
     }
 
     th {

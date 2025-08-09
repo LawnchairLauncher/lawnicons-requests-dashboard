@@ -52,7 +52,7 @@ fetch(`assets/updatable.txt`)
             });
         });
         appEntriesDataGlobal = appEntriesData;
-        updateHeaderText(`${appEntriesData.length} Possible Appfilter Updates`);
+        updateHeaderText(`${appEntriesData.length} Missing links`);
 
         // Example usage:
         fetch(`assets/combined_appfilter.xml`)
@@ -75,7 +75,7 @@ fetch(`assets/updatable.txt`)
                 const filteredData = filterAppfilter(appEntriesData, appfilterContent);
                 appEntriesData = filteredData;
                 appEntriesDataGlobal = filteredData;
-                updateHeaderText(`${appEntriesData.length} Possible Appfilter Updates`);
+                updateHeaderText(`${appEntriesData.length} Missing links`);
                 const table = document.querySelector('table');
                 const headers = table.querySelectorAll('thead th');
                 // headers[sortingColumnIndex].classList.add(sortingDirection);

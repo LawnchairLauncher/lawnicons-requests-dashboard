@@ -78,22 +78,15 @@ td:nth-child(5) {
     max-width: 70px;
     overflow-wrap: normal;
 }
-tr:nth-child(even) {
-    background-color: #ebebeb;
-}
-
-th {
-    background-color: #f2f2f2;
-}
 
 @media (prefers-color-scheme: dark) {
 
-    tr:nth-child(even) {
-        background-color: rgb(37, 37, 37);
+    tr:last-child td {
+        border-bottom: none;
     }
 
     th {
-        background-color: #0f0f0f;
+        background-color: var(--background);
     }
 
     .asc::after {
