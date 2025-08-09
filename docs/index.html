@@ -25,25 +25,25 @@
         </div>
     </div>
 
+    <!-- Search Container -->
+    <span id="search-container">
+        <input type="text" id="search-input" oninput="filterAppEntries()" placeholder="Search">
+        <span id="clear-search"
+            onclick="var input = this.previousElementSibling; input.value = ''; input.focus();">x</span>
+     </span>
+
     <div class="header-container">
-        <!-- Search Container -->
-        <span id="search-container">
-            <input type="text" id="search-input" oninput="filterAppEntries()" placeholder="Search">
-            <span id="clear-search"
-                onclick="var input = this.previousElementSibling; input.value = ''; input.focus();">x</span>
-        </span>
-    
+        <div id="updatable-container">
+            <!-- Button for Updatable Site -->
+            <button id="button">Missing icons</button>
+        </div>
+
         <div id="random-container">
             <button id="random-reset-button">Reset &#10006;</button>
             <!-- Number of icons to random -->
             <input id="random-number-input" type="number" value="10" title="Number of icons to randomly select" />
             <!-- Button for Random Icons -->
-            <button id="random-button"><span class="lg-view">✨ I'm feelin' lucky ✨</span><span
-                    class="sm-view">✨</span></button>
-        </div>
-        <div id="updatable-container">
-            <!-- Button for Updatable Site -->
-            <button id="updatable-button">Potential Updates</button>
+            <button id="button">Shuffle</button>
         </div>
     </div>
 
@@ -56,6 +56,7 @@
                     <th class="sortable-header" onclick="sortTable(0)">Name</th>
                     <th class="sortable-header" onclick="sortTable(3)">Requests</th>
                     <th class="sortable-header" onclick="sortTable(4)">Last time</th>
+                    <th>Links</th>
                     <th>Links</th>
                 </tr>
             </thead>

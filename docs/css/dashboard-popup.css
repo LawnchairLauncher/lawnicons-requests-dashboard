@@ -1,20 +1,5 @@
 @import url('variables.css');
 
-#RegexSearchSettings {
-    width: 100%;
-    border: none;
-    color: var(--on-background);
-    background-color: #379AFF;
-    border-radius: 100px;
-    padding: 5px 15px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-#RegexSearchSettings:hover {
-    background-color: #3975FF;
-}
-
 #info {
     position: fixed;
     z-index: 4;
@@ -92,7 +77,7 @@
     width: 100%;
     border: none;
     color: var(--on-background);
-    background-color: #379AFF;
+    background-color: var(--surface-container-high);
     border-radius: 100px;
     padding: 5px 15px;
     text-decoration: none;

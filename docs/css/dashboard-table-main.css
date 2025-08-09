@@ -150,9 +150,10 @@ th {
     background-color: #3975FF;
 }
 
+
 #copy-notification {
     display: none;
-    background-color: #379AFF;
+    background-color: var(--surface-container-high);
     color: var(--on-background);
     padding: 10px;
     position: fixed;

@@ -25,16 +25,17 @@
 /* Header navigation container */
 .header-container {
     width: 100%;
-    height: 50px;
     display: flex;
-    margin-bottom: 20px;
-    gap: 50px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
 }
 
 /* Searchbar container */
 #search-container {
     display: flex;
     flex: 5;
+    margin-bottom: 16px;
     position: relative;
     /*display: inline-flex;*/
     align-items: left;
@@ -52,7 +53,6 @@
     font: 22px monospace;
     text-align: left;
     line-height: 1em;
-    cursor: pointer;
     visibility: hidden;
 }
 
@@ -82,35 +82,36 @@
     z-index: 1;
 }
 
-/* I'm feeling lucky container */
+/* Shuffle */
 #random-container {
-    flex: 2;
-    display: flex;
-    gap: 10px;
+    display: inline-block;
+    gap: 8px;
 }
 
-#random-button {
-    flex: 3;
-    width: 100%;
-    border: none;
+#button {
+    width: auto;
+    height: 32px;
+    display: inline-block;
+    padding: 16px 6px;
+    white-space: nowrap;
+    border: 1px solid var(--outline-variant);
     color: var(--on-background);
-    background-color: #379AFF;
-    border-radius: 100px;
+    background-color: var(--background);
+    border-radius: 8px;
     padding: 5px 15px;
     text-decoration: none;
-    cursor: pointer;
 }
 
-#random-button:hover {
-    background: linear-gradient(45deg, rgba(255, 0, 0, 1) 0%, rgba(255, 154, 0, 1) 10%, rgba(208, 222, 33, 1) 20%, rgba(79, 220, 74, 1) 30%, rgba(63, 218, 216, 1) 40%, rgba(47, 201, 226, 1) 50%, rgba(28, 127, 238, 1) 60%, rgba(95, 21, 242, 1) 70%, rgba(186, 12, 248, 1) 80%, rgba(251, 7, 217, 1) 90%, rgba(255, 0, 0, 1) 100%);
-    text-shadow: 1px 1px 2px black;
+#button:hover {
+    background: var(--surface-container-high);
 }
 
 #random-number-input {
     max-width: 80px;
+    height: 32px;
     box-sizing: border-box !important;
     overflow: visible;
-    border-radius: 100px;
+    border-radius: 8px;
     background-color: var(--surface-container-high);
     border: 0;
     box-shadow: none;
@@ -121,7 +122,6 @@
 
 #random-reset-button {
     border: 1px solid red;
-    cursor: pointer;
     background-color: rgba(0, 0, 0, 0);
     color: red;
     padding: 5px 15px;
@@ -131,7 +131,7 @@
     border-radius: 100px;
 }
 
-/* Span text for the I'm feeling lucky button*/
+/* Span text for the Shuffle*/
 .lg-view {
     display: inline-block;
 }
@@ -143,26 +143,9 @@
 /* Potential updates container */
 
 #updatable-container {
-    flex: 1;
-    display: flex;
+    display: inline-block;
     justify-content: stretch;
 
-}
-
-#updatable-button {
-    width: 100%;
-    height: 48px;
-    border: none;
-    color: var(--on-background);
-    background-color: #379AFF;
-    border-radius: 32px;
-    padding: 5px 15px;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-#updatable-button:hover {
-    background-color: #3975FF;
 }
 
 @media screen and (max-width: 1200px) {
