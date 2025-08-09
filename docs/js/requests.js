@@ -52,7 +52,7 @@ fetch(`assets/requests.txt`)
             const lastRequestedTime = new Date(requestedTimestamp * 1000).toLocaleString();
             const drawable = extractDrawable(appfilter);
             const appIconPath = drawable ? `extracted_png/${drawable}.webp` : 'img/requests/default.svg'; // Adjust path accordingly
-            const appIcon = `<img src="${appIconPath}" alt="App Icon" style="width:50px;height:50px;">`;
+            const appIcon = `<img src="${appIconPath}" alt="App Icon" style="width:56px;height:56px;border-radius:8px;">`;
             appEntriesData.push({
                 appName,
                 appIcon,
@@ -215,12 +215,12 @@ function renderTable(data) {
         let cell5 = row.insertCell(4);
         let cell6 = row.insertCell(5);
         index = index + startIndex;
-        cell1.innerHTML = entry.appName;
         // Render the app icon as a clickable image
-        cell2.innerHTML = `<a href="#" class="icon-preview" data-index="${index}">${entry.appIcon}</a>`;
-        cell3.innerHTML = entry.appLinks;
-        cell4.innerHTML = entry.requestedInfo;
-        cell5.innerHTML = entry.lastRequestedTime;
+        cell1.innerHTML = `<a href="#" class="icon-preview" data-index="${index}">${entry.appIcon}</a>`;
+        cell2.innerHTML = entry.appName;
+        cell3.innerHTML = entry.requestedInfo;
+        cell4.innerHTML = entry.lastRequestedTime;
+        cell5.innerHTML = entry.appLinks;
         cell6.innerHTML = `<button class="copy-button" onclick="copyToClipboard(${index})">Copy</button>`;
     });
 
