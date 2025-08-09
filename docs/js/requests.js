@@ -392,7 +392,7 @@ function sortTable(columnIndex) {
 
 function sortData(sortingDirection, columnIndex, sortedData) {
     sortedData.sort((a, b) => {
-        if (columnIndex === 4) { // Check if sorting the 'Last Requested' column
+        if (columnIndex === 4) { // Check if sorting the 'Last time' column
             const cellA = getCellValue(a, columnIndex);
             const cellB = getCellValue(b, columnIndex);
 

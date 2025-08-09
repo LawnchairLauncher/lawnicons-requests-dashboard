@@ -84,7 +84,7 @@
 
 /* Shuffle */
 #random-container {
-    display: inline-block;
+    display: flex;
     gap: 8px;
 }
 
@@ -143,9 +143,8 @@
 /* Potential updates container */
 
 #updatable-container {
-    display: inline-block;
-    justify-content: stretch;
-
+    display: flex;
+    gap: 8px;
 }
 
 @media screen and (max-width: 1200px) {
