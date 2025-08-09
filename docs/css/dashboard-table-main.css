@@ -1,7 +1,6 @@
 @import url('variables.css');
 
 .table-container {
-    max-height: 1200px;
     /* Set maximum height for scrollable area */
     overflow-y: auto;
     /* Enable vertical scrolling */
@@ -48,7 +47,7 @@ table {
 
 th,
 td {
-    border: 1px solid #ddd;
+    border-bottom: 1px solid var(--outline-variant);
     padding: 8px;
     text-align: left;
 }
@@ -173,7 +172,7 @@ th {
     }
 
     th {
-        background-color: #0f0f0f;
+        background-color: var(--background);
     }
 
     .links img {
