@@ -175,10 +175,10 @@ function parseAppfilter(appfilterContent) {
     return appfilterItems;
 }
 
-// Update header description
+// Update header text
 function updateHeaderText(newHeader) {
     header = newHeader;
-    document.getElementById('header-description').innerText = newHeader;
+    document.getElementById('header').innerText = newHeader;
 }
 
 function lazyLoadAndRender() {

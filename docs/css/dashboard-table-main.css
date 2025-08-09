@@ -1,7 +1,6 @@
 @import url('variables.css');
 
 .table-container {
-    /* Set maximum height for scrollable area */
     overflow-y: auto;
     /* Enable vertical scrolling */
 }
