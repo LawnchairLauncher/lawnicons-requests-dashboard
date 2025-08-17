@@ -20,12 +20,10 @@ config = {
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Script to parse emails and generate/update requests.txt and updatable.txt")
-
     parser.add_argument("folder_path", type=str, help="Path to folder containing .eml files of requests")
     parser.add_argument("appfilter_path", type=str, help="Path to existing appfilter.xml to recognize potentially updatable appfilters")
     parser.add_argument("extracted_png_folder_path", type=str, help="Path to folder containing extracted PNGs")
     parser.add_argument("requests_path", type=str, default=None, help="Path to folder containing the request.txt and updatable.txt")
-
     return parser.parse_args()
 
 class EmailParser:
@@ -37,7 +35,6 @@ class EmailParser:
         self.updatable_path = Path(requests_path+'/updatable.txt') if requests_path else None
 
         self.filelist = list(self.folder_path.glob('*.eml'))
-        self.data = {}
         self.apps = defaultdict(dict)
         self.email_count = Counter()
         self.no_zip = {}
@@ -45,13 +42,14 @@ class EmailParser:
         self.new_apps = []
         self.keep_pngs = set()
 
-        self.name_pattern = re.compile(r'<!-- (?P<Name>.+) -->', re.M)
+        # --- SIMPLIFICATION ---
+        # The name_pattern regex is no longer needed as the name is a direct attribute.
         self.component_pattern = re.compile('ComponentInfo{(?P<ComponentInfo>.+)}')
         self.package_name_pattern = re.compile(r'(?P<PackageName>[\w\.]+)/')
         self.request_block_query = re.compile(r'<!-- (?P<Name>.+) -->\s<item component=\"ComponentInfo{(?P<ComponentInfo>.+)}\" drawable=\"(?P<drawable>.+|)\"(/>| />)\s(https:\/\/play.google.com\/store\/apps\/details\?id=.+\shttps:\/\/f-droid\.org\/en\/packages\/.+\shttps:\/\/apt.izzysoft.de\/fdroid\/index\/apk\/.+\shttps:\/\/galaxystore.samsung.com\/detail\/.+\shttps:\/\/www.ecosia.org\/search\?q\=.+\s)Requested (?P<count>\d+) times\s?(Last requested (?P<requestDate>\d+\.?\d+?))?', re.M)
         self.update_block_query = re.compile(r'<!-- (?P<Name>.+) -->\s<item component=\"ComponentInfo{(?P<ComponentInfo>.+)}\" drawable=\"(?P<drawable>.+|)\"(/>| />)', re.M)
-    
-    def parse_existing(self,block_query,path):  
+
+    def parse_existing(self,block_query,path):
         if not path.exists():
             return
         with open(path, 'r', encoding="utf8") as existing_file:
@@ -63,18 +61,15 @@ class EmailParser:
                 self.apps[element_info['ComponentInfo']]['requestDate'] = float(element_info.get('requestDate', mktime(date.today().timetuple()))) if element_info.get('requestDate', mktime(date.today().timetuple())) is not None else mktime(date.today().timetuple())
                 self.apps[element_info['ComponentInfo']]['count'] = int(element_info.get('count',1)) if element_info.get('count',1) is not None else 1
                 self.apps[element_info['ComponentInfo']]['senders'] = []
-    
+
     def filter_old(self):
         current_date = date.today()
-
         def diff_month(d1, d2):
             return (d1.year - d2.year) * 12 + d1.month - d2.month
-
         self.apps = {
             k: v for k, v in self.apps.items()
             if v["count"] > config["min_requests"] or diff_month(current_date, date.fromtimestamp(v['requestDate'])) < config["months_limit"]
         }
-
 
     def find_zip(self, message):
         for part in message.walk():
@@ -87,7 +82,7 @@ class EmailParser:
         sender = message['From']
         self.email_count[sender] += 1
         return self.email_count[sender] > config["request_limit"]
-    
+
     def print_greedy_senders(self):
         for sender, count in self.email_count.items():
             if count > config["request_limit"]:
@@ -99,108 +94,89 @@ class EmailParser:
                 message = email.message_from_bytes(f.read())
                 zip_file = self.find_zip(message)
                 if zip_file is None:
-                    sender = message['From']
-                    self.no_zip[sender] = mail
+                    self.no_zip[message['From']] = mail
                     continue
                 try:
                     with zip_file as zip_ref:
-                        xml_string = zip_ref.read('appfilter.xml')
+                        xml_string = zip_ref.read('!appfilter.xml')
                         root = ET.fromstring(xml_string)
                         self.process_xml(root, message, zip_file)
                 except Exception as e:
-                    sender = message['From']
-                    self.no_zip[sender] = mail
+                    self.no_zip[message['From']] = mail
                     print(f"Error processing email {mail}: {e}")
 
     def process_xml(self, root, msg, zip_file):
-        for child in root:
-            self.requests(child, msg, zip_file)
+        # The new format is simpler; we can directly iterate over 'item' tags
+        for child in root.findall('.//item'):
+            self.process_request_item(child, msg, zip_file)
 
-    def extract_png(self, child, zip_file,data):
-        component_info = child.get('component')
-        drawable = child.get('drawable')
+    def extract_png(self, drawable_name, zip_file):
+        new_drawable_name = drawable_name
         try:
-            if component_info and drawable:
-                # Extract the PNG file from the zip
-                for file_info in zip_file.infolist():
-                    if file_info.filename.endswith(f'{drawable}.png'):
-                        with zip_file.open(file_info.filename) as png_file:
-                            # Save the PNG file
-                            png_content = png_file.read()
-                            png_filename = os.path.join(self.extracted_png_folder_path, f"{drawable}.png")
-                            done = False
-                            number = 0
-                            while not done:
-                                if not os.path.exists(png_filename):
-                                    with open(png_filename, 'wb') as new_png_file:
-                                        new_png_file.write(png_content)
-                                    # Update apps dictionary with the new PNG file path
-                                    #self.apps[component_info][drawable] = png_filename
-                                    if number == 0:
-                                        data["drawable"] = drawable
-                                    else:
-                                        data["drawable"] = f"{drawable}_{number}"
-                                    done = True
-                                else:
-                                    number += 1
-                                    # Rename the PNG file and update the apps dictionary
-                                    png_filename = os.path.join(self.extracted_png_folder_path, f"{drawable}_{number}.png")
+            for file_info in zip_file.infolist():
+                if file_info.filename.endswith(f'{drawable_name}.png'):
+                    with zip_file.open(file_info.filename) as png_file:
+                        png_content = png_file.read()
+                        png_filename = os.path.join(self.extracted_png_folder_path, f"{drawable_name}.png")
+
+                        number = 0
+                        while os.path.exists(png_filename):
+                            number += 1
+                            new_drawable_name = f"{drawable_name}_{number}"
+                            png_filename = os.path.join(self.extracted_png_folder_path, f"{new_drawable_name}.png")
+
+                        with open(png_filename, 'wb') as new_png_file:
+                            new_png_file.write(png_content)
+                        return new_drawable_name
         except Exception as e:
-            print(f"Error extracting PNG file: {e}")
-    
-    def delete_unused_icons(self):
-        extracted_png_folder = self.extracted_png_folder_path
+            print(f"Error extracting PNG file for '{drawable_name}': {e}")
+        return new_drawable_name
 
-        # Get a list of all files in the extracted_png folder
-        png_files = os.listdir(extracted_png_folder)
+    # --- MAJOR REFACTOR ---
+    # This method is now heavily simplified. It no longer needs to handle comments
+    # and items separately. All required data is in the <item> tag.
+    def process_request_item(self, item, msg, zip_file):
+        component_name = item.get('component')
+        app_name = item.get('name')
+        drawable = item.get('drawable')
 
-        # Iterate over the PNG files and delete those not present in the drawables list
-        for png_file in png_files:
-            if png_file.endswith(".png"):
-                drawable_name = os.path.splitext(png_file)[0]
-                if drawable_name not in self.keep_pngs:
-                    file_path = os.path.join(extracted_png_folder, png_file)
-                    os.remove(file_path)
+        # Skip if essential information is missing
+        if not all([component_name, app_name, drawable]):
+            return
 
-    def requests(self, child, msg, zip_file):
-        data = self.data
-        if child.get('component') is None:
-            self.data = {}
-            data = self.data
-            child_string = ET.tostring(child, encoding='utf-8').decode()
-            name_match = re.search(self.name_pattern, child_string)
-            if name_match:
-                data['Name'] = name_match.group('Name')
+        component_match = re.search(self.component_pattern, component_name)
+        if not component_match:
+            return
+
+        component_info = component_match.group('ComponentInfo')
+
+        if self.greedy(msg):
+            return
+
+        if component_info in self.apps:
+            self.apps[component_info]['count'] += 1
         else:
-            component_name = child.get('component')
-            component_match = re.search(self.component_pattern, component_name)
-            if component_match:
-                data['ComponentInfo'] = component_match.group('ComponentInfo')
+            # This is a new request
+            new_drawable_name = self.extract_png(drawable, zip_file)
+            self.apps[component_info] = {
+                'Name': app_name,
+                'ComponentInfo': component_info,
+                'drawable': new_drawable_name,
+                'count': 1
+            }
 
-            if self.greedy(msg):
-                return
-
-            data['drawable'] = child.get('drawable')
-            if data['ComponentInfo'] in self.apps:
-                self.apps[data['ComponentInfo']]['count'] += 1
-            else:
-                self.extract_png(child,zip_file,data)
-                data['count'] = 1
-                self.apps[data['ComponentInfo']] = data
-
-            if 'requestDate' not in self.apps[data['ComponentInfo']] or self.apps[data['ComponentInfo']]['requestDate'] < mktime(parsedate(msg['Date'])):
-                self.apps[data['ComponentInfo']]['requestDate'] = mktime(parsedate(msg['Date']))
+        # Always update to the most recent request date
+        request_timestamp = mktime(parsedate(msg['Date']))
+        if 'requestDate' not in self.apps[component_info] or self.apps[component_info]['requestDate'] < request_timestamp:
+            self.apps[component_info]['requestDate'] = request_timestamp
 
     def move_no_zip(self):
         for failedmail in self.no_zip:
             normalized_path = Path(self.no_zip[failedmail]).resolve()
             print(f'--- No zip file found for {failedmail}\n------ File moved to failedmail')
-
             if normalized_path.exists():
-                file_name = normalized_path.name
-                destination_path = Path("failedmail") / file_name
+                destination_path = Path("failedmail") / normalized_path.name
                 destination_path.parent.mkdir(parents=True, exist_ok=True)
-
                 try:
                     normalized_path.rename(destination_path)
                 except FileNotFoundError:
@@ -219,55 +195,63 @@ https://galaxystore.samsung.com/detail/{packageName}
 https://www.ecosia.org/search?q={packageName}
 Requested {count} times
 Last requested {reqDate}
-    """ 
-        appfilter_tree = ET.parse(self.appfilter_path)
-        root = appfilter_tree.getroot()
-        items = root.findall('.//item')
-        components = []
-        package_names = []
+    """
+        # --- ROBUSTNESS FIX ---
+        # Handle case where the provided path is a directory instead of a file.
+        appfilter_file_path = self.appfilter_path
+        if appfilter_file_path.is_dir():
+            # If a directory is given, assume the target file is 'combined_appfilter.xml'
+            # as this is the standard output from the GitHub Action.
+            print(f"Path provided is a directory. Looking for 'combined_appfilter.xml' inside...")
+            appfilter_file_path = appfilter_file_path / 'appfilter.xml'
 
-        for item in items:
+        try:
+            appfilter_tree = ET.parse(appfilter_file_path)
+        except FileNotFoundError:
+            print(f"FATAL ERROR: The master appfilter file could not be found at '{appfilter_file_path}'.")
+            print("Please check that the path is correct and the file exists.")
+            return # Exit the method gracefully to avoid a crash.
+        except ET.ParseError as e:
+            print(f"FATAL ERROR: Failed to parse the XML file at '{appfilter_file_path}'. It may be corrupted. Error: {e}")
+            return
+
+        root = appfilter_tree.getroot()
+
+        # Build sets of existing components and package names for efficient lookup
+        existing_components = set()
+        existing_package_names = set()
+        for item in root.findall('.//item'):
             component_info = item.get('component')
             match = re.search(r'\{(.*?)\}', component_info)
-            
             if match:
                 component = match.group(1)
-                components.append(component)
-                # Extracting the part before the slash
-                package_name = component.split('/')[0]
-                package_names.append(package_name)
+                existing_components.add(component)
+                existing_package_names.add(component.split('/')[0])
 
-
-        appfilter_set = set(components)
-        packageName_set = set(package_names)
         new_apps_set = set()
-        updatable_set =set()
-        
+        updatable_set = set()
 
-        for (componentInfo, values) in self.apps.items():
+        for componentInfo, values in self.apps.items():
             try:
-                PackageName = componentInfo[:componentInfo.index('/')]
+                packageName = componentInfo.split('/')[0]
 
-                if (
-                    componentInfo not in appfilter_set
-                    and componentInfo not in new_apps_set
-                    and PackageName not in packageName_set
-                ):
+                if componentInfo in existing_components:
+                    continue # Already themed, ignore.
+
+                if packageName not in existing_package_names and componentInfo not in new_apps_set:
+                    # This is a completely new app
                     self.new_apps.append(object_block.format(
                         name=values["Name"],
                         component=values["ComponentInfo"],
                         appname=values["drawable"],
-                        packageName=values["ComponentInfo"][:values["ComponentInfo"].index('/')],
+                        packageName=packageName,
                         count=values["count"],
                         reqDate=values["requestDate"],
-                    )) 
+                    ))
                     self.keep_pngs.add(values["drawable"])
-                    new_apps_set.add(values["ComponentInfo"])
-                elif (
-                    PackageName in packageName_set
-                    and componentInfo not in updatable_set
-                    and componentInfo not in appfilter_set
-                ):
+                    new_apps_set.add(componentInfo)
+                elif packageName in existing_package_names and componentInfo not in updatable_set:
+                    # This is a new activity for an existing app
                     self.updatable.append(
                         f'<!-- {values["Name"]} -->\n'
                         f'<item component="ComponentInfo{{{values["ComponentInfo"]}}}" drawable="{values["drawable"]}"/>\n\n'
@@ -275,9 +259,18 @@ Last requested {reqDate}
                     updatable_set.add(componentInfo)
                     self.keep_pngs.add(values["drawable"])
             except Exception as e:
-                print(values)
-                print(f'Error: {e}')
+                print(f"Error separating app '{values.get('Name')}': {e}")
 
+    def delete_unused_icons(self):
+        if not os.path.exists(self.extracted_png_folder_path):
+            return
+        for png_file in os.listdir(self.extracted_png_folder_path):
+            if png_file.endswith(".png"):
+                drawable_name = os.path.splitext(png_file)[0]
+                if drawable_name not in self.keep_pngs:
+                    file_path = os.path.join(self.extracted_png_folder_path, png_file)
+                    os.remove(file_path)
+                    print(f"Deleted unused icon: {file_path}")
 
     def write_output(self):
         new_list_header = """-------------------------------------------------------
@@ -294,25 +287,34 @@ Last requested {reqDate}
                 file_two.write(''.join(self.updatable))
 
     def main(self):
-        if self.updatable_path:
-            print("parse Existing Updatable")
-            self.parse_existing(self.update_block_query,self.updatable_path)
-        if self.requests_path:
-            print("parse Existing Requests")
-            self.parse_existing(self.request_block_query,self.requests_path)
-        print("Filter Old")
+        if self.updatable_path and self.updatable_path.exists():
+            print("Parsing Existing Updatable...")
+            self.parse_existing(self.update_block_query, self.updatable_path)
+        if self.requests_path and self.requests_path.exists():
+            print("Parsing Existing Requests...")
+            self.parse_existing(self.request_block_query, self.requests_path)
+
+        print("Filtering Old Requests...")
         self.filter_old()
-        print("Parse Mail")
+
+        print("Parsing New Emails...")
         self.parse_email()
-        print("Sort Apps")
+
+        print("Sorting Apps by Request Count...")
         self.apps = dict(sorted(self.apps.items(), key=lambda item: item[1]['count'], reverse=True))
-        print("Find Updateable")
+
+        print("Separating New vs. Updatable Apps...")
         self.separate_updatable()
-        print("Write Output")
+
+        print("Writing Output Files...")
         self.write_output()
+
+        print("Cleaning Up Unused Icons...")
         self.delete_unused_icons()
+
         self.print_greedy_senders()
         self.move_no_zip()
+        print("Processing complete.")
 
 if __name__ == "__main__":
     args = parse_args()
