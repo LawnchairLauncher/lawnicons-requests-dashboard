@@ -227,11 +227,13 @@ function renderTable(data) {
     // Add event listeners to the icon previews
     const iconPreviews = document.querySelectorAll('.icon-preview');
     iconPreviews.forEach(icon => {
-        icon.addEventListener('click', function (event) {
+        icon.addEventListener('click', function(event) {
             event.preventDefault();
             const index = parseInt(this.getAttribute('data-index'));
             const entry = appEntriesDataGlobal[index];
-            showIconPreview(entry.appIconPath);
+            
+            // Open link
+            window.open(entry.appIconPath, '_blank');
         });
     });
 }
