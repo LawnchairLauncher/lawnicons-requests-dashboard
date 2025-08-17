@@ -232,8 +232,12 @@ function renderTable(data) {
             const index = parseInt(this.getAttribute('data-index'));
             const entry = appEntriesDataGlobal[index];
             
-            // Open link
-            window.open(entry.appIconPath, '_blank');
+        // GitHub link
+        const newDomain = "https://github.com/LawnchairLauncher/lawnchair.app/tree/dashboard/";
+        const fullUrl = newDomain + entry.appIconPath;
+        
+        // Open link
+        window.open(fullUrl, '_blank');
         });
     });
 }
