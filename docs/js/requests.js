@@ -233,7 +233,7 @@ function renderTable(data) {
             const entry = appEntriesDataGlobal[index];
             
         // GitHub link
-        const newDomain = "https://github.com/LawnchairLauncher/lawnchair.app/tree/dashboard/";
+        const newDomain = "https://github.com/LawnchairLauncher/lawnchair.app/tree/dashboard/extracted_png/";
         const fullUrl = newDomain + entry.appIconPath;
         
         // Open link
