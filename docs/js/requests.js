@@ -1,5 +1,5 @@
 // Array of Link Images
-const imageNames = ['img/requests/google-play-store.svg', 'img/requests/f-droid.svg', 'img/requests/izzyondroid.svg', 'img/requests/galaxystore.svg', 'img/requests/search-globe.svg'];
+const imageNames = ['img/ic_web_search.svg', 'img/ic_google_play.svg', 'img/ic_f_droid.svg', 'img/ic_izzyondroid.svg', 'img/ic_galaxy_store.svg'];
 var appEntriesDataGlobal = []; // Store the original data for sorting
 // Lazy loading and virtualization
 const batchSize = 50; // Number of rows to load at a time
@@ -44,14 +44,14 @@ fetch(`assets/requests.txt`)
             const appNameAppfilter = lines[0].trim();
             const appfilter = lines[1].trim().split('\n').join(' ').trim();
             const appLinks = lines.slice(2, lines.length - 2).map((line, index) => {
-                const imageName = index < imageNames.length ? imageNames[index] : 'img/requests/default.svg';
+                const imageName = index < imageNames.length ? imageNames[index] : 'img/ic_default.svg';
                 return `<a href="${line.trim()}" class="links" target="_blank"><img src="${imageName}" alt="Image"></a>`;
             }).join('\n');
             const requestedTimestamp = parseInt(lines.slice(lines.length - 2)[1].trim().split(' ')[2]);
             const requestedInfo = lines.slice(lines.length - 2)[0].trim().split(' ')[1].trim();
             const lastRequestedTime = new Date(requestedTimestamp * 1000).toLocaleString();
             const drawable = extractDrawable(appfilter);
-            const appIconPath = drawable ? `extracted_png/${drawable}.png` : 'img/requests/default.svg'; // Adjust path accordingly
+            const appIconPath = drawable ? `extracted_png/${drawable}.png` : 'img/ic_default.svg'; // Adjust path accordingly
             const appIcon = `<img src="${appIconPath}" alt="App Icon" style="width:56px;height:56px;border-radius:8px;">`;
             appEntriesData.push({
                 appName,
@@ -221,7 +221,7 @@ function renderTable(data) {
         cell3.innerHTML = entry.requestedInfo;
         cell4.innerHTML = entry.lastRequestedTime;
         cell5.innerHTML = entry.appLinks;
-        cell6.innerHTML = `<button class="copy-button" onclick="copyToClipboard(${index})">Copy</button>`;
+        cell6.innerHTML = `<a class="links" onclick="copyToClipboard(${index})"><img src="img/ic_copy.svg" alt="Copy"></button>`;
     });
 
     // Add event listeners to the icon previews

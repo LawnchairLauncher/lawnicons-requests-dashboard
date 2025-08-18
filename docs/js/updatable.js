@@ -39,7 +39,7 @@ fetch(`assets/updatable.txt`)
             const appfilter = lines[1].trim().split('\n').join(' ').trim();
             const packageName = appfilter.split('ComponentInfo{')[1].split('/')[0].trim();
             const drawable = extractDrawable(appfilter);
-            const appIconPath = drawable ? `extracted_png/${drawable}.png` : 'img/requests/default.svg'; // Adjust path accordingly
+            const appIconPath = drawable ? `extracted_png/${drawable}.png` : 'img/ic_default.svg'; // Adjust path accordingly
             const appIcon = `<img src="${appIconPath}" alt="App Icon" style="width:50px;height:50px;">`;
 
             appEntriesData.push({
@@ -171,7 +171,7 @@ function renderTable(data) {
         index = index + startIndex;
         cell1.innerHTML = entry.appName;
         cell2.innerHTML = `<a href="#" class="icon-preview" data-index="${index}">${entry.appIcon}</a>`;
-        cell3.innerHTML = `<div class="package-name"><div id="packagename">` + entry.packageName + `</div><div id="package-copy"><button class="copy-package" onclick="copyToClipboard(${index}, 'package')"><img src="img/requests/copy.svg"></button></div></div>`;
+        cell3.innerHTML = `<div class="package-name"><div id="packagename">` + entry.packageName + `</div><div id="package-copy"><button class="copy-package" onclick="copyToClipboard(${index}, 'package')"><img src="img/ic_copy.svg"></button></div></div>`;
         cell4.innerHTML = entry.appfilter.replace('<', '&lt;').replace('>', '&gt;').replace(/"/g, '&quot;').trim();
         cell5.innerHTML = `<button class="copy-button" onclick="copyToClipboard(${index}, 'appfilter')">Copy</button>`;
     });

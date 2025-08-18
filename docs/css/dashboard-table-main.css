@@ -85,9 +85,8 @@ th {
 
 /* Quick link images*/
 .links img {
-    filter: invert();
-    width: 50px;
-    height: 50px;
+    width: 32px;
+    height: 32px;
 }
 
 /* Style for the preview overlay */
