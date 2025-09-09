@@ -26,7 +26,8 @@ const debounce = (func, delay) => {
 const filterAppEntries = debounce(() => {
 
     showClearSearchIcon();
-    if (document.getElementById('regex-switch').checked) {
+    if (false) {
+    // if (document.getElementById('regex-switch').checked) {
         const searchInput = document.getElementById('search-input').value;
         const regexFlagInsensitive = document.getElementById('caseInsensitive-switch').checked ? 'i' : '';
         const regexFlagUnicode = document.getElementById('caseUnicode-switch').checked ? 'u' : '';
