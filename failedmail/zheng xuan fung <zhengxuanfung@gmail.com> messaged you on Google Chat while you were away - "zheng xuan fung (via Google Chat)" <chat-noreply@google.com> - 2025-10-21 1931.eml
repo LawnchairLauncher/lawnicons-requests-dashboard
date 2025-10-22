@@ -1,0 +1,309 @@
+Delivered-To: lawnrequest@gmail.com
+Received: by 2002:a05:7300:f082:b0:29f:33c8:7aaa with SMTP id ri2csp1986167dyb;
+        Tue, 21 Oct 2025 09:31:32 -0700 (PDT)
+X-Received: by 2002:a17:90b:4ecc:b0:33b:cb70:31d5 with SMTP id 98e67ed59e1d1-33bcf87cf77mr22632803a91.15.1761064292160;
+        Tue, 21 Oct 2025 09:31:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761064292; cv=none;
+        d=google.com; s=arc-20240605;
+        b=IDHF2uyicCWM7EdKWHk7yrHqXJxOAdeDKVlzUe3+RwjNymx2fnEvy93OenS+8TqKT+
+         Jxm8UKBNDYfbGsNC+npxuKAOBtqbwFsqnQi+AjcbFleGSu+U4MqIb+QAt6lEkwPEYO2P
+         O2zcYVqvgk91UlwzPCPm0q/9cqGY05Um3EJUnpFXsQDJpddjDlrrIAv8pubep0ixOMzd
+         fheO5ahpk+jde6YDnEAgSiR7EXraFwi7DZqtt+eJV7FII/TZT0e8nRuONT8VWN3G6Xql
+         61bhLMoEynH4cu+Xs79gUhq/AkqxpU/ue9P0i7YdfTVrzCvkStTk6IFKx45Zuwvli7EW
+         guPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:from:subject:message-id:date:mime-version:dkim-signature;
+        bh=jqLdnZRJC/r2yRbwgMVoN4UMz/nnUdU39f1s2RS6v70=;
+        fh=U1bxmLJzbA8asu9m+XC3TzNczPX6UfFSUG2Wt+f2dmY=;
+        b=GQevpqIg9B23kWy87kYSfxsoaeAM7DgSgXu1WiaN02T1YQE1HRgzFiZzLji0ZtIIzv
+         5OeZxcJrOCV2sJxBL6e57xm3Us2EaoH55VbFhWs6YQpKg0wy73fu9QaLSdOW0r0+e3Cb
+         0l0Ms5C2MUCPspEmxi56THrsGUsz2k5ctdQ3ih+7064YhSMDahECsIjg1V3NlLnLI2Dh
+         JInvvXB3XqmisFub6uoqeOQWz6rQ95vVfq/Vkbsowm9a3kDTSjRs4FLF/kpfJs6etOBk
+         0BQRx90tf3rgT+T7MJ7jKbXJiQ6QbntDEbWrWA2Pq18S+bbPolpGYcDhd6UEQdg/I0iG
+         rE2w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=ry+Mlv86;
+       spf=pass (google.com: domain of 3yrx3aawkc_kdibu-opsfqmzhpphmf.dpnmbxosfrvftuhnbjm.dpn@chime-notifications.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3YrX3aAwKC_kdibu-opsfqmzhpphmf.dpnmbxosfrvftuhnbjm.dpn@chime-notifications.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <3YrX3aAwKC_kdibu-opsfqmzhpphmf.dpnmbxosfrvftuhnbjm.dpn@chime-notifications.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 98e67ed59e1d1-33d55f9c8eesor6554758a91.4.2025.10.21.09.31.32
+        for <lawnrequest@gmail.com>
+        (Google Transport Security);
+        Tue, 21 Oct 2025 09:31:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 3yrx3aawkc_kdibu-opsfqmzhpphmf.dpnmbxosfrvftuhnbjm.dpn@chime-notifications.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=ry+Mlv86;
+       spf=pass (google.com: domain of 3yrx3aawkc_kdibu-opsfqmzhpphmf.dpnmbxosfrvftuhnbjm.dpn@chime-notifications.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3YrX3aAwKC_kdibu-opsfqmzhpphmf.dpnmbxosfrvftuhnbjm.dpn@chime-notifications.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1761064292; x=1761669092; dara=google.com;
+        h=to:from:subject:message-id:date:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=jqLdnZRJC/r2yRbwgMVoN4UMz/nnUdU39f1s2RS6v70=;
+        b=ry+Mlv86tNRXZ2nvy5F0MUIrZ8EHNkf3RvlBsx/JzoHU0FRhZl26N7UzYV0uJh6GPU
+         /++nP1qVFa5o6wbjwh5Ioy8LAGGlFDDizktrn1FlklESC3SLXkcn0HqWPQRsOyjqQ1ZB
+         /1Un0zdya8BOxBGqbUP5+m+x7EhA0rBVKHoVx9gv12K/4HhEG3ipaHaRlfGeUNsJEG5a
+         jh0iglqry9DhX2TWq7kY5nldh7kL+aQ1LTTIOzita/7C8Svu3Bt5qhWyOvJVh429vJTX
+         haehHLx0qmTA+9rwpoD6TFmmKzYBQyKtJaAarNVVWZ7JV+jHaSu0GZl1k5TRqIL8j6Ot
+         sFUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761064292; x=1761669092;
+        h=to:from:subject:message-id:date:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jqLdnZRJC/r2yRbwgMVoN4UMz/nnUdU39f1s2RS6v70=;
+        b=Eni/CRgEn9KYKCJM064wQQ54ARD9N6BX7uQHzts+sEgWRCvmI+6RFUJnzbpyi/OUZC
+         v1dD1V6NdvnUA6ndAmlmGkNxm4ycZQWDYqw96lIGdL37A62SkCSgj9+E2OB/869KP0Av
+         K/fSSNvqtADfdrx7tG6+TwbBD7/zLsyQrlpq5k5d7SmFTe0QAwHaxzQ7g+5F3LmfdTIF
+         ha8aQSOU6HLVwp4RdkcabYchUKJbfexIuacgZ/vIUdOqPqYs49xq1+xmoldBLWukepDo
+         EtVuQyNciLhpQyuJhJ1GezLpNa7iMG46bbbjr1bWojJBXZZEfT27OrW8lgx49wVbOQr+
+         ddwA==
+X-Gm-Message-State: AOJu0YyBbyDCOi9Ybcyui6iAJe4KwYeCYAyN7poBYRf4JbMSAD8N85Ju
+	FVYjoqAnzRAxRQT0AQvo9ZsuC2upsojx0xWXjhn1myy7muxTUIm2DWQdI4s/fGtcekWn98GWWfG
+	pKeeSXhk5OCtBPUAZiI3b8p3/8Im2vvTLGkSeJoUzuQ6+p5eonG3kci7Une0+jrneWLLVXCuDHv
+	1h2YGdgrf9Bk3kA2IKpjxGNBZveS0BYpYM9xByRKo8r50IjPrdBuureCY=
+X-Google-Smtp-Source: AGHT+IFhPj+rG9HEdpP4BCQB99w0e5gg9hQfsK9pD1tsd8Fa9ky8d5ufjmN2BrZi2nJn7XRVGugyVVB83oJJ0n4iZPRCCBzVRoI=
+MIME-Version: 1.0
+X-Received: by 2002:a17:90b:48c6:b0:330:6edd:9cf with SMTP id
+ 98e67ed59e1d1-33bcf8ec5f7mr23333172a91.22.1761064290208; Tue, 21 Oct 2025
+ 09:31:30 -0700 (PDT)
+Date: Tue, 21 Oct 2025 09:31:30 -0700
+X-Notifications: dynamite1761064289908493
+X-Notifications-Bounce-Info: AeTnV4H99pXE0qPWj5rMpm7R9QGzH5pIta9x1apORkfdeFulsvg49X5tspeXWmmZ6CZQEFC6yJ6v5rwb3cpVOkPxrUdbUrmab9YlFHwpcX8NkoCOsPq2h5FVNAqgS0lVRy2gOZfsKKlZVYKsPD_0n_BygGN1079J6EJRVoBk9xjYbmRafVmGiF6DLwgEuf9VblL2rsT8BvG_aIFvM_byWcJTvmLQpUBUzANjAwNjA0MDQxNTM1NTk2OTMzMg
+Message-ID: <ZBWJ8O19bYiV4A0_L3pfrQ@notifications.google.com>
+Subject: zheng xuan fung <zhengxuanfung@gmail.com> messaged you on Google Chat
+ while you were away
+From: "zheng xuan fung (via Google Chat)" <chat-noreply@google.com>
+To: lawnrequest@gmail.com
+Content-Type: multipart/alternative; boundary="0000000000007249880641adbb5b"
+
+--0000000000007249880641adbb5b
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+
+zheng xuan fung <zhengxuanfung@gmail.com> messaged you on Google Chat while  
+you were away
+
+
+zheng xuan fung
+
+zheng xuan fung
+
+
+
+App Lock dev.pranav.applock/dev.pranav.applock.MainActivity Camera  
+com.android.MGC_9_4_103/com.android.camera.CameraLauncher CelcomDigi  
+com.celcomdigi.selfcare/com.main.MainActivity Dictionary  
+com.bravolol.bravolang.englishchinesecdictionary/com.bravolol.bravolang.englishchinesecdictionary.Default  
+KonaBess xzr.konabess/xzr.konabess.MainActivity Material  
+com.akira.material/com.akira.material.MainActivityMaterialYou OpenTune  
+com.Arturo254.opentune/com.arturo254.opentune.MainActivity ShopeePay  
+com.shopeepay.my/com.shopee.app.ui.home.HomeActivity_ Smash Badminton  
+com.cascade.badminton.game/com.unity3d.player.UnityPlayerActivity Weather  
+Master  
+com.pranshulgg.weather_master_app/com.pranshulgg.weather_master_app.MainActivity  
+YouTube  
+app.revanced.android.youtube/app.revanced.android.youtube.revanced_original_1  
+eKamus info.ekamus.android/info.ekamus.MainActivity
+
+
+
+
+
+zheng xuan fung
+
+zheng xuan fung
+
+
+
+lawnicons_request.zip
+
+
+
+
+Open in Google Chat
+
+
+Google Chat: An intelligent messaging app, built for teams.
+Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA
+You have received this email because you have been mentioned in this  
+conversation by a Google Chat user. You cannot reply to this email.
+Unsubscribe from these emails by changing your email reminder preferences  
+for Google Chat. Email reminder preferences cannot be set on mobile  
+devices. Learn more
+Logo for Google
+
+
+
+--0000000000007249880641adbb5b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div style=3D"font:13px Roboto,Arial"><div><div style=3D"width:100%;padding=
+:24px 0 16px 0;background-color:#f5f5f5;text-align:center"><div style=3Ddis=
+play:inline-block;width:90%;max-width:680px;min-width:280px;text-align:left=
+;font-family:Roboto,Arial,Helvetica,sans-serif><div style=3Dheight:0px dir=
+=3Dltr></div><div style=3D"display:block;padding:0 2px"><div style=3Ddispla=
+y:block;background:#fff;height:2px></div></div><div style=3D"border-left:1p=
+x solid #f0f0f0;border-right:1px solid #f0f0f0"><div style=3D"padding:24px =
+32px 24px 32px;background:#fff;border-right:1px solid #eaeaea;border-left:1=
+px solid #eaeaea" dir=3Dltr><div style=3D"font-size:14px;line-height:18px;c=
+olor:#444;font-family:Google Sans,Roboto,sans-serif"><div style=3Dfont-size=
+:18px;letter-spacing:.25px;line-height:24px>zheng xuan fung &lt;zhengxuanfu=
+ng@gmail.com&gt; messaged you on <a href=3D"https://notifications.googleapi=
+s.com/email/redirect?t=3DAFG8qyWMgzbzWa3HpWstONj_agyM2okcEFPQt_wdQyYuuwbEE2=
+GXJlw-qRrRP_Pq3itnK4LhfuHIuzcF_belPz2_1g4Ek73NK9CZHBAFaw6u-jLenpoGnErng8cmZ=
+R31Ot4bNJe1w3bhHuLBy_8pXlFiLzSPWdfIwFuDfh7fn475c7EAeZRG9jAydruvYGusAAPHcq2B=
+32vN4TUgvjyZxJhNTWtqQX7caqoKpnmooF1kNsCpjYV5CGNdO9ePJbHbubtfJ9Rb57aUXsSJYbY=
+9Iv-gjwMyh7FBQoyvFwY1t3ERF2Mzy3xJQFFh6nHpsR5ZiqI5BZSh_A&amp;r=3DeJzLKCkpKLb=
+S10_OSCzRS8_PT89J1UvOz9VPydUvNrAMMch0BAJX_TSfAP-IDG9HXctA--ScYltDI7Xk1BJbIw=
+CpsxQ6&amp;s=3DALHZ2r6rZ2PhgrrPP9LvVhwjsFIF" target=3D_blank style=3Dcolor:=
+#1e88e5;text-decoration:none>Google Chat</a> while you were away</div></div=
+><div style=3Dheight:16px></div><div style=3Dheight:1px;background-color:#e=
+ee></div><div style=3Dheight:24px></div><div style=3Doverflow:hidden;margin=
+-top:0;margin-bottom:24px;word-break:break-word;word-wrap:break-word><table=
+ role=3Dpresentation cellpadding=3D0 cellspacing=3D0 style=3Dwidth:100%><tb=
+ody><tr><td style=3Dvertical-align:top;width:10%;padding-bottom:20px><div s=
+tyle=3Dmax-height:77px;margin-right:15px;height:48px;width:48px;background:=
+#f0f0f0;overflow:hidden;border-radius:50%><img src=3Dhttps://lh3.googleuser=
+content.com/a-/ALV-UjUDYPccY9u6uzrBE6AE_U2H01GLltjAzl14FP3IjOkB8_AauRT6=3Ds=
+48-w48-c-h48 alt=3D"zheng xuan fung" style=3Dheight:48px;width:48px></div><=
+/td><td style=3Dvertical-align:top;padding-bottom:20px><div style=3D"displa=
+y:inline-block;padding:0 15px 0 0;font-size:14px;line-height:20px;letter-sp=
+acing:.25px;width:100%;color:#202124;font-weight:400">zheng xuan fung</div>=
+<table role=3Dpresentation cellpadding=3D0 cellspacing=3D0 style=3Dfont-fam=
+ily:Roboto;font-style:normal;font-weight:300;font-size:14px;line-height:20p=
+x;letter-spacing:.2px;color:#3c4043;width:100%><tbody><tr><td><p style=3Dma=
+rgin:0><span style=3Dfont-family:Roboto;font-style:normal;font-weight:300;f=
+ont-size:14px;line-height:20px;letter-spacing:.2px;color:#3c4043;white-spac=
+e:pre-wrap>App Lock
+dev.pranav.applock/dev.pranav.applock.MainActivity
+
+Camera
+com.android.MGC_9_4_103/com.android.camera.CameraLauncher
+
+CelcomDigi
+com.celcomdigi.selfcare/com.main.MainActivity
+
+Dictionary
+com.bravolol.bravolang.englishchinesecdictionary/com.bravolol.bravolang.eng=
+lishchinesecdictionary.Default
+
+KonaBess
+xzr.konabess/xzr.konabess.MainActivity
+
+Material
+com.akira.material/com.akira.material.MainActivityMaterialYou
+
+OpenTune
+com.Arturo254.opentune/com.arturo254.opentune.MainActivity
+
+ShopeePay
+<a href=3Dhttp://com.shopeepay.my/com.shopee.app.ui.home.HomeActivity_ targ=
+et=3D_blank rel=3D"noopener nofollow noreferrer">com.shopeepay.my/com.shope=
+e.app.ui.home.HomeActivity_</a>
+
+Smash Badminton
+com.cascade.badminton.game/com.unity3d.player.UnityPlayerActivity
+
+Weather Master
+com.pranshulgg.weather_master_app/com.pranshulgg.weather_master_app.MainAct=
+ivity
+
+YouTube
+<a href=3Dhttp://app.revanced.android.youtube/app.revanced.android.youtube.=
+revanced_original_1 target=3D_blank rel=3D"noopener nofollow noreferrer">ap=
+p.revanced.android.youtube/app.revanced.android.youtube.revanced_original_1=
+</a>
+
+eKamus
+<a href=3Dhttp://info.ekamus.android/info.ekamus.MainActivity target=3D_bla=
+nk rel=3D"noopener nofollow noreferrer">info.ekamus.android/info.ekamus.Mai=
+nActivity</a></span></p></td></tr></tbody></table></td></tr><tr><td style=
+=3Dvertical-align:top;width:10%><div style=3Dmax-height:77px;margin-right:1=
+5px;height:48px;width:48px;background:#f0f0f0;overflow:hidden;border-radius=
+:50%><img src=3Dhttps://lh3.googleusercontent.com/a-/ALV-UjUDYPccY9u6uzrBE6=
+AE_U2H01GLltjAzl14FP3IjOkB8_AauRT6=3Ds48-w48-c-h48 alt=3D"zheng xuan fung" =
+style=3Dheight:48px;width:48px></div></td><td style=3Dvertical-align:top><d=
+iv style=3D"display:inline-block;padding:0 15px 0 0;font-size:14px;line-hei=
+ght:20px;letter-spacing:.25px;width:100%;color:#202124;font-weight:400">zhe=
+ng xuan fung</div><table role=3Dpresentation cellpadding=3D0 cellspacing=3D=
+0 style=3Dfont-family:Roboto;font-style:normal;font-weight:300;font-size:14=
+px;line-height:20px;letter-spacing:.2px;color:#3c4043;width:100%><tbody><tr=
+><td><p style=3Dmargin:0><span style=3Dfont-family:Roboto;font-style:normal=
+;font-weight:300;font-size:14px;line-height:20px;letter-spacing:.2px;color:=
+#3c4043;white-space:pre-wrap><i style=3Dcolor:#757575>lawnicons_request.zip=
+<br></i></span></p></td></tr></tbody></table></td></tr></tbody></table></di=
+v><div><a href=3Dhttps://chat.google.com/dm/s09T0iAAAAE/fLPOXhKA-9Q?cls=3D1=
+2&amp;cet=3D2 target=3D_blank style=3D"background-color:#1a73e8;border:1px =
+solid #1a73e8;border-radius:4px;color:#fff;display:inline-block;font-family=
+:Google Sans,Roboto,sans-serif;font-size:14px;font-weight:500;line-height:3=
+3px;width:150px;height:36px;outline:0;padding:0 8px;text-align:center;text-=
+decoration:none">Open in Google Chat</a></div></div></div><table style=3Dwi=
+dth:100%;border-collapse:collapse role=3Dpresentation><tbody><tr><td style=
+=3Dpadding:0px><table style=3Dborder-collapse:collapse;width:3px role=3Dpre=
+sentation><tbody><tr height=3D1><td width=3D1 bgcolor=3D#f0f0f0 style=3Dpad=
+ding:0px></td><td width=3D1 bgcolor=3D#eaeaea style=3Dpadding:0px></td><td =
+width=3D1 bgcolor=3D#e5e5e5 style=3Dpadding:0px></td></tr><tr height=3D1><t=
+d width=3D1 bgcolor=3D#f0f0f0 style=3Dpadding:0px></td><td width=3D1 bgcolo=
+r=3D#eaeaea style=3Dpadding:0px></td><td width=3D1 bgcolor=3D#eaeaea style=
+=3Dpadding:0px></td></tr><tr height=3D1><td width=3D1 bgcolor=3D#f5f5f5 sty=
+le=3Dpadding:0px></td><td width=3D1 bgcolor=3D#f0f0f0 style=3Dpadding:0px><=
+/td><td width=3D1 bgcolor=3D#f0f0f0 style=3Dpadding:0px></td></tr></tbody><=
+/table></td><td style=3Dwidth:100%;padding:0px><div style=3D"height:1px;wid=
+th:auto;border-top:1px solid #ddd;background:#eaeaea;border-bottom:1px soli=
+d #f0f0f0"></div></td><td style=3Dpadding:0px><table style=3Dborder-collaps=
+e:collapse;width:3px role=3Dpresentation><tbody><tr height=3D1><td width=3D=
+1 bgcolor=3D#e5e5e5 style=3Dpadding:0px></td><td width=3D1 bgcolor=3D#eaeae=
+a style=3Dpadding:0px></td><td width=3D1 bgcolor=3D#f0f0f0 style=3Dpadding:=
+0px></td></tr><tr height=3D1><td width=3D1 bgcolor=3D#eaeaea style=3Dpaddin=
+g:0px></td><td width=3D1 bgcolor=3D#eaeaea style=3Dpadding:0px></td><td wid=
+th=3D1 bgcolor=3D#f0f0f0 style=3Dpadding:0px></td></tr><tr height=3D1><td w=
+idth=3D1 bgcolor=3D#f0f0f0 style=3Dpadding:0px></td><td width=3D1 bgcolor=
+=3D#f0f0f0 style=3Dpadding:0px></td><td width=3D1 bgcolor=3D#f5f5f5 style=
+=3Dpadding:0px></td></tr></tbody></table></td></tr></tbody></table><table s=
+tyle=3D"padding:14px 10px 0 10px" role=3Dpresentation dir=3Dltr><tbody><tr>=
+<td style=3D"width:100%;font:11px Roboto,Arial,Helvetica,sans-serif;color:#=
+646464;line-height:20px;min-height:40px;vertical-align:middle"><div style=
+=3D"font-family:Google Sans,Roboto,sans-serif">Google Chat: An intelligent =
+messaging app, built for teams.<br>Google LLC, <a href=3D"https://notificat=
+ions.googleapis.com/email/redirect?t=3DAFG8qyXUiauW6lRS4wycxLUvHs58-50X66zU=
+7t906VjkzxfBjz9X_tUA0dpYuLPtTEVRxUcyMdyZaBRUe172KlVtbDrBfsybwC8R1dGSpsKBOlt=
+V4_n1Qcdrh4MeTHYvfGR6zWkwP6ERHK3AnevKyD0XiCASBzAe67TnSfspT1vIFXXU4Hi99S8xZG=
+R4gqnxCfQwsaQ5SetOu2NC0yTQSBp8Ve-LgIk2cMfpOyCYeRNSI3USLOtwjz4xc1FjqTvNQn2Sj=
+AdkkkG6huxyesETDTJTbm0LcUM0uNFGEI9jJLlfbqETC4zWfDK7-R38WhIHwmrH8yfx5Q&amp;r=
+=3DeJzLKCkpKLbS10_Pz9dLz9HPTSwo1g8rMw-o8CqNCk7NznZzjyy3BAD8-Q0p&amp;s=3DALH=
+Z2r7tebhI8FxIRjpHCXOHyn7e">1600 Amphitheatre Parkway, Mountain View, CA 940=
+43, USA</a><br>You have received this email because you have been mentioned=
+ in this conversation by a Google Chat user. You cannot reply to this email=
+.<br>Unsubscribe from these emails by changing your email reminder preferen=
+ces for Google Chat. Email reminder preferences cannot be set on mobile dev=
+ices. <a href=3D"https://notifications.googleapis.com/email/redirect?t=3DAF=
+G8qyWhZYz9Ef024pN4wu1VLaZ19XJUfdxYvNrVFMf0z6qNDvYxGVT5UMombiY0gLhN0-PpQTWei=
+NJN_JV8aH40eJs3mE9tM6GfcPljQnShkOqNCq76cXVTSPYgpFSwide6TzRR0kVHA_RyT2HYD_0h=
+dkh3SWkO_RyUTcfhiM-aFPhtMVQ7-pC73DL9DOnsrHiDgiZbPXuWZMl22HDvlF-wtUjEZnMazUw=
+NcXQYpBZTYrSSsk_AfThZGHWjakofiqjBVANTNleX4nWksmDj2annk6z-tnA0_TLvnhygOfeRoW=
+ba1omgJ_MlyiY0irB1jKTXF5o76Q&amp;r=3DeJzLKCkpKLbS1y8uLSjILyrRS8_PT89J1UvOz9=
+VPzkgs0U_MKy5PLdI3NzM1NTe0AACW6xA1&amp;s=3DALHZ2r5DfLFfHVwZnEr0UNjSnj6f">Le=
+arn more</a></div></td><td style=3Dpadding-left:20px;vertical-align:middle>=
+<a href=3D"https://notifications.googleapis.com/email/redirect?t=3DAFG8qyXK=
+7QxmNTelr3LrrsftepRVDQiY79TBUxPZJTnJCxtV0oEKnzgJLzpBluWP3t_EOlRab3stZA3_8zx=
+HpVoq55k_onfdK_uKmKT_00wq57-d0963Zw0AvAKd7v6sKkuxRzazD0W236MQDFKhlnRDcaLT6s=
+1mIMiHVNfExxjAGFq_ATFwyUEuq6lQVL2UELXwly3OEERoghFgUgxH5ea5gnaUloRcWd9nC8xyf=
+yRmfbPsr1nccolzPLjFc6XvBL7ChQAWUPmoQ_95DMrSELF6tWqvlIXH2gFuvHTk5D3KzZCWHLjM=
+7WZf2h7OC84GP9tI45Hspw&amp;r=3DeJzLKCkpKLbS10_OSCzRS8_PT89J1UvOz7VPzim2NTRS=
+S04tsTUCAPE1DHY&amp;s=3DALHZ2r5QBchRjSBQ7MuPlFsMgTRq" target=3D_blank style=
+=3Dcolor:#1e88e5;text-decoration:none><img width=3D96 alt=3D"Logo for Googl=
+e" border=3D0 src=3Dhttps://www.gstatic.com/images/branding/googlelogo/1x/g=
+ooglelogo_tm_black54_color_96x40dp.png></a></td></tr></tbody></table></div>=
+</div></div></div><img src=3D"https://notifications.googleapis.com/email/t/=
+AFG8qyVuXLALy2B_QrsROPjwPMCQrnUKbOp3hkhFFg4njNdyN8Qy90m7wwh4D_YBL4TUemSKZw9=
+gFR5PKWMNUKhIeefa2vlaDaF_HZHunWmL7naCcB8yvhvKbAYE6S9Bd0vVTvguZfL23LgFbbyu39=
+BCu7-CF8gwI3f5Sp3X6yTJ5xuf8mTY3dY0CCLatyX63AoFuJ5gPel2U0Cs_reN45Vo5PVoW1eFz=
+2zkVTarvlvKFOFcJtGRyslh0O7NxcLTsBQ9aERiJ3iszgedDbfkG1_CHMNqqS8nFnEVoB8NjF7o=
+G0oBKB96MeS_v4Beg0NsgPN2Fm4VsVFWmiHykUfsDpQVrDLAHlcD_n9A5liUhphVXtiwXkr2wiz=
+xq_CZ6GZ_mrGGCaZxGHJeK2wz1mf_8jjzQ09ObQF2AI6iauE9Tsrcv1CSi9xMzW2DNUyLUc0/a.=
+gif" width=3D1 height=3D1>
+--0000000000007249880641adbb5b--
