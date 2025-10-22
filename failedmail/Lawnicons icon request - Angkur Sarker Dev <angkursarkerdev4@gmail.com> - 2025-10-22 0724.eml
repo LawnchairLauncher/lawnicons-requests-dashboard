@@ -1,0 +1,103 @@
+Delivered-To: lawnrequest@gmail.com
+Received: by 2002:a05:7300:f082:b0:29f:33c8:7aaa with SMTP id ri2csp2311625dyb;
+        Tue, 21 Oct 2025 21:24:39 -0700 (PDT)
+X-Received: by 2002:a17:906:ef04:b0:b31:ec30:c678 with SMTP id a640c23a62f3a-b647482d9c3mr2488347566b.57.1761107079579;
+        Tue, 21 Oct 2025 21:24:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761107079; cv=none;
+        d=google.com; s=arc-20240605;
+        b=VKH/ue+39lIV+YIu51kjp6fHIGt7FuRhz7XvLvQoTR+bxhvqGTEX0dO+0XYPvNwlcy
+         YxM1kbDFg+cPH0l/hiMaApdrqcH7ZtmDQpKKT012ePQgT5G6Hd3Irr/oewd3C9vKt0oO
+         h8k1MuM1OJtjEvKWGzBnMIjF5jFi0CSmVOINGHuZLM5WowogSw1lVjewymfsG4KimLhR
+         as82qEUOCOlFPmgtiDL4uVyNxHcJyYT3CUVw+qqP+zcfl/2V2Wn58HcAeomsHl3mA15i
+         w7wlQuuyCNhENzJjCBhjAhoaKNvZQcQV5kGRUHkgucLfrZvfJVbuLqp9isiJ8skJW0Yo
+         QHSQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=8LJFOtQSXPyv3hdQUIRFkLr2AQdSsxBYX+h8oLBXFmY=;
+        fh=U1bxmLJzbA8asu9m+XC3TzNczPX6UfFSUG2Wt+f2dmY=;
+        b=dpaeTA1+B8WCWtIkwkZFPvZWXHCqxKg63FKqTmP+yFZAoQ5Y5oq224IZQSVbZNinj+
+         XbCZ9ubVmWb2YlLPMoDgtLFUFYpIFsreeMyhCMtwtJdKwGZVX42lgRG05sjeL6auP34G
+         dhqSQrhcxWTz/l0HurEEaOoN1QznbJBAmJ1qeQnJs9JohuEh94B9NNxAF2aN2HY5xhai
+         CEBXQnDKbqJHmYYtJQjusaH75PeOfseQFiRDPL+C1FfPjdYE8Eo40BaJ+9DI0vbHnXx4
+         gUUlprukjGaEye1R+98quflRn/TrLr0uEs3NdN4VOL2prTF26o+7dYdnqczRhJ2yJd+r
+         rT2A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=OZ6+3Vvz;
+       spf=pass (google.com: domain of angkursarkerdev4@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=angkursarkerdev4@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <angkursarkerdev4@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 4fb4d7f45d1cf-63e13a781b3sor683172a12.8.2025.10.21.21.24.39
+        for <lawnrequest@gmail.com>
+        (Google Transport Security);
+        Tue, 21 Oct 2025 21:24:39 -0700 (PDT)
+Received-SPF: pass (google.com: domain of angkursarkerdev4@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=OZ6+3Vvz;
+       spf=pass (google.com: domain of angkursarkerdev4@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=angkursarkerdev4@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761107079; x=1761711879; dara=google.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8LJFOtQSXPyv3hdQUIRFkLr2AQdSsxBYX+h8oLBXFmY=;
+        b=OZ6+3Vvz1ffHC8jHvaPCdQi6mbL08Fy7EZDUHPSRLHsGTcL6sNNYSqseOWuOkFX1x2
+         QpRsdTcdFkzmDgBdcmH61fPTcR+6ray397v0bgW9wzCRnqovIetG0tNCC47fGfkd00Fs
+         N352OagJm3kZTmQ35fu74bzrR5dmPJaEASOrT5GI4UzytiWYa7lIB595r0ZUXL4mEoIk
+         92SRSKFp5SAPOHGSuZb9lTvJAtmHn/FY7rJCBlcPSgpPdwCfB9734tLqKyeCreZFH7qW
+         iSx6RMFG+ZxZSBDIdw0hXqX+dDwFMu3WNsC0UyE1zpF8gnhUXDI7/q+sHKdcIuxVL2SK
+         Vxew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761107079; x=1761711879;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8LJFOtQSXPyv3hdQUIRFkLr2AQdSsxBYX+h8oLBXFmY=;
+        b=N05Ek4jC2LHJcm22Oc0dwrSvAMXmlTE+5JvpfwJItjsCTviV0qKyt+dJtjPI81s3yE
+         qiElfEPa0xHfnpWyIHKDjrW6agf972lEuX7AfhNQ5ZpXe0m9hoUXy1RVMLTdrSUxuORm
+         1AqpAqotfC01mEash2XW/0Fncu5lO774s6uJOcxOQIVkbuGSpPyraKlaGy0vwmc83KLN
+         CY1YdPNisacFZ3p/x7B8T5gmo6rdHXww/gwAfll7froDCNatYmhW8a6kG4hVVRMYBb0P
+         ivRMZ8KIlfRzKivwaHmsFda/VBsS62KUQF6uwcIaybllVFoWiTVXJFRti6S1TARtWCmh
+         60ZQ==
+X-Gm-Message-State: AOJu0YziPcnXmlt6sIqbOFfIyZ/sIgnzyZsU5Xe0DsiPLG9G79eOwqhG
+	/7IOJ0DVOnidQ2AEJm9g5MxS6Iq3NbF0LyknDYnZKRqBv3av7JXZG+7a3iaRTzvS8eIBTHu73dL
+	pcCrqjjvvU9xHmXUgdftiQ6ASnu4LKQrmSA==
+X-Gm-Gg: ASbGnctjuBNVg3H6ns0Guk/Os21iHxNiFhKEsvaDws5rHpugp640UgL0XfWJGFmknjm
+	B6/66FCJoh3qa92WvR2xe3c/PeZlVlLPi7ivJjB9Q4ueVuBJKw/ffSMzyt8/JlofYFo+7LTACOS
+	O003fs3xbk1aYqwjRda8A3jIp3igjQ7dD03P0vJNJhyFUmVbmhYx3Cwo1Ud4wDu1w72dxMiOWAV
+	UUDzaLu5rlnYlF6AhOIPueK1O+KQv8XXRF8RdO1wuH4s8A+q4JF3l19WkeUdKQ2
+X-Google-Smtp-Source: AGHT+IG26s2AN0IT6jy/hcZkG/k++p1SubEwMAtJ6onWb6lMg4+SXpDOkfV3TyYzni3xixW0Gntudg+DLWpHJClMlEM=
+X-Received: by 2002:a05:6402:2707:b0:63c:3c63:75ed with SMTP id
+ 4fb4d7f45d1cf-63c3c6384d1mr15912669a12.22.1761107078749; Tue, 21 Oct 2025
+ 21:24:38 -0700 (PDT)
+MIME-Version: 1.0
+From: Angkur Sarker Dev <angkursarkerdev4@gmail.com>
+Date: Wed, 22 Oct 2025 10:24:25 +0600
+X-Gm-Features: AS18NWCaLm8yLd1b5sn_bPiGJ060Jqk8j6JlJ4ZTq2UA6kmXzjtKTkbgbxPvldo
+Message-ID: <CAOBb==Yjw34WkgzJPGs323tT_bsz6T3Li7EzsdrWBp2Bt_BTVA@mail.gmail.com>
+Subject: Lawnicons icon request
+To: lawnrequest@gmail.com
+Content-Type: multipart/alternative; boundary="000000000000d7220d0641b7b1d5"
+
+--000000000000d7220d0641b7b1d5
+Content-Type: text/plain; charset="UTF-8"
+
+Manufacturer: Symphony
+Model: Z40
+Product: Z40
+App version: 2.15.1
+
+Home Launcher
+app.homelauncher/app.lawnchair.LawnchairLauncher
+
+--000000000000d7220d0641b7b1d5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Manufacturer: Symphony<br>Model: Z40<br>Product: Z40<br>A=
+pp version: 2.15.1<br><br>Home Launcher<br>app.homelauncher/app.lawnchair.L=
+awnchairLauncher=C2=A0</div>
+
+--000000000000d7220d0641b7b1d5--

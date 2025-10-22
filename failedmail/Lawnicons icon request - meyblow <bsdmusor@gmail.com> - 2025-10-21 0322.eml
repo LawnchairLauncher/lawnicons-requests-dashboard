@@ -1,0 +1,103 @@
+Delivered-To: lawnrequest@gmail.com
+Received: by 2002:a05:7300:f082:b0:29f:33c8:7aaa with SMTP id ri2csp1549763dyb;
+        Mon, 20 Oct 2025 17:22:45 -0700 (PDT)
+X-Received: by 2002:a05:6000:310e:b0:3e7:5f26:f1e5 with SMTP id ffacd0b85a97d-42704d623acmr9779663f8f.23.1761006165255;
+        Mon, 20 Oct 2025 17:22:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761006165; cv=none;
+        d=google.com; s=arc-20240605;
+        b=i6KTrijYUHm1o53JD8uUgdnTXhNTd08nvGuIYKT8bFPpL6KZhmX8rgR+38p6Hbe/IY
+         m4YvYRYtto7ad2m6GBZcmgnu0k+b/M8wo3BKj02uV8TfxP4nWhv6uv0L3LOLNtKPE2xU
+         BjNbZvYRTioD22fY9wxZ1blefMSjz3QsCv+dgFvFGBHhvI+930ZeiXM72W8ZyfMxOB8g
+         R3Y8Gp7VHS51JtqxZlHQd+Qc9AiAfitDLIEeomV8CdcyUsFjmQNRzAF+Le0mAfEFIOPP
+         mAwMzC5UqhgKyNRy8zd+FOOzb+/6llylazogWQ29eAN+lv4wttEYNLwqGvXj81w06x8e
+         Zcmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=F5HYmZfN5Jr4+YEdOtBQm/I++gw+24GuI7qFTi60Jfg=;
+        fh=U1bxmLJzbA8asu9m+XC3TzNczPX6UfFSUG2Wt+f2dmY=;
+        b=K1H406Fgsb90qVWn63F5c5SNm+awbjRYcT0OI2ujSWGui7xt34OBmBJq0ld8n8KDgE
+         detBCmzFLZpunpDQbvC8tzGXmYWMI+fsavyB3U7I90ZsXx6iLb3N6sfxDO/jfs4otEjV
+         PNZRqJu0Aiys7VbBW/8gmUy3frBijzkRy07NkiYU3TKZNoCRtNsngaqlADZ5N3lFGrGf
+         nQHiSK/PVkOpkIpWn6qjkg98XGfxmRZ/g+33fqnuHT3wGSkX/I+LR6kC5jT3/5U/5h1U
+         f9bHgnTNffxQs5r2wJ5EYzxcnSyNYq+xs/tP7DL+lG3MrKP7TlXKEzCyYcuTr/NzGuqD
+         wEpA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=FrPOKogq;
+       spf=pass (google.com: domain of bsdmusor@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=bsdmusor@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <bsdmusor@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id ffacd0b85a97d-4283b94e754sor1182644f8f.9.2025.10.20.17.22.45
+        for <lawnrequest@gmail.com>
+        (Google Transport Security);
+        Mon, 20 Oct 2025 17:22:45 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bsdmusor@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=FrPOKogq;
+       spf=pass (google.com: domain of bsdmusor@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=bsdmusor@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1761006164; x=1761610964; dara=google.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=F5HYmZfN5Jr4+YEdOtBQm/I++gw+24GuI7qFTi60Jfg=;
+        b=FrPOKogqE8cH0vUsWxmZ74buLBlgz9uiJNhI8sIiaWz1WYk1CVTpWRGzJf+LRGfvc7
+         Ph+SaTizH7ggESydubcPs0/IhgKPFImg6AuJymQlJ60cBXPxaKtf52GzRl2grLycCzQP
+         03L6REBGCrFUsrXjgzS2kBXneiKDt38uqO/EHoCGIUgQdcFZcyxKv+S1yiZj8gGPAqWr
+         dymGKAOBmt7nKA1Mt0OUGQnMawPZMZFcOZ/0IPUwQEfTjH/i/YS9XJJRpYStsswYa+c1
+         ykAj6UHIb5BjTqCSgEwd0RNLvLPTmlVnypXtBD4pXPo0sr2kdpEMcLU7ezyz4mLXAvS5
+         PfWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761006164; x=1761610964;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=F5HYmZfN5Jr4+YEdOtBQm/I++gw+24GuI7qFTi60Jfg=;
+        b=SdHUcC5xzxlwIAGO89QBLQpDWGQdMDs8J/TmjJ8yHPZ23PSwHdf6tEbSYMsElqmJF2
+         09LAHsLgsy/YYMg4aCsQXlC3oubLyGre06TF+Fwi17YZgSjr8oWCwAU04OG/shyRgVre
+         YtzuWrEil1lWyKdctIBer8c+be05y1in9muQ5Nf8bzPb7iQWBc3BESOWXaypBHyPzXE5
+         0GYjUcB6HCxx8swX04LHh5dnmpk77NDGsmYnKSQIgE77+8uoM1YYn3EafPA6+PHDO0wJ
+         hp2UqNrVQr/W7bGoMG9DGBnAYOrwR14DwjDG91PJUBKypoHuOAuQ31tHbxsO9z3VRkL0
+         I0iw==
+X-Gm-Message-State: AOJu0YxBHczPYpzy2tfIC9y0EkXj7wKRLOZ9PRKRQq/9CtoCOM/TR0M2
+	9HVF/K/cUgfHVq9CM2umoRjdjdVSksKpovHhjnaUlKW7/0ZtRN5mBm7FdDRf0xej3mmU9KcirZq
+	4bMVAJZN8mJ2UzfGKke/UAXsNiv3I5NyY1g==
+X-Gm-Gg: ASbGncsqvOS27QiQvzTGhKAQUfNtwB6cq/wBSHBcE3OWsiegN+J+8djUVplxmXOKLfG
+	yH74E4+NvYXC76cPETpxnU7iOrdJs+9BjFs3u84UJuFTJmg/UJk4UKuplhg7Pl2i4J7rY0XRpd9
+	aVD5u/GN6uylSIWP2kQ61uC3I5dftt42ZSIYiTkl6YbIcH4DWqTPqeUKOlx2/1ad6z/Aqlt+hQ0
+	sb+BvdsT72wp9E2vpuH9pAGcNx89etxuN1QGoNx697slo8QcUQVLkb4+ZGBCdh8sQ2ZTlKC
+X-Google-Smtp-Source: AGHT+IENdZUOhfpwzIZxKZwwt6eCUghom/jUV/pytYOpt1/qBOY5RAgpqEm6shN83IbHSLw4ZFcqt5yJiWNy7EOWKUM=
+X-Received: by 2002:a05:6000:18a8:b0:427:7f5:2b8 with SMTP id
+ ffacd0b85a97d-42707f50382mr7720534f8f.43.1761006164295; Mon, 20 Oct 2025
+ 17:22:44 -0700 (PDT)
+MIME-Version: 1.0
+From: meyblow <bsdmusor@gmail.com>
+Date: Tue, 21 Oct 2025 03:22:31 +0300
+X-Gm-Features: AS18NWCSDb-FoUzVsW0cCH6iurxm463-fD2-rPZAj1Jvm-k9HRSfDk3Nw2BtCCM
+Message-ID: <CADH505C81jfYrc0FYEPNmpQBtxOKA84VRfOsO9WS-pnK-YBUFg@mail.gmail.com>
+Subject: Lawnicons icon request
+To: lawnrequest@gmail.com
+Content-Type: multipart/alternative; boundary="000000000000dec3580641a032ca"
+
+--000000000000dec3580641a032ca
+Content-Type: text/plain; charset="UTF-8"
+
+Manufacturer: Xiaomi
+Model: 23049PCD8G
+Product: marble_global
+App version: 2.14.1 (Dev #7468)
+
+monobank
+com.ftband.mono/com.ftband.app.StartActivity
+
+--000000000000dec3580641a032ca
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Manufacturer: Xiaomi<br>Model: 23049PCD8G<br>Product: mar=
+ble_global<br>App version: 2.14.1 (Dev #7468)<br><br>monobank<br>com.ftband=
+.mono/com.ftband.app.StartActivity=C2=A0</div>
+
+--000000000000dec3580641a032ca--
