@@ -1,8 +1,29 @@
 <!-- Flipkart -->
 <item component="ComponentInfo{com.flipkart.android/com.flipkart.android.DiwaliIconAlias}" drawable="flipkart"/>
 
+<!-- Hello You -->
+<item component="ComponentInfo{com.motorola.ccc.notification/com.motorola.engageapp.ui.HelloYouActivity}" drawable="hello_you"/>
+
 <!-- Paytm -->
 <item component="ComponentInfo{net.one97.paytm/net.one97.paytm.alias_icon_stage2}" drawable="paytm_1"/>
+
+<!-- YouTube -->
+<item component="ComponentInfo{app.revanced.android.youtube/app.revanced.android.youtube.revanced_original_1}" drawable="youtube_3"/>
+
+<!-- BandLab -->
+<item component="ComponentInfo{com.bandlab.bandlab/com.bandlab.bandlab.Default}" drawable="bandlab"/>
+
+<!-- Find -->
+<item component="ComponentInfo{com.samsung.android.app.find/com.samsung.android.app.find.MainActivity}" drawable="find"/>
+
+<!-- OLX -->
+<item component="ComponentInfo{com.schibsted.bomnegocio.androidApp/com.olxbr.splash.implementation.presentation.SplashActivity}" drawable="olx"/>
+
+<!-- Google Cloud -->
+<item component="ComponentInfo{com.google.android.apps.cloudconsole/com.google.android.apps.cloudconsole.common.ExternalMainContainerActivity}" drawable="google_cloud"/>
+
+<!-- Sonic CD -->
+<item component="ComponentInfo{com.sega.soniccd.classic/com.sega.sonicCD.SonicCDActivity}" drawable="sonic_cd"/>
 
 <!-- ibisPaint X -->
 <item component="ComponentInfo{jp.ne.ibis.ibispaintx.app/jp.ne.ibis.ibispaintx.app.InitializeCheckActivity}" drawable="ibispaint_x"/>
@@ -12,9 +33,6 @@
 
 <!-- iFood -->
 <item component="ComponentInfo{br.com.brainweb.ifood/br.com.brainweb.ifood.AppIcon}" drawable="ifood_1"/>
-
-<!-- YouTube -->
-<item component="ComponentInfo{app.revanced.android.youtube/app.revanced.android.youtube.revanced_original_1}" drawable="youtube_3"/>
 
 <!-- BHIM -->
 <item component="ComponentInfo{in.org.npci.upiapp/zrgvwqive.Z}" drawable="bhim"/>
@@ -37,14 +55,8 @@
 <!-- AnyDesk -->
 <item component="ComponentInfo{com.anydesk.anydeskandroid/com.anydesk.anydeskandroid.gui.activity.HubActivity}" drawable="anydesk"/>
 
-<!-- BandLab -->
-<item component="ComponentInfo{com.bandlab.bandlab/com.bandlab.bandlab.Default}" drawable="bandlab"/>
-
 <!-- Stoat -->
 <item component="ComponentInfo{chat.revolt/chat.stoat.activities.MainActivity}" drawable="stoat"/>
-
-<!-- Hello You -->
-<item component="ComponentInfo{com.motorola.ccc.notification/com.motorola.engageapp.ui.HelloYouActivity}" drawable="hello_you"/>
 
 <!-- Discover -->
 <item component="ComponentInfo{com.discoverfinancial.mobile/qhDB65.gD67g3.wn9Sx4.xI9zb3}" drawable="discover"/>
@@ -75,9 +87,6 @@
 
 <!-- Yanımda -->
 <item component="ComponentInfo{com.vodafone.selfservis/com.vodafone.selfservis.feature.growth.dashboard.nonlogin.DashboardActivity}" drawable="yanmda"/>
-
-<!-- Find -->
-<item component="ComponentInfo{com.samsung.android.app.find/com.samsung.android.app.find.MainActivity}" drawable="find"/>
 
 <!-- Mi Pixel -->
 <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p8}" drawable="mi_pixel_3"/>
@@ -114,9 +123,6 @@
 
 <!-- Magalu -->
 <item component="ComponentInfo{com.luizalabs.mlapp/com.luizalabs.mlapp.home.ui.MainActivity}" drawable="magalu"/>
-
-<!-- OLX -->
-<item component="ComponentInfo{com.schibsted.bomnegocio.androidApp/com.olxbr.splash.implementation.presentation.SplashActivity}" drawable="olx"/>
 
 <!-- Nebula -->
 <item component="ComponentInfo{tv.standard.nebula/tv.standard.nebula.main.view.activities.MainActivity}" drawable="nebula"/>
@@ -256,9 +262,6 @@
 <!-- Duolingo -->
 <item component="ComponentInfo{com.duolingo/com.duolingo.app.PreStreakSaver3Launcher}" drawable="duolingo_3"/>
 
-<!-- Google Cloud -->
-<item component="ComponentInfo{com.google.android.apps.cloudconsole/com.google.android.apps.cloudconsole.common.ExternalMainContainerActivity}" drawable="google_cloud"/>
-
 <!-- Duolingo -->
 <item component="ComponentInfo{com.duolingo/com.duolingo.app.StreakFrozenLauncher3}" drawable="duolingo_4"/>
 
@@ -294,9 +297,6 @@
 
 <!-- Millenicom -->
 <item component="ComponentInfo{com.solidict.millenicom/com.solidict.millenicom.MainActivity}" drawable="millenicom"/>
-
-<!-- Sonic CD -->
-<item component="ComponentInfo{com.sega.soniccd.classic/com.sega.sonicCD.SonicCDActivity}" drawable="sonic_cd"/>
 
 <!-- YouTube ReVanced -->
 <item component="ComponentInfo{app.revanced.android.youtube/app.revanced.android.youtube.revanced_scaled_2}" drawable="youtube_revanced"/>
@@ -399,4 +399,31 @@
 
 <!-- My Telenor -->
 <item component="ComponentInfo{com.telenor.pakistan.mytelenor/com.telenor.pakistan.mytelenor.landingscreen.LandingScreenDefault}" drawable="my_telenor"/>
+
+<!-- NoWakeLock -->
+<item component="ComponentInfo{com.js.nowakelock/com.js.nowakelock.MainActivity}" drawable="nowakelock"/>
+
+<!-- QuickTiles -->
+<item component="ComponentInfo{com.asdoi.quicktiles/com.flxholle.quicktiles.SettingsActivity}" drawable="quicktiles"/>
+
+<!-- Lieferando -->
+<item component="ComponentInfo{at.lieferservice.android/com.jet.singleactivity.ui.MainActivity}" drawable="lieferando"/>
+
+<!-- Book's Story -->
+<item component="ComponentInfo{ua.acclorite.book_story/ua.acclorite.book_story.presentation.main.MainActivity}" drawable="books_story"/>
+
+<!-- monobank -->
+<item component="ComponentInfo{com.ftband.mono/com.ftband.app.StartActivity}" drawable="monobank"/>
+
+<!-- ACT Fibernet -->
+<item component="ComponentInfo{com.act.mobile.apps/com.act.mobile.apps.MainActivitySmartWifi}" drawable="act_fibernet"/>
+
+<!-- Cleartrip -->
+<item component="ComponentInfo{com.cleartrip.android/com.cleartrip.android.common.activities.CleartripHomeActivity}" drawable="cleartrip"/>
+
+<!-- Goibibo -->
+<item component="ComponentInfo{com.goibibo/com.goibibo.common.HomeActivityAliasDiwali}" drawable="goibibo"/>
+
+<!-- HDFC Bank Home Loans -->
+<item component="ComponentInfo{com.app.hdfc/com.app.hdfc.launcher_2707bad8f75d0a36247b5ad4ed963deb0815bc131328472d4a06f48fa8d7d0fc}" drawable="hdfc_bank_home_loans"/>
 
