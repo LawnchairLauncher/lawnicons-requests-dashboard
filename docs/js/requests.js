@@ -2,7 +2,7 @@
 const imageNames = ['img/ic_google_play.svg', 'img/ic_f_droid.svg', 'img/ic_izzyondroid.svg', 'img/ic_galaxy_store.svg', 'img/ic_web_search.svg'];
 var appEntriesDataGlobal = []; // Store the original data for sorting
 // Lazy loading and virtualization
-const batchSize = 250; // Number of rows to load at a time
+const batchSize = 50; // Number of rows to load at a time
 let startIndex = 0; // Start index for lazy loading
 let appEntriesData = []; // Store the original data for sorting
 // Global variables to track sorting column and direction
