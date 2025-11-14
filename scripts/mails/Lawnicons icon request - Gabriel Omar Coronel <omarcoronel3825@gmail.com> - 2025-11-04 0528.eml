@@ -1,0 +1,202 @@
+Delivered-To: lawnrequest@gmail.com
+Received: by 2002:a05:7301:ea5:b0:29f:33c8:7aaa with SMTP id mk37csp1931862dyb;
+        Mon, 3 Nov 2025 18:28:54 -0800 (PST)
+X-Received: by 2002:a05:6a00:189f:b0:7ab:fc99:d856 with SMTP id d2e1a72fcca58-7abfc99dcc1mr5002243b3a.18.1762223333724;
+        Mon, 03 Nov 2025 18:28:53 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762223333; cv=none;
+        d=google.com; s=arc-20240605;
+        b=aWn209yfz0WEarRFUFtexNprNUQsKUjJgLzHuNR3wwX3RZX1xkYwF9EOjpqQlsD5k1
+         mprYxgX2Grh1ZzM6R4bSFpC1J6jwRbyZye9UK06MjRlPtOJpTyrKrr65quhC6Z84gHKd
+         aZDhWriJRj8TOCaC9Gl9hk/astZ1tPDRR7yhlj7D4WOUz8YMcU8X+f3j7XZQGBoHcO1F
+         fJ3t0YIbPITlcz8LpmgbGfgPY/pqJ83et/39NdZ/MdNvvfoxw8xGQavPT80W5AflA+Os
+         Rg/2g9qQUPPSmujqyIAZ2CCrck/db7hNgXQQRApa4FaN4ABIEtb3UAlu4UZO5AZzOZN0
+         grxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:message-id:user-agent
+         :subject:to:from:date:dkim-signature;
+        bh=NSfL28NHZNBlztOjvVmKRB/b7OvxnpM5Yqj+VsNrBxs=;
+        fh=U1bxmLJzbA8asu9m+XC3TzNczPX6UfFSUG2Wt+f2dmY=;
+        b=BImOUg11YHZlNbu2vxKMpozr0xQ23jZ44a8kfEWDadZV9xsyDTBt/d61ldTkSiDmNI
+         UhfuU/TqP8dvxlstQMzwiFdf521qUdoGL+ppe+i/0nTbYtslU6Lopk6Ot5jCCAU3ClWz
+         dPKG7204/WC7yXSiF95h/Y+cJtqWDzKR29t0HH2m1j8jHSfWJL5Za/ldIOlw2Qxd7U+u
+         PzrNxGckKKmBG66AQkTYeVPKKSJN6Dz3XYcIOj7hp2MzBMnOYuXM67F3HFM3ZCRE54MP
+         NGXNCDtpXx/tbLagLlPYF5ZnH/5yshhNamLIt9OrS181A9MBDAWtuaoM1+8D8wqCcR4f
+         3thA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=f+Z6t8Xb;
+       spf=pass (google.com: domain of omarcoronel3825@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=omarcoronel3825@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <omarcoronel3825@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d2e1a72fcca58-7a7dbf533b1sor6795016b3a.6.2025.11.03.18.28.53
+        for <lawnrequest@gmail.com>
+        (Google Transport Security);
+        Mon, 03 Nov 2025 18:28:53 -0800 (PST)
+Received-SPF: pass (google.com: domain of omarcoronel3825@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=f+Z6t8Xb;
+       spf=pass (google.com: domain of omarcoronel3825@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=omarcoronel3825@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1762223333; x=1762828133; dara=google.com;
+        h=content-transfer-encoding:mime-version:message-id:user-agent
+         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=NSfL28NHZNBlztOjvVmKRB/b7OvxnpM5Yqj+VsNrBxs=;
+        b=f+Z6t8Xb1/ZleAjLHvTVd/95emCxxUUWppTgB4BEPwDkRaLR9bL9HZUZ4rL7XrOF22
+         Y6DrTGIFWa41oadKLpUSOAJNuTccb9raqBap4mGMWWoRk2PAQM1elmf02GkcuuQIPv6N
+         L6waINlBIvYEuTQ5pUbcJAuNeZ7Q/zR9l6axwHtYWKNdpRlbfmuwr0E4JbIxvC+2vrA7
+         qlV3QBhfvwrqgczioTm+527tZZES40tPyHNRG8aikSb2EacEHhfCQzmQCf5mdudrv99L
+         lrgAICx8BKeT53J+3vNOZVQkv1osJv81WVbrNoOzICH7RqSadtJREsAaHYKFlt5EFAkZ
+         4O7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762223333; x=1762828133;
+        h=content-transfer-encoding:mime-version:message-id:user-agent
+         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NSfL28NHZNBlztOjvVmKRB/b7OvxnpM5Yqj+VsNrBxs=;
+        b=nQrG6hJkix0yobZ6GAEee6ebUyFFjxJdxXBPJVYkPJJZjcoyVXC3nLaM2qZh41/OxN
+         Zv4ymkclhb5bhHFBELwihcpaXBIc1KK8cM30qZ9GpOJF4O+vByRurFtqeVHoEzBtlA/n
+         Kj7ODug6CWYy/4LkRA2QS8r5RFG02/wJko8r/hrk9Lht2Yc5pRh3NfUZQhT5Xfd5FIz9
+         /3eaIL8K6hYM5AgH9aNWHZ3fNtfz4xZ7+3ZnOWgmxE/hgiH6DwgSWGWNTvjBh0cmMdzN
+         hKt00vZCz3Tv0avaIsfhsYlZF/QYyX9b4K9Kym8EsiuQb7YZJnfYIwVD9v45qkoWD57f
+         iI6g==
+X-Gm-Message-State: AOJu0YxSCnJ+LPiajQNxsPp6mC48wBZeTkFmzoNjOmfM69rTKyvusfJc
+	PwYMA9MaefwyH0wQGCd1FSuFQHsmLt5iIQNTpmosCK4mRP6xjdZRsG0gPYol5A==
+X-Gm-Gg: ASbGncvG2BMNxAfy7rT59+pOIeWnMxOzphZgFZ7MY+1y+Xp6OO1DyRlx+HJPMKDWHVU
+	4kqzgWKDNxGc1K62hbVkSogLoHHCuPlV8spvzlJT4kQ6hgRQOOrjFkgVX3AIv6ZYqbc7ULyywWE
+	ijp0zHM7JI2nqaES3Wto/OXH86eVAFFVX8inZfplooj9G1Dlg9UmWO1PNvHwJRHNB36P6FUHAaf
+	lJmw+2JP8ByrOy1gh7+L7nvDEcm8R4UGgQ8ptx8hpRTaf/1AStI6MT2TOdKN32epKs0f3K6QvaF
+	la4OHIJwXLikEmZfiyuwxRl/95zRnzjKiI8vo31wjrlWd1MCFCHYQwvTvPcMdE3xbpEzIblPad0
+	ZkOEZpFXEEuevQBBsdQjt4myyB3mEjOQdjgsBaxPUUiCAT7suCbQyC5yO8GM9yexTkN/sRmqcXP
+	yh1UUP0xcS56N+3JlorHeK97BelKMMbdEz/TSoAfoHmirYlV0sqi9XRJ4Em9kk/w==
+X-Google-Smtp-Source: AGHT+IGF4l5bXQv0ngXQBW4rRgPE4yZI63evPR6yDnodRsxq2gSczEGt+j8v8/nHoZOkQiLGXbHWXQ==
+X-Received: by 2002:a05:6a00:1821:b0:782:7052:5167 with SMTP id d2e1a72fcca58-7a778704953mr18224114b3a.6.1762223332694;
+        Mon, 03 Nov 2025 18:28:52 -0800 (PST)
+Return-Path: <omarcoronel3825@gmail.com>
+Received: from ehlo.thunderbird.net (73-49-103-191.iparatodos.com.ar. [191.103.49.73])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7acd3829626sm898151b3a.16.2025.11.03.18.28.48
+        for <lawnrequest@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Nov 2025 18:28:51 -0800 (PST)
+Date: Mon, 03 Nov 2025 23:28:45 -0300
+From: Gabriel Omar Coronel <omarcoronel3825@gmail.com>
+To: lawnrequest@gmail.com
+Subject: Lawnicons icon request
+User-Agent: Thunderbird for Android
+Message-ID: <300AA586-BAD5-4DA7-AF23-073BC4031B2B@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary=----8YNC3BD8S98Q4G7LVJS59F4YH3VVNL
+Content-Transfer-Encoding: 7bit
+
+------8YNC3BD8S98Q4G7LVJS59F4YH3VVNL
+Content-Type: multipart/alternative;
+ boundary=----ZRNHF7VHYFKOMPFT7M9GDL6W0C3R38
+Content-Transfer-Encoding: 7bit
+
+------ZRNHF7VHYFKOMPFT7M9GDL6W0C3R38
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Manufacturer: samsung
+Model: SM-A127M
+Product: a12sub
+App version: 2=2E15=2E1
+
+BNA +
+com=2Ebanconacion=2Ebnamas/com=2Ebanconacion=2Ebnamas=2EVTCommonActivity
+gcrel
+------ZRNHF7VHYFKOMPFT7M9GDL6W0C3R38
+Content-Type: text/html;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html><body><div dir=3D"auto">Manufacturer: samsung<br>Model=
+: SM-A127M<br>Product: a12sub<br>App version: 2=2E15=2E1<br><br>BNA +<br>co=
+m=2Ebanconacion=2Ebnamas/com=2Ebanconacion=2Ebnamas=2EVTCommonActivity</div=
+><div dir=3D"auto">gcrel</div></body></html>
+------ZRNHF7VHYFKOMPFT7M9GDL6W0C3R38--
+
+------8YNC3BD8S98Q4G7LVJS59F4YH3VVNL
+Content-Type: application/zip;
+ name=lawnicons_request.zip
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename=lawnicons_request.zip;
+ size=3915
+
+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
+
+------8YNC3BD8S98Q4G7LVJS59F4YH3VVNL--
