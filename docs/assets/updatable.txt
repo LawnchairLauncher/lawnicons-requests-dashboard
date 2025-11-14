@@ -1,3 +1,33 @@
+<!-- BHIM -->
+<item component="ComponentInfo{in.org.npci.upiapp/jmylyffra.ag}" drawable="bhim_3"/>
+
+<!-- Find -->
+<item component="ComponentInfo{com.samsung.android.app.find/com.samsung.android.app.find.MainActivity}" drawable="find"/>
+
+<!-- Discover -->
+<item component="ComponentInfo{com.discoverfinancial.mobile/nI8wX8.h11yC6.mAsfc4.l0lmy5}" drawable="discover_1"/>
+
+<!-- YouTube -->
+<item component="ComponentInfo{anddea.youtube/com.google.android.youtube.app.honeycomb.Shell$HomeActivity}" drawable="youtube_1"/>
+
+<!-- monobank -->
+<item component="ComponentInfo{com.ftband.mono/com.ftband.app.StartActivity}" drawable="monobank"/>
+
+<!-- Namma Yatri -->
+<item component="ComponentInfo{in.juspay.nammayatri/com.mobility.movingtech.MainActivity}" drawable="namma_yatri_3"/>
+
+<!-- Duolingo -->
+<item component="ComponentInfo{com.duolingo/com.duolingo.app.UnhingedCryLauncher}" drawable="duolingo"/>
+
+<!-- KOLEO -->
+<item component="ComponentInfo{pl.koleo/pl.astarium.koleo.ui.main.MainActivity}" drawable="koleo"/>
+
+<!-- Box -->
+<item component="ComponentInfo{com.box.android/com.box.android.auth.AuthenticationActivity}" drawable="box"/>
+
+<!-- Siddhartha BankSmart XP -->
+<item component="ComponentInfo{com.f1soft.banksmart.siddhartha/com.f1soft.banksmart.siddhartha.MainActivity}" drawable="siddhartha_banksmart_xp"/>
+
 <!-- YouTube -->
 <item component="ComponentInfo{app.revanced.android.youtube/app.revanced.android.youtube.revanced_original_1}" drawable="youtube_3"/>
 
@@ -13,9 +43,6 @@
 <!-- zFont 3 -->
 <item component="ComponentInfo{com.htetznaing.zfont2/com.htetz.zfontcompose.MainActivity}" drawable="zfont_3_3"/>
 
-<!-- BHIM -->
-<item component="ComponentInfo{in.org.npci.upiapp/jmylyffra.ag}" drawable="bhim_3"/>
-
 <!-- Boo -->
 <item component="ComponentInfo{enterprises.dating.boo/enterprises.dating.boo.MainActivity}" drawable="boo"/>
 
@@ -24,9 +51,6 @@
 
 <!-- DITO -->
 <item component="ComponentInfo{com.mydito/com.mydito.app_icon_7}" drawable="dito"/>
-
-<!-- Find -->
-<item component="ComponentInfo{com.samsung.android.app.find/com.samsung.android.app.find.MainActivity}" drawable="find"/>
 
 <!-- Voicemail -->
 <item component="ComponentInfo{com.samsung.vvm/com.samsung.vvm.views.ui.mainview.VVMApplicationAlias}" drawable="voicemail"/>
@@ -69,9 +93,6 @@
 
 <!-- PhoneWalls -->
 <item component="ComponentInfo{com.phonewalls.stockwallpapers/com.phonewalls.stockwallpapers.SplashActivity}" drawable="phonewalls"/>
-
-<!-- Discover -->
-<item component="ComponentInfo{com.discoverfinancial.mobile/nI8wX8.h11yC6.mAsfc4.l0lmy5}" drawable="discover_1"/>
 
 <!-- Flipkart -->
 <item component="ComponentInfo{com.flipkart.android/com.flipkart.android.GoldIconAlias}" drawable="flipkart_2"/>
@@ -132,9 +153,6 @@
 
 <!-- MakeMyTrip -->
 <item component="ComponentInfo{com.makemytrip/com.mmt.travel.app.home.ui.SplashActivityPrimary}" drawable="makemytrip"/>
-
-<!-- YouTube -->
-<item component="ComponentInfo{anddea.youtube/com.google.android.youtube.app.honeycomb.Shell$HomeActivity}" drawable="youtube_1"/>
 
 <!-- Mercado Pago -->
 <item component="ComponentInfo{com.mercadopago.wallet/com.mercadopago.wallet.SplashActivityAliasDefault}" drawable="mercado_pago"/>
@@ -226,14 +244,8 @@
 <!-- Max Fashion -->
 <item component="ComponentInfo{com.applications.max/com.react_native_app_in.MainActivity}" drawable="max_fashion"/>
 
-<!-- monobank -->
-<item component="ComponentInfo{com.ftband.mono/com.ftband.app.StartActivity}" drawable="monobank"/>
-
 <!-- ACT Fibernet -->
 <item component="ComponentInfo{com.act.mobile.apps/com.act.mobile.apps.MainActivitySmartWifi}" drawable="act_fibernet"/>
-
-<!-- Namma Yatri -->
-<item component="ComponentInfo{in.juspay.nammayatri/com.mobility.movingtech.MainActivity}" drawable="namma_yatri_3"/>
 
 <!-- Finanzguru -->
 <item component="ComponentInfo{de.dwins.financeguru/de.dwins.financeguru.MainActivity}" drawable="finanzguru_3"/>
@@ -307,9 +319,6 @@
 <!-- Magalu -->
 <item component="ComponentInfo{com.luizalabs.mlapp/com.luizalabs.mlapp.home.ui.MainActivity}" drawable="magalu"/>
 
-<!-- Duolingo -->
-<item component="ComponentInfo{com.duolingo/com.duolingo.app.UnhingedCryLauncher}" drawable="duolingo"/>
-
 <!-- CAIXA Tem -->
 <item component="ComponentInfo{br.gov.caixa.tem/br.p1Lgd1.mOVzl7.sgREU6.ui.sakzB8.wZDlV8}" drawable="caixa_tem"/>
 
@@ -327,9 +336,6 @@
 
 <!-- Discover -->
 <item component="ComponentInfo{com.discoverfinancial.mobile/qhDB65.gD67g3.wn9Sx4.xI9zb3}" drawable="discover"/>
-
-<!-- KOLEO -->
-<item component="ComponentInfo{pl.koleo/pl.astarium.koleo.ui.main.MainActivity}" drawable="koleo"/>
 
 <!-- CAIXA -->
 <item component="ComponentInfo{br.com.gabba.Caixa/br.r6lcd4.uAIoR0.oPhm89.ui.knMT45.kkIhp7}" drawable="caixa"/>
@@ -426,9 +432,6 @@
 
 <!-- Duolingo -->
 <item component="ComponentInfo{com.duolingo/com.duolingo.app.StreakFrozenLauncher3}" drawable="duolingo_4"/>
-
-<!-- Box -->
-<item component="ComponentInfo{com.box.android/com.box.android.auth.AuthenticationActivity}" drawable="box"/>
 
 <!-- Cosmos -->
 <item component="ComponentInfo{so.cosmos.www/so.cosmos.www.MainActivity}" drawable="cosmos"/>
@@ -628,9 +631,6 @@
 <!-- XAPK Installer -->
 <item component="ComponentInfo{com.wuliang.xapkinstaller/com.zipoapps.premiumhelper.ui.splash.PHSplashActivity}" drawable="xapk_installer"/>
 
-<!-- Siddhartha BankSmart XP -->
-<item component="ComponentInfo{com.f1soft.banksmart.siddhartha/com.f1soft.banksmart.siddhartha.MainActivity}" drawable="siddhartha_banksmart_xp"/>
-
 <!-- Burger King ES -->
 <item component="ComponentInfo{es.burgerking.android/rbi.android.app.Launcher}" drawable="burger_king_es"/>
 
@@ -810,4 +810,7 @@
 
 <!-- SmartBanking -->
 <item component="ComponentInfo{com.zentity.sbank.csobsk/com.csobsk.smartbankingv2.smartbankingv3.modules.SplashActivity}" drawable="smartbanking"/>
+
+<!-- Duolingo -->
+<item component="ComponentInfo{com.duolingo/com.duolingo.app.StreakSaverLauncher2}" drawable="duolingo_8"/>
 
