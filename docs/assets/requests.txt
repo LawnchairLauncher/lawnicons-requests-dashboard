@@ -1,5 +1,5 @@
 -------------------------------------------------------
-5444 Requested Apps Pending (Updated 14 November 2025)
+5465 Requested Apps Pending (Updated 14 November 2025)
 -------------------------------------------------------
 
 <!-- Passwords -->
@@ -1632,6 +1632,26 @@ https://www.ecosia.org/search?q=com.bmtc.bmtcavls
 Requested 4 times
 Last requested 1762632384.0
     
+<!-- Everything Widgets -->
+<item component="ComponentInfo{com.jndapp.nothing.widgets.pack/com.jndapp.nothing.widgets.pack.MainActivity}" drawable="everything_widgets"/>
+https://play.google.com/store/apps/details?id=com.jndapp.nothing.widgets.pack
+https://f-droid.org/en/packages/com.jndapp.nothing.widgets.pack/
+https://apt.izzysoft.de/fdroid/index/apk/com.jndapp.nothing.widgets.pack
+https://galaxystore.samsung.com/detail/com.jndapp.nothing.widgets.pack
+https://www.ecosia.org/search?q=com.jndapp.nothing.widgets.pack
+Requested 4 times
+Last requested 1763087804.0
+    
+<!-- ReLens -->
+<item component="ComponentInfo{com.accordion.pro.camera/com.gzy.depthEditor.app.page.splash.SplashActivity}" drawable="relens"/>
+https://play.google.com/store/apps/details?id=com.accordion.pro.camera
+https://f-droid.org/en/packages/com.accordion.pro.camera/
+https://apt.izzysoft.de/fdroid/index/apk/com.accordion.pro.camera
+https://galaxystore.samsung.com/detail/com.accordion.pro.camera
+https://www.ecosia.org/search?q=com.accordion.pro.camera
+Requested 4 times
+Last requested 1763087804.0
+    
 <!-- WebLibre -->
 <item component="ComponentInfo{eu.weblibre.gecko/eu.weblibre.gecko.MainActivity}" drawable="weblibre_3"/>
 https://play.google.com/store/apps/details?id=eu.weblibre.gecko
@@ -1701,16 +1721,6 @@ https://galaxystore.samsung.com/detail/me.tsukanov.counter
 https://www.ecosia.org/search?q=me.tsukanov.counter
 Requested 3 times
 Last requested 1761238423.0
-    
-<!-- Everything Widgets -->
-<item component="ComponentInfo{com.jndapp.nothing.widgets.pack/com.jndapp.nothing.widgets.pack.MainActivity}" drawable="everything_widgets"/>
-https://play.google.com/store/apps/details?id=com.jndapp.nothing.widgets.pack
-https://f-droid.org/en/packages/com.jndapp.nothing.widgets.pack/
-https://apt.izzysoft.de/fdroid/index/apk/com.jndapp.nothing.widgets.pack
-https://galaxystore.samsung.com/detail/com.jndapp.nothing.widgets.pack
-https://www.ecosia.org/search?q=com.jndapp.nothing.widgets.pack
-Requested 3 times
-Last requested 1761308442.0
     
 <!-- AirDroid -->
 <item component="ComponentInfo{com.sand.airdroid/com.sand.airdroid.ui.splash.SplashActivity_}" drawable="airdroid"/>
@@ -2962,16 +2972,6 @@ https://www.ecosia.org/search?q=com.jwscheduler.jws
 Requested 3 times
 Last requested 1762002110.0
     
-<!-- ReLens -->
-<item component="ComponentInfo{com.accordion.pro.camera/com.gzy.depthEditor.app.page.splash.SplashActivity}" drawable="relens"/>
-https://play.google.com/store/apps/details?id=com.accordion.pro.camera
-https://f-droid.org/en/packages/com.accordion.pro.camera/
-https://apt.izzysoft.de/fdroid/index/apk/com.accordion.pro.camera
-https://galaxystore.samsung.com/detail/com.accordion.pro.camera
-https://www.ecosia.org/search?q=com.accordion.pro.camera
-Requested 3 times
-Last requested 1762060432.0
-    
 <!-- NetBenefits -->
 <item component="ComponentInfo{com.fidelity.wi.activity/com.fidelity.wi.activity.MainActivity}" drawable="netbenefits"/>
 https://play.google.com/store/apps/details?id=com.fidelity.wi.activity
@@ -3531,6 +3531,16 @@ https://galaxystore.samsung.com/detail/com.thehomedepot
 https://www.ecosia.org/search?q=com.thehomedepot
 Requested 3 times
 Last requested 1762370584.0
+    
+<!-- Photo Studio PRO -->
+<item component="ComponentInfo{com.kvadgroup.photostudio_pro/com.kvadgroup.photostudio.visual.MainActivity}" drawable="photo_studio_pro"/>
+https://play.google.com/store/apps/details?id=com.kvadgroup.photostudio_pro
+https://f-droid.org/en/packages/com.kvadgroup.photostudio_pro/
+https://apt.izzysoft.de/fdroid/index/apk/com.kvadgroup.photostudio_pro
+https://galaxystore.samsung.com/detail/com.kvadgroup.photostudio_pro
+https://www.ecosia.org/search?q=com.kvadgroup.photostudio_pro
+Requested 3 times
+Last requested 1763087804.0
     
 <!-- LiftLog -->
 <item component="ComponentInfo{com.limajuice.liftlog/com.limajuice.liftlog.MainActivity}" drawable="liftlog_3"/>
@@ -9262,16 +9272,6 @@ https://www.ecosia.org/search?q=com.cloud3squared.meteogram.pro
 Requested 2 times
 Last requested 1762592108.0
     
-<!-- Photo Studio PRO -->
-<item component="ComponentInfo{com.kvadgroup.photostudio_pro/com.kvadgroup.photostudio.visual.MainActivity}" drawable="photo_studio_pro"/>
-https://play.google.com/store/apps/details?id=com.kvadgroup.photostudio_pro
-https://f-droid.org/en/packages/com.kvadgroup.photostudio_pro/
-https://apt.izzysoft.de/fdroid/index/apk/com.kvadgroup.photostudio_pro
-https://galaxystore.samsung.com/detail/com.kvadgroup.photostudio_pro
-https://www.ecosia.org/search?q=com.kvadgroup.photostudio_pro
-Requested 2 times
-Last requested 1762592108.0
-    
 <!-- Walk Band -->
 <item component="ComponentInfo{com.gamestar.pianoperfect/com.gamestar.pianoperfect.Splash}" drawable="walk_band"/>
 https://play.google.com/store/apps/details?id=com.gamestar.pianoperfect
@@ -10041,6 +10041,36 @@ https://galaxystore.samsung.com/detail/com.farmerbb.notepad
 https://www.ecosia.org/search?q=com.farmerbb.notepad
 Requested 2 times
 Last requested 1761950830.0
+    
+<!-- Video Compressor -->
+<item component="ComponentInfo{com.tapuniverse.videocompressor/com.tapuniverse.videocompressor.MainActivity}" drawable="video_compressor"/>
+https://play.google.com/store/apps/details?id=com.tapuniverse.videocompressor
+https://f-droid.org/en/packages/com.tapuniverse.videocompressor/
+https://apt.izzysoft.de/fdroid/index/apk/com.tapuniverse.videocompressor
+https://galaxystore.samsung.com/detail/com.tapuniverse.videocompressor
+https://www.ecosia.org/search?q=com.tapuniverse.videocompressor
+Requested 2 times
+Last requested 1763087804.0
+    
+<!-- Borderline -->
+<item component="ComponentInfo{com.stark.borderline/com.stark.borderline.activities.MainActivity}" drawable="borderline"/>
+https://play.google.com/store/apps/details?id=com.stark.borderline
+https://f-droid.org/en/packages/com.stark.borderline/
+https://apt.izzysoft.de/fdroid/index/apk/com.stark.borderline
+https://galaxystore.samsung.com/detail/com.stark.borderline
+https://www.ecosia.org/search?q=com.stark.borderline
+Requested 2 times
+Last requested 1763087804.0
+    
+<!-- Deepsearch -->
+<item component="ComponentInfo{hubx.whois.ai.search/hubx.whois.ai.search.MainActivity}" drawable="deepsearch"/>
+https://play.google.com/store/apps/details?id=hubx.whois.ai.search
+https://f-droid.org/en/packages/hubx.whois.ai.search/
+https://apt.izzysoft.de/fdroid/index/apk/hubx.whois.ai.search
+https://galaxystore.samsung.com/detail/hubx.whois.ai.search
+https://www.ecosia.org/search?q=hubx.whois.ai.search
+Requested 2 times
+Last requested 1763087804.0
     
 <!-- Gojek Driver -->
 <item component="ComponentInfo{com.gojek.partner/com.gojek.driver.splashscreen.SplashActivity}" drawable="gojek_driver_3"/>
@@ -16059,16 +16089,6 @@ https://f-droid.org/en/packages/com.br.crmbonus.app/
 https://apt.izzysoft.de/fdroid/index/apk/com.br.crmbonus.app
 https://galaxystore.samsung.com/detail/com.br.crmbonus.app
 https://www.ecosia.org/search?q=com.br.crmbonus.app
-Requested 1 times
-Last requested 1760865579.0
-    
-<!-- Video Compressor -->
-<item component="ComponentInfo{com.tapuniverse.videocompressor/com.tapuniverse.videocompressor.MainActivity}" drawable="video_compressor"/>
-https://play.google.com/store/apps/details?id=com.tapuniverse.videocompressor
-https://f-droid.org/en/packages/com.tapuniverse.videocompressor/
-https://apt.izzysoft.de/fdroid/index/apk/com.tapuniverse.videocompressor
-https://galaxystore.samsung.com/detail/com.tapuniverse.videocompressor
-https://www.ecosia.org/search?q=com.tapuniverse.videocompressor
 Requested 1 times
 Last requested 1760865579.0
     
@@ -32311,16 +32331,6 @@ https://galaxystore.samsung.com/detail/com.jncb.mobile
 https://www.ecosia.org/search?q=com.jncb.mobile
 Requested 1 times
 Last requested 1761742001.0
-    
-<!-- Borderline -->
-<item component="ComponentInfo{com.stark.borderline/com.stark.borderline.activities.MainActivity}" drawable="borderline"/>
-https://play.google.com/store/apps/details?id=com.stark.borderline
-https://f-droid.org/en/packages/com.stark.borderline/
-https://apt.izzysoft.de/fdroid/index/apk/com.stark.borderline
-https://galaxystore.samsung.com/detail/com.stark.borderline
-https://www.ecosia.org/search?q=com.stark.borderline
-Requested 1 times
-Last requested 1761821069.0
     
 <!-- OCEAN STREAMZ -->
 <item component="ComponentInfo{streamzy.com.ocean/streamzy.com.ocean.activities.SplashScreenActivity}" drawable="ocean_streamz"/>
@@ -49462,16 +49472,6 @@ https://www.ecosia.org/search?q=com.ctbids.buyer
 Requested 1 times
 Last requested 1762181890.0
     
-<!-- Deepsearch -->
-<item component="ComponentInfo{hubx.whois.ai.search/hubx.whois.ai.search.MainActivity}" drawable="deepsearch"/>
-https://play.google.com/store/apps/details?id=hubx.whois.ai.search
-https://f-droid.org/en/packages/hubx.whois.ai.search/
-https://apt.izzysoft.de/fdroid/index/apk/hubx.whois.ai.search
-https://galaxystore.samsung.com/detail/hubx.whois.ai.search
-https://www.ecosia.org/search?q=hubx.whois.ai.search
-Requested 1 times
-Last requested 1762181890.0
-    
 <!-- Estate Sales -->
 <item component="ComponentInfo{net.estatesales.estatesales/net.estatesales.estatesales.activities.LaunchActivity}" drawable="estate_sales"/>
 https://play.google.com/store/apps/details?id=net.estatesales.estatesales
@@ -54441,4 +54441,214 @@ https://galaxystore.samsung.com/detail/com.august.bennu
 https://www.ecosia.org/search?q=com.august.bennu
 Requested 1 times
 Last requested 1761855096.0
+    
+<!-- Alive KWGT -->
+<item component="ComponentInfo{com.alive.kwgt.app/com.alive.kwgt.app.MainActivity}" drawable="alive_kwgt"/>
+https://play.google.com/store/apps/details?id=com.alive.kwgt.app
+https://f-droid.org/en/packages/com.alive.kwgt.app/
+https://apt.izzysoft.de/fdroid/index/apk/com.alive.kwgt.app
+https://galaxystore.samsung.com/detail/com.alive.kwgt.app
+https://www.ecosia.org/search?q=com.alive.kwgt.app
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- aodNotify -->
+<item component="ComponentInfo{com.jamworks.alwaysondisplay/com.jamworks.alwaysondisplay.SettingsHome}" drawable="aodnotify_1"/>
+https://play.google.com/store/apps/details?id=com.jamworks.alwaysondisplay
+https://f-droid.org/en/packages/com.jamworks.alwaysondisplay/
+https://apt.izzysoft.de/fdroid/index/apk/com.jamworks.alwaysondisplay
+https://galaxystore.samsung.com/detail/com.jamworks.alwaysondisplay
+https://www.ecosia.org/search?q=com.jamworks.alwaysondisplay
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Bluetooth Keyboard & Mouse -->
+<item component="ComponentInfo{io.appground.blekpremium/io.appground.blek.MainActivity}" drawable="bluetooth_keyboard__mouse"/>
+https://play.google.com/store/apps/details?id=io.appground.blekpremium
+https://f-droid.org/en/packages/io.appground.blekpremium/
+https://apt.izzysoft.de/fdroid/index/apk/io.appground.blekpremium
+https://galaxystore.samsung.com/detail/io.appground.blekpremium
+https://www.ecosia.org/search?q=io.appground.blekpremium
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Camera GCam -->
+<item component="ComponentInfo{com.sgmediapp.gcam/com.sgmediapp.gcam.SplashActivity}" drawable="camera_gcam"/>
+https://play.google.com/store/apps/details?id=com.sgmediapp.gcam
+https://f-droid.org/en/packages/com.sgmediapp.gcam/
+https://apt.izzysoft.de/fdroid/index/apk/com.sgmediapp.gcam
+https://galaxystore.samsung.com/detail/com.sgmediapp.gcam
+https://www.ecosia.org/search?q=com.sgmediapp.gcam
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Cameringo+ -->
+<item component="ComponentInfo{com.perracolabs.cp/com.perracolabs.cameringo.Main}" drawable="cameringo"/>
+https://play.google.com/store/apps/details?id=com.perracolabs.cp
+https://f-droid.org/en/packages/com.perracolabs.cp/
+https://apt.izzysoft.de/fdroid/index/apk/com.perracolabs.cp
+https://galaxystore.samsung.com/detail/com.perracolabs.cp
+https://www.ecosia.org/search?q=com.perracolabs.cp
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Control Center -->
+<item component="ComponentInfo{easycontrol.controlcenter.controlpanel.simple/easycontrol.controlcenter.controlpanel.simple.splash.SplashActivity}" drawable="control_center"/>
+https://play.google.com/store/apps/details?id=easycontrol.controlcenter.controlpanel.simple
+https://f-droid.org/en/packages/easycontrol.controlcenter.controlpanel.simple/
+https://apt.izzysoft.de/fdroid/index/apk/easycontrol.controlcenter.controlpanel.simple
+https://galaxystore.samsung.com/detail/easycontrol.controlcenter.controlpanel.simple
+https://www.ecosia.org/search?q=easycontrol.controlcenter.controlpanel.simple
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- DNotch -->
+<item component="ComponentInfo{com.callcenter.dynamic.notch/com.zipoapps.premiumhelper.ui.splash.PHSplashActivity}" drawable="dnotch"/>
+https://play.google.com/store/apps/details?id=com.callcenter.dynamic.notch
+https://f-droid.org/en/packages/com.callcenter.dynamic.notch/
+https://apt.izzysoft.de/fdroid/index/apk/com.callcenter.dynamic.notch
+https://galaxystore.samsung.com/detail/com.callcenter.dynamic.notch
+https://www.ecosia.org/search?q=com.callcenter.dynamic.notch
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Doodle Icons -->
+<item component="ComponentInfo{com.alphaone.doodle.iconpack/com.alphaone.doodle.iconpack.MainActivity}" drawable="doodle_icons"/>
+https://play.google.com/store/apps/details?id=com.alphaone.doodle.iconpack
+https://f-droid.org/en/packages/com.alphaone.doodle.iconpack/
+https://apt.izzysoft.de/fdroid/index/apk/com.alphaone.doodle.iconpack
+https://galaxystore.samsung.com/detail/com.alphaone.doodle.iconpack
+https://www.ecosia.org/search?q=com.alphaone.doodle.iconpack
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Dynamic Island -->
+<item component="ComponentInfo{com.dynamicisland.notchscreenview/com.dynamicisland.notchscreenview.activity.SplashActivity}" drawable="dynamic_island"/>
+https://play.google.com/store/apps/details?id=com.dynamicisland.notchscreenview
+https://f-droid.org/en/packages/com.dynamicisland.notchscreenview/
+https://apt.izzysoft.de/fdroid/index/apk/com.dynamicisland.notchscreenview
+https://galaxystore.samsung.com/detail/com.dynamicisland.notchscreenview
+https://www.ecosia.org/search?q=com.dynamicisland.notchscreenview
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Gallery -->
+<item component="ComponentInfo{com.snackshotvideos.videostatus.videosaver/com.snackshotvideos.videostatus.videosaver.activitys.SplashActivity}" drawable="gallery_2"/>
+https://play.google.com/store/apps/details?id=com.snackshotvideos.videostatus.videosaver
+https://f-droid.org/en/packages/com.snackshotvideos.videostatus.videosaver/
+https://apt.izzysoft.de/fdroid/index/apk/com.snackshotvideos.videostatus.videosaver
+https://galaxystore.samsung.com/detail/com.snackshotvideos.videostatus.videosaver
+https://www.ecosia.org/search?q=com.snackshotvideos.videostatus.videosaver
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- HSRTheme -->
+<item component="ComponentInfo{hsr.moran.mtheme.pack/hsr.moran.mtheme.pack.MainActivity}" drawable="hsrtheme"/>
+https://play.google.com/store/apps/details?id=hsr.moran.mtheme.pack
+https://f-droid.org/en/packages/hsr.moran.mtheme.pack/
+https://apt.izzysoft.de/fdroid/index/apk/hsr.moran.mtheme.pack
+https://galaxystore.samsung.com/detail/hsr.moran.mtheme.pack
+https://www.ecosia.org/search?q=hsr.moran.mtheme.pack
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Jarvis Astra Launcher Prime -->
+<item component="ComponentInfo{appmania.launcher.jarvis.prime/appmania.launcher.jarvis.SplashActivity}" drawable="jarvis_astra_launcher_prime"/>
+https://play.google.com/store/apps/details?id=appmania.launcher.jarvis.prime
+https://f-droid.org/en/packages/appmania.launcher.jarvis.prime/
+https://apt.izzysoft.de/fdroid/index/apk/appmania.launcher.jarvis.prime
+https://galaxystore.samsung.com/detail/appmania.launcher.jarvis.prime
+https://www.ecosia.org/search?q=appmania.launcher.jarvis.prime
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- LiveWallpaperIt -->
+<item component="ComponentInfo{rocks.tbog.livewallpaperit/rocks.tbog.livewallpaperit.LWIActivity}" drawable="livewallpaperit"/>
+https://play.google.com/store/apps/details?id=rocks.tbog.livewallpaperit
+https://f-droid.org/en/packages/rocks.tbog.livewallpaperit/
+https://apt.izzysoft.de/fdroid/index/apk/rocks.tbog.livewallpaperit
+https://galaxystore.samsung.com/detail/rocks.tbog.livewallpaperit
+https://www.ecosia.org/search?q=rocks.tbog.livewallpaperit
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- ProShot Evaluator -->
+<item component="ComponentInfo{com.riseupgames.proshotevaluator/com.riseupgames.proshotevaluator.PermissionsActivity}" drawable="proshot_evaluator"/>
+https://play.google.com/store/apps/details?id=com.riseupgames.proshotevaluator
+https://f-droid.org/en/packages/com.riseupgames.proshotevaluator/
+https://apt.izzysoft.de/fdroid/index/apk/com.riseupgames.proshotevaluator
+https://galaxystore.samsung.com/detail/com.riseupgames.proshotevaluator
+https://www.ecosia.org/search?q=com.riseupgames.proshotevaluator
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Quick Arc Launcher -->
+<item component="ComponentInfo{com.keice.quicklauncher3/com.keice.quicklauncher3.MainActivity}" drawable="quick_arc_launcher"/>
+https://play.google.com/store/apps/details?id=com.keice.quicklauncher3
+https://f-droid.org/en/packages/com.keice.quicklauncher3/
+https://apt.izzysoft.de/fdroid/index/apk/com.keice.quicklauncher3
+https://galaxystore.samsung.com/detail/com.keice.quicklauncher3
+https://www.ecosia.org/search?q=com.keice.quicklauncher3
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Recce -->
+<item component="ComponentInfo{com.nujiak.recce/com.nujiak.recce.MainActivity}" drawable="recce"/>
+https://play.google.com/store/apps/details?id=com.nujiak.recce
+https://f-droid.org/en/packages/com.nujiak.recce/
+https://apt.izzysoft.de/fdroid/index/apk/com.nujiak.recce
+https://galaxystore.samsung.com/detail/com.nujiak.recce
+https://www.ecosia.org/search?q=com.nujiak.recce
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Simply You - Icon Pack -->
+<item component="ComponentInfo{com.italiano.simplyyou/com.italiano.simplyyou.activities.MainActivity}" drawable="simply_you__icon_pack"/>
+https://play.google.com/store/apps/details?id=com.italiano.simplyyou
+https://f-droid.org/en/packages/com.italiano.simplyyou/
+https://apt.izzysoft.de/fdroid/index/apk/com.italiano.simplyyou
+https://galaxystore.samsung.com/detail/com.italiano.simplyyou
+https://www.ecosia.org/search?q=com.italiano.simplyyou
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Surreal Walls -->
+<item component="ComponentInfo{one4studio.pixelperfect.wallpaper.surrealwalls/one4studio.pixelperfect.wallpaper.surrealwalls.MainActivity}" drawable="surreal_walls"/>
+https://play.google.com/store/apps/details?id=one4studio.pixelperfect.wallpaper.surrealwalls
+https://f-droid.org/en/packages/one4studio.pixelperfect.wallpaper.surrealwalls/
+https://apt.izzysoft.de/fdroid/index/apk/one4studio.pixelperfect.wallpaper.surrealwalls
+https://galaxystore.samsung.com/detail/one4studio.pixelperfect.wallpaper.surrealwalls
+https://www.ecosia.org/search?q=one4studio.pixelperfect.wallpaper.surrealwalls
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Ulanzi Connect -->
+<item component="ComponentInfo{com.ulanzi.connect/com.ulanzi.connect.ui.LaunchActivity}" drawable="ulanzi_connect"/>
+https://play.google.com/store/apps/details?id=com.ulanzi.connect
+https://f-droid.org/en/packages/com.ulanzi.connect/
+https://apt.izzysoft.de/fdroid/index/apk/com.ulanzi.connect
+https://galaxystore.samsung.com/detail/com.ulanzi.connect
+https://www.ecosia.org/search?q=com.ulanzi.connect
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- Widgets For Niagara KWGT -->
+<item component="ComponentInfo{niagarawidgetsforkwgt.asdlor.app/niagarawidgetsforkwgt.asdlor.app.MainActivity}" drawable="widgets_for_niagara_kwgt"/>
+https://play.google.com/store/apps/details?id=niagarawidgetsforkwgt.asdlor.app
+https://f-droid.org/en/packages/niagarawidgetsforkwgt.asdlor.app/
+https://apt.izzysoft.de/fdroid/index/apk/niagarawidgetsforkwgt.asdlor.app
+https://galaxystore.samsung.com/detail/niagarawidgetsforkwgt.asdlor.app
+https://www.ecosia.org/search?q=niagarawidgetsforkwgt.asdlor.app
+Requested 1 times
+Last requested 1763087804.0
+    
+<!-- xHamster -->
+<item component="ComponentInfo{org.chromium.webapk.a72bef37fc48539a6_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity}" drawable="xhamster"/>
+https://play.google.com/store/apps/details?id=org.chromium.webapk.a72bef37fc48539a6_v2
+https://f-droid.org/en/packages/org.chromium.webapk.a72bef37fc48539a6_v2/
+https://apt.izzysoft.de/fdroid/index/apk/org.chromium.webapk.a72bef37fc48539a6_v2
+https://galaxystore.samsung.com/detail/org.chromium.webapk.a72bef37fc48539a6_v2
+https://www.ecosia.org/search?q=org.chromium.webapk.a72bef37fc48539a6_v2
+Requested 1 times
+Last requested 1763087804.0
     
