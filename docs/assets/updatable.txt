@@ -1,6 +1,18 @@
 <!-- Find -->
 <item component="ComponentInfo{com.samsung.android.app.find/com.samsung.android.app.find.MainActivity}" drawable="find"/>
 
+<!-- Voicemail -->
+<item component="ComponentInfo{com.samsung.vvm/com.samsung.vvm.views.ui.mainview.VVMApplicationAlias}" drawable="voicemail"/>
+
+<!-- Duolingo -->
+<item component="ComponentInfo{com.duolingo/com.duolingo.app.PreStreakSaver3Launcher}" drawable="duolingo_3"/>
+
+<!-- ExpressVPN -->
+<item component="ComponentInfo{com.expressvpn.vpn/com.expressvpn.vpn.splash.ClassicAlias}" drawable="expressvpn"/>
+
+<!-- YouTube -->
+<item component="ComponentInfo{app.revanced.android.youtube/app.revanced.android.youtube.revanced_rounded_1}" drawable="youtube_2"/>
+
 <!-- YT Music -->
 <item component="ComponentInfo{app.revanced.android.apps.youtube.music/app.revanced.android.apps.youtube.music.revanced_original_1}" drawable="yt_music_3"/>
 
@@ -34,9 +46,6 @@
 <!-- Proton Mail -->
 <item component="ComponentInfo{ch.protonmail.android/ch.protonmail.android.RoutingActivity}" drawable="proton_mail"/>
 
-<!-- Voicemail -->
-<item component="ComponentInfo{com.samsung.vvm/com.samsung.vvm.views.ui.mainview.VVMApplicationAlias}" drawable="voicemail"/>
-
 <!-- Ludo King -->
 <item component="ComponentInfo{com.ludo.king/com.unity3d.player.FoldablePlayerActivity}" drawable="ludo_king_3"/>
 
@@ -69,9 +78,6 @@
 
 <!-- VpnHood! CONNECT -->
 <item component="ComponentInfo{com.vpnhood.connect.android/crc640ff1ea0c75b1138a.MainActivity}" drawable="vpnhood_connect"/>
-
-<!-- Duolingo -->
-<item component="ComponentInfo{com.duolingo/com.duolingo.app.PreStreakSaver3Launcher}" drawable="duolingo_3"/>
 
 <!-- Paytm -->
 <item component="ComponentInfo{net.one97.paytm/net.one97.paytm.alias_icon_stage2}" drawable="paytm_1"/>
@@ -487,9 +493,6 @@
 <!-- Pixelix -->
 <item component="ComponentInfo{com.daniebeler.pfpixelix/com.daniebeler.pfpixelix.Icon06}" drawable="pixelix"/>
 
-<!-- ExpressVPN -->
-<item component="ComponentInfo{com.expressvpn.vpn/com.expressvpn.vpn.splash.ClassicAlias}" drawable="expressvpn"/>
-
 <!-- Slickdeals -->
 <item component="ComponentInfo{net.slickdeals.android/net.slickdeals.android.MainActivity}" drawable="slickdeals"/>
 
@@ -576,9 +579,6 @@
 
 <!-- Cashify -->
 <item component="ComponentInfo{com.reglobe.cashify/in.lego.app.MainActivityAliasDiwali}" drawable="cashify"/>
-
-<!-- YouTube -->
-<item component="ComponentInfo{app.revanced.android.youtube/app.revanced.android.youtube.revanced_rounded_1}" drawable="youtube_2"/>
 
 <!-- YT Music -->
 <item component="ComponentInfo{app.revanced.android.apps.youtube.music/app.revanced.android.apps.youtube.music.revanced_rounded_1}" drawable="yt_music_1"/>
@@ -801,4 +801,10 @@
 
 <!-- Beeper -->
 <item component="ComponentInfo{com.beeper.android/com.beeper.chat.booper.MainActivity_Alt_WhiteBlack}" drawable="beeper"/>
+
+<!-- Vyapar -->
+<item component="ComponentInfo{in.android.vyapar/in.android.vyapar.SplashActivityAlias}" drawable="vyapar_1"/>
+
+<!-- Mini Piano Lite -->
+<item component="ComponentInfo{umito.android.minipiano/umito.android.shared.minipiano.splashscreen.SplashScreenActivity}" drawable="mini_piano_lite"/>
 
