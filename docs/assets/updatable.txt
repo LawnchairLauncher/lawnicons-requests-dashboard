@@ -1,3 +1,30 @@
+<!-- YouTube -->
+<item component="ComponentInfo{app.revanced.android.youtube/app.revanced.android.youtube.revanced_original_1}" drawable="youtube_3"/>
+
+<!-- ibisPaint X -->
+<item component="ComponentInfo{jp.ne.ibis.ibispaintx.app/jp.ne.ibis.ibispaintx.app.InitializeCheckActivity}" drawable="ibispaint_x"/>
+
+<!-- JBL Headphones -->
+<item component="ComponentInfo{jbl.stc.com/jbl.stc.com.activity.LauncherStartActivity}" drawable="jbl_headphones"/>
+
+<!-- Connect IQ -->
+<item component="ComponentInfo{com.garmin.connectiq/com.garmin.connectiq.ui.MainActivity}" drawable="connect_iq"/>
+
+<!-- zFont 3 -->
+<item component="ComponentInfo{com.htetznaing.zfont2/com.htetz.zfontcompose.MainActivity}" drawable="zfont_3_3"/>
+
+<!-- BHIM -->
+<item component="ComponentInfo{in.org.npci.upiapp/jmylyffra.ag}" drawable="bhim_3"/>
+
+<!-- Boo -->
+<item component="ComponentInfo{enterprises.dating.boo/enterprises.dating.boo.MainActivity}" drawable="boo"/>
+
+<!-- SNS 24 -->
+<item component="ComponentInfo{pt.minsaude.spms.ces/pt.minsaude.spms.sns24.dev.MainActivity}" drawable="sns_24_3"/>
+
+<!-- DITO -->
+<item component="ComponentInfo{com.mydito/com.mydito.app_icon_7}" drawable="dito"/>
+
 <!-- Find -->
 <item component="ComponentInfo{com.samsung.android.app.find/com.samsung.android.app.find.MainActivity}" drawable="find"/>
 
@@ -16,29 +43,17 @@
 <!-- YT Music -->
 <item component="ComponentInfo{app.revanced.android.apps.youtube.music/app.revanced.android.apps.youtube.music.revanced_original_1}" drawable="yt_music_3"/>
 
-<!-- YouTube -->
-<item component="ComponentInfo{app.revanced.android.youtube/app.revanced.android.youtube.revanced_original_1}" drawable="youtube_3"/>
-
 <!-- Hello You -->
 <item component="ComponentInfo{com.motorola.ccc.notification/com.motorola.engageapp.ui.HelloYouActivity}" drawable="hello_you"/>
 
 <!-- Windscribe -->
 <item component="ComponentInfo{com.windscribe.vpn/com.windscribe.mobile.ui.AppStartActivity}" drawable="windscribe"/>
 
-<!-- ibisPaint X -->
-<item component="ComponentInfo{jp.ne.ibis.ibispaintx.app/jp.ne.ibis.ibispaintx.app.InitializeCheckActivity}" drawable="ibispaint_x"/>
-
-<!-- JBL Headphones -->
-<item component="ComponentInfo{jbl.stc.com/jbl.stc.com.activity.LauncherStartActivity}" drawable="jbl_headphones"/>
-
 <!-- Wink -->
 <item component="ComponentInfo{com.meitu.wink/com.meitu.wink.page.main.MainActivity}" drawable="wink_3"/>
 
 <!-- My Pixel -->
 <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.base}" drawable="my_pixel"/>
-
-<!-- Connect IQ -->
-<item component="ComponentInfo{com.garmin.connectiq/com.garmin.connectiq.ui.MainActivity}" drawable="connect_iq"/>
 
 <!-- CVS Health -->
 <item component="ComponentInfo{com.cvs.launchers.cvs/com.cvs.MainActivity}" drawable="cvs_health"/>
@@ -70,9 +85,6 @@
 <!-- ICSx⁵ -->
 <item component="ComponentInfo{at.bitfire.icsdroid/at.bitfire.icsdroid.MainActivity}" drawable="icsx"/>
 
-<!-- zFont 3 -->
-<item component="ComponentInfo{com.htetznaing.zfont2/com.htetz.zfontcompose.MainActivity}" drawable="zfont_3_3"/>
-
 <!-- Nebula -->
 <item component="ComponentInfo{tv.standard.nebula/tv.standard.nebula.main.view.activities.MainActivity}" drawable="nebula"/>
 
@@ -90,9 +102,6 @@
 
 <!-- żappka -->
 <item component="ComponentInfo{pl.zabka.apb2c/pl.zabka.apb2c.ui.ZappkaActivityHalloween}" drawable="zappka"/>
-
-<!-- BHIM -->
-<item component="ComponentInfo{in.org.npci.upiapp/jmylyffra.ag}" drawable="bhim_3"/>
 
 <!-- JioMart -->
 <item component="ComponentInfo{com.jpl.jiomart/com.jcpjiomart.MainActivity}" drawable="jiomart"/>
@@ -304,9 +313,6 @@
 <!-- CAIXA Tem -->
 <item component="ComponentInfo{br.gov.caixa.tem/br.p1Lgd1.mOVzl7.sgREU6.ui.sakzB8.wZDlV8}" drawable="caixa_tem"/>
 
-<!-- Boo -->
-<item component="ComponentInfo{enterprises.dating.boo/enterprises.dating.boo.MainActivity}" drawable="boo"/>
-
 <!-- Rec Room -->
 <item component="ComponentInfo{com.AgainstGravity.RecRoom/com.againstgravity.recroom.GooglePlayNativeActivity}" drawable="rec_room"/>
 
@@ -339,9 +345,6 @@
 
 <!-- PttAVM -->
 <item component="ComponentInfo{com.pttem.epttavm/com.pttem.epttavm.dynamicappicon.alias.DefaultLauncherAlias}" drawable="pttavm"/>
-
-<!-- SNS 24 -->
-<item component="ComponentInfo{pt.minsaude.spms.ces/pt.minsaude.spms.sns24.dev.MainActivity}" drawable="sns_24_3"/>
 
 <!-- Translator -->
 <item component="ComponentInfo{com.microsoft.translator/com.microsoft.translator.TranslateHomeActivity}" drawable="translator"/>
@@ -592,9 +595,6 @@
 <!-- Citymapper -->
 <item component="ComponentInfo{com.citymapper.app.release/com.citymapper.app.MainActivity_Goth}" drawable="citymapper"/>
 
-<!-- DITO -->
-<item component="ComponentInfo{com.mydito/com.mydito.app_icon_7}" drawable="dito"/>
-
 <!-- Terminal -->
 <item component="ComponentInfo{app.simple.inure.play/app.simple.inure.activities.alias.TerminalAlias}" drawable="terminal"/>
 
@@ -807,4 +807,7 @@
 
 <!-- Mini Piano Lite -->
 <item component="ComponentInfo{umito.android.minipiano/umito.android.shared.minipiano.splashscreen.SplashScreenActivity}" drawable="mini_piano_lite"/>
+
+<!-- SmartBanking -->
+<item component="ComponentInfo{com.zentity.sbank.csobsk/com.csobsk.smartbankingv2.smartbankingv3.modules.SplashActivity}" drawable="smartbanking"/>
 
