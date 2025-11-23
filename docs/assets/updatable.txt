@@ -4,8 +4,125 @@
 <!-- Proton Mail -->
 <item component="ComponentInfo{ch.protonmail.android/ch.protonmail.android.RoutingActivity}" drawable="proton_mail"/>
 
+<!-- Mercado Libre -->
+<item component="ComponentInfo{com.mercadolibre/com.mercadolibre.SplashActivityAliasDefault}" drawable="mercado_libre"/>
+
+<!-- Find -->
+<item component="ComponentInfo{com.samsung.android.app.find/com.samsung.android.app.find.MainActivity}" drawable="find"/>
+
+<!-- YT Music -->
+<item component="ComponentInfo{app.revanced.android.apps.youtube.music/app.revanced.android.apps.youtube.music.revanced_original_1}" drawable="yt_music_3"/>
+
+<!-- Mercado Pago -->
+<item component="ComponentInfo{com.mercadopago.wallet/com.mercadopago.wallet.SplashActivityAliasDefault}" drawable="mercado_pago"/>
+
+<!-- zFont 3 -->
+<item component="ComponentInfo{com.htetznaing.zfont2/com.htetz.zfontcompose.MainActivity}" drawable="zfont_3_3"/>
+
+<!-- KOLEO -->
+<item component="ComponentInfo{pl.koleo/pl.astarium.koleo.ui.main.MainActivity}" drawable="koleo"/>
+
+<!-- My Pixel -->
+<item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p7}" drawable="my_pixel_3"/>
+
+<!-- PhoneWalls -->
+<item component="ComponentInfo{com.phonewalls.stockwallpapers/com.phonewalls.stockwallpapers.SplashActivity}" drawable="phonewalls"/>
+
+<!-- ICSx⁵ -->
+<item component="ComponentInfo{at.bitfire.icsdroid/at.bitfire.icsdroid.MainActivity}" drawable="icsx"/>
+
+<!-- RethinkDNS -->
+<item component="ComponentInfo{com.celzero.bravedns/com.celzero.bravedns.ui.activity.LauncherAliasAppLock}" drawable="rethinkdns"/>
+
+<!-- Assistente -->
+<item component="ComponentInfo{org.torproject.android/org.torproject.android.main.Assistant}" drawable="assistente"/>
+
 <!-- ibisPaint X -->
 <item component="ComponentInfo{jp.ne.ibis.ibispaintx.app/jp.ne.ibis.ibispaintx.app.InitializeCheckActivity}" drawable="ibispaint_x"/>
+
+<!-- BHIM -->
+<item component="ComponentInfo{in.org.npci.upiapp/suxzdjttr.ag}" drawable="bhim_2"/>
+
+<!-- Bajaj Finserv -->
+<item component="ComponentInfo{org.altruist.BajajExperia/com.bfl.superapp.onboarding.revamp.activity.SecuritySplashActivity}" drawable="bajaj_finserv"/>
+
+<!-- Windscribe -->
+<item component="ComponentInfo{com.windscribe.vpn/com.windscribe.mobile.ui.AppStartActivity}" drawable="windscribe"/>
+
+<!-- MakeMyTrip -->
+<item component="ComponentInfo{com.makemytrip/com.mmt.travel.app.home.ui.SplashActivityPrimary}" drawable="makemytrip"/>
+
+<!-- ALLEN -->
+<item component="ComponentInfo{digital.allen.study/digital.allen.MainActivity}" drawable="allen"/>
+
+<!-- Kotak Bank -->
+<item component="ComponentInfo{com.kotak.bank.mobile/FzIY.xxKE.uaSj}" drawable="kotak_bank"/>
+
+<!-- Flipkart -->
+<item component="ComponentInfo{com.flipkart.android/com.flipkart.android.BBDIconAlias}" drawable="flipkart_1"/>
+
+<!-- APKPure -->
+<item component="ComponentInfo{com.apkpure.aegon/com.apkpure.aegon.main.activity.FirstSeemPageActivity}" drawable="apkpure_1"/>
+
+<!-- DITO -->
+<item component="ComponentInfo{com.mydito/com.mydito.app_icon_7}" drawable="dito"/>
+
+<!-- Wink -->
+<item component="ComponentInfo{com.meitu.wink/com.meitu.wink.page.main.MainActivity}" drawable="wink_3"/>
+
+<!-- Formula 1 -->
+<item component="ComponentInfo{com.softpauer.f1timingapp2014.basic/com.formula1.MainActivity}" drawable="formula_1"/>
+
+<!-- AZ Screen Recorder -->
+<item component="ComponentInfo{com.hecorat.screenrecorder.free/com.hecorat.screenrecorder.free.activities.MainActivity}" drawable="az_screen_recorder"/>
+
+<!-- BandLab -->
+<item component="ComponentInfo{com.bandlab.bandlab/com.bandlab.bandlab.Default}" drawable="bandlab"/>
+
+<!-- Yuka -->
+<item component="ComponentInfo{io.yuka.android/io.yuka.android.main.RootActivity}" drawable="yuka"/>
+
+<!-- Yanımda -->
+<item component="ComponentInfo{com.vodafone.selfservis/com.vodafone.selfservis.feature.growth.dashboard.nonlogin.DashboardActivity}" drawable="yanmda"/>
+
+<!-- n11 -->
+<item component="ComponentInfo{com.dmall.mfandroid/com.dmall.mfandroid.activity.base.AppIconDefault}" drawable="n11"/>
+
+<!-- Inware -->
+<item component="ComponentInfo{com.evo.inware/com.evo.inware.MainActivity}" drawable="inware"/>
+
+<!-- Magalu -->
+<item component="ComponentInfo{com.luizalabs.mlapp/com.luizalabs.mlapp.home.ui.MainActivity}" drawable="magalu"/>
+
+<!-- Sonic CD -->
+<item component="ComponentInfo{com.sega.soniccd.classic/com.sega.sonicCD.SonicCDActivity}" drawable="sonic_cd"/>
+
+<!-- DKB -->
+<item component="ComponentInfo{com.dkbcodefactory.banking/com.dkbcodefactory.banking.screens.BankingAppActivity}" drawable="dkb"/>
+
+<!-- Stocks Widget -->
+<item component="ComponentInfo{com.github.premnirmal.tickerwidget/com.github.premnirmal.ticker.home.HomeActivity}" drawable="stocks_widget"/>
+
+<!-- HDFC Bank Home Loans -->
+<item component="ComponentInfo{com.app.hdfc/com.app.hdfc.launcher_2707bad8f75d0a36247b5ad4ed963deb0815bc131328472d4a06f48fa8d7d0fc}" drawable="hdfc_bank_home_loans"/>
+
+<!-- Planet -->
+<item component="ComponentInfo{com.ltfs.d2c/com.example.planet.MainActivity}" drawable="planet"/>
+
+<!-- JioMart -->
+<item component="ComponentInfo{com.jpl.jiomart/com.jcpjiomart.MainActivityAlias1}" drawable="jiomart_1"/>
+
+<!-- Firefox Nightly -->
+<item component="ComponentInfo{org.mozilla.fenix/org.mozilla.fenix.AppCuddling}" drawable="firefox_nightly"/>
+
+<!-- Mi Pixel -->
+<item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p9a}" drawable="mi_pixel_1"/>
+
+<!-- Music -->
+<item component="ComponentInfo{im.molly.app/org.thoughtcrime.securesms.RoutingActivityAltWaves}" drawable="music_3"/>
+
+<!-- Tasks -->
+<item component="ComponentInfo{org.tasks/com.todoroo.astrid.activity.TaskListActivity.Red}" drawable="tasks"/>
 
 <!-- JBL Headphones -->
 <item component="ComponentInfo{jbl.stc.com/jbl.stc.com.activity.LauncherStartActivity}" drawable="jbl_headphones"/>
@@ -13,29 +130,14 @@
 <!-- Flipkart -->
 <item component="ComponentInfo{com.flipkart.android/com.flipkart.android.GoldIconAlias}" drawable="flipkart_2"/>
 
-<!-- BHIM -->
-<item component="ComponentInfo{in.org.npci.upiapp/suxzdjttr.ag}" drawable="bhim_2"/>
-
 <!-- Hello You -->
 <item component="ComponentInfo{com.motorola.ccc.notification/com.motorola.engageapp.ui.HelloYouActivity}" drawable="hello_you"/>
 
 <!-- Ludo King -->
 <item component="ComponentInfo{com.ludo.king/com.unity3d.player.FoldablePlayerActivity}" drawable="ludo_king_3"/>
 
-<!-- Bajaj Finserv -->
-<item component="ComponentInfo{org.altruist.BajajExperia/com.bfl.superapp.onboarding.revamp.activity.SecuritySplashActivity}" drawable="bajaj_finserv"/>
-
-<!-- Mercado Pago -->
-<item component="ComponentInfo{com.mercadopago.wallet/com.mercadopago.wallet.SplashActivityAliasDefault}" drawable="mercado_pago"/>
-
-<!-- Mercado Libre -->
-<item component="ComponentInfo{com.mercadolibre/com.mercadolibre.SplashActivityAliasDefault}" drawable="mercado_libre"/>
-
 <!-- Voicemail -->
 <item component="ComponentInfo{com.samsung.vvm/com.samsung.vvm.views.ui.mainview.VVMApplicationAlias}" drawable="voicemail"/>
-
-<!-- Windscribe -->
-<item component="ComponentInfo{com.windscribe.vpn/com.windscribe.mobile.ui.AppStartActivity}" drawable="windscribe"/>
 
 <!-- iFood -->
 <item component="ComponentInfo{br.com.brainweb.ifood/br.com.brainweb.ifood.AppIcon}" drawable="ifood_1"/>
@@ -55,26 +157,14 @@
 <!-- Soundbound -->
 <item component="ComponentInfo{in.shabinder.soundbound/in.shabinder.soundbound.stubs.MainActivityEntryPoint}" drawable="soundbound"/>
 
-<!-- MakeMyTrip -->
-<item component="ComponentInfo{com.makemytrip/com.mmt.travel.app.home.ui.SplashActivityPrimary}" drawable="makemytrip"/>
-
 <!-- My Verizon -->
 <item component="ComponentInfo{com.vzw.hss.myverizon/com.vzw.mobilefirst.setup.views.activity.SetUpActivity}" drawable="my_verizon_3"/>
-
-<!-- ALLEN -->
-<item component="ComponentInfo{digital.allen.study/digital.allen.MainActivity}" drawable="allen"/>
 
 <!-- Max Fashion -->
 <item component="ComponentInfo{com.applications.max/com.react_native_app_in.MainActivity}" drawable="max_fashion"/>
 
 <!-- Skip -->
 <item component="ComponentInfo{com.ncconsulting.skipthedishes_android/ca.skipthedishes.customer.features.splash.ui.SplashActivity}" drawable="skip"/>
-
-<!-- Kotak Bank -->
-<item component="ComponentInfo{com.kotak.bank.mobile/FzIY.xxKE.uaSj}" drawable="kotak_bank"/>
-
-<!-- Flipkart -->
-<item component="ComponentInfo{com.flipkart.android/com.flipkart.android.BBDIconAlias}" drawable="flipkart_1"/>
 
 <!-- Google Cloud -->
 <item component="ComponentInfo{com.google.android.apps.cloudconsole/com.google.android.apps.cloudconsole.common.ExternalMainContainerActivity}" drawable="google_cloud"/>
@@ -94,20 +184,11 @@
 <!-- Stario -->
 <item component="ComponentInfo{com.stario.launcher/com.stario.launcher.activities.launcher.Launcher}" drawable="stario"/>
 
-<!-- APKPure -->
-<item component="ComponentInfo{com.apkpure.aegon/com.apkpure.aegon.main.activity.FirstSeemPageActivity}" drawable="apkpure_1"/>
-
 <!-- AyuGram -->
 <item component="ComponentInfo{com.radolyn.ayugram/com.exteragram.messenger.CyberpunkIcon}" drawable="ayugram"/>
 
-<!-- zFont 3 -->
-<item component="ComponentInfo{com.htetznaing.zfont2/com.htetz.zfontcompose.MainActivity}" drawable="zfont_3_3"/>
-
 <!-- BHIM -->
 <item component="ComponentInfo{in.org.npci.upiapp/jmylyffra.ag}" drawable="bhim_3"/>
-
-<!-- Find -->
-<item component="ComponentInfo{com.samsung.android.app.find/com.samsung.android.app.find.MainActivity}" drawable="find"/>
 
 <!-- Discover -->
 <item component="ComponentInfo{com.discoverfinancial.mobile/nI8wX8.h11yC6.mAsfc4.l0lmy5}" drawable="discover_1"/>
@@ -124,9 +205,6 @@
 <!-- Duolingo -->
 <item component="ComponentInfo{com.duolingo/com.duolingo.app.UnhingedCryLauncher}" drawable="duolingo"/>
 
-<!-- KOLEO -->
-<item component="ComponentInfo{pl.koleo/pl.astarium.koleo.ui.main.MainActivity}" drawable="koleo"/>
-
 <!-- Box -->
 <item component="ComponentInfo{com.box.android/com.box.android.auth.AuthenticationActivity}" drawable="box"/>
 
@@ -139,9 +217,6 @@
 <!-- SNS 24 -->
 <item component="ComponentInfo{pt.minsaude.spms.ces/pt.minsaude.spms.sns24.dev.MainActivity}" drawable="sns_24_3"/>
 
-<!-- DITO -->
-<item component="ComponentInfo{com.mydito/com.mydito.app_icon_7}" drawable="dito"/>
-
 <!-- Duolingo -->
 <item component="ComponentInfo{com.duolingo/com.duolingo.app.PreStreakSaver3Launcher}" drawable="duolingo_3"/>
 
@@ -151,26 +226,11 @@
 <!-- YouTube -->
 <item component="ComponentInfo{app.revanced.android.youtube/app.revanced.android.youtube.revanced_rounded_1}" drawable="youtube_2"/>
 
-<!-- YT Music -->
-<item component="ComponentInfo{app.revanced.android.apps.youtube.music/app.revanced.android.apps.youtube.music.revanced_original_1}" drawable="yt_music_3"/>
-
-<!-- Wink -->
-<item component="ComponentInfo{com.meitu.wink/com.meitu.wink.page.main.MainActivity}" drawable="wink_3"/>
-
 <!-- CVS Health -->
 <item component="ComponentInfo{com.cvs.launchers.cvs/com.cvs.MainActivity}" drawable="cvs_health"/>
 
-<!-- My Pixel -->
-<item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p7}" drawable="my_pixel_3"/>
-
-<!-- PhoneWalls -->
-<item component="ComponentInfo{com.phonewalls.stockwallpapers/com.phonewalls.stockwallpapers.SplashActivity}" drawable="phonewalls"/>
-
 <!-- Komoot -->
 <item component="ComponentInfo{de.komoot.android/de.komoot.android.ui.RootActivityDefault}" drawable="komoot"/>
-
-<!-- ICSx⁵ -->
-<item component="ComponentInfo{at.bitfire.icsdroid/at.bitfire.icsdroid.MainActivity}" drawable="icsx"/>
 
 <!-- Nebula -->
 <item component="ComponentInfo{tv.standard.nebula/tv.standard.nebula.main.view.activities.MainActivity}" drawable="nebula"/>
@@ -178,29 +238,17 @@
 <!-- VpnHood! CONNECT -->
 <item component="ComponentInfo{com.vpnhood.connect.android/crc640ff1ea0c75b1138a.MainActivity}" drawable="vpnhood_connect"/>
 
-<!-- Formula 1 -->
-<item component="ComponentInfo{com.softpauer.f1timingapp2014.basic/com.formula1.MainActivity}" drawable="formula_1"/>
-
-<!-- AZ Screen Recorder -->
-<item component="ComponentInfo{com.hecorat.screenrecorder.free/com.hecorat.screenrecorder.free.activities.MainActivity}" drawable="az_screen_recorder"/>
-
 <!-- żappka -->
 <item component="ComponentInfo{pl.zabka.apb2c/pl.zabka.apb2c.ui.ZappkaActivityHalloween}" drawable="zappka"/>
 
 <!-- SeaBank -->
 <item component="ComponentInfo{id.co.bankbkemobile.digitalbank/id.co.bankbkemobile.digitalbank.haneaoa.hshoone80026869}" drawable="seabank"/>
 
-<!-- BandLab -->
-<item component="ComponentInfo{com.bandlab.bandlab/com.bandlab.bandlab.Default}" drawable="bandlab"/>
-
 <!-- Car Scanner -->
 <item component="ComponentInfo{com.ovz.carscanner/crc6499ccedf271453986.MainActivity}" drawable="car_scanner"/>
 
 <!-- Coppel -->
 <item component="ComponentInfo{com.coppel.coppelapp/fBORH1.uSejr3.kSsB28.ueMb88.u8up95.xuMir9}" drawable="coppel_1"/>
-
-<!-- RethinkDNS -->
-<item component="ComponentInfo{com.celzero.bravedns/com.celzero.bravedns.ui.activity.LauncherAliasAppLock}" drawable="rethinkdns"/>
 
 <!-- Mi Pixel -->
 <item component="ComponentInfo{com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p8}" drawable="mi_pixel_3"/>
@@ -211,9 +259,6 @@
 <!-- Paytm -->
 <item component="ComponentInfo{net.one97.paytm/net.one97.paytm.alias_icon_stage3}" drawable="paytm"/>
 
-<!-- Yuka -->
-<item component="ComponentInfo{io.yuka.android/io.yuka.android.main.RootActivity}" drawable="yuka"/>
-
 <!-- Flipkart -->
 <item component="ComponentInfo{com.flipkart.android/com.flipkart.android.SilverIconAlias}" drawable="flipkart_3"/>
 
@@ -222,12 +267,6 @@
 
 <!-- Stoat -->
 <item component="ComponentInfo{chat.revolt/chat.stoat.activities.MainActivity}" drawable="stoat"/>
-
-<!-- Yanımda -->
-<item component="ComponentInfo{com.vodafone.selfservis/com.vodafone.selfservis.feature.growth.dashboard.nonlogin.DashboardActivity}" drawable="yanmda"/>
-
-<!-- n11 -->
-<item component="ComponentInfo{com.dmall.mfandroid/com.dmall.mfandroid.activity.base.AppIconDefault}" drawable="n11"/>
 
 <!-- Duolingo -->
 <item component="ComponentInfo{com.duolingo/com.duolingo.app.UnhingedSickLauncher}" drawable="duolingo_1"/>
@@ -316,9 +355,6 @@
 <!-- TPBank Mobile -->
 <item component="ComponentInfo{com.tpb.mb.gprsandroid/vn.tpb.launcher.ui.alias.SplashAliasDefault}" drawable="tpbank_mobile"/>
 
-<!-- Inware -->
-<item component="ComponentInfo{com.evo.inware/com.evo.inware.MainActivity}" drawable="inware"/>
-
 <!-- Flipkart -->
 <item component="ComponentInfo{com.flipkart.android/com.flipkart.android.DiwaliIconAlias}" drawable="flipkart"/>
 
@@ -334,9 +370,6 @@
 <!-- CAIXA -->
 <item component="ComponentInfo{br.com.gabba.Caixa/br.n69jP7.vDIBp0.mIRu90.ui.gU7eQ8.aLRSd8}" drawable="caixa_1"/>
 
-<!-- Magalu -->
-<item component="ComponentInfo{com.luizalabs.mlapp/com.luizalabs.mlapp.home.ui.MainActivity}" drawable="magalu"/>
-
 <!-- CAIXA Tem -->
 <item component="ComponentInfo{br.gov.caixa.tem/br.p1Lgd1.mOVzl7.sgREU6.ui.sakzB8.wZDlV8}" drawable="caixa_tem"/>
 
@@ -348,9 +381,6 @@
 
 <!-- OLX -->
 <item component="ComponentInfo{com.schibsted.bomnegocio.androidApp/com.olxbr.splash.implementation.presentation.SplashActivity}" drawable="olx"/>
-
-<!-- Sonic CD -->
-<item component="ComponentInfo{com.sega.soniccd.classic/com.sega.sonicCD.SonicCDActivity}" drawable="sonic_cd"/>
 
 <!-- Discover -->
 <item component="ComponentInfo{com.discoverfinancial.mobile/qhDB65.gD67g3.wn9Sx4.xI9zb3}" drawable="discover"/>
@@ -433,17 +463,11 @@
 <!-- KFC -->
 <item component="ComponentInfo{com.kfc.nl.mobileapp/com.kfc.nl.mobileapp.MainActivity}" drawable="kfc"/>
 
-<!-- DKB -->
-<item component="ComponentInfo{com.dkbcodefactory.banking/com.dkbcodefactory.banking.screens.BankingAppActivity}" drawable="dkb"/>
-
 <!-- Termux:Tasker -->
 <item component="ComponentInfo{com.termux.tasker/com.termux.tasker.activities.TermuxTaskerLauncherActivity}" drawable="termuxtasker"/>
 
 <!-- YouTube -->
 <item component="ComponentInfo{com.rvx.android.youtube/com.google.android.youtube.app.honeycomb.Shell$HomeActivity}" drawable="youtube"/>
-
-<!-- Stocks Widget -->
-<item component="ComponentInfo{com.github.premnirmal.tickerwidget/com.github.premnirmal.ticker.home.HomeActivity}" drawable="stocks_widget"/>
 
 <!-- Duolingo -->
 <item component="ComponentInfo{com.duolingo/com.duolingo.app.StreakFrozenLauncher3}" drawable="duolingo_4"/>
@@ -535,9 +559,6 @@
 <!-- Goibibo -->
 <item component="ComponentInfo{com.goibibo/com.goibibo.common.HomeActivityAliasDiwali}" drawable="goibibo"/>
 
-<!-- HDFC Bank Home Loans -->
-<item component="ComponentInfo{com.app.hdfc/com.app.hdfc.launcher_2707bad8f75d0a36247b5ad4ed963deb0815bc131328472d4a06f48fa8d7d0fc}" drawable="hdfc_bank_home_loans"/>
-
 <!-- Discord -->
 <item component="ComponentInfo{com.discord/com.discord.main.MainColorWave}" drawable="discord"/>
 
@@ -562,17 +583,11 @@
 <!-- Ente Photos -->
 <item component="ComponentInfo{io.ente.photos/io.ente.photos.IconOG}" drawable="ente_photos"/>
 
-<!-- Planet -->
-<item component="ComponentInfo{com.ltfs.d2c/com.example.planet.MainActivity}" drawable="planet"/>
-
 <!-- Burger King -->
 <item component="ComponentInfo{burgerking.com.br.appandroid/burgerking.com.br.appandroid.splash.presentation.SplashActivity}" drawable="burger_king"/>
 
 <!-- Opera Mini -->
 <item component="ComponentInfo{com.opera.mini.native/com.opera.android.Default}" drawable="opera_mini"/>
-
-<!-- Assistente -->
-<item component="ComponentInfo{org.torproject.android/org.torproject.android.main.Assistant}" drawable="assistente"/>
 
 <!-- IronFox -->
 <item component="ComponentInfo{org.ironfoxoss.ironfox/org.ironfoxoss.ironfox.AppPixelated}" drawable="ironfox"/>
@@ -823,9 +838,6 @@
 <!-- Avast Mobile Security -->
 <item component="ComponentInfo{com.avast.android.mobilesecurity/com.norton.n360.SplashActivity}" drawable="avast_mobile_security"/>
 
-<!-- JioMart -->
-<item component="ComponentInfo{com.jpl.jiomart/com.jcpjiomart.MainActivityAlias1}" drawable="jiomart_1"/>
-
 <!-- Pix Material Icon Pack -->
 <item component="ComponentInfo{com.pashapuma.pix.material.iconpack/com.pashapuma.pix.material.iconpack.activities.MainActivity}" drawable="pix_material_icon_pack"/>
 
@@ -861,4 +873,85 @@
 
 <!-- Recorder -->
 <item component="ComponentInfo{com.vivo.soundrecorder/com.android.activity.ReclistActivity}" drawable="recorder_2"/>
+
+<!-- Baam | بام -->
+<item component="ComponentInfo{ir.bmi.bam.nativeweb/ir.bmi.bam.DarkIcon}" drawable="baam___1"/>
+
+<!-- آپ -->
+<item component="ComponentInfo{com.sibche.aspardproject.app/ir.asanpardakht.android.ui.splash.NormalSplashAlias}" drawable="unnamed_icon_21"/>
+
+<!-- Domino's -->
+<item component="ComponentInfo{com.dominos.bd/com.Dominos.activity.alias.LauncherDefaultAlias}" drawable="dominos_2"/>
+
+<!-- Cinépolis Go -->
+<item component="ComponentInfo{com.cinepolis.go/dhgqh1.knVEd1.nrqMg0}" drawable="cinepolis_go_2"/>
+
+<!-- Nyx Music Player -->
+<item component="ComponentInfo{com.awedea.nyx/com.zipoapps.premiumhelper.ui.splash.PHSplashActivity}" drawable="nyx_music_player"/>
+
+<!-- LANDBANK -->
+<item component="ComponentInfo{com.landbank.mobilebanking/tkkLw3.rrZxc9.nlGD61.qsFjU0.nMty85.ag0hD4}" drawable="landbank"/>
+
+<!-- tagesschau -->
+<item component="ComponentInfo{de.tagesschau/de.tagesschau.ui.MainActivity}" drawable="tagesschau"/>
+
+<!-- Digiposte -->
+<item component="ComponentInfo{com.laposte.bnum.digiposteplus/com.laposte.bnum.digiposteplus.MainActivity}" drawable="digiposte"/>
+
+<!-- Poweramp Equalizer -->
+<item component="ComponentInfo{com.maxmpz.equalizer/com.maxmpz.audioplayer.rounded_play_inverted_mu}" drawable="poweramp_equalizer_1"/>
+
+<!-- Tıkla Gelsin -->
+<item component="ComponentInfo{com.ataexpress.tiklagelsin/com.ataexpress.tiklagelsin.MainActivityDefault}" drawable="tkla_gelsin"/>
+
+<!-- Метро Москвы -->
+<item component="ComponentInfo{ru.mosmetro.metro/ru.mosmetro.metro.activity.MainActivity}" drawable="__11"/>
+
+<!-- LCW -->
+<item component="ComponentInfo{com.lcwaikiki.android/com.lcwaikiki.android.ui.MainActivity}" drawable="lcw"/>
+
+<!-- Totalplay -->
+<item component="ComponentInfo{com.TotalPlay.totalplay/mx.ptla51.uyZRz8.zw0i27.pE9xL9.oiKRQ6}" drawable="totalplay_1"/>
+
+<!-- Toffee -->
+<item component="ComponentInfo{com.banglalink.toffee/com.mobiotics.vlive.android.ui.splash.SplashActivity}" drawable="toffee"/>
+
+<!-- AyuGram -->
+<item component="ComponentInfo{com.radolyn.ayugram/com.exteragram.messenger.AyuTyan}" drawable="ayugram_1"/>
+
+<!-- FamApp -->
+<item component="ComponentInfo{com.fampay.in/com.fampay.in.app_icon_alias.AppIconsAlias.GtIpl2025IconAlias}" drawable="famapp_1"/>
+
+<!-- One Hungary -->
+<item component="ComponentInfo{hu.vodafone.apps.myvodafone/hu.one.apps.one.ui.main.MainActivity}" drawable="one_hungary"/>
+
+<!-- Duolingo -->
+<item component="ComponentInfo{com.duolingo/com.duolingo.app.StreakSaverLauncher3}" drawable="duolingo_9"/>
+
+<!-- Chatbot AI -->
+<item component="ComponentInfo{newway.open.chatgpt.ai.chat.bot.free/com.example.cca.views.splash.SplashNewActivity}" drawable="chatbot_ai"/>
+
+<!-- Namida -->
+<item component="ComponentInfo{com.msob7y.namida/com.msob7y.namida.DefaultIcon}" drawable="namida"/>
+
+<!-- YouTube -->
+<item component="ComponentInfo{com.android.youtube.premium/com.google.android.youtube.app.honeycomb.Shell$HomeActivity}" drawable="youtube_6"/>
+
+<!-- CAIXA -->
+<item component="ComponentInfo{br.com.gabba.Caixa/br.siBbc0.ao4gw0.ekP0U7.ui.uU3Su2.n4y326}" drawable="caixa_3"/>
+
+<!-- CAIXA Tem -->
+<item component="ComponentInfo{br.gov.caixa.tem/br.bHL9I3.k6uVl6.eyOEH0.ui.hSUjI6.lUKHm5}" drawable="caixa_tem_2"/>
+
+<!-- FGTS -->
+<item component="ComponentInfo{br.gov.caixa.fgts.trabalhador/br.bO64w4.modoT0.fw00Y3.tN2eT7.ui.eOkP02.gi9vL2.l13ZG8}" drawable="fgts_1"/>
+
+<!-- NBA Live Mobile -->
+<item component="ComponentInfo{com.ea.gp.nbamobile/com.ea.mako.nbanext.NBANextMainActivity}" drawable="nba_live_mobile"/>
+
+<!-- PicPay -->
+<item component="ComponentInfo{com.picpay/com.picpay.PicpayIconAlias}" drawable="picpay"/>
+
+<!-- Camera -->
+<item component="ComponentInfo{com.samsung.android.scan3d/com.google.android.apps.cameralite.capture.CaptureActivity}" drawable="camera_8"/>
 
