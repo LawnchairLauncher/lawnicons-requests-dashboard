@@ -364,6 +364,72 @@ function updateFab() {
 // 11. CONTEXT MENUS & UTILS
 // ==========================================
 
+// --- Context Menu: Row Mode (Mouse Click) ---
+function showRowContextMenu(e, app) {
+  const id = app.componentNames[0].componentName;
+  const pkg = id.split('/')[0];
+  const name = app.componentNames[0].label;
+
+  // 1. Inject Content
+  DOM.rowMenu.innerHTML = `
+    <div class="ctx-item" onclick="window.open('${CONFIG.urls.fDroid}${pkg}')">
+      ${ICONS.fDroid} <span>F-Droid</span>
+    </div>
+    <div class="ctx-item" onclick="window.open('${CONFIG.urls.izzy}${pkg}')">
+      ${ICONS.izzyOnDroid} <span>IzzyOnDroid</span>
+    </div>
+    <div class="ctx-item" onclick="window.open('${CONFIG.urls.galaxyStore}${pkg}')">
+      ${ICONS.galaxyStore} <span>Galaxy Store</span>
+    </div>
+    <div class="ctx-item" onclick="copyToClipboard('${name}\\n${id}')">
+      ${ICONS.copy} <span>Copy name & ID</span>
+    </div>
+    <div class="ctx-item" onclick="copyAppFilterEntry('${id}')">
+      ${ICONS.copy} <span>Copy appfilter</span>
+    </div>
+  `;
+
+  // 2. Smart Positioning (Prevent clipping)
+  const menuWidth = 240;
+  const menuHeight = 280;
+  
+  let x = e.clientX + 2; 
+  let y = e.clientY + 2;
+
+  // Flip Left if too close to right edge
+  if (x + menuWidth > window.innerWidth) x -= (menuWidth + 4);
+  
+  // Flip Up if too close to bottom edge
+  if (y + menuHeight > window.innerHeight) y -= (menuHeight + 4);
+
+  DOM.rowMenu.style.left = `${x}px`;
+  DOM.rowMenu.style.top = `${y}px`;
+  DOM.rowMenu.style.transformOrigin = "top left";
+
+  // 3. Show
+  DOM.rowMenu.showPopover();
+}
+
+// --- Context Menu: FAB Mode (Button Click) ---
+function showFabContextMenu() {
+  DOM.fabMenu.innerHTML = `
+    <div class="ctx-item" onclick="copyBulkAppFilter()">
+      ${ICONS.copy} <span>Copy appfilter entries</span>
+    </div>
+    <div class="ctx-item" onclick="downloadSelected()">
+      ${ICONS.download} <span>Download selected</span>
+    </div>
+  `;
+  
+  // CSS handles the bottom-sheet positioning for .fab-style
+  DOM.fabMenu.showPopover();
+}
+
+function closeContextMenu() {
+  try { DOM.rowMenu.hidePopover(); } catch(e) {}
+  try { DOM.fabMenu.hidePopover(); } catch(e) {}
+}
+
 function formatDate(unix) {
   if (!unix) return "—";
   return new Date(unix * 1000).toLocaleDateString("en-US", { 
