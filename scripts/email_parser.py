@@ -1,322 +1,401 @@
-import email
-import zipfile
-import lxml.etree as ET
-import re
-from time import mktime
-from email.utils import parsedate
-import io
-from datetime import date
-from collections import defaultdict, Counter
-from pathlib import Path
-import argparse
-import os
+"""
+Functional outline for refactored email → request processor
+Now outputs structured requests.json (single file).
+"""
 
-config = {
+import argparse
+from email.message import Message
+import json
+import re
+import io
+import os
+import zipfile
+import email
+import lxml.etree as ET
+from time import mktime
+from datetime import date
+from pathlib import Path
+from collections import defaultdict, Counter
+from email.utils import parseaddr, parsedate, parsedate_to_datetime
+
+COMPONENT_PATTERN = re.compile('ComponentInfo{(?P<ComponentInfo>.+)}')
+
+CONFIG = {
     "request_limit": 1000,
     "months_limit": 6,
     "min_requests": 4,
-    "date_format": "X%d %B %Y",
 }
 
+# -------------------------------------------------------
+# CLI
+# -------------------------------------------------------
+
+
 def parse_args():
-    parser = argparse.ArgumentParser(description="Script to parse emails and generate/update requests.txt and updatable.txt")
-    parser.add_argument("folder_path", type=str, help="Path to folder containing .eml files of requests")
-    parser.add_argument("appfilter_path", type=str, help="Path to existing appfilter.xml to recognize potentially updatable appfilters")
-    parser.add_argument("extracted_png_folder_path", type=str, help="Path to folder containing extracted PNGs")
-    parser.add_argument("requests_path", type=str, default=None, help="Path to folder containing the request.txt and updatable.txt")
+    """Parse CLI arguments."""
+    parser = argparse.ArgumentParser(
+        description="Script to parse emails and generate/update requests.txt and updatable.txt")
+    parser.add_argument("folder_path", type=str,
+                        help="Path to folder containing .eml files of requests")
+    parser.add_argument("appfilter_path", type=str,
+                        help="Path to existing appfilter.xml to recognize potentially updatable appfilters")
+    parser.add_argument("extracted_png_folder_path", type=str,
+                        help="Path to folder containing extracted PNGs")
+    parser.add_argument("requests_path", type=str, default=None,
+                        help="Path to folder containing the request.txt and updatable.txt")
     return parser.parse_args()
 
-class EmailParser:
-    def __init__(self, folder_path, appfilter_path, extracted_png_folder_path, requests_path=None):
-        self.folder_path = Path(folder_path)
-        self.appfilter_path = Path(appfilter_path)
-        self.extracted_png_folder_path = Path(extracted_png_folder_path)
-        self.requests_path = Path(requests_path+'/requests.txt') if requests_path else None
-        self.updatable_path = Path(requests_path+'/updatable.txt') if requests_path else None
+# -------------------------------------------------------
+# FILE / EMAIL I/O
+# -------------------------------------------------------
 
-        self.filelist = list(self.folder_path.glob('*.eml'))
-        self.apps = defaultdict(dict)
-        self.email_count = Counter()
-        self.no_zip = {}
-        self.updatable = []
-        self.new_apps = []
-        self.keep_pngs = set()
 
-        # --- SIMPLIFICATION ---
-        # The name_pattern regex is no longer needed as the name is a direct attribute.
-        self.component_pattern = re.compile('ComponentInfo{(?P<ComponentInfo>.+)}')
-        self.package_name_pattern = re.compile(r'(?P<PackageName>[\w\.]+)/')
-        self.request_block_query = re.compile(r'<!-- (?P<Name>.+) -->\s<item component=\"ComponentInfo{(?P<ComponentInfo>.+)}\" drawable=\"(?P<drawable>.+|)\"(/>| />)\s(https:\/\/play.google.com\/store\/apps\/details\?id=.+\shttps:\/\/f-droid\.org\/en\/packages\/.+\shttps:\/\/apt.izzysoft.de\/fdroid\/index\/apk\/.+\shttps:\/\/galaxystore.samsung.com\/detail\/.+\shttps:\/\/www.ecosia.org\/search\?q\=.+\s)Requested (?P<count>\d+) times\s?(Last requested (?P<requestDate>\d+\.?\d+?))?', re.M)
-        self.update_block_query = re.compile(r'<!-- (?P<Name>.+) -->\s<item component=\"ComponentInfo{(?P<ComponentInfo>.+)}\" drawable=\"(?P<drawable>.+|)\"(/>| />)', re.M)
+def load_emails(folder_path: Path) -> list[Path]:
+    """Return list of .eml files."""
+    if not folder_path.is_dir():
+        raise ValueError(f"Provided path is not a directory: {folder_path}")
+    return list(folder_path.glob('*.eml'))
 
-    def parse_existing(self,block_query,path):
-        if not path.exists():
-            return
-        with open(path, 'r', encoding="utf8") as existing_file:
-            contents = existing_file.read()
-            existing_requests = re.finditer(block_query, contents)
-            for req in existing_requests:
-                element_info = req.groupdict()
-                self.apps[element_info['ComponentInfo']] = element_info
-                self.apps[element_info['ComponentInfo']]['requestDate'] = float(element_info.get('requestDate', mktime(date.today().timetuple()))) if element_info.get('requestDate', mktime(date.today().timetuple())) is not None else mktime(date.today().timetuple())
-                self.apps[element_info['ComponentInfo']]['count'] = int(element_info.get('count',1)) if element_info.get('count',1) is not None else 1
-                self.apps[element_info['ComponentInfo']]['senders'] = []
 
-    def filter_old(self):
-        current_date = date.today()
-        def diff_month(d1, d2):
-            return (d1.year - d2.year) * 12 + d1.month - d2.month
-        self.apps = {
-            k: v for k, v in self.apps.items()
-            if v["count"] > config["min_requests"] or diff_month(current_date, date.fromtimestamp(v['requestDate'])) < config["months_limit"]
-        }
+def read_email(file_path: Path) -> Message:
+    """Return parsed email.message.Message."""
+    with open(file_path, 'rb') as f:
+        return email.message_from_bytes(f.read())
 
-    def find_zip(self, message):
-        for part in message.walk():
-            if part.get_content_maintype() == 'application' and part.get_content_subtype() in ['zip', 'octet-stream']:
-                zip_data = part.get_payload(decode=True)
-                return zipfile.ZipFile(io.BytesIO(zip_data))
+
+def extract_zip_from_email(message: Message) -> zipfile.ZipFile | None:
+    """Return zipfile.ZipFile or None."""
+    for part in message.walk():
+        if ((part.get_content_maintype() == 'application' and part.get_content_subtype() in ['zip', 'octet-stream']) or
+                (filename := part.get_filename()) and filename.endswith('.zip')):
+            zip_data = part.get_payload(decode=True)
+            return zipfile.ZipFile(io.BytesIO(zip_data))  # type: ignore
+    return None
+
+
+def extract_xml(zip_file: zipfile.ZipFile) -> ET.Element:
+    """Return parsed appfilter XML root."""
+    xml_string = zip_file.read('!appfilter.xml')
+    root = ET.fromstring(xml_string)
+    return root
+
+
+def extract_png(zip_file: zipfile.ZipFile, drawable_name: str, out_dir: Path) -> str:
+    """Extract PNG from zip, deduplicate filename if needed, and save to out_dir."""
+    base_name = drawable_name
+    candidate_name = base_name
+    try:
+        # Find the PNG file in the zip matching the drawable name
+        for file_info in zip_file.infolist():
+            if file_info.filename.endswith(f'{base_name}.png'):
+                with zip_file.open(file_info.filename) as png_file:
+                    png_content = png_file.read()
+                # Deduplicate filename if needed
+                png_path = out_dir / f"{candidate_name}.png"
+                count = 1
+                while png_path.exists():
+                    candidate_name = f"{base_name}_{count}"
+                    png_path = out_dir / f"{candidate_name}.png"
+                    count += 1
+                out_dir.mkdir(parents=True, exist_ok=True)
+                with open(png_path, 'wb') as f:
+                    f.write(png_content)
+                return candidate_name
+    except Exception as e:
+        print(f"Error extracting PNG file for '{drawable_name}': {e}")
+    return candidate_name
+
+# -------------------------------------------------------
+# PARSING EXISTING DATA (JSON)
+# -------------------------------------------------------
+
+def parse_existing_requests_json(json_path: Path) -> dict:
+    """
+    Load existing requests.json.
+    Return dict[drawable] = {...request metadata...}
+    """
+    if not json_path.exists():
+        return {}
+    with open(json_path, "r", encoding="utf-8") as f:
+        try:
+            data = json.load(f)
+        except json.JSONDecodeError:
+            print(f"Warning: Failed to parse existing JSON at {json_path}. Starting fresh.")
+            return {}
+    
+    apps = data.get("apps", [])
+    data = {}
+    
+    for app in apps:
+        component_names = app.get("componentNames", [])
+        for comp in component_names:
+            component_name = comp.get("componentName")
+            if component_name:
+                data[component_name] = app
+    
+    return  data
+
+
+# -------------------------------------------------------
+# APP REQUEST PROCESSING
+# -------------------------------------------------------
+def create_app_entry(app_name: str, component_info: str, drawable_name: str, request_timestamp: float) -> dict:
+    """Create a new app entry structure."""
+    return {
+        "drawable": drawable_name,
+        "componentNames": [{
+            "label": app_name,
+            "componentName": component_info
+        }],
+        "requestCount": 1,
+        "lastRequested": request_timestamp
+    }
+
+
+def get_request_timestamp(msg: Message) -> float:
+    """Extract and parse timestamp from email message."""
+    try:
+        date_header = msg.get('Date')
+        if not date_header:
+            return 0
+        parsed = parsedate(str(date_header))
+        return mktime(parsed) if parsed else 0
+    except Exception:
+        return 0
+
+
+def process_item_tag(item: ET.Element) -> tuple[str, str, str] | None:
+    """Extract and validate item tag data."""
+    component_name = item.get('component')
+    app_name = item.get('name')
+    drawable = item.get('drawable')
+
+    if not all([component_name, app_name, drawable]):
         return None
 
-    def greedy(self, message):
-        sender = message['From']
-        self.email_count[sender] += 1
-        return self.email_count[sender] > config["request_limit"]
+    component_match = COMPONENT_PATTERN.search(component_name)
+    if not component_match:
+        return None
 
-    def print_greedy_senders(self):
-        for sender, count in self.email_count.items():
-            if count > config["request_limit"]:
-                print(f'---- We have a greedy one: {count} Requests from {sender}')
+    return component_match.group('ComponentInfo'), app_name, drawable
 
-    def parse_email(self):
-        for mail in self.filelist:
-            with open(mail, 'rb') as f:
-                message = email.message_from_bytes(f.read())
-                zip_file = self.find_zip(message)
-                if zip_file is None:
-                    self.no_zip[message['From']] = mail
-                    continue
-                try:
-                    with zip_file as zip_ref:
-                        xml_string = zip_ref.read('!appfilter.xml')
-                        root = ET.fromstring(xml_string)
-                        self.process_xml(root, message, zip_file)
-                except Exception as e:
-                    self.no_zip[message['From']] = mail
-                    print(f"Error processing email {mail}: {e}")
 
-    def process_xml(self, root, msg, zip_file):
-        # The new format is simpler; we can directly iterate over 'item' tags
-        for child in root.findall('.//item'):
-            self.process_request_item(child, msg, zip_file)
+def parse_item_tag(item: ET.Element, msg: Message, zip_file: zipfile.ZipFile,
+                   apps: dict, sender_counter: Counter, png_out_dir: Path) -> dict:
+    """Process single item tag and update apps structure."""
+    if is_greedy(msg, sender_counter):
+        return apps
 
-    def extract_png(self, drawable_name, zip_file):
-        new_drawable_name = drawable_name
+    item_data = process_item_tag(item)
+    if not item_data:
+        return apps
+
+    component_info, app_name, drawable = item_data
+    request_timestamp = get_request_timestamp(msg)
+    updated_apps = apps.copy()
+
+    if component_info in updated_apps:
+        updated_apps[component_info].update({
+            "requestCount": updated_apps[component_info].get("requestCount", 0) + 1,
+            "lastRequested": max(updated_apps[component_info].get("lastRequested", 0), request_timestamp)
+        })
+        return updated_apps
+
+    try:
+        drawable_name = extract_png(zip_file, drawable, png_out_dir)
+        updated_apps[component_info] = create_app_entry(
+            app_name, component_info, drawable_name, request_timestamp)
+    except Exception as e:
+        print(f"Failed to process new request for {component_info}: {str(e)}")
+
+    return updated_apps
+
+
+def parse_emails(email_files: list[Path], apps: dict, sender_counter: Counter, png_out_dir: Path) -> dict:
+    """Process all email files and update apps dictionary."""
+    for email_file in email_files:
+        msg = read_email(email_file)
+        zip_file = extract_zip_from_email(msg)
+
+        if not zip_file:
+            sender = parseaddr(msg['From'])[1].lower()
+            handle_invalid_email(sender, email_file)
+            continue
+
         try:
-            for file_info in zip_file.infolist():
-                if file_info.filename.endswith(f'{drawable_name}.png'):
-                    with zip_file.open(file_info.filename) as png_file:
-                        png_content = png_file.read()
-                        png_filename = os.path.join(self.extracted_png_folder_path, f"{drawable_name}.png")
-
-                        number = 0
-                        while os.path.exists(png_filename):
-                            number += 1
-                            new_drawable_name = f"{drawable_name}_{number}"
-                            png_filename = os.path.join(self.extracted_png_folder_path, f"{new_drawable_name}.png")
-
-                        with open(png_filename, 'wb') as new_png_file:
-                            new_png_file.write(png_content)
-                        return new_drawable_name
+            xml_root = extract_xml(zip_file)
+            for item in xml_root.findall('item'):
+                apps = parse_item_tag(
+                    item, msg, zip_file, apps, sender_counter, png_out_dir)
         except Exception as e:
-            print(f"Error extracting PNG file for '{drawable_name}': {e}")
-        return new_drawable_name
+            print(f"Error processing email {email_file}: {e}")
 
-    # --- MAJOR REFACTOR ---
-    # This method is now heavily simplified. It no longer needs to handle comments
-    # and items separately. All required data is in the <item> tag.
-    def process_request_item(self, item, msg, zip_file):
-        component_name = item.get('component')
-        app_name = item.get('name')
-        drawable = item.get('drawable')
+    return apps
 
-        # Skip if essential information is missing
-        if not all([component_name, app_name, drawable]):
-            return
 
-        component_match = re.search(self.component_pattern, component_name)
-        if not component_match:
-            return
-
-        component_info = component_match.group('ComponentInfo')
-
-        if self.greedy(msg):
-            return
-
-        if component_info in self.apps:
-            self.apps[component_info]['count'] += 1
-        else:
-            # This is a new request
-            new_drawable_name = self.extract_png(drawable, zip_file)
-            self.apps[component_info] = {
-                'Name': app_name,
-                'ComponentInfo': component_info,
-                'drawable': new_drawable_name,
-                'count': 1
-            }
-
-        # Always update to the most recent request date
-        request_timestamp = mktime(parsedate(msg['Date']))
-        if 'requestDate' not in self.apps[component_info] or self.apps[component_info]['requestDate'] < request_timestamp:
-            self.apps[component_info]['requestDate'] = request_timestamp
-
-    def move_no_zip(self):
-        for failedmail in self.no_zip:
-            normalized_path = Path(self.no_zip[failedmail]).resolve()
-            print(f'--- No zip file found for {failedmail}\n------ File moved to failedmail')
-            if normalized_path.exists():
-                destination_path = Path("failedmail") / normalized_path.name
-                destination_path.parent.mkdir(parents=True, exist_ok=True)
-                try:
-                    normalized_path.rename(destination_path)
-                except FileNotFoundError:
-                    print(f"Error: File not found during move: {normalized_path}")
-            else:
-                print(f"Error: File not found: {normalized_path}")
-
-    def separate_updatable(self):
-        object_block = """
-<!-- {name} -->
-<item component="ComponentInfo{{{component}}}" drawable="{appname}"/>
-https://play.google.com/store/apps/details?id={packageName}
-https://f-droid.org/en/packages/{packageName}/
-https://apt.izzysoft.de/fdroid/index/apk/{packageName}
-https://galaxystore.samsung.com/detail/{packageName}
-https://www.ecosia.org/search?q={packageName}
-Requested {count} times
-Last requested {reqDate}
+# -------------------------------------------------------
+# CLEANUP + FILTERS
+# -------------------------------------------------------
+def handle_invalid_email(sender: str, email_path: Path) -> None:
     """
-        # --- ROBUSTNESS FIX ---
-        # Handle case where the provided path is a directory instead of a file.
-        appfilter_file_path = self.appfilter_path
-        if appfilter_file_path.is_dir():
-            # If a directory is given, assume the target file is 'combined_appfilter.xml'
-            # as this is the standard output from the GitHub Action.
-            print(f"Path provided is a directory. Looking for 'combined_appfilter.xml' inside...")
-            appfilter_file_path = appfilter_file_path / 'appfilter.xml'
+    Move invalid emails (those without zip attachments) to failedmail directory.
 
-        try:
-            appfilter_tree = ET.parse(appfilter_file_path)
-        except FileNotFoundError:
-            print(f"FATAL ERROR: The master appfilter file could not be found at '{appfilter_file_path}'.")
-            print("Please check that the path is correct and the file exists.")
-            return # Exit the method gracefully to avoid a crash.
-        except ET.ParseError as e:
-            print(f"FATAL ERROR: Failed to parse the XML file at '{appfilter_file_path}'. It may be corrupted. Error: {e}")
-            return
+    Args:
+        sender: Email sender address
+        email_path: Path to email file
+    """
+    failed_dir = Path("failedmail")
+    failed_dir.mkdir(parents=True, exist_ok=True)
 
-        root = appfilter_tree.getroot()
+    try:
+        email_path.rename(failed_dir / email_path.name)
+        print(f"Moved invalid email from {sender} to failedmail/")
+    except OSError as e:
+        print(f"Failed to move invalid email: {e}")
 
-        # Build sets of existing components and package names for efficient lookup
-        existing_components = set()
-        existing_package_names = set()
-        for item in root.findall('.//item'):
-            component_info = item.get('component')
-            match = re.search(r'\{(.*?)\}', component_info)
-            if match:
-                component = match.group(1)
-                existing_components.add(component)
-                existing_package_names.add(component.split('/')[0])
+def load_existing_components(appfilter_path: Path) -> set[str]:
+    """
+    Parse appfilter.xml and return a set of ComponentInfo strings.
+    Used only for deduplication.
+    """
+    import lxml.etree as ET
+    root = ET.parse(appfilter_path).getroot()
+    components = set()
 
-        new_apps_set = set()
-        updatable_set = set()
+    for item in root.findall(".//item"):
+        comp = item.get("component")
+        if not comp:
+            continue
+        match = COMPONENT_PATTERN.search(comp)
+        if match:
+            components.add(match.group(1))
 
-        for componentInfo, values in self.apps.items():
-            try:
-                packageName = componentInfo.split('/')[0]
+    return components
 
-                if componentInfo in existing_components:
-                    continue # Already themed, ignore.
 
-                if packageName not in existing_package_names and componentInfo not in new_apps_set:
-                    # This is a completely new app
-                    self.new_apps.append(object_block.format(
-                        name=values["Name"],
-                        component=values["ComponentInfo"],
-                        appname=values["drawable"],
-                        packageName=packageName,
-                        count=values["count"],
-                        reqDate=values["requestDate"],
-                    ))
-                    self.keep_pngs.add(values["drawable"])
-                    new_apps_set.add(componentInfo)
-                elif packageName in existing_package_names and componentInfo not in updatable_set:
-                    # This is a new activity for an existing app
-                    self.updatable.append(
-                        f'<!-- {values["Name"]} -->\n'
-                        f'<item component="ComponentInfo{{{values["ComponentInfo"]}}}" drawable="{values["drawable"]}"/>\n\n'
-                    )
-                    updatable_set.add(componentInfo)
-                    self.keep_pngs.add(values["drawable"])
-            except Exception as e:
-                print(f"Error separating app '{values.get('Name')}': {e}")
+def filter_old_requests(apps: dict, months_limit: int, min_requests: int) -> dict:
+    """Remove outdated / rarely requested apps."""
 
-    def delete_unused_icons(self):
-        if not os.path.exists(self.extracted_png_folder_path):
-            return
-        for png_file in os.listdir(self.extracted_png_folder_path):
-            if png_file.endswith(".png"):
-                drawable_name = os.path.splitext(png_file)[0]
-                if drawable_name not in self.keep_pngs:
-                    file_path = os.path.join(self.extracted_png_folder_path, png_file)
-                    os.remove(file_path)
-                    print(f"Deleted unused icon: {file_path}")
+    current_date = date.today()
 
-    def write_output(self):
-        new_list_header = """-------------------------------------------------------
-{total_count} Requested Apps Pending (Updated {date})
--------------------------------------------------------
-"""
-        new_list = new_list_header.format(total_count=len(self.new_apps), date=date.today().strftime(config["date_format"]).replace("X0", "X").replace("X", ""))
-        new_list += ''.join(self.new_apps)
+    def diff_month(d1, d2):
+        return (d1.year - d2.year) * 12 + d1.month - d2.month
 
-        with open(self.requests_path, 'w', encoding='utf-8') as file:
-            file.write(new_list)
-        if len(self.updatable):
-            with open(self.updatable_path, 'w', encoding='utf-8') as file_two:
-                file_two.write(''.join(self.updatable))
+    filtered_apps = {}
+    for k, v in apps.items():
+        ts = v.get("lastRequested", 0)
+        if ts <= 0:
+            continue
+        app_date = date.fromtimestamp(ts)
+        if v.get("requestCount", 0) >= min_requests or diff_month(current_date, app_date) < months_limit:
+            filtered_apps[k] = v
 
-    def main(self):
-        if self.updatable_path and self.updatable_path.exists():
-            print("Parsing Existing Updatable...")
-            self.parse_existing(self.update_block_query, self.updatable_path)
-        if self.requests_path and self.requests_path.exists():
-            print("Parsing Existing Requests...")
-            self.parse_existing(self.request_block_query, self.requests_path)
+    return filtered_apps
 
-        print("Filtering Old Requests...")
-        self.filter_old()
 
-        print("Parsing New Emails...")
-        self.parse_email()
+def delete_unused_pngs(out_dir: Path, keep: set[str]) -> None:
+    """Delete icons not referenced in final JSON."""
+    for png_file in os.listdir(out_dir):
+        if png_file.endswith(".png"):
+            drawable_name = os.path.splitext(png_file)[0]
+            if drawable_name not in keep:
+                file_path = os.path.join(out_dir, png_file)
+                os.remove(file_path)
+                print(f"Deleted unused icon: {file_path}")
 
-        print("Sorting Apps by Request Count...")
-        self.apps = dict(sorted(self.apps.items(), key=lambda item: item[1]['count'], reverse=True))
+# -------------------------------------------------------
+# JSON OUTPUT STRUCTURE
+# -------------------------------------------------------
 
-        print("Separating New vs. Updatable Apps...")
-        self.separate_updatable()
 
-        print("Writing Output Files...")
-        self.write_output()
+def build_json_output(apps: dict) -> dict:
+    """Assemble final JSON structure."""
+    today = date.today()
+    return {
+        "count": len(apps),
+        "lastUpdate": today.strftime("%Y-%m-%d"),
+        "apps": list(apps.values()),
+    }
 
-        print("Cleaning Up Unused Icons...")
-        self.delete_unused_icons()
 
-        self.print_greedy_senders()
-        self.move_no_zip()
-        print("Processing complete.")
+def write_json_output(output_path: Path, data: dict):
+    """Write requests.json file."""
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4)
+
+# -------------------------------------------------------
+# MAIN PIPELINE
+# -------------------------------------------------------
+
+
+def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path, output_path: Path):
+    """
+    Pure functional pipeline:
+    1. Load emails
+    2. Load existing requests.json
+    3. Parse new requests
+    4. Filter + merge
+    5. Write JSON output
+    6. Cleanup icons
+    """
+    email_files = load_emails(folder_path)
+
+    sender_counter = Counter()
+
+    # Step 1: Load existing JSON
+    apps = parse_existing_requests_json(output_path)
+
+    # Step 2: Parse emails
+    apps = parse_emails(email_files, apps, sender_counter, png_out_path)
+
+    # Step 3: Filter
+    apps = filter_old_requests(
+        apps, CONFIG["months_limit"], CONFIG["min_requests"])
+    
+    existing_components = load_existing_components(appfilter_path)
+    apps = {k: v for k, v in apps.items() if k not in existing_components}
+
+    # Step 4: Write JSON
+    json_data = build_json_output(apps)
+    write_json_output(output_path, json_data)
+
+    # Step 5: Cleanup
+    keep_pngs = {a["drawable"] for a in apps.values()}
+    delete_unused_pngs(png_out_path, keep_pngs)
+
+    print("Requests updated successfully.")
+    print_greedy_report(sender_counter, CONFIG["request_limit"])
+
+# -------------------------------------------------------
+# UTILITIES
+# -------------------------------------------------------
+
+
+def is_greedy(message, sender_counter):
+    sender = parseaddr(message['From'])[1].lower()
+    sender_counter[sender] += 1
+    return sender_counter[sender] > CONFIG["request_limit"]
+
+
+def print_greedy_report(counter: Counter, limit: int):
+    """Report excessive senders."""
+    for sender, count in counter.items():
+        if count > limit:
+            print(f"⚠️  Greedy sender ({count} requests): {sender}")
+
+
+# -------------------------------------------------------
+# ENTRY POINT
+# -------------------------------------------------------
+def main():
+    args = parse_args()
+    run_pipeline(
+        folder_path=Path(args.folder_path),
+        appfilter_path=Path(args.appfilter_path),
+        png_out_path=Path(args.extracted_png_folder_path),
+        output_path=Path(args.requests_path) / "requests.json"
+    )
 
 if __name__ == "__main__":
-    args = parse_args()
-    parser = EmailParser(args.folder_path, args.appfilter_path, args.extracted_png_folder_path, args.requests_path)
-    parser.main()
+    main()
