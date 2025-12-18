@@ -210,13 +210,13 @@ function processData() {
   // We create a temporary set for this render pass
   const effectiveFilters = new Set([...state.activeFilters, ...query.tags]);
 
-  // 3. Apply Filters
+  // 3. Apply Filters (AND logic)
   if (effectiveFilters.size > 0) {
     data = data.filter(app => {
       const id = app.componentNames[0].componentName;
       const appTags = state.appTags.get(id);
       if (!appTags) return false;
-      return Array.from(effectiveFilters).some(fId => appTags.has(fId));
+      return Array.from(effectiveFilters).every(fId => appTags.has(fId));
     });
   }
 
