@@ -227,6 +227,7 @@ function createListRow(app) {
 
   const row = document.createElement("div");
   row.className = `list-row ${isSelected ? "selected" : ""}`;
+  row.setAttribute("data-id", id);
   row.onclick = () => toggleSelection(id);
 
   row.innerHTML = `
@@ -263,6 +264,7 @@ function createGridCard(app) {
 
   const card = document.createElement("div");
   card.className = `grid-card ${isSelected ? "selected" : ""}`;
+  card.setAttribute("data-id", id);
   card.onclick = () => toggleSelection(id);
 
   const tag = app.requestCount > CONFIG.ui.wipThreshold ? `<div class="grid-tag">WIP</div>` : "";
@@ -282,42 +284,51 @@ function createGridCard(app) {
 // ==========================================
 
 function toggleSelection(id) {
-  if (state.selected.has(id)) state.selected.delete(id);
-  else state.selected.add(id);
+  // 1. Update State
+  if (state.selected.has(id)) {
+    state.selected.delete(id);
+  } else {
+    state.selected.add(id);
+  }
   
-  // Efficiently update UI without full re-render
-  updateSelectionUI(); 
+  // 2. Update UI directly (No full re-render)
+  updateItemVisuals(id);
+  updateHeaderCheckbox();
+  updateFab();
+}
+
+function updateItemVisuals(id) {
+  const isSelected = state.selected.has(id);
+
+  // Find all DOM elements representing this ID (could be in list or grid)
+  // Since we don't have IDs on the elements, we query by the checkbox or iterate
+  // A cleaner way is to add data-id to the rows/cards during creation.
+  
+  // OPTION A: If you added data-id="${id}" to createListRow/createGridCard (Recommended)
+  const elements = document.querySelectorAll(`[data-id="${id}"]`);
+  elements.forEach(el => {
+    if (isSelected) el.classList.add("selected");
+    else el.classList.remove("selected");
+    
+    const checkbox = el.querySelector('input[type="checkbox"]');
+    if (checkbox) checkbox.checked = isSelected;
+  });
 }
 
 function toggleSelectAll(isChecked) {
+  // 1. Update State
   if (isChecked) {
-    // Select ALL currently filtered items
     state.currentData.forEach(app => state.selected.add(app.componentNames[0].componentName));
   } else {
-    // Deselect ALL currently filtered items
     state.currentData.forEach(app => state.selected.delete(app.componentNames[0].componentName));
   }
   
-  // Re-render visible items to show check state
-  // (We re-render here to ensure all checkboxes update)
-  render(); 
-}
-
-function updateSelectionUI() {
-  // 1. Update Rows/Cards classes
-  // Note: This is a quick DOM patch to avoid full re-render lag
-  const elements = DOM.container.children;
-  for (let el of elements) {
-    const checkbox = el.querySelector('input[type="checkbox"]');
-    if (!checkbox) continue; // Skip if grid card without overlay loaded
-    
-    // Find ID from the onclick handler or data attribute (adding data-id would be cleaner, but we can infer)
-    // Let's rely on re-rendering for simplicity if performance is fine, 
-    // OR just re-run render() which is safe with 500 items.
-  }
-  
-  // Actually, for 500 items, full render() is fast enough and safer.
+  // 2. For Select All, a full render is actually cleaner/faster than 500 DOM updates
+  // But we can optimize by saving scroll position if needed.
+  // For now, let's just re-render since Select All is a "heavy" action anyway.
+  const scrollY = window.scrollY;
   render();
+  window.scrollTo(0, scrollY);
 }
 
 function updateHeaderCheckbox() {
