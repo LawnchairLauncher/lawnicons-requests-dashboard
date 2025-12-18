@@ -46,6 +46,12 @@ const ICONS = {
   regex: `<svg><use href="#ic-regex"/></svg>`
 };
 
+const DEFAULTS = {
+  view: "list",
+  sort: "req-desc",
+  search: "",
+  regex: false
+};
 
 const state = {
   view: "list",
@@ -110,6 +116,7 @@ Promise.all([
     }
   });
 
+  loadStateFromUrl();
 
   generateFilterButtons();
   initObserver();
@@ -306,6 +313,8 @@ function render() {
   // 4. Update UI States
   updateHeaderCheckbox();
   DOM.listHeader.style.display = state.view === "list" ? "grid" : "none";
+
+  syncStateToUrl();
 }
 
 
@@ -443,6 +452,10 @@ function generateFilterButtons() {
     btn.title = `Filter ${filter.label} entries`
     btn.textContent = filter.label;
     
+    if (state.activeFilters.has(filter.id)) {
+      btn.classList.add("active");
+    }
+
     btn.onclick = () => {
       if (state.activeFilters.has(filter.id)) {
         state.activeFilters.delete(filter.id);
@@ -855,6 +868,75 @@ function parseSearchQuery(rawQuery) {
   result.text = cleanQuery.trim();
   
   return result;
+}
+
+// --- URL State Management ---
+
+function syncStateToUrl() {
+  const params = new URLSearchParams();
+
+  // 1. Search
+  if (state.search) params.set("q", state.search);
+  
+  // 2. View
+  if (state.view !== DEFAULTS.view) params.set("view", state.view);
+  
+  // 3. Sort
+  if (state.sort !== DEFAULTS.sort) params.set("sort", state.sort);
+  
+  // 4. Regex
+  if (state.regexMode) params.set("regex", "1");
+  
+  // 5. Active Filters (Buttons)
+  if (state.activeFilters.size > 0) {
+    params.set("filters", Array.from(state.activeFilters).join(","));
+  }
+
+  // Update URL without reload
+  if (params.toString() != "") {
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, "", newUrl);
+  }
+}
+
+function loadStateFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+
+  // 1. Search
+  if (params.has("q")) {
+    state.search = params.get("q");
+    DOM.inputSearch.value = state.search;
+  }
+
+  // 2. View
+  if (params.has("view")) {
+    const v = params.get("view");
+    if (["list", "grid"].includes(v)) state.view = v;
+    DOM.selectView.value = state.view;
+  }
+
+  // 3. Sort
+  if (params.has("sort")) {
+    state.sort = params.get("sort");
+    DOM.selectSort.value = state.sort;
+    if (DOM.selectSortMobile) DOM.selectSortMobile.value = state.sort;
+  }
+
+  // 4. Regex
+  if (params.has("regex")) {
+    state.regexMode = true;
+    DOM.regexBtn.classList.add("active");
+  }
+
+  // 5. Filters
+  if (params.has("filters")) {
+    const tags = params.get("filters").split(",");
+    tags.forEach(t => {
+      if (CONFIG.filters.some(f => f.id === t)) {
+        state.activeFilters.add(t);
+      }
+    });
+  }
 }
 
 // --- Toast Notification System ---
