@@ -11,7 +11,11 @@ const CONFIG = {
   data: {
     endpoint: "/docs/assets/requests.json",
     assetsPath: "/docs/extracted_png/",
-    iconExtension: ".png"
+    iconExtension: ".png",
+
+    // File name must match: assets/filters/{name}.json
+    filterPath: "/docs/assets/filters/",
+    availableFilters: ["wip", "easy", "missing"] 
   },
   urls: {
     playStore: "https://play.google.com/store/apps/details?id=",
@@ -21,8 +25,6 @@ const CONFIG = {
   },
   ui: {
     batchSize: 500,
-    wipThreshold: 9999,
-    easyThreshold: 9999
   }
 };
 
@@ -44,7 +46,9 @@ const state = {
   search: "",
   selected: new Set(),
   renderedCount: 0,
-  currentData: []
+  currentData: [],
+  activeFilters: new Set(),
+  filterCache: {}
 };
 
 let apps = [];
@@ -61,6 +65,8 @@ const DOM = {
   selectSort:  document.getElementById("sortSelect"),
   selectView:  document.getElementById("viewSelect"),
 
+  filterContainer: document.getElementById("filterContainer"),
+
   inputPath: document.querySelector(".path-wrapper input"),
   
   fabBar:      document.getElementById("fabBar"),
@@ -71,18 +77,49 @@ const DOM = {
   fabMenu:     document.getElementById("fabMenu"),
 };
 
-fetch(CONFIG.data.endpoint)
-  .then(res => res.json())
-  .then(json => {
-    apps = json.apps;
-    DOM.headerCount.textContent = `${json.count.toLocaleString()} requests`;
-    initObserver();
-    render(); // Initial Render
-  })
-  .catch(err => {
-    console.error("Error loading data:", err);
-    DOM.container.innerHTML = `<div style="padding:20px;text-align:center;color:red">Error loading data.</div>`;
-  });
+// ==========================================
+// INITIALIZATION
+// ==========================================
+Promise.all([
+  fetch(CONFIG.data.endpoint).then(r => r.json()),
+  loadFilters()
+])
+.then(([json, filters]) => {
+  apps = json.apps;
+  state.filterCache = filters;
+  
+  DOM.headerCount.textContent = `${json.count.toLocaleString()} requests`;
+  
+  generateFilterButtons(); // Create buttons dynamically
+  initObserver();
+  render();
+})
+.catch(err => {
+  console.error("Error loading data:", err);
+  DOM.container.innerHTML = `<div style="padding:20px;text-align:center;color:red">Error loading data.</div>`;
+});
+
+async function loadFilters() {
+  const cache = {};
+  
+  const promises = CONFIG.data.availableFilters.map(name => 
+    fetch(`${CONFIG.data.filterPath}${name}.json`)
+      .then(res => {
+        if (!res.ok) return null; // Ignore missing files
+        return res.json();
+      })
+      .then(data => {
+        if (data && data[name]) {
+          // Store as a Set for O(1) lookup speed
+          cache[name] = new Set(data[name]); 
+        }
+      })
+      .catch(e => console.warn(`Failed to load filter: ${name}`, e))
+  );
+
+  await Promise.all(promises);
+  return cache;
+}
 
 
 function initObserver() {
@@ -133,7 +170,7 @@ DOM.fabMenuBtn.addEventListener("click", e => {
 function processData() {
   let data = apps;
 
-  // Filter
+  // Search
   if (state.search) {
     const term = state.search.toLowerCase();
     data = data.filter(app => 
@@ -142,6 +179,19 @@ function processData() {
         c.componentName.toLowerCase().includes(term)
       )
     );
+  }
+
+  // Filters
+  if (state.activeFilters.size > 0) {
+    data = data.filter(app => {
+      const id = app.componentNames[0].componentName;
+      // App must match AT LEAST ONE active filter (OR logic)
+      // Change to .every() if you want AND logic
+      return Array.from(state.activeFilters).some(filterName => {
+        const set = state.filterCache[filterName];
+        return set && set.has(id);
+      });
+    });
   }
 
   // Sort
@@ -212,7 +262,23 @@ function loadMore() {
 // ==========================================
 // 9. COMPONENT FACTORIES
 // ==========================================
+// --- Helper: Get Tags for an App ---
+function getTagsForApp(id) {
+  const tags = [];
+  
+  // Check each loaded filter to see if this app ID is in it
+  // We iterate CONFIG.data.availableFilters to maintain a consistent order
+  CONFIG.data.availableFilters.forEach(filterName => {
+    const set = state.filterCache[filterName];
+    if (set && set.has(id)) {
+      tags.push(filterName);
+    }
+  });
+  
+  return tags;
+}
 
+// --- List Row Factory ---
 function createListRow(app) {
   const id = app.componentNames[0].componentName;
   const name = app.componentNames[0].label;
@@ -220,10 +286,10 @@ function createListRow(app) {
   const isSelected = state.selected.has(id);
   const iconUrl = `${CONFIG.data.assetsPath}${app.drawable}${CONFIG.data.iconExtension}`;
   const dateStr = formatDate(app.lastRequested);
-
-  let tagHtml = "";
-  if (app.requestCount > CONFIG.ui.wipThreshold) tagHtml = `<span class="status-pill status-wip">WIP</span>`;
-  else if (app.requestCount > CONFIG.ui.easyThreshold) tagHtml = `<span class="status-pill status-easy">EASY</span>`;
+  const activeTags = getTagsForApp(id);
+  const tagHtml = activeTags.map(tag => 
+    `<span class="status-pill status-${tag}">${tag.toUpperCase()}</span>`
+  ).join("");
 
   const row = document.createElement("div");
   row.className = `list-row ${isSelected ? "selected" : ""}`;
@@ -234,18 +300,27 @@ function createListRow(app) {
     <div class="check-col">
       <input type="checkbox" ${isSelected ? "checked" : ""} onclick="event.stopPropagation(); toggleSelection('${id}')" />
     </div>
-    <div class="icon"><img src="${iconUrl}" loading="lazy" onerror="this.style.opacity=0.2" /></div>
+    
+    <div class="icon">
+      <img src="${iconUrl}" loading="lazy" onerror="this.style.opacity=0.2" />
+    </div>
+
     <div class="name-col">
-      <div class="name-row">${tagHtml}<span class="app-name">${name}</span></div>
+      <div class="name-row">
+        ${tagHtml}
+        <span class="app-name">${name}</span>
+      </div>
       <span class="pkg-name">${id}</span>
     </div>
+
     <div class="col req">${app.requestCount}</div>
     <div class="col install">—</div>
     <div class="col first" style="line-height:1.4"><div>${dateStr}</div></div>
+    
     <div class="actions-col">
-      <a class="action-btn" href="${iconUrl}" download>${ICONS.download}</a>
-      <a class="action-btn" href="${CONFIG.urls.playStore}${pkg}" target="_blank">${ICONS.play}</a>
-      <div class="action-btn ctx-trigger">${ICONS.dots}</div>
+      <a class="action-btn" href="${iconUrl}" download title="Download Icon">${ICONS.download}</a>
+      <a class="action-btn" href="${CONFIG.urls.playStore}${pkg}" target="_blank" title="Play Store">${ICONS.play}</a>
+      <div class="action-btn ctx-trigger" title="More Actions">${ICONS.dots}</div>
     </div>
   `;
 
@@ -267,16 +342,40 @@ function createGridCard(app) {
   card.setAttribute("data-id", id);
   card.onclick = () => toggleSelection(id);
 
-  const tag = app.requestCount > CONFIG.ui.wipThreshold ? `<div class="grid-tag">WIP</div>` : "";
-
   card.innerHTML = `
     <img src="${iconUrl}" loading="lazy" onerror="this.style.display='none'" />
-    ${tag}
     <div class="grid-overlay-check">
       <input type="checkbox" ${isSelected ? "checked" : ""} style="pointer-events:none;">
     </div>
   `;
   return card;
+}
+
+function generateFilterButtons() {
+  DOM.filterContainer.innerHTML = "";
+
+  CONFIG.data.availableFilters.forEach(name => {
+    // Only show button if we successfully loaded data for it
+    if (!state.filterCache[name]) return;
+
+    const btn = document.createElement("button");
+    btn.className = "tag";
+    btn.textContent = name.toUpperCase(); // "wip" -> "WIP"
+    
+    btn.onclick = () => {
+      // Toggle State
+      if (state.activeFilters.has(name)) {
+        state.activeFilters.delete(name);
+        btn.classList.remove("active");
+      } else {
+        state.activeFilters.add(name);
+        btn.classList.add("active");
+      }
+      render();
+    };
+    
+    DOM.filterContainer.appendChild(btn);
+  });
 }
 
 // ==========================================
@@ -427,6 +526,9 @@ function showFabContextMenu() {
     <div class="ctx-item" onclick="copyBulkAppFilter()">
       ${ICONS.copy} <span>Copy appfilter entries</span>
     </div>
+     <div class="ctx-item" onclick="downloadSelectionAsJson()">
+      ${ICONS.download} <span>Download JSON config</span>
+    </div>
     <div class="ctx-item" onclick="copyBulkIconToolCmd()">
       ${ICONS.terminal} <span>Copy icontool commands</span>
     </div>
@@ -564,6 +666,35 @@ async function downloadSelected() {
     setTimeout(() => DOM.fabCount.textContent = originalText, 2000);
     closeContextMenu();
   }
+}
+
+// Action: Download Selection as JSON
+function downloadSelectionAsJson() {
+  const selectedIds = Array.from(state.selected);
+  if (selectedIds.length === 0) return;
+
+  // Prompt for the key name (e.g. "easy", "wip")
+  const label = prompt("Enter a label for this group:", "custom_selection") || "custom_selection";
+
+  // Construct Object
+  const exportObj = {
+    [label]: selectedIds
+  };
+
+  // Create Blob
+  const blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  // Trigger Download
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `${label}.json`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+  
+  closeContextMenu();
 }
 
 // --- Naming Convention Helper ---
