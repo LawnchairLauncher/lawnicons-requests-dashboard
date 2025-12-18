@@ -126,7 +126,6 @@ function initObserver() {
   observer = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting) {
       let moreContent = loadMore();
-      console.log(moreContent)
       if (!moreContent) DOM.sentinel.style.opacity = 0
     }
   }, { rootMargin: "400px" });
@@ -228,6 +227,19 @@ function render() {
 
   // 3. Process & Load Data
   processData(); 
+
+  if (state.currentData.length === 0) {
+    DOM.container.innerHTML = `
+      <div class="empty-state">
+        <svg><use href="#ic-search"/></svg>
+        <h3>No requests found</h3>
+        <p>Try adjusting your search or filters.</p>
+      </div>
+    `;
+    updateHeaderCheckbox();
+    return; // Stop here
+  }
+
   state.renderedCount = 0;
   loadMore(); 
   
@@ -318,9 +330,9 @@ function createListRow(app) {
     <div class="col first" style="line-height:1.4"><div>${dateStr}</div></div>
     
     <div class="actions-col">
-      <a class="action-btn" href="${iconUrl}" download title="Download Icon">${ICONS.download}</a>
+      <a class="action-btn" href="${iconUrl}" download title="Download icon">${ICONS.download}</a>
       <a class="action-btn" href="${CONFIG.urls.playStore}${pkg}" target="_blank" title="Play Store">${ICONS.play}</a>
-      <div class="action-btn ctx-trigger" title="More Actions">${ICONS.dots}</div>
+      <div class="action-btn ctx-trigger" title="More actions">${ICONS.dots}</div>
     </div>
   `;
 
@@ -360,6 +372,7 @@ function generateFilterButtons() {
 
     const btn = document.createElement("button");
     btn.className = "tag";
+    btn.title = `Filter ${name.toUpperCase()} entries`
     btn.textContent = name.toUpperCase(); // "wip" -> "WIP"
     
     btn.onclick = () => {
@@ -460,8 +473,10 @@ function updateHeaderCheckbox() {
 function updateFab() {
   const count = state.selected.size;
   if (count > 0) {
+    const plural = count > 1 ? "s" : ""
+
     DOM.fabBar.classList.add("visible");
-    DOM.fabCount.textContent = `Download ${count} icons`;
+    DOM.fabCount.textContent = `Download ${count} icon${plural}`;
   } else {
     DOM.fabBar.classList.remove("visible");
   }
@@ -561,6 +576,7 @@ function generateXml(app) {
 // Action: Copy Text
 function copyToClipboard(text) {
   navigator.clipboard.writeText(text);
+  Toast.show("Copied!")
   closeContextMenu();
 }
 
@@ -582,27 +598,20 @@ function copyBulkAppFilter() {
 
   const xmlOutput = selectedApps.map(generateXml).join('\n');
   
-  navigator.clipboard.writeText(xmlOutput).then(() => {
-    const original = DOM.fabCount.textContent;
-    DOM.fabCount.textContent = "Copied!";
-    setTimeout(() => DOM.fabCount.textContent = original, 1500);
-  });
-  
-  closeContextMenu();
+  copyToClipboard(xmlOutput)
 }
 
 // Action: Download selected
 async function downloadSelected() {
   if (typeof JSZip === 'undefined') {
-    alert("JSZip library is missing.");
+    Toast.show("JSZip library is missing.");
     return;
   }
 
   const selectedIds = Array.from(state.selected);
   if (selectedIds.length === 0) return;
 
-  const originalText = DOM.fabCount.textContent;
-  DOM.fabCount.textContent = "Preparing...";
+  Toast.show("Preparing...");
   DOM.fabBar.style.cursor = "wait";
 
   try {
@@ -643,27 +652,28 @@ async function downloadSelected() {
       );
     });
 
-    DOM.fabCount.textContent = `Fetching ${promises.length}...`;
+    Toast.show(`Fetching ${promises.length} icons...`);
     await Promise.all(promises);
 
-    DOM.fabCount.textContent = "Zipping...";
+    Toast.show("Zipping...");
     const content = await zip.generateAsync({ type: "blob" });
 
     const link = document.createElement("a");
     link.href = URL.createObjectURL(content);
-    link.download = `lawnicons-export-${new Date().toISOString().slice(0,10)}.zip`;
+
+    const fileName = `lawnicons-export-${new Date().toISOString().slice(0,10)}.zip`
+    link.download = fileName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(link.href);
 
-    DOM.fabCount.textContent = "Done!";
+    Toast.show(`Saving ${fileName}...`, "success");
   } catch (err) {
     console.error(err);
-    DOM.fabCount.textContent = "Error";
+    Toast.show("Failed to save file");
   } finally {
     DOM.fabBar.style.cursor = "default";
-    setTimeout(() => DOM.fabCount.textContent = originalText, 2000);
     closeContextMenu();
   }
 }
@@ -743,14 +753,7 @@ function copyBulkIconToolCmd() {
   if (selectedApps.length === 0) return;
 
   const cmdOutput = selectedApps.map(generateIconToolCommand).join('\n');
-  
-  navigator.clipboard.writeText(cmdOutput).then(() => {
-    const original = DOM.fabCount.textContent;
-    DOM.fabCount.textContent = "Copied Commands!";
-    setTimeout(() => DOM.fabCount.textContent = original, 1500);
-  });
-  
-  closeContextMenu();
+  copyToClipboard(cmdOutput)
 }
 
 // Action: Copy Single Command
@@ -760,3 +763,30 @@ function copyIconToolCmd(id) {
     copyToClipboard(generateIconToolCommand(app));
   }
 }
+
+
+
+// --- Toast Notification System ---
+const Toast = {
+  container: document.getElementById("toastContainer"),
+  
+  show(message, type = "info") {
+    const el = document.createElement("div");
+    el.className = `toast toast-${type}`;
+    
+    // Icons based on type
+    let icon = ICONS.dots; // Default
+    if (type === "error") icon = `<svg><use href="#ic-search"/></svg>`; // Use Toast.show icon if available
+    if (type === "success") icon = `<svg><use href="#ic-download"/></svg>`; // Checkmark if available
+
+    el.innerHTML = `${icon}<span>${message}</span>`;
+    
+    this.container.appendChild(el);
+
+    // Auto Remove
+    setTimeout(() => {
+      el.classList.add("hiding");
+      el.addEventListener("animationend", () => el.remove());
+    }, 3000);
+  }
+};
