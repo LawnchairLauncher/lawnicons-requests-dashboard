@@ -207,18 +207,31 @@ function processData() {
   }
 
   // Sort
-  const sorters = {
-    "req-desc":  (a, b) => b.requestCount - a.requestCount,
-    "req-asc":   (a, b) => a.requestCount - b.requestCount,
-    "time-desc": (a, b) => b.lastRequested - a.lastRequested,
-    "time-asc":  (a, b) => a.lastRequested - b.lastRequested
-  };
+  data = [...data];
 
-  if (state.sort !== "rand") {
-    data.sort(sorters[state.sort]);
+  if (state.sort === "rand") {
+    // Fisher-Yates Shuffle
+    for (let i = data.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [data[i], data[j]] = [data[j], data[i]];
+    }
+  } else {
+    // Deterministic Sorts
+    const sorters = {
+      "req-desc":  (a, b) => b.requestCount - a.requestCount,
+      "req-asc":   (a, b) => a.requestCount - b.requestCount,
+      "time-desc": (a, b) => b.lastRequested - a.lastRequested,
+      "time-asc":  (a, b) => a.lastRequested - b.lastRequested,
+      "name-asc":  (a, b) => a.componentNames[0].label.localeCompare(b.componentNames[0].label),
+      "name-desc": (a, b) => b.componentNames[0].label.localeCompare(a.componentNames[0].label)
+    };
+
+    if (sorters[state.sort]) {
+      data.sort(sorters[state.sort]);
+    }
   }
 
-  state.currentData = data; // Cache processed data
+  state.currentData = data;
   return data;
 }
 
