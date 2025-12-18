@@ -19,7 +19,6 @@ const CONFIG = {
   filters: [
     { id: "wip",      label: "WIP"         },
     { id: "easy",     label: "Easy",       },
-    { id: "missing",  label: "Missing",    },
     { id: "conflict", label: "Name in Use" },
     { id: "link",     label: "Matches",    }
   ],
