@@ -4,8 +4,9 @@
  */
 
 // ==========================================
-// 1. CONFIGURATION
+// CONFIGURATION AND STATE
 // ==========================================
+
 const CONFIG = {
   data: {
     endpoint: "/docs/assets/requests.json",
@@ -25,9 +26,6 @@ const CONFIG = {
   }
 };
 
-// ==========================================
-// 2. ICONS (SVG Strings)
-// ==========================================
 const ICONS = {
   download: `<svg><use href="#ic-download"/></svg>`,
   play:     `<svg><use href="#ic-play"/></svg>`,
@@ -36,36 +34,34 @@ const ICONS = {
   fDroid:   `<svg><use href="#ic-fdroid"/></svg>`,
   izzyOnDroid: `<svg><use href="#ic-izzyondroid"/></svg>`,
   galaxyStore: `<svg><use href="#ic-galaxystore"/></svg>`,
+  terminal: `<svg><use href="#ic-terminal"/></svg>`,
 };
 
-// ==========================================
-// 3. STATE & STORE
-// ==========================================
+
 const state = {
   view: "list",
   sort: "req-desc",
   search: "",
   selected: new Set(),
-  renderedCount: 0, // How many items currently shown
-  currentData: []   // The filtered/sorted dataset
+  renderedCount: 0,
+  currentData: []
 };
 
-let apps = []; // Raw data store
-let observer;  // IntersectionObserver instance
+let apps = [];
+let observer;
 
-// ==========================================
-// 4. DOM ELEMENTS
-// ==========================================
 const DOM = {
   container:   document.getElementById("appContainer"),
   listHeader:  document.getElementById("listHeader"),
-  headerCheck: document.getElementById("headerCheck"), // Master Checkbox
+  headerCheck: document.getElementById("headerCheck"),
   headerCount: document.getElementById("headerCount"),
   sentinel:    document.getElementById("scrollSentinel"),
   
   inputSearch: document.getElementById("searchInput"),
   selectSort:  document.getElementById("sortSelect"),
   selectView:  document.getElementById("viewSelect"),
+
+  inputPath: document.querySelector(".path-wrapper input"),
   
   fabBar:      document.getElementById("fabBar"),
   fabCount:    document.getElementById("fabCount"),
@@ -75,9 +71,6 @@ const DOM = {
   fabMenu:     document.getElementById("fabMenu"),
 };
 
-// ==========================================
-// 5. INITIALIZATION
-// ==========================================
 fetch(CONFIG.data.endpoint)
   .then(res => res.json())
   .then(json => {
@@ -95,15 +88,17 @@ fetch(CONFIG.data.endpoint)
 function initObserver() {
   observer = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting) {
-      loadMore();
+      let moreContent = loadMore();
+      console.log(moreContent)
+      if (!moreContent) DOM.sentinel.style.opacity = 0
     }
-  }, { rootMargin: "400px" }); // Preload before hitting bottom
+  }, { rootMargin: "400px" });
 
   observer.observe(DOM.sentinel);
 }
 
 // ==========================================
-// 6. EVENT LISTENERS
+// EVENT LISTENERS
 // ==========================================
 
 DOM.inputSearch.addEventListener("input", e => {
@@ -133,7 +128,7 @@ DOM.fabMenuBtn.addEventListener("click", e => {
 });
 
 // ==========================================
-// 7. DATA PIPELINE
+// DATA PIPELINE
 // ==========================================
 function processData() {
   let data = apps;
@@ -193,7 +188,7 @@ function render() {
 
 
 function loadMore() {
-  if (state.renderedCount >= state.currentData.length) return;
+  if (state.renderedCount >= state.currentData.length) return false;
 
   const nextBatchSize = CONFIG.ui.batchSize;
   const end = Math.min(state.renderedCount + nextBatchSize, state.currentData.length);
@@ -210,6 +205,8 @@ function loadMore() {
 
   DOM.container.appendChild(fragment);
   state.renderedCount = end;
+
+  return true;
 }
 
 // ==========================================
@@ -381,8 +378,11 @@ function showRowContextMenu(e, app) {
     <div class="ctx-item" onclick="window.open('${CONFIG.urls.galaxyStore}${pkg}')">
       ${ICONS.galaxyStore} <span>Galaxy Store</span>
     </div>
+    <div class="ctx-item" onclick="copyIconToolCmd('${id}')">
+      ${ICONS.terminal} <span>Copy icontool command</span>
+    </div>
     <div class="ctx-item" onclick="copyToClipboard('${name}\\n${id}')">
-      ${ICONS.copy} <span>Copy name & ID</span>
+      ${ICONS.copy} <span>Copy name and component</span>
     </div>
     <div class="ctx-item" onclick="copyAppFilterEntry('${id}')">
       ${ICONS.copy} <span>Copy appfilter</span>
@@ -416,8 +416,8 @@ function showFabContextMenu() {
     <div class="ctx-item" onclick="copyBulkAppFilter()">
       ${ICONS.copy} <span>Copy appfilter entries</span>
     </div>
-    <div class="ctx-item" onclick="downloadSelected()">
-      ${ICONS.download} <span>Download selected</span>
+    <div class="ctx-item" onclick="copyBulkIconToolCmd()">
+      ${ICONS.terminal} <span>Copy icontool commands</span>
     </div>
   `;
   
@@ -439,8 +439,8 @@ function formatDate(unix) {
 
 function generateXml(app) {
   const cmp = app.componentNames[0].componentName;
-  const draw = app.drawable;
   const name = app.componentNames[0].label;
+  const draw = sanitizeDrawableName(name);
   // Exact format requested
   return `<item component="ComponentInfo{${cmp}}" drawable="${draw}" name="${name}" />`;
 }
@@ -478,18 +478,16 @@ function copyBulkAppFilter() {
   closeContextMenu();
 }
 
-// Action: Download
+// Action: Download selected
 async function downloadSelected() {
-// 1. Check for JSZip
   if (typeof JSZip === 'undefined') {
-    alert("JSZip library is missing. Please include it in your HTML.");
+    alert("JSZip library is missing.");
     return;
   }
 
   const selectedIds = Array.from(state.selected);
   if (selectedIds.length === 0) return;
 
-  // 2. Visual Feedback
   const originalText = DOM.fabCount.textContent;
   DOM.fabCount.textContent = "Preparing...";
   DOM.fabBar.style.cursor = "wait";
@@ -498,45 +496,46 @@ async function downloadSelected() {
     const zip = new JSZip();
     const imgFolder = zip.folder("icons");
     
-    // 3. Process items
-    // We use a Set to avoid downloading the same drawable twice if multiple apps share it
-    const processedDrawables = new Set();
+    // Track names to prevent overwriting if two apps sanitize to the same string
+    const usedNames = new Set();
     const promises = [];
 
     selectedIds.forEach(id => {
       const app = apps.find(a => a.componentNames[0].componentName === id);
-      if (!app || processedDrawables.has(app.drawable)) return;
+      if (!app) return;
 
-      processedDrawables.add(app.drawable);
+      // 1. Generate the clean name
+      let filename = sanitizeDrawableName(app.componentNames[0].label);
       
-      const filename = `${app.drawable}${CONFIG.data.iconExtension}`;
-      const url = `${CONFIG.data.assetsPath}${filename}`;
+      // 2. Handle collisions (e.g. "App" and "App!" both -> "app")
+      if (usedNames.has(filename)) {
+        let counter = 2;
+        while (usedNames.has(`${filename}_${counter}`)) counter++;
+        filename = `${filename}_${counter}`;
+      }
+      usedNames.add(filename);
 
-      // Queue the fetch operation
-      const promise = fetch(url)
-        .then(res => {
-          if (!res.ok) throw new Error(`404: ${url}`);
-          return res.blob();
-        })
-        .then(blob => {
-          imgFolder.file(filename, blob);
-        })
-        .catch(err => {
-          console.warn(`Failed to load ${filename}`, err);
-        });
+      // 3. Fetch Original -> Save as New
+      const originalUrl = `${CONFIG.data.assetsPath}${app.drawable}${CONFIG.data.iconExtension}`;
+      const saveName = `${filename}.png`; // Saving as PNG for now (source is PNG)
 
-      promises.push(promise);
+      promises.push(
+        fetch(originalUrl)
+          .then(res => {
+            if (!res.ok) throw new Error(`404: ${originalUrl}`);
+            return res.blob();
+          })
+          .then(blob => imgFolder.file(saveName, blob))
+          .catch(err => console.warn(err))
+      );
     });
 
-    // 4. Wait for all downloads
-    DOM.fabCount.textContent = `Fetching ${promises.length} icons...`;
+    DOM.fabCount.textContent = `Fetching ${promises.length}...`;
     await Promise.all(promises);
 
-    // 5. Generate Zip
     DOM.fabCount.textContent = "Zipping...";
     const content = await zip.generateAsync({ type: "blob" });
 
-    // 6. Trigger Download
     const link = document.createElement("a");
     link.href = URL.createObjectURL(content);
     link.download = `lawnicons-export-${new Date().toISOString().slice(0,10)}.zip`;
@@ -545,48 +544,77 @@ async function downloadSelected() {
     document.body.removeChild(link);
     URL.revokeObjectURL(link.href);
 
-    // Success State
     DOM.fabCount.textContent = "Done!";
   } catch (err) {
-    console.error("Download failed:", err);
+    console.error(err);
     DOM.fabCount.textContent = "Error";
-    alert("Failed to generate zip. Check console for details.");
   } finally {
-    // Reset UI
     DOM.fabBar.style.cursor = "default";
     setTimeout(() => DOM.fabCount.textContent = originalText, 2000);
+    closeContextMenu();
   }
 }
 
-// 3. Mobile Menu Logic (Add to Actions & Logic section)
-function showMobileMenu() {
-  const isGrid = state.view === "grid";
-  
-  DOM.mobileMenu.innerHTML = `
-    <div class="mobile-menu-section">
-      <div class="mobile-menu-label">View Mode</div>
-      <div class="mobile-options">
-        <button class="mobile-opt-btn ${!isGrid ? 'active' : ''}" onclick="setMobileView('list')">List</button>
-        <button class="mobile-opt-btn ${isGrid ? 'active' : ''}" onclick="setMobileView('grid')">Grid</button>
-      </div>
-    </div>
+// --- Naming Convention Helper ---
+function sanitizeDrawableName(label) {
+  if (!label) return "unknown";
 
-    <div class="mobile-menu-section">
-      <div class="mobile-menu-label">Filter Status</div>
-      <div class="mobile-options">
-        <button class="mobile-opt-btn" onclick="alert('Filter logic here')">WIP</button>
-        <button class="mobile-opt-btn" onclick="alert('Filter logic here')">Easy</button>
-        <button class="mobile-opt-btn" onclick="alert('Filter logic here')">Missing</button>
-      </div>
-    </div>
-  `;
-  
-  DOM.mobileMenu.showPopover();
+  // 1. Normalize (e.g., "Pokémon" -> "Pokemon")
+  let name = label.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+  // 2. Lowercase & Replace non-alphanumeric with underscore
+  name = name.toLowerCase().replace(/[^a-z0-9]+/g, "_");
+
+  // 3. Trim underscores from start/end
+  name = name.replace(/^_+|_+$/g, "");
+
+  // 4. Handle leading digit (e.g., "1password" -> "_1password")
+  if (/^[0-9]/.test(name)) {
+    name = "_" + name;
+  }
+
+  return name || "icon";
 }
 
-function setMobileView(viewMode) {
-  state.view = viewMode;
-  DOM.selectView.value = viewMode; // Sync desktop dropdown
-  render();
-  showMobileMenu(); // Re-render menu to update active state
+function generateIconToolCommand(app) {
+  // 1. Get Path (ensure trailing slash)
+  let path = DOM.inputPath.value.trim();
+  if (path && !path.endsWith("/")) path += "/";
+  
+  // 2. Get Data
+  const cmp = app.componentNames[0].componentName;
+  const name = app.componentNames[0].label.replace(/"/g, '\\"'); // Escape quotes
+
+  const cleanName = sanitizeDrawableName(app.componentNames[0].label);
+  const svg = `${path}${cleanName}.svg`;
+
+  // 3. Format: python3 ./icontool.py add path/to/icon.svg package/component "App Name" 
+  return `python3 ./icontool.py add "${svg}" ${cmp} "${name}"`;
+}
+
+// Action: Copy Bulk Commands
+function copyBulkIconToolCmd() {
+  const selectedApps = apps.filter(a => 
+    state.selected.has(a.componentNames[0].componentName)
+  );
+  
+  if (selectedApps.length === 0) return;
+
+  const cmdOutput = selectedApps.map(generateIconToolCommand).join('\n');
+  
+  navigator.clipboard.writeText(cmdOutput).then(() => {
+    const original = DOM.fabCount.textContent;
+    DOM.fabCount.textContent = "Copied Commands!";
+    setTimeout(() => DOM.fabCount.textContent = original, 1500);
+  });
+  
+  closeContextMenu();
+}
+
+// Action: Copy Single Command
+function copyIconToolCmd(id) {
+  const app = apps.find(a => a.componentNames[0].componentName === id);
+  if (app) {
+    copyToClipboard(generateIconToolCommand(app));
+  }
 }
