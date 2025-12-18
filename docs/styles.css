@@ -806,7 +806,7 @@ input[type="checkbox"] {
   display: flex;
   align-items: center;
   gap: 8px;
-  min-width: 300px;
+  min-width: auto;
   max-width: 400px;
   
   pointer-events: auto;
@@ -822,34 +822,16 @@ input[type="checkbox"] {
 .toast svg {
   width: 24px;
   height: 24px;
+  flex-shrink: 0;
 }
 
 .toast.hiding {
   animation: notifOut 0.2s ease-in forwards;
 }
 
-/* Icon Styling */
-.toast-icon {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-
-.toast-icon svg { width: 18px; height: 18px; }
-
-/* Colors based on type */
-.toast-success .toast-icon { background: rgba(129, 199, 132, 0.2); color: #81c784; }
-.toast-error .toast-icon   { background: rgba(229, 115, 115, 0.2); color: #e57373; }
-.toast-info .toast-icon    { background: var(--secondary-container); color: var(--on-secondary-container); }
-
 /* Text */
-.toast-content {
-  display: flex; flex-direction: column;
-  gap: 2px;
-}
 .toast-title { font-weight: 600; font-size: 14px; }
-.toast-msg { font-size: 13px; color: var(--on-surface-variant); }
+
 
 /* Animations */
 @keyframes notifIn {

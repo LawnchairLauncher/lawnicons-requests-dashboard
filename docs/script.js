@@ -515,7 +515,7 @@ function showRowContextMenu(e, app) {
   `;
 
   // 2. Smart Positioning (Prevent clipping)
-  const menuWidth = 240;
+  const menuWidth = 280;
   const menuHeight = 280;
   
   let x = e.clientX + 2; 
@@ -611,7 +611,8 @@ async function downloadSelected() {
   const selectedIds = Array.from(state.selected);
   if (selectedIds.length === 0) return;
 
-  Toast.show("Preparing...");
+  const originalText = DOM.fabCount.textContent;
+  DOM.fabCount.textContent = "Preparing...";
   DOM.fabBar.style.cursor = "wait";
 
   try {
@@ -652,10 +653,10 @@ async function downloadSelected() {
       );
     });
 
-    Toast.show(`Fetching ${promises.length} icons...`);
+    DOM.fabCount.textContent = `Fetching ${promises.length}...`;
     await Promise.all(promises);
 
-    Toast.show("Zipping...");
+    DOM.fabCount.textContent = "Zipping...";
     const content = await zip.generateAsync({ type: "blob" });
 
     const link = document.createElement("a");
@@ -674,6 +675,7 @@ async function downloadSelected() {
     Toast.show("Failed to save file");
   } finally {
     DOM.fabBar.style.cursor = "default";
+    setTimeout(() => DOM.fabCount.textContent = originalText, 2000);
     closeContextMenu();
   }
 }
@@ -769,24 +771,47 @@ function copyIconToolCmd(id) {
 // --- Toast Notification System ---
 const Toast = {
   container: document.getElementById("toastContainer"),
-  
-  show(message, type = "info") {
+  activeToasts: new Set(), // Track active messages to prevent dupes
+
+  show(text, type = "info") {
+    // 1. Deduplication: Don't show if already visible
+    const key = `${text}-${type}`;
+    if (this.activeToasts.has(key)) return;
+
+    // 2. Limit: Remove oldest if > 3
+    if (this.container.children.length >= 3) {
+      const oldest = this.container.firstElementChild;
+      this.remove(oldest);
+    }
+
+    // 3. Create Element
     const el = document.createElement("div");
     el.className = `toast toast-${type}`;
-    
-    // Icons based on type
-    let icon = ICONS.dots; // Default
-    if (type === "error") icon = `<svg><use href="#ic-search"/></svg>`; // Use Toast.show icon if available
-    if (type === "success") icon = `<svg><use href="#ic-download"/></svg>`; // Checkmark if available
+    el.dataset.key = key; // Store key for removal logic
+    this.activeToasts.add(key);
 
-    el.innerHTML = `${icon}<span>${message}</span>`;
-    
+    let iconSvg = ICONS.copy;
+    if (type === "error") iconSvg = `<svg><use href="#ic-search"/></svg>`;
+    if (type === "success") iconSvg = `<svg><use href="#ic-download"/></svg>`;
+
+    el.innerHTML = `
+      <div class="toast-icon">${iconSvg}</div>
+      <div class="toast-text">${text}</div>
+    `;
+
     this.container.appendChild(el);
 
-    // Auto Remove
-    setTimeout(() => {
-      el.classList.add("hiding");
-      el.addEventListener("animationend", () => el.remove());
-    }, 3000);
+    // 4. Auto Remove
+    setTimeout(() => this.remove(el), 2500);
+  },
+
+  remove(el) {
+    if (el.classList.contains("hiding")) return;
+    
+    // Cleanup Set
+    if (el.dataset.key) this.activeToasts.delete(el.dataset.key);
+
+    el.classList.add("hiding");
+    el.addEventListener("animationend", () => el.remove());
   }
 };
