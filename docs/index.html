@@ -45,6 +45,8 @@
   </symbol>
 
   <symbol id="ic-github" width="28" height="28" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M121.128 169c.029-4.606.058-20.592.058-26.921 0-9.147-3.112-15.132-6.603-18.161C136.252 121.487 159 113.201 159 75.514c0-10.709-3.758-19.469-9.998-26.323.999-2.482 4.336-12.46-.97-25.964 0 0-8.152-2.636-26.73 10.066-7.775-2.183-16.087-3.263-24.354-3.307-8.268.044-16.58 1.125-24.355 3.307C54.015 20.59 45.864 23.227 45.864 23.227c-5.306 13.505-1.97 23.482-.97 25.964-6.24 6.854-9.998 15.614-9.998 26.323 0 37.687 22.747 45.973 44.415 48.404-3.489 3.029-6.602 9.014-6.602 18.161 0 6.329.03 22.315.058 26.921M29 129.541c9.767.693 15.398 9.603 15.398 9.603 8.68 14.994 22.776 10.657 28.315 8.153" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+
+  <symbol id="ic-regex" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M197-199q-56-57-86.5-130T80-482q0-80 30-153t87-130l57 57q-46 45-70 103.5T160-482q0 64 24.5 122.5T254-256l-57 57Zm183-41q-25 0-42.5-17.5T320-300q0-25 17.5-42.5T380-360q25 0 42.5 17.5T440-300q0 25-17.5 42.5T380-240Zm139-200v-71l-61 36-40-70 61-35-61-35 40-70 61 36v-71h80v71l61-36 40 70-61 35 61 35-40 70-61-36v71h-80Zm244 241-57-57q46-45 70-103.5T800-482q0-64-24.5-122.5T706-708l57-57q56 57 86.5 130T880-482q0 80-30 153t-87 130Z"/></symbol>
 </svg>
 
 <div class="page">
@@ -66,8 +68,11 @@
   <div class="controls">
     <div class="controls-top">
       <div class="search-wrapper" title="Search">
-        <svg><use href="#ic-search"/></svg>
+        <svg id="searchIcon"><use href="#ic-search"/></svg>
         <input id="searchInput" placeholder="Application name or component" />
+        <button id="regexBtn" title="Use Regular Expression">
+          <svg><use href="#ic-regex"/></svg>
+        </button>
       </div>
       
       <div class="path-wrapper" title="icontool.py path">
@@ -78,11 +83,11 @@
 
     <div class="controls-bottom">
       <div class="control-group">
-        <select id="viewSelect" title="View">
+        <select id="viewSelect" title="View" class="chip">
           <option value="list">List</option>
           <option value="grid">Grid</option>
         </select>
-        <select id="sortSelect" title="Sort by">
+        <select id="sortSelect" title="Sort by" class="chip">
           <option value="req-desc">Most requested</option>
           <option value="req-asc">Least requested</option>
           <option value="name-asc">Name (A-Z)</option>

@@ -43,6 +43,7 @@ const ICONS = {
   izzyOnDroid: `<svg><use href="#ic-izzyondroid"/></svg>`,
   galaxyStore: `<svg><use href="#ic-galaxystore"/></svg>`,
   terminal: `<svg><use href="#ic-terminal"/></svg>`,
+  regex: `<svg><use href="#ic-regex"/></svg>`
 };
 
 
@@ -50,6 +51,7 @@ const state = {
   view: "list",
   sort: "req-desc",
   search: "",
+  regexMode: false,
   selected: new Set(),
 
   appTags: new Map(),
@@ -70,6 +72,8 @@ const DOM = {
   sentinel:    document.getElementById("scrollSentinel"),
   
   inputSearch: document.getElementById("searchInput"),
+  regexBtn: document.getElementById("regexBtn"),
+
   selectSort:  document.getElementById("sortSelect"),
   selectView:  document.getElementById("viewSelect"),
 
@@ -177,33 +181,65 @@ DOM.fabMenuBtn.addEventListener("click", e => {
   showFabContextMenu();
 });
 
+DOM.regexBtn.addEventListener("click", () => {
+  state.regexMode = !state.regexMode;
+  
+  if (state.regexMode) DOM.regexBtn.classList.add("active");
+  else DOM.regexBtn.classList.remove("active");
+  
+  render();
+});
+
 // ==========================================
 // DATA PIPELINE
 // ==========================================
 function processData() {
   let data = apps;
+  
+  // 1. Parse Query (Extract "is:wip" etc)
+  const query = parseSearchQuery(state.search);
+  
+  // 2. Combine Filters (Buttons + Typed)
+  // We create a temporary set for this render pass
+  const effectiveFilters = new Set([...state.activeFilters, ...query.tags]);
 
-  // Search
-  if (state.search) {
-    const term = state.search.toLowerCase();
-    data = data.filter(app => 
-      app.componentNames.some(c => 
-        c.label.toLowerCase().includes(term) || 
-        c.componentName.toLowerCase().includes(term)
-      )
-    );
-  }
-
-  // Filters
-  if (state.activeFilters.size > 0) {
+  // 3. Apply Filters
+  if (effectiveFilters.size > 0) {
     data = data.filter(app => {
       const id = app.componentNames[0].componentName;
       const appTags = state.appTags.get(id);
       if (!appTags) return false;
-
-      // Check if app has ANY of the active filters
-      return Array.from(state.activeFilters).some(fId => appTags.has(fId));
+      return Array.from(effectiveFilters).some(fId => appTags.has(fId));
     });
+  }
+
+  // 4. Apply Text Search
+  if (query.text) {
+    if (state.regexMode) {
+      try {
+        // Create Regex (Case insensitive)
+        const regex = new RegExp(query.text, 'i');
+        data = data.filter(app => 
+          app.componentNames.some(c => 
+            regex.test(c.label) || regex.test(c.componentName)
+          )
+        );
+      } catch (e) {
+        // If regex is invalid (e.g. "["), treat as empty or show error?
+        // For now, we just don't filter (return all) or return empty.
+        // Let's return empty to indicate "invalid query" visually
+        data = []; 
+      }
+    } else {
+      // Standard Includes
+      const term = query.text.toLowerCase();
+      data = data.filter(app => 
+        app.componentNames.some(c => 
+          c.label.toLowerCase().includes(term) || 
+          c.componentName.toLowerCase().includes(term)
+        )
+      );
+    }
   }
 
   // Sort
@@ -403,7 +439,8 @@ function generateFilterButtons() {
 
   CONFIG.filters.forEach(filter => {
     const btn = document.createElement("button");
-    btn.className = `tag tag-${filter.id}`;
+    btn.className = `tag tag-${filter.id} chip`;
+    btn.title = `Filter ${filter.label} entries`
     btn.textContent = filter.label;
     
     btn.onclick = () => {
@@ -582,6 +619,8 @@ function closeContextMenu() {
   try { DOM.rowMenu.hidePopover(); } catch(e) {}
   try { DOM.fabMenu.hidePopover(); } catch(e) {}
 }
+
+
 
 function formatDate(unix) {
   if (!unix) return "—";
@@ -791,7 +830,32 @@ function copyIconToolCmd(id) {
   }
 }
 
+// --- Search Parser ---
+function parseSearchQuery(rawQuery) {
+  const result = {
+    text: "",
+    tags: new Set()
+  };
 
+  // Regex to find tokens like "is:wip", "tag:easy", "in:conflict"
+  // Matches: (prefix): (value)
+  const tokenRegex = /\b(?:is|tag|in):([a-z0-9-_]+)\b/gi;
+
+  // 1. Extract Tags
+  const cleanQuery = rawQuery.replace(tokenRegex, (match, tag) => {
+    // Check if this tag actually exists in our config
+    const validTag = CONFIG.filters.find(f => f.id === tag.toLowerCase());
+    if (validTag) {
+      result.tags.add(validTag.id);
+    }
+    return ""; // Remove token from text
+  });
+
+  // 2. Clean Text
+  result.text = cleanQuery.trim();
+  
+  return result;
+}
 
 // --- Toast Notification System ---
 const Toast = {
