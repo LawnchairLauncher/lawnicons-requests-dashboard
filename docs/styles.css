@@ -125,6 +125,20 @@ body {
   font-weight: 600;
   margin: 0;
   color: var(--on-surface);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.header-info h1 span {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
 }
 
 .header-sub {
