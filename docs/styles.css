@@ -11,6 +11,7 @@
 :root {
   --font-main: "Manrope", sans-serif;
 
+  /* Source: #379aff */
   --primary: rgb(164 201 254);
   --surface-tint: rgb(164 201 254);
   --on-primary: rgb(0 49 92);
@@ -60,6 +61,14 @@
   --surface-container-highest: rgb(50 53 58);
 
   --secondary-container-hover: rgb(71, 83, 102);
+
+  /* Source: #B33B15 */
+  --orange-container: #723523;
+  --on-orange-container: #ffdbd1;
+
+  /* Source: #006B73 */
+  --teal-container: #004f55;
+  --on-teal-container: #9df0f9;
 }
 
 /* =========================================
@@ -426,6 +435,17 @@ select:hover {
   background: var(--error-container);
   color: var(--on-error-container);
 }
+
+.status-conflict {
+  background: var(--orange-container);
+  color: var(--on-orange-container);
+}
+
+.status-info {
+  background: var(--teal-container);
+  color: var(--on-teal-container)
+}
+
 
 /* Actions */
 .actions-col {

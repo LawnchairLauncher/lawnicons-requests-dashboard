@@ -15,8 +15,14 @@ const CONFIG = {
 
     // File name must match: assets/filters/{name}.json
     filterPath: "/docs/assets/filters/",
-    availableFilters: ["wip", "easy", "missing"] 
   },
+  filters: [
+    { id: "wip",      label: "WIP"         },
+    { id: "easy",     label: "Easy",       },
+    { id: "missing",  label: "Missing",    },
+    { id: "conflict", label: "Name in Use" },
+    { id: "link",     label: "Matches",    }
+  ],
   urls: {
     playStore: "https://play.google.com/store/apps/details?id=",
     fDroid: "https://f-droid.org/en/packages/",
@@ -45,10 +51,12 @@ const state = {
   sort: "req-desc",
   search: "",
   selected: new Set(),
+
+  appTags: new Map(),
+
+  activeFilters: new Set(),
   renderedCount: 0,
   currentData: [],
-  activeFilters: new Set(),
-  filterCache: {}
 };
 
 let apps = [];
@@ -82,45 +90,51 @@ const DOM = {
 // ==========================================
 Promise.all([
   fetch(CONFIG.data.endpoint).then(r => r.json()),
-  loadFilters()
+  ...CONFIG.filters.map(f => fetchFilterFile(f.id))
 ])
-.then(([json, filters]) => {
+.then(([json, ...filterResults]) => {
   apps = json.apps;
-  state.filterCache = filters;
-  
   DOM.headerCount.textContent = `${json.count.toLocaleString()} requests`;
-  
-  generateFilterButtons(); // Create buttons dynamically
+
+  state.appTags = new Map();
+
+  CONFIG.filters.forEach((f, index) => {
+    const ids = filterResults[index];
+    if (ids && Array.isArray(ids)) {
+      ids.forEach(appId => addTagToApp(appId, f.id));
+    } else {
+    }
+  });
+
+
+  generateFilterButtons();
   initObserver();
   render();
 })
 .catch(err => {
-  console.error("Error loading data:", err);
-  DOM.container.innerHTML = `<div style="padding:20px;text-align:center;color:red">Error loading data.</div>`;
+  console.error("Init failed:", err);
+  Toast.show("Failed to load data. Check console.", "error");
 });
 
-async function loadFilters() {
-  const cache = {};
-  
-  const promises = CONFIG.data.availableFilters.map(name => 
-    fetch(`${CONFIG.data.filterPath}${name}.json`)
-      .then(res => {
-        if (!res.ok) return null; // Ignore missing files
-        return res.json();
-      })
-      .then(data => {
-        if (data && data[name]) {
-          // Store as a Set for O(1) lookup speed
-          cache[name] = new Set(data[name]); 
-        }
-      })
-      .catch(e => console.warn(`Failed to load filter: ${name}`, e))
-  );
-
-  await Promise.all(promises);
-  return cache;
+async function fetchFilterFile(id) {
+  try {
+    const res = await fetch(`${CONFIG.data.filterPath}${id}.json`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    // Expecting format: { "wip": ["id1", "id2"] }
+    return data[id] || null; 
+  } catch (e) {
+    console.warn(`Filter file missing: ${id}`);
+    return null;
+  }
 }
 
+function addTagToApp(id, tag) {
+  if (!state.appTags.has(id)) {
+    state.appTags.set(id, new Set());
+  }
+  state.appTags.get(id).add(tag);
+}
 
 function initObserver() {
   observer = new IntersectionObserver((entries) => {
@@ -184,12 +198,11 @@ function processData() {
   if (state.activeFilters.size > 0) {
     data = data.filter(app => {
       const id = app.componentNames[0].componentName;
-      // App must match AT LEAST ONE active filter (OR logic)
-      // Change to .every() if you want AND logic
-      return Array.from(state.activeFilters).some(filterName => {
-        const set = state.filterCache[filterName];
-        return set && set.has(id);
-      });
+      const appTags = state.appTags.get(id);
+      if (!appTags) return false;
+
+      // Check if app has ANY of the active filters
+      return Array.from(state.activeFilters).some(fId => appTags.has(fId));
     });
   }
 
@@ -215,14 +228,12 @@ function processData() {
 
 // Full Re-render (Search/Sort/Init/View Change)
 function render() {
-  // 1. Clear Container
   DOM.container.innerHTML = "";
   
-  // 2. Set Container Layout Class (CRITICAL FIX)
   if (state.view === "grid") {
     DOM.container.className = "grid-container";
   } else {
-    DOM.container.className = ""; // Remove class for List view
+    DOM.container.className = "";
   }
 
   // 3. Process & Load Data
@@ -298,10 +309,18 @@ function createListRow(app) {
   const isSelected = state.selected.has(id);
   const iconUrl = `${CONFIG.data.assetsPath}${app.drawable}${CONFIG.data.iconExtension}`;
   const dateStr = formatDate(app.lastRequested);
-  const activeTags = getTagsForApp(id);
-  const tagHtml = activeTags.map(tag => 
-    `<span class="status-pill status-${tag}">${tag.toUpperCase()}</span>`
-  ).join("");
+
+  let tagHtml = "";
+  const appTags = state.appTags.get(id);
+
+  if (appTags) {
+    // Iterate config to maintain order (e.g. WIP always before Conflict)
+    CONFIG.filters.forEach(f => {
+      if (appTags.has(f.id)) {
+        tagHtml += `<span class="status-pill status-${f.id}">${f.label}</span>`;
+      }
+    });
+  }
 
   const row = document.createElement("div");
   row.className = `list-row ${isSelected ? "selected" : ""}`;
@@ -364,30 +383,28 @@ function createGridCard(app) {
 }
 
 function generateFilterButtons() {
-  DOM.filterContainer.innerHTML = "";
+  const container = document.getElementById("filterContainer");
+  if (!container) return;
+  
+  container.innerHTML = "";
 
-  CONFIG.data.availableFilters.forEach(name => {
-    // Only show button if we successfully loaded data for it
-    if (!state.filterCache[name]) return;
-
+  CONFIG.filters.forEach(filter => {
     const btn = document.createElement("button");
-    btn.className = "tag";
-    btn.title = `Filter ${name.toUpperCase()} entries`
-    btn.textContent = name.toUpperCase(); // "wip" -> "WIP"
+    btn.className = `tag tag-${filter.id}`;
+    btn.textContent = filter.label;
     
     btn.onclick = () => {
-      // Toggle State
-      if (state.activeFilters.has(name)) {
-        state.activeFilters.delete(name);
+      if (state.activeFilters.has(filter.id)) {
+        state.activeFilters.delete(filter.id);
         btn.classList.remove("active");
       } else {
-        state.activeFilters.add(name);
+        state.activeFilters.add(filter.id);
         btn.classList.add("active");
       }
       render();
     };
     
-    DOM.filterContainer.appendChild(btn);
+    container.appendChild(btn);
   });
 }
 
@@ -412,11 +429,6 @@ function toggleSelection(id) {
 function updateItemVisuals(id) {
   const isSelected = state.selected.has(id);
 
-  // Find all DOM elements representing this ID (could be in list or grid)
-  // Since we don't have IDs on the elements, we query by the checkbox or iterate
-  // A cleaner way is to add data-id to the rows/cards during creation.
-  
-  // OPTION A: If you added data-id="${id}" to createListRow/createGridCard (Recommended)
   const elements = document.querySelectorAll(`[data-id="${id}"]`);
   elements.forEach(el => {
     if (isSelected) el.classList.add("selected");
