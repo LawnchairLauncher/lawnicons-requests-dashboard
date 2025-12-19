@@ -32,6 +32,7 @@ const CONFIG = {
 };
 
 const ICONS = {
+  check:       `<svg><use href="#ic-check"/></svg>`,
   download:    `<svg><use href="#ic-download"/></svg>`,
   play:        `<svg><use href="#ic-play"/></svg>`,
   dots:        `<svg><use href="#ic-dots"/></svg>`,
@@ -105,6 +106,10 @@ const App = {
     selectView:  document.getElementById("viewSelect"),
     filterBox:   document.getElementById("filterContainer"),
     inputPath:   document.querySelector(".path-wrapper input"),
+
+    mobileFilterBtn: document.getElementById("mobileFilterBtn"),
+    mobileFilterCount: document.getElementById("mobileFilterCount"),
+    mobileFilterMenu: document.getElementById("mobileFilterMenu"),
     
     fabBar:      document.getElementById("fabBar"),
     fabCount:    document.getElementById("fabCount"),
@@ -681,6 +686,9 @@ const UI = {
       e.stopPropagation();
       this.showFabMenu();
     });
+    App.dom.mobileFilterBtn.addEventListener("click", () => {
+      this.showMobileFilterPopover();
+    });
 
     App.dom.container.addEventListener('click', (e) => {
       const trigger = e.target.closest('.ctx-trigger');
@@ -826,10 +834,57 @@ const UI = {
           else b.classList.remove("active");
         });
 
-        this.render();
+        this.render()
       };
       c.appendChild(btn);
     });
+  },
+
+  showMobileFilterPopover() {
+    const menu = App.dom.mobileFilterMenu;
+    menu.innerHTML = ""; // Clear previous content
+
+    const s = App.state.activeFilters;
+
+    // 1. Build Items
+    CONFIG.filters.forEach(f => {
+      const item = document.createElement("div");
+      const isActive = App.state.activeFilters.has(f.id);
+      item.className = `ctx-item ${isActive ? 'active' : ''}`;
+      
+      item.innerHTML = `
+        <span class="check-icon">${ICONS.check}</span>
+        <span>${f.label}</span>      
+      `;
+      
+      item.onclick = (e) => {
+        e.stopPropagation(); // Prevent popover from closing
+    
+        if (f.id === "unlabeled") {
+          if (s.has("unlabeled")) s.delete("unlabeled");
+          else { s.clear(); s.add("unlabeled"); }
+        } else {
+          if (s.has("unlabeled")) s.delete("unlabeled");
+          if (s.has(f.id)) s.delete(f.id);
+          else s.add(f.id);
+        }
+        UI.render();
+        
+        // Re-render menu content to update checkmarks instantly
+        this.showMobileFilterPopover();
+      };
+      menu.appendChild(item);
+    });
+
+    // 2. Position below button
+    const rect = App.dom.mobileFilterBtn.getBoundingClientRect();
+    const padding = (s.size > 0) ? 135 : 150
+
+    menu.style.left = `${rect.left - padding}px`;
+    menu.style.top = `${rect.bottom + 8}px`;
+
+    // 3. Show
+    menu.showPopover();
   },
 
   updateItemVisuals(id) {
@@ -870,6 +925,13 @@ const UI = {
     hc.checked = (count === total);
     hc.indeterminate = (count > 0 && count < total);
     
+    const filterCount = App.state.activeFilters.size;
+    if (filterCount > 0) {
+      App.dom.mobileFilterCount.textContent = `(${filterCount})`;
+    } else {
+      App.dom.mobileFilterCount.textContent = "";
+    }
+
     this.updateFab();
   },
 

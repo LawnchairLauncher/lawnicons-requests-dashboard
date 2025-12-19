@@ -762,6 +762,36 @@ input[type="checkbox"] {
    10. RESPONSIVE DESIGN (< 840px)
    ========================================= */
 
+#mobileFilterBtn {
+  padding: 0 32px 0 12px; /* Space for arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23e3e3e3'%3E%3Cpath d='M459-381 314-526q-3-3-4.5-6.5T308-540q0-8 5.5-14t14.5-6h304q9 0 14.5 6t5.5 14q0 2-6 14L501-381q-5 5-10 7t-11 2q-6 0-11-2t-10-7Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 6px top 50%;
+  background-size: 24px auto;
+  align-items: center;
+  gap: 2px;
+}
+
+/* --- Mobile Filter Popover (Dropdown Style) --- */
+.mobile-filter-style {
+  position: fixed; /* Anchored to viewport */
+  max-width: 260px;
+  transform-origin: top left;
+  /* Animations are inherited from .row-style */
+}
+
+.mobile-filter-style .ctx-item .check-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--on-secondary-container);
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.1s;
+}
+
+.mobile-filter-style .ctx-item.active .check-icon {
+  opacity: 1; /* Visible when active */
+}
+
 /* Default Visibility */
 .mobile-only {
   display: none !important;
@@ -777,9 +807,6 @@ input[type="checkbox"] {
   }
   .mobile-only {
     display: flex !important;
-    gap: 12px;
-    align-items: center;
-    justify-content: space-between;
   }
 
   /* 3. Horizontal Scroll Logic */
