@@ -50,6 +50,26 @@ const DEFAULTS = {
   regex: false
 };
 
+const PR_TEMPLATE =
+`## Icons
+<!-- Please specify in the sections below which apps and packages you have worked on.
+     Unnecessary sections can be deleted. -->
+
+### Added
+<!--  Apps for which you add icons. -->
+App name (\`com.package.app\`)  
+App name (\`com.package.app\`)  
+
+### Linked
+<!--  New app components for existing icons. -->
+App name (\`com.package.app\` → \`drawable.svg\`)  
+App name (\`com.package.app\` → \`drawable.svg\`)  
+
+### Updated
+<!--  Outdated icons that you've updated. -->
+App name (\`com.package.app\`)  
+App name (\`com.package.app\`)`;
+
 // ==========================================
 // GLOBAL STATE
 // ==========================================
@@ -192,6 +212,9 @@ const Templates = {
       </div>
        <div class="ctx-item" onclick="Actions.downloadSelectionAsJson()">
         ${ICONS.download} <span>Download JSON config</span>
+      </div>
+      <div class="ctx-item" onclick="Actions.copyPrTemplate()">
+        ${ICONS.copy} <span>Copy PR template</span>
       </div>
       <div class="ctx-item" onclick="Actions.copyBulkIconToolCmd()">
         ${ICONS.terminal} <span>Copy icontool commands</span>
@@ -348,6 +371,10 @@ const Actions = {
   copyIconToolCmd(id) {
     const app = App.state.idMap.get(id);
     if (app) Actions.copyToClipboard(Utils.generateIconToolCmd(app));
+  },
+
+  copyPrTemplate() {
+    Actions.copyToClipboard(PR_TEMPLATE);
   },
 
   copyBulkAppFilter() {
