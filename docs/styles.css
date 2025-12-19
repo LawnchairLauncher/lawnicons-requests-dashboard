@@ -323,10 +323,10 @@ body {
 
 select {
   padding: 0 32px 0 12px; /* Space for arrow */
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23C3C6CF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23e3e3e3'%3E%3Cpath d='M459-381 314-526q-3-3-4.5-6.5T308-540q0-8 5.5-14t14.5-6h304q9 0 14.5 6t5.5 14q0 2-6 14L501-381q-5 5-10 7t-11 2q-6 0-11-2t-10-7Z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 12px top 50%;
-  background-size: 10px auto;
+  background-position: right 6px top 50%;
+  background-size: 24px auto;
 }
 
 select:hover {
@@ -343,6 +343,9 @@ select:hover {
 .tag {
   background: transparent;
   padding: 0 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23e3e3e3'%3E%3Cpath d='m382-354 339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143Z'/%3E%3C/svg%3E");  background-repeat: no-repeat;
+  background-position: left 8px top 50%;
+  background-size: 0 auto;
 }
 
 .tag:hover {
@@ -354,6 +357,8 @@ select:hover {
   background-color: var(--primary-container);
   border: var(--primary-container);
   color: var(--on-primary-container);
+  padding-left: 32px;
+  background-size: 18px auto;
 }
 
 /* =========================================
