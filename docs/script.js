@@ -14,10 +14,11 @@ const CONFIG = {
     filterPath: "/docs/assets/filters/",
   },
   filters: [
+    { id: "unlabeled", label: "Unlabeled" }, // NEW
     { id: "wip",      label: "WIP" },
     { id: "easy",     label: "Easy" },
     { id: "conflict", label: "Name in Use" },
-    { id: "link",     label: "Matches" }
+    { id: "link",     label: "Matches" },
   ],
   urls: {
     playStore: "https://play.google.com/store/apps/details?id=",
@@ -472,6 +473,19 @@ const Data = {
       });
 
       this.loadUrlState();
+
+      App.data.forEach(app => {
+        const id = app.componentNames[0].componentName;
+        
+        // Check if app has any tags in the map
+        const tags = App.state.appTags.get(id);
+        
+        if (!tags || tags.size === 0) {
+          // It has no tags! Mark it as unlabeled.
+          Data.addTag(id, "unlabeled");
+        }
+      });
+
       UI.init();
     })
     .catch(e => {
@@ -747,8 +761,34 @@ const UI = {
       
       btn.onclick = () => {
         const s = App.state.activeFilters;
-        if (s.has(f.id)) { s.delete(f.id); btn.classList.remove("active"); }
-        else { s.add(f.id); btn.classList.add("active"); }
+        
+        // LOGIC: Mutual Exclusivity for "Unlabeled"
+        if (f.id === "unlabeled") {
+          if (s.has("unlabeled")) {
+            s.delete("unlabeled"); // Toggle Off
+          } else {
+            s.clear();             // Clear others
+            s.add("unlabeled");    // Toggle On
+          }
+        } else {
+          // Clicking a normal filter
+          if (s.has("unlabeled")) {
+            s.delete("unlabeled"); // Clear unlabeled if active
+          }
+          
+          // Standard Toggle
+          if (s.has(f.id)) s.delete(f.id);
+          else s.add(f.id);
+        }
+        
+        // Update UI classes immediately (faster than full render)
+        Array.from(c.children).forEach(b => {
+          const filterId = b.className.match(/tag-([a-z]+)/)[1];
+          
+          if (s.has(filterId)) b.classList.add("active");
+          else b.classList.remove("active");
+        });
+
         this.render();
       };
       c.appendChild(btn);

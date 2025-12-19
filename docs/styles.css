@@ -480,6 +480,11 @@ select:hover {
   color: var(--on-teal-container)
 }
 
+/* Unlabeled Tag */
+.status-unlabeled {
+  display: none
+}
+
 /* Actions */
 .actions-col {
   display: flex;
