@@ -709,7 +709,8 @@ input[type="checkbox"] {
 /* --- Type 2: FAB Menu (Slide Up) --- */
 .fab-style {
   position: fixed;
-  top: calc(100vh - 245px);
+  top: auto;
+  bottom: 85px;
   left: 50%;
   transform: translateX(-50%) translateY(20px); /* Start slightly down */
   opacity: 0;
