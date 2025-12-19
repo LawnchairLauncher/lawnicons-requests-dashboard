@@ -14,11 +14,11 @@ const CONFIG = {
     filterPath: "/docs/assets/filters/",
   },
   filters: [
-    { id: "unlabeled", label: "Unlabeled" }, // NEW
-    { id: "wip",      label: "WIP" },
-    { id: "easy",     label: "Easy" },
-    { id: "conflict", label: "Name in Use" },
-    { id: "link",     label: "Matches" },
+    { id: "unlabeled", label: "Unlabeled", desc: "Apps with no matching labels" }, // NEW
+    { id: "wip",      label: "WIP", desc: "Apps with icons that are currently being made" },
+    { id: "easy",     label: "Easy", desc: "Apps with easy to make icons" },
+    { id: "conflict", label: "Name in Use", desc: "Apps that match existing names" },
+    { id: "link",     label: "Matches", desc: "Apps that match existing packages" },
   ],
   urls: {
     playStore: "https://play.google.com/store/apps/details?id=",
@@ -106,7 +106,7 @@ const Templates = {
     const pkg = id.split('/')[0];
 
     const tagHtml = tags.map(t => 
-      `<span class="status-pill status-${t.id}">${t.label}</span>`
+      `<span class="status-pill status-${t.id}" title="${t.desc}">${t.label}</span>`
     ).join("");
 
     return `
@@ -139,7 +139,7 @@ const Templates = {
   gridCard(app, isSelected, iconUrl) {
     const id = app.componentNames[0].componentName;
     return `
-      <div class="grid-card ${isSelected ? 'selected' : ''}" data-id="${id}">
+      <div class="grid-card ${isSelected ? 'selected' : ''}" data-id="${id}" title="${app.componentNames[0].label}">
         <img src="${iconUrl}" loading="lazy" onerror="this.style.display='none'" />
         <div class="grid-overlay-check">
           <input type="checkbox" ${isSelected ? "checked" : ""} style="pointer-events:none;">
@@ -341,12 +341,12 @@ const Actions = {
   },
 
   copyAppFilterEntry(id) {
-    const app = App.state.idMap.get(a => a.componentNames[0].componentName === id);
+    const app = App.state.idMap.get(id);
     if (app) Actions.copyToClipboard(Utils.generateXml(app));
   },
 
   copyIconToolCmd(id) {
-    const app = App.state.idMap.get(a => a.componentNames[0].componentName === id);
+    const app = App.state.idMap.get(id);
     if (app) Actions.copyToClipboard(Utils.generateIconToolCmd(app));
   },
 
@@ -402,7 +402,7 @@ const Actions = {
       const promises = [];
 
       ids.forEach(id => {
-        const app = App.state.idMap.get(a => a.componentNames[0].componentName === id);
+        const app = App.state.idMap.get(id);
         if (!app) return;
 
         let filename = Utils.sanitizeDrawableName(app.componentNames[0].label);
@@ -600,15 +600,22 @@ const Data = {
   syncUrlState() {
     const s = App.state;
     const params = new URLSearchParams();
+
     if (s.search) params.set("q", s.search);
     if (s.view !== DEFAULTS.view) params.set("view", s.view);
     if (s.sort !== DEFAULTS.sort) params.set("sort", s.sort);
     if (s.regexMode) params.set("regex", "1");
+    
     if (s.activeFilters.size > 0) {
-      params.set("filters", Array.from(s.activeFilters).join(","));
+      const sortedFilters = Array.from(s.activeFilters).sort();
+      params.set("filters", sortedFilters.join(","));
     }
     
-    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    const queryString = params.toString();
+    const newUrl = queryString 
+      ? `${window.location.pathname}?${queryString}` 
+      : window.location.pathname;
+
     window.history.replaceState({}, "", newUrl);
   }
 };
@@ -695,6 +702,10 @@ const UI = {
 
     Data.process();
 
+    Data.syncUrlState();
+
+    this.updateHeader();
+
     if (s.currentData.length === 0) {
       App.dom.container.innerHTML = Templates.emptyState();
       this.updateHeader();
@@ -704,9 +715,7 @@ const UI = {
     s.renderedCount = 0;
     this.loadMore();
     
-    this.updateHeader();
     App.dom.listHeader.style.display = s.view === "list" ? "grid" : "none";
-    Data.syncUrlState();
   },
 
   // In UI object
@@ -756,6 +765,7 @@ const UI = {
     CONFIG.filters.forEach(f => {
       const btn = document.createElement("button");
       btn.className = `tag tag-${f.id} chip`;
+      btn.title = f.desc;
       btn.textContent = f.label;
       if (App.state.activeFilters.has(f.id)) btn.classList.add("active");
       
