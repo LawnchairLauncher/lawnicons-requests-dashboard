@@ -125,7 +125,7 @@ const App = {
 // TEMPLATES (View Layer)
 // ==========================================
 const Templates = {
-  listRow(app, isSelected, tags, iconUrl, dateStr) {
+  listRow(app, isSelected, tags, iconUrl, firstStr, lastStr) {
     const id = app.componentNames[0].componentName;
     const name = app.componentNames[0].label;
     const pkg = id.split('/')[0];
@@ -152,7 +152,10 @@ const Templates = {
         </div>
         <div class="col req">${app.requestCount}</div>
         <div class="col install">—</div>
-        <div class="col first" style="line-height:1.4"><div>${dateStr}</div></div>
+        <div class="col first" style="line-height:1.4">
+          <div>${firstStr}</div>
+          <div>Last: ${lastStr}</div>
+        </div>
         <div class="actions-col">
           <a class="action-btn" href="${iconUrl}" download title="Download icon">${ICONS.download}</a>
           <a class="action-btn" href="${CONFIG.urls.playStore}${pkg}" target="_blank" title="Play Store">${ICONS.play}</a>
@@ -794,7 +797,7 @@ const UI = {
       let html = "";
       if (s.view === "list") {
         const tags = Utils.getTagsForApp(id);
-        html = Templates.listRow(app, isSelected, tags, iconUrl, Utils.formatDate(app.lastRequested));
+        html = Templates.listRow(app, isSelected, tags, iconUrl, Utils.formatDate(app.firstAppearance), Utils.formatDate(app.lastRequested));
       } else {
         html = Templates.gridCard(app, isSelected, iconUrl);
       }

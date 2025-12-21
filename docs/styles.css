@@ -413,6 +413,11 @@ select:hover {
   background: #000; /* Fallback for transparent PNGs */
 }
 
+.list-row .col.first {
+  font-size: 15px;
+  font-weight: 500;
+}
+
 .name-col {
   display: flex;
   flex-direction: column;
