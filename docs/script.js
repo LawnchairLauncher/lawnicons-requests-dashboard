@@ -167,13 +167,11 @@ const Templates = {
     const isUnknown = app.drawable === "unknown";
     
     let contentHtml = "";
-    
+    const label = app.componentNames[0].label === "(Unknown App)" 
+      ? id.split('/')[0] // Show package
+      : app.componentNames[0].label;
+
     if (isUnknown) {
-      // Show text fallback immediately
-      const label = app.componentNames[0].label === "(Unknown App)" 
-        ? id.split('/')[0] // Show package
-        : app.componentNames[0].label;
-        
       contentHtml = `
         <div style="text-align:center; padding:8px; font-size:11px; color:var(--on-surface-variant)">
           <div style="font-weight:700; margin-bottom:4px;">No Icon</div>
@@ -187,7 +185,7 @@ const Templates = {
     }
 
     return `
-      <div class="grid-card ${isSelected ? 'selected' : ''}" data-id="${id}">
+      <div class="grid-card ${isSelected ? 'selected' : ''}" data-id="${id}" title="${label}">
         ${contentHtml}
         <div class="grid-overlay-check">
           <input type="checkbox" ${isSelected ? "checked" : ""} style="pointer-events:none;">
