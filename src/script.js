@@ -12,14 +12,8 @@ const CONFIG = {
     assetsPath: "/extracted_png/",
     iconExtension: ".png",
     filterPath: "/assets/filters/",
+    filters: ["wip", "easy", "conflict", "link", "unlabeled"],
   },
-  filters: [
-    { id: "unlabeled", label: "Unlabeled", desc: "Apps with no matching labels" }, // NEW
-    { id: "wip",      label: "WIP", desc: "Apps with icons that are currently being made" },
-    { id: "easy",     label: "Easy", desc: "Apps with easy to make icons" },
-    { id: "conflict", label: "Name in Use", desc: "Apps that match existing names" },
-    { id: "link",     label: "Matches", desc: "Apps that match existing packages" },
-  ],
   urls: {
     playStore: "https://play.google.com/store/apps/details?id=",
     fDroid: "https://f-droid.org/en/packages/",
@@ -131,10 +125,13 @@ const Templates = {
     const pkg = id.split('/')[0];
     const isUnknown = app.drawable === "unknown" || name === "(Unknown App)";
 
-    const tagHtml = tags.map(t => 
-      `<span class="status-pill status-${t.id}" title="${t.desc}">${t.label}</span>`
-    ).join("");
 
+    const tagHtml = tags.map(tagId => {
+      const meta = App.state.filterMetadata.get(tagId);
+      const label = meta ? meta.label : tagId;
+      const desc = meta ? meta.desc : `Tagged with "${tagId}"`
+      return `<span class="status-pill status-${tagId}" title="${meta.desc}">${label}</span>`;
+    }).join("");
 
     const iconHtml = isUnknown 
       ? `<div class="fallback-icon-row">No Icon</div>`
@@ -153,9 +150,9 @@ const Templates = {
           ${iconHtml}
         </div>
         <div class="name-col">
-          <div class="name-row" style="${isUnknown ? "display: none" : ""}">
+          <div class="name-row">
             ${tagHtml}
-            <span class="app-name">${name}</span>
+            <span class="app-name" style="${isUnknown ? "display: none" : ""}">${name}</span>
           </div>
           <span class="pkg-name">${id}</span>
         </div>
@@ -293,7 +290,7 @@ const Utils = {
     const tokenRegex = /\b(?:is|tag|in):([a-z0-9-_]+)\b/gi;
     
     const cleanQuery = rawQuery.replace(tokenRegex, (match, tag) => {
-      const validTag = CONFIG.filters.find(f => f.id === tag.toLowerCase());
+      const validTag = CONFIG.data.filters.find(id => id === tag.toLowerCase());
       if (validTag) result.tags.add(validTag.id);
       return "";
     });
@@ -324,8 +321,8 @@ const Utils = {
     const tags = [];
     const appTags = App.state.appTags.get(id);
     if (appTags) {
-      CONFIG.filters.forEach(f => {
-        if (appTags.has(f.id)) tags.push(f);
+      CONFIG.data.filters.forEach(id => {
+        if (appTags.has(id)) tags.push(id);
       });
     }
     return tags;
@@ -519,38 +516,41 @@ const Data = {
   init() {
     Promise.all([
       fetch(CONFIG.data.endpoint).then(r => r.json()),
-      ...CONFIG.filters.map(f => this.fetchFilter(f.id))
+      ...CONFIG.data.filters.map(id => this.fetchFilterData(id)) // Fetch all
     ])
-    .then(([json, ...filterResults]) => {
+    .then(([json, ...filterObjects]) => {
       App.data = json.apps;
-
+      
+      // 1. Build ID Map
       App.state.idMap = new Map();
-      App.data.forEach(app => {
-        App.state.idMap.set(app.componentName, app);
-      });
+      App.data.forEach(app => App.state.idMap.set(app.componentName, app));
 
+      // 2. Initialize Tags & Metadata Storage
       App.state.appTags = new Map();
-      CONFIG.filters.forEach((f, idx) => {
-        const ids = filterResults[idx];
-        if (ids && Array.isArray(ids)) {
-          ids.forEach(id => this.addTag(id, f.id));
+      App.state.filterMetadata = new Map(); // Store labels/desc here
+
+      // 3. Process Filters
+      filterObjects.forEach((obj, index) => {
+        if (!obj) return;
+        const id = CONFIG.data.filters[index];
+
+        // Store Metadata for UI
+        App.state.filterMetadata.set(id, { 
+          label: obj.label, 
+          desc: obj.description 
+        });
+
+        // Handle "Unlabeled" Logic
+        if (id === "unlabeled") {
+          this.computeUnlabeled(id);
+        } 
+        // Handle Standard JSON Logic
+        else if (obj[id] && Array.isArray(obj[id])) {
+          obj[id].forEach(appId => this.addTag(appId, id));
         }
       });
 
       this.loadUrlState();
-
-      App.data.forEach(app => {
-        const id = app.componentName;
-        
-        // Check if app has any tags in the map
-        const tags = App.state.appTags.get(id);
-        
-        if (!tags || tags.size === 0) {
-          // It has no tags! Mark it as unlabeled.
-          Data.addTag(id, "unlabeled");
-        }
-      });
-
       UI.init();
     })
     .catch(e => {
@@ -559,13 +559,33 @@ const Data = {
     });
   },
 
-  async fetchFilter(id) {
+  async fetchFilterData(id) {
+    // Special handling for Unlabeled (No network request)
+    if (id === "unlabeled") {
+      return {
+        label: "Unlabeled",
+        description: "Apps with no other tags assigned.",
+        unlabeled: [] // Empty placeholder
+      };
+    }
+
     try {
       const res = await fetch(`${CONFIG.data.filterPath}${id}.json`);
       if (!res.ok) return null;
-      const data = await res.json();
-      return data[id] || null;
+      return await res.json();
     } catch { return null; }
+  },
+
+  computeUnlabeled(tagId) {
+    // Run after other tags are populated
+    App.data.forEach(app => {
+      const id = app.componentName;
+      const existingTags = App.state.appTags.get(id);
+      // If no tags exist (or set is empty), mark as unlabeled
+      if (!existingTags || existingTags.size === 0) {
+        this.addTag(id, tagId);
+      }
+    });
   },
 
   addTag(id, tag) {
@@ -655,7 +675,7 @@ const Data = {
     }
     if (params.has("filters")) {
       params.get("filters").split(",").forEach(t => {
-        if (CONFIG.filters.some(f => f.id === t)) App.state.activeFilters.add(t);
+        if (CONFIG.data.filters.some(id => id === t)) App.state.activeFilters.add(t);
       });
     }
   },
@@ -828,18 +848,21 @@ const UI = {
     if (!c) return;
     c.innerHTML = "";
     
-    CONFIG.filters.forEach(f => {
+    CONFIG.data.filters.forEach(id => {
+      const meta = App.state.filterMetadata.get(id);
+      if (!meta) return;
+
       const btn = document.createElement("button");
-      btn.className = `tag tag-${f.id} chip`;
-      btn.title = f.desc;
-      btn.textContent = f.label;
-      if (App.state.activeFilters.has(f.id)) btn.classList.add("active");
+      btn.className = `tag tag-${id} chip`;
+      btn.textContent = meta.label;
+      btn.title = meta.desc || `Filter by ${meta.label}`; // Use description for 
+      if (App.state.activeFilters.has(id)) btn.classList.add("active");
       
       btn.onclick = () => {
         const s = App.state.activeFilters;
         
         // LOGIC: Mutual Exclusivity for "Unlabeled"
-        if (f.id === "unlabeled") {
+        if (id === "unlabeled") {
           if (s.has("unlabeled")) {
             s.delete("unlabeled"); // Toggle Off
           } else {
@@ -853,8 +876,8 @@ const UI = {
           }
           
           // Standard Toggle
-          if (s.has(f.id)) s.delete(f.id);
-          else s.add(f.id);
+          if (s.has(id)) s.delete(id);
+          else s.add(id);
         }
         
         // Update UI classes immediately (faster than full render)
@@ -878,26 +901,29 @@ const UI = {
     const s = App.state.activeFilters;
 
     // 1. Build Items
-    CONFIG.filters.forEach(f => {
+    CONFIG.data.filters.forEach(id => {
+      const meta = App.state.filterMetadata.get(id);
+      if (!meta) return;
+
       const item = document.createElement("div");
-      const isActive = App.state.activeFilters.has(f.id);
+      const isActive = App.state.activeFilters.has(id);
       item.className = `ctx-item ${isActive ? 'active' : ''}`;
       
       item.innerHTML = `
         <span class="check-icon">${ICONS.check}</span>
-        <span>${f.label}</span>      
+        <span>${meta.label}</span>      
       `;
       
       item.onclick = (e) => {
         e.stopPropagation(); // Prevent popover from closing
     
-        if (f.id === "unlabeled") {
+        if (id === "unlabeled") {
           if (s.has("unlabeled")) s.delete("unlabeled");
           else { s.clear(); s.add("unlabeled"); }
         } else {
           if (s.has("unlabeled")) s.delete("unlabeled");
-          if (s.has(f.id)) s.delete(f.id);
-          else s.add(f.id);
+          if (s.has(id)) s.delete(id);
+          else s.add(id);
         }
         UI.render();
         

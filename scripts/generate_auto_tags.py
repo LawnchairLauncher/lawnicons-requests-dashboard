@@ -4,6 +4,17 @@ import os
 import re
 import unicodedata
 
+METADATA = {
+    "conflict": {
+        "label": "Name in Use",
+        "desc": "Apps that have the same name as existing icons but different packages."
+    },
+    "link": {
+        "label": "Matches",
+        "desc": "Apps that share a package structure with existing icons."
+    }
+}
+
 def sanitize_drawable_name(label):
     if not label: return "unknown"
     # Normalize and clean
@@ -28,8 +39,15 @@ def get_core_package(pkg):
 
 def write_json(output_dir, filename, key, data_list):
     path = os.path.join(output_dir, filename)
+
+    output_data = {
+        "label": METADATA.get(key, {}).get("label", key.capitalize()),
+        "description": METADATA.get(key, {}).get("desc", ""),
+        key: data_list
+    }
+    
     with open(path, 'w', encoding='utf-8') as f:
-        json.dump({key: data_list}, f, indent=2)
+        json.dump(output_data, f, indent=2)
 
 def main(input_file, output_dir):
     # Ensure output dir exists

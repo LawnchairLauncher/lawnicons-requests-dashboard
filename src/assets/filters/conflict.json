@@ -1,4 +1,6 @@
 {
+  "label": "Name in Use",
+  "desc": "Apps that match existing names",
   "conflict": [
     "be.persgroep.android.news.mobilehln/com.kubusapp.ConsentPrivacyActivity",
     "com.ichangemycity.publiceye/com.ichangemycity.publiceye.Splashscreen",
