@@ -518,11 +518,65 @@ select:hover {
 }
 
 /* Checkbox */
+/* =========================================
+   CUSTOM CHECKBOX (Material 3 Style)
+   ========================================= */
 input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--primary);
+  appearance: none;
+  -webkit-appearance: none;
+  
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  border: 2px solid var(--on-surface-variant);
+  background-color: transparent;
   cursor: pointer;
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0;
+}
+
+/* Hover State */
+input[type="checkbox"]:hover {
+  border-color: var(--on-surface);
+  background-color: rgba(var(--on-surface-rgb), 0.08); /* Optional hover fill */
+}
+
+/* Checked State */
+input[type="checkbox"]:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Checkmark Icon (Pseudo-element) */
+input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 9px;
+  border: solid var(--on-primary);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Indeterminate State (Dash) */
+input[type="checkbox"]:indeterminate {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+input[type="checkbox"]:indeterminate::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 7px; /* Centered vertically (18/2 - 2/2) */
+  width: 8px;
+  height: 2px;
+  background-color: var(--on-primary);
+  border: none;
+  transform: none;
 }
 
 /* =========================================
