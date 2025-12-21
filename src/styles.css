@@ -401,7 +401,7 @@ select:hover {
 .list-row {
   display: grid;
   /* Check | Icon | Name | Req | Inst | Date | Actions */
-  grid-template-columns: 40px 56px 3fr 100px 100px 160px 140px;
+  grid-template-columns: 40px 66px 3fr 100px 100px 160px 140px;
   align-items: center;
   padding: 12px 16px;
   border-bottom: 1px solid var(--outline-variant);
@@ -414,6 +414,11 @@ select:hover {
 
 .list-header .col {
   font-weight: 700;
+}
+
+.list-header .col.sel {
+  display: flex;
+  align-items: center;
 }
 
 .list-header .col.name {
@@ -439,8 +444,8 @@ select:hover {
 
 /* Columns */
 .list-row img {
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   border-radius: 8px;
   object-fit: contain;
   background: #000; /* Fallback for transparent PNGs */
@@ -457,6 +462,7 @@ select:hover {
   gap: 4px;
   overflow: hidden;
   min-width: 300px;
+  margin-right: 8px;
 }
 .name-row {
   display: flex;

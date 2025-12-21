@@ -157,7 +157,7 @@ const Templates = {
           <span class="pkg-name">${id}</span>
         </div>
         <div class="col req">${app.requestCount}</div>
-        <div class="col install">—</div>
+        <div class="col install" title="${installs}+ installs in Play Store">${displayInstalls}</div>
         <div class="col first" style="line-height:1.4">
           <div>${firstStr}</div>
           <div>Last: ${lastStr}</div>
