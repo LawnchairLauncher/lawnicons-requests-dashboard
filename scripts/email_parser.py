@@ -22,7 +22,7 @@ COMPONENT_PATTERN = re.compile('ComponentInfo{(?P<ComponentInfo>.+)}')
 
 CONFIG = {
     "request_limit": 1000,
-    "months_limit": 6,
+    "months_limit": 24,
     "min_requests": 4,
 }
 
@@ -257,6 +257,7 @@ def delete_unused_pngs(out_dir: Path, keep: set[str]):
     for f in os.listdir(out_dir):
         if f.endswith(".png"):
             name = os.path.splitext(f)[0]
+            if name == "_ic_default": continue
             if name not in keep:
                 try: os.remove(os.path.join(out_dir, f))
                 except: pass
@@ -280,7 +281,7 @@ def write_json_output(output_path: Path, apps: dict):
     
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4)
+        json.dump(data, f, indent=2)
 
 def print_greedy_report(counter: Counter, limit: int):
     for sender, count in counter.items():
