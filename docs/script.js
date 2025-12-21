@@ -126,8 +126,8 @@ const App = {
 // ==========================================
 const Templates = {
   listRow(app, isSelected, tags, iconUrl, firstStr, lastStr) {
-    const id = app.componentNames[0].componentName;
-    const name = app.componentNames[0].label;
+    const id = app.componentName;
+    const name = app.label;
     const pkg = id.split('/')[0];
     const isUnknown = app.drawable === "unknown" || name === "(Unknown App)";
 
@@ -166,13 +166,13 @@ const Templates = {
   },
 
   gridCard(app, isSelected, iconUrl) {
-    const id = app.componentNames[0].componentName;
+    const id = app.componentName;
     const isUnknown = app.drawable === "unknown";
     
     let contentHtml = "";
-    const label = app.componentNames[0].label === "(Unknown App)" 
+    const label = app.label === "(Unknown App)" 
       ? id.split('/')[0] // Show package
-      : app.componentNames[0].label;
+      : app.label;
 
     if (isUnknown) {
       contentHtml = `
@@ -208,9 +208,9 @@ const Templates = {
   },
 
   rowMenu(app) {
-    const id = app.componentNames[0].componentName;
+    const id = app.componentName;
     const pkg = id.split('/')[0];
-    const name = app.componentNames[0].label;
+    const name = app.label;
     
     return `
       <div class="ctx-item" onclick="window.open('${CONFIG.urls.fDroid}${pkg}')">
@@ -294,8 +294,8 @@ const Utils = {
   },
 
   generateXml(app) {
-    const cmp = app.componentNames[0].componentName;
-    const name = app.componentNames[0].label;
+    const cmp = app.componentName;
+    const name = app.label;
     const draw = Utils.sanitizeDrawableName(name);
     return `<item component="ComponentInfo{${cmp}}" drawable="${draw}" name="${name}" />`;
   },
@@ -304,9 +304,9 @@ const Utils = {
     let path = App.dom.inputPath.value.trim();
     if (path && !path.endsWith("/")) path += "/";
     
-    const cmp = app.componentNames[0].componentName;
-    const name = app.componentNames[0].label.replace(/"/g, '\\"');
-    const cleanName = Utils.sanitizeDrawableName(app.componentNames[0].label);
+    const cmp = app.componentName;
+    const name = app.label.replace(/"/g, '\\"');
+    const cleanName = Utils.sanitizeDrawableName(app.label);
     
     return `python3 ./icontool.py add "${path}${cleanName}.svg" ${cmp} "${name}"`;
   },
@@ -376,9 +376,9 @@ const Actions = {
 
   toggleSelectAll(isChecked) {
     if (isChecked) {
-      App.state.currentData.forEach(app => App.state.selected.add(app.componentNames[0].componentName));
+      App.state.currentData.forEach(app => App.state.selected.add(app.componentName));
     } else {
-      App.state.currentData.forEach(app => App.state.selected.delete(app.componentNames[0].componentName));
+      App.state.currentData.forEach(app => App.state.selected.delete(app.componentName));
     }
     
     const scrollY = window.scrollY;
@@ -461,7 +461,7 @@ const Actions = {
         const app = App.state.idMap.get(id);
         if (!app) return;
 
-        let filename = Utils.sanitizeDrawableName(app.componentNames[0].label);
+        let filename = Utils.sanitizeDrawableName(app.label);
         if (usedNames.has(filename)) {
           let c = 2;
           while (usedNames.has(`${filename}_${c}`)) c++;
@@ -517,7 +517,7 @@ const Data = {
 
       App.state.idMap = new Map();
       App.data.forEach(app => {
-        App.state.idMap.set(app.componentNames[0].componentName, app);
+        App.state.idMap.set(app.componentName, app);
       });
 
       App.state.appTags = new Map();
@@ -531,7 +531,7 @@ const Data = {
       this.loadUrlState();
 
       App.data.forEach(app => {
-        const id = app.componentNames[0].componentName;
+        const id = app.componentName;
         
         // Check if app has any tags in the map
         const tags = App.state.appTags.get(id);
@@ -565,7 +565,7 @@ const Data = {
   },
 
   getSelectedApps() {
-    return App.data.filter(a => App.state.selected.has(a.componentNames[0].componentName));
+    return App.data.filter(a => App.state.selected.has(a.componentName));
   },
 
   process() {
@@ -579,7 +579,7 @@ const Data = {
     // 2. Filter (Tags)
     if (activeFilters.size > 0) {
       data = data.filter(app => {
-        const id = app.componentNames[0].componentName;
+        const id = app.componentName;
         const tags = s.appTags.get(id);
         if (!tags) return false;
         return Array.from(activeFilters).every(fid => tags.has(fid));
@@ -592,15 +592,13 @@ const Data = {
         try {
           const regex = new RegExp(query.text, 'i');
           data = data.filter(a => 
-            a.componentNames.some(c => regex.test(c.label) || regex.test(c.componentName))
+            a.componentNames.some(c => regex.test(a.label) || regex.test(a.componentName))
           );
         } catch { data = []; }
       } else {
         const term = query.text.toLowerCase();
         data = data.filter(a => 
-          a.componentNames.some(c => 
-            c.label.toLowerCase().includes(term) || c.componentName.toLowerCase().includes(term)
-          )
+          a.label.toLowerCase().includes(term) || a.componentName.toLowerCase().includes(term)
         );
       }
     }
@@ -618,8 +616,8 @@ const Data = {
         "req-asc":   (a, b) => a.requestCount - b.requestCount,
         "time-desc": (a, b) => b.lastRequested - a.lastRequested,
         "time-asc":  (a, b) => a.lastRequested - b.lastRequested,
-        "name-asc":  (a, b) => a.componentNames[0].label.localeCompare(b.componentNames[0].label),
-        "name-desc": (a, b) => b.componentNames[0].label.localeCompare(a.componentNames[0].label)
+        "name-asc":  (a, b) => a.label.localeCompare(b.label),
+        "name-desc": (a, b) => b.label.localeCompare(a.label)
       };
       if (sorters[s.sort]) data.sort(sorters[s.sort]);
     }
@@ -790,7 +788,7 @@ const UI = {
     const tempDiv = document.createElement('div');
 
     batch.forEach(app => {
-      const id = app.componentNames[0].componentName;
+      const id = app.componentName;
       const isSelected = s.selected.has(id);
       const iconUrl = `${CONFIG.data.assetsPath}${app.drawable}${CONFIG.data.iconExtension}`;
       
@@ -943,7 +941,7 @@ const UI = {
 
     let count = 0;
     App.state.currentData.forEach(app => {
-      if (App.state.selected.has(app.componentNames[0].componentName)) count++;
+      if (App.state.selected.has(app.componentName)) count++;
     });
 
     hc.checked = (count === total);

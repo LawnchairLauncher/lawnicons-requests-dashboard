@@ -47,8 +47,7 @@ def main(input_file, output_dir):
     # Data Structures
     app_list = []
     for app in apps:
-        comp_info = app['componentNames'][0]
-        app_id = comp_info['componentName']
+        app_id = app['componentName']
         pkg = app_id.split('/')[0]
         label = comp_info['label']
         
