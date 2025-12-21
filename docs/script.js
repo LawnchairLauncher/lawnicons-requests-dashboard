@@ -129,6 +129,7 @@ const Templates = {
     const id = app.componentNames[0].componentName;
     const name = app.componentNames[0].label;
     const pkg = id.split('/')[0];
+    const isUnknown = app.drawable === "unknown" || name === "(Unknown App)";
 
     const tagHtml = tags.map(t => 
       `<span class="status-pill status-${t.id}" title="${t.desc}">${t.label}</span>`
@@ -140,10 +141,10 @@ const Templates = {
           <input type="checkbox" ${isSelected ? "checked" : ""} class="row-checkbox" />
         </div>
         <div class="icon">
-          <img src="${iconUrl}" loading="lazy" onerror="this.style.opacity=0.2" />
+          <img src="${iconUrl}" loading="lazy" onerror="this.src='extracted_png/_ic_default.png'" />
         </div>
         <div class="name-col">
-          <div class="name-row">
+          <div class="name-row" style="${isUnknown ? "display: none" : ""}">
             ${tagHtml}
             <span class="app-name">${name}</span>
           </div>
@@ -163,9 +164,31 @@ const Templates = {
 
   gridCard(app, isSelected, iconUrl) {
     const id = app.componentNames[0].componentName;
+    const isUnknown = app.drawable === "unknown";
+    
+    let contentHtml = "";
+    
+    if (isUnknown) {
+      // Show text fallback immediately
+      const label = app.componentNames[0].label === "(Unknown App)" 
+        ? id.split('/')[0] // Show package
+        : app.componentNames[0].label;
+        
+      contentHtml = `
+        <div style="text-align:center; padding:8px; font-size:11px; color:var(--on-surface-variant)">
+          <div style="font-weight:700; margin-bottom:4px;">No Icon</div>
+          <div style="word-break:break-word;">${label}</div>
+        </div>
+      `;
+    } else {
+      // Show Image with error handler
+      contentHtml = `<img src="${iconUrl}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+      <div class="grid-fallback" style="display:none; text-align:center; font-size:11px; color:var(--on-surface-variant)">No Icon</div>`;
+    }
+
     return `
-      <div class="grid-card ${isSelected ? 'selected' : ''}" data-id="${id}" title="${app.componentNames[0].label}">
-        <img src="${iconUrl}" loading="lazy" onerror="this.style.display='none'" />
+      <div class="grid-card ${isSelected ? 'selected' : ''}" data-id="${id}">
+        ${contentHtml}
         <div class="grid-overlay-check">
           <input type="checkbox" ${isSelected ? "checked" : ""} style="pointer-events:none;">
         </div>
