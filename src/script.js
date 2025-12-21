@@ -12,7 +12,7 @@ const CONFIG = {
     assetsPath: "/extracted_png/",
     iconExtension: ".png",
     filterPath: "/assets/filters/",
-    filters: ["wip", "easy", "conflict", "link", "unlabeled"],
+    filters: ["unlabeled", "wip", "easy", "conflict", "link"],
   },
   urls: {
     playStore: "https://play.google.com/store/apps/details?id=",
