@@ -741,6 +741,18 @@ const UI = {
       this.showMobileFilterPopover();
     });
 
+    ['rowMenu', 'fabMenu', 'mobileFilterMenu'].forEach(id => {
+      const el = App.dom[id];
+      if (el) {
+        el.addEventListener("toggle", (e) => {
+          if (e.newState === "closed") {
+            // Wait for CSS transition
+            setTimeout(() => el.innerHTML = "", 200);
+          }
+        });
+      }
+    });
+
     App.dom.container.addEventListener('click', (e) => {
       const trigger = e.target.closest('.ctx-trigger');
       if (trigger) {
@@ -1025,6 +1037,13 @@ const UI = {
   closeContextMenu() {
     try { App.dom.rowMenu.hidePopover(); } catch {}
     try { App.dom.fabMenu.hidePopover(); } catch {}
+    try { App.dom.mobileFilterMenu.hidePopover(); } catch {}
+
+    setTimeout(() => {
+      App.dom.rowMenu.innerHTML = "";
+      App.dom.fabMenu.innerHTML = "";
+      App.dom.mobileFilterMenu.innerHTML = ""; // If present
+    }, 200);
   }
 };
 
