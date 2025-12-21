@@ -300,6 +300,13 @@ const Utils = {
     });
   },
 
+  parseInstalls(str) {
+    if (!str) return -1; // Unknown installs go to bottom
+    // Remove commas and plus signs, then parse
+    const clean = str.toString().replace(/[,+]/g, '');
+    return parseInt(clean, 10) || 0;
+  },
+
   sanitizeDrawableName(label) {
     if (!label) return "unknown";
     let name = label.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -698,6 +705,8 @@ const Data = {
       const sorters = {
         "req-desc":  (a, b) => b.requestCount - a.requestCount,
         "req-asc":   (a, b) => a.requestCount - b.requestCount,
+        "install-desc": (a, b) => Utils.parseInstalls(b.installs) - Utils.parseInstalls(a.installs),
+        "install-asc":  (a, b) => Utils.parseInstalls(a.installs) - Utils.parseInstalls(b.installs),
         "time-desc": (a, b) => b.lastRequested - a.lastRequested,
         "time-asc":  (a, b) => a.lastRequested - b.lastRequested,
         "name-asc":  (a, b) => a.label.localeCompare(b.label),
