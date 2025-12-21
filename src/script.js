@@ -291,7 +291,7 @@ const Utils = {
     
     const cleanQuery = rawQuery.replace(tokenRegex, (match, tag) => {
       const validTag = CONFIG.data.filters.find(id => id === tag.toLowerCase());
-      if (validTag) result.tags.add(validTag.id);
+      if (validTag) result.tags.add(validTag);
       return "";
     });
     
