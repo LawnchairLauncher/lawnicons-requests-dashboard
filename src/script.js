@@ -135,13 +135,22 @@ const Templates = {
       `<span class="status-pill status-${t.id}" title="${t.desc}">${t.label}</span>`
     ).join("");
 
+
+    const iconHtml = isUnknown 
+      ? `<div class="fallback-icon-row">No Icon</div>`
+      : `<img src="${iconUrl}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
+        <div class="fallback-icon-row" style="display:none">No Icon</div>`;
+
+    const installs = app.installs ? app.installs.replace(/,/g, '').replace(/\+/g, '') : null;
+    const displayInstalls = installs ? new Intl.NumberFormat('en', { notation: "compact" }).format(installs) + "+" : "—";
+
     return `
       <div class="list-row ${isSelected ? 'selected' : ''}" data-id="${id}">
         <div class="check-col">
           <input type="checkbox" ${isSelected ? "checked" : ""} class="row-checkbox" />
         </div>
         <div class="icon">
-          <img src="${iconUrl}" loading="lazy" onerror="this.src='extracted_png/_ic_default.png'" />
+          ${iconHtml}
         </div>
         <div class="name-col">
           <div class="name-row" style="${isUnknown ? "display: none" : ""}">
@@ -176,7 +185,7 @@ const Templates = {
 
     if (isUnknown) {
       contentHtml = `
-        <div style="text-align:center; padding:8px; font-size:11px; color:var(--on-surface-variant)">
+        <div class="fallback-icon-grid">
           <div style="font-weight:700; margin-bottom:4px;">No Icon</div>
           <div style="word-break:break-word;">${label}</div>
         </div>
