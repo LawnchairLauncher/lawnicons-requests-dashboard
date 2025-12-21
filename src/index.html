@@ -39,9 +39,11 @@
       
       <div class="path-wrapper" title="icontool.py path">
         <svg><use href="#ic-terminal"/></svg>
-        <input type="text" value="/Users/user/Desktop/export/" />
+        <input type="text" value="/Users/user/Desktop/export/" placeholder="Enter icontool.py path here"/>
       </div>
     </div>
+
+    <a href="#headerCheck" id="controlsSkip">Skip filters</a>
 
     <div class="controls-bottom">
       <div class="control-group">
@@ -68,6 +70,16 @@
     </div>
   </div>
 
+  <div id="fabBar" class="fab-bar" tabindex="0" role="menu">
+    <button class="fab-btn fab-primary" onclick="Actions.downloadSelected()">
+      <svg><use href="#ic-download"/></svg>
+      <span id="fabCount">Download 0 icons</span>
+    </button>
+    <button class="fab-btn fab-secondary" id="fabMenuBtn" title="More actions">
+      <svg><use href="#ic-dots"/></svg>
+    </button>
+</div>
+
   <div class="list-viewport">
     <div id="listHeader" class="list-header">
       <div class="col sel">
@@ -89,19 +101,9 @@
 
 </div>
 
-<div id="fabBar" class="fab-bar">
-  <button class="fab-btn fab-primary" onclick="Actions.downloadSelected()">
-    <svg><use href="#ic-download"/></svg>
-    <span id="fabCount">Download 0 icons</span>
-  </button>
-  <button class="fab-btn fab-secondary" id="fabMenuBtn" title="More actions">
-    <svg><use href="#ic-dots"/></svg>
-  </button>
-</div>
-
-<div id="rowMenu" popover="auto" class="context-menu row-style"></div>
-<div id="fabMenu" popover="auto" class="context-menu fab-style"></div>
-<div id="mobileFilterMenu" popover="auto" class="context-menu row-style mobile-filter-style"></div>
+<div id="rowMenu" popover="auto" tabindex="0" role="menu" class="context-menu row-style"></div>
+<div id="fabMenu" popover="auto" tabindex="0" role="menu" class="context-menu fab-style"></div>
+<div id="mobileFilterMenu" popover="auto" tabindex="0" role="menu" class="context-menu row-style mobile-filter-style"></div>
 
 <div id="toastContainer" class="toast-container"></div>
 

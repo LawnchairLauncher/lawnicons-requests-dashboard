@@ -79,6 +79,7 @@ const App = {
     selected: new Set(),
     appTags: new Map(),
     activeFilters: new Set(),
+    lastSelectedId: null,
     
     // Runtime
     idMap: new Map(), // NEW: O(1) Lookup Cache
@@ -142,9 +143,14 @@ const Templates = {
     const displayInstalls = installs ? new Intl.NumberFormat('en', { notation: "compact" }).format(installs) + "+" : "—";
 
     return `
-      <div class="list-row ${isSelected ? 'selected' : ''}" data-id="${id}">
+      <div class="list-row ${isSelected ? 'selected' : ''}"
+        data-id="${id}"
+        tabindex="0" 
+        role="row" 
+        aria-selected="${isSelected}"
+        >
         <div class="check-col">
-          <input type="checkbox" ${isSelected ? "checked" : ""} class="row-checkbox" />
+          <input type="checkbox" ${isSelected ? "checked" : ""} class="row-checkbox" tabindex="-1" />
         </div>
         <div class="icon">
           ${iconHtml}
@@ -163,9 +169,15 @@ const Templates = {
           <div>Last: ${lastStr}</div>
         </div>
         <div class="actions-col">
-          <a class="action-btn" href="${iconUrl}" download title="Download icon">${ICONS.download}</a>
-          <a class="action-btn" href="${CONFIG.urls.playStore}${pkg}" target="_blank" title="Play Store">${ICONS.play}</a>
-          <div class="action-btn ctx-trigger" title="More actions">${ICONS.dots}</div>
+          <a class="action-btn" href="${iconUrl}" download title="Download icon"
+            tabindex="0" role="button" aria-label="Download" >${ICONS.download}</a>
+          <a class="action-btn" href="${CONFIG.urls.playStore}${pkg}" target="_blank" title="Play Store"
+            tabindex="0" role="button" aria-label="Play Store" >${ICONS.play}</a>
+          <div class="action-btn ctx-trigger" title="More actions"
+            tabindex="0" 
+            role="button" 
+            aria-label="More actions" 
+            aria-haspopup="true">${ICONS.dots}</div>
         </div>
       </div>
     `;
@@ -194,10 +206,13 @@ const Templates = {
     }
 
     return `
-      <div class="grid-card ${isSelected ? 'selected' : ''}" data-id="${id}" title="${label}">
+      <div class="grid-card ${isSelected ? 'selected' : ''}" data-id="${id}" title="${label}"
+        tabindex="0" 
+        role="checkbox" 
+        aria-checked="${isSelected}">
         ${contentHtml}
         <div class="grid-overlay-check">
-          <input type="checkbox" ${isSelected ? "checked" : ""} style="pointer-events:none;">
+          <input type="checkbox" ${isSelected ? "checked" : ""} style="pointer-events:none;" tabindex="-1" >
         </div>
       </div>
     `;
@@ -219,22 +234,28 @@ const Templates = {
     const name = app.label;
     
     return `
-      <div class="ctx-item" onclick="window.open('${CONFIG.urls.fDroid}${pkg}')">
+      <div class="ctx-item" tabindex="0" role="menuitem"
+        onclick="window.open('${CONFIG.urls.fDroid}${pkg}')">
         ${ICONS.fDroid} <span>F-Droid</span>
       </div>
-      <div class="ctx-item" onclick="window.open('${CONFIG.urls.izzy}${pkg}')">
+      <div class="ctx-item" tabindex="0" role="menuitem"
+        onclick="window.open('${CONFIG.urls.izzy}${pkg}')">
         ${ICONS.izzyOnDroid} <span>IzzyOnDroid</span>
       </div>
-      <div class="ctx-item" onclick="window.open('${CONFIG.urls.galaxyStore}${pkg}')">
+      <div class="ctx-item" tabindex="0" role="menuitem"
+        onclick="window.open('${CONFIG.urls.galaxyStore}${pkg}')">
         ${ICONS.galaxyStore} <span>Galaxy Store</span>
       </div>
-      <div class="ctx-item" onclick="Actions.copyIconToolCmd('${id}')">
+      <div class="ctx-item" tabindex="0" role="menuitem"
+        onclick="Actions.copyIconToolCmd('${id}')">
         ${ICONS.terminal} <span>Copy icontool command</span>
       </div>
-      <div class="ctx-item" onclick="Actions.copyToClipboard('${name.replace(/'/g, "\\'")}\\n${id}')">
+      <div class="ctx-item" tabindex="0" role="menuitem" 
+        onclick="Actions.copyToClipboard('${name.replace(/'/g, "\\'")}\\n${id}')">
         ${ICONS.copy} <span>Copy name and component</span>
       </div>
-      <div class="ctx-item" onclick="Actions.copyAppFilterEntry('${id}')">
+      <div class="ctx-item" tabindex="0" role="menuitem"
+        onclick="Actions.copyAppFilterEntry('${id}')">
         ${ICONS.copy} <span>Copy appfilter</span>
       </div>
     `;
@@ -242,16 +263,19 @@ const Templates = {
 
   fabMenu() {
     return `
-      <div class="ctx-item" onclick="Actions.copyBulkAppFilter()">
+      <div class="ctx-item" tabindex="0" role="menuitem"
+        onclick="Actions.copyBulkAppFilter()">
         ${ICONS.copy} <span>Copy appfilter entries</span>
-      </div>
-       <div class="ctx-item" onclick="Actions.downloadSelectionAsJson()">
-        ${ICONS.download} <span>Download JSON config</span>
       </div>
       <div class="ctx-item" onclick="Actions.copyPrTemplate()">
         ${ICONS.copy} <span>Copy PR template</span>
       </div>
-      <div class="ctx-item" onclick="Actions.copyBulkIconToolCmd()">
+      <div class="ctx-item" tabindex="0" role="menuitem"
+        onclick="Actions.downloadSelectionAsJson()">
+        ${ICONS.download} <span>Download JSON config</span>
+      </div>
+      <div class="ctx-item" tabindex="0" role="menuitem"
+        onclick="Actions.copyBulkIconToolCmd()">
         ${ICONS.terminal} <span>Copy icontool commands</span>
       </div>
     `;
@@ -370,10 +394,41 @@ const Toast = {
 // ACTIONS (Business Logic)
 // ==========================================
 const Actions = {
-  toggleSelection(id) {
+  toggleSelection(id, event = null) {
     const s = App.state.selected;
+    const currentIdx = App.state.currentData.findIndex(a => a.componentName === id);
+
+    // Handle Shift Click
+    if (event && event.shiftKey && s.lastSelectedId) {
+      const lastIdx = App.state.currentData.findIndex(a => a.componentName === s.lastSelectedId);
+
+      window.getSelection()?.removeAllRanges();
+      
+      if (lastIdx !== -1 && currentIdx !== -1) {
+        const start = Math.min(lastIdx, currentIdx);
+        const end = Math.max(lastIdx, currentIdx);
+        
+        const range = App.state.currentData.slice(start, end + 1);
+        
+        // Determine mode: if current clicked item is NOT selected, we select range.
+        // If it IS selected (and we shift click), we typically select range.
+        // Standard behavior: Add range to selection.
+        
+        range.forEach(app => {
+          s.add(app.componentName);
+          UI.updateItemVisuals(app.componentName);
+        });
+        
+        UI.updateHeaderCheckbox();
+        UI.updateFab();
+        return; // Stop standard toggle
+      }
+    }
+
     if (s.has(id)) s.delete(id);
     else s.add(id);
+
+    s.lastSelectedId = id;
     
     UI.updateItemVisuals(id);
     UI.updateHeader();
@@ -741,18 +796,6 @@ const UI = {
       this.showMobileFilterPopover();
     });
 
-    ['rowMenu', 'fabMenu', 'mobileFilterMenu'].forEach(id => {
-      const el = App.dom[id];
-      if (el) {
-        el.addEventListener("toggle", (e) => {
-          if (e.newState === "closed") {
-            // Wait for CSS transition
-            setTimeout(() => el.innerHTML = "", 200);
-          }
-        });
-      }
-    });
-
     App.dom.container.addEventListener('click', (e) => {
       const trigger = e.target.closest('.ctx-trigger');
       if (trigger) {
@@ -778,9 +821,152 @@ const UI = {
         const id = item.dataset.id;
         
         // If clicking the checkbox directly, or the row background
-        Actions.toggleSelection(id);
+        Actions.toggleSelection(id, e);
       }
     });
+
+    document.addEventListener('keydown', (e) => {
+      // Ignore if typing in an input
+      if (e.target.tagName === 'INPUT') return;
+
+      // 1. Focus Search (/)
+      if (e.key === '/') {
+        e.preventDefault();
+        App.dom.inputSearch.focus();
+      }
+
+      // 2. Select All (Ctrl+A)
+      if ((e.ctrlKey || e.metaKey) && e.key === 'a') {
+        e.preventDefault();
+        Actions.toggleSelectAll(true);
+      }
+
+      // 3. Clear Selection (Esc)
+      if (e.key === 'Escape') {
+        if (App.state.selected.size > 0) {
+          Actions.toggleSelectAll(false);
+        }
+      }
+
+      // 4. Focus FAB
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        if (App.state.selected.size > 0) {
+          e.preventDefault();
+          App.dom.fabBar.focus()
+        }
+      }
+    });
+
+    // Add 'keydown' listener to container
+    App.dom.container.addEventListener('keydown', (e) => {
+      const target = e.target;
+      
+      // --- 1. Selection & Actions (Enter/Space) ---
+      if (e.key === 'Enter' || e.key === ' ') {
+        // A. Row/Card Selection
+        if (target.classList.contains('list-row') || target.classList.contains('grid-card')) {
+          e.preventDefault(); // Prevent page scroll on Space
+          const id = target.dataset.id;
+          Actions.toggleSelection(id, e); // Pass event for Shift logic
+        }
+
+        // B. Context Menu Trigger
+        if (target.classList.contains('ctx-trigger')) {
+          e.preventDefault();
+          e.stopPropagation();
+          const row = target.closest('[data-id]');
+          const id = row.dataset.id;
+          const app = App.state.idMap.get(id);
+          
+          const rect = target.getBoundingClientRect();
+          const fakeEvent = { 
+            clientX: rect.left + rect.width / 2, 
+            clientY: rect.top + rect.height / 2 
+          };
+          
+          UI.showRowMenu(fakeEvent, app);
+        }
+        return; // Done with Enter/Space
+      }
+
+      // --- 2. Navigation (Arrow Keys) ---
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        const item = target.closest('[data-id]');
+        if (!item) return;
+
+        e.preventDefault(); // Prevent scrolling
+
+        // Get only valid items (ignore loaders/sentinels)
+        const items = Array.from(App.dom.container.querySelectorAll('[data-id]'));
+        const index = items.indexOf(item);
+        let nextIndex = index;
+
+        if (App.state.view === 'list') {
+          // List: Up/Down only
+          if (e.key === 'ArrowUp') nextIndex = index - 1;
+          if (e.key === 'ArrowDown') nextIndex = index + 1;
+        } else {
+          // Grid: Calculate columns dynamically
+          const itemWidth = item.getBoundingClientRect().width + 16; // Width + Gap
+          const containerWidth = App.dom.container.clientWidth;
+          const cols = Math.floor(containerWidth / itemWidth) || 1;
+
+          if (e.key === 'ArrowLeft') nextIndex = index - 1;
+          if (e.key === 'ArrowRight') nextIndex = index + 1;
+          if (e.key === 'ArrowUp') nextIndex = index - cols - 1;
+          if (e.key === 'ArrowDown') nextIndex = index + cols + 1;
+        }
+
+        // Apply Focus if valid
+        if (nextIndex >= 0 && nextIndex < items.length) {
+          items[nextIndex].focus();
+        }
+      }
+    });
+
+    // Handle Menu Navigation (Shared for all menus)
+    ['rowMenu', 'fabMenu', 'mobileFilterMenu'].forEach(id => {
+      const menu = App.dom[id];
+      if (!menu) return;
+
+      if (menu) {
+        menu.addEventListener("toggle", (e) => {
+          if (e.newState === "closed") {
+            // Wait for CSS transition
+            setTimeout(() => menu.innerHTML = "", 200);
+          }
+        });
+      }
+
+      menu.addEventListener('keydown', (e) => {
+        const items = Array.from(menu.querySelectorAll('.ctx-item'));
+        const index = items.indexOf(document.activeElement);
+
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          const next = items[index + 1] || items[0];
+          next.focus();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prev = items[index - 1] || items[items.length - 1];
+          prev.focus();
+        } else if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          document.activeElement.click();
+        } else if (e.key === 'Tab') {
+          e.preventDefault()
+          this.closeContextMenu()
+        }  else if (e.key === 'Escape') {
+          // Popover handles close, but we should return focus to trigger?
+          // Native behavior usually handles this, but explicit is better.
+        }
+      });
+    });
+
+    const isDesktop = window.matchMedia('(pointer: fine)').matches;
+    if (isDesktop) {
+      App.dom.inputSearch.focus();
+    }
   },
 
   initObserver() {
@@ -906,56 +1092,6 @@ const UI = {
     });
   },
 
-  showMobileFilterPopover() {
-    const menu = App.dom.mobileFilterMenu;
-    menu.innerHTML = ""; // Clear previous content
-
-    const s = App.state.activeFilters;
-
-    // 1. Build Items
-    CONFIG.data.filters.forEach(id => {
-      const meta = App.state.filterMetadata.get(id);
-      if (!meta) return;
-
-      const item = document.createElement("div");
-      const isActive = App.state.activeFilters.has(id);
-      item.className = `ctx-item ${isActive ? 'active' : ''}`;
-      
-      item.innerHTML = `
-        <span class="check-icon">${ICONS.check}</span>
-        <span>${meta.label}</span>      
-      `;
-      
-      item.onclick = (e) => {
-        e.stopPropagation(); // Prevent popover from closing
-    
-        if (id === "unlabeled") {
-          if (s.has("unlabeled")) s.delete("unlabeled");
-          else { s.clear(); s.add("unlabeled"); }
-        } else {
-          if (s.has("unlabeled")) s.delete("unlabeled");
-          if (s.has(id)) s.delete(id);
-          else s.add(id);
-        }
-        UI.render();
-        
-        // Re-render menu content to update checkmarks instantly
-        this.showMobileFilterPopover();
-      };
-      menu.appendChild(item);
-    });
-
-    // 2. Position below button
-    const rect = App.dom.mobileFilterBtn.getBoundingClientRect();
-    const padding = (s.size > 0) ? 135 : 150
-
-    menu.style.left = `${rect.left - padding}px`;
-    menu.style.top = `${rect.bottom + 8}px`;
-
-    // 3. Show
-    menu.showPopover();
-  },
-
   updateItemVisuals(id) {
     const isSelected = App.state.selected.has(id);
     document.querySelectorAll(`[data-id="${id}"]`).forEach(el => {
@@ -1027,11 +1163,74 @@ const UI = {
     App.dom.rowMenu.style.top = `${y}px`;
     App.dom.rowMenu.style.transformOrigin = "top left";
     App.dom.rowMenu.showPopover();
+    this.focusMenu(App.dom.rowMenu);
   },
 
   showFabMenu() {
     App.dom.fabMenu.innerHTML = Templates.fabMenu();
     App.dom.fabMenu.showPopover();
+    this.focusMenu(App.dom.fabMenu);
+  },
+
+  showMobileFilterPopover() {
+    const menu = App.dom.mobileFilterMenu;
+    menu.innerHTML = ""; // Clear previous content
+
+    const s = App.state.activeFilters;
+
+    // 1. Build Items
+    CONFIG.data.filters.forEach(id => {
+      const meta = App.state.filterMetadata.get(id);
+      if (!meta) return;
+
+      const item = document.createElement("div");
+      const isActive = App.state.activeFilters.has(id);
+      item.tabIndex = 0
+      item.role = "menuitemcheckbox"
+      item.className = `ctx-item ${isActive ? 'active' : ''}`;
+      
+      item.innerHTML = `
+        <span class="check-icon">${ICONS.check}</span>
+        <span>${meta.label}</span>      
+      `;
+      
+      item.onclick = (e) => {
+        e.stopPropagation(); // Prevent popover from closing
+    
+        if (id === "unlabeled") {
+          if (s.has("unlabeled")) s.delete("unlabeled");
+          else { s.clear(); s.add("unlabeled"); }
+        } else {
+          if (s.has("unlabeled")) s.delete("unlabeled");
+          if (s.has(id)) s.delete(id);
+          else s.add(id);
+        }
+        UI.render();
+        
+        // Re-render menu content to update checkmarks instantly
+        this.showMobileFilterPopover();
+      };
+      menu.appendChild(item);
+    });
+
+    // 2. Position below button
+    const rect = App.dom.mobileFilterBtn.getBoundingClientRect();
+    const padding = (s.size > 0) ? 135 : 150
+
+    menu.style.left = `${rect.left - padding}px`;
+    menu.style.top = `${rect.bottom + 8}px`;
+
+    // 3. Show
+    menu.showPopover();
+    this.focusMenu(App.dom.mobileFilterMenu);
+  },
+
+  focusMenu(menuEl) {
+    // Wait for browser to render the popover
+    requestAnimationFrame(() => {
+      const firstItem = menuEl.querySelector('.ctx-item');
+      if (firstItem) firstItem.focus();
+    });
   },
 
   closeContextMenu() {
