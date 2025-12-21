@@ -8,10 +8,10 @@
 // ==========================================
 const CONFIG = {
   data: {
-    endpoint: "/docs/assets/requests.json",
-    assetsPath: "/docs/extracted_png/",
+    endpoint: "/assets/requests.json",
+    assetsPath: "/extracted_png/",
     iconExtension: ".png",
-    filterPath: "/docs/assets/filters/",
+    filterPath: "/assets/filters/",
   },
   filters: [
     { id: "unlabeled", label: "Unlabeled", desc: "Apps with no matching labels" }, // NEW
