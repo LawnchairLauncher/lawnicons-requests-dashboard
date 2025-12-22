@@ -12,10 +12,13 @@ from google_play_scraper import app as play_app
 JSON_PATH = "src/assets/requests.json"
 DEAD_PATH = "src/assets/dead_links.json"
 ICON_DIR = "src/extracted_png/"
+
+# Throttling & Limits
 SLEEP_MIN = 2
 SLEEP_MAX = 5
-SAVE_INTERVAL = 10  # Autosave every 10 successful updates
-MAX_CONSECUTIVE_ERRORS = 5
+SAVE_INTERVAL = 10         # Autosave every N requests
+MAX_CONSECUTIVE_ERRORS = 5 # Stop if IP blocked
+BATCH_LIMIT = 500          # Max apps to update per run (Set 0 for infinite)
 
 # STATE
 DATA = None
@@ -96,22 +99,28 @@ def main():
     apps = DATA['apps']
     total = len(apps)
     updated_session = 0
-    
-    consecutive_errors = 0 
+    consecutive_errors = 0
     
     print(f"📋 Loaded {total} apps. {len(DEAD_SET)} known dead links.")
+    if BATCH_LIMIT > 0:
+        print(f"🎯 Target: Update max {BATCH_LIMIT} apps this session.")
 
     for i, app in enumerate(apps):
         if IS_INTERRUPTED: break
         
+        # Batch Limit Check
+        if BATCH_LIMIT > 0 and updated_session >= BATCH_LIMIT:
+            print(f"\n✅ Batch limit reached ({BATCH_LIMIT}). Stopping gracefully.")
+            break
+
+        # Circuit Breaker
         if consecutive_errors >= MAX_CONSECUTIVE_ERRORS:
             print(f"\n\n🚨 CIRCUIT BREAKER TRIPPED! Too many errors ({consecutive_errors}).")
-            print("You are likely rate-limited. Pausing script.")
             break
 
         pkg = app['componentName'].split('/')[0]
 
-        # Skip logic
+        # Skip Logic
         if pkg in DEAD_SET: continue
         if 'installs' in app and app.get('drawable') != 'unknown': continue
 
@@ -137,30 +146,34 @@ def main():
 
             print(f"OK ({app['installs']})")
             updated_session += 1
-            consecutive_errors = 0 # RESET counter on success
+            consecutive_errors = 0
 
-            # Autosave Check
+            # Autosave
             if updated_session > 0 and updated_session % SAVE_INTERVAL == 0:
                 save_state()
 
         except Exception as e:
-            print(f"Error:", e)
-            
-            # Smart Error Handling
             error_str = str(e).lower()
             if "404" in error_str or "not found" in error_str:
-                # 404 is a valid result (app gone), NOT a network/ban error
+                print("Dead/404")
                 DEAD_SET.add(pkg)
-                consecutive_errors = 0 # Reset because the server actually responded
+                consecutive_errors = 0
             else:
-                # 429 (Too Many Requests), 403 (Forbidden), Connection Error
+                print(f"Failed ({e})")
                 consecutive_errors += 1
                 print(f"   ⚠️ Strike {consecutive_errors}/{MAX_CONSECUTIVE_ERRORS}")
 
         time.sleep(random.uniform(SLEEP_MIN, SLEEP_MAX))
 
     save_state()
-    print(f"\n✨ Finished. Updated {updated_session} apps.")
+    
+    print("-" * 40)
+    print(f"✨ Finished. Updated {updated_session} apps.")
+    
+    if updated_session > 0:
+        print("\n📝 Suggested Commit Message:")
+        print(f"Update requests.json metadata for {updated_session} apps via Play Store")
+    print("-" * 40)
 
 if __name__ == "__main__":
     main()
