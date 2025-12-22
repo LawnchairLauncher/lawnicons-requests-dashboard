@@ -249,7 +249,8 @@ body {
   border: 1px solid transparent;
 }
 
-.search-wrapper:focus-within {
+.search-wrapper:focus-within,
+.path-wrapper:focus-within {
   box-shadow: 0 0 0 1px var(--on-surface-variant);
 }
 
@@ -271,7 +272,7 @@ body {
 }
 .path-wrapper svg {
   color: var(--on-surface-variant);
-  width: 26px;
+  width: 24px;
   height: 24px;
 }
 
@@ -308,7 +309,6 @@ select,
   color: var(--on-surface);
   font-size: 13px;
   outline: none;
-  cursor: pointer;
   appearance: none;
   transition: 0.2s;
   text-wrap-mode: nowrap;
@@ -349,8 +349,7 @@ select:hover {
   background-size: 0;
 }
 .tag:hover {
-  border-color: var(--on-surface);
-  color: var(--on-surface);
+  background-color: var(--surface-container-high);
 }
 .tag.active {
   background-color: var(--primary-container);
@@ -500,8 +499,8 @@ select:hover {
   border-radius: 50%;
   border: 1px solid transparent;
   transition: border 0.2s;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
 }
 .action-btn:focus {
   border-color: var(--outline-variant)
@@ -510,13 +509,13 @@ select:hover {
   color: var(--primary);
 }
 .action-btn svg {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
 }
 .action-btn.ctx-trigger svg {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 }
 
 /* Checkbox (M3 Style) */

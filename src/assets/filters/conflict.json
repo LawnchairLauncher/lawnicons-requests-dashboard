@@ -1,6 +1,6 @@
 {
-  "label": "Name in Use",
-  "description": "App name matches an existing icon, but the package is different",
+  "label": "Name in use",
+  "description": "App name matches an existing icon, but the package is different.",
   "conflict": [
     "com.lknninex.epik/com.lknninex.epik.MainActivity",
     "ru.ozon.fintech.finance/ru.ozon.fintech.features.tabber.presentation.finance.FinanceActivity",

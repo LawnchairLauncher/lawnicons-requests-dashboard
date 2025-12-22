@@ -12,7 +12,7 @@ const CONFIG = {
     assetsPath: "/extracted_png/",
     iconExtension: ".png",
     filterPath: "/assets/filters/",
-    filters: ["unlabeled", "wip", "easy", "conflict", "link"],
+    filters: ["easy", "wip", "conflict", "link", "unlabeled"],
   },
   urls: {
     playStore: "https://play.google.com/store/apps/details?id=",
@@ -707,10 +707,10 @@ const Data = {
         "req-asc":   (a, b) => a.requestCount - b.requestCount,
         "install-desc": (a, b) => Utils.parseInstalls(b.installs) - Utils.parseInstalls(a.installs),
         "install-asc":  (a, b) => Utils.parseInstalls(a.installs) - Utils.parseInstalls(b.installs),
-        "time-desc": (a, b) => b.lastRequested - a.lastRequested,
-        "time-asc":  (a, b) => a.lastRequested - b.lastRequested,
         "name-asc":  (a, b) => a.label.localeCompare(b.label),
-        "name-desc": (a, b) => b.label.localeCompare(a.label)
+        "name-desc": (a, b) => b.label.localeCompare(a.label),
+        "time-desc": (a, b) => b.firstAppearance - a.firstAppearance,
+        "time-asc":  (a, b) => a.firstAppearance - b.firstAppearance
       };
       if (sorters[s.sort]) data.sort(sorters[s.sort]);
     }
