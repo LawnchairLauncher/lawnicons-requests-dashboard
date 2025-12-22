@@ -512,8 +512,12 @@ const Actions = {
       return;
     }
 
-    const ids = Array.from(App.state.selected);
-    if (ids.length === 0) return;
+    // 1. Get objects instead of just IDs
+    const selectedApps = App.data.filter(a => App.state.selected.has(a.componentName));
+    if (selectedApps.length === 0) return;
+
+    // 2. Sort Alphabetically by Name (A-Z) for the XML
+    selectedApps.sort((a, b) => a.label.localeCompare(b.label));
 
     const originalText = App.dom.fabCount.textContent;
     App.dom.fabCount.textContent = "Preparing...";
@@ -521,15 +525,15 @@ const Actions = {
 
     try {
       const zip = new JSZip();
-      const folder = zip.folder("icons");
+      
       const usedNames = new Set();
       const promises = [];
+      const xmlLines = [];
 
-      ids.forEach(id => {
-        const app = App.state.idMap.get(id);
-        if (!app) return;
-
+      selectedApps.forEach(app => {
+        // A. Resolve Filename (Handle Collisions)
         let filename = Utils.sanitizeDrawableName(app.label);
+        
         if (usedNames.has(filename)) {
           let c = 2;
           while (usedNames.has(`${filename}_${c}`)) c++;
@@ -537,14 +541,27 @@ const Actions = {
         }
         usedNames.add(filename);
 
+        // B. Generate XML Line (Using the resolved filename)
+        const cmp = app.componentName;
+        const name = app.label;
+        // Escape XML special chars in name just in case
+        const safeName = name.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+        
+        xmlLines.push(`  <item component="ComponentInfo{${cmp}}" drawable="${filename}" name="${safeName}" />`);
+
+        // C. Fetch Image
         const url = `${CONFIG.data.assetsPath}${app.drawable}${CONFIG.data.iconExtension}`;
         promises.push(
           fetch(url)
             .then(r => r.ok ? r.blob() : Promise.reject())
-            .then(blob => folder.file(`${filename}.png`, blob))
+            .then(blob => zip.file(`${filename}.png`, blob))
             .catch(() => console.warn(`Failed: ${url}`))
         );
       });
+
+      // D. Add !appfilter.xml to Zip Root
+      const xmlContent = `<resources>\n${xmlLines.join('\n')}\n</resources>`;
+      zip.file("!appfilter.xml", xmlContent);
 
       App.dom.fabCount.textContent = `Fetching ${promises.length}...`;
       await Promise.all(promises);
