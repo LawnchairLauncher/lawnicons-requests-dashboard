@@ -78,6 +78,7 @@ const App = {
     regexMode: false,
     selected: new Set(),
     appTags: new Map(),
+    filterMetadata: new Map(),
     activeFilters: new Set(),
     lastSelectedId: null,
     
@@ -130,8 +131,8 @@ const Templates = {
     const tagHtml = tags.map(tagId => {
       const meta = App.state.filterMetadata.get(tagId);
       const label = meta ? meta.label : tagId;
-      const desc = meta ? meta.desc : `Tagged with "${tagId}"`
-      return `<span class="status-pill status-${tagId}" title="${meta.desc}">${label}</span>`;
+      const desc = meta ? meta.description : `Tagged with "${tagId}"`
+      return `<span class="status-pill status-${tagId}" title="${desc}">${label}</span>`;
     }).join("");
 
     const iconHtml = isUnknown 
@@ -426,8 +427,7 @@ const Actions = {
           UI.updateItemVisuals(app.componentName);
         });
         
-        UI.updateHeaderCheckbox();
-        UI.updateFab();
+        UI.updateHeader();
         return; // Stop standard toggle
       }
     }
@@ -599,7 +599,7 @@ const Data = {
         // Store Metadata for UI
         App.state.filterMetadata.set(id, { 
           label: obj.label, 
-          desc: obj.description 
+          description: obj.description 
         });
 
         // Handle "Unlabeled" Logic
@@ -683,7 +683,7 @@ const Data = {
         try {
           const regex = new RegExp(query.text, 'i');
           data = data.filter(a => 
-            a.componentNames.some(c => regex.test(a.label) || regex.test(a.componentName))
+            regex.test(a.label) || regex.test(a.componentName)
           );
         } catch { data = []; }
       } else {
@@ -1062,7 +1062,7 @@ const UI = {
       const btn = document.createElement("button");
       btn.className = `tag tag-${id} chip`;
       btn.textContent = meta.label;
-      btn.title = meta.desc || `Filter by ${meta.label}`; // Use description for 
+      btn.title = meta.description || `Filter by ${meta.label}`; // Use description for 
       if (App.state.activeFilters.has(id)) btn.classList.add("active");
       
       btn.onclick = () => {
