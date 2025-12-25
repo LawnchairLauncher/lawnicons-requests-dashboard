@@ -222,7 +222,7 @@ body {
 }
 .control-group {
   display: flex;
-  gap: 12px;
+  gap: 8px;
 }
 
 /* Inputs (Search & Path) */
@@ -408,6 +408,7 @@ select:hover {
   width: 56px;
   height: 56px;
   border-radius: 8px;
+  outline: 1px solid var(--inverse-on-surface);
   object-fit: contain;
   background: #000;
 }
@@ -626,6 +627,7 @@ input[type="checkbox"]:indeterminate::after {
   height: 56px;
   background-color: var(--surface-container-high);
   border-radius: 8px;
+  outline: 1px solid var(--inverse-on-surface);
   display: flex;
   align-items: center;
   justify-content: center;
