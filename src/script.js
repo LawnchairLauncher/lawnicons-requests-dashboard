@@ -2107,6 +2107,7 @@ const UI = {
           if (tags) tags.delete("plan");
           if (App.state.contribution.length === 0) {
               App.state.contributionActive = false;
+              App.state.activeFilters.delete("plan");
               App.dom.contributionBtn.style.display = "";
               App.dom.contributionBtn.classList.remove("active");
           }
@@ -3005,6 +3006,7 @@ const UI = {
           if (tags) tags.delete("plan");
         });
         App.state.contribution = [];
+        App.state.activeFilters.delete("plan");
         App.state.contributionOverrides = {};
         App.state.contributionActive = false;
         App.dom.contributionBtn.style.display = "";
