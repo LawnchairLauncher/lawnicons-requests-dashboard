@@ -1945,6 +1945,7 @@ const UI = {
         const count = App.state.selected.size;
         Toast.show(`${count} icon${count !== 1 ? 's' : ''} added to contribution plan.`);
         Actions.clearAllSelections();
+        this.render();
     });
 
     App.dom.sbDownloadBtn.addEventListener("click", () => {
@@ -2522,6 +2523,7 @@ const UI = {
     App.dom.container.innerHTML = "";
     App.dom.container.className = s.view === "grid" ? "grid-container" : "";
 
+    this.generateFilters();
     this.syncFilterTagState();
     Data.process();
     Data.syncUrlState();
