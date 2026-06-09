@@ -67,7 +67,7 @@ const CONFIG = {
     iconExtension: ".png",
     filterPath: "assets/filters/",
     // Order matters for UI
-    filters: ["wip", "supported", "easy", "nameinuse", "match", "stale", "unlabeled"]
+    filters: ["plan", "wip", "supported", "easy", "nameinuse", "match", "stale", "unlabeled"]
   },
   label_factors: {
     stale: 0.1,
@@ -1444,6 +1444,10 @@ const Data = {
         // Init Tags
         App.state.appTags = new Map();
         App.state.filterMetadata = new Map();
+        App.state.filterMetadata.set("plan", {
+          label: "Plan",
+          description: "Requests added to your contribution plan."
+        });
 
         // Process Filters
         filterObjects.forEach((obj, index) => {
@@ -1780,6 +1784,12 @@ const UI = {
             if (App.state.contribution.length < before) {
                 this.saveContribution();
             }
+
+            App.state.contribution.forEach(app => {
+              const tags = App.state.appTags.get(app.componentName) || new Set();
+              tags.add("plan");
+              App.state.appTags.set(app.componentName, tags);
+            });
         } catch {}
     }
 
@@ -1926,9 +1936,12 @@ const UI = {
             const app = App.state.idMap.get(id);
             if (app && !App.state.contribution.some(a => a.componentName === id)) {
                 App.state.contribution.push(app);
+                const tags = App.state.appTags.get(id) || new Set();
+                tags.add("plan");
+                App.state.appTags.set(id, tags);
             }
         });
-        this.saveContribution();        
+        this.saveContribution();
         const count = App.state.selected.size;
         Toast.show(`${count} icon${count !== 1 ? 's' : ''} added to contribution plan.`);
         Actions.clearAllSelections();
@@ -2089,6 +2102,8 @@ const UI = {
       if (action === "remove-from-contribution") {
           const id = actionEl.dataset.id;
           App.state.contribution = App.state.contribution.filter(a => a.componentName !== id);
+          const tags = App.state.appTags.get(id);
+          if (tags) tags.delete("plan");
           if (App.state.contribution.length === 0) {
               App.state.contributionActive = false;
               App.dom.contributionBtn.style.display = "";
@@ -2983,6 +2998,10 @@ const UI = {
 
       const clearBtn = document.getElementById("contributionClearBtn");
       clearBtn.onclick = () => {
+        App.state.contribution.forEach(a => {
+          const tags = App.state.appTags.get(a.componentName);
+          if (tags) tags.delete("plan");
+        });
         App.state.contribution = [];
         App.state.contributionOverrides = {};
         App.state.contributionActive = false;

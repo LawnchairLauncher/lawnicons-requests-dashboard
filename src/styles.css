@@ -75,6 +75,10 @@
   --pine-container: #2e4f1c;
   --on-pine-container: #c6efaa;
 
+  /* Source: #9A6B5C */
+  --clay-container: #3D2A1C;
+  --on-clay-container: #e6c8b8;
+
   /* Pie chart colors */
   --chart-1: #8CB4FF;
   --chart-2: #C4B5FD;
@@ -1257,6 +1261,11 @@ select:hover,
   letter-spacing: 0.5px;
   flex-shrink: 0;
   white-space: nowrap;
+}
+
+.status-plan {
+  background: var(--clay-container);
+  color: var(--on-clay-container);
 }
 
 .status-wip {
