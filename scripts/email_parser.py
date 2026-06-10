@@ -20,7 +20,7 @@ from email.utils import parsedate
 COMPONENT_PATTERN = re.compile('ComponentInfo{(?P<ComponentInfo>.+)}')
 
 CONFIG = {
-    "request_limit": 50,
+    "request_limit": 30,
 }
 
 # -------------------------------------------------------
