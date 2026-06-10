@@ -315,6 +315,10 @@
       "existing_drawable": "orange"
     },
     {
+      "id": "air.com.bartbonte.yellow/air.com.bartbonte.yellow.AIRAppEntry",
+      "existing_drawable": "yellow"
+    },
+    {
       "id": "com.babydola.lockscreen/com.babydola.lockscreen.screens.SplashActivity",
       "existing_drawable": "generic_power"
     },
@@ -653,6 +657,10 @@
     {
       "id": "com.android.axion.sandbox/com.android.axion.sandbox.MainActivity",
       "existing_drawable": "sandbox"
+    },
+    {
+      "id": "io.github.aedev.flow/io.github.aedev.flow.IconDynamic",
+      "existing_drawable": "flow"
     },
     {
       "id": "com.techsial.android.unitconverter/com.techsial.android.unitconverter.SplashActivity",
@@ -1625,10 +1633,6 @@
     {
       "id": "com.csgroup.terminal/jackpal.androidterm.Term",
       "existing_drawable": "terminal_emulator"
-    },
-    {
-      "id": "io.github.aedev.flow/io.github.aedev.flow.IconDynamic",
-      "existing_drawable": "flow"
     },
     {
       "id": "ua.ws.bible.bibleandroid.en/ua.ws.bible.bibleandroid.activities.MainActivity",
