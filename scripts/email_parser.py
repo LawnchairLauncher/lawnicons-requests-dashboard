@@ -228,7 +228,14 @@ def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path) -> dict
                         is_new = component_info not in apps
                         item_data_list.append((is_new, item))
                 
-                item_data_list.sort(key=lambda x: not x[0])  # new first
+                # Prioritise country-code domains
+                NON_GEO = {'ai','me','my','tv','fm','to','st','cc','ws','nu','tk','sh','is','as','je','gg','im','io','co','su','ac','bh','mf','nh','mo','bd','hk'}
+                def is_country_domain(comp):
+                    pkg = comp.split('/')[0]
+                    domain = pkg.split('.')[0]
+                    return len(domain) == 2 and domain not in NON_GEO
+
+                item_data_list.sort(key=lambda x: (not x[0], not is_country_domain(x[1].get('component', ''))))
                 
                 for _, item in item_data_list[:limit]:
                     apps = parse_item_tag(item, msg, zip_file, apps, png_out_dir)
