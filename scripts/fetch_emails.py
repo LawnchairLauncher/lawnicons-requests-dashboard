@@ -47,6 +47,7 @@ def main():
         return
 
     email_ids = messages[0].split()
+    MAX_EMAILS = 300
     print(f"Found {len(email_ids)} unread emails.")
 
     # Step 1: Fetch only headers to find latest email per sender
@@ -70,7 +71,13 @@ def main():
 
     print(f"Candidates after header scan: {len(sender_candidates)} sender(s).")
 
-    # Step 2: Fetch full body only for candidates, check ZIP for real
+
+    # Step 2: Limit candidates before full fetch
+    candidate_ids = set(sender_candidates.values())
+    if len(sender_candidates) > MAX_EMAILS:
+        print(f"Limiting to {MAX_EMAILS} candidates for full fetch ({len(sender_candidates)} total)")
+        sender_candidates = dict(list(sender_candidates.items())[:MAX_EMAILS])
+
     sender_latest = {}
     for sender, eid in sender_candidates.items():
         status, msg_data = mail.fetch(eid, "(RFC822)")
@@ -96,7 +103,8 @@ def main():
     EMAILS_DIR.mkdir(parents=True, exist_ok=True)
     saved = 0
 
-    for sender, (eid, raw_email) in sender_latest.items():
+    for sender, (eid, raw_email) in sender_latest.items():  
+        
         filename = f"{eid.decode()}.eml"
         filepath = EMAILS_DIR / filename
 
@@ -105,6 +113,18 @@ def main():
 
         mail.store(eid, "+FLAGS", "\\Seen")
         saved += 1
+
+    fetched_ids = set(sender_candidates.values())
+    saved_ids = {eid for eid, _ in sender_latest.values()}
+
+    for eid in email_ids:
+        if eid not in candidate_ids:
+            # Never made it past header scan (no ZIP)
+            mail.store(eid, "+FLAGS", "\\Seen")
+        elif eid in fetched_ids and eid not in saved_ids:
+            # Fully fetched but no ZIP found
+            mail.store(eid, "+FLAGS", "\\Seen")
+        # else: not fetched (over limit) — leave UNSEEN, or already saved — skip
 
     mail.logout()
     print(f"Done. Saved {saved} emails to {EMAILS_DIR}.")
