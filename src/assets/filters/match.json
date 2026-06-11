@@ -3,10 +3,6 @@
   "description": "Requests with an existing package.",
   "match": [
     {
-      "id": "nu.gpu.nagram/org.telegram.messenger.BlueIcon",
-      "existing_drawable": "nagram"
-    },
-    {
       "id": "com.fitbit.FitbitMobile/com.fitbit.HealthBrandedAlias",
       "existing_drawable": "fitbit"
     },
@@ -31,10 +27,6 @@
       "existing_drawable": "fadcam_minimal_icon"
     },
     {
-      "id": "com.openai.chatgpt/com.openai.chatgpt.CodexLauncherActivity",
-      "existing_drawable": "chatgpt"
-    },
-    {
       "id": "com.iqoo.website/com.vivo.website.feedback.HotQuestionEntry",
       "existing_drawable": "iqoo_store"
     },
@@ -53,10 +45,6 @@
     {
       "id": "com.myscript.nebo/com.myscript.nebo.LaunchActivity",
       "existing_drawable": "nebo"
-    },
-    {
-      "id": "nu.gpu.nagram/org.telegram.messenger.NielloIcon",
-      "existing_drawable": "nagram"
     },
     {
       "id": "com.goldengekko.o2pm/uk.co.o2.ios.moments.dev.MainActivity",
@@ -96,7 +84,7 @@
     },
     {
       "id": "nu.gpu.nagram/org.telegram.messenger.AquaIcon",
-      "existing_drawable": "nagram"
+      "existing_drawable": "nagram_niello_icon"
     },
     {
       "id": "org.mozilla.firefox/org.mozilla.firefox.AppMomo",
@@ -104,7 +92,7 @@
     },
     {
       "id": "nu.gpu.nagram/org.telegram.messenger.NoxIcon",
-      "existing_drawable": "nagram"
+      "existing_drawable": "nagram_niello_icon"
     },
     {
       "id": "app.lawnchair.play.debug/leakcanary.internal.activity.LeakLauncherActivity",
@@ -119,10 +107,6 @@
       "existing_drawable": "applock_spirit_level_icon"
     },
     {
-      "id": "xyz.nextalone.nagram/org.telegram.messenger.NielloIcon",
-      "existing_drawable": "nagram"
-    },
-    {
       "id": "io.ente.photos.fdroid/io.ente.photos.fdroid.IconDuckyHuggingE",
       "existing_drawable": "ente_photos"
     },
@@ -131,20 +115,8 @@
       "existing_drawable": "telegram"
     },
     {
-      "id": "com.grindrapp.android/com.grindrapp.android.HomeActivityChatRed",
-      "existing_drawable": "generic_dialer"
-    },
-    {
-      "id": "com.snapchat.android/com.snapchat.android.Plus2Alias",
-      "existing_drawable": "snapchat"
-    },
-    {
       "id": "net.zedge.android/net.zedge.android.MainDogDay",
       "existing_drawable": "zedge"
-    },
-    {
-      "id": "com.duolingo/com.duolingo.app.StreakSaverLauncher2",
-      "existing_drawable": "duolingo"
     },
     {
       "id": "jp.co.netbk/jp.co.netbk.nbk.ui.activity.SplashActivity",
@@ -235,16 +207,8 @@
       "existing_drawable": "generic_gallery"
     },
     {
-      "id": "nu.gpu.nagram/org.telegram.messenger.DefaultIcon",
-      "existing_drawable": "nagram"
-    },
-    {
       "id": "com.eljur.client/com.eljur.client.feature.splash.view.SplashActivityAlias7",
       "existing_drawable": "eljur_student"
-    },
-    {
-      "id": "com.duolingo/com.duolingo.app.SeasonalLauncher3",
-      "existing_drawable": "duolingo"
     },
     {
       "id": "com.vodafone.selfservis/com.vodafone.selfservis.FiveGAlias",
@@ -253,10 +217,6 @@
     {
       "id": "com.graytsar.livewallpaper/com.graytsar.livewallpaper.ui.ReibuActivity",
       "existing_drawable": "generic_player"
-    },
-    {
-      "id": "com.vitotechnology.StarWalk2/com.google.firebase.MessagingUnityPlayerActivity",
-      "existing_drawable": "star_walk_2_pro"
     },
     {
       "id": "sg.trust/sg.phoenix.robot",
@@ -277,10 +237,6 @@
     {
       "id": "com.xiaomi.market/com.xiaomi.market.ui.DefaultLauncherIcon",
       "existing_drawable": "getapps"
-    },
-    {
-      "id": "com.duolingo/com.duolingo.app.SeasonalLauncher2",
-      "existing_drawable": "duolingo"
     }
   ]
 }
