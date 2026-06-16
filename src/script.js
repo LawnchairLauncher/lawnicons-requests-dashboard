@@ -273,29 +273,6 @@ const Utils = {
 
   /**
    * @param {AppEntry} app
-   * @returns {number}
-   */
-  getCreationOdds(app) {
-      const table = App.state.creationOdds;
-      if (!table || table.length === 0) return 0;
-      const pkg = app.componentName.split('/')[0];
-      const pop = App.state.setsStats[pkg] || app.requestCount;
-      const row = table.find(r => r.popularity === pop);
-      if (!row) return 0;
-      const tags = Utils.getTagsForApp(app.componentName);
-      let factor = null;
-      for (const tag of tags) {
-        const f = CONFIG.label_factors[tag];
-        if (f !== undefined && (factor === null || f > factor)) factor = f;
-      }
-      if (factor === null) factor = 1;
-      
-      const key = App.state.medianTTF !== undefined ? factor + "_at_pace" : String(factor);
-      return row[key] ?? row[String(factor)] ?? 0;
-  },
-
-  /**
-   * @param {AppEntry} app
    * @returns {string}
    */
   generateXml(app) {
@@ -402,42 +379,6 @@ const Utils = {
       }
     }
   },
-
-  balancedScore(app) {
-      const pkg = app.componentName.split('/')[0];
-      const domain = pkg.split('.')[0];
-      const req = app.requestCount || 1;
-      const instStr = String(app.installs || '0').replace(/[,+]/g, '');
-      const inst = parseInt(instStr) || 1;
-      
-      const ds = App.state.domainStats[domain] || {};
-      const requests = ds.requests || 0;
-      const total = ds.total || 1;
-      const coverage = requests >= 4 ? (requests / total) : 0.5;
-      const significance = requests >= 4 ? 1.0 : 0.3;
-      
-      const population = App.state.domainStats._population || {};
-      const nonGeo = new Set(['ai','me','my','tv','fm','to','st','cc','ws','nu','tk','sh','is','as','je','gg','im','io','co','su','ac','bh','mf','nh','mo','bd','hk']);
-      const isCountry = (d) => d.length === 2 && !nonGeo.has(d) && d in population;
-      
-      let localImpact = 0;
-      if (isCountry(domain)) {
-        const pop = population[domain] || 1;
-        localImpact = Math.min((inst / 1_000_000) / pop * 50, 1);
-      }
-      
-      const now = Date.now() / 1000;
-      const ageDays = Math.max((now - (app.firstAppearance || now)) / 86400, 1);
-      
-      const w1 = 0.35, w2 = 0.25, w3 = 0.15, w4 = 0.12, w5 = 0.13;
-      
-      return (w1 * Math.log(req + 1) / Math.log(100) +
-              w2 * Math.log(inst + 1) / Math.log(100_000_000) +
-              w3 * coverage * significance +
-              w4 * localImpact * significance +
-              w5 * (1 / Math.log(ageDays + 1)));
-  },  
-
 };
 
 // ==========================================
@@ -488,7 +429,7 @@ const Templates = {
     const installsTitle = installsRaw && installsRaw !== '0' 
         ? `${app.installs} installs in Play Store` 
         : 'Installs data unavailable';    
-    const rawOdds = Utils.getCreationOdds(app) * 100;
+    const rawOdds = Heuristics.calculateCreationOdds(app) * 100;
     const displayOdds = rawOdds < 1 ? rawOdds.toFixed(2) + "%" : rawOdds.toFixed(0) + "%";
     const trendingDelta = App.state.trendingDeltas[app.componentName];
     const reqValue = App.state.setsStats[pkg] || app.requestCount;
@@ -1658,15 +1599,15 @@ const Data = {
               const deltaB = App.state.trendingDeltas[b.componentName] || 0;
               return deltaB - deltaA || getPop(b) - getPop(a);
           },
-          "odds-desc": (a, b) => Utils.getCreationOdds(b) - Utils.getCreationOdds(a) || getPop(b) - getPop(a),
-          "odds-asc": (a, b) => Utils.getCreationOdds(a) - Utils.getCreationOdds(b) || getPop(b) - getPop(a),
+        "odds-desc": (a, b) => Heuristics.calculateCreationOdds(b) - Heuristics.calculateCreationOdds(a) || getPop(b) - getPop(a),
+        "odds-asc": (a, b) => Heuristics.calculateCreationOdds(a) - Heuristics.calculateCreationOdds(b) || getPop(b) - getPop(a),
           "install-desc": (a, b) => Utils.parseInstalls(b.installs) - Utils.parseInstalls(a.installs) || getPop(b) - getPop(a) || a.componentName.split('/')[0].localeCompare(b.componentName.split('/')[0]),
           "install-asc": (a, b) => Utils.parseInstalls(a.installs) - Utils.parseInstalls(b.installs) || getPop(b) - getPop(a) || a.componentName.split('/')[0].localeCompare(b.componentName.split('/')[0]),
           "name-asc": (a, b) => a.label.localeCompare(b.label) || getPop(b) - getPop(a),
           "name-desc": (a, b) => b.label.localeCompare(a.label) || getPop(b) - getPop(a),
           "time-desc": (a, b) => b.firstAppearance - a.firstAppearance || getPop(b) - getPop(a),
           "time-asc": (a, b) => a.firstAppearance - b.firstAppearance || getPop(b) - getPop(a),
-          "balanced": (a, b) => Utils.balancedScore(b) - Utils.balancedScore(a) || (App.state.setsStats[b.componentName.split('/')[0]] || b.requestCount) - (App.state.setsStats[a.componentName.split('/')[0]] || a.requestCount),
+        "balanced": (a, b) => Heuristics.calculateBalancedScore(b) - Heuristics.calculateBalancedScore(a) || (App.state.setsStats[b.componentName.split('/')[0]] || b.requestCount) - (App.state.setsStats[a.componentName.split('/')[0]] || a.requestCount),
       };
       if (sorters[s.sort]) data.sort(sorters[s.sort]);
     }
@@ -1730,7 +1671,70 @@ const Data = {
 };
 
 // ==========================================
-// 8. UI LOGIC
+// 8. HEURISTICS
+// Pure mathematical formulas for ranking and probability.
+// ==========================================
+const Heuristics = {
+  /** @param {AppEntry} app */
+  calculateCreationOdds(app) {
+    const table = App.state.creationOdds;
+    if (!table || table.length === 0) return 0;
+
+    const pkg = app.componentName.split('/')[0];
+    const pop = App.state.setsStats[pkg] || app.requestCount;
+    const row = table.find(r => r.popularity === pop);
+    if (!row) return 0;
+
+    const tags = Utils.getTagsForApp(app.componentName);
+    let factor = null;
+    for (const tag of tags) {
+      const f = CONFIG.label_factors[tag];
+      if (f !== undefined && (factor === null || f > factor)) factor = f;
+    }
+    if (factor === null) factor = 1;
+
+    const key = App.state.medianTTF !== undefined ? factor + "_at_pace" : String(factor);
+    return row[key] ?? row[String(factor)] ?? 0;
+  },
+
+  /** @param {AppEntry} app */
+  calculateBalancedScore(app) {
+    const pkg = app.componentName.split('/')[0];
+    const domain = pkg.split('.')[0];
+    const req = app.requestCount || 1;
+    const inst = Utils.parseInstalls(app.installs);
+
+    const ds = App.state.domainStats[domain] || {};
+    const requests = ds.requests || 0;
+    const total = ds.total || 1;
+    const coverage = requests >= 4 ? (requests / total) : 0.5;
+    const significance = requests >= 4 ? 1.0 : 0.3;
+
+    const population = App.state.domainStats._population || {};
+    const nonGeo = new Set(['ai', 'me', 'my', 'tv', 'fm', 'to', 'st', 'cc', 'ws', 'nu', 'tk', 'sh', 'is', 'as', 'je', 'gg', 'im', 'io', 'co', 'su', 'ac', 'bh', 'mf', 'nh', 'mo', 'bd', 'hk']);
+    const isCountry = (d) => d.length === 2 && !nonGeo.has(d) && d in population;
+
+    let localImpact = 0;
+    if (isCountry(domain)) {
+      const pop = population[domain] || 1;
+      localImpact = Math.min((inst / 1_000_000) / pop * 50, 1);
+    }
+
+    const now = Date.now() / 1000;
+    const ageDays = Math.max((now - (app.firstAppearance || now)) / 86400, 1);
+
+    const w = { req: 0.35, inst: 0.25, cov: 0.15, local: 0.12, age: 0.13 };
+
+    return (w.req * Math.log(req + 1) / Math.log(100) +
+      w.inst * Math.log(inst + 1) / Math.log(100_000_000) +
+      w.cov * coverage * significance +
+      w.local * localImpact * significance +
+      w.age * (1 / Math.log(ageDays + 1)));
+  }
+};
+
+// ==========================================
+// 9. UI LOGIC
 // ==========================================
 const UI = {
   /** @type {IntersectionObserver | null} */
