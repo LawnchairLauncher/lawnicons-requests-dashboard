@@ -238,6 +238,11 @@ const Utils = {
    */
   sanitizeDrawableName(label) {
       if (!label) return "unknown";
+      // If name has ~~, use the right side
+      const tildeIdx = label.indexOf("~~");
+      if (tildeIdx !== -1) {
+          label = label.slice(tildeIdx + 2).trim();
+      }
       let name = label.replace(/&amp;/g, " and ").replace(/&/g, " and ");
       name = name.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       name = name.toLowerCase().replace(/[^a-z0-9]+/g, "_");
