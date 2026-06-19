@@ -1186,8 +1186,8 @@ const Actions = {
         xmlAppFilter += `    <item component="ComponentInfo{${cmp}}" drawable="${drawable}" name="${label}" />\n`;
 
         // Commands
-        const cmdType = mode === "new" ? "add" : "link";
-        const svgPath = mode === "new" ? `"new_icons/${drawable}.svg"` : `"${drawable}"`;
+        const cmdType = "link";
+        const svgPath = `"${drawable}.svg"`;
         txtCommands += `python3 ./icontool.py ${cmdType} ${svgPath} ${cmp} '${cmdLabel}'\n`;
 
         // Queue Icon Fetch (only in "new" mode)
@@ -1223,9 +1223,8 @@ const Actions = {
       if (txtCommands) {
           const instructions = [
               "1. Open your Lawnicons repository folder.",
-              "2. Create a new_icons folder and move your SVGs there.",
+              "2. Copy your SVGs to the svgs folder.",
               "3. Run the commands below from the repository root in your terminal.",
-              "4. Remove the new_icons folder when done.",
               "",
               "Make sure your branch is up-to-date. If not and you are familiar with git, use:",
               "  git reset --hard upstream/develop",
@@ -1307,8 +1306,8 @@ const Actions = {
 
           xmlAppFilter += `    <item component="ComponentInfo{${app.componentName}}" drawable="${uniqueDrawable}" name="${label.replace(/&/g, '&amp;').replace(/"/g, '&quot;')}" />\n`;
 
-          const cmdType = mode === "new" ? "add" : "link";
-          const svgPath = mode === "new" ? `"new_icons/${drawable}.svg"` : `"${drawable}"`;
+          const cmdType = "link";
+          const svgPath = `"${drawable}.svg"`;
           const cmdLabel = label.replace(/&/g, '&amp;').replace(/'/g, "'\\''");
           txtCommands += `python3 ./icontool.py ${cmdType} ${svgPath} ${app.componentName} '${cmdLabel}'\n`;
 
@@ -1331,9 +1330,8 @@ const Actions = {
       if (txtCommands) {
           const instructions = [
               "1. Open your Lawnicons repository folder.",
-              "2. Create a new_icons folder and move your SVGs there.",
+              "2. Copy your SVGs to the svgs folder.",
               "3. Run the commands below from the repository root in your terminal.",
-              "4. Remove the new_icons folder when done.",
               "",
               "Make sure your branch is up-to-date. If not and you are familiar with git, use:",
               "  git reset --hard upstream/develop",
