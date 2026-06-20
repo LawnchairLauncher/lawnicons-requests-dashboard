@@ -1021,7 +1021,9 @@ select:hover,
 }
 
 #contributionBtn,
-#contributionBackBtn {
+#contributionBackBtn,
+#lowQualityBtn,
+#lowQualityBackBtn {
   border: none;
   cursor: pointer;
   width: 48px;

@@ -136,6 +136,7 @@ const App = {
     existingIcons: [],
 
     actionMode: "new",
+    lowQualityActive: false,
     contributionActive: false,
     contribution: [],
     contributionOverrides: {},
@@ -1810,7 +1811,24 @@ const UI = {
         App.dom.contributionBtn?.classList.add("active");
     }
 
-    this.updateContributionBadge();    
+    this.updateContributionBadge();
+
+    document.getElementById("lowQualityBtn")?.addEventListener("click", () => {
+        if (!App.state.lowQualityActive && (!App.state.lowQualityData || App.state.lowQualityData.length === 0)) {
+            Toast.show("All existing icons look good.");
+            return;
+        }
+        App.state.lowQualityActive = !App.state.lowQualityActive;
+        if (!App.state.lowQualityActive) {
+            document.querySelector(".header-info h1").textContent = "Lawnicons";
+            App.dom.contributionBtn.style.display = "";
+            document.getElementById("lowQualityBtn").classList.remove("active");
+        } else {
+            App.state.contributionActive = false;
+            App.dom.contributionBtn.classList.remove("active");
+        }
+        this.render();
+    });
 
     App.dom.contributionBtn?.addEventListener("click", () => {
         if (!App.state.contributionActive && App.state.contribution.length === 0) {
@@ -2503,11 +2521,20 @@ const UI = {
   },
 
   render() {
+    if (App.state.lowQualityActive) {
+        this.renderLowQualityMode();
+        return;
+    }
+
     if (App.state.contributionActive) {
         this.renderContributionMode();
         return;
     }
 
+    document.getElementById("lowQualityBtn").classList.remove("active");
+    const lowQualityBackBtn = document.getElementById("lowQualityBackBtn");
+    if (lowQualityBackBtn) lowQualityBackBtn.remove();
+    
     const backBtn = document.getElementById("contributionBackBtn");
     if (backBtn) backBtn.remove();
 
@@ -2515,6 +2542,8 @@ const UI = {
     document.getElementById("search-wrapper").classList.remove("is-hidden");
     document.querySelector(".header-info h1").textContent = "Lawnicons";
     App.dom.contributionBtn.style.display = "";
+    document.getElementById("contributionCountBadge").style.display = "";
+    document.getElementById("lowQualityBtn").style.display = "";
 
     const headerRight = document.querySelector(".header-right");
     headerRight.querySelectorAll("a:not(#appfilterLink)").forEach(a => a.classList.remove("is-hidden"));
@@ -2744,6 +2773,55 @@ const UI = {
     }
   },
 
+  renderLowQualityMode() {
+      document.querySelector(".header-icon").classList.add("is-hidden");
+      document.querySelector(".controls").classList.add("is-hidden");
+      document.getElementById("iconLibraryResults")?.classList.add("is-hidden");
+      document.getElementById("search-wrapper").classList.add("is-hidden");
+      App.dom.listHeader.style.display = "none";
+      App.dom.sentinel.style.display = "none";
+      App.dom.contributionBtn.style.display = "none";
+      document.getElementById("lowQualityBtn").style.display = "none";
+      document.getElementById("contributionCountBadge").style.display = "none";
+      document.getElementById("lowQualityBtn").classList.add("active");
+
+      document.querySelector(".header-info h1").textContent = "Low quality icons";
+      App.dom.headerCount.textContent = "";
+      App.dom.sbBar.classList.remove("visible");
+      App.dom.container.className = "";
+
+      if (!document.getElementById("lowQualityBackBtn")) {
+          document.querySelector(".header-left").insertAdjacentHTML("afterbegin", `
+              <button class="header-link back-btn" id="lowQualityBackBtn" title="Back to requests">
+                  <svg><use href="#ic-arrow-back"/></svg>
+              </button>
+          `);
+          document.getElementById("lowQualityBackBtn").onclick = () => {
+              App.state.lowQualityActive = false;
+              document.getElementById("lowQualityBtn").classList.remove("active");
+              this.render();
+          };
+      }
+
+      const headerRight = document.querySelector(".header-right");
+      const count = App.state.lowQualityData ? App.state.lowQualityData.length : 0;
+      App.dom.headerCount.textContent = `${count} icon${count !== 1 ? 's' : ''}`;
+      headerRight.querySelectorAll("a").forEach(a => a.classList.add("is-hidden"));
+
+      if (!document.getElementById("appfilterLink")) {
+          headerRight.insertAdjacentHTML("afterbegin", `
+              <a id="appfilterLink" href="https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/refs/heads/develop/app/assets/appfilter.xml" class="header-link" title="Current appfilter.xml">
+                  <svg><use href="#ic-code-xml"/></svg>
+              </a>
+          `);
+      } else {
+          document.getElementById("appfilterLink").classList.remove("is-hidden");
+      }      
+
+      document.getElementById("mainCards").classList.add("is-hidden");
+      App.dom.container.innerHTML = "";
+  },
+
   renderContributionMode() {
       document.querySelector(".header-icon").classList.add("is-hidden");
       document.querySelector(".controls").classList.add("is-hidden");
@@ -2752,6 +2830,7 @@ const UI = {
       document.getElementById("contributionCountBadge").style.display = "none";
       App.dom.listHeader.style.display = "none";
       App.dom.sentinel.style.display = "none";
+      document.getElementById("lowQualityBtn").style.display = "none";
 
       App.dom.contributionBtn.style.display = "none";
 
