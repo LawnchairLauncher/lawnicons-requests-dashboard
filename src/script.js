@@ -1445,6 +1445,17 @@ const Data = {
         }).catch(() => {}).finally(() => {
           this.loadUrlState();
 
+          fetch("assets/qa_issues/review_issues.json")
+              .then(r => r.json())
+              .then(data => {
+                  App.state.lowQualityData = data;
+                  UI.updateLowQualityBadge();
+              })
+              .catch(() => {
+                  App.state.lowQualityData = [];
+                  UI.updateLowQualityBadge();
+              });       
+
           fetch("assets/appfilter.xml")
             .then(r => r.text())
             .then(xmlText => {
@@ -1481,9 +1492,10 @@ const Data = {
             }
             if (App.state.contributionActive && App.state.existingIcons.length > 0) {
                 UI.renderContributionMode();
-            }            
+            }
         });
           UI.init();
+          UI.updateLowQualityBadge();
           UI.buildQuickPickQueue();
           UI.renderQuickPick();
         });
@@ -1814,10 +1826,6 @@ const UI = {
     this.updateContributionBadge();
 
     document.getElementById("lowQualityBtn")?.addEventListener("click", () => {
-        if (!App.state.lowQualityActive && (!App.state.lowQualityData || App.state.lowQualityData.length === 0)) {
-            Toast.show("All existing icons look good.");
-            return;
-        }
         App.state.lowQualityActive = !App.state.lowQualityActive;
         if (!App.state.lowQualityActive) {
             document.querySelector(".header-info h1").textContent = "Lawnicons";
@@ -2542,8 +2550,8 @@ const UI = {
     document.getElementById("search-wrapper").classList.remove("is-hidden");
     document.querySelector(".header-info h1").textContent = "Lawnicons";
     App.dom.contributionBtn.style.display = "";
-    document.getElementById("contributionCountBadge").style.display = "";
-    document.getElementById("lowQualityBtn").style.display = "";
+    this.updateContributionBadge();
+    this.updateLowQualityBadge();
 
     const headerRight = document.querySelector(".header-right");
     headerRight.querySelectorAll("a:not(#appfilterLink)").forEach(a => a.classList.remove("is-hidden"));
@@ -2781,7 +2789,7 @@ const UI = {
       App.dom.listHeader.style.display = "none";
       App.dom.sentinel.style.display = "none";
       App.dom.contributionBtn.style.display = "none";
-      document.getElementById("lowQualityBtn").style.display = "none";
+      document.getElementById("lowQualityBtn").parentElement.classList.add("is-hidden");
       document.getElementById("contributionCountBadge").style.display = "none";
       document.getElementById("lowQualityBtn").classList.add("active");
 
@@ -2820,7 +2828,70 @@ const UI = {
 
       document.getElementById("mainCards").classList.add("is-hidden");
       App.dom.container.innerHTML = "";
+
+      fetch("assets/qa_issues/review_issues.json")
+          .then(r => r.json())
+          .then(data => {
+              App.state.lowQualityData = data;
+              const count = data.length;
+              App.dom.headerCount.textContent = `${count} icon${count !== 1 ? 's' : ''}`;
+              if (data.length === 0) {
+                  App.state.lowQualityActive = false;
+                  document.getElementById("lowQualityBtn").classList.remove("active");
+                  Toast.show("All existing icons look good.");
+                  this.render();
+                  return;
+              }              
+              
+              if (count === 0) {
+                  App.dom.container.innerHTML = "";
+                  return;
+              }
+              
+              // Sort by issue count descending
+              data.sort((a, b) => b.issues.length - a.issues.length || a.drawable.localeCompare(b.drawable));
+              
+              // Build cards
+              let html = '';
+              data.forEach(item => {
+                  const svgUrl = `https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${item.drawable}.svg`;
+                  const issueList = item.issues.map(i => `<div class="item-sub">${i}</div>`).join("");
+                  html += `
+                      <div class="library-icon-card" data-drawable="${item.drawable}" title="${item.issues.join('\n')}">
+                          <img src="${svgUrl}" alt="${item.drawable}" loading="lazy" onerror="this.parentElement.remove()" />
+                          <div class="qa-issues">${issueList}</div>
+                      </div>
+                  `;
+              });
+
+              App.dom.container.innerHTML = html;
+              App.dom.container.className = "qa-container";
+                        })
+          .catch(() => {
+              App.state.lowQualityData = [];
+              App.dom.headerCount.textContent = "0 icons";
+              UI.updateLowQualityBadge();
+          });  
+
   },
+
+updateLowQualityBadge() {
+    const btn = document.getElementById("lowQualityBtn");
+    const wrapper = btn?.parentElement;
+    const badge = document.getElementById("lowQualityCountBadge");
+    if (!btn || !wrapper) return;
+    const count = App.state.lowQualityData ? App.state.lowQualityData.length : 0;
+    if (count > 0) {
+        wrapper.classList.remove("is-hidden");
+        if (badge) {
+            badge.textContent = count;
+            badge.style.display = "flex";
+        }
+    } else {
+        wrapper.classList.add("is-hidden");
+        if (badge) badge.style.display = "none";
+    }
+},
 
   renderContributionMode() {
       document.querySelector(".header-icon").classList.add("is-hidden");
@@ -2830,7 +2901,8 @@ const UI = {
       document.getElementById("contributionCountBadge").style.display = "none";
       App.dom.listHeader.style.display = "none";
       App.dom.sentinel.style.display = "none";
-      document.getElementById("lowQualityBtn").style.display = "none";
+      const lowQualityWrapper = document.getElementById("lowQualityBtn").parentElement;
+      if (lowQualityWrapper) lowQualityWrapper.classList.add("is-hidden");
 
       App.dom.contributionBtn.style.display = "none";
 

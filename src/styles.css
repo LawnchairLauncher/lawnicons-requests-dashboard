@@ -1049,6 +1049,51 @@ select:hover,
     pointer-events: none;
 }
 
+.qa-container {
+  columns: 5 200px;
+  column-gap: var(--space-sm);
+  padding-bottom: 104px;
+}
+
+.qa-container .library-icon-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  min-height: 80px;
+  padding: 16px;
+  gap: 16px;
+  break-inside: avoid;
+  margin-bottom: var(--space-sm);
+  background: var(--surface-container-low);
+  border-radius: var(--shape-small);
+  cursor: pointer;
+  transition: background 0.2s;
+  box-sizing: border-box;
+}
+
+.qa-container .library-icon-card:hover {
+  background: var(--surface-container-high);
+}
+
+.qa-container .library-icon-card img {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.qa-issues {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-size: 11px;
+  color: var(--on-surface-variant);
+  line-height: 1.4;
+  font-family: monospace;
+  flex: 1;
+}
 .header-link-wrapper {
     position: relative;
     display: inline-flex;
