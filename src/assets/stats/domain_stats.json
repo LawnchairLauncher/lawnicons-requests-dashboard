@@ -1,13 +1,13 @@
 {
   "com": {
     "requests": 13863,
-    "done": 13555,
-    "total": 27418
+    "done": 13562,
+    "total": 27425
   },
   "org": {
     "requests": 822,
-    "done": 1175,
-    "total": 1997
+    "done": 1176,
+    "total": 1998
   },
   "de": {
     "requests": 249,
@@ -844,6 +844,11 @@
     "done": 6,
     "total": 6
   },
+  "website": {
+    "requests": 0,
+    "done": 6,
+    "total": 6
+  },
   "widget": {
     "requests": 0,
     "done": 6,
@@ -982,11 +987,6 @@
   "today": {
     "requests": 3,
     "done": 2,
-    "total": 5
-  },
-  "website": {
-    "requests": 0,
-    "done": 5,
     "total": 5
   },
   "yt": {
