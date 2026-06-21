@@ -1657,6 +1657,15 @@ const Data = {
       });
     }
 
+    if (params.has("page")) {
+        const page = params.get("page");
+        if (page === "low-quality-icons") {
+            App.state.lowQualityActive = true;
+        } else if (page === "contribution-plan") {
+            App.state.contributionActive = true;
+        }
+    }    
+
   },
 
   syncUrlState() {
@@ -1674,6 +1683,14 @@ const Data = {
     } else {
       params.delete("filters");
     }
+
+    if (App.state.lowQualityActive) {
+        params.set("page", "low-quality-icons");
+    } else if (App.state.contributionActive) {
+        params.set("page", "contribution-plan");
+    } else {
+        params.delete("page");
+    }    
 
     const queryString = params.toString();
     const newUrl = queryString
@@ -1836,6 +1853,7 @@ const UI = {
             App.dom.contributionBtn.classList.remove("active");
         }
         this.render();
+        Data.syncUrlState();
     });
 
     App.dom.contributionBtn?.addEventListener("click", () => {
@@ -1852,6 +1870,7 @@ const UI = {
         }
         this.saveContribution();
         this.render();
+        Data.syncUrlState();
     });
 
     this.renderDomainStats();
@@ -2808,6 +2827,7 @@ const UI = {
               App.state.lowQualityActive = false;
               document.getElementById("lowQualityBtn").classList.remove("active");
               this.render();
+              Data.syncUrlState();
           };
       }
 
@@ -2920,6 +2940,7 @@ updateLowQualityBadge() {
               App.dom.contributionBtn.classList.remove("active");
               this.saveContribution();
               this.render();
+              Data.syncUrlState();
           };
       }
 
