@@ -3955,7 +3955,7 @@ updateLowQualityBadge() {
       menu.showPopover();
       
       const w = menu.offsetWidth || 220;
-      let x = rect.left + rect.width / 2 - w / 2;
+      let x = rect.left;
       let y = rect.bottom + 4;
       
       if (x < 8) x = 8;
@@ -3964,7 +3964,7 @@ updateLowQualityBadge() {
       
       menu.style.left = `${x}px`;
       menu.style.top = `${y}px`;
-      menu.style.transformOrigin = "top center";
+      menu.style.transformOrigin = "top left";
       menu.style.visibility = "visible";
   },
     
