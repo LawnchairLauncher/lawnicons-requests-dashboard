@@ -12,7 +12,7 @@ from datetime import date, datetime, timedelta, timezone
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 REQUESTS_JSON = REPO_ROOT / "src/assets/requests.json"
-BASELINE_PATH = REPO_ROOT / "src/assets/trending_baseline.json"
+BASELINE_PATH = REPO_ROOT / "src/assets/stats/trending_baseline.json"
 LAST_FETCH_PATH = REPO_ROOT / "src/assets/last_email_fetch.txt"
 MAPUTO = timezone(timedelta(hours=2))
 

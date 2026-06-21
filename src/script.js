@@ -59,10 +59,10 @@
 const CONFIG = {
   data: {
     endpoint: "assets/requests.json",
-    setsStatsPath: "assets/sets_stats.json",
-    creationOddsPath: "assets/creation_odds.json",
-    domainStatsPath: "assets/domain_stats.json",
-    activityStatsPath: "assets/activity_stats.json",
+    setsStatsPath: "assets/stats/sets_stats.json",
+    creationOddsPath: "assets/stats/creation_odds.json",
+    domainStatsPath: "assets/stats/domain_stats.json",
+    activityStatsPath: "assets/stats/activity_stats.json",
     assetsPath: "extracted_png/",
     iconExtension: ".png",
     filterPath: "assets/filters/",
@@ -1420,8 +1420,8 @@ const Data = {
 
         // Load optional data, then init UI
         Promise.all([
-          fetch("assets/fulfillment_history.json").then(r => r.json()).catch(() => []),
-          fetch("assets/trending_baseline.json").then(r => r.json()).catch(() => null)
+          fetch("assets/stats/fulfillment_history.json").then(r => r.json()).catch(() => []),
+          fetch("assets/stats/trending_baseline.json").then(r => r.json()).catch(() => null)
         ]).then(([history, baseline]) => {
           if (history && history.length >= 3) {
               App.state._fulfillmentData = history;

@@ -307,7 +307,7 @@ def generate_stale_list() -> int:
 def update_sets_stats(apps: list) -> int:
     """Generate sets_stats.json with summed request counts per package.
     Only includes packages that appear 2+ times in requests.json."""
-    sets_path = REPO_ROOT / "src/assets/sets_stats.json"
+    sets_path = REPO_ROOT / "src/assets/stats/sets_stats.json"
     sets = {}
     
     for app in apps:
@@ -352,7 +352,7 @@ creation_odds_cap = 0.8
 
 def get_median_ttf() -> float | None:
     """Return median time-to-fulfill from fulfillment_history.json, or None if insufficient data."""
-    fulfillment_path = REPO_ROOT / "src/assets/fulfillment_history.json"
+    fulfillment_path = REPO_ROOT / "src/assets/stats/fulfillment_history.json"
     if not fulfillment_path.exists():
         return None
     try:
@@ -372,9 +372,9 @@ def update_creation_odds(apps: list) -> int:
     Only recalculates if P_top or median TTF has changed since the previous run.
     Returns the number of popularity levels in the creation odds table.
     """
-    creation_odds_path = REPO_ROOT / "src/assets/creation_odds.json"
+    creation_odds_path = REPO_ROOT / "src/assets/stats/creation_odds.json"
 
-    sets_path = REPO_ROOT / "src/assets/sets_stats.json"
+    sets_path = REPO_ROOT / "src/assets/stats/sets_stats.json"
     try:
         with open(sets_path, "r", encoding="utf-8") as f:
             sets_stats = json.load(f)
@@ -484,7 +484,7 @@ def update_domain_stats() -> int:
     from collections import Counter
     import xml.etree.ElementTree as ET
     
-    domain_stats_path = REPO_ROOT / "src/assets/domain_stats.json"
+    domain_stats_path = REPO_ROOT / "src/assets/stats/domain_stats.json"
     
     with open(REQUESTS_JSON, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -541,7 +541,7 @@ def update_activity_stats(
     """Append daily stats point to stats_history.json for activity graph."""
     from datetime import date
     
-    activity_stats_path = REPO_ROOT / "src/assets/activity_stats.json"
+    activity_stats_path = REPO_ROOT / "src/assets/stats/activity_stats.json"
     today = date.today().isoformat()
     
     history = []
@@ -594,13 +594,13 @@ def update_fulfillment_history(removed_components: set[str], old_apps: dict) -> 
     (i.e., newly discovered in upstream appfilter.xml).
     Keeps entries from the last 365 days.
     """
-    fulfillment_path = REPO_ROOT / "src/assets/fulfillment_history.json"
+    fulfillment_path = REPO_ROOT / "src/assets/stats/fulfillment_history.json"
     now = time.time()
     cutoff = now - 365 * 86400  # 1 year ago
     
     # Load sets_stats for popularity
     sets_stats = {}
-    sets_path = REPO_ROOT / "src/assets/sets_stats.json"
+    sets_path = REPO_ROOT / "src/assets/stats/sets_stats.json"
     try:
         with open(sets_path) as f:
             sets_stats = json.load(f)
