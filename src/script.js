@@ -1744,8 +1744,8 @@ const Heuristics = {
     const significance = requests >= 4 ? 1.0 : 0.3;
 
     const population = App.state.domainStats._population || {};
-    const nonGeo = new Set(['ai', 'me', 'my', 'tv', 'fm', 'to', 'st', 'cc', 'ws', 'nu', 'tk', 'sh', 'is', 'as', 'je', 'gg', 'im', 'io', 'co', 'su', 'ac', 'bh', 'mf', 'nh', 'mo', 'bd', 'hk']);
-    const isCountry = (d) => d.length === 2 && !nonGeo.has(d) && d in population;
+    const isoCountries = new Set(['ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bt','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','gb','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','st','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','us','uy','uz','va','vc','ve','vi','vn','vu','ye','yt','za','zm','zw']);
+    const isCountry = (d) => isoCountries.has(d) && d in population;
 
     let localImpact = 0;
     if (isCountry(domain)) {
@@ -3420,122 +3420,121 @@ updateLowQualityBadge() {
   },  
 
   renderDomainStats() {
-    const data = App.state.domainStats;
-    const card = document.getElementById("domainStatsCard");
-    if (!card) return;
+      const data = App.state.domainStats;
+      const card = document.getElementById("domainStatsCard");
+      if (!card) return;
 
-    if (!data || Object.keys(data).length === 0) {
-      card.style.display = "none";
-      return;
-    }
-    card.style.display = "";
-
-    const container = document.getElementById("domainStats");
-    if (!container) return;
-
-    const containerWidth = container.clientWidth || document.querySelector(".page").clientWidth - 64;
-    const colWidth = 26;
-    const fits = Math.floor(containerWidth / colWidth);
-
-    const nonGeo = new Set(["ai", "me", "my", "tv", "fm", "to", "st", "cc", "ws", "nu", "tk", "sh", "is", "as", "je", "gg", "im", "io", "co", "su", "ac", "bh", "mf", "nh", "mo", "bd", "hk"]);
-    const isCountryCode = (domain) => /^[a-z]{2}$/.test(domain) && !nonGeo.has(domain);
-    const mode = App.state.domainStatsMode;
-    const population = (data._population) || {};
-    
-    // Calc avg installs per domain (once)
-    if (!App.state._domainAvgInstalls) {
-        App.state._domainAvgInstalls = {};
-        const domainCountsI = {};
-        const domainSumsI = {};
-        App.data.forEach(app => {
-            const pkg = app.componentName.split('/')[0];
-            const domain = pkg.split('.')[0];
-            if (isCountryCode(domain)) {
-                const instStr = app.installs ? app.installs.replace(/[,+]/g, '') : '0';
-                const inst = parseInt(instStr, 10) || 0;
-                const pop = population[domain] || 1;
-                if (inst / 1_000_000 > pop * 3) return;
-                domainSumsI[domain] = (domainSumsI[domain] || 0) + inst;
-                domainCountsI[domain] = (domainCountsI[domain] || 0) + 1;
-            }
-        });
-        for (const d of Object.keys(domainSumsI)) {
-            App.state._domainAvgInstalls[d] = Math.round(domainSumsI[d] / domainCountsI[d]);
-        }
-    }
-    
-    let entries = Object.entries(data)
-        .filter(([domain]) => isCountryCode(domain) && domain !== "_population")
-        .map(([domain, stats]) => [domain, stats.done, stats.requests, stats.total]);
-
-    if (mode === "local") {
-    entries = entries
-        .filter(([, , requests]) => requests > 10)
-        .sort((a, b) => {
-            const instA = App.state._domainAvgInstalls[a[0]] || 0;
-            const instB = App.state._domainAvgInstalls[b[0]] || 0;
-            const popA = population[a[0]] || 1;
-            const popB = population[b[0]] || 1;
-            const scoreA = instA / popA;
-            const scoreB = instB / popB;
-            return scoreB - scoreA;
-        });
-    } else if (mode === "coverage") {
-        entries = entries
-            .filter(([, , requests]) => requests >= 15)
-            .sort((a, b) => {
-                const pctA = a[2] / a[3];
-                const pctB = b[2] / b[3];
-                return pctB - pctA;
-            });
-    } else {
-        entries = entries
-            .filter(([, , requests]) => requests >= 15)
-            .sort((a, b) => b[3] - a[3]);
-    }
-    
-    const max = Math.max(...entries.map(e => e[3]), 1);
-
-    const title = document.querySelector("#domainStatsCard .card-title");
-    if (title) {
-        if (mode === "local") title.textContent = "Local impact";
-        else if (mode === "coverage") title.textContent = "Lowest coverage";
-        else title.textContent = "Top domains";
-    }
-
-    const sub = document.querySelector("#domainStatsCard .card-sub");
-    if (sub) sub.style.display = "none";
-
-    container.innerHTML = Templates.domainStatsCard(entries, max);
-
-    const tooltip = container.querySelector(".chart-tooltip");
-    if (!tooltip) return;
-
-    container.addEventListener("mousemove", (e) => {
-      const col = e.target.closest(".domain-col");
-      if (!col) {
-        tooltip.style.display = "none";
+      if (!data || Object.keys(data).length === 0) {
+        card.style.display = "none";
         return;
       }
-      const domain = col.dataset.domain;
-      const done = parseInt(col.dataset.done);
-      const requests = parseInt(col.dataset.requests);
-      const total = parseInt(col.dataset.total);
-      const avgInst = App.state._domainAvgInstalls[domain] || 0;
-      const pop = population[domain] || 0;
-      tooltip.innerHTML = Templates.domainStatsTooltip(domain, done, requests, total, mode, avgInst, pop);
-      tooltip.style.display = "block";
-      const rect = col.getBoundingClientRect();
-      const containerRect = container.getBoundingClientRect();
-      tooltip.style.top = "0px";
-      tooltip.style.transform = "translateY(-50%)";
-      tooltip.style.left = (rect.left - containerRect.left + rect.width) + "px";
-    });
+      card.style.display = "";
 
-    container.addEventListener("mouseleave", () => {
-      tooltip.style.display = "none";
-    });
-  },
+      const container = document.getElementById("domainStats");
+      if (!container) return;
+
+      const containerWidth = container.clientWidth || document.querySelector(".page").clientWidth - 64;
+      const colWidth = 26;
+      const fits = Math.floor(containerWidth / colWidth);
+
+      const isoCountries = new Set(['ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bt','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','gb','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','st','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','us','uy','uz','va','vc','ve','vi','vn','vu','ye','yt','za','zm','zw']);
+      const isCountry = (domain) => isoCountries.has(domain);
+      const mode = App.state.domainStatsMode;
+      const population = (data._population) || {};
+      
+      if (!App.state._domainAvgInstalls) {
+          App.state._domainAvgInstalls = {};
+          const domainCountsI = {};
+          const domainSumsI = {};
+          App.data.forEach(app => {
+              const pkg = app.componentName.split('/')[0];
+              const domain = pkg.split('.')[0];
+              if (isCountry(domain)) {
+                  const instStr = app.installs ? app.installs.replace(/[,+]/g, '') : '0';
+                  const inst = parseInt(instStr, 10) || 0;
+                  const pop = population[domain] || 1;
+                  if (inst / 1_000_000 > pop * 3) return;
+                  domainSumsI[domain] = (domainSumsI[domain] || 0) + inst;
+                  domainCountsI[domain] = (domainCountsI[domain] || 0) + 1;
+              }
+          });
+          for (const d of Object.keys(domainSumsI)) {
+              App.state._domainAvgInstalls[d] = Math.round(domainSumsI[d] / domainCountsI[d]);
+          }
+      }
+      
+      let entries = Object.entries(data)
+          .filter(([domain]) => isCountry(domain) && domain !== "_population")
+          .map(([domain, stats]) => [domain, stats.done, stats.requests, stats.total]);
+
+      if (mode === "local") {
+      entries = entries
+          .filter(([, , requests]) => requests > 10)
+          .sort((a, b) => {
+              const instA = App.state._domainAvgInstalls[a[0]] || 0;
+              const instB = App.state._domainAvgInstalls[b[0]] || 0;
+              const popA = population[a[0]] || 1;
+              const popB = population[b[0]] || 1;
+              const scoreA = instA / popA;
+              const scoreB = instB / popB;
+              return scoreB - scoreA;
+          });
+      } else if (mode === "coverage") {
+          entries = entries
+              .filter(([, , requests]) => requests >= 15)
+              .sort((a, b) => {
+                  const pctA = a[2] / a[3];
+                  const pctB = b[2] / b[3];
+                  return pctB - pctA;
+              });
+      } else {
+          entries = entries
+              .filter(([, , requests]) => requests >= 15)
+              .sort((a, b) => b[3] - a[3]);
+      }
+      
+      const max = Math.max(...entries.map(e => e[3]), 1);
+
+      const title = document.querySelector("#domainStatsCard .card-title");
+      if (title) {
+          if (mode === "local") title.textContent = "Local impact";
+          else if (mode === "coverage") title.textContent = "Lowest coverage";
+          else title.textContent = "Top domains";
+      }
+
+      const sub = document.querySelector("#domainStatsCard .card-sub");
+      if (sub) sub.style.display = "none";
+
+      container.innerHTML = Templates.domainStatsCard(entries, max);
+
+      const tooltip = container.querySelector(".chart-tooltip");
+      if (!tooltip) return;
+
+      container.addEventListener("mousemove", (e) => {
+        const col = e.target.closest(".domain-col");
+        if (!col) {
+          tooltip.style.display = "none";
+          return;
+        }
+        const domain = col.dataset.domain;
+        const done = parseInt(col.dataset.done);
+        const requests = parseInt(col.dataset.requests);
+        const total = parseInt(col.dataset.total);
+        const avgInst = App.state._domainAvgInstalls[domain] || 0;
+        const pop = population[domain] || 0;
+        tooltip.innerHTML = Templates.domainStatsTooltip(domain, done, requests, total, mode, avgInst, pop);
+        tooltip.style.display = "block";
+        const rect = col.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        tooltip.style.top = "0px";
+        tooltip.style.transform = "translateY(-50%)";
+        tooltip.style.left = (rect.left - containerRect.left + rect.width) + "px";
+      });
+
+      container.addEventListener("mouseleave", () => {
+        tooltip.style.display = "none";
+      });
+    },
 
   renderActivityCard() {
     const history = App.state.activityStats;
@@ -3791,9 +3790,9 @@ updateLowQualityBadge() {
   },
 
   buildQuickPickQueue() {
-      const NON_GEO = new Set(["ai", "me", "my", "tv", "fm", "to", "st", "cc", "ws", "nu", "tk", "sh", "is", "as", "je", "gg", "im", "io", "co"]);
+      const isoCountries = new Set(['ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bt','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','gb','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','st','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','us','uy','uz','va','vc','ve','vi','vn','vu','ye','yt','za','zm','zw']);
       const POP = App.state.domainStats._population || {};
-      const isCountry = (d) => d.length === 2 && !NON_GEO.has(d) && d in POP;
+      const isCountry = (d) => isoCountries.has(d) && d in POP;
       
       // Calc local_impact per country
       const domainInstalls = {};
