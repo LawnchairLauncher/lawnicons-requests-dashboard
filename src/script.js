@@ -1788,6 +1788,170 @@ const Heuristics = {
   }
 };
 
+
+const Router = {
+  // Map page names to UI configurations
+  pages: {
+    MAIN: 'main',
+    QA: 'low-quality-icons',
+    CONTRIBUTION: 'contribution-plan'
+  },
+
+  /**
+   * Initializes navigation listeners and handles initial page state.
+   */
+  init() {
+    // Determine initial page from URL or State
+    const params = new URLSearchParams(window.location.search);
+    const pageParam = params.get("page");
+
+    // Convert boolean flags to single activePage state
+    if (pageParam === this.pages.QA || App.state.lowQualityActive) {
+      this.navigate(this.pages.QA, false);
+    } else if (pageParam === this.pages.CONTRIBUTION || App.state.contributionActive) {
+      this.navigate(this.pages.CONTRIBUTION, false);
+    } else {
+      this.navigate(this.pages.MAIN, false);
+    }
+
+    // Bind Persistent Navigation Buttons
+    document.getElementById("lowQualityBtn")?.addEventListener("click", () => {
+      const target = App.state.activePage === this.pages.QA ? this.pages.MAIN : this.pages.QA;
+      this.navigate(target);
+    });
+
+    App.dom.contributionBtn?.addEventListener("click", () => {
+      if (App.state.contribution.length === 0 && App.state.activePage !== this.pages.CONTRIBUTION) {
+        Toast.show("Contribution plan is empty. Add at least 1 request.");
+        return;
+      }
+      const target = App.state.activePage === this.pages.CONTRIBUTION ? this.pages.MAIN : this.pages.CONTRIBUTION;
+      this.navigate(target);
+    });
+  },
+
+  /**
+   * Performs the transition between pages.
+   * @param {string} page - The page ID to switch to.
+   * @param {boolean} triggerRender - Whether to call UI.render immediately.
+   */
+  navigate(page, triggerRender = true) {
+    this._cleanup();
+    App.state.activePage = page;
+
+    // Update state-specific booleans for backward compatibility with old logic
+    App.state.lowQualityActive = (page === this.pages.QA);
+    App.state.contributionActive = (page === this.pages.CONTRIBUTION);
+
+    // Perform DOM modifications required for specific views
+    switch (page) {
+      case this.pages.QA:
+        this._setupQAHeader();
+        break;
+      case this.pages.CONTRIBUTION:
+        this._setupContributionHeader();
+        break;
+      default:
+        this._setupMainHeader();
+        break;
+    }
+
+    if (triggerRender) {
+      UI.render();
+    }
+  },
+
+  /**
+   * Resets common UI elements before a new page is mounted.
+   */
+  _cleanup() {
+    // Remove temporary back buttons
+    document.getElementById("lowQualityBackBtn")?.remove();
+    document.getElementById("contributionBackBtn")?.remove();
+
+    // Reset global visibility
+    App.dom.contributionBtn.style.display = "";
+    document.getElementById("lowQualityBtn").parentElement.classList.remove("is-hidden");
+    document.getElementById("search-wrapper").classList.remove("is-hidden");
+    document.querySelector(".header-icon").classList.remove("is-hidden");
+    document.querySelector(".controls").classList.remove("is-hidden");
+
+    // Ensure badges are visible if needed
+    UI.updateContributionBadge();
+    UI.updateLowQualityBadge();
+  },
+
+  _setupMainHeader() {
+    document.querySelector(".header-info h1").textContent = "Lawnicons";
+    App.dom.contributionBtn.classList.remove("active");
+    document.getElementById("lowQualityBtn").classList.remove("active");
+
+    const headerRight = document.querySelector(".header-right");
+    headerRight.querySelectorAll("a").forEach(a => a.classList.remove("is-hidden"));
+    document.getElementById("appfilterLink")?.classList.add("is-hidden");
+  },
+
+  _setupQAHeader() {
+    document.querySelector(".header-info h1").textContent = "Low quality icons";
+    document.getElementById("lowQualityBtn").classList.add("active");
+
+    // Inject Back Button
+    this._injectBackButton("lowQualityBackBtn");
+
+    // Hide Irrelevant Controls
+    document.getElementById("search-wrapper").classList.add("is-hidden");
+    document.querySelector(".header-icon").classList.add("is-hidden");
+    document.querySelector(".controls").classList.add("is-hidden");
+
+    this._setupToolLinks();
+  },
+
+  _setupContributionHeader() {
+    document.querySelector(".header-info h1").textContent = "Contribution plan";
+    App.dom.contributionBtn.classList.add("active");
+
+    // Inject Back Button
+    this._injectBackButton("contributionBackBtn");
+
+    // Hide Irrelevant Controls
+    document.getElementById("search-wrapper").classList.add("is-hidden");
+    document.querySelector(".header-icon").classList.add("is-hidden");
+    document.querySelector(".controls").classList.add("is-hidden");
+
+    this._setupToolLinks();
+  },
+
+  _injectBackButton(id) {
+    if (document.getElementById(id)) return;
+    const btn = document.createElement("button");
+    btn.className = "header-link back-btn";
+    btn.id = id;
+    btn.title = 'Back to requests';
+    btn.type = 'button'
+    btn.setAttribute('aria-label', 'Back to requests')
+    btn.innerHTML = `<svg><use href="#ic-arrow-back"/></svg>`;
+    btn.onclick = () => this.navigate(this.pages.MAIN);
+    document.querySelector(".header-left").prepend(btn);
+  },
+
+  _setupToolLinks() {
+    const headerRight = document.querySelector(".header-right");
+    headerRight.querySelectorAll("a").forEach(a => a.classList.add("is-hidden"));
+
+    if (!document.getElementById("appfilterLink")) {
+      headerRight.insertAdjacentHTML("afterbegin", `
+        <a id="appfilterLink" href="https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/refs/heads/develop/app/assets/appfilter.xml" 
+           class="header-link" title="Current appfilter.xml" target="_blank" rel=\"noopener noreferrer\">
+          <svg><use href="#ic-code-xml"/></svg>
+        </a>
+      `);
+    } else {
+      document.getElementById("appfilterLink").classList.remove("is-hidden");
+    }
+  }
+};
+
+
 // ==========================================
 // 9. UI LOGIC
 // ==========================================
@@ -1821,21 +1985,24 @@ const UI = {
     // 1. Recover persistent state from LocalStorage
     this._initStorageState();
 
-    // 2. Initialize Visual Components
+    // 2. Initiate Router system
+    Router.init();
+
+    // 3. Initialize Visual Components
     this._initCharts();
     this.renderQuickPick();
     this.generateFilters();
     this.initObserver();
     this.initRegexAutocomplete();
 
-    // 3. Bind UI Controls
+    // 4. Bind UI Controls
     this._bindControls();
 
-    // 4. Register Event Handling
+    // 5. Register Event Handling
     this._initGlobalDelegation();
     this._initKeyboardNavigation();
 
-    // 5. Initial Render
+    // 6. Initial Render
     this.render();
   },
 
