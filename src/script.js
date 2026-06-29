@@ -1572,85 +1572,131 @@ const Data = {
   },
 
   process() {
-    let data = App.data;
     const s = App.state;
+    let data = App.data;
 
-    // Search
     const query = Utils.parseSearchQuery(s.search);
     const activeFilters = new Set([...s.activeFilters, ...query.tags]);
 
-    // Filter
+    const filterTags = [...activeFilters]
     if (activeFilters.size > 0) {
       data = data.filter(app => {
-        const id = app.componentName;
-        const tags = s.appTags.get(id);
+        const tags = s.appTags.get(app.componentName);
         if (!tags) return false;
-        return Array.from(activeFilters).every(fid => tags.has(fid));
+        return filterTags.every(tagId => tags.has(tagId));
       });
     }
 
-    // Text Search
-    if (query.text) {
-      if (s.regexMode) {
-        try {
-          const regex = new RegExp(query.text, 'i');
-          data = data.filter(a => regex.test(a.label) || regex.test(a.componentName));
-        } catch {
-          data = [];
-        }
-      } else {
-        const term = query.text.toLowerCase();
-        data = data.filter(a =>
-          a.label.toLowerCase().includes(term) || a.componentName.toLowerCase().includes(term)
-        );
-      }
-    }
-
-    // Set filter
+    // Only show apps that are part of a multi-package set
     if (query.isSet) {
-      data = data.filter(app => App.state.setsStats[app.componentName.split('/')[0]] !== undefined);
-    }
-
-    // Sort
-    if (s.sort === "balanced") {
-      data = data.filter(app => app.requestCount >= 4 && Utils.parseInstalls(app.installs) >= 500000);
-    }
-
-    data = [...data];
-    if (s.sort === "rand") {
-      for (let i = data.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [data[i], data[j]] = [data[j], data[i]];
-      }
-    } else {
-      /** @type {Record<string, (a: AppEntry, b: AppEntry) => number>} */
-      const getPop = (app) => {
+      data = data.filter(app => {
         const pkg = app.componentName.split('/')[0];
-        return App.state.setsStats[pkg] || app.requestCount;
-      };
-
-      const sorters = {
-        "req-desc": (a, b) => getPop(b) - getPop(a) || a.componentName.split('/')[0].localeCompare(b.componentName.split('/')[0]),
-        "req-asc": (a, b) => getPop(a) - getPop(b) || a.componentName.split('/')[0].localeCompare(b.componentName.split('/')[0]),
-        "trending": (a, b) => {
-          const deltaA = App.state.trendingDeltas[a.componentName] || 0;
-          const deltaB = App.state.trendingDeltas[b.componentName] || 0;
-          return deltaB - deltaA || getPop(b) - getPop(a);
-        },
-        "odds-desc": (a, b) => Heuristics.calculateCreationOdds(b) - Heuristics.calculateCreationOdds(a) || getPop(b) - getPop(a),
-        "odds-asc": (a, b) => Heuristics.calculateCreationOdds(a) - Heuristics.calculateCreationOdds(b) || getPop(b) - getPop(a),
-        "install-desc": (a, b) => Utils.parseInstalls(b.installs) - Utils.parseInstalls(a.installs) || getPop(b) - getPop(a) || a.componentName.split('/')[0].localeCompare(b.componentName.split('/')[0]),
-        "install-asc": (a, b) => Utils.parseInstalls(a.installs) - Utils.parseInstalls(b.installs) || getPop(b) - getPop(a) || a.componentName.split('/')[0].localeCompare(b.componentName.split('/')[0]),
-        "name-asc": (a, b) => a.label.localeCompare(b.label) || getPop(b) - getPop(a),
-        "name-desc": (a, b) => b.label.localeCompare(a.label) || getPop(b) - getPop(a),
-        "time-desc": (a, b) => b.firstAppearance - a.firstAppearance || getPop(b) - getPop(a),
-        "time-asc": (a, b) => a.firstAppearance - b.firstAppearance || getPop(b) - getPop(a),
-        "balanced": (a, b) => Heuristics.calculateBalancedScore(b) - Heuristics.calculateBalancedScore(a) || (App.state.setsStats[b.componentName.split('/')[0]] || b.requestCount) - (App.state.setsStats[a.componentName.split('/')[0]] || a.requestCount),
-      };
-      if (sorters[s.sort]) data.sort(sorters[s.sort]);
+        return s.setsStats[pkg] !== undefined;
+      });
     }
 
-    App.state.currentData = data;
+    // Balanced Filter (Specific to the "Balanced" sort mode threshold)
+    if (s.sort === "balanced") {
+      data = data.filter(app =>
+        app.requestCount >= Heuristics.BALANCED_MIN_REQUESTS &&
+        Utils.parseInstalls(app.installs) >= Heuristics.BALANCED_MIN_INSTALLS
+      );
+    }
+
+    if (query.text) {
+      data = this._applySearch(data, query.text, s.regexMode);
+    }
+
+    App.state.currentData = this._applySort(data, s.sort);
+  },
+
+  /**
+   * Internal search engine
+   */
+  _applySearch(data, text, isRegex) {
+    if (isRegex) {
+      try {
+        const regex = new RegExp(text, 'i');
+        return data.filter(a => regex.test(a.label) || regex.test(a.componentName));
+      } catch {
+        return [];
+      }
+    }
+
+    const term = text.toLowerCase();
+    return data.filter(a =>
+      a.label.toLowerCase().includes(term) ||
+      a.componentName.toLowerCase().includes(term)
+    );
+  },
+
+  /**
+   * Internal sorting engine
+   */
+  _applySort(data, sortKey) {
+    if (sortKey === "rand") {
+      const shuffled = [...data];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    const pkgCache = new Map();
+    for (const item of data) {
+      if (!pkgCache.has(item.componentName)) {
+        pkgCache.set(item.componentName, item.componentName.split('/')[0]);
+      }
+    }
+
+    const sorter = this._getSorter(sortKey, pkgCache);
+    if (!sorter) {
+      return [...data]; 
+    }
+
+    return [...data].sort(sorter);
+  },
+
+  /**
+   * Returns a compare function based on the sortKey
+   */
+  _getSorter(sortKey, pkgCache) {
+    const s = App.state;
+
+    // Helper to get normalized popularity (Set count or App count)
+    const getPop = (app) => {
+      const pkg = pkgCache.get(app.componentName);
+      return s.setsStats[pkg] || app.requestCount;
+    };
+
+    // Shared secondary sort using the precomputed cache
+    const secondary = (a, b) => {
+      const pkgA = pkgCache.get(a.componentName);
+      const pkgB = pkgCache.get(b.componentName);
+      return pkgA.localeCompare(pkgB);
+    };
+
+    const sorters = {
+      "req-desc": (a, b) => getPop(b) - getPop(a) || secondary(a, b),
+      "req-asc": (a, b) => getPop(a) - getPop(b) || secondary(a, b),
+      "trending": (a, b) => {
+        const deltaA = s.trendingDeltas[a.componentName] || 0;
+        const deltaB = s.trendingDeltas[b.componentName] || 0;
+        return deltaB - deltaA || getPop(b) - getPop(a);
+      },
+      "odds-desc": (a, b) => Heuristics.calculateCreationOdds(b) - Heuristics.calculateCreationOdds(a) || getPop(b) - getPop(a),
+      "odds-asc": (a, b) => Heuristics.calculateCreationOdds(a) - Heuristics.calculateCreationOdds(b) || getPop(b) - getPop(a),
+      "install-desc": (a, b) => Utils.parseInstalls(b.installs) - Utils.parseInstalls(a.installs) || getPop(b) - getPop(a) || secondary(a, b),
+      "install-asc": (a, b) => Utils.parseInstalls(a.installs) - Utils.parseInstalls(b.installs) || getPop(b) - getPop(a) || secondary(a, b),
+      "name-asc": (a, b) => a.label.localeCompare(b.label) || getPop(b) - getPop(a),
+      "name-desc": (a, b) => b.label.localeCompare(a.label) || getPop(b) - getPop(a),
+      "time-desc": (a, b) => b.firstAppearance - a.firstAppearance || getPop(b) - getPop(a),
+      "time-asc": (a, b) => a.firstAppearance - b.firstAppearance || getPop(b) - getPop(a),
+      "balanced": (a, b) => Heuristics.calculateBalancedScore(b) - Heuristics.calculateBalancedScore(a) || getPop(b) - getPop(a)
+    };
+
+    return sorters[sortKey] || null;
   },
 
   loadUrlState() {
@@ -1730,6 +1776,9 @@ const Data = {
 // Pure mathematical formulas for ranking and probability.
 // ==========================================
 const Heuristics = {
+  BALANCED_MIN_REQUESTS: 4,
+  BALANCED_MIN_INSTALLS: 500000,
+
   /** @param {AppEntry} app */
   calculateCreationOdds(app) {
     const table = App.state.creationOdds;
