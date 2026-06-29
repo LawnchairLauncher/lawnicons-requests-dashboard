@@ -1814,21 +1814,53 @@ const UI = {
     { value: "rand", label: "Random" }
   ],
 
+  /**
+   * Main Orchestrator for UI Setup
+   */
   init() {
+    // 1. Recover persistent state from LocalStorage
+    this._initStorageState();
 
+    // 2. Initialize Visual Components
+    this._initCharts();
+    this.renderQuickPick();
+    this.generateFilters();
+    this.initObserver();
+    this.initRegexAutocomplete();
+
+    // 3. Bind UI Controls
+    this._bindControls();
+
+    // 4. Register Event Handling
+    this._initGlobalDelegation();
+    this._initKeyboardNavigation();
+
+    // 5. Initial Render
+    this.render();
+  },
+
+  /**
+   * Loads contribution plans and UI preferences from storage.
+   */
+  _initStorageState() {
+    // Regex Mode visibility
     if (App.state.regexMode) {
       App.dom.regexBtn.classList.add("active");
     }
 
+    // Contribution Plan Recovery
     const savedList = localStorage.getItem("lawnicons_contribution");
     if (savedList) {
       try {
         const parsed = JSON.parse(savedList);
         const before = parsed.length;
+
+        // Only keep items that still exist in the main dataset
         App.state.contribution = parsed.filter(app =>
-          App.data.some(d => d.componentName === app.componentName)
+          App.state.idMap.has(app.componentName)
         );
 
+        // Recover Overrides (names, drawables, modes)
         const savedOverrides = localStorage.getItem("lawnicons_contribution_overrides");
         if (savedOverrides) {
           const parsedOverrides = JSON.parse(savedOverrides);
@@ -1840,18 +1872,21 @@ const UI = {
           }
         }
 
-        if (App.state.contribution.length < before) {
-          this.saveContribution();
-        }
+        // Cleanup if data drifted
+        if (App.state.contribution.length < before) this.saveContribution();
 
+        // Tag apps in the plan
         App.state.contribution.forEach(app => {
           const tags = App.state.appTags.get(app.componentName) || new Set();
           tags.add("plan");
           App.state.appTags.set(app.componentName, tags);
         });
-      } catch { }
+      } catch (e) {
+        console.error("Failed to recover contribution plan", e);
+      }
     }
 
+    // Navigation state cleanup (Reset contribution view on fresh load)
     if (performance.navigation.type === 0) {
       localStorage.setItem("lawnicons_contribution_active", "false");
     }
@@ -1863,107 +1898,16 @@ const UI = {
     }
 
     this.updateContributionBadge();
+  },
 
-    document.getElementById("lowQualityBtn")?.addEventListener("click", () => {
-      App.state.lowQualityActive = !App.state.lowQualityActive;
-      if (!App.state.lowQualityActive) {
-        document.querySelector(".header-info h1").textContent = "Lawnicons";
-        App.dom.contributionBtn.style.display = "";
-        document.getElementById("lowQualityBtn").classList.remove("active");
-      } else {
-        App.state.contributionActive = false;
-        App.dom.contributionBtn.classList.remove("active");
-      }
-      this.render();
-      Data.syncUrlState();
-    });
-
-    App.dom.contributionBtn?.addEventListener("click", () => {
-      if (!App.state.contributionActive && App.state.contribution.length === 0) {
-        Toast.show("Contribution plan is empty. Add at least 1 request.");
-        return;
-      }
-      App.state.contributionActive = !App.state.contributionActive;
-      App.dom.contributionBtn.classList.toggle("active", App.state.contributionActive);
-      if (!App.state.contributionActive) {
-        document.querySelector(".header-info h1").textContent = "Lawnicons";
-        App.dom.sentinel.style.display = "";
-        App.dom.contributionBtn.style.display = "";
-      }
-      this.saveContribution();
-      this.render();
-      Data.syncUrlState();
-    });
-
-    this.renderDomainStats();
-    document.querySelectorAll("[data-action='domain-stats-mode']").forEach(el => {
-      el.addEventListener("click", () => {
-        const mode = el.dataset.mode;
-        if (!mode) return;
-        App.state.domainStatsMode = mode;
-        document.querySelectorAll("[data-action='domain-stats-mode']").forEach(s => {
-          const span = s.closest('span');
-          if (span) span.classList.toggle("active", s.dataset.mode === mode);
-        });
-        this.renderDomainStats();
-      });
-    });
-
-    const activeMode = App.state.domainStatsMode;
-    const activeSvg = document.querySelector(`[data-action='domain-stats-mode'][data-mode='${activeMode}']`);
-    if (activeSvg) {
-      const span = activeSvg.closest('span');
-      if (span) span.classList.add("active");
-    }
-
-    // Quick Pick
-    this.renderQuickPick();
-
-    document.getElementById("quickPickDownload")?.addEventListener("click", (e) => {
-      e.preventDefault();
-      const queue = App.state.quickPickMode === 'easy'
-        ? App.state._quickPickEasy
-        : App.state._quickPickMiddle;
-      if (!queue || !queue.length) return;
-      const app = queue[App.state._lastQuickPickIdx || 0];
-      App.state.selected.clear();
-      App.state.selected.add(app.componentName);
-      Actions.downloadBundle();
-    });
-
-    document.querySelectorAll("[data-action='quick-pick-mode']").forEach(el => {
-      el.addEventListener("click", () => {
-        const mode = el.dataset.mode;
-        if (!mode) return;
-        App.state.quickPickMode = mode;
-        document.querySelectorAll("[data-action='quick-pick-mode']").forEach(s => {
-          const span = s.closest('span');
-          if (span) span.classList.toggle("active", s.dataset.mode === mode);
-        });
-        this.pickRandomQuickPick();
-      });
-    })
-
-    this.renderActivityCard();
-    this.generateFilters();
-    this.initObserver();
-    this.initRegexAutocomplete();
-    this.render();
-
-    window.addEventListener("resize", () => {
-      this.renderDomainStats();
-      this.renderActivityCard();
-    });
-
-    // Bindings
-    App.dom.container.addEventListener("error", event => {
-      Utils.handleImageError(event);
-    }, true);
-
+  /**
+   * Binds listeners to static header/footer controls.
+   */
+  _bindControls() {
+    // Search & Filtering
     App.dom.inputSearch.addEventListener("input", e => {
-      const val = e.target.value;
-      App.state.search = val;
-      Utils.setHidden(App.dom.clearBtn, val.length === 0);
+      App.state.search = e.target.value;
+      Utils.setHidden(App.dom.clearBtn, App.state.search.length === 0);
       this.renderIconLibrary();
       this.render();
     });
@@ -1973,22 +1917,9 @@ const UI = {
       App.dom.inputSearch.value = "";
       Utils.setHidden(App.dom.clearBtn, true);
       App.dom.inputSearch.focus();
-      App.dom.regexBtn.style.display = "";
       this.renderIconLibrary();
       this.render();
     });
-
-    App.dom.sortBtn.addEventListener("click", () => this.showSortMenu());
-
-    App.dom.viewBtn.addEventListener("click", () => {
-      App.state.view = App.state.view === "list" ? "grid" : "list";
-      App.dom.viewIconList.classList.toggle("active", App.state.view === "list");
-      App.dom.viewIconGrid.classList.toggle("active", App.state.view === "grid");
-      this.render();
-    });
-
-    App.dom.viewIconList.classList.add("active");
-    App.dom.viewIconGrid.classList.remove("active");
 
     App.dom.regexBtn.addEventListener("click", () => {
       App.state.regexMode = !App.state.regexMode;
@@ -1996,15 +1927,23 @@ const UI = {
       this.render();
     });
 
-    App.dom.headerCheck.addEventListener("change", e =>
-      Actions.toggleSelectAll((/** @type {HTMLInputElement} */ (e.target)).checked)
-    );
-
-    App.dom.mobileFilterBtn.addEventListener("click", () => {
-      this.showMobileFilterPopover();
+    // View & Sort
+    App.dom.sortBtn.addEventListener("click", () => this.showSortMenu());
+    App.dom.viewBtn.addEventListener("click", () => {
+      App.state.view = App.state.view === "list" ? "grid" : "list";
+      App.dom.viewIconList.classList.toggle("active", App.state.view === "list");
+      App.dom.viewIconGrid.classList.toggle("active", App.state.view === "grid");
+      this.render();
     });
 
-    // Selection Bar
+    // Bulk Actions
+    App.dom.headerCheck.addEventListener("change", e =>
+      Actions.toggleSelectAll(e.target.checked)
+    );
+
+    App.dom.mobileFilterBtn.addEventListener("click", () => this.showMobileFilterPopover());
+
+    // Selection Bar specific
     document.getElementById("sbContributeBtn")?.addEventListener("click", () => {
       App.state.selected.forEach(id => {
         const app = App.state.idMap.get(id);
@@ -2016,8 +1955,7 @@ const UI = {
         }
       });
       this.saveContribution();
-      const count = App.state.selected.size;
-      Toast.show(`${count} icon${count !== 1 ? 's' : ''} added to contribution plan.`);
+      Toast.show(`${App.state.selected.size} icons added to plan.`);
       Actions.clearAllSelections();
       this.render();
     });
@@ -2027,536 +1965,111 @@ const UI = {
       Actions.downloadBundle();
     });
 
-    App.dom.sbMenuBtn.addEventListener("click", (e) => {
-      const menu = document.getElementById("sbMenu");
-      menu.innerHTML = Templates.selectionBarMenu();
-      const rect = /** @type {HTMLElement} */ (e.currentTarget).getBoundingClientRect();
+    App.dom.sbMenuBtn.addEventListener("click", (e) => this.showSelectionBarMenu(e));
 
-      menu.style.visibility = "hidden";
-      menu.showPopover();
-
-      const x = rect.right - menu.offsetWidth;
-      const y = rect.top - menu.offsetHeight - 8;
-
-      menu.style.left = `${x}px`;
-      menu.style.top = `${y}px`;
-      menu.style.transformOrigin = "bottom right";
-      menu.style.visibility = "visible";
-    });
-
-    document.getElementById("sbHint")?.addEventListener("click", () => {
-      Actions.clearAllSelections();
-    });
-
-    // Sort Headers
-    const headers = {
-      '.col.name': 'name',
-      '.col.req': 'req',
-      '.col.creation-odds': 'odds',
-      '.col.install': 'install',
-      '.col.first': 'time'
-    };
-
+    // List Header Sorters
+    const headers = { '.col.name': 'name', '.col.req': 'req', '.col.creation-odds': 'odds', '.col.install': 'install', '.col.first': 'time' };
     Object.entries(headers).forEach(([selector, key]) => {
-      const el = /** @type {HTMLElement} */ (App.dom.listHeader.querySelector(selector));
-      if (el) {
-        el.title = "Click to sort";
-        el.onclick = () => Actions.toggleSortHeader(key);
-      }
+      const el = App.dom.listHeader.querySelector(selector);
+      if (el) el.onclick = () => Actions.toggleSortHeader(key);
     });
+  },
 
-    // Event Delegation
+  /**
+   * Centralized Event Delegation for dynamic elements.
+   */
+  _initGlobalDelegation() {
+    // 1. Click Actions via [data-action]
     document.addEventListener('click', (e) => {
-      const target = /** @type {HTMLElement} */ (e.target);
-
-      const actionEl = /** @type {HTMLElement | null} */ (target.closest('[data-action]'));
+      const actionEl = e.target.closest('[data-action]');
       if (actionEl) {
-        const action = actionEl.dataset.action;
-
-        if (action === "download-png") {
-          const url = actionEl.dataset.url;
-          const drawable = actionEl.dataset.drawable;
-          if (url && drawable) {
-            fetch(url)
-              .then(r => r.blob())
-              .then(async blob => {
-                try {
-                  const handle = await window.showSaveFilePicker({
-                    suggestedName: `${drawable}.png`,
-                    types: [{
-                      description: 'PNG Image',
-                      accept: { 'image/png': ['.png'] }
-                    }]
-                  });
-                  const writable = await handle.createWritable();
-                  await writable.write(blob);
-                  await writable.close();
-                } catch {
-                  const a = document.createElement('a');
-                  a.href = URL.createObjectURL(blob);
-                  a.download = `${drawable}.png`;
-                  a.click();
-                  URL.revokeObjectURL(a.href);
-                }
-              })
-              .catch(() => Toast.show("Failed to download PNG", "error"));
-          }
-          return;
-        }
-
-        if (action === "library-download-svg") {
-          const url = actionEl.dataset.url;
-          const drawable = actionEl.dataset.drawable;
-          if (url && drawable) {
-            fetch(url)
-              .then(r => r.blob())
-              .then(blob => {
-                const a = document.createElement('a');
-                a.href = URL.createObjectURL(blob);
-                a.download = `${drawable}.svg`;
-                a.click();
-                URL.revokeObjectURL(a.href);
-              })
-              .catch(() => Toast.show("Failed to download SVG", "error"));
-          }
-          UI.closeContextMenu();
-          return;
-        }
-
-        if (action === "library-copy-svg") {
-          const drawable = actionEl.dataset.drawable;
-          if (drawable) {
-            const svgUrl = `https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${drawable}.svg`;
-            fetch(svgUrl)
-              .then(r => r.text())
-              .then(svgText => {
-                Actions.copyToClipboard(svgText);
-              })
-              .catch(() => {
-                Toast.show("Failed to copy SVG", "error");
-              });
-          }
-          UI.closeContextMenu();
-          return;
-        }
-
-        if (action === "library-copy-name") {
-          const drawable = actionEl.dataset.drawable;
-          if (drawable) {
-            Actions.copyToClipboard(drawable);
-          }
-          UI.closeContextMenu();
-          return;
-        }
-
-        if (action === "open-link") {
-          const url = actionEl.dataset.url;
-          if (url) {
-            const a = document.createElement('a');
-            a.href = url;
-            a.target = '_blank';
-            a.rel = 'noopener noreferrer';
-            a.click();
-            UI.closeContextMenu();
-          }
-          return;
-        }
-
-        if (action === "restore-original") {
-          const id = actionEl.dataset.id;
-          const app = App.state.contribution.find(a => a.componentName === id);
-          if (app) {
-            delete App.state.contributionOverrides[id];
-            UI.saveContribution();
-            UI.render();
-          }
-          UI.closeContextMenu();
-          return;
-        }
-
-        if (action === "remove-from-contribution") {
-          const id = actionEl.dataset.id;
-          App.state.contribution = App.state.contribution.filter(a => a.componentName !== id);
-          const tags = App.state.appTags.get(id);
-          if (tags) tags.delete("plan");
-          if (App.state.contribution.length === 0) {
-            App.state.contributionActive = false;
-            App.state.activeFilters.delete("plan");
-            App.dom.contributionBtn.style.display = "";
-            App.dom.contributionBtn.classList.remove("active");
-          }
-          UI.saveContribution();
-          UI.render();
-          UI.closeContextMenu();
-          return;
-        }
-
-        if (action === "copy-appfilter-entry") {
-          const id = actionEl.dataset.id;
-          if (id) Actions.copyAppFilterEntry(id);
-          return;
-        }
-
-        if (action === "copy-name-id-entry") {
-          const id = actionEl.dataset.id;
-          if (id) Actions.copyNamesAndIDs([id]);
-          return;
-        }
-
-        if (action === "copy-pkg-entry") {
-          const id = actionEl.dataset.id;
-          if (id) Actions.copyPkgName(id);
-          return;
-        }
-
-        if (action === "copy-filter-entry") {
-          const id = actionEl.dataset.id;
-          if (id) Actions.copyFilterEntry(id);
-          return;
-        }
-
-        if (action === "sb-download-metadata") {
-          App.state.actionMode = "link";
-          Actions.downloadBundle();
-          Actions.closeSbMenu();
-          return;
-        }
-
-        if (action === "sb-copy-appfilter") {
-          Actions.copyAppFilter();
-          Actions.closeSbMenu();
-          return;
-        }
-
-        if (action === "sb-copy-nameid") {
-          Actions.copyNamesAndIDs();
-          Actions.closeSbMenu();
-          return;
-        }
-
-        if (action === "sb-copy-pkgs") {
-          Actions.copySelectedPkgs();
-          return;
-        }
-
-        if (action === "sb-copy-filter-entries") {
-          const entries = [...App.state.selected]
-            .map(id => `"${id}",`)
-            .join("\n");
-          Actions.copyToClipboard(entries);
-          Actions.closeSbMenu();
-          return;
-        }
-
-        if (action === "sort-option") {
-          const value = actionEl.dataset.value;
-          if (!value) return;
-          App.state.sort = value;
-          App.dom.sortLabel.textContent = actionEl.textContent?.trim() || value;
-          App.dom.sortMenu.hidePopover();
-          this.render();
-          return;
-        }
-
-        if (action === "view-option") {
-          const value = actionEl.dataset.value;
-          if (value !== "list" && value !== "grid") return;
-          App.state.view = value;
-          App.dom.viewLabel.textContent = actionEl.textContent?.trim() || value;
-          App.dom.viewMenu.hidePopover();
-          this.render();
-          return;
-        }
-
-        if (action === "filter-tag-toggle") {
-          const id = actionEl.dataset.filterId;
-          if (!id) return;
-          const s = App.state.activeFilters;
-          Utils.mutualExclusiveTags(id, s);
-          this.render();
-          return;
-        }
-
-        if (action === "mobile-filter-toggle") {
-          const id = actionEl.dataset.filterId;
-          if (!id) return;
-          const s = App.state.activeFilters;
-          Utils.mutualExclusiveTags(id, s);
-          this.render();
-          this.showMobileFilterPopover();
-          return;
-        }
-
-        if (action === "regex-suggestion") {
-          const value = actionEl.dataset.value;
-          if (!value) return;
-          App.dom.inputSearch.value = value;
-          App.dom.inputSearch.focus();
-          App.dom.inputSearch.dispatchEvent(new Event("input"));
-          this.hideRegexAutocomplete();
-          return;
-        }
-
-        if (action === "sort-header-toggle") {
-          const key = actionEl.dataset.sortKey;
-          if (key) Actions.toggleSortHeader(key);
-          return;
-        }
-
-        if (action === "domain-filter") {
-          const domain = actionEl.dataset.domain;
-          if (!domain) return;
-
-          App.state.regexMode = true;
-          App.dom.regexBtn.classList.add("active");
-          App.state.search = `^${domain}\\.`;
-          App.dom.inputSearch.value = App.state.search;
-          Utils.setHidden(App.dom.clearBtn, false);
-          UI.render();
-          return;
-        }
-
-        if (action === "issue-jump") {
-          const issueId = actionEl.dataset.issue;
-          if (issueId) UI.jumpToIssue(issueId);
-          return;
-        }
-
-        if (action === "mode-select") {
-          const id = actionEl.dataset.id;
-          const mode = actionEl.value;
-
-          if (mode === "set-all-new" || mode === "set-all-link") {
-            const newMode = mode === "set-all-new" ? "new" : "link";
-            App.state.contribution.forEach(a => {
-              if (!App.state.contributionOverrides[a.componentName]) App.state.contributionOverrides[a.componentName] = {};
-              App.state.contributionOverrides[a.componentName].mode = newMode;
-            });
-            UI.saveContribution();
-            UI.render();
-            return;
-          }
-
-          if (!App.state.contributionOverrides[id]) App.state.contributionOverrides[id] = {};
-          App.state.contributionOverrides[id].mode = mode;
-          UI.saveContribution();
-          UI.updateIssues();
-          return;
-        }
-
-      }
-
-      const input = target.closest(".contribution-name-input, .contribution-svg-input");
-      if (input) {
-        input.classList.remove("issue-highlight");
-      }
-
-      const libraryCard = target.closest('.library-icon-card');
-      if (libraryCard) {
-        e.stopPropagation();
-        const drawable = libraryCard.dataset.drawable;
-        const icon = App.state.existingIcons.find(i => i.drawable === drawable);
-        if (icon) this.showLibraryIconMenu(e, icon);
+        this.handleAction(actionEl.dataset.action, actionEl, e);
         return;
       }
 
-      const trigger = target.closest('.ctx-trigger');
+      // 2. Image Error Routing
+      if (e.target.tagName === "IMG" && e.target.classList.contains("requested-icon")) {
+        // Handled by Utils via capturing listener on container in original script
+      }
+
+      // 3. Selection Toggle (Rows/Cards)
+      const item = e.target.closest('[data-id]');
+      if (item && !App.state.contributionActive && !e.target.closest('a, .ctx-trigger, input')) {
+        Actions.toggleSelection(item.dataset.id, e);
+      }
+
+      // 4. Context Menu Triggers
+      const trigger = e.target.closest('.ctx-trigger');
       if (trigger) {
-        if (App.state.contributionActive) {
-          e.stopPropagation();
-          const row = trigger.closest('[data-id]');
-          const id = row.dataset.id;
-          const app = App.state.contribution.find(a => a.componentName === id);
-          if (app) {
-            App.dom.rowMenu.innerHTML = Templates.contributionRowMenu(app);
-            const rect = trigger.getBoundingClientRect();
-            const menu = App.dom.rowMenu;
-            menu.style.visibility = "hidden";
-            menu.showPopover();
-            const w = menu.offsetWidth || 220;
-            let x = rect.right - w;
-            let y = rect.bottom + 4;
-            if (x < 0) x = rect.right - w;
-            if (y + 200 > window.innerHeight) y = rect.top - 200 - 4;
-            menu.style.left = `${x}px`;
-            menu.style.top = `${y}px`;
-            menu.style.transformOrigin = "top right";
-            menu.style.visibility = "visible";
-          }
-          return;
-        }
         e.stopPropagation();
-        const row = /** @type {HTMLElement} */ (trigger.closest('[data-id]'));
-        const id = row.dataset.id;
-        const app = App.state.idMap.get(id);
+        const row = trigger.closest('[data-id]');
+        const app = App.state.idMap.get(row?.dataset.id);
         if (app) this.showRowMenu(e, app);
-        return;
-      }
-
-      if (target.closest('a')) {
-        e.stopPropagation();
-        return;
-      }
-
-      if (this.regexListEl && !this.regexListEl.contains(target) && target !== App.dom.inputSearch) {
-        this.hideRegexAutocomplete();
-      }
-
-      const item = /** @type {HTMLElement} */ (target.closest('[data-id]'));
-      if (item && !App.state.contributionActive) {
-        Actions.toggleSelection(item.dataset.id, /** @type {MouseEvent} */(e));
       }
     });
 
-    // Keyboard Shortcuts
+    // 5. Global Error Capture for Icons
+    App.dom.container.addEventListener("error", e => Utils.handleImageError(e), true);
+
+    // 6. Resizing Charts
+    window.addEventListener("resize", () => {
+      this.renderDomainStats();
+      this.renderActivityCard();
+    });
+  },
+
+  /**
+   * Handles hotkeys and arrow navigation.
+   */
+  _initKeyboardNavigation() {
     document.addEventListener('keydown', (e) => {
-      // Esc on search input — remove focus
-      if (e.key === 'Escape' && e.target === App.dom.inputSearch) {
-        App.dom.inputSearch.blur();
+      if (e.target.tagName === 'INPUT' && e.target.type !== 'checkbox') {
+        if (e.key === 'Escape') e.target.blur();
         return;
       }
 
-      if (e.target.tagName === 'INPUT' && e.target.type !== 'checkbox') return;
-
-      // 1. Focus Search (/ or Ctrl + K)
+      // Hotkeys
       if (e.key === '/' || (e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
         App.dom.inputSearch.focus();
       }
-
-      // 2. Select All (Ctrl+A)
       if ((e.ctrlKey || e.metaKey) && e.key === 'a') {
         e.preventDefault();
         Actions.toggleSelectAll(true);
       }
-
-      // 3. Clear Selection (Esc)
-      if (e.key === 'Escape') {
-        if (App.state.selected.size > 0) Actions.clearAllSelections();
+      if (e.key === 'Escape' && App.state.selected.size > 0) {
+        Actions.clearAllSelections();
       }
 
-      // 4. Focus selection bar (Ctrl + Enter)
-      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-        if (App.state.selected.size > 0) {
-          e.preventDefault();
-          App.dom.sbDownloadBtn.focus()
-          App.dom.sbDownloadBtn.click()
-        }
-      }
-    });
-
-    // Add 'keydown' listener to container
-    App.dom.container.addEventListener('keydown', (/** @type {KeyboardEvent} */ e) => {
-      const target = /** @type {HTMLElement | null} */ (e.target);
-      if (!target) return;
-
-      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
-
-      // --- 1. Selection & Actions (Enter/Space) ---
-      if (!(e.ctrlKey || e.metaKey) && e.key === 'Enter' || e.key === ' ') {
-        // A. Row/Card Selection
-        if (target.classList.contains('list-row') || target.classList.contains('grid-card')) {
-          e.preventDefault(); // Prevent page scroll on Space
-          const id = target.dataset.id;
-          if (!id) return;
-          Actions.toggleSelection(id, e); // Pass event for Shift logic
-        }
-
-        // B. Context Menu Trigger
-        if (target.classList.contains('ctx-trigger')) {
-          e.preventDefault();
-          e.stopPropagation();
-          const row = /** @type {HTMLElement | null} */ (target.closest('[data-id]'));
-          if (!row) return;
-          const id = row.dataset.id;
-          if (!id) return;
-          const app = App.state.idMap.get(id);
-          if (!app) return;
-
-          const rect = target.getBoundingClientRect();
-          const fakeEvent = {
-            clientX: rect.left + rect.width / 2,
-            clientY: rect.top + rect.height / 2
-          };
-
-          UI.showRowMenu(fakeEvent, app);
-        }
-        return; // Done with Enter/Space
-      }
-
-      // --- 2. Navigation (Arrow Keys) ---
+      // Container Navigation
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
-        const item = /** @type {HTMLElement | null} */ (target.closest('[data-id]'));
-        if (!item) return;
-
-        e.preventDefault(); // Prevent scrolling
-
-        // Get only valid items (ignore loaders/sentinels)
-        const items = /** @type {HTMLElement[]} */ (Array.from(App.dom.container.querySelectorAll('[data-id]')));
-        const index = items.indexOf(item);
-        let nextIndex = index;
-
-        if (App.state.view === 'list') {
-          // List: Up/Down only
-          if (e.key === 'ArrowUp') nextIndex = index - 1;
-          if (e.key === 'ArrowDown') nextIndex = index + 1;
-        } else {
-          // Grid: Calculate columns dynamically
-          const containerWidth = container.clientWidth || document.querySelector(".page").clientWidth - 32;
-          const fits = Math.min(entries.length, Math.floor(containerWidth / 80));
-          const top = entries.slice(0, fits);
-
-          if (e.key === 'ArrowLeft') nextIndex = index - 1;
-          if (e.key === 'ArrowRight') nextIndex = index + 1;
-          if (e.key === 'ArrowUp') nextIndex = index - cols - 1;
-          if (e.key === 'ArrowDown') nextIndex = index + cols + 1;
-        }
-
-        // Apply Focus if valid
-        if (nextIndex >= 0 && nextIndex < items.length) {
-          items[nextIndex].focus();
-        }
+        this._handleArrowNavigation(e);
       }
     });
+  },
 
-    // Menu Navigation
-    const menus = ['rowMenu', 'mobileFilterMenu', 'sortMenu'];
-    menus.forEach(id => {
-      const menu = /** @type {HTMLElement} */ (App.dom[/** @type {keyof typeof App.dom} */ (id)]);
-      if (!menu) return;
+  /**
+   * Encapsulates chart rendering logic and data modes.
+   */
+  _initCharts() {
+    this.renderDomainStats();
+    this.renderActivityCard();
 
-      if (menu) {
-        // @ts-ignore
-        menu.addEventListener("toggle", (e) => {
-          if (e.newState === "closed") {
-            // Wait for CSS transition
-            setTimeout(() => menu.innerHTML = "", 200);
-          }
-        });
-      }
-
-      menu.addEventListener('keydown', (e) => {
-        const items = /** @type {HTMLElement[]} */ (Array.from(menu.querySelectorAll('.ctx-item')));
-        const index = items.indexOf(/** @type {HTMLElement} */(document.activeElement));
-
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          const next = items[index + 1] || items[0];
-          next.focus();
-        } else if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          const prev = items[index - 1] || items[items.length - 1];
-          prev.focus();
-        } else if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          (/** @type {HTMLElement} */ (document.activeElement)).click();
-        } else if (e.key === 'Tab') {
-          e.preventDefault();
-          this.closeContextMenu();
-        }
+    // Mode toggles for Domain Stats
+    document.querySelectorAll("[data-action='domain-stats-mode']").forEach(el => {
+      el.addEventListener("click", () => {
+        App.state.domainStatsMode = el.dataset.mode;
+        this.renderDomainStats();
       });
     });
 
+    // Quick Pick toggles
+    document.querySelectorAll("[data-action='quick-pick-mode']").forEach(el => {
+      el.addEventListener("click", () => {
+        App.state.quickPickMode = el.dataset.mode;
+        this.pickRandomQuickPick();
+      });
+    });
   },
 
   initObserver() {
