@@ -2398,6 +2398,227 @@ const UI = {
     return true;
   },
 
+  /**
+   * Routes data-action triggers to their respective logic.
+   * @param {string} action - The action key.
+   * @param {HTMLElement} el - The element that triggered the action.
+   * @param {Event} e - The original event object.
+   */
+  handleAction(action, el, e) {
+    const s = App.state;
+    const { id, url, drawable, value, domain, filterId, issue } = el.dataset;
+
+    switch (action) {
+      // --- DOWNLOADS ---
+      case "download-png":
+        if (url && drawable) this._downloadAsset(url, `${drawable}.png`);
+        break;
+
+      case "library-download-svg":
+        if (url && drawable) this._downloadAsset(url, `${drawable}.svg`);
+        this.closeContextMenu();
+        break;
+
+      case "sb-download-metadata":
+        s.actionMode = "link";
+        Actions.downloadBundle();
+        this.closeContextMenu();
+        break;
+
+      // --- CLIPBOARD / COPY ---
+      case "library-copy-svg":
+        if (drawable) this._copySvgFromLibrary(drawable);
+        break;
+
+      case "library-copy-name":
+        if (drawable) Actions.copyToClipboard(drawable);
+        break;
+
+      case "copy-appfilter-entry":
+        if (id) Actions.copyAppFilterEntry(id);
+        break;
+
+      case "copy-name-id-entry":
+        if (id) Actions.copyNamesAndIDs([id]);
+        break;
+
+      case "copy-pkg-entry":
+        if (id) Actions.copyPkgName(id);
+        break;
+
+      case "copy-filter-entry":
+        if (id) Actions.copyFilterEntry(id);
+        break;
+
+      case "sb-copy-appfilter":
+        Actions.copyAppFilter();
+        this.closeContextMenu();
+        break;
+
+      case "sb-copy-nameid":
+        Actions.copyNamesAndIDs();
+        this.closeContextMenu();
+        break;
+
+      case "sb-copy-pkgs":
+        Actions.copySelectedPkgs();
+        this.closeContextMenu();
+        break;
+
+      case "sb-copy-filter-entries": {
+        const entries = [...s.selected].map(i => `"${i}",`).join("\n");
+        Actions.copyToClipboard(entries);
+        this.closeContextMenu();
+        break;
+      }
+
+      // --- NAVIGATION & FILTERING ---
+      case "open-link":
+        if (url) window.open(url, '_blank', 'noopener,noreferrer');
+        this.closeContextMenu();
+        break;
+
+      case "sort-option":
+        if (value) {
+          s.sort = value;
+          App.dom.sortLabel.textContent = el.textContent.trim();
+          this.closeContextMenu();
+          this.render();
+        }
+        break;
+
+      case "filter-tag-toggle":
+      case "mobile-filter-toggle":
+        if (filterId) {
+          Utils.mutualExclusiveTags(filterId, s.activeFilters);
+          if (action === "mobile-filter-toggle") this.showMobileFilterPopover();
+          this.render();
+        }
+        break;
+
+      case "domain-filter":
+        if (domain) {
+          s.regexMode = true;
+          App.dom.regexBtn.classList.add("active");
+          s.search = `^${domain}\\.`;
+          App.dom.inputSearch.value = s.search;
+          Utils.setHidden(App.dom.clearBtn, false);
+          // If we are in QA/Plan mode, jump back to Main to see search results
+          if (s.activePage !== Router.pages.MAIN) Router.navigate(Router.pages.MAIN);
+          else this.render();
+        }
+        break;
+
+      case "regex-suggestion":
+        if (value) {
+          App.dom.inputSearch.value = value;
+          App.dom.inputSearch.focus();
+          App.dom.inputSearch.dispatchEvent(new Event("input"));
+          this.hideRegexAutocomplete();
+        }
+        break;
+
+      // --- CONTRIBUTION PLAN ACTIONS ---
+      case "mode-select":
+        this._handleContributionModeChange(id, value);
+        break;
+
+      case "restore-original":
+        if (id) {
+          delete s.contributionOverrides[id];
+          this.saveContribution();
+          this.render();
+        }
+        this.closeContextMenu();
+        break;
+
+      case "remove-from-contribution":
+        if (id) {
+          s.contribution = s.contribution.filter(a => a.componentName !== id);
+          const tags = s.appTags.get(id);
+          if (tags) tags.delete("plan");
+          if (s.contribution.length === 0) Router.navigate(Router.pages.MAIN);
+          else {
+            this.saveContribution();
+            this.render();
+          }
+        }
+        this.closeContextMenu();
+        break;
+
+      case "issue-jump":
+        if (issue) this.jumpToIssue(issue);
+        break;
+
+      case "quick-pick-mode":
+        if (value) {
+          s.quickPickMode = value;
+          // Logic for updating UI state of quick pick icons
+          document.querySelectorAll("[data-action='quick-pick-mode']").forEach(icon => {
+            icon.classList.toggle("active", icon.dataset.value === value);
+          });
+          this.pickRandomQuickPick();
+        }
+        break;
+    }
+  },
+
+  /**
+   * Helper for contribution mode dropdowns (New vs Link)
+   */
+  _handleContributionModeChange(appId, mode) {
+    const s = App.state;
+    if (mode === "set-all-new" || mode === "set-all-link") {
+      const newMode = mode === "set-all-new" ? "new" : "link";
+      s.contribution.forEach(a => {
+        if (!s.contributionOverrides[a.componentName]) s.contributionOverrides[a.componentName] = {};
+        s.contributionOverrides[a.componentName].mode = newMode;
+      });
+      this.saveContribution();
+      this.render();
+      return;
+    }
+
+    if (!s.contributionOverrides[appId]) s.contributionOverrides[appId] = {};
+    s.contributionOverrides[appId].mode = mode;
+    this.saveContribution();
+    this.updateIssues();
+  },
+
+  /**
+   * Helper to fetch and copy SVG source
+   */
+  async _copySvgFromLibrary(drawable) {
+    try {
+      const url = `https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${drawable}.svg`;
+      const res = await fetch(url);
+      const text = await res.text();
+      if (!res.ok) throw "Failed to fetch asset";
+      Actions.copyToClipboard(text);
+      this.closeContextMenu();
+    } catch {
+      Toast.show("Failed to copy SVG source", "error");
+    }
+  },
+
+  /**
+   * Universal downloader for blobs/images
+   */
+  async _downloadAsset(url, filename) {
+    try {
+      const res = await fetch(url);
+      const blob = await res.blob();
+      if (!res.ok) throw "Failed to fetch asset";
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    } catch {
+      Toast.show(`Failed to download ${filename}`, "error");
+    }
+  },
+
   showSortMenu() {
     const menu = App.dom.sortMenu;
     const options = UI.sortOptions.filter(opt => {
@@ -3264,7 +3485,7 @@ const UI = {
     container.addEventListener("mousemove", (e) => {
       const col = e.target.closest(".domain-col");
       if (!col) {
-        tooltip.style.display = "none";
+        Components.Tooltip.hide();
         return;
       }
       const domain = col.dataset.domain;
