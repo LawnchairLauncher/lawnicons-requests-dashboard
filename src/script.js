@@ -898,51 +898,51 @@ const Templates = {
   }
 };
 
-// ==========================================
-// 5. TOAST SYSTEM
-// ==========================================
-const Toast = {
-  /** @type {Set<string>} */
-  activeToasts: new Set(),
+const Components = {
+  Toast: {
+    /** @type {Set<string>} */
+    activeToasts: new Set(),
 
-  /**
-   * @param {string} text
-   * @param {"info" | "success" | "error"} [type]
-   */
-  show(text, type = "info") {
-    const key = `${text}-${type}`;
-    if (this.activeToasts.has(key)) return;
+    /**
+     * @param {string} text
+     * @param {"info" | "success" | "error"} [type]
+     */
+    show(text, type = "info") {
+      const key = `${text}-${type}`;
+      if (this.activeToasts.has(key)) return;
 
-    if (App.dom.toastBox.children.length >= 3) {
-      const first = App.dom.toastBox.firstElementChild;
-      if (first) this.remove(/** @type {HTMLElement} */(first));
+      if (App.dom.toastBox.children.length >= 3) {
+        const first = App.dom.toastBox.firstElementChild;
+        if (first) this.remove(/** @type {HTMLElement} */(first));
+      }
+
+      const el = document.createElement("div");
+      el.className = `toast toast-${type}`;
+      el.dataset.key = key;
+      this.activeToasts.add(key);
+
+      let iconSvg = "";
+      if (type === "error") iconSvg = `<svg><use href="#ic-error"/></svg>`;
+      if (type === "success") iconSvg = `<svg><use href="#ic-download"/></svg>`;
+
+      el.innerHTML = `${iconSvg} ${text}`;
+      App.dom.toastBox.appendChild(el);
+
+      setTimeout(() => this.remove(el), 2500);
+    },
+
+    /**
+     * @param {HTMLElement} el
+     */
+    remove(el) {
+      if (el.classList.contains("hiding")) return;
+      if (el.dataset.key) this.activeToasts.delete(el.dataset.key);
+      el.classList.add("hiding");
+      el.addEventListener("animationend", () => el.remove());
     }
-
-    const el = document.createElement("div");
-    el.className = `toast toast-${type}`;
-    el.dataset.key = key;
-    this.activeToasts.add(key);
-
-    let iconSvg = "";
-    if (type === "error") iconSvg = `<svg><use href="#ic-error"/></svg>`;
-    if (type === "success") iconSvg = `<svg><use href="#ic-download"/></svg>`;
-
-    el.innerHTML = `${iconSvg} ${text}`;
-    App.dom.toastBox.appendChild(el);
-
-    setTimeout(() => this.remove(el), 2500);
   },
+}
 
-  /**
-   * @param {HTMLElement} el
-   */
-  remove(el) {
-    if (el.classList.contains("hiding")) return;
-    if (el.dataset.key) this.activeToasts.delete(el.dataset.key);
-    el.classList.add("hiding");
-    el.addEventListener("animationend", () => el.remove());
-  }
-};
 
 // ==========================================
 // 6. ACTIONS
@@ -1082,7 +1082,7 @@ const Actions = {
    */
   copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(_ => {
-      Toast.show("Copied!");
+      Components.Toast.show("Copied!");
       UI.closeContextMenu();
     });
   },
@@ -1112,7 +1112,7 @@ const Actions = {
 
   async downloadBundle() {
     if (typeof fflate === 'undefined') {
-      Toast.show("fflate library missing", "error");
+      Components.Toast.show("fflate library missing", "error");
       return;
     }
 
@@ -1255,7 +1255,7 @@ const Actions = {
 
     } catch (e) {
       console.error(e);
-      Toast.show("Failed to generate zip", "error");
+      Components.Toast.show("Failed to generate zip", "error");
     } finally {
       document.body.style.cursor = "default";
       App.dom.sbDownloadBtn.innerHTML = ICONS.download;
@@ -1264,7 +1264,7 @@ const Actions = {
 
   async downloadContributionBundle() {
     if (typeof fflate === 'undefined') {
-      Toast.show("fflate library missing", "error");
+      Components.Toast.show("fflate library missing", "error");
       return;
     }
 
@@ -1407,7 +1407,7 @@ const Data = {
 
     } catch (e) {
       console.error("Critical Boot Error:", e);
-      Toast.show("Failed to load application data.", "error");
+      Components.Toast.show("Failed to load application data.", "error");
     }
   },
 
@@ -1871,7 +1871,7 @@ const Router = {
 
     App.dom.contributionBtn?.addEventListener("click", () => {
       if (App.state.contribution.length === 0 && App.state.activePage !== this.pages.CONTRIBUTION) {
-        Toast.show("Contribution plan is empty. Add at least 1 request.");
+        Components.Toast.show("Contribution plan is empty. Add at least 1 request.");
         return;
       }
       const target = App.state.activePage === this.pages.CONTRIBUTION ? this.pages.MAIN : this.pages.CONTRIBUTION;
@@ -2171,7 +2171,7 @@ const UI = {
         }
       });
       this.saveContribution();
-      Toast.show(`${App.state.selected.size} icons added to plan.`);
+      Components.Toast.show(`${App.state.selected.size} icons added to plan.`);
       Actions.clearAllSelections();
       this.render();
     });
@@ -2609,7 +2609,7 @@ const UI = {
         if (data.length === 0) {
           App.state.lowQualityActive = false;
           document.getElementById("lowQualityBtn").classList.remove("active");
-          Toast.show("All existing icons look good.");
+          Components.Toast.show("All existing icons look good.");
           this.render();
           return;
         }
