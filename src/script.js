@@ -1,55 +1,8 @@
+// @ts-check
+/// <reference path="./fflate.d.ts" />
+
 /**
  * LAWNICONS REQUEST MANAGER
- * Pure Vanilla JS with JSDoc
- */
-
-// ==========================================
-// 0. TYPES & INTERFACES
-// ==========================================
-
-// @ts-ignore - VSCode does not support types from URL imports
-/// <reference types="https://cdn.skypack.dev/fflate@0.8.2/lib/index.d.ts" />
-
-/**
- * @typedef {Object} AppEntry
- * @property {string} drawable
- * @property {string} label
- * @property {string} componentName
- * @property {number} requestCount
- * @property {number} firstAppearance
- * @property {number} lastRequested
- * @property {string} [installs]
- */
-
-/**
- * @typedef {Object} FilterMetadata
- * @property {string} label
- * @property {string} [description]
- */
-
-/**
- * @typedef {Object} AppState
- * @property {"list" | "grid"} view
- * @property {string} sort
- * @property {string} search
- * @property {boolean} regexMode
- * @property {Set<string>} selected
- * @property {Map<string, Set<string>>} appTags
- * @property {Map<string, FilterMetadata>} filterMetadata
- * @property {Set<string>} activeFilters
- * @property {string | null} lastSelectedId
- * @property {Map<string, AppEntry>} idMap
- * @property {number} renderedCount
- * @property {AppEntry[]} currentData
- * @property {string} actionMode
- * @property {Map<string, string>} existingSvgs
- * @property {Object} setsStats
- * @property {Array} creationOdds
- * @property {Object} domainStats
- * @property {Array} activityStats
- * @property {Object} trendingDeltas
- * @property {string | null} lastUpdate
- * @property {string} icontoolPath
  */
 
 // ==========================================
@@ -148,7 +101,6 @@ const App = {
     activityStats: [],
     trendingDeltas: {},
     lastUpdate: null,
-
   },
 
   dom: {
@@ -180,6 +132,9 @@ const App = {
     /** @type {HTMLElement} */
     mobileFilterMenu: /** @type {any} */ (document.getElementById("mobileFilterMenu")),
 
+    /** @type {HTMLHeadingElement} */
+    header: /** @type {any} */ (document.querySelector(".header-info h1")),
+
     /** @type {HTMLDivElement} */
     sbBar: /** @type {any} */ (document.getElementById("selectionBar")),
     /** @type {HTMLDivElement} */
@@ -198,9 +153,9 @@ const App = {
     /** @type {HTMLButtonElement} */
     viewBtn: /** @type {any} */ (document.getElementById("viewBtn")),
     /** @type {HTMLElement} */
-    viewIconList: document.getElementById("viewIconList"),
+    viewIconList: /** @type {any} */ (document.getElementById("viewIconList")),
     /** @type {HTMLElement} */
-    viewIconGrid: document.getElementById("viewIconGrid"),
+    viewIconGrid: /** @type {any} */ (document.getElementById("viewIconGrid")),
     /** @type {HTMLElement} */
     sortMenu: /** @type {any} */ (document.getElementById("sortMenu")),
     /** @type {HTMLSpanElement} */
@@ -254,7 +209,7 @@ const Utils = {
 
   /**
    * @param {string} rawQuery
-   * @returns {{ text: string; tags: Set<string> }}
+   * @returns {{ text: string; tags: Set<string>, isSet: boolean }}
    */
   parseSearchQuery(rawQuery) {
     const result = { text: "", tags: new Set(), isSet: false };
@@ -293,6 +248,7 @@ const Utils = {
    * @returns {string[]}
    */
   getTagsForApp(id) {
+    /** @type {string[]} */
     const tags = [];
     const appTags = App.state.appTags.get(id);
     if (appTags) {
@@ -334,7 +290,7 @@ const Utils = {
   timeAgo(dateStr) {
     const now = new Date();
     const then = new Date(dateStr + "T00:00:00");
-    const diff = now - then;
+    const diff = now.getTime() - then.getTime();
     const days = Math.floor(diff / 86400000);
     if (days > 30) {
       return new Date(dateStr).toLocaleDateString("en-US", { month: "short", day: "numeric" });
@@ -555,6 +511,9 @@ const Templates = {
       `;
   },
 
+  /**
+   * @param {Icon} icon
+   */
   libraryIconMenu(icon) {
     const svgUrl = `https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${icon.drawable}.svg`;
     const githubUrl = `https://github.com/LawnchairLauncher/lawnicons/blob/develop/svgs/${icon.drawable}.svg`;
@@ -732,6 +691,7 @@ const Templates = {
       `;
   },
 
+  /** @param {AppEntry} app */
   contributionRowMenu(app) {
     const pkg = app.componentName.split('/')[0];
     return `
@@ -755,7 +715,7 @@ const Templates = {
   },
 
   /**
-   * @param {[string, number][]} entries
+   * @param {[string, number, number, number][]} entries
    * @param {number} max
    * @returns {string}
    */
@@ -777,7 +737,12 @@ const Templates = {
 
   /**
    * @param {string} domain
-   * @param {string} count
+   * @param {number} done
+   * @param {number} requests
+   * @param {number} total
+   * @param {string} mode
+   * @param {number} extraValue
+   * @param {number} population
    * @returns {string}
    */
   domainStatsTooltip(domain, done, requests, total, mode, extraValue, population) {
@@ -795,8 +760,8 @@ const Templates = {
   },
 
   /**
-   * @param {string} pathNew
-   * @param {string} pathRemoved
+   * @param {string} pathResolved
+   * @param {string} addedDots
    * @param {string} dayLabels
    * @returns {string}
    */
@@ -825,7 +790,7 @@ const Templates = {
   /**
    * @param {string} formattedDate
    * @param {number} added
-   * @param {number} removed
+   * @param {number} fulfilled
    * @returns {string}
    */
   activityTooltip(formattedDate, added, fulfilled) {
@@ -949,7 +914,9 @@ const Components = {
      * @param {string} html - HTML content to display.
      * @param {number} left - Target X coordinate (usually mouse or anchor left).
      * @param {number} top - Target Y coordinate (usually mouse or anchor top).
-     * @param {HTMLElement} [container] - Optional parent to bound positioning within.
+    * @param {
+    HTMLElement | null
+  }[container] - Optional parent to bound positioning within.
      */
     show(el, html, left, top, container = null) {
       if (!el) return;
@@ -1048,12 +1015,13 @@ const Actions = {
   },
 
   /**
-   * @param {string} key
+   * @param {SortKeys} key
    */
   toggleSortHeader(key) {
     const current = App.state.sort;
     const [currKey, currDir] = current.split('-');
 
+    /** @type {Record<SortKeys, 'asc' | 'desc'>} */
     const defaults = {
       name: 'asc',
       req: 'desc',
@@ -1079,6 +1047,7 @@ const Actions = {
     if (App.state.selected.size === 0) return;
     document.querySelectorAll(".list-row.selected, .grid-card.selected").forEach(el => {
       el.classList.remove("selected");
+      /** @type {HTMLInputElement | null} */
       const cb = el.querySelector("input[type='checkbox']");
       if (cb) cb.checked = false;
     });
@@ -1092,17 +1061,30 @@ const Actions = {
     document.getElementById("sbMenu")?.hidePopover();
   },
 
+  /**
+   * @param {string[] | null} ids
+   */
   generateNamesAndIDs(ids = null) {
+    /** @type {AppEntry[]} */
     const apps = ids
-      ? ids.map(id => App.state.idMap.get(id)).filter(Boolean)
+      ? ids.flatMap(id => {
+        const app = App.state.idMap.get(id);
+        return app ? [app] : [];
+      })
       : App.data.filter(a => App.state.selected.has(a.componentName));
     return apps.map(app => `${app.label}\n${app.componentName}`).join("\n\n");
   },
 
+  /**
+   * @param {string[] | null} ids
+   */
   copyNamesAndIDs(ids = null) {
     Actions.copyToClipboard(Actions.generateNamesAndIDs(ids));
   },
 
+  /**
+   * @param {string} id
+   */
   copyPkgName(id) {
     const app = App.state.idMap.get(id);
     if (!app) return;
@@ -1111,13 +1093,16 @@ const Actions = {
 
   copySelectedPkgs() {
     const pkgs = [...App.state.selected]
-      .map(id => App.state.idMap.get(id))
-      .filter(Boolean)
+      .flatMap(id => {
+        const app = App.state.idMap.get(id);
+        return app ? [app] : [];
+      })
       .map(app => app.componentName.split('/')[0]);
     Actions.copyToClipboard([...new Set(pkgs)].join("\n"));
     Actions.closeSbMenu();
   },
 
+  /** @param {string} id */
   copyFilterEntry(id) {
     Actions.copyToClipboard(`"${id}",`);
   },
@@ -1139,9 +1124,15 @@ const Actions = {
     Actions.copyToClipboard(Actions.generateAppFilterXml([id]));
   },
 
+  /**
+   * @param {string[] | null} ids
+   */
   generateAppFilterXml(ids = null) {
     const apps = ids
-      ? ids.map(id => App.state.idMap.get(id)).filter(Boolean)
+      ? ids.flatMap(id => {
+        const app = App.state.idMap.get(id);
+        return app ? [app] : [];
+      })
       : App.data.filter(a => App.state.selected.has(a.componentName));
     let xml = "<resources>\n";
     apps.forEach(app => {
@@ -1175,12 +1166,12 @@ const Actions = {
       const mode = App.state.actionMode; // "new" | "link"
 
       // fflate uses a simple object mapping paths to Uint8Arrays/Strings
-      /** @type {Object.<string, Uint8Array | string | Object>} */
+      /** @type {import('./fflate').Zippable} */
       const zipData = {};
 
       // Only include icons folder in "new" mode
       if (mode === "new") {
-        zipData["_icons"] = {};
+        zipData._icons = {};
       }
 
       let xmlAppFilter = "<resources>\n";
@@ -1199,6 +1190,7 @@ const Actions = {
        * @type {Map<string, string>}
        */
       const assignedDrawables = new Map();
+      /** @type {Promise<void>[]} */
       const fetchPromises = [];
 
       // --- LOOP ---
@@ -1210,11 +1202,9 @@ const Actions = {
 
         // Resolve Drawable Name
         const appIdentity = app.componentName;
-        let drawable = "";
+        let drawable = assignedDrawables.get(appIdentity);
 
-        if (assignedDrawables.has(appIdentity)) {
-          drawable = assignedDrawables.get(appIdentity);
-        } else {
+        if (!drawable) {
           drawable = Utils.sanitizeDrawableName(app.label);
 
           // Handle collision with DIFFERENT apps
@@ -1236,13 +1226,15 @@ const Actions = {
         const svgPath = `"${drawable}.svg"`;
         txtCommands += `python3 ./icontool.py ${cmdType} ${svgPath} ${cmp} '${cmdLabel}'\n`;
 
+        const iconDir = /** @type {import('./fflate').Zippable} */ (zipData._icons)
+
         // Queue Icon Fetch (only in "new" mode)
-        if (mode === "new" && !zipData._icons[`${drawable}.png`]) {
+        if (mode === "new" && !iconDir[`${drawable}.png`]) {
           const url = `${CONFIG.data.assetsPath}${app.drawable}${CONFIG.data.iconExtension}`;
           const p = fetch(url)
             .then(r => r.ok ? r.arrayBuffer() : null)
             .then(buf => {
-              if (buf) zipData._icons[`${drawable}.png`] = new Uint8Array(buf);
+              if (buf) iconDir[`${drawable}.png`] = new Uint8Array(buf);
             })
             .catch(() => { });
           fetchPromises.push(p);
@@ -1286,7 +1278,7 @@ const Actions = {
 
       // 4. Zip & Download
       App.dom.sbDownloadBtn.textContent = "Zipping...";
-      const content = fflate.zipSync(zipData, { level: 6 });
+      const content = /** @type {BlobPart} */  (fflate.zipSync(zipData, { level: 6 }));
 
       const link = document.createElement("a");
       link.href = URL.createObjectURL(new Blob([content], { type: 'application/zip' }));
@@ -1316,27 +1308,28 @@ const Actions = {
     const list = App.state.contribution;
     if (list.length === 0) return;
 
-    /** @type {Object.<string, Uint8Array | string>} */
+    /** @type {import('./fflate').Zippable} */
     const zipData = {};
     let xmlAppFilter = "<resources>\n";
     let txtCommands = "";
 
     const usedDrawables = new Set();
+    /** @type {Promise<void>[]} */
     const fetchPromises = [];
 
     // Sort by label from inputs
     const sorted = [...list].sort((a, b) => {
       const rowA = document.querySelector(`.contribution-row[data-id="${a.componentName}"]`);
       const rowB = document.querySelector(`.contribution-row[data-id="${b.componentName}"]`);
-      const nameA = rowA?.querySelector(".contribution-name-input")?.value || a.label;
-      const nameB = rowB?.querySelector(".contribution-name-input")?.value || b.label;
+      const nameA = /** @type {HTMLInputElement} */ (rowA?.querySelector(".contribution-name-input"))?.value || a.label;
+      const nameB = /** @type {HTMLInputElement} */ (rowB?.querySelector(".contribution-name-input"))?.value || b.label;
       return nameA.localeCompare(nameB);
     });
 
     sorted.forEach(app => {
       const row = document.querySelector(`.contribution-row[data-id="${app.componentName}"]`);
-      const nameInput = row?.querySelector(".contribution-name-input");
-      const svgInput = row?.querySelector(".contribution-svg-input");
+      const nameInput = /** @type {HTMLInputElement | null} */ (row?.querySelector(".contribution-name-input"));
+      const svgInput = /** @type {HTMLInputElement | null} */ (row?.querySelector(".contribution-svg-input"));
 
       const label = nameInput?.value || app.label;
       const drawable = svgInput?.value || app.drawable;
@@ -1363,7 +1356,7 @@ const Actions = {
         const p = fetch(url)
           .then(r => r.ok ? r.arrayBuffer() : null)
           .then(buf => {
-            if (buf) zipData["_icons"][`${uniqueDrawable}.png`] = new Uint8Array(buf);
+            if (buf) /** @type {import('./fflate').Zippable} */ (zipData["_icons"])[`${uniqueDrawable}.png`] = new Uint8Array(buf);
           })
           .catch(() => { });
         fetchPromises.push(p);
@@ -1392,7 +1385,7 @@ const Actions = {
     }
 
     await Promise.all(fetchPromises);
-    const content = fflate.zipSync(zipData, { level: 6 });
+    const content = /** @type {BlobPart} */ (fflate.zipSync(zipData, { level: 6 }));
 
     const link = document.createElement("a");
     link.href = URL.createObjectURL(new Blob([content], { type: 'application/zip' }));
@@ -1410,12 +1403,13 @@ const Actions = {
 // 7. DATA PROCESSING
 // ==========================================
 const Data = {
+  /** @param {string} url */
   async fetchJson(url, fallback = {}) {
     try {
       const response = await fetch(url);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
-    } catch(err) {
+    } catch (err) {
       console.error(`Failed to fetch ${url}:`, err);
       return fallback;
     }
@@ -1423,6 +1417,7 @@ const Data = {
 
   async init() {
     try {
+      /** @type {InitTuple} */
       const [json, setsStats, creationOdds, domainStats, activityStats, ...filterObjects] = await Promise.all([
         this.fetchJson(CONFIG.data.endpoint),
         this.fetchJson(CONFIG.data.setsStatsPath, {}),
@@ -1454,6 +1449,7 @@ const Data = {
       // Load optional data
       await Promise.all([
         (async () => {
+          /** @type {FulfillmentHistory[]} */
           const history = await this.fetchJson("assets/stats/fulfillment_history.json", []);
           if (!(history && history.length >= 3)) return;
 
@@ -1461,7 +1457,7 @@ const Data = {
           const ttfs = history
             .map(h => (h.fulfilled - h.firstAppearance) / 86400)
             .sort((a, b) => a - b);
-          
+
           App.state.medianTTF = Math.round(ttfs[Math.floor(ttfs.length / 2)]);
         })(),
         (async () => {
@@ -1502,6 +1498,10 @@ const Data = {
     });
   },
 
+  /**
+   * @param {Filter[]} filterObjects
+   * @param {Map<string, FilterMetadata>} filterMetadata
+   */
   _processFilters(filterObjects, filterMetadata) {
     filterObjects.forEach((obj, index) => {
       if (!obj) return;
@@ -1536,6 +1536,7 @@ const Data = {
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlText, "text/xml");
       const items = xmlDoc.querySelectorAll("item");
+      /** @type {Icon[]} */
       const icons = [];
 
       items.forEach(item => {
@@ -1605,7 +1606,7 @@ const Data = {
    */
   addTag(id, tag) {
     if (!App.state.appTags.has(id)) App.state.appTags.set(id, new Set());
-    App.state.appTags.get(id).add(tag);
+    App.state.appTags.get(id)?.add(tag);
   },
 
   process() {
@@ -1660,12 +1661,13 @@ const Data = {
         [data[i], data[j]] = [data[j], data[i]];
       }
     } else {
-      /** @type {Record<string, (a: AppEntry, b: AppEntry) => number>} */
+      /** @type {(app: AppEntry) => number} */
       const getPop = (app) => {
         const pkg = app.componentName.split('/')[0];
         return App.state.setsStats[pkg] || app.requestCount;
       };
 
+      /** @type {Record<string, (a: AppEntry, b: AppEntry) => number>} */
       const sorters = {
         "req-desc": (a, b) => getPop(b) - getPop(a) || a.componentName.split('/')[0].localeCompare(b.componentName.split('/')[0]),
         "req-asc": (a, b) => getPop(a) - getPop(b) || a.componentName.split('/')[0].localeCompare(b.componentName.split('/')[0]),
@@ -1780,20 +1782,22 @@ const Heuristics = {
     const tags = Utils.getTagsForApp(app.componentName);
     let factor = null;
     for (const tag of tags) {
+      // @ts-ignore
       const f = CONFIG.label_factors[tag];
       if (f !== undefined && (factor === null || f > factor)) factor = f;
     }
     if (factor === null) factor = 1;
 
     const key = App.state.medianTTF !== undefined ? factor + "_at_pace" : String(factor);
+    // @ts-ignore
     return row[key] ?? row[String(factor)] ?? 0;
   },
 
   /** @param {AppEntry} app */
   calculateUnderratedScore(app) {
-      const req = app.requestCount || 1;
-      const inst = Utils.parseInstalls(app.installs) || 1;
-      return req / inst;
+    const req = app.requestCount || 1;
+    const inst = Utils.parseInstalls(app.installs) || 1;
+    return req / inst;
   }
 };
 
@@ -1832,6 +1836,7 @@ const UI = {
     const savedList = localStorage.getItem("lawnicons_contribution");
     if (savedList) {
       try {
+        /** @type {AppEntry[]} */
         const parsed = JSON.parse(savedList);
         const before = parsed.length;
         App.state.contribution = parsed.filter(app =>
@@ -1886,9 +1891,9 @@ const UI = {
     document.getElementById("lowQualityBtn")?.addEventListener("click", () => {
       App.state.lowQualityActive = !App.state.lowQualityActive;
       if (!App.state.lowQualityActive) {
-        document.querySelector(".header-info h1").textContent = "Lawnicons";
+        App.dom.header.textContent = "Lawnicons";
         App.dom.contributionBtn.style.display = "";
-        document.getElementById("lowQualityBtn").classList.remove("active");
+        document.getElementById("lowQualityBtn")?.classList.remove("active");
       } else {
         App.state.contributionActive = false;
         App.dom.contributionBtn.classList.remove("active");
@@ -1905,7 +1910,7 @@ const UI = {
       App.state.contributionActive = !App.state.contributionActive;
       App.dom.contributionBtn.classList.toggle("active", App.state.contributionActive);
       if (!App.state.contributionActive) {
-        document.querySelector(".header-info h1").textContent = "Lawnicons";
+        App.dom.header.textContent = "Lawnicons";
         App.dom.sentinel.style.display = "";
         App.dom.contributionBtn.style.display = "";
       }
@@ -1916,10 +1921,12 @@ const UI = {
 
     document.querySelectorAll("[data-action='domain-stats-mode']").forEach(el => {
       el.addEventListener("click", () => {
-        const mode = el.dataset.mode;
+        const e = /** @type HTMLElement */ (el);
+        const mode = e.dataset.mode;
         if (!mode) return;
         App.state.domainStatsMode = mode;
-        document.querySelectorAll("[data-action='domain-stats-mode']").forEach(s => {
+        document.querySelectorAll("[data-action='domain-stats-mode']").forEach(sp => {
+          const s = /** @type HTMLElement */ (sp);
           const span = s.closest('span');
           if (span) span.classList.toggle("active", s.dataset.mode === mode);
         });
@@ -1948,10 +1955,12 @@ const UI = {
 
     document.querySelectorAll("[data-action='quick-pick-mode']").forEach(el => {
       el.addEventListener("click", () => {
-        const mode = el.dataset.mode;
+        const e = /** @type HTMLElement */ (el);
+        const mode = e.dataset.mode;
         if (!mode) return;
         App.state.quickPickMode = mode;
-        document.querySelectorAll("[data-action='quick-pick-mode']").forEach(s => {
+        document.querySelectorAll("[data-action='quick-pick-mode']").forEach(sp => {
+          const s = /** @type HTMLElement */ (sp);
           const span = s.closest('span');
           if (span) span.classList.toggle("active", s.dataset.mode === mode);
         });
@@ -1969,7 +1978,8 @@ const UI = {
     }, true);
 
     App.dom.inputSearch.addEventListener("input", e => {
-      const val = e.target.value;
+      const target = /** @type HTMLInputElement */ (e.target);
+      const val = target.value;
       App.state.search = val;
       Utils.setHidden(App.dom.clearBtn, val.length === 0);
       this.renderIconLibrary();
@@ -2017,9 +2027,9 @@ const UI = {
         const app = App.state.idMap.get(id);
         if (app && !App.state.contribution.some(a => a.componentName === id)) {
           App.state.contribution.push(app);
-          const tags = App.state.appTags.get(id) || new Set();
+          const tags = App.state.appTags.get(id.toString()) || new Set();
           tags.add("plan");
-          App.state.appTags.set(id, tags);
+          App.state.appTags.set(id.toString(), tags);
         }
       });
       this.saveContribution();
@@ -2036,6 +2046,8 @@ const UI = {
 
     App.dom.sbMenuBtn.addEventListener("click", (e) => {
       const menu = document.getElementById("sbMenu");
+      if (!menu) return;
+
       menu.innerHTML = Templates.selectionBarMenu();
       const rect = /** @type {HTMLElement} */ (e.currentTarget).getBoundingClientRect();
 
@@ -2067,11 +2079,12 @@ const UI = {
       const el = /** @type {HTMLElement} */ (App.dom.listHeader.querySelector(selector));
       if (el) {
         el.title = "Click to sort";
-        el.onclick = () => Actions.toggleSortHeader(key);
+        el.onclick = () => Actions.toggleSortHeader(/** @type {SortKeys} */(key));
       }
     });
 
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', (el) => {
+      const e = /** @type {MouseEvent} */ (el);
       const target = /** @type {HTMLElement} */ (e.target);
 
       const actionEl = /** @type {HTMLElement | null} */ (target.closest('[data-action]'));
@@ -2086,6 +2099,7 @@ const UI = {
               .then(r => r.blob())
               .then(async blob => {
                 try {
+                  // @ts-ignore
                   const handle = await window.showSaveFilePicker({
                     suggestedName: `${drawable}.png`,
                     types: [{
@@ -2170,7 +2184,7 @@ const UI = {
         if (action === "restore-original") {
           const id = actionEl.dataset.id;
           const app = App.state.contribution.find(a => a.componentName === id);
-          if (app) {
+          if (app && id) {
             delete App.state.contributionOverrides[id];
             UI.saveContribution();
             UI.render();
@@ -2180,9 +2194,9 @@ const UI = {
         }
 
         if (action === "remove-from-contribution") {
-          const id = actionEl.dataset.id;
+          const id = actionEl.dataset.id ?? "";
           App.state.contribution = App.state.contribution.filter(a => a.componentName !== id);
-          const tags = App.state.appTags.get(id);
+          const tags = App.state.appTags.get(id.toString());
           if (tags) tags.delete("plan");
           if (App.state.contribution.length === 0) {
             App.state.contributionActive = false;
@@ -2263,16 +2277,6 @@ const UI = {
           return;
         }
 
-        if (action === "view-option") {
-          const value = actionEl.dataset.value;
-          if (value !== "list" && value !== "grid") return;
-          App.state.view = value;
-          App.dom.viewLabel.textContent = actionEl.textContent?.trim() || value;
-          App.dom.viewMenu.hidePopover();
-          this.render();
-          return;
-        }
-
         if (action === "filter-tag-toggle") {
           const id = actionEl.dataset.filterId;
           if (!id) return;
@@ -2304,7 +2308,7 @@ const UI = {
 
         if (action === "sort-header-toggle") {
           const key = actionEl.dataset.sortKey;
-          if (key) Actions.toggleSortHeader(key);
+          if (key) Actions.toggleSortHeader(/** @type {SortKeys} */(key));
           return;
         }
 
@@ -2328,8 +2332,9 @@ const UI = {
         }
 
         if (action === "mode-select") {
-          const id = actionEl.dataset.id;
-          const mode = actionEl.value;
+          const id = /** @type {'link' | 'new' | undefined} */ (actionEl.dataset.id);
+          const e = /** @type HTMLInputElement */ (actionEl);
+          const mode =  /** @type {'link' | 'new' | 'set-all-new' | 'set-all-link'} */ (e.value);
 
           if (mode === "set-all-new" || mode === "set-all-link") {
             const newMode = mode === "set-all-new" ? "new" : "link";
@@ -2341,6 +2346,8 @@ const UI = {
             UI.render();
             return;
           }
+
+          if (!id) return
 
           if (!App.state.contributionOverrides[id]) App.state.contributionOverrides[id] = {};
           App.state.contributionOverrides[id].mode = mode;
@@ -2356,7 +2363,7 @@ const UI = {
         input.classList.remove("issue-highlight");
       }
 
-      const libraryCard = target.closest('.library-icon-card');
+      const libraryCard = /** @type {HTMLElement} */ (target.closest('.library-icon-card'));
       if (libraryCard) {
         e.stopPropagation();
         const drawable = libraryCard.dataset.drawable;
@@ -2369,7 +2376,8 @@ const UI = {
       if (trigger) {
         if (App.state.contributionActive) {
           e.stopPropagation();
-          const row = trigger.closest('[data-id]');
+          const row = /** @type {HTMLElement} */ (trigger.closest('[data-id]'));
+          if (!row) return;
           const id = row.dataset.id;
           const app = App.state.contribution.find(a => a.componentName === id);
           if (app) {
@@ -2392,7 +2400,9 @@ const UI = {
         }
         e.stopPropagation();
         const row = /** @type {HTMLElement} */ (trigger.closest('[data-id]'));
+        if (!row) return;
         const id = row.dataset.id;
+        if (!id) return;
         const app = App.state.idMap.get(id);
         if (app) this.showRowMenu(e, app);
         return;
@@ -2408,19 +2418,23 @@ const UI = {
       }
 
       const item = /** @type {HTMLElement} */ (target.closest('[data-id]'));
-      if (item && !App.state.contributionActive) {
+      if (!item.dataset.id) return;
+      if (!App.state.contributionActive) {
         Actions.toggleSelection(item.dataset.id, /** @type {MouseEvent} */(e));
       }
     });
 
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', (el) => {
+      const e = /** @type {KeyboardEvent} */ (el);
+      const target = /** @type {HTMLElement} */ (e.target);
+
       // Esc on search input — remove focus
-      if (e.key === 'Escape' && e.target === App.dom.inputSearch) {
+      if (e.key === 'Escape' && target === App.dom.inputSearch) {
         App.dom.inputSearch.blur();
         return;
       }
 
-      if (e.target.tagName === 'INPUT' && e.target.type !== 'checkbox') return;
+      if (target.tagName === 'INPUT' && /** @type {HTMLInputElement} */ (target).type !== 'checkbox') return;
 
       // 1. Focus Search (/ or Ctrl + K)
       if (e.key === '/' || (e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -2505,9 +2519,9 @@ const UI = {
           if (e.key === 'ArrowDown') nextIndex = index + 1;
         } else {
           // Grid: Calculate columns dynamically
-          const containerWidth = container.clientWidth || document.querySelector(".page").clientWidth - 32;
-          const fits = Math.min(entries.length, Math.floor(containerWidth / 80));
-          const top = entries.slice(0, fits);
+          const itemWidth = item.getBoundingClientRect().width + 16; // Width + Gap
+          const containerWidth = App.dom.container.clientWidth;
+          const cols = Math.floor(containerWidth / itemWidth) || 1;
 
           if (e.key === 'ArrowLeft') nextIndex = index - 1;
           if (e.key === 'ArrowRight') nextIndex = index + 1;
@@ -2581,30 +2595,30 @@ const UI = {
       return;
     }
 
-    document.getElementById("lowQualityBtn").classList.remove("active");
+    document.getElementById("lowQualityBtn")?.classList.remove("active");
     const lowQualityBackBtn = document.getElementById("lowQualityBackBtn");
     if (lowQualityBackBtn) lowQualityBackBtn.remove();
 
     const backBtn = document.getElementById("contributionBackBtn");
     if (backBtn) backBtn.remove();
 
-    document.querySelector(".header-icon").classList.remove("is-hidden");
-    document.getElementById("search-wrapper").classList.remove("is-hidden");
-    document.querySelector(".header-info h1").textContent = "Lawnicons";
+    document.querySelector(".header-icon")?.classList.remove("is-hidden");
+    document.getElementById("search-wrapper")?.classList.remove("is-hidden");
+    App.dom.header.textContent = "Lawnicons";
     App.dom.contributionBtn.style.display = "";
     this.updateContributionBadge();
     this.updateLowQualityBadge();
 
     const headerRight = document.querySelector(".header-right");
-    headerRight.querySelectorAll("a:not(#appfilterLink)").forEach(a => a.classList.remove("is-hidden"));
+    headerRight?.querySelectorAll("a:not(#appfilterLink)")?.forEach(a => a.classList.remove("is-hidden"));
     const appfilterLink = document.getElementById("appfilterLink");
     if (appfilterLink) appfilterLink.classList.add("is-hidden");
 
-    document.querySelector(".cards-row").classList.remove("is-hidden");
-    document.getElementById("mainCards").classList.remove("is-hidden");
+    document.querySelector(".cards-row")?.classList.remove("is-hidden");
+    document.getElementById("mainCards")?.classList.remove("is-hidden");
     const contribCards = document.getElementById("contributionCards");
     if (contribCards) contribCards.classList.add("is-hidden");
-    document.querySelector(".controls").classList.remove("is-hidden");
+    document.querySelector(".controls")?.classList.remove("is-hidden");
 
     const s = App.state;
     App.dom.container.innerHTML = "";
@@ -2679,9 +2693,10 @@ const UI = {
 
     menu.innerHTML = Templates.sortMenuItems(options, App.state.sort);
 
-    menu.querySelectorAll(".ctx-item").forEach(item => {
+    menu.querySelectorAll(".ctx-item").forEach(i => {
+      const item = /** @type {HTMLElement} */ (i);
       item.onclick = () => {
-        App.state.sort = item.dataset.value;
+        if (item.dataset.value) App.state.sort = item.dataset.value;
         App.dom.sortLabel.textContent = item.textContent.trim();
         menu.hidePopover();
         this.render();
@@ -2689,30 +2704,6 @@ const UI = {
     });
 
     const rect = App.dom.sortBtn.getBoundingClientRect();
-    menu.style.left = rect.left + "px";
-    menu.style.top = (rect.bottom + 8) + "px";
-    menu.showPopover();
-  },
-
-  showViewMenu() {
-    const menu = App.dom.viewMenu;
-    const options = [
-      { value: "list", label: "List" },
-      { value: "grid", label: "Grid" }
-    ];
-
-    menu.innerHTML = Templates.viewMenuItems(options, App.state.view);
-
-    menu.querySelectorAll(".ctx-item").forEach(item => {
-      item.onclick = () => {
-        App.state.view = item.dataset.value;
-        App.dom.viewLabel.textContent = item.textContent.trim();
-        menu.hidePopover();
-        this.render();
-      };
-    });
-
-    const rect = App.dom.viewBtn.getBoundingClientRect();
     menu.style.left = rect.left + "px";
     menu.style.top = (rect.bottom + 8) + "px";
     menu.showPopover();
@@ -2824,63 +2815,66 @@ const UI = {
   },
 
   renderLowQualityMode() {
-    document.querySelector(".header-icon").classList.add("is-hidden");
-    document.querySelector(".controls").classList.add("is-hidden");
+    document.querySelector(".header-icon")?.classList.add("is-hidden");
+    document.querySelector(".controls")?.classList.add("is-hidden");
     document.getElementById("iconLibraryResults")?.classList.add("is-hidden");
-    document.getElementById("search-wrapper").classList.add("is-hidden");
+    document.getElementById("search-wrapper")?.classList.add("is-hidden");
     App.dom.listHeader.style.display = "none";
     App.dom.sentinel.style.display = "none";
     App.dom.contributionBtn.style.display = "none";
-    document.getElementById("lowQualityBtn").parentElement.classList.add("is-hidden");
-    document.getElementById("contributionCountBadge").style.display = "none";
-    document.getElementById("lowQualityBtn").classList.add("active");
+    document.getElementById("lowQualityBtn")?.parentElement?.classList.add("is-hidden");
+    const badge = document.getElementById("contributionCountBadge")
+    if (badge) badge.style.display = "none";
+    document.getElementById("lowQualityBtn")?.classList.add("active");
 
-    document.querySelector(".header-info h1").textContent = "Low quality icons";
+    App.dom.header.textContent = "Low quality icons";
     App.dom.headerCount.textContent = "";
     App.dom.sbBar.classList.remove("visible");
     App.dom.container.className = "";
 
     if (!document.getElementById("lowQualityBackBtn")) {
-      document.querySelector(".header-left").insertAdjacentHTML("afterbegin", `
+      document.querySelector(".header-left")?.insertAdjacentHTML("afterbegin", `
               <button class="header-link back-btn" id="lowQualityBackBtn" title="Back to requests">
                   <svg><use href="#ic-arrow-back"/></svg>
               </button>
           `);
-      document.getElementById("lowQualityBackBtn").onclick = () => {
+      const newLowQABack = document.getElementById("lowQualityBackBtn");
+      if (newLowQABack) newLowQABack.onclick = () => {
         App.state.lowQualityActive = false;
-        document.getElementById("lowQualityBtn").classList.remove("active");
+        document.getElementById("lowQualityBtn")?.classList.remove("active");
         this.render();
         Data.syncUrlState();
-      };
+      }
     }
 
     const headerRight = document.querySelector(".header-right");
     const count = App.state.lowQualityData ? App.state.lowQualityData.length : 0;
     App.dom.headerCount.textContent = `${count} icon${count !== 1 ? 's' : ''}`;
-    headerRight.querySelectorAll("a").forEach(a => a.classList.add("is-hidden"));
+    headerRight?.querySelectorAll("a")?.forEach(a => a.classList.add("is-hidden"));
 
     if (!document.getElementById("appfilterLink")) {
-      headerRight.insertAdjacentHTML("afterbegin", `
+      headerRight?.insertAdjacentHTML("afterbegin", `
               <a id="appfilterLink" href="https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/refs/heads/develop/app/assets/appfilter.xml" class="header-link" title="Current appfilter.xml">
                   <svg><use href="#ic-code-xml"/></svg>
               </a>
           `);
     } else {
-      document.getElementById("appfilterLink").classList.remove("is-hidden");
+      document.getElementById("appfilterLink")?.classList.remove("is-hidden");
     }
 
-    document.getElementById("mainCards").classList.add("is-hidden");
+    document.getElementById("mainCards")?.classList.add("is-hidden");
     App.dom.container.innerHTML = "";
 
     fetch("assets/qa_issues/review_issues.json")
       .then(r => r.json())
-      .then(data => {
+      .then(d => {
+        const data = /** @type {ReviewIssues[]} */ (d);
         App.state.lowQualityData = data;
         const count = data.length;
         App.dom.headerCount.textContent = `${count} icon${count !== 1 ? 's' : ''}`;
         if (data.length === 0) {
           App.state.lowQualityActive = false;
-          document.getElementById("lowQualityBtn").classList.remove("active");
+          document.getElementById("lowQualityBtn")?.classList.remove("active");
           Components.Toast.show("All existing icons look good.");
           this.render();
           return;
@@ -2892,7 +2886,10 @@ const UI = {
         }
 
         // Sort by issue count descending
-        data.sort((a, b) => b.issues.length - a.issues.length || a.drawable.localeCompare(b.drawable));
+        data.sort(
+          /** @type {(a: ReviewIssues, b: ReviewIssues) => number} */
+          (a, b) => b.issues.length - a.issues.length || a.drawable.localeCompare(b.drawable)
+        );
 
         // Build cards
         let html = '';
@@ -2927,7 +2924,7 @@ const UI = {
     if (count > 0) {
       wrapper.classList.remove("is-hidden");
       if (badge) {
-        badge.textContent = count;
+        badge.textContent = count.toString();
         badge.style.display = "flex";
       }
     } else {
@@ -2937,27 +2934,29 @@ const UI = {
   },
 
   renderContributionMode() {
-    document.querySelector(".header-icon").classList.add("is-hidden");
-    document.querySelector(".controls").classList.add("is-hidden");
+    document.querySelector(".header-icon")?.classList.add("is-hidden");
+    document.querySelector(".controls")?.classList.add("is-hidden");
     document.getElementById("iconLibraryResults")?.classList.add("is-hidden");
-    document.getElementById("search-wrapper").classList.add("is-hidden");
-    document.getElementById("contributionCountBadge").style.display = "none";
+    document.getElementById("search-wrapper")?.classList.add("is-hidden");
+    const contributionCountBadge = document.getElementById("contributionCountBadge");
+    if (contributionCountBadge) contributionCountBadge.style.display = "none";
     App.dom.listHeader.style.display = "none";
     App.dom.sentinel.style.display = "none";
-    const lowQualityWrapper = document.getElementById("lowQualityBtn").parentElement;
+    const lowQualityWrapper = document.getElementById("lowQualityBtn")?.parentElement;
     if (lowQualityWrapper) lowQualityWrapper.classList.add("is-hidden");
 
     App.dom.contributionBtn.style.display = "none";
 
-    document.querySelector(".header-info h1").textContent = "Contribution plan";
+    App.dom.header.textContent = "Contribution plan";
 
     if (!document.getElementById("contributionBackBtn")) {
-      document.querySelector(".header-left").insertAdjacentHTML("afterbegin", `
+      document.querySelector(".header-left")?.insertAdjacentHTML("afterbegin", `
               <button class="header-link back-btn" id="contributionBackBtn" title="Back to requests">
                   <svg><use href="#ic-arrow-back"/></svg>
               </button>
           `);
-      document.getElementById("contributionBackBtn").onclick = () => {
+      const newContributionBackBtn = document.getElementById("contributionBackBtn")
+      if (newContributionBackBtn) newContributionBackBtn.onclick = () => {
         App.state.contributionActive = false;
         App.dom.contributionBtn.style.display = "";
         App.dom.contributionBtn.classList.remove("active");
@@ -2973,16 +2972,16 @@ const UI = {
     const count = App.state.contribution.length;
 
     const headerRight = document.querySelector(".header-right");
-    headerRight.querySelectorAll("a").forEach(a => a.classList.add("is-hidden"));
+    headerRight?.querySelectorAll("a").forEach(a => a.classList.add("is-hidden"));
 
     if (!document.getElementById("appfilterLink")) {
-      headerRight.insertAdjacentHTML("afterbegin", `
+      headerRight?.insertAdjacentHTML("afterbegin", `
           <a id="appfilterLink" href="https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/refs/heads/develop/app/assets/appfilter.xml" class="header-link" title="Current appfilter.xml">
             <svg><use href="#ic-code-xml"/></svg>
           </a>
         `);
     } else {
-      document.getElementById("appfilterLink").classList.remove("is-hidden");
+      document.getElementById("appfilterLink")?.classList.remove("is-hidden");
     }
 
     const headerHtml = `
@@ -2996,13 +2995,13 @@ const UI = {
           </div>
       `;
 
-    document.getElementById("mainCards").classList.add("is-hidden");
+    document.getElementById("mainCards")?.classList.add("is-hidden");
 
     const cardsRow = document.querySelector(".cards-row");
-    cardsRow.classList.remove("is-hidden");
+    cardsRow?.classList.remove("is-hidden");
 
     if (!document.getElementById("contributionCards")) {
-      cardsRow.insertAdjacentHTML("beforeend", `
+      cardsRow?.insertAdjacentHTML("beforeend", `
           <div id="contributionCards" style="display:contents;">
             <div class="card" id="contributionDomainsCard">
               <canvas id="domainsPie"></canvas>
@@ -3012,10 +3011,11 @@ const UI = {
           </div>
         `);
     } else {
-      document.getElementById("contributionCards").classList.remove("is-hidden");
+      document.getElementById("contributionCards")?.classList.remove("is-hidden");
     }
 
     // Draw domains pie chart
+    /** @type {Record<string, number> } */
     const domainCounts = {};
     App.state.contribution.forEach(app => {
       const pkg = app.componentName.split('/')[0];
@@ -3023,10 +3023,12 @@ const UI = {
       domainCounts[domain] = (domainCounts[domain] || 0) + 1;
     });
 
-    const canvas = document.getElementById("domainsPie");
+    const canvas = /** @type {HTMLCanvasElement} */ (document.getElementById("domainsPie"));
     const tooltip = document.getElementById("domainsTooltip");
     if (canvas) {
       const ctx = canvas.getContext("2d");
+      if (!ctx) return
+
       const entries = Object.entries(domainCounts).sort((a, b) => b[1] - a[1]);
       const total = entries.reduce((s, e) => s + e[1], 0);
 
@@ -3040,6 +3042,7 @@ const UI = {
 
       let angle = -Math.PI / 2;
       const style = getComputedStyle(document.documentElement);
+      /** @type {(string | CanvasGradient | CanvasPattern)[]} */
       const colors = [];
       for (let i = 1; i <= 10; i++) {
         colors.push(style.getPropertyValue(`--chart-${i}`).trim());
@@ -3074,6 +3077,8 @@ const UI = {
       });
 
       canvas.onmousemove = (e) => {
+        if (!tooltip) return;
+
         const rect = canvas.getBoundingClientRect();
         const x = e.clientX - rect.left - size / 2;
         const y = e.clientY - rect.top - size / 2;
@@ -3094,10 +3099,12 @@ const UI = {
           if (mouseAngle >= a && mouseAngle < a + slice) {
             const pct = ((entries[i][1] / total) * 100).toFixed(1);
             const html = `<div class="tooltip-label">${entries[i][0]}</div><div class="tooltip-value">${entries[i][1]} icon${entries[i][1] !== 1 ? 's' : ''} (${pct}%)</div>`;
-            const cardRect = document.getElementById("contributionDomainsCard").getBoundingClientRect();
+            const card = document.getElementById("contributionDomainsCard")
+            const cardRect = card?.getBoundingClientRect();
+            if (!cardRect) return;
             const left = (e.clientX - cardRect.left + 12);
             const top = (e.clientY - cardRect.top);
-            Components.Tooltip.show(tooltip, html, left, top, cardRect);
+            Components.Tooltip.show(tooltip, html, left, top, card);
             break;
           }
           a += slice;
@@ -3105,7 +3112,7 @@ const UI = {
       };
 
       canvas.onmouseleave = () => {
-        Components.Tooltip.hide(tooltip)
+        if (tooltip) Components.Tooltip.hide(tooltip)
       };
     }
 
@@ -3117,6 +3124,7 @@ const UI = {
       { id: "startdigit", label: "No _ before digit" },
     ];
 
+    /** @type {{ [key: string]: number }} */
     const issueCounts = {};
     issues.forEach(issue => issueCounts[issue.id] = 0);
 
@@ -3171,7 +3179,7 @@ const UI = {
 
     const hasIcons = App.state.contribution.length > 0;
     if (!hasIcons) {
-      document.getElementById("contributionCards").classList.add("is-hidden");
+      document.getElementById("contributionCards")?.classList.add("is-hidden");
       App.dom.headerCount.textContent = "0 icons";
       return;
     }
@@ -3201,7 +3209,7 @@ const UI = {
     App.dom.container.innerHTML = clearHtml + downloadHtml + headerHtml + rowsHtml;
 
     const clearBtn = document.getElementById("contributionClearBtn");
-    clearBtn.onclick = () => {
+    if (clearBtn) clearBtn.onclick = () => {
       App.state.contribution.forEach(a => {
         const tags = App.state.appTags.get(a.componentName);
         if (tags) tags.delete("plan");
@@ -3217,7 +3225,8 @@ const UI = {
     };
 
     if (downloadReady) {
-      document.getElementById("contributionDownloadBtn").onclick = () => {
+      const downloadBtn = document.getElementById("contributionDownloadBtn");
+      if (downloadBtn) downloadBtn.onclick = () => {
         Actions.downloadContributionBundle();
       };
     }
@@ -3235,6 +3244,8 @@ const UI = {
       { id: "startdigit", label: "No _ before digit" },
     ];
 
+
+    /** @type {{ [key: string]: number }} */
     const issueCounts = {};
     issues.forEach(issue => issueCounts[issue.id] = 0);
 
@@ -3292,14 +3303,17 @@ const UI = {
     return issueCounts;
   },
 
+  /**
+   * @param {string} issueId
+  */
   jumpToIssue(issueId) {
-    const rows = document.querySelectorAll(".contribution-row");
+    const rows = /** @type {NodeListOf<HTMLElement>} */ (document.querySelectorAll(".contribution-row"));
     if (!rows.length) return;
 
     document.querySelectorAll(".issue-highlight").forEach(el => el.classList.remove("issue-highlight"));
 
     for (const row of rows) {
-      const appId = row.dataset.id;
+      const appId = row.dataset.id ?? "";
       const app = App.state.contribution.find(a => a.componentName === appId);
       if (!app) continue;
 
@@ -3315,11 +3329,11 @@ const UI = {
 
       switch (issueId) {
         case "nameinuse":
-          match = drawable && App.state.existingIcons.some(icon => icon.drawable === drawable);
+          match = !!drawable && App.state.existingIcons.some(icon => icon.drawable === drawable);
           highlightSvg = match;
           break;
         case "nameconflict":
-          match = drawable && App.state.contribution.filter(a => {
+          match = !!drawable && App.state.contribution.filter(a => {
             const aOv = App.state.contributionOverrides[a.componentName] || {};
             const aName = aOv.label !== undefined ? aOv.label : a.label;
             const aDrawable = aOv.drawable !== undefined ? aOv.drawable : Utils.sanitizeDrawableName(aName);
@@ -3333,11 +3347,11 @@ const UI = {
           highlightSvg = !drawable.trim();
           break;
         case "invalidsvg":
-          match = drawable && /[^a-z0-9_]/.test(drawable);
+          match = !!drawable && /[^a-z0-9_]/.test(drawable);
           highlightSvg = match;
           break;
         case "startdigit":
-          match = drawable && /^[0-9]/.test(drawable);
+          match = !!drawable && /^[0-9]/.test(drawable);
           highlightSvg = match;
           break;
       }
@@ -3355,13 +3369,16 @@ const UI = {
     }
 
     if (rows.length > 0 && document.querySelector(".issue-highlight")) {
-      document.querySelector(".issue-highlight").closest(".contribution-row")?.scrollIntoView({ behavior: "smooth", block: "center" });
+      document.querySelector(".issue-highlight")?.closest(".contribution-row")?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   },
 
+  /**
+   * @param {HTMLInputElement} input
+   */
   updateContributionField(input) {
-    const id = input.dataset.id;
-    const field = input.dataset.field;
+    const id = input.dataset.id ?? "";
+    const field = input.dataset.field ?? "";
 
     if (!App.state.contributionOverrides[id]) {
       App.state.contributionOverrides[id] = {};
@@ -3369,24 +3386,25 @@ const UI = {
     App.state.contributionOverrides[id][field] = input.value;
 
     const row = input.closest('.contribution-row');
-    const nameInput = row.querySelector('.contribution-name-input');
-    const svgInput = row.querySelector('.contribution-svg-input');
-    const svgHint = svgInput.nextElementSibling;
-    const libraryIconCol = row.querySelector('.col.library-icon');
+    if (!row) return;
+    const nameInput = /** @type {HTMLInputElement | null} */ (row?.querySelector('.contribution-name-input'));
+    const svgInput = /** @type {HTMLInputElement | null} */ (row?.querySelector('.contribution-svg-input'));
+    const svgHint = /** @type {HTMLElement | null} */ (svgInput?.nextElementSibling);
+    const libraryIconCol = /** @type {HTMLDivElement | null} */ (row?.querySelector('.col.library-icon'));
 
-    const name = nameInput.value;
-    let drawable = svgInput.value;
+    const name = nameInput?.value ?? "";
+    let drawable = svgInput?.value;
     const defaultSvg = Utils.sanitizeDrawableName(name);
 
     if (field === 'label') {
       const sanitized = Utils.sanitizeDrawableName(input.value);
       if (sanitized === 'icon' || sanitized === 'unknown') {
         drawable = '';
-        svgInput.value = '';
+        if (svgInput) svgInput.value = '';
         App.state.contributionOverrides[id].drawable = '';
       } else {
         drawable = sanitized;
-        svgInput.value = drawable;
+        if (svgInput) svgInput.value = drawable;
         App.state.contributionOverrides[id].drawable = drawable;
       }
     }
@@ -3426,7 +3444,7 @@ const UI = {
 
   saveContribution() {
     localStorage.setItem("lawnicons_contribution", JSON.stringify(App.state.contribution));
-    localStorage.setItem("lawnicons_contribution_active", App.state.contributionActive);
+    localStorage.setItem("lawnicons_contribution_active", App.state.contributionActive.toString());
     localStorage.setItem("lawnicons_contribution_overrides", JSON.stringify(App.state.contributionOverrides));
     if (!App.state.contributionActive) {
       this.updateContributionBadge();
@@ -3437,7 +3455,7 @@ const UI = {
     const badge = document.getElementById("contributionCountBadge");
     if (!badge) return;
     const count = App.state.contribution.length;
-    badge.textContent = count;
+    badge.textContent = count.toString();
     badge.style.display = count > 0 ? "flex" : "none";
   },
 
@@ -3455,18 +3473,22 @@ const UI = {
     const container = document.getElementById("domainStats");
     if (!container) return;
 
-    const containerWidth = container.clientWidth || document.querySelector(".page").clientWidth - 64;
+    const page = document.querySelector(".page")
+    const containerWidth = container.clientWidth || (page?.clientWidth ?? 0 - 64);
     const colWidth = 26;
     const fits = Math.floor(containerWidth / colWidth);
 
     const isoCountries = new Set(['ad', 'ae', 'af', 'ag', 'al', 'am', 'ao', 'ar', 'at', 'au', 'az', 'ba', 'bb', 'bd', 'be', 'bf', 'bg', 'bh', 'bi', 'bj', 'bo', 'br', 'bs', 'bt', 'bw', 'by', 'bz', 'ca', 'cd', 'cf', 'cg', 'ch', 'ci', 'cl', 'cm', 'cn', 'cr', 'cu', 'cv', 'cy', 'cz', 'de', 'dj', 'dk', 'dm', 'do', 'dz', 'ec', 'ee', 'eg', 'er', 'es', 'et', 'fi', 'fj', 'fr', 'ga', 'gb', 'ge', 'gh', 'gm', 'gn', 'gq', 'gr', 'gt', 'gw', 'gy', 'hk', 'hn', 'hr', 'ht', 'hu', 'id', 'ie', 'il', 'in', 'iq', 'ir', 'it', 'jm', 'jo', 'jp', 'ke', 'kg', 'kh', 'km', 'kn', 'kp', 'kr', 'kw', 'ky', 'kz', 'la', 'lb', 'lc', 'li', 'lk', 'lr', 'ls', 'lt', 'lu', 'lv', 'ly', 'ma', 'mc', 'md', 'mg', 'mk', 'ml', 'mm', 'mn', 'mr', 'mt', 'mu', 'mv', 'mw', 'mx', 'my', 'mz', 'na', 'nc', 'ne', 'nf', 'ng', 'ni', 'nl', 'no', 'np', 'nr', 'nz', 'om', 'pa', 'pe', 'pg', 'ph', 'pk', 'pl', 'pr', 'ps', 'pt', 'py', 'qa', 'ro', 'rs', 'ru', 'rw', 'sa', 'sc', 'sd', 'se', 'sg', 'si', 'sk', 'sl', 'sm', 'sn', 'so', 'sr', 'ss', 'st', 'sv', 'sy', 'sz', 'td', 'tg', 'th', 'tj', 'tl', 'tm', 'tn', 'tr', 'tt', 'tw', 'tz', 'ua', 'ug', 'us', 'uy', 'uz', 'va', 'vc', 've', 'vi', 'vn', 'vu', 'ye', 'yt', 'za', 'zm', 'zw']);
-    const isCountry = (domain) => isoCountries.has(domain);
+
+    const isCountry = (/** @type {string} */ domain) => isoCountries.has(domain);
     const mode = App.state.domainStatsMode;
     const population = (data._population) || {};
 
     if (!App.state._domainAvgInstalls) {
       App.state._domainAvgInstalls = {};
+      /** @type {Record<string, number>} */
       const domainCountsI = {};
+      /** @type {Record<string, number>} */
       const domainSumsI = {};
       App.data.forEach(app => {
         const pkg = app.componentName.split('/')[0];
@@ -3485,6 +3507,7 @@ const UI = {
       }
     }
 
+    /** @type {[string, any, number, number][]} */
     let entries = Object.entries(data)
       .filter(([domain]) => isCountry(domain) && domain !== "_population")
       .map(([domain, stats]) => [domain, stats.done, stats.requests, stats.total]);
@@ -3493,8 +3516,10 @@ const UI = {
       entries = entries
         .filter(([, , requests]) => requests > 5)
         .sort((a, b) => {
-          const instA = App.state._domainAvgInstalls[a[0]] || 0;
-          const instB = App.state._domainAvgInstalls[b[0]] || 0;
+          const domainAvgInstalls = App.state._domainAvgInstalls ?? {}
+
+          const instA = domainAvgInstalls[a[0]] || 0;
+          const instB = domainAvgInstalls[b[0]] || 0;
           const popA = population[a[0]] || 1;
           const popB = population[b[0]] || 1;
           const scoreA = instA / popA;
@@ -3524,27 +3549,29 @@ const UI = {
       else title.textContent = "Top domains";
     }
 
-    const sub = document.querySelector("#domainStatsCard .card-sub");
+    const sub = /** @type {HTMLElement} */ (document.querySelector("#domainStatsCard .card-sub"));
     if (sub) sub.style.display = "none";
 
     container.innerHTML = Templates.domainStatsCard(entries, max);
 
+    /** @type {HTMLElement | null} */
     const tooltip = container.querySelector(".tooltip");
     if (!tooltip) return;
 
-    container.addEventListener("mousemove", (e) => {
-      const col = e.target.closest(".domain-col");
+    container.addEventListener("mousemove", (el) => {
+      const e = /** @type {MouseEvent} */ (el);
+      const col = /** @type {HTMLElement} */ (/** @type {HTMLElement} */ (e.target).closest(".domain-col"));
       if (!col) {
         Components.Tooltip.hide(tooltip)
         return;
       }
       const domain = col.dataset.domain;
-      const done = parseInt(col.dataset.done);
-      const requests = parseInt(col.dataset.requests);
-      const total = parseInt(col.dataset.total);
-      const avgInst = App.state._domainAvgInstalls[domain] || 0;
-      const pop = population[domain] || 0;
-      const html = Templates.domainStatsTooltip(domain, done, requests, total, mode, avgInst, pop);
+      const done = parseInt(col.dataset.done ?? "");
+      const requests = parseInt(col.dataset.requests ?? "");
+      const total = parseInt(col.dataset.total ?? "");
+      const avgInst = App.state?._domainAvgInstalls?.[domain ?? ""] || 0;
+      const pop = population[domain ?? ""] || 0;
+      const html = Templates.domainStatsTooltip(domain ?? "", done, requests, total, mode, avgInst, pop);
 
       const rect = col.getBoundingClientRect();
       const containerRect = container.getBoundingClientRect();
@@ -3577,7 +3604,7 @@ const UI = {
     if (rawDays.length > 0) {
       filledDays.push(rawDays[0]);
       for (let i = 1; i < rawDays.length; i++) {
-        const prevDate = new Date(filledDays[filledDays.length - 1].date + "T12:00:00");
+        const prevDate = /** @type {Date} */ (new Date(filledDays[filledDays.length - 1].date + "T12:00:00"));
         const currDate = new Date(rawDays[i].date + "T12:00:00");
         while (prevDate.getTime() + 86400000 < currDate.getTime()) {
           prevDate.setTime(prevDate.getTime() + 86400000);
@@ -3608,7 +3635,7 @@ const UI = {
 
     if (maxRemoved === 0 && maxAdded === 0) return;
 
-    const makePath = (points) => {
+    const makePath = (/** @type {{x: number, y: number}[]} */ points) => {
       if (points.length < 2) return "";
       let d = `M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)}`;
       for (let i = 1; i < points.length; i++) {
@@ -3640,11 +3667,13 @@ const UI = {
     const dotsSvg = container.querySelector(".activity-dots-svg");
     if (dotsSvg) {
       const chartEl = container.querySelector(".card-chart");
+      if (!chartEl) return;
+
       const w = chartEl.clientWidth;
       const h = chartEl.clientHeight;
       dotsSvg.setAttribute("viewBox", `0 0 ${w} ${h}`);
 
-      const getSize = (added) => {
+      const getSize = (/** @type {number} */ added) => {
         if (added >= 1000) return 7;
         if (added >= 251) return 5;
         return 3;
@@ -3672,6 +3701,7 @@ const UI = {
       paceEl.title = `Median time from request to icon, based on ${count} fulfilled requests.`;
     }
 
+    /** @type {SVGElement | null} */
     const svg = container.querySelector(".activity-svg");
     if (!svg) return;
 
@@ -3695,8 +3725,8 @@ const UI = {
       const clamped = Math.min(days.length - 1, Math.max(0, idx));
       const snapX = (clamped / (days.length - 1) * 100);
 
-      vLine.setAttribute("x1", snapX);
-      vLine.setAttribute("x2", snapX);
+      vLine.setAttribute("x1", snapX.toString());
+      vLine.setAttribute("x2", snapX.toString());
       vLine.setAttribute("y1", "0");
       vLine.setAttribute("y2", "100");
       vLine.style.display = "";
@@ -3709,13 +3739,13 @@ const UI = {
         return;
       }
 
-      const dateParts = days[clamped].date.split("-");
+      const dateParts = days[clamped].date.toString().split("-");
       const formattedDate = `${monthNames[parseInt(dateParts[1]) - 1]} ${parseInt(dateParts[2])}`;
       const html = Templates.activityTooltip(formattedDate, added, fulfilled);
 
       const left = snapX / 100 * svgRect.width + 12;
 
-      Components.Tooltip.show(tooltip, html, left, 0, svg);
+      Components.Tooltip.show(tooltip, html, left, 0, container);
     });
   },
 
@@ -3812,10 +3842,12 @@ const UI = {
   buildQuickPickQueue() {
     const isoCountries = new Set(['ad', 'ae', 'af', 'ag', 'al', 'am', 'ao', 'ar', 'at', 'au', 'az', 'ba', 'bb', 'bd', 'be', 'bf', 'bg', 'bh', 'bi', 'bj', 'bo', 'br', 'bs', 'bt', 'bw', 'by', 'bz', 'ca', 'cd', 'cf', 'cg', 'ch', 'ci', 'cl', 'cm', 'cn', 'cr', 'cu', 'cv', 'cy', 'cz', 'de', 'dj', 'dk', 'dm', 'do', 'dz', 'ec', 'ee', 'eg', 'er', 'es', 'et', 'fi', 'fj', 'fr', 'ga', 'gb', 'ge', 'gh', 'gm', 'gn', 'gq', 'gr', 'gt', 'gw', 'gy', 'hk', 'hn', 'hr', 'ht', 'hu', 'id', 'ie', 'il', 'in', 'iq', 'ir', 'it', 'jm', 'jo', 'jp', 'ke', 'kg', 'kh', 'km', 'kn', 'kp', 'kr', 'kw', 'ky', 'kz', 'la', 'lb', 'lc', 'li', 'lk', 'lr', 'ls', 'lt', 'lu', 'lv', 'ly', 'ma', 'mc', 'md', 'mg', 'mk', 'ml', 'mm', 'mn', 'mr', 'mt', 'mu', 'mv', 'mw', 'mx', 'my', 'mz', 'na', 'nc', 'ne', 'nf', 'ng', 'ni', 'nl', 'no', 'np', 'nr', 'nz', 'om', 'pa', 'pe', 'pg', 'ph', 'pk', 'pl', 'pr', 'ps', 'pt', 'py', 'qa', 'ro', 'rs', 'ru', 'rw', 'sa', 'sc', 'sd', 'se', 'sg', 'si', 'sk', 'sl', 'sm', 'sn', 'so', 'sr', 'ss', 'st', 'sv', 'sy', 'sz', 'td', 'tg', 'th', 'tj', 'tl', 'tm', 'tn', 'tr', 'tt', 'tw', 'tz', 'ua', 'ug', 'us', 'uy', 'uz', 'va', 'vc', 've', 'vi', 'vn', 'vu', 'ye', 'yt', 'za', 'zm', 'zw']);
     const POP = App.state.domainStats._population || {};
-    const isCountry = (d) => isoCountries.has(d) && d in POP;
+    const isCountry = (/** @type {string} */ d) => isoCountries.has(d) && d in POP;
 
     // Calc local_impact per country
+    /** @type {Record<string, number>} */
     const domainInstalls = {};
+    /** @type {Record<string, number>} */
     const domainInstCounts = {};
     App.data.forEach(app => {
       const pkg = app.componentName.split('/')[0];
@@ -3826,6 +3858,7 @@ const UI = {
       domainInstCounts[domain] = (domainInstCounts[domain] || 0) + 1;
     });
 
+    /** @type {Record<string, number>} */
     const localImpact = {};
     for (const d of Object.keys(domainInstalls)) {
       const s = App.state.domainStats[d] || {};
@@ -3841,7 +3874,7 @@ const UI = {
     const q2 = liValues[Math.floor(n / 2)] || 0;
     const q3 = liValues[Math.floor(3 * n / 4)] || 0;
 
-    const quartileUrgency = (li) => {
+    const quartileUrgency = (/** @type {number} */ li) => {
       if (li >= q3) return 1.0;
       if (li >= q2) return 0.75;
       if (li >= q1) return 0.5;
@@ -3881,12 +3914,12 @@ const UI = {
 
       // Easy: only easy, excl. match and nameinuse
       if (isEasy && !isMatch && !isNameInUse) {
-        App.state._quickPickEasy.push(item);
+        App.state._quickPickEasy?.push(item);
       }
 
       // Middle+: excl. easy, match and nameinuse
       if (!isEasy && !isMatch && !isNameInUse) {
-        App.state._quickPickMiddle.push(item);
+        App.state._quickPickMiddle?.push(item);
       }
 
     });
@@ -3914,6 +3947,7 @@ const UI = {
     App.state._lastQuickPickIdx = idx;
     const app = queue[idx];
     const card = document.getElementById("quickPickCard");
+    if (!card) return;
 
     card.style.backgroundImage = `url('extracted_png/${app.drawable}.png')`;
     card.style.backgroundSize = 'cover';
@@ -3977,18 +4011,23 @@ const UI = {
     Utils.setHidden(cardsRow, true);
     Utils.setHidden(container, false);
 
-    container.querySelector(".library-title").textContent = "Found in Lawnicons";
+    const title = container.querySelector(".library-title");
+    if (title) title.textContent = "Found in Lawnicons";
 
     const grid = container.querySelector(".library-grid");
-    grid.innerHTML = matches.slice(0, 20).map(icon =>
+    if (grid) grid.innerHTML = matches.slice(0, 20).map(icon =>
       Templates.libraryIconCard(icon)
     ).join("");
   },
 
+  /**
+   * @param {MouseEvent} e
+   * @param {Icon} icon
+   */
   showLibraryIconMenu(e, icon) {
     const menu = App.dom.rowMenu;
     menu.innerHTML = Templates.libraryIconMenu(icon);
-    const target = e.target.closest('.library-icon-card');
+    const target = /** @type {HTMLElement} */ (/** @type {HTMLElement} */ (e.target)?.closest('.library-icon-card'));
     const rect = target.getBoundingClientRect();
 
     menu.style.visibility = "hidden";
