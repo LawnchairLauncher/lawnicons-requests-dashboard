@@ -1365,145 +1365,159 @@ const Actions = {
 // 7. DATA PROCESSING
 // ==========================================
 const Data = {
-  init() {
-    Promise.all([
-      fetch(CONFIG.data.endpoint).then(r => r.json()),
-      fetch(CONFIG.data.setsStatsPath).then(r => r.json()).catch(() => ({})),
-      fetch(CONFIG.data.creationOddsPath).then(r => r.json()).catch(() => []),
-      fetch(CONFIG.data.domainStatsPath).then(r => r.json()).catch(() => ({})),
-      fetch(CONFIG.data.activityStatsPath).then(r => r.json()).catch(() => []),
-      ...CONFIG.data.filters.map(id => this.fetchFilterData(id))
-    ])
-      .then(([json, setsStats, creationOdds, domainStats, activityStats, ...filterObjects]) => {
-        App.data = json.apps;
-        App.state.setsStats = setsStats;
-        App.state.creationOdds = creationOdds;
-        App.state.domainStats = domainStats;
-        App.state.activityStats = activityStats;
-        App.state.lastUpdate = json.lastUpdate;
+  async fetchJson(url, fallback = {}) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return await response.json();
+    } catch(err) {
+      console.error(`Failed to fetch ${url}:`, err);
+      return fallback;
+    }
+  },
 
-        // Build ID Map
-        App.state.idMap = new Map();
-        App.data.forEach(app => App.state.idMap.set(app.componentName, app));
+  async init() {
+    try {
+      const [json, setsStats, creationOdds, domainStats, activityStats, ...filterObjects] = await Promise.all([
+        this.fetchJson(CONFIG.data.endpoint),
+        this.fetchJson(CONFIG.data.setsStatsPath, {}),
+        this.fetchJson(CONFIG.data.creationOddsPath, []),
+        this.fetchJson(CONFIG.data.domainStatsPath, {}),
+        this.fetchJson(CONFIG.data.activityStatsPath, []),
+        ...CONFIG.data.filters.map(id => this.fetchFilterData(id))
+      ]);
 
-        // Init Tags
-        App.state.appTags = new Map();
-        App.state.filterMetadata = new Map();
-        App.state.filterMetadata.set("plan", {
-          label: "Plan",
-          description: "Requests added to your contribution plan."
-        });
+      App.data = json.apps;
+      App.state.setsStats = setsStats;
+      App.state.creationOdds = creationOdds;
+      App.state.domainStats = domainStats;
+      App.state.activityStats = activityStats;
+      App.state.lastUpdate = json.lastUpdate;
 
-        // Process Filters
-        filterObjects.forEach((obj, index) => {
-          if (!obj) return;
-          const id = CONFIG.data.filters[index];
+      App.state.idMap = new Map();
+      App.data.forEach(app => App.state.idMap.set(app.componentName, app));
 
-          App.state.filterMetadata.set(id, {
-            label: obj.label,
-            description: obj.description
-          });
+      App.state.appTags = new Map();
+      App.state.filterMetadata = new Map();
+      App.state.filterMetadata.set("plan", {
+        label: "Plan",
+        description: "Requests added to your contribution plan."
+      });
 
-          if (id === "unlabeled") {
-            this.computeUnlabeled(id);
-          } else if (obj[id] && Array.isArray(obj[id])) {
-            obj[id].forEach(item => {
-              const appId = typeof item === 'string' ? item : item.id;
-              this.addTag(appId, id);
-              if (typeof item === 'object' && item.existing_drawable) {
-                if (!App.state.existingSvgs) App.state.existingSvgs = new Map();
-                App.state.existingSvgs.set(appId, item.existing_drawable);
-              }
-            });
-          }
-        });
+      this._processFilters(filterObjects, App.state.filterMetadata);
 
-        // Load optional data, then init UI
-        Promise.all([
-          fetch("assets/stats/fulfillment_history.json").then(r => r.json()).catch(() => []),
-          fetch("assets/stats/trending_baseline.json").then(r => r.json()).catch(() => null)
-        ]).then(([history, baseline]) => {
-          if (history && history.length >= 3) {
-            App.state._fulfillmentData = history;
-            const ttfs = history.map(h => (h.fulfilled - h.firstAppearance) / 86400);
-            ttfs.sort((a, b) => a - b);
-            const median = Math.round(ttfs[Math.floor(ttfs.length / 2)]);
-            App.state.medianTTF = median;
-          }
-          if (baseline && baseline.period_start && baseline.period_end) {
-            const startSnapshot = baseline.period_start.snapshot || {};
-            const endSnapshot = baseline.period_end.snapshot || {};
-            App.state.trendingDeltas = {};
-            for (const [comp, endCount] of Object.entries(endSnapshot)) {
-              const startCount = startSnapshot[comp] || 0;
-              const delta = endCount - startCount;
-              if (delta > 0) {
-                App.state.trendingDeltas[comp] = delta;
-              }
+      // Load optional data
+      await Promise.all([
+        (async () => {
+          const history = await this.fetchJson("assets/stats/fulfillment_history.json", []);
+          if (!(history && history.length >= 3)) return;
+
+          App.state._fulfillmentData = history;
+          const ttfs = history
+            .map(h => (h.fulfilled - h.firstAppearance) / 86400)
+            .sort((a, b) => a - b);
+          
+          App.state.medianTTF = Math.round(ttfs[Math.floor(ttfs.length / 2)]);
+        })(),
+        (async () => {
+          const baseline = await this.fetchJson("assets/stats/trending_baseline.json", {});
+          if (!(baseline?.period_start?.snapshot && baseline?.period_end?.snapshot)) return;
+
+          const startSnapshot = baseline.period_start.snapshot;
+          const endSnapshot = baseline.period_end.snapshot;
+          App.state.trendingDeltas = {};
+          for (const [comp, endCount] of Object.entries(endSnapshot)) {
+            const startCount = startSnapshot[comp] || 0;
+            const delta = endCount - startCount;
+            if (delta > 0) {
+              App.state.trendingDeltas[comp] = delta;
             }
           }
-        }).catch(() => { }).finally(() => {
-          this.loadUrlState();
+        })()
+      ]).catch(() => {/* no-op */ })
+    } catch (error) {
+      console.error("Critical initialization failure:", error);
+      Toast.show("Failed to load data", "error");
+      return;
+    }
 
-          fetch("assets/qa_issues/review_issues.json")
-            .then(r => r.json())
-            .then(data => {
-              App.state.lowQualityData = data;
-              UI.updateLowQualityBadge();
-            })
-            .catch(() => {
-              App.state.lowQualityData = [];
-              UI.updateLowQualityBadge();
-            });
+    this.loadUrlState();
 
-          fetch("assets/appfilter.xml")
-            .then(r => r.text())
-            .then(xmlText => {
-              const parser = new DOMParser();
-              const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-              const items = xmlDoc.querySelectorAll("item");
-              const icons = [];
+    Promise.all([
+      (async () => {
+        App.state.lowQualityData = await this.fetchJson("assets/qa_issues/review_issues.json", []);
+        UI.updateLowQualityBadge();
+      })(),
+      this.loadAppfilterXml()
+    ]).finally(() => {
+      UI.init();
+      UI.updateLowQualityBadge();
+      UI.buildQuickPickQueue();
+      UI.renderQuickPick();
+    });
+  },
 
-              items.forEach(item => {
-                const component = item.getAttribute("component") || "";
-                const drawable = item.getAttribute("drawable") || "";
-                const name = item.getAttribute("name") || "";
+  _processFilters(filterObjects, filterMetadata) {
+    filterObjects.forEach((obj, index) => {
+      if (!obj) return;
+      const id = CONFIG.data.filters[index];
 
-                if (drawable && component) {
-                  const match = component.match(/ComponentInfo\{([^}]+)\}/);
-                  const componentName = match ? match[1] : component;
-
-                  icons.push({
-                    drawable: drawable,
-                    name: name,
-                    component: componentName
-                  });
-                }
-              });
-
-              App.state.existingIcons = icons;
-            })
-            .catch(() => {
-              App.state.existingIcons = [];
-            })
-            .finally(() => {
-              if (App.state.search && App.state.existingIcons.length > 0) {
-                UI.renderIconLibrary();
-              }
-              if (App.state.contributionActive && App.state.existingIcons.length > 0) {
-                UI.renderContributionMode();
-              }
-            });
-          UI.init();
-          UI.updateLowQualityBadge();
-          UI.buildQuickPickQueue();
-          UI.renderQuickPick();
-        });
-      })
-      .catch(e => {
-        console.error(e);
-        Toast.show("Failed to load data", "error");
+      filterMetadata.set(id, {
+        label: obj.label,
+        description: obj.description
       });
+
+      if (id === "unlabeled") {
+        this.computeUnlabeled(id);
+      } else if (obj[id] && Array.isArray(obj[id])) {
+        obj[id].forEach(item => {
+          const appId = typeof item === 'string' ? item : item.id;
+          this.addTag(appId, id);
+          if (typeof item === 'object' && item.existing_drawable) {
+            if (!App.state.existingSvgs) App.state.existingSvgs = new Map();
+            App.state.existingSvgs.set(appId, item.existing_drawable);
+          }
+        });
+      }
+    });
+  },
+
+  async loadAppfilterXml() {
+    try {
+      const response = await fetch("assets/appfilter.xml");
+      if (!response.ok) throw new Error("Failed to fetch appfilter.xml");
+      const xmlText = await response.text();
+
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+      const items = xmlDoc.querySelectorAll("item");
+      const icons = [];
+
+      items.forEach(item => {
+        const component = item.getAttribute("component") || "";
+        const drawable = item.getAttribute("drawable") || "";
+        const name = item.getAttribute("name") || "";
+
+        if (drawable && component) {
+          const match = component.match(/ComponentInfo\{([^}]+)\}/);
+          const componentName = match ? match[1] : component;
+
+          icons.push({
+            drawable: drawable,
+            name: name,
+            component: componentName
+          });
+        }
+      });
+
+      App.state.existingIcons = icons;
+    } catch {
+      App.state.existingIcons = [];
+    } finally {
+      if (!(App.state.existingIcons.length > 0)) return;
+      if (App.state.search) UI.renderIconLibrary();
+      if (App.state.contributionActive) UI.renderContributionMode();
+    }
   },
 
   /**
