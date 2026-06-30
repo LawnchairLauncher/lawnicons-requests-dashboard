@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * LAWNICONS REQUEST MANAGER
  * Pure Vanilla JS with JSDoc
@@ -9,6 +11,8 @@
 
 // @ts-ignore - VSCode does not support types from URL imports
 /// <reference types="https://cdn.skypack.dev/fflate@0.8.2/lib/index.d.ts" />
+const { fflate } = window;
+
 
 /**
  * @typedef {Object} AppEntry
@@ -22,34 +26,120 @@
  */
 
 /**
+ * @typedef {'name' | 'req' | 'odds' | 'install' | 'time'} SortKeys
+ */
+
+/**
  * @typedef {Object} FilterMetadata
  * @property {string} label
  * @property {string} [description]
+ * 
+ */
+
+/**
+ * @typedef {Object} Icon
+ * @property {string} drawable
+ * @property {string} name
+ * @property {string} component
+ */
+
+/**
+ * @typedef {Object} Overrides
+ * @property {string} [drawable]
+ * @property {string} [label]
+ * @property {'link' | 'new'} [mode]
+ */
+
+/**
+ * @typedef {Object} Issue
+ * @property {'nameinuse' | 'nameconflict' | 'emptyfields' | 'invalidsvg' | 'startdigit' | 'unescaped'} id
+ * @property {string} label
+ */
+
+/**
+ * @typedef {Object} CreationOdds
+ * @property {number} popularity
+ * @property {number} "0.1"
+ * @property {number} "0.1_at_pace"
+ * @property {number} "1"
+ * @property {number} 1_at_pace
+ * @property {number} "3"
+ * @property {number} 3_at_pace
+ * @property {number} "5"]
+ * @property {number} "5_at_pace"
+ * @property {number} "6"]
+ * @property {number} "6_at_pace"
+ * @property {number} "8"]
+ * @property {number} "8_at_pace"
+ */
+
+/**
+ * @typedef {Object} CreationStats
+ */
+
+/**
+ * @typedef {Object} FulfillmentHistory
+ * @property {number} firstAppearance - The Unix timestamp (in seconds) when the item first appeared.
+ * @property {number} fulfilled - The Unix timestamp (in seconds) when the item was fulfilled.
+ * @property {number} popularity - The popularity score or rank of the item.
+ * @property {number} label_factor - The weighting or scaling factor applied to the item's label.
+ */
+
+/**
+ * @typedef {Object} ActivityStats
+ * @property {Date} date
+ * @property {number} total
+ * @property {number} added
+ * @property {number} fulfilled
+ * @property {number} expired
+ */
+
+/**
+ * @typedef {Object} ReviewIssues
+ * @property {string} drawable
+ * @property {string[]} issues
  */
 
 /**
  * @typedef {Object} AppState
- * @property {"list" | "grid"} view
- * @property {string} sort
- * @property {string} search
- * @property {boolean} regexMode
- * @property {Set<string>} selected
- * @property {Map<string, Set<string>>} appTags
- * @property {Map<string, FilterMetadata>} filterMetadata
- * @property {Set<string>} activeFilters
- * @property {string | null} lastSelectedId
- * @property {Map<string, AppEntry>} idMap
- * @property {number} renderedCount
- * @property {AppEntry[]} currentData
- * @property {string} actionMode
- * @property {Map<string, string>} existingSvgs
- * @property {Object} setsStats
- * @property {Array} creationOdds
- * @property {Object} domainStats
- * @property {Array} activityStats
- * @property {Object} trendingDeltas
- * @property {string | null} lastUpdate
- * @property {string} icontoolPath
+ * @property {"list" | "grid"} view - The current display layout mode.
+ * @property {string} sort - The current sorting key and direction (e.g., "req-desc").
+ * @property {string} search - The current search query string.
+ * @property {boolean} regexMode - Whether the search query should be treated as a Regular Expression.
+ * @property {Set<string|number>} selected - A set of currently selected item IDs.
+ * @property {Map<string, Set<string>>} appTags - A map of application tags.
+ * @property {Map<string, FilterMetadata>} filterMetadata - Metadata associated with various filters.
+ * @property {Set<string>} activeFilters - A set of currently active filter keys.
+ * @property {string|number|null} lastSelectedId - The ID of the last selected item, used for shift-clicks.
+ * * // Runtime / Data Cache
+ * @property {Map<string|number, AppEntry>} idMap - Fast lookup map pairing item IDs to their full data entries.
+ * @property {number} renderedCount - The number of items currently rendered in the DOM.
+ * @property {AppEntry[]} currentData - The filtered and sorted list of entries currently on display.
+ * @property {Icon[]} existingIcons - Array of currently loaded or available icon objects.
+ * * // Actions & Contributions
+ * @property {"new" | string} actionMode - The current action state or mode.
+ * @property {boolean} lowQualityActive - Toggle state for rendering low-quality or performance-optimized views.
+ * @property {boolean} contributionActive - Toggle state indicating if the contribution workflow is active.
+ * @property {Array<AppEntry>} contribution - List of pending or current user contributions.
+ * @property {Record<string, Overrides>} contributionOverrides - Key-value overrides applied to the contribution layer.
+ * @property {Map<string, string>} existingSvgs - Cached SVG strings indexed by their identifier.
+ * * // Statistics & Deltas
+ * @property {Record<string, any>} setsStats - Statistical data aggregated by specific sets.
+ * @property {CreationOdds[]} creationOdds - Odds/probabilities array related to creation metrics.
+ * @property {Record<string, any>} domainStats - Aggregated domain-specific metrics.
+ * @property {string} domainStatsMode - The current mode for displaying domain stats (e.g., "requests").
+ * @property {ActivityStats[]} activityStats - Historical or timeline array tracking application activity.
+ * @property {Record<string, number>} trendingDeltas - Numeric delta changes tracking trending items.
+ * @property {string|null} lastUpdate - ISO timestamp or string representing the last data refresh.
+ * @property {FulfillmentHistory[]|null} _fulfillmentData
+ * @property {number} [medianTTF]
+ * @property {{[key: string]: number}} [_domainAvgInstalls]
+ * @property {string} [activePage]
+ * @property {string} [quickPickMode]
+ * @property {ReviewIssues[]} [lowQualityData]
+ * @property {any[]} [_quickPickEasy]
+ * @property {any[]} [_quickPickMiddle]
+ * @property {number} [_lastQuickPickIdx]
  */
 
 // ==========================================
@@ -149,6 +239,7 @@ const App = {
     trendingDeltas: {},
     lastUpdate: null,
 
+    _fulfillmentData: null,
   },
 
   dom: {
@@ -198,9 +289,9 @@ const App = {
     /** @type {HTMLButtonElement} */
     viewBtn: /** @type {any} */ (document.getElementById("viewBtn")),
     /** @type {HTMLElement} */
-    viewIconList: document.getElementById("viewIconList"),
+    viewIconList: /** @type {any} */ (document.getElementById("viewIconList")),
     /** @type {HTMLElement} */
-    viewIconGrid: document.getElementById("viewIconGrid"),
+    viewIconGrid: /** @type {any} */ (document.getElementById("viewIconGrid")),
     /** @type {HTMLElement} */
     sortMenu: /** @type {any} */ (document.getElementById("sortMenu")),
     /** @type {HTMLSpanElement} */
@@ -254,7 +345,7 @@ const Utils = {
 
   /**
    * @param {string} rawQuery
-   * @returns {{ text: string; tags: Set<string> }}
+   * @returns {{ text: string; tags: Set<string>, isSet: boolean }}
    */
   parseSearchQuery(rawQuery) {
     const result = { text: "", tags: new Set(), isSet: false };
@@ -293,6 +384,7 @@ const Utils = {
    * @returns {string[]}
    */
   getTagsForApp(id) {
+    /** @type {string[]} */
     const tags = [];
     const appTags = App.state.appTags.get(id);
     if (appTags) {
@@ -334,7 +426,7 @@ const Utils = {
   timeAgo(dateStr) {
     const now = new Date();
     const then = new Date(dateStr + "T00:00:00");
-    const diff = now - then;
+    const diff = now.getTime() - then.getTime();
     const days = Math.floor(diff / 86400000);
     if (days > 30) {
       return new Date(dateStr).toLocaleDateString("en-US", { month: "short", day: "numeric" });
@@ -537,7 +629,7 @@ const Templates = {
   },
 
   /**
-   * @param {{ drawable: string, name: string, component: string }} icon
+   * @param {Icon} icon
    * @returns {string}
    */
   libraryIconCard(icon) {
@@ -555,6 +647,10 @@ const Templates = {
       `;
   },
 
+  /**
+   * @param {Icon} icon
+   * @returns {string}
+   */
   libraryIconMenu(icon) {
     const svgUrl = `https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${icon.drawable}.svg`;
     const githubUrl = `https://github.com/LawnchairLauncher/lawnicons/blob/develop/svgs/${icon.drawable}.svg`;
@@ -633,19 +729,6 @@ const Templates = {
   sortMenuItems(options, activeValue) {
     return options.map(opt => `
       <div class="ctx-item ${activeValue === opt.value ? 'active' : ''}" tabindex="0" role="menuitemradio" aria-checked="${activeValue === opt.value}" data-action="sort-option" data-value="${opt.value}">
-        <span>${opt.label}</span>
-      </div>
-    `).join("");
-  },
-
-  /**
-   * @param {{ value: string, label: string }[]} options
-   * @param {string} activeValue
-   * @returns {string}
-   */
-  viewMenuItems(options, activeValue) {
-    return options.map(opt => `
-      <div class="ctx-item ${activeValue === opt.value ? 'active' : ''}" tabindex="0" role="menuitemradio" aria-checked="${activeValue === opt.value}" data-action="view-option" data-value="${opt.value}">
         <span>${opt.label}</span>
       </div>
     `).join("");
@@ -732,6 +815,9 @@ const Templates = {
       `;
   },
 
+  /**
+   * @param {AppEntry} app
+   */
   contributionRowMenu(app) {
     const pkg = app.componentName.split('/')[0];
     return `
@@ -755,7 +841,7 @@ const Templates = {
   },
 
   /**
-   * @param {[string, number][]} entries
+   * @param {[string, number, number, number][]} entries
    * @param {number} max
    * @returns {string}
    */
@@ -777,7 +863,12 @@ const Templates = {
 
   /**
    * @param {string} domain
-   * @param {string} count
+   * @param {number} done
+   * @param {number} requests
+   * @param {number} total
+   * @param {string} mode
+   * @param {number} extraValue
+   * @param {number} population
    * @returns {string}
    */
   domainStatsTooltip(domain, done, requests, total, mode, extraValue, population) {
@@ -795,8 +886,8 @@ const Templates = {
   },
 
   /**
-   * @param {string} pathNew
-   * @param {string} pathRemoved
+   * @param {string} pathResolved
+   * @param {string} addedDots
    * @param {string} dayLabels
    * @returns {string}
    */
@@ -825,7 +916,7 @@ const Templates = {
   /**
    * @param {string} formattedDate
    * @param {number} added
-   * @param {number} removed
+   * @param {number} fulfilled
    * @returns {string}
    */
   activityTooltip(formattedDate, added, fulfilled) {
@@ -953,22 +1044,25 @@ const Actions = {
    * @param {MouseEvent | KeyboardEvent | null} [event]
    */
   toggleSelection(id, event = null) {
-    const s = App.state.selected;
-    const currentIdx = App.state.currentData.findIndex(a => a.componentName === id);
+    const s = App.state;
+    const currentData = s.currentData;
+    const selected = s.selected;
 
-    // Handle Shift Click
-    if (event && /** @type {MouseEvent} */ (event).shiftKey && App.state.lastSelectedId) {
-      const lastIdx = App.state.currentData.findIndex(a => a.componentName === App.state.lastSelectedId);
-
-      window.getSelection()?.removeAllRanges();
+    // 1. Handle Shift-Click Range Selection
+    if (event?.shiftKey && s.lastSelectedId) {
+      const lastIdx = currentData.findIndex(a => a.componentName === s.lastSelectedId);
+      const currentIdx = currentData.findIndex(a => a.componentName === id);
 
       if (lastIdx !== -1 && currentIdx !== -1) {
+      // Remove browser text selection side-effect
+        window.getSelection()?.removeAllRanges();
+
         const start = Math.min(lastIdx, currentIdx);
         const end = Math.max(lastIdx, currentIdx);
-        const range = App.state.currentData.slice(start, end + 1);
+        const range = currentData.slice(start, end + 1);
 
         range.forEach(app => {
-          s.add(app.componentName);
+          selected.add(app.componentName);
           UI.updateItemVisuals(app.componentName);
         });
 
@@ -977,11 +1071,16 @@ const Actions = {
       }
     }
 
-    if (s.has(id)) s.delete(id);
-    else s.add(id);
+    // 2. Standard Toggle Logic
+    if (selected.has(id)) {
+      selected.delete(id);
+    } else {
+      selected.add(id);
+    }
 
-    App.state.lastSelectedId = id;
+    s.lastSelectedId = id;
 
+    // 3. Update Visuals
     UI.updateItemVisuals(id);
     UI.updateHeader();
     UI.updateSelectionBar();
@@ -1003,7 +1102,7 @@ const Actions = {
   },
 
   /**
-   * @param {string} key
+   * @param {SortKeys} key
    */
   toggleSortHeader(key) {
     const current = App.state.sort;
@@ -1034,6 +1133,7 @@ const Actions = {
     if (App.state.selected.size === 0) return;
     document.querySelectorAll(".list-row.selected, .grid-card.selected").forEach(el => {
       el.classList.remove("selected");
+      /** @type {HTMLInputElement | null} */
       const cb = el.querySelector("input[type='checkbox']");
       if (cb) cb.checked = false;
     });
@@ -1047,17 +1147,26 @@ const Actions = {
     document.getElementById("sbMenu")?.hidePopover();
   },
 
+  /**
+   * @param {string[] | null} ids
+   */
   generateNamesAndIDs(ids = null) {
     const apps = ids
       ? ids.map(id => App.state.idMap.get(id)).filter(Boolean)
       : App.data.filter(a => App.state.selected.has(a.componentName));
-    return apps.map(app => `${app.label}\n${app.componentName}`).join("\n\n");
+    return apps.map(app => `${app?.label}\n${app?.componentName}`).join("\n\n");
   },
 
+  /**
+ * @param {string[] | null} ids
+ */
   copyNamesAndIDs(ids = null) {
     Actions.copyToClipboard(Actions.generateNamesAndIDs(ids));
   },
 
+  /**
+   * @param {string} id
+   */
   copyPkgName(id) {
     const app = App.state.idMap.get(id);
     if (!app) return;
@@ -1068,11 +1177,14 @@ const Actions = {
     const pkgs = [...App.state.selected]
       .map(id => App.state.idMap.get(id))
       .filter(Boolean)
-      .map(app => app.componentName.split('/')[0]);
+      .map(app => app?.componentName.split('/')[0]);
     Actions.copyToClipboard([...new Set(pkgs)].join("\n"));
     Actions.closeSbMenu();
   },
 
+  /**
+   * @param {string} id
+   */
   copyFilterEntry(id) {
     Actions.copyToClipboard(`"${id}",`);
   },
@@ -1094,9 +1206,12 @@ const Actions = {
     Actions.copyToClipboard(Actions.generateAppFilterXml([id]));
   },
 
+  /**
+   * @param {string[] | null} ids
+   */
   generateAppFilterXml(ids = null) {
     const apps = ids
-      ? ids.map(id => App.state.idMap.get(id)).filter(Boolean)
+      ? /** @type {AppEntry[]} */ (ids.map(id => App.state.idMap.get(id)).filter(Boolean))
       : App.data.filter(a => App.state.selected.has(a.componentName));
     let xml = "<resources>\n";
     apps.forEach(app => {
@@ -1154,6 +1269,8 @@ const Actions = {
        * @type {Map<string, string>}
        */
       const assignedDrawables = new Map();
+
+      /** @type {Promise<void>[]} */
       const fetchPromises = [];
 
       // --- LOOP ---
@@ -1168,7 +1285,7 @@ const Actions = {
         let drawable = "";
 
         if (assignedDrawables.has(appIdentity)) {
-          drawable = assignedDrawables.get(appIdentity);
+          drawable = assignedDrawables.get(appIdentity) ?? "";
         } else {
           drawable = Utils.sanitizeDrawableName(app.label);
 
@@ -1191,13 +1308,15 @@ const Actions = {
         const svgPath = `"${drawable}.svg"`;
         txtCommands += `python3 ./icontool.py ${cmdType} ${svgPath} ${cmp} '${cmdLabel}'\n`;
 
+        const drawablePng = `${drawable}.png`
+
         // Queue Icon Fetch (only in "new" mode)
-        if (mode === "new" && !zipData._icons[`${drawable}.png`]) {
+        if (mode === "new" && !zipData._icons[drawablePng]) {
           const url = `${CONFIG.data.assetsPath}${app.drawable}${CONFIG.data.iconExtension}`;
           const p = fetch(url)
             .then(r => r.ok ? r.arrayBuffer() : null)
             .then(buf => {
-              if (buf) zipData._icons[`${drawable}.png`] = new Uint8Array(buf);
+              if (buf) zipData._icons[drawablePng] = new Uint8Array(buf);
             })
             .catch(() => { });
           fetchPromises.push(p);
@@ -1277,21 +1396,23 @@ const Actions = {
     let txtCommands = "";
 
     const usedDrawables = new Set();
+
+    /** @type {Promise<void>[]} */
     const fetchPromises = [];
 
     // Sort by label from inputs
     const sorted = [...list].sort((a, b) => {
       const rowA = document.querySelector(`.contribution-row[data-id="${a.componentName}"]`);
       const rowB = document.querySelector(`.contribution-row[data-id="${b.componentName}"]`);
-      const nameA = rowA?.querySelector(".contribution-name-input")?.value || a.label;
-      const nameB = rowB?.querySelector(".contribution-name-input")?.value || b.label;
+      const nameA = (/** @type {HTMLInputElement} */ (rowA?.querySelector(".contribution-name-input")))?.value || a.label;
+      const nameB = (/** @type {HTMLInputElement} */ (rowB?.querySelector(".contribution-name-input")))?.value || b.label;
       return nameA.localeCompare(nameB);
     });
 
     sorted.forEach(app => {
       const row = document.querySelector(`.contribution-row[data-id="${app.componentName}"]`);
-      const nameInput = row?.querySelector(".contribution-name-input");
-      const svgInput = row?.querySelector(".contribution-svg-input");
+      const nameInput = /** @type {HTMLInputElement} */ (row?.querySelector(".contribution-name-input"));
+      const svgInput = /** @type {HTMLInputElement} */ (row?.querySelector(".contribution-svg-input"));
 
       const label = nameInput?.value || app.label;
       const drawable = svgInput?.value || app.drawable;
@@ -1413,6 +1534,8 @@ const Data = {
 
   /**
    * DRY fetch helper with default fallbacks
+   * @param {string} url
+   * @param {Object | Array<string> | null} fallback 
    */
   async _fetch(url, fallback = null) {
     try {
@@ -1426,6 +1549,7 @@ const Data = {
 
   /**
    * Logic for building app tags and metadata from filter files.
+   * @param {Array<FilterMetadata>} filterObjects
    */
   processFilters(filterObjects) {
     App.state.appTags = new Map();
@@ -1448,8 +1572,12 @@ const Data = {
 
       if (id === "unlabeled") {
         this.computeUnlabeled(id);
-      } else if (obj[id] && Array.isArray(obj[id])) {
-        obj[id].forEach(item => {
+      } else {
+        /** @type {Record<string, any>} */
+        const dynamicObj = obj;
+
+        if (dynamicObj[id] && Array.isArray(dynamicObj[id])) {
+          dynamicObj[id].forEach(item => {
           const appId = typeof item === 'string' ? item : item.id;
           this.addTag(appId, id);
 
@@ -1459,6 +1587,7 @@ const Data = {
             App.state.existingSvgs.set(appId, item.existing_drawable);
           }
         });
+        }
       }
     });
   },
@@ -1467,6 +1596,7 @@ const Data = {
    * Derived statistical enrichment: Median TTF and Trending Deltas.
    */
   async processEnrichment() {
+    /** @type {[FulfillmentHistory[], BaselineDataType|null]} */
     const [history, baseline] = await Promise.all([
       this._fetch("assets/stats/fulfillment_history.json", []),
       this._fetch("assets/stats/trending_baseline.json", null)
@@ -1567,8 +1697,14 @@ const Data = {
    * @param {string} tag
    */
   addTag(id, tag) {
-    if (!App.state.appTags.has(id)) App.state.appTags.set(id, new Set());
-    App.state.appTags.get(id).add(tag);
+    let tags = App.state.appTags.get(id);
+
+    if (!tags) {
+      tags = new Set();
+      App.state.appTags.set(id, tags);
+    }
+
+    tags.add(tag);
   },
 
   process() {
@@ -1612,6 +1748,10 @@ const Data = {
 
   /**
    * Internal search engine
+   * @param {AppEntry[]} data
+   * @param {string} text
+   * @param {boolean} isRegex
+   * @returns {AppEntry[]}
    */
   _applySearch(data, text, isRegex) {
     if (isRegex) {
@@ -1632,6 +1772,9 @@ const Data = {
 
   /**
    * Internal sorting engine
+   * @param {AppEntry[]} data
+   * @param {string} sortKey
+   * @returns {AppEntry[]}
    */
   _applySort(data, sortKey) {
     if (sortKey === "rand") {
@@ -1653,31 +1796,43 @@ const Data = {
     const sorter = this._getSorter(sortKey, pkgCache);
     if (!sorter) {
       return [...data]; 
-    }
+    } 
 
+    // @ts-ignore
     return [...data].sort(sorter);
   },
 
   /**
    * Returns a compare function based on the sortKey
+   * @param {string} sortKey
+   * @param {Map<string, string>} pkgCache
+   * @returns {(a: AppEntry, b: AppEntry) => number | null}
    */
   _getSorter(sortKey, pkgCache) {
     const s = App.state;
 
-    // Helper to get normalized popularity (Set count or App count)
+    /**
+     * Helper to get normalized popularity (Set count or App count)
+     * @type {(app: AppEntry) => number}
+     */
     const getPop = (app) => {
-      const pkg = pkgCache.get(app.componentName);
+      const pkg = pkgCache.get(app.componentName) ?? "";
       return s.setsStats[pkg] || app.requestCount;
     };
 
-    // Shared secondary sort using the precomputed cache
+    /**
+     *  Shared secondary sort using the precomputed cache
+     * @type {(a: AppEntry, b: AppEntry) => number}
+     */
     const secondary = (a, b) => {
-      const pkgA = pkgCache.get(a.componentName);
-      const pkgB = pkgCache.get(b.componentName);
+      const pkgA = pkgCache.get(a.componentName) ?? "";
+      const pkgB = pkgCache.get(b.componentName) ?? "";
       return pkgA.localeCompare(pkgB);
     };
 
+    /** * @type {Record<string, (a: AppEntry, b: AppEntry) => number>} */
     const sorters = {
+
       "req-desc": (a, b) => getPop(b) - getPop(a) || secondary(a, b),
       "req-asc": (a, b) => getPop(a) - getPop(b) || secondary(a, b),
       "trending": (a, b) => {
@@ -1816,6 +1971,8 @@ const Heuristics = {
 
     const population = App.state.domainStats._population || {};
     const isoCountries = new Set(['ad', 'ae', 'af', 'ag', 'al', 'am', 'ao', 'ar', 'at', 'au', 'az', 'ba', 'bb', 'bd', 'be', 'bf', 'bg', 'bh', 'bi', 'bj', 'bo', 'br', 'bs', 'bt', 'bw', 'by', 'bz', 'ca', 'cd', 'cf', 'cg', 'ch', 'ci', 'cl', 'cm', 'cn', 'cr', 'cu', 'cv', 'cy', 'cz', 'de', 'dj', 'dk', 'dm', 'do', 'dz', 'ec', 'ee', 'eg', 'er', 'es', 'et', 'fi', 'fj', 'fr', 'ga', 'gb', 'ge', 'gh', 'gm', 'gn', 'gq', 'gr', 'gt', 'gw', 'gy', 'hk', 'hn', 'hr', 'ht', 'hu', 'id', 'ie', 'il', 'in', 'iq', 'ir', 'it', 'jm', 'jo', 'jp', 'ke', 'kg', 'kh', 'km', 'kn', 'kp', 'kr', 'kw', 'ky', 'kz', 'la', 'lb', 'lc', 'li', 'lk', 'lr', 'ls', 'lt', 'lu', 'lv', 'ly', 'ma', 'mc', 'md', 'mg', 'mk', 'ml', 'mm', 'mn', 'mr', 'mt', 'mu', 'mv', 'mw', 'mx', 'my', 'mz', 'na', 'nc', 'ne', 'nf', 'ng', 'ni', 'nl', 'no', 'np', 'nr', 'nz', 'om', 'pa', 'pe', 'pg', 'ph', 'pk', 'pl', 'pr', 'ps', 'pt', 'py', 'qa', 'ro', 'rs', 'ru', 'rw', 'sa', 'sc', 'sd', 'se', 'sg', 'si', 'sk', 'sl', 'sm', 'sn', 'so', 'sr', 'ss', 'st', 'sv', 'sy', 'sz', 'td', 'tg', 'th', 'tj', 'tl', 'tm', 'tn', 'tr', 'tt', 'tw', 'tz', 'ua', 'ug', 'us', 'uy', 'uz', 'va', 'vc', 've', 'vi', 'vn', 'vu', 'ye', 'yt', 'za', 'zm', 'zw']);
+
+    /** @type (d: string) => boolean */
     const isCountry = (d) => isoCountries.has(d) && d in population;
 
     let localImpact = 0;
@@ -1920,10 +2077,10 @@ const Router = {
 
     // Reset global visibility
     App.dom.contributionBtn.style.display = "";
-    document.getElementById("lowQualityBtn").parentElement.classList.remove("is-hidden");
-    document.getElementById("search-wrapper").classList.remove("is-hidden");
-    document.querySelector(".header-icon").classList.remove("is-hidden");
-    document.querySelector(".controls").classList.remove("is-hidden");
+    document.getElementById("lowQualityBtn")?.parentElement?.classList.remove("is-hidden");
+    document.getElementById("search-wrapper")?.classList.remove("is-hidden");
+    document.querySelector(".header-icon")?.classList.remove("is-hidden");
+    document.querySelector(".controls")?.classList.remove("is-hidden");
 
     // Ensure badges are visible if needed
     UI.updateContributionBadge();
@@ -1931,45 +2088,52 @@ const Router = {
   },
 
   _setupMainHeader() {
-    document.querySelector(".header-info h1").textContent = "Lawnicons";
+    const header = document.querySelector(".header-info h1");
+    if (header) header.textContent = "Lawnicons";
     App.dom.contributionBtn.classList.remove("active");
-    document.getElementById("lowQualityBtn").classList.remove("active");
+    document.getElementById("lowQualityBtn")?.classList.remove("active");
 
     const headerRight = document.querySelector(".header-right");
-    headerRight.querySelectorAll("a").forEach(a => a.classList.remove("is-hidden"));
+    headerRight?.querySelectorAll("a").forEach(a => a.classList.remove("is-hidden"));
     document.getElementById("appfilterLink")?.classList.add("is-hidden");
   },
 
   _setupQAHeader() {
-    document.querySelector(".header-info h1").textContent = "Low quality icons";
-    document.getElementById("lowQualityBtn").classList.add("active");
+    const header = document.querySelector(".header-info h1");
+    if (header) header.textContent = "Low quality icons";
+
+    document.getElementById("lowQualityBtn")?.classList.add("active");
 
     // Inject Back Button
     this._injectBackButton("lowQualityBackBtn");
 
     // Hide Irrelevant Controls
-    document.getElementById("search-wrapper").classList.add("is-hidden");
-    document.querySelector(".header-icon").classList.add("is-hidden");
-    document.querySelector(".controls").classList.add("is-hidden");
+    document.getElementById("search-wrapper")?.classList.add("is-hidden");
+    document.querySelector(".header-icon")?.classList.add("is-hidden");
+    document.querySelector(".controls")?.classList.add("is-hidden");
 
     this._setupToolLinks();
   },
 
   _setupContributionHeader() {
-    document.querySelector(".header-info h1").textContent = "Contribution plan";
+    const header = document.querySelector(".header-info h1");
+    if (header) header.textContent = "Contribution plan";
     App.dom.contributionBtn.classList.add("active");
 
     // Inject Back Button
     this._injectBackButton("contributionBackBtn");
 
     // Hide Irrelevant Controls
-    document.getElementById("search-wrapper").classList.add("is-hidden");
-    document.querySelector(".header-icon").classList.add("is-hidden");
-    document.querySelector(".controls").classList.add("is-hidden");
+    document.getElementById("search-wrapper")?.classList.add("is-hidden");
+    document.querySelector(".header-icon")?.classList.add("is-hidden");
+    document.querySelector(".controls")?.classList.add("is-hidden");
 
     this._setupToolLinks();
   },
 
+  /**
+   * @param {string} id
+   */
   _injectBackButton(id) {
     if (document.getElementById(id)) return;
     const btn = document.createElement("button");
@@ -1980,22 +2144,22 @@ const Router = {
     btn.setAttribute('aria-label', 'Back to requests')
     btn.innerHTML = `<svg><use href="#ic-arrow-back"/></svg>`;
     btn.onclick = () => this.navigate(this.pages.MAIN);
-    document.querySelector(".header-left").prepend(btn);
+    document.querySelector(".header-left")?.prepend(btn);
   },
 
   _setupToolLinks() {
     const headerRight = document.querySelector(".header-right");
-    headerRight.querySelectorAll("a").forEach(a => a.classList.add("is-hidden"));
+    headerRight?.querySelectorAll("a").forEach(a => a.classList.add("is-hidden"));
 
     if (!document.getElementById("appfilterLink")) {
-      headerRight.insertAdjacentHTML("afterbegin", `
+      headerRight?.insertAdjacentHTML("afterbegin", `
         <a id="appfilterLink" href="https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/refs/heads/develop/app/assets/appfilter.xml" 
            class="header-link" title="Current appfilter.xml" target="_blank" rel=\"noopener noreferrer\">
           <svg><use href="#ic-code-xml"/></svg>
         </a>
       `);
     } else {
-      document.getElementById("appfilterLink").classList.remove("is-hidden");
+      document.getElementById("appfilterLink")?.classList.remove("is-hidden");
     }
   }
 };
@@ -2122,7 +2286,7 @@ const UI = {
   _bindControls() {
     // Search & Filtering
     App.dom.inputSearch.addEventListener("input", e => {
-      App.state.search = e.target.value;
+      App.state.search = (/** @type {HTMLInputElement} */ (e.target))?.value;
       Utils.setHidden(App.dom.clearBtn, App.state.search.length === 0);
       this.renderIconLibrary();
       this.render();
@@ -2154,7 +2318,7 @@ const UI = {
 
     // Bulk Actions
     App.dom.headerCheck.addEventListener("change", e =>
-      Actions.toggleSelectAll(e.target.checked)
+      Actions.toggleSelectAll((/** @type {HTMLInputElement} */ (e.target))?.checked)
     );
 
     App.dom.mobileFilterBtn.addEventListener("click", () => this.showMobileFilterPopover());
@@ -2165,9 +2329,9 @@ const UI = {
         const app = App.state.idMap.get(id);
         if (app && !App.state.contribution.some(a => a.componentName === id)) {
           App.state.contribution.push(app);
-          const tags = App.state.appTags.get(id) || new Set();
+          const tags = App.state.appTags.get(id.toString()) || new Set();
           tags.add("plan");
-          App.state.appTags.set(id, tags);
+          App.state.appTags.set(id.toString(), tags);
         }
       });
       this.saveContribution();
@@ -2186,8 +2350,10 @@ const UI = {
     // List Header Sorters
     const headers = { '.col.name': 'name', '.col.req': 'req', '.col.creation-odds': 'odds', '.col.install': 'install', '.col.first': 'time' };
     Object.entries(headers).forEach(([selector, key]) => {
+      /** @type {HTMLElement | null} */
       const el = App.dom.listHeader.querySelector(selector);
-      if (el) el.onclick = () => Actions.toggleSortHeader(key);
+      const sortKey = /** @type {SortKeys} */ (key);
+      if (el) el.onclick = () => Actions.toggleSortHeader(/** @type {SortKeys} */(sortKey));
     });
   },
 
@@ -2196,30 +2362,33 @@ const UI = {
    */
   _initGlobalDelegation() {
     // 1. Click Actions via [data-action]
-    document.addEventListener('click', (e) => {
-      const actionEl = e.target.closest('[data-action]');
+    document.addEventListener('click', (el) => {
+      const e = /** @type {MouseEvent} */ (el)
+      const target = /** @type {HTMLElement} */ (e.target);
+
+      const actionEl = /** @type {HTMLElement} */ (target.closest('[data-action]'));
       if (actionEl) {
-        this.handleAction(actionEl.dataset.action, actionEl, e);
+        this.handleAction(actionEl?.dataset?.action ?? "", actionEl, e);
         return;
       }
 
       // 2. Image Error Routing
-      if (e.target.tagName === "IMG" && e.target.classList.contains("requested-icon")) {
+      if (target.tagName === "IMG" && target.classList.contains("requested-icon")) {
         // Handled by Utils via capturing listener on container in original script
       }
 
       // 3. Selection Toggle (Rows/Cards)
-      const item = e.target.closest('[data-id]');
-      if (item && !App.state.contributionActive && !e.target.closest('a, .ctx-trigger, input')) {
-        Actions.toggleSelection(item.dataset.id, e);
+      const item = /** @type {HTMLElement} */ (target.closest('[data-id]'));
+      if (item && !App.state.contributionActive && !target.closest('a, .ctx-trigger, input')) {
+        Actions.toggleSelection(item.dataset.id ?? "", e);
       }
 
       // 4. Context Menu Triggers
-      const trigger = e.target.closest('.ctx-trigger');
+      const trigger = /** @type {HTMLElement} */ (target.closest('.ctx-trigger'));
       if (trigger) {
         e.stopPropagation();
-        const row = trigger.closest('[data-id]');
-        const app = App.state.idMap.get(row?.dataset.id);
+        const row = /** @type {HTMLElement} */ (trigger.closest('[data-id]'));
+        const app = App.state.idMap.get(row?.dataset.id ?? "");
         if (app) this.showRowMenu(e, app);
       }
     });
@@ -2238,9 +2407,12 @@ const UI = {
    * Handles hotkeys and arrow navigation.
    */
   _initKeyboardNavigation() {
-    document.addEventListener('keydown', (e) => {
-      if (e.target.tagName === 'INPUT' && e.target.type !== 'checkbox') {
-        if (e.key === 'Escape') e.target.blur();
+    document.addEventListener('keydown', (el) => {
+      const e = /** @type {KeyboardEvent} */ (el);
+      const target = /** @type {HTMLElement} */ (e.target);
+
+      if (target.tagName === 'INPUT' && /** @type {HTMLInputElement} */ (target).type !== 'checkbox') {
+        if (e.key === 'Escape') target.blur();
         return;
       }
 
@@ -2274,7 +2446,7 @@ const UI = {
     // Mode toggles for Domain Stats
     document.querySelectorAll("[data-action='domain-stats-mode']").forEach(el => {
       el.addEventListener("click", () => {
-        App.state.domainStatsMode = el.dataset.mode;
+        App.state.domainStatsMode = /** @type {HTMLElement} */ (el).dataset.mode || "";
         this.renderDomainStats();
       });
     });
@@ -2282,7 +2454,7 @@ const UI = {
     // Quick Pick toggles
     document.querySelectorAll("[data-action='quick-pick-mode']").forEach(el => {
       el.addEventListener("click", () => {
-        App.state.quickPickMode = el.dataset.mode;
+        App.state.quickPickMode = /** @type {HTMLElement} */ (el).dataset.mode || "";
         this.pickRandomQuickPick();
       });
     });
@@ -2309,30 +2481,31 @@ const UI = {
       return;
     }
 
-    document.getElementById("lowQualityBtn").classList.remove("active");
+    document.getElementById("lowQualityBtn")?.classList?.remove("active");
     const lowQualityBackBtn = document.getElementById("lowQualityBackBtn");
     if (lowQualityBackBtn) lowQualityBackBtn.remove();
 
     const backBtn = document.getElementById("contributionBackBtn");
     if (backBtn) backBtn.remove();
 
-    document.querySelector(".header-icon").classList.remove("is-hidden");
-    document.getElementById("search-wrapper").classList.remove("is-hidden");
-    document.querySelector(".header-info h1").textContent = "Lawnicons";
+    document.querySelector(".header-icon")?.classList?.remove("is-hidden");
+    document.getElementById("search-wrapper")?.classList?.remove("is-hidden");
+    const header = document.querySelector(".header-info h1");
+    if (header) header.textContent = "Lawnicons";
     App.dom.contributionBtn.style.display = "";
     this.updateContributionBadge();
     this.updateLowQualityBadge();
 
     const headerRight = document.querySelector(".header-right");
-    headerRight.querySelectorAll("a:not(#appfilterLink)").forEach(a => a.classList.remove("is-hidden"));
+    headerRight?.querySelectorAll("a:not(#appfilterLink)")?.forEach(a => a.classList.remove("is-hidden"));
     const appfilterLink = document.getElementById("appfilterLink");
     if (appfilterLink) appfilterLink.classList.add("is-hidden");
 
-    document.querySelector(".cards-row").classList.remove("is-hidden");
-    document.getElementById("mainCards").classList.remove("is-hidden");
+    document.querySelector(".cards-row")?.classList?.remove("is-hidden");
+    document.getElementById("mainCards")?.classList?.remove("is-hidden");
     const contribCards = document.getElementById("contributionCards");
     if (contribCards) contribCards.classList.add("is-hidden");
-    document.querySelector(".controls").classList.remove("is-hidden");
+    document.querySelector(".controls")?.classList?.remove("is-hidden");
 
     const s = App.state;
     App.dom.container.innerHTML = "";
@@ -2555,7 +2728,7 @@ const UI = {
           s.quickPickMode = value;
           // Logic for updating UI state of quick pick icons
           document.querySelectorAll("[data-action='quick-pick-mode']").forEach(icon => {
-            icon.classList.toggle("active", icon.dataset.value === value);
+            icon.classList.toggle("active", /** @type {HTMLElement} */(icon).dataset.value === value);
           });
           this.pickRandomQuickPick();
         }
@@ -2564,7 +2737,76 @@ const UI = {
   },
 
   /**
+ * Calculates current layout metrics.
+ * Standardizes the "File Explorer" math.
+ */
+  _getLayoutConstants() {
+    const isGrid = App.state.view === "grid";
+    const containerWidth = App.dom.container.clientWidth;
+
+    // Original logic: cards are approx 80px wide including margins
+    const cardWidth = 80;
+    const cols = isGrid ? Math.floor(containerWidth / cardWidth) || 1 : 1;
+
+    return { isGrid, cols };
+  },
+
+  /**
+   * Handles 2D Keyboard Navigation (Up, Down, Left, Right).
+   * @param {KeyboardEvent} e 
+   */
+  _handleArrowNavigation(e) {
+    /** @type {HTMLElement | null} */
+    const target = /** @type {HTMLElement} */ (e.target).closest('[data-id]');
+    if (!target) return;
+
+    const items = /** @type {HTMLElement[]} */ (Array.from(App.dom.container.querySelectorAll('[data-id]')));
+    const index = items.indexOf(target);
+    if (index === -1) return;
+
+    const { isGrid, cols } = this._getLayoutConstants();
+    let nextIndex = index;
+
+    switch (e.key) {
+      case 'ArrowUp':
+        e.preventDefault();
+        nextIndex = isGrid ? index - cols : index - 1;
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        nextIndex = isGrid ? index + cols : index + 1;
+        break;
+      case 'ArrowLeft':
+        if (isGrid) {
+          e.preventDefault();
+          nextIndex = index - 1;
+        }
+        break;
+      case 'ArrowRight':
+        if (isGrid) {
+          e.preventDefault();
+          nextIndex = index + 1;
+        }
+        break;
+    }
+
+    // Clamp bounds and apply focus
+    if (nextIndex >= 0 && nextIndex < items.length) {
+      items[nextIndex].focus();
+
+      // Optional: If holding shift while arrowing, extend selection
+      if (e.shiftKey) {
+        /** @type {string} */
+        const id = items[nextIndex].dataset.id;
+        Actions.toggleSelection(id, e);
+      }
+    }
+  },
+
+  /**
    * Helper for contribution mode dropdowns (New vs Link)
+   * @param {string} appId
+   * @param {string} mode
    */
   _handleContributionModeChange(appId, mode) {
     const s = App.state;
@@ -2587,6 +2829,7 @@ const UI = {
 
   /**
    * Helper to fetch and copy SVG source
+   * @param {string} drawable
    */
   async _copySvgFromLibrary(drawable) {
     try {
@@ -2597,12 +2840,14 @@ const UI = {
       Actions.copyToClipboard(text);
       this.closeContextMenu();
     } catch {
-      Toast.show("Failed to copy SVG source", "error");
+      Components.Toast.show("Failed to copy SVG source", "error");
     }
   },
 
   /**
    * Universal downloader for blobs/images
+   * @param {string} url
+   * @param {string} filename
    */
   async _downloadAsset(url, filename) {
     try {
@@ -2615,7 +2860,7 @@ const UI = {
       a.click();
       URL.revokeObjectURL(a.href);
     } catch {
-      Toast.show(`Failed to download ${filename}`, "error");
+      Components.Toast.show(`Failed to download ${filename}`, "error");
     }
   },
 
@@ -2629,7 +2874,8 @@ const UI = {
     menu.innerHTML = Templates.sortMenuItems(options, App.state.sort);
 
     menu.querySelectorAll(".ctx-item").forEach(item => {
-      item.onclick = () => {
+      /** @type {HTMLElement} */
+      (item).onclick = () => {
         App.state.sort = item.dataset.value;
         App.dom.sortLabel.textContent = item.textContent.trim();
         menu.hidePopover();
@@ -2638,30 +2884,6 @@ const UI = {
     });
 
     const rect = App.dom.sortBtn.getBoundingClientRect();
-    menu.style.left = rect.left + "px";
-    menu.style.top = (rect.bottom + 8) + "px";
-    menu.showPopover();
-  },
-
-  showViewMenu() {
-    const menu = App.dom.viewMenu;
-    const options = [
-      { value: "list", label: "List" },
-      { value: "grid", label: "Grid" }
-    ];
-
-    menu.innerHTML = Templates.viewMenuItems(options, App.state.view);
-
-    menu.querySelectorAll(".ctx-item").forEach(item => {
-      item.onclick = () => {
-        App.state.view = item.dataset.value;
-        App.dom.viewLabel.textContent = item.textContent.trim();
-        menu.hidePopover();
-        this.render();
-      };
-    });
-
-    const rect = App.dom.viewBtn.getBoundingClientRect();
     menu.style.left = rect.left + "px";
     menu.style.top = (rect.bottom + 8) + "px";
     menu.showPopover();
@@ -2773,16 +2995,16 @@ const UI = {
   },
 
   renderLowQualityMode() {
-    document.querySelector(".header-icon").classList.add("is-hidden");
-    document.querySelector(".controls").classList.add("is-hidden");
+    document.querySelector(".header-icon")?.classList.add("is-hidden");
+    document.querySelector(".controls")?.classList.add("is-hidden");
     document.getElementById("iconLibraryResults")?.classList.add("is-hidden");
-    document.getElementById("search-wrapper").classList.add("is-hidden");
+    document.getElementById("search-wrapper")?.classList.add("is-hidden");
     App.dom.listHeader.style.display = "none";
     App.dom.sentinel.style.display = "none";
     App.dom.contributionBtn.style.display = "none";
-    document.getElementById("lowQualityBtn").parentElement.classList.add("is-hidden");
+    document.getElementById("lowQualityBtn")?.parentElement?.classList.add("is-hidden");
     document.getElementById("contributionCountBadge").style.display = "none";
-    document.getElementById("lowQualityBtn").classList.add("active");
+    document.getElementById("lowQualityBtn")?.classList.add("active");
 
     document.querySelector(".header-info h1").textContent = "Low quality icons";
     App.dom.headerCount.textContent = "";
@@ -2797,7 +3019,7 @@ const UI = {
           `);
       document.getElementById("lowQualityBackBtn").onclick = () => {
         App.state.lowQualityActive = false;
-        document.getElementById("lowQualityBtn").classList.remove("active");
+        document.getElementById("lowQualityBtn")?.classList.remove("active");
         this.render();
         Data.syncUrlState();
       };
@@ -2815,21 +3037,22 @@ const UI = {
               </a>
           `);
     } else {
-      document.getElementById("appfilterLink").classList.remove("is-hidden");
+      document.getElementById("appfilterLink")?.classList.remove("is-hidden");
     }
 
-    document.getElementById("mainCards").classList.add("is-hidden");
+    document.getElementById("mainCards")?.classList.add("is-hidden");
     App.dom.container.innerHTML = "";
 
     fetch("assets/qa_issues/review_issues.json")
       .then(r => r.json())
-      .then(data => {
+      .then(d => {
+        const data = /** @type {ReviewIssues[]} */ (d);
         App.state.lowQualityData = data;
         const count = data.length;
         App.dom.headerCount.textContent = `${count} icon${count !== 1 ? 's' : ''}`;
         if (data.length === 0) {
           App.state.lowQualityActive = false;
-          document.getElementById("lowQualityBtn").classList.remove("active");
+          document.getElementById("lowQualityBtn")?.classList.remove("active");
           Components.Toast.show("All existing icons look good.");
           this.render();
           return;
@@ -2841,7 +3064,9 @@ const UI = {
         }
 
         // Sort by issue count descending
-        data.sort((a, b) => b.issues.length - a.issues.length || a.drawable.localeCompare(b.drawable));
+        /** @type {(a: ReviewIssues, b: ReviewIssues) => number} */
+        const comparator = (a, b) => b.issues.length - a.issues.length || a.drawable.localeCompare(b.drawable);
+        data.sort(comparator);
 
         // Build cards
         let html = '';
@@ -2876,7 +3101,7 @@ const UI = {
     if (count > 0) {
       wrapper.classList.remove("is-hidden");
       if (badge) {
-        badge.textContent = count;
+        badge.textContent = count.toString();
         badge.style.display = "flex";
       }
     } else {
@@ -2886,14 +3111,14 @@ const UI = {
   },
 
   renderContributionMode() {
-    document.querySelector(".header-icon").classList.add("is-hidden");
-    document.querySelector(".controls").classList.add("is-hidden");
+    document.querySelector(".header-icon")?.classList.add("is-hidden");
+    document.querySelector(".controls")?.classList.add("is-hidden");
     document.getElementById("iconLibraryResults")?.classList.add("is-hidden");
-    document.getElementById("search-wrapper").classList.add("is-hidden");
+    document.getElementById("search-wrapper")?.classList.add("is-hidden");
     document.getElementById("contributionCountBadge").style.display = "none";
     App.dom.listHeader.style.display = "none";
     App.dom.sentinel.style.display = "none";
-    const lowQualityWrapper = document.getElementById("lowQualityBtn").parentElement;
+    const lowQualityWrapper = document.getElementById("lowQualityBtn")?.parentElement;
     if (lowQualityWrapper) lowQualityWrapper.classList.add("is-hidden");
 
     App.dom.contributionBtn.style.display = "none";
@@ -2922,16 +3147,16 @@ const UI = {
     const count = App.state.contribution.length;
 
     const headerRight = document.querySelector(".header-right");
-    headerRight.querySelectorAll("a").forEach(a => a.classList.add("is-hidden"));
+    headerRight?.querySelectorAll("a")?.forEach(a => a.classList.add("is-hidden"));
 
     if (!document.getElementById("appfilterLink")) {
-      headerRight.insertAdjacentHTML("afterbegin", `
+      headerRight?.insertAdjacentHTML("afterbegin", `
           <a id="appfilterLink" href="https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/refs/heads/develop/app/assets/appfilter.xml" class="header-link" title="Current appfilter.xml">
             <svg><use href="#ic-code-xml"/></svg>
           </a>
         `);
     } else {
-      document.getElementById("appfilterLink").classList.remove("is-hidden");
+      document.getElementById("appfilterLink")?.classList.remove("is-hidden");
     }
 
     const headerHtml = `
@@ -2945,13 +3170,13 @@ const UI = {
           </div>
       `;
 
-    document.getElementById("mainCards").classList.add("is-hidden");
+    document.getElementById("mainCards")?.classList.add("is-hidden");
 
     const cardsRow = document.querySelector(".cards-row");
-    cardsRow.classList.remove("is-hidden");
+    cardsRow?.classList.remove("is-hidden");
 
     if (!document.getElementById("contributionCards")) {
-      cardsRow.insertAdjacentHTML("beforeend", `
+      cardsRow?.insertAdjacentHTML("beforeend", `
           <div id="contributionCards" style="display:contents;">
             <div class="card" id="contributionDomainsCard">
               <canvas id="domainsPie"></canvas>
@@ -2961,10 +3186,11 @@ const UI = {
           </div>
         `);
     } else {
-      document.getElementById("contributionCards").classList.remove("is-hidden");
+      document.getElementById("contributionCards")?.classList.remove("is-hidden");
     }
 
     // Draw domains pie chart
+    /** @type {Record<string, number>} */
     const domainCounts = {};
     App.state.contribution.forEach(app => {
       const pkg = app.componentName.split('/')[0];
@@ -2972,10 +3198,11 @@ const UI = {
       domainCounts[domain] = (domainCounts[domain] || 0) + 1;
     });
 
-    const canvas = document.getElementById("domainsPie");
-    const tooltip = document.getElementById("domainsTooltip");
+    const canvas = /** @type {HTMLCanvasElement} */ (document.getElementById("domainsPie"));
+    const tooltip =  /** @type {HTMLDivElement} */ (document.getElementById("domainsTooltip"));
     if (canvas) {
       const ctx = canvas.getContext("2d");
+      if (!ctx) return;
       const entries = Object.entries(domainCounts).sort((a, b) => b[1] - a[1]);
       const total = entries.reduce((s, e) => s + e[1], 0);
 
@@ -2989,6 +3216,7 @@ const UI = {
 
       let angle = -Math.PI / 2;
       const style = getComputedStyle(document.documentElement);
+      /** @type {string[]} */
       const colors = [];
       for (let i = 1; i <= 10; i++) {
         colors.push(style.getPropertyValue(`--chart-${i}`).trim());
@@ -3044,10 +3272,12 @@ const UI = {
             const pct = ((entries[i][1] / total) * 100).toFixed(1);
             tooltip.innerHTML = `<div class="tooltip-label">${entries[i][0]}</div><div class="tooltip-value">${entries[i][1]} icon${entries[i][1] !== 1 ? 's' : ''} (${pct}%)</div>`;
             tooltip.style.display = "block";
-            const cardRect = document.getElementById("contributionDomainsCard").getBoundingClientRect();
-            tooltip.style.left = (e.clientX - cardRect.left + 12) + "px";
-            tooltip.style.top = (e.clientY - cardRect.top) + "px";
-            tooltip.style.transform = "translateY(-50%)";
+            const cardRect = document.getElementById("contributionDomainsCard")?.getBoundingClientRect();
+            if (cardRect) {
+              tooltip.style.left = (e.clientX - cardRect.left + 12) + "px";
+              tooltip.style.top = (e.clientY - cardRect.top) + "px";
+              tooltip.style.transform = "translateY(-50%)";
+            }
             break;
           }
           a += slice;
@@ -3059,6 +3289,7 @@ const UI = {
       };
     }
 
+    /** @type {Issue[]} */
     const issues = [
       { id: "nameinuse", label: "SVG name in use" },
       { id: "nameconflict", label: "Duplicate in plan" },
@@ -3067,8 +3298,11 @@ const UI = {
       { id: "startdigit", label: "No _ before digit" },
     ];
 
-    const issueCounts = {};
-    issues.forEach(issue => issueCounts[issue.id] = 0);
+    /** @type {Record<Issue['id'], number>} */
+    const issueCounts = issues.reduce((acc, issue) => {
+      acc[issue.id] = 0;
+      return acc;
+    }, /** @type {any} */({}));
 
     App.state.contribution.forEach(app => {
       const ov = App.state.contributionOverrides[app.componentName] || {};
@@ -3121,7 +3355,7 @@ const UI = {
 
     const hasIcons = App.state.contribution.length > 0;
     if (!hasIcons) {
-      document.getElementById("contributionCards").classList.add("is-hidden");
+      document.getElementById("contributionCards")?.classList.add("is-hidden");
       App.dom.headerCount.textContent = "0 icons";
       return;
     }
@@ -3151,7 +3385,7 @@ const UI = {
     App.dom.container.innerHTML = clearHtml + downloadHtml + headerHtml + rowsHtml;
 
     const clearBtn = document.getElementById("contributionClearBtn");
-    clearBtn.onclick = () => {
+    if (clearBtn) clearBtn.onclick = () => {
       App.state.contribution.forEach(a => {
         const tags = App.state.appTags.get(a.componentName);
         if (tags) tags.delete("plan");
@@ -3167,9 +3401,8 @@ const UI = {
     };
 
     if (downloadReady) {
-      document.getElementById("contributionDownloadBtn").onclick = () => {
-        Actions.downloadContributionBundle();
-      };
+      const contibutionDownloadBtn = document.getElementById("contributionDownloadBtn")
+      if (contibutionDownloadBtn) contibutionDownloadBtn.onclick = () => Actions.downloadContributionBundle();
     }
   },
 
@@ -3177,6 +3410,7 @@ const UI = {
     const list = document.getElementById("contributionIssuesList");
     if (!list) return null;
 
+    /** @type {Issue[]} */
     const issues = [
       { id: "nameinuse", label: "SVG name in use" },
       { id: "nameconflict", label: "Duplicate in plan" },
@@ -3185,8 +3419,11 @@ const UI = {
       { id: "startdigit", label: "No _ before digit" },
     ];
 
-    const issueCounts = {};
-    issues.forEach(issue => issueCounts[issue.id] = 0);
+    /** @type {Record<Issue['id'], number>} */
+    const issueCounts = issues.reduce((acc, issue) => {
+      acc[issue.id] = 0;
+      return acc;
+    }, /** @type {any} */({}));
 
     App.state.contribution.forEach(app => {
       const ov = App.state.contributionOverrides[app.componentName] || {};
@@ -3242,14 +3479,17 @@ const UI = {
     return issueCounts;
   },
 
+  /**
+   * @param {string} issueId
+   */
   jumpToIssue(issueId) {
-    const rows = document.querySelectorAll(".contribution-row");
+    const rows = /** @type {NodeListOf<HTMLElement>} */ (document.querySelectorAll(".contribution-row"));
     if (!rows.length) return;
 
     document.querySelectorAll(".issue-highlight").forEach(el => el.classList.remove("issue-highlight"));
 
     for (const row of rows) {
-      const appId = row.dataset.id;
+      const appId = row.dataset.id ?? "";
       const app = App.state.contribution.find(a => a.componentName === appId);
       if (!app) continue;
 
@@ -3265,11 +3505,11 @@ const UI = {
 
       switch (issueId) {
         case "nameinuse":
-          match = drawable && App.state.existingIcons.some(icon => icon.drawable === drawable);
+          match = !!drawable && App.state.existingIcons.some(icon => icon.drawable === drawable);
           highlightSvg = match;
           break;
         case "nameconflict":
-          match = drawable && App.state.contribution.filter(a => {
+          match = !!drawable && App.state.contribution.filter(a => {
             const aOv = App.state.contributionOverrides[a.componentName] || {};
             const aName = aOv.label !== undefined ? aOv.label : a.label;
             const aDrawable = aOv.drawable !== undefined ? aOv.drawable : Utils.sanitizeDrawableName(aName);
@@ -3283,11 +3523,11 @@ const UI = {
           highlightSvg = !drawable.trim();
           break;
         case "invalidsvg":
-          match = drawable && /[^a-z0-9_]/.test(drawable);
+          match = !!drawable && /[^a-z0-9_]/.test(drawable);
           highlightSvg = match;
           break;
         case "startdigit":
-          match = drawable && /^[0-9]/.test(drawable);
+          match = !!drawable && /^[0-9]/.test(drawable);
           highlightSvg = match;
           break;
       }
@@ -3305,78 +3545,91 @@ const UI = {
     }
 
     if (rows.length > 0 && document.querySelector(".issue-highlight")) {
-      document.querySelector(".issue-highlight").closest(".contribution-row")?.scrollIntoView({ behavior: "smooth", block: "center" });
+      document.querySelector(".issue-highlight")?.closest(".contribution-row")?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   },
 
+  /**
+   * @param {HTMLInputElement} input
+   */
   updateContributionField(input) {
-    const id = input.dataset.id;
-    const field = input.dataset.field;
+    const id = input.dataset.id ?? "";
+    const field = input.dataset.field ?? "";
+    const s = App.state;
 
-    if (!App.state.contributionOverrides[id]) {
-      App.state.contributionOverrides[id] = {};
-    }
-    App.state.contributionOverrides[id][field] = input.value;
+    if (!s.contributionOverrides[id]) s.contributionOverrides[id] = {};
+    s.contributionOverrides[id][field] = input.value;
 
+    // Find relevant DOM elements for this specific row
+    /** @type {HTMLElement | null} */
     const row = input.closest('.contribution-row');
-    const nameInput = row.querySelector('.contribution-name-input');
-    const svgInput = row.querySelector('.contribution-svg-input');
-    const svgHint = svgInput.nextElementSibling;
-    const libraryIconCol = row.querySelector('.col.library-icon');
+    const nameInput = /** @type {HTMLInputElement | null} */ (row?.querySelector('.contribution-name-input'));
+    const svgInput = /** @type {HTMLInputElement | null} */ (row?.querySelector('.contribution-svg-input'));
+    const svgHint = /** @type {HTMLElement | null} */ (svgInput?.nextElementSibling);
+    const libraryIconCol = /** @type {HTMLElement | null} */ (row?.querySelector('.col.library-icon'));
 
-    const name = nameInput.value;
-    let drawable = svgInput.value;
-    const defaultSvg = Utils.sanitizeDrawableName(name);
+    let name = nameInput?.value ?? '';
+    let drawable = svgInput?.value ?? '';
 
+    // Logic Branch: If user changes the Label, auto-generate the SVG name
     if (field === 'label') {
       const sanitized = Utils.sanitizeDrawableName(input.value);
+      // Avoid "icon.svg" or "unknown.svg" as they are generic failures
       if (sanitized === 'icon' || sanitized === 'unknown') {
         drawable = '';
-        svgInput.value = '';
-        App.state.contributionOverrides[id].drawable = '';
+        if (svgInput) svgInput.value = '';
+        s.contributionOverrides[id].drawable = '';
       } else {
         drawable = sanitized;
-        svgInput.value = drawable;
-        App.state.contributionOverrides[id].drawable = drawable;
+        if (svgInput) svgInput.value = drawable;
+        s.contributionOverrides[id].drawable = drawable;
       }
     }
 
-    const existingIcon = App.state.existingIcons.find(icon => icon.drawable === drawable);
+    // Perform Real-time Library Collision Check
+    const existingIcon = s.existingIcons.find(icon => icon.drawable === drawable);
     const existsInLibrary = !!existingIcon;
+    const defaultSvg = Utils.sanitizeDrawableName(name);
     const isCustom = drawable !== defaultSvg;
-    const libraryTitle = existingIcon ? `${existingIcon.name}\n${drawable}.svg` : 'Found in Lawnicons.';
 
-    if (svgHint && svgHint.classList.contains('item-sub')) {
-      svgHint.textContent = existsInLibrary ? 'Name in use.' : (isCustom ? 'Custom.' : 'Generated from name.');
+    // Update the visual "Hint" text
+    if (svgHint?.classList.contains('item-sub')) {
+      if (existsInLibrary) {
+        svgHint.textContent = 'Name in use.';
+        svgHint.style.color = 'var(--error)';
+      } else if (isCustom) {
+        svgHint.textContent = 'Custom.';
+        svgHint.style.color = 'var(--secondary)';
+      } else {
+        svgHint.textContent = 'Generated from name.';
+        svgHint.style.color = '';
+      }
     }
 
+    // Update the Library Preview Icon
     if (libraryIconCol) {
       if (existsInLibrary) {
-        libraryIconCol.innerHTML = `<span class="library-icon-card" title="${libraryTitle}">
-                  <img src="https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${drawable}.svg" 
-                      alt="${drawable}" 
-                      loading="lazy"
-                      onerror="this.parentElement.remove()" />
-              </span>`;
+        const svgUrl = `https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${drawable}.svg`;
+        libraryIconCol.innerHTML = `
+                <span class="library-icon-card" title="${existingIcon.name}\n${drawable}.svg">
+                    <img src="${svgUrl}" alt="${drawable}" loading="lazy" onerror="this.parentElement.remove()" />
+                </span>`;
       } else {
         libraryIconCol.innerHTML = '';
       }
     }
 
+    // Save to storage and refresh issue counts in the header card
     this.saveContribution();
-    const issueCounts = this.updateIssues();
-    if (issueCounts) {
-      const downloadReady = issueCounts.emptyfields === 0 && issueCounts.invalidsvg === 0 && issueCounts.startdigit === 0;
-      const btn = document.getElementById("contributionDownloadBtn");
-      if (btn) {
-        btn.style.display = (App.state.contribution.length > 0 && downloadReady) ? '' : 'none';
-      }
-    }
+    this.updateIssues();
+
+    // Remove the "red glow" from inputs if the user is actively fixing the issue
+    input.classList.remove("issue-highlight");
   },
 
   saveContribution() {
     localStorage.setItem("lawnicons_contribution", JSON.stringify(App.state.contribution));
-    localStorage.setItem("lawnicons_contribution_active", App.state.contributionActive);
+    localStorage.setItem("lawnicons_contribution_active", App.state.contributionActive.toString());
     localStorage.setItem("lawnicons_contribution_overrides", JSON.stringify(App.state.contributionOverrides));
     if (!App.state.contributionActive) {
       this.updateContributionBadge();
@@ -3387,7 +3640,7 @@ const UI = {
     const badge = document.getElementById("contributionCountBadge");
     if (!badge) return;
     const count = App.state.contribution.length;
-    badge.textContent = count;
+    badge.textContent = count.toString();
     badge.style.display = count > 0 ? "flex" : "none";
   },
 
@@ -3405,18 +3658,24 @@ const UI = {
     const container = document.getElementById("domainStats");
     if (!container) return;
 
-    const containerWidth = container.clientWidth || document.querySelector(".page").clientWidth - 64;
+    const containerWidth = container.clientWidth || (document.querySelector(".page")?.clientWidth ?? 0) - 64;
     const colWidth = 26;
     const fits = Math.floor(containerWidth / colWidth);
 
     const isoCountries = new Set(['ad', 'ae', 'af', 'ag', 'al', 'am', 'ao', 'ar', 'at', 'au', 'az', 'ba', 'bb', 'bd', 'be', 'bf', 'bg', 'bh', 'bi', 'bj', 'bo', 'br', 'bs', 'bt', 'bw', 'by', 'bz', 'ca', 'cd', 'cf', 'cg', 'ch', 'ci', 'cl', 'cm', 'cn', 'cr', 'cu', 'cv', 'cy', 'cz', 'de', 'dj', 'dk', 'dm', 'do', 'dz', 'ec', 'ee', 'eg', 'er', 'es', 'et', 'fi', 'fj', 'fr', 'ga', 'gb', 'ge', 'gh', 'gm', 'gn', 'gq', 'gr', 'gt', 'gw', 'gy', 'hk', 'hn', 'hr', 'ht', 'hu', 'id', 'ie', 'il', 'in', 'iq', 'ir', 'it', 'jm', 'jo', 'jp', 'ke', 'kg', 'kh', 'km', 'kn', 'kp', 'kr', 'kw', 'ky', 'kz', 'la', 'lb', 'lc', 'li', 'lk', 'lr', 'ls', 'lt', 'lu', 'lv', 'ly', 'ma', 'mc', 'md', 'mg', 'mk', 'ml', 'mm', 'mn', 'mr', 'mt', 'mu', 'mv', 'mw', 'mx', 'my', 'mz', 'na', 'nc', 'ne', 'nf', 'ng', 'ni', 'nl', 'no', 'np', 'nr', 'nz', 'om', 'pa', 'pe', 'pg', 'ph', 'pk', 'pl', 'pr', 'ps', 'pt', 'py', 'qa', 'ro', 'rs', 'ru', 'rw', 'sa', 'sc', 'sd', 'se', 'sg', 'si', 'sk', 'sl', 'sm', 'sn', 'so', 'sr', 'ss', 'st', 'sv', 'sy', 'sz', 'td', 'tg', 'th', 'tj', 'tl', 'tm', 'tn', 'tr', 'tt', 'tw', 'tz', 'ua', 'ug', 'us', 'uy', 'uz', 'va', 'vc', 've', 'vi', 'vn', 'vu', 'ye', 'yt', 'za', 'zm', 'zw']);
+
+    /** @type {(domain: string) => boolean} */
     const isCountry = (domain) => isoCountries.has(domain);
+
     const mode = App.state.domainStatsMode;
     const population = (data._population) || {};
 
     if (!App.state._domainAvgInstalls) {
+      /** @type {Record<string, number>} */
       App.state._domainAvgInstalls = {};
+      /** @type {Record<string, number>} */
       const domainCountsI = {};
+      /** @type {Record<string, number>} */
       const domainSumsI = {};
       App.data.forEach(app => {
         const pkg = app.componentName.split('/')[0];
@@ -3474,25 +3733,26 @@ const UI = {
       else title.textContent = "Top domains";
     }
 
-    const sub = document.querySelector("#domainStatsCard .card-sub");
+    const sub = /** @type {HTMLElement | null} */ (document.querySelector("#domainStatsCard .card-sub"));
     if (sub) sub.style.display = "none";
 
     container.innerHTML = Templates.domainStatsCard(entries, max);
 
-    const tooltip = container.querySelector(".chart-tooltip");
+    const tooltip = /** @type {HTMLElement} */ (container.querySelector(".chart-tooltip"));
     if (!tooltip) return;
 
-    container.addEventListener("mousemove", (e) => {
-      const col = e.target.closest(".domain-col");
-      if (!col) {
-        Components.Tooltip.hide();
-        return;
-      }
-      const domain = col.dataset.domain;
-      const done = parseInt(col.dataset.done);
-      const requests = parseInt(col.dataset.requests);
-      const total = parseInt(col.dataset.total);
-      const avgInst = App.state._domainAvgInstalls[domain] || 0;
+    container.addEventListener("mousemove", (el) => {
+      const e = /** @type {MouseEvent} */ (el);
+      const target = /** @type {HTMLElement} */ (e.target);
+
+      const col = /** @type {HTMLElement | null} */ (target.closest(".domain-col"));
+      if (!col) return;
+
+      const domain = col.dataset?.domain ?? "";
+      const done = parseInt(col.dataset?.done ?? "");
+      const requests = parseInt(col.dataset?.requests ?? "");
+      const total = parseInt(col.dataset?.total ?? "");
+      const avgInst = App.state?._domainAvgInstalls[domain] || 0;
       const pop = population[domain] || 0;
       tooltip.innerHTML = Templates.domainStatsTooltip(domain, done, requests, total, mode, avgInst, pop);
       tooltip.style.display = "block";
@@ -3527,7 +3787,7 @@ const UI = {
     if (rawDays.length > 0) {
       filledDays.push(rawDays[0]);
       for (let i = 1; i < rawDays.length; i++) {
-        const prevDate = new Date(filledDays[filledDays.length - 1].date + "T12:00:00");
+        const prevDate = /** @type {Date} */ (new Date(filledDays[filledDays.length - 1].date + "T12:00:00"));
         const currDate = new Date(rawDays[i].date + "T12:00:00");
         while (prevDate.getTime() + 86400000 < currDate.getTime()) {
           prevDate.setTime(prevDate.getTime() + 86400000);
@@ -3558,6 +3818,7 @@ const UI = {
 
     if (maxRemoved === 0 && maxAdded === 0) return;
 
+    /** @type {(points: {x: number, y: number}[]) => string} */
     const makePath = (points) => {
       if (points.length < 2) return "";
       let d = `M ${points[0].x.toFixed(1)} ${points[0].y.toFixed(1)}`;
@@ -3590,10 +3851,12 @@ const UI = {
     const dotsSvg = container.querySelector(".activity-dots-svg");
     if (dotsSvg) {
       const chartEl = container.querySelector(".card-chart");
+      if (!chartEl) return;
       const w = chartEl.clientWidth;
       const h = chartEl.clientHeight;
       dotsSvg.setAttribute("viewBox", `0 0 ${w} ${h}`);
 
+      /** @type {(added: number) => number} */
       const getSize = (added) => {
         if (added >= 1000) return 7;
         if (added >= 251) return 5;
@@ -3638,15 +3901,16 @@ const UI = {
       tooltip.style.display = "none";
     });
 
-    svg.addEventListener("mousemove", (e) => {
+    svg.addEventListener("mousemove", (el) => {
+      const e = /** @type {MouseEvent} */ (el);
       const svgRect = svg.getBoundingClientRect();
       const x = (e.clientX - svgRect.left) / svgRect.width * 100;
       const idx = Math.round(x / 100 * (days.length - 1));
       const clamped = Math.min(days.length - 1, Math.max(0, idx));
       const snapX = (clamped / (days.length - 1) * 100);
 
-      vLine.setAttribute("x1", snapX);
-      vLine.setAttribute("x2", snapX);
+      vLine.setAttribute("x1", snapX.toString());
+      vLine.setAttribute("x2", snapX.toString());
       vLine.setAttribute("y1", "0");
       vLine.setAttribute("y2", "100");
       vLine.style.display = "";
@@ -3659,7 +3923,7 @@ const UI = {
         return;
       }
 
-      const dateParts = days[clamped].date.split("-");
+      const dateParts = days[clamped].date.toString().split("-");
       const formattedDate = `${monthNames[parseInt(dateParts[1]) - 1]} ${parseInt(dateParts[2])}`;
       tooltip.innerHTML = Templates.activityTooltip(formattedDate, added, fulfilled);
       tooltip.style.display = "block";
@@ -3708,6 +3972,42 @@ const UI = {
     if (!this.regexListEl) return;
     this.regexListEl.remove();
     this.regexListEl = null;
+  },
+
+  /**
+     * Displays the extended options menu for the Selection Bar.
+     * @param {MouseEvent} e 
+     */
+  showSelectionBarMenu(e) {
+    const menu = document.getElementById("sbMenu");
+    const trigger = /** @type {HTMLElement} */ (e.currentTarget);
+    if (!menu || !trigger) return;
+
+    // 1. Populate Content
+    menu.innerHTML = Templates.selectionBarMenu();
+
+    // 2. Position Logic (Opening Upwards from fixed bottom bar)
+    const rect = trigger.getBoundingClientRect();
+
+    // Hide briefly to measure
+    menu.style.visibility = "hidden";
+    menu.showPopover();
+
+    const menuWidth = menu.offsetWidth || 200;
+    const menuHeight = menu.offsetHeight || 250;
+
+    // Align right edges of button and menu
+    const x = rect.right - menuWidth;
+    // Position 8px above the button
+    const y = rect.top - menuHeight - 8;
+
+    menu.style.left = `${x}px`;
+    menu.style.top = `${y}px`;
+    menu.style.transformOrigin = "bottom right";
+    menu.style.visibility = "visible";
+
+    // 3. Focus first item for accessibility
+    this.focusMenu(menu);
   },
 
   /**
@@ -3764,6 +4064,7 @@ const UI = {
   buildQuickPickQueue() {
     const isoCountries = new Set(['ad', 'ae', 'af', 'ag', 'al', 'am', 'ao', 'ar', 'at', 'au', 'az', 'ba', 'bb', 'bd', 'be', 'bf', 'bg', 'bh', 'bi', 'bj', 'bo', 'br', 'bs', 'bt', 'bw', 'by', 'bz', 'ca', 'cd', 'cf', 'cg', 'ch', 'ci', 'cl', 'cm', 'cn', 'cr', 'cu', 'cv', 'cy', 'cz', 'de', 'dj', 'dk', 'dm', 'do', 'dz', 'ec', 'ee', 'eg', 'er', 'es', 'et', 'fi', 'fj', 'fr', 'ga', 'gb', 'ge', 'gh', 'gm', 'gn', 'gq', 'gr', 'gt', 'gw', 'gy', 'hk', 'hn', 'hr', 'ht', 'hu', 'id', 'ie', 'il', 'in', 'iq', 'ir', 'it', 'jm', 'jo', 'jp', 'ke', 'kg', 'kh', 'km', 'kn', 'kp', 'kr', 'kw', 'ky', 'kz', 'la', 'lb', 'lc', 'li', 'lk', 'lr', 'ls', 'lt', 'lu', 'lv', 'ly', 'ma', 'mc', 'md', 'mg', 'mk', 'ml', 'mm', 'mn', 'mr', 'mt', 'mu', 'mv', 'mw', 'mx', 'my', 'mz', 'na', 'nc', 'ne', 'nf', 'ng', 'ni', 'nl', 'no', 'np', 'nr', 'nz', 'om', 'pa', 'pe', 'pg', 'ph', 'pk', 'pl', 'pr', 'ps', 'pt', 'py', 'qa', 'ro', 'rs', 'ru', 'rw', 'sa', 'sc', 'sd', 'se', 'sg', 'si', 'sk', 'sl', 'sm', 'sn', 'so', 'sr', 'ss', 'st', 'sv', 'sy', 'sz', 'td', 'tg', 'th', 'tj', 'tl', 'tm', 'tn', 'tr', 'tt', 'tw', 'tz', 'ua', 'ug', 'us', 'uy', 'uz', 'va', 'vc', 've', 'vi', 'vn', 'vu', 'ye', 'yt', 'za', 'zm', 'zw']);
     const POP = App.state.domainStats._population || {};
+    /** @param {string} d */
     const isCountry = (d) => isoCountries.has(d) && d in POP;
 
     // Calc local_impact per country
@@ -3866,6 +4167,7 @@ const UI = {
     App.state._lastQuickPickIdx = idx;
     const app = queue[idx];
     const card = document.getElementById("quickPickCard");
+    if (!card) return; 
 
     card.style.backgroundImage = `url('extracted_png/${app.drawable}.png')`;
     card.style.backgroundSize = 'cover';
@@ -3876,7 +4178,7 @@ const UI = {
 
   renderIconLibrary() {
     const s = App.state;
-    const container = document.getElementById("iconLibraryResults");
+    const container = (/** @type {HTMLElement} */ document.getElementById("iconLibraryResults"));
     const cardsRow = document.querySelector(".cards-row");
 
     if (!container || !cardsRow) return;
@@ -3929,18 +4231,23 @@ const UI = {
     Utils.setHidden(cardsRow, true);
     Utils.setHidden(container, false);
 
-    container.querySelector(".library-title").textContent = "Found in Lawnicons";
+    (/** @type {HTMLElement} */ (container.querySelector(".library-title"))).textContent = "Found in Lawnicons";
 
-    const grid = container.querySelector(".library-grid");
+    const grid = (/** @type {HTMLElement} */ (container.querySelector(".library-grid")));
     grid.innerHTML = matches.slice(0, 20).map(icon =>
       Templates.libraryIconCard(icon)
     ).join("");
   },
 
+  /**
+   * @param {MouseEvent} e
+   * @param {Icon} icon
+   */
   showLibraryIconMenu(e, icon) {
     const menu = App.dom.rowMenu;
     menu.innerHTML = Templates.libraryIconMenu(icon);
-    const target = e.target.closest('.library-icon-card');
+    const target = /** @type {HTMLElement} */ (e?.target)?.closest('.library-icon-card');
+    if (!target) return;
     const rect = target.getBoundingClientRect();
 
     menu.style.visibility = "hidden";
