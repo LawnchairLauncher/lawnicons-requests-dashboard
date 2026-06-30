@@ -1813,7 +1813,17 @@ const UI = {
     }
 
     this.updateContributionBadge();
+    this.renderDomainStats();
+    this.renderQuickPick();
+    this.renderActivityCard();
+    this.generateFilters();
+    this.initObserver();
+    this.initRegexAutocomplete();
+    this.handleEvents();
+    this.render();
+  },
 
+  handleEvents() {
     document.getElementById("lowQualityBtn")?.addEventListener("click", () => {
       App.state.lowQualityActive = !App.state.lowQualityActive;
       if (!App.state.lowQualityActive) {
@@ -1845,7 +1855,6 @@ const UI = {
       Data.syncUrlState();
     });
 
-    this.renderDomainStats();
     document.querySelectorAll("[data-action='domain-stats-mode']").forEach(el => {
       el.addEventListener("click", () => {
         const mode = el.dataset.mode;
@@ -1865,9 +1874,6 @@ const UI = {
       const span = activeSvg.closest('span');
       if (span) span.classList.add("active");
     }
-
-    // Quick Pick
-    this.renderQuickPick();
 
     document.getElementById("quickPickDownload")?.addEventListener("click", (e) => {
       e.preventDefault();
@@ -1892,20 +1898,13 @@ const UI = {
         });
         this.pickRandomQuickPick();
       });
-    })
-
-    this.renderActivityCard();
-    this.generateFilters();
-    this.initObserver();
-    this.initRegexAutocomplete();
-    this.render();
+    });
 
     window.addEventListener("resize", () => {
       this.renderDomainStats();
       this.renderActivityCard();
     });
 
-    // Bindings
     App.dom.container.addEventListener("error", event => {
       Utils.handleImageError(event);
     }, true);
@@ -1954,7 +1953,6 @@ const UI = {
       this.showMobileFilterPopover();
     });
 
-    // Selection Bar
     document.getElementById("sbContributeBtn")?.addEventListener("click", () => {
       App.state.selected.forEach(id => {
         const app = App.state.idMap.get(id);
@@ -1998,7 +1996,6 @@ const UI = {
       Actions.clearAllSelections();
     });
 
-    // Sort Headers
     const headers = {
       '.col.name': 'name',
       '.col.req': 'req',
@@ -2015,7 +2012,6 @@ const UI = {
       }
     });
 
-    // Event Delegation
     document.addEventListener('click', (e) => {
       const target = /** @type {HTMLElement} */ (e.target);
 
@@ -2358,7 +2354,6 @@ const UI = {
       }
     });
 
-    // Keyboard Shortcuts
     document.addEventListener('keydown', (e) => {
       // Esc on search input — remove focus
       if (e.key === 'Escape' && e.target === App.dom.inputSearch) {
@@ -2395,7 +2390,6 @@ const UI = {
       }
     });
 
-    // Add 'keydown' listener to container
     App.dom.container.addEventListener('keydown', (/** @type {KeyboardEvent} */ e) => {
       const target = /** @type {HTMLElement | null} */ (e.target);
       if (!target) return;
@@ -2469,7 +2463,6 @@ const UI = {
       }
     });
 
-    // Menu Navigation
     const menus = ['rowMenu', 'mobileFilterMenu', 'sortMenu'];
     menus.forEach(id => {
       const menu = /** @type {HTMLElement} */ (App.dom[/** @type {keyof typeof App.dom} */ (id)]);
@@ -2506,7 +2499,6 @@ const UI = {
         }
       });
     });
-
   },
 
   initObserver() {
