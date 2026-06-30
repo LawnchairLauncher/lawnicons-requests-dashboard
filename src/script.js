@@ -898,51 +898,50 @@ const Templates = {
   }
 };
 
-// ==========================================
-// 5. TOAST SYSTEM
-// ==========================================
-const Toast = {
-  /** @type {Set<string>} */
-  activeToasts: new Set(),
+const Components = {
+  Toast: {
+    /** @type {Set<string>} */
+    activeToasts: new Set(),
 
-  /**
-   * @param {string} text
-   * @param {"info" | "success" | "error"} [type]
-   */
-  show(text, type = "info") {
-    const key = `${text}-${type}`;
-    if (this.activeToasts.has(key)) return;
+    /**
+     * @param {string} text
+     * @param {"info" | "success" | "error"} [type]
+     */
+    show(text, type = "info") {
+      const key = `${text}-${type}`;
+      if (this.activeToasts.has(key)) return;
 
-    if (App.dom.toastBox.children.length >= 3) {
-      const first = App.dom.toastBox.firstElementChild;
-      if (first) this.remove(/** @type {HTMLElement} */(first));
+      if (App.dom.toastBox.children.length >= 3) {
+        const first = App.dom.toastBox.firstElementChild;
+        if (first) this.remove(/** @type {HTMLElement} */(first));
+      }
+
+      const el = document.createElement("div");
+      el.className = `toast toast-${type}`;
+      el.dataset.key = key;
+      this.activeToasts.add(key);
+
+      let iconSvg = "";
+      if (type === "error") iconSvg = `<svg><use href="#ic-error"/></svg>`;
+      if (type === "success") iconSvg = `<svg><use href="#ic-download"/></svg>`;
+
+      el.innerHTML = `${iconSvg} ${text}`;
+      App.dom.toastBox.appendChild(el);
+
+      setTimeout(() => this.remove(el), 2500);
+    },
+
+    /**
+     * @param {HTMLElement} el
+     */
+    remove(el) {
+      if (el.classList.contains("hiding")) return;
+      if (el.dataset.key) this.activeToasts.delete(el.dataset.key);
+      el.classList.add("hiding");
+      el.addEventListener("animationend", () => el.remove());
     }
-
-    const el = document.createElement("div");
-    el.className = `toast toast-${type}`;
-    el.dataset.key = key;
-    this.activeToasts.add(key);
-
-    let iconSvg = "";
-    if (type === "error") iconSvg = `<svg><use href="#ic-error"/></svg>`;
-    if (type === "success") iconSvg = `<svg><use href="#ic-download"/></svg>`;
-
-    el.innerHTML = `${iconSvg} ${text}`;
-    App.dom.toastBox.appendChild(el);
-
-    setTimeout(() => this.remove(el), 2500);
   },
-
-  /**
-   * @param {HTMLElement} el
-   */
-  remove(el) {
-    if (el.classList.contains("hiding")) return;
-    if (el.dataset.key) this.activeToasts.delete(el.dataset.key);
-    el.classList.add("hiding");
-    el.addEventListener("animationend", () => el.remove());
-  }
-};
+}
 
 // ==========================================
 // 6. ACTIONS
@@ -1082,7 +1081,7 @@ const Actions = {
    */
   copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(_ => {
-      Toast.show("Copied!");
+      Components.Toast.show("Copied!");
       UI.closeContextMenu();
     });
   },
@@ -1112,7 +1111,7 @@ const Actions = {
 
   async downloadBundle() {
     if (typeof fflate === 'undefined') {
-      Toast.show("fflate library missing", "error");
+      Components.Toast.show("fflate library missing", "error");
       return;
     }
 
@@ -1255,7 +1254,7 @@ const Actions = {
 
     } catch (e) {
       console.error(e);
-      Toast.show("Failed to generate zip", "error");
+      Components.Toast.show("Failed to generate zip", "error");
     } finally {
       document.body.style.cursor = "default";
       App.dom.sbDownloadBtn.innerHTML = ICONS.download;
@@ -1264,7 +1263,7 @@ const Actions = {
 
   async downloadContributionBundle() {
     if (typeof fflate === 'undefined') {
-      Toast.show("fflate library missing", "error");
+      Components.Toast.show("fflate library missing", "error");
       return;
     }
 
@@ -1437,7 +1436,7 @@ const Data = {
       ]).catch(() => {/* no-op */ })
     } catch (error) {
       console.error("Critical initialization failure:", error);
-      Toast.show("Failed to load data", "error");
+      Components.Toast.show("Failed to load data", "error");
       return;
     }
 
@@ -1854,7 +1853,7 @@ const UI = {
 
     App.dom.contributionBtn?.addEventListener("click", () => {
       if (!App.state.contributionActive && App.state.contribution.length === 0) {
-        Toast.show("Contribution plan is empty. Add at least 1 request.");
+        Components.Toast.show("Contribution plan is empty. Add at least 1 request.");
         return;
       }
       App.state.contributionActive = !App.state.contributionActive;
@@ -1979,7 +1978,7 @@ const UI = {
       });
       this.saveContribution();
       const count = App.state.selected.size;
-      Toast.show(`${count} icon${count !== 1 ? 's' : ''} added to contribution plan.`);
+      Components.Toast.show(`${count} icon${count !== 1 ? 's' : ''} added to contribution plan.`);
       Actions.clearAllSelections();
       this.render();
     });
@@ -2059,7 +2058,7 @@ const UI = {
                   URL.revokeObjectURL(a.href);
                 }
               })
-              .catch(() => Toast.show("Failed to download PNG", "error"));
+              .catch(() => Components.Toast.show("Failed to download PNG", "error"));
           }
           return;
         }
@@ -2077,7 +2076,7 @@ const UI = {
                 a.click();
                 URL.revokeObjectURL(a.href);
               })
-              .catch(() => Toast.show("Failed to download SVG", "error"));
+              .catch(() => Components.Toast.show("Failed to download SVG", "error"));
           }
           UI.closeContextMenu();
           return;
@@ -2093,7 +2092,7 @@ const UI = {
                 Actions.copyToClipboard(svgText);
               })
               .catch(() => {
-                Toast.show("Failed to copy SVG", "error");
+                Components.Toast.show("Failed to copy SVG", "error");
               });
           }
           UI.closeContextMenu();
@@ -2836,7 +2835,7 @@ const UI = {
         if (data.length === 0) {
           App.state.lowQualityActive = false;
           document.getElementById("lowQualityBtn").classList.remove("active");
-          Toast.show("All existing icons look good.");
+          Components.Toast.show("All existing icons look good.");
           this.render();
           return;
         }
