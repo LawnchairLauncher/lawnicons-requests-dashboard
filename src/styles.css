@@ -585,8 +585,8 @@ button.input-icon.active {
   font-weight: 600;
 }
 
-.chart-tooltip {
-  display: none;
+.tooltip {
+  display: block;
   position: absolute;
   background: var(--surface-container-highest);
   border-radius: var(--shape-small);
@@ -597,6 +597,19 @@ button.input-icon.active {
   z-index: 100;
   white-space: nowrap;
   line-height: 1.4;
+  opacity: 0;
+  transform: translateY(-50%) scale(0.95);
+  transition: opacity 0.05s ease-out, transform 0.05s ease-out,
+      display 0.05s allow-discrete;
+    visibility: hidden;
+  pointer-events: none;
+}
+  
+.tooltip.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) scale(1);
+  pointer-events: auto;
 }
 
 .tooltip-label {

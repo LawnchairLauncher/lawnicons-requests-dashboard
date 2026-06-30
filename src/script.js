@@ -772,7 +772,7 @@ const Templates = {
           </div>`;
     }).join("")}
       </div>
-      <div class="chart-tooltip"></div>`;
+      <div class="tooltip"></div>`;
   },
 
   /**
@@ -811,7 +811,7 @@ const Templates = {
       </svg>
       <div class="activity-days">${dayLabels}</div>
     </div>
-    <div class="chart-tooltip"></div>`;
+    <div class="tooltip"></div>`;
   },
 
 
@@ -940,6 +940,52 @@ const Components = {
       el.classList.add("hiding");
       el.addEventListener("animationend", () => el.remove());
     }
+  },
+
+  Tooltip: {
+    /**
+     * Display and position a tooltip.
+     * @param {HTMLElement} el - The tooltip DOM element.
+     * @param {string} html - HTML content to display.
+     * @param {number} left - Target X coordinate (usually mouse or anchor left).
+     * @param {number} top - Target Y coordinate (usually mouse or anchor top).
+     * @param {HTMLElement} [container] - Optional parent to bound positioning within.
+     */
+    show(el, html, left, top, container = null) {
+      if (!el) return;
+
+      // 1. Inject Content
+      el.innerHTML = html;
+      el.style.display = "block";
+
+      // 3. Collision Detection (Right Edge)
+      const tooltipWidth = el.offsetWidth || 150;
+
+      // If parent container is used, get its relative offset to window
+      const containerLeft = container ? container.getBoundingClientRect().left : 0;
+
+      if (containerLeft + left + tooltipWidth > window.innerWidth - 10) {
+        // Flip to the left side of the cursor if no room on the right
+        left = left - tooltipWidth - 12;
+      }
+
+      // 4. Apply Styles
+      el.style.left = `${left}px`;
+      el.style.top = `${top}px`;
+
+      el.classList.add("visible");
+    },
+
+    /**
+     * Hide the tooltip.
+     * @param {HTMLElement} el - The tooltip DOM element.
+     */
+    hide(el) {
+      if (el) {
+        el.classList.remove("visible");
+        el.innerHTML = "";
+      }
+    },
   },
 }
 
@@ -2960,7 +3006,7 @@ const UI = {
           <div id="contributionCards" style="display:contents;">
             <div class="card" id="contributionDomainsCard">
               <canvas id="domainsPie"></canvas>
-              <div class="chart-tooltip" id="domainsTooltip"></div>
+              <div class="tooltip" id="domainsTooltip"></div>
             </div>
             <div class="issues-list" id="contributionIssuesList"></div>
           </div>
@@ -3035,7 +3081,7 @@ const UI = {
         const r = size / 2 - 2;
 
         if (dist > r) {
-          tooltip.style.display = "none";
+          Components.Tooltip.hide(tooltip)
           return;
         }
 
@@ -3047,12 +3093,11 @@ const UI = {
           const slice = (entries[i][1] / total) * Math.PI * 2;
           if (mouseAngle >= a && mouseAngle < a + slice) {
             const pct = ((entries[i][1] / total) * 100).toFixed(1);
-            tooltip.innerHTML = `<div class="tooltip-label">${entries[i][0]}</div><div class="tooltip-value">${entries[i][1]} icon${entries[i][1] !== 1 ? 's' : ''} (${pct}%)</div>`;
-            tooltip.style.display = "block";
+            const html = `<div class="tooltip-label">${entries[i][0]}</div><div class="tooltip-value">${entries[i][1]} icon${entries[i][1] !== 1 ? 's' : ''} (${pct}%)</div>`;
             const cardRect = document.getElementById("contributionDomainsCard").getBoundingClientRect();
-            tooltip.style.left = (e.clientX - cardRect.left + 12) + "px";
-            tooltip.style.top = (e.clientY - cardRect.top) + "px";
-            tooltip.style.transform = "translateY(-50%)";
+            const left = (e.clientX - cardRect.left + 12);
+            const top = (e.clientY - cardRect.top);
+            Components.Tooltip.show(tooltip, html, left, top, cardRect);
             break;
           }
           a += slice;
@@ -3060,7 +3105,7 @@ const UI = {
       };
 
       canvas.onmouseleave = () => {
-        tooltip.style.display = "none";
+        Components.Tooltip.hide(tooltip)
       };
     }
 
@@ -3484,13 +3529,13 @@ const UI = {
 
     container.innerHTML = Templates.domainStatsCard(entries, max);
 
-    const tooltip = container.querySelector(".chart-tooltip");
+    const tooltip = container.querySelector(".tooltip");
     if (!tooltip) return;
 
     container.addEventListener("mousemove", (e) => {
       const col = e.target.closest(".domain-col");
       if (!col) {
-        tooltip.style.display = "none";
+        Components.Tooltip.hide(tooltip)
         return;
       }
       const domain = col.dataset.domain;
@@ -3499,17 +3544,17 @@ const UI = {
       const total = parseInt(col.dataset.total);
       const avgInst = App.state._domainAvgInstalls[domain] || 0;
       const pop = population[domain] || 0;
-      tooltip.innerHTML = Templates.domainStatsTooltip(domain, done, requests, total, mode, avgInst, pop);
-      tooltip.style.display = "block";
+      const html = Templates.domainStatsTooltip(domain, done, requests, total, mode, avgInst, pop);
+
       const rect = col.getBoundingClientRect();
       const containerRect = container.getBoundingClientRect();
-      tooltip.style.top = "0px";
-      tooltip.style.transform = "translateY(-50%)";
-      tooltip.style.left = (rect.left - containerRect.left + rect.width) + "px";
+      const left = (rect.left - containerRect.left + rect.width)
+
+      Components.Tooltip.show(tooltip, html, left, 0, container);
     });
 
     container.addEventListener("mouseleave", () => {
-      tooltip.style.display = "none";
+      Components.Tooltip.hide(tooltip)
     });
   },
 
@@ -3630,7 +3675,7 @@ const UI = {
     const svg = container.querySelector(".activity-svg");
     if (!svg) return;
 
-    const tooltip = /** @type {HTMLElement | null} */ (container.querySelector(".chart-tooltip"));
+    const tooltip = /** @type {HTMLElement | null} */ (container.querySelector(".tooltip"));
     if (!tooltip) return;
 
     const vLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
@@ -3660,19 +3705,17 @@ const UI = {
       const fulfilled = days[clamped].fulfilled || 0;
 
       if (added === 0 && fulfilled === 0) {
-        tooltip.style.display = "none";
+        Components.Tooltip.hide(tooltip)
         return;
       }
 
       const dateParts = days[clamped].date.split("-");
       const formattedDate = `${monthNames[parseInt(dateParts[1]) - 1]} ${parseInt(dateParts[2])}`;
-      tooltip.innerHTML = Templates.activityTooltip(formattedDate, added, fulfilled);
-      tooltip.style.display = "block";
+      const html = Templates.activityTooltip(formattedDate, added, fulfilled);
 
       const left = snapX / 100 * svgRect.width + 12;
-      tooltip.style.left = left + "px";
-      tooltip.style.top = "0px";
-      tooltip.style.transform = "translateY(-50%)";
+
+      Components.Tooltip.show(tooltip, html, left, 0, svg);
     });
   },
 
