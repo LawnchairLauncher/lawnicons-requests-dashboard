@@ -3469,7 +3469,7 @@ const UI = {
 
     if (mode === "local") {
       entries = entries
-        .filter(([, , requests]) => requests > 10)
+        .filter(([, , requests]) => requests > 5)
         .sort((a, b) => {
           const instA = App.state._domainAvgInstalls[a[0]] || 0;
           const instB = App.state._domainAvgInstalls[b[0]] || 0;
@@ -3481,7 +3481,7 @@ const UI = {
         });
     } else if (mode === "coverage") {
       entries = entries
-        .filter(([, , requests]) => requests >= 15)
+        .filter(([, , requests]) => requests >= 5)
         .sort((a, b) => {
           const pctA = a[2] / a[3];
           const pctB = b[2] / b[3];
@@ -3489,7 +3489,7 @@ const UI = {
         });
     } else {
       entries = entries
-        .filter(([, , requests]) => requests >= 15)
+        .filter(([, , requests]) => requests >= 5)
         .sort((a, b) => b[3] - a[3]);
     }
 
