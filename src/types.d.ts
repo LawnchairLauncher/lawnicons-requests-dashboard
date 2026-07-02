@@ -113,6 +113,17 @@ declare global {
     expired: number;
   }
 
+  interface TrendingBaseline {
+    period_start: TrendingBaselineItem,
+    period_end: TrendingBaselineItem,
+  }
+
+  interface TrendingBaselineItem {
+    date: string,
+    total: number,
+    snapshot: Record<string, number>,
+  }
+
   interface ReviewIssues {
     drawable: string;
     issues: string[];

@@ -375,6 +375,7 @@ const Templates = {
       ? `<span class="existing-svg-wrapper">
          <img src="https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${existingDrawable}.svg" 
               class="existing-svg" 
+              alt="Icon of '${existingDrawable}'"
               title="${existingDrawable}.svg"
               loading="lazy"
         data-error-mode="hide-wrapper" />
@@ -387,7 +388,8 @@ const Templates = {
          <div class="fallback-icon-row" style="display:none">No Icon</div>`;
 
     const installsRaw = app.installs ? app.installs.replace(/[,+]/g, '') : null;
-    const displayInstalls = installsRaw ? new Intl.NumberFormat('en', { notation: "compact" }).format(parseInt(installsRaw)) + "+" : "—";
+    const displayInstalls = installsRaw ? new Intl.NumberFormat('en', /** @type {Intl.NumberFormatOptions} */ { notation: "compact" })
+        .format(parseInt(installsRaw)) + "+" : "—";
     const installsTitle = installsRaw && installsRaw !== '0'
       ? `${app.installs} installs in Play Store`
       : 'Installs data unavailable';
@@ -1343,8 +1345,8 @@ const Actions = {
     const sorted = [...list].sort((a, b) => {
       const rowA = document.querySelector(`.contribution-row[data-id="${a.componentName}"]`);
       const rowB = document.querySelector(`.contribution-row[data-id="${b.componentName}"]`);
-      const nameA = /** @type {HTMLInputElement} */ (rowA?.querySelector(".contribution-name-input"))?.value || a.label;
-      const nameB = /** @type {HTMLInputElement} */ (rowB?.querySelector(".contribution-name-input"))?.value || b.label;
+      const nameA = /** @type {string} */ (/** @type {HTMLInputElement} */ (rowA?.querySelector(".contribution-name-input"))?.value || a.label);
+      const nameB = /** @type {string} */ (/** @type {HTMLInputElement} */ (rowB?.querySelector(".contribution-name-input"))?.value || b.label);
       return nameA.localeCompare(nameB);
     });
 
@@ -1452,13 +1454,18 @@ const Data = {
           if (!(history && history.length >= 3)) return;
 
           App.state._fulfillmentData = history;
+
+          /** @type {number[]} */
           const ttfs = history
             .map(h => (h.fulfilled - h.firstAppearance) / 86400)
             .sort((a, b) => a - b);
 
-          App.state.medianTTF = Math.round(ttfs[Math.floor(ttfs.length / 2)]);
+          const medianIndex = Math.floor(ttfs.length / 2);
+
+          App.state.medianTTF = Math.round(ttfs[medianIndex]);
         })(),
         (async () => {
+          /** @type {TrendingBaseline} */
           const baseline = await this.fetchJson("assets/stats/trending_baseline.json", {});
           if (!(baseline?.period_start?.snapshot && baseline?.period_end?.snapshot)) return;
 
@@ -1510,10 +1517,12 @@ const Data = {
         description: obj.description
       });
 
+      const filter = obj[id];
+
       if (id === "unlabeled") {
         this.computeUnlabeled(id);
-      } else if (obj[id] && Array.isArray(obj[id])) {
-        obj[id].forEach(item => {
+      } else if (filter && Array.isArray(filter)) {
+        filter.forEach(item => {
           const appId = typeof item === 'string' ? item : item.id;
           this.addTag(appId, id);
           if (typeof item === 'object' && item.existing_drawable) {
@@ -1526,6 +1535,9 @@ const Data = {
   },
 
   async loadAppfilterXml() {
+    /** @type {Icon[]} */
+    let icons = [];
+
     try {
       const response = await fetch("assets/appfilter.xml");
       if (!response.ok) throw new Error("Failed to fetch appfilter.xml");
@@ -1534,8 +1546,6 @@ const Data = {
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlText, "text/xml");
       const items = xmlDoc.querySelectorAll("item");
-      /** @type {Icon[]} */
-      const icons = [];
 
       items.forEach(item => {
         const component = item.getAttribute("component") || "";
@@ -1543,7 +1553,7 @@ const Data = {
         const name = item.getAttribute("name") || "";
 
         if (drawable && component) {
-          const match = component.match(/ComponentInfo\{([^}]+)\}/);
+          const match = component.match(/ComponentInfo\{([^}]+)}/);
           const componentName = match ? match[1] : component;
 
           icons.push({
@@ -1553,15 +1563,17 @@ const Data = {
           });
         }
       });
-
-      App.state.existingIcons = icons;
-    } catch {
-      App.state.existingIcons = [];
-    } finally {
-      if (!(App.state.existingIcons.length > 0)) return;
-      if (App.state.search) UI.renderIconLibrary();
-      if (App.state.contributionActive) UI.renderContributionMode();
+    } catch(e) {
+      console.error("Error loading appfilter:", e);
+      icons = [];
     }
+
+    App.state.existingIcons = icons;
+
+    if (App.state.existingIcons.length === 0) return;
+
+    if (App.state.search) UI.renderIconLibrary();
+    if (App.state.contributionActive) UI.renderContributionMode();
   },
 
   /**
@@ -1843,6 +1855,7 @@ const UI = {
 
         const savedOverrides = localStorage.getItem("lawnicons_contribution_overrides");
         if (savedOverrides) {
+          /** @type {Record<string, Overrides>} */
           const parsedOverrides = JSON.parse(savedOverrides);
           App.state.contributionOverrides = {};
           for (const [id, overrides] of Object.entries(parsedOverrides)) {
@@ -2046,8 +2059,8 @@ const UI = {
       const menu = document.getElementById("sbMenu");
       if (!menu) return;
 
-      menu.innerHTML = Templates.selectionBarMenu();
-      const rect = /** @type {HTMLElement} */ (e.currentTarget).getBoundingClientRect();
+      menu.innerHTML = Templates.selectionBarMenu()
+      const rect = /** @type {DOMRect} */ (/** @type {HTMLElement} */ (e.currentTarget).getBoundingClientRect());
 
       menu.style.visibility = "hidden";
       menu.showPopover();
@@ -2108,7 +2121,12 @@ const UI = {
                   const writable = await handle.createWritable();
                   await writable.write(blob);
                   await writable.close();
-                } catch {
+                } catch (err) {
+                  if (err.name === 'AbortError') {
+                    console.log('User cancelled the save dialog.');
+                    return;
+                  }
+
                   const a = document.createElement('a');
                   a.href = URL.createObjectURL(blob);
                   a.download = `${drawable}.png`;
@@ -2269,7 +2287,7 @@ const UI = {
           const value = actionEl.dataset.value;
           if (!value) return;
           App.state.sort = value;
-          App.dom.sortLabel.textContent = actionEl.textContent?.trim() || value;
+          App.dom.sortLabel.textContent = actionEl.textContent.trim() || value;
           App.dom.sortMenu.hidePopover();
           this.render();
           return;
@@ -2685,8 +2703,8 @@ const UI = {
   showSortMenu() {
     const menu = App.dom.sortMenu;
     const options = UI.sortOptions.filter(opt => {
-      if (opt.value === "trending" && Object.keys(App.state.trendingDeltas).length === 0) return false;
-      return true;
+      return !(opt.value === "trending" && Object.keys(App.state.trendingDeltas).length === 0);
+
     });
 
     menu.innerHTML = Templates.sortMenuItems(options, App.state.sort);
@@ -2966,8 +2984,6 @@ const UI = {
 
     App.dom.container.className = "contribution-container";
     App.dom.sbBar.classList.remove("visible");
-
-    const count = App.state.contribution.length;
 
     const headerRight = document.querySelector(".header-right");
     headerRight?.querySelectorAll("a").forEach(a => a.classList.add("is-hidden"));
@@ -3471,11 +3487,6 @@ const UI = {
     const container = document.getElementById("domainStats");
     if (!container) return;
 
-    const page = document.querySelector(".page")
-    const containerWidth = container.clientWidth || (page?.clientWidth ?? 0 - 64);
-    const colWidth = 26;
-    const fits = Math.floor(containerWidth / colWidth);
-
     const isoCountries = new Set(['ad', 'ae', 'af', 'ag', 'al', 'am', 'ao', 'ar', 'at', 'au', 'az', 'ba', 'bb', 'bd', 'be', 'bf', 'bg', 'bh', 'bi', 'bj', 'bo', 'br', 'bs', 'bt', 'bw', 'by', 'bz', 'ca', 'cd', 'cf', 'cg', 'ch', 'ci', 'cl', 'cm', 'cn', 'cr', 'cu', 'cv', 'cy', 'cz', 'de', 'dj', 'dk', 'dm', 'do', 'dz', 'ec', 'ee', 'eg', 'er', 'es', 'et', 'fi', 'fj', 'fr', 'ga', 'gb', 'ge', 'gh', 'gm', 'gn', 'gq', 'gr', 'gt', 'gw', 'gy', 'hk', 'hn', 'hr', 'ht', 'hu', 'id', 'ie', 'il', 'in', 'iq', 'ir', 'it', 'jm', 'jo', 'jp', 'ke', 'kg', 'kh', 'km', 'kn', 'kp', 'kr', 'kw', 'ky', 'kz', 'la', 'lb', 'lc', 'li', 'lk', 'lr', 'ls', 'lt', 'lu', 'lv', 'ly', 'ma', 'mc', 'md', 'mg', 'mk', 'ml', 'mm', 'mn', 'mr', 'mt', 'mu', 'mv', 'mw', 'mx', 'my', 'mz', 'na', 'nc', 'ne', 'nf', 'ng', 'ni', 'nl', 'no', 'np', 'nr', 'nz', 'om', 'pa', 'pe', 'pg', 'ph', 'pk', 'pl', 'pr', 'ps', 'pt', 'py', 'qa', 'ro', 'rs', 'ru', 'rw', 'sa', 'sc', 'sd', 'se', 'sg', 'si', 'sk', 'sl', 'sm', 'sn', 'so', 'sr', 'ss', 'st', 'sv', 'sy', 'sz', 'td', 'tg', 'th', 'tj', 'tl', 'tm', 'tn', 'tr', 'tt', 'tw', 'tz', 'ua', 'ug', 'us', 'uy', 'uz', 'va', 'vc', 've', 'vi', 'vn', 'vu', 'ye', 'yt', 'za', 'zm', 'zw']);
 
     const isCountry = (/** @type {string} */ domain) => isoCountries.has(domain);
@@ -3585,8 +3596,6 @@ const UI = {
 
   renderActivityCard() {
     const history = App.state.activityStats;
-    const card = document.getElementById("activityCard");
-
     const container = document.getElementById("activityChart");
     if (!container) return;
 
@@ -3677,15 +3686,13 @@ const UI = {
         return 3;
       };
 
-      const addedDots = days.map((d, i) => {
+      dotsSvg.innerHTML = days.map((d, i) => {
         const x = (i / (days.length - 1) * w).toFixed(1);
         const added = d.added || 0;
         if (added === 0) return "";
         const r = getSize(added);
         return `<circle cx="${x}" cy="${r + 2}" r="${r}" class="activity-added-dot" />`;
       }).join("");
-
-      dotsSvg.innerHTML = addedDots;
     }
 
     const totalFulfilled = days.reduce((sum, d) => sum + (d.fulfilled || 0), 0);
