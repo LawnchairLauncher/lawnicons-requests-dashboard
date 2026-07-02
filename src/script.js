@@ -1037,16 +1037,106 @@ const Actions = {
   },
 
   /**
+   * @param {string[] | null} [ids]
+   * @returns {AppEntry[]}
+   */
+  resolveApps(ids = null) {
+    if (ids) {
+      return ids.flatMap(id => {
+        const app = App.state.idMap.get(id);
+        return app ? [app] : [];
+      });
+    }
+    return App.data.filter(a => App.state.selected.has(a.componentName));
+  },
+
+  /**
+   * @param {string} value
+   * @returns {string}
+   */
+  escapeXmlAttr(value) {
+    return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+  },
+
+  /**
+   * @param {string} value
+   * @returns {string}
+   */
+  escapeCommandLabel(value) {
+    return value.replace(/&/g, '&amp;').replace(/'/g, "'\\''");
+  },
+
+  /**
+   * @param {string} componentName
+   * @param {string} drawable
+   * @param {string} label
+   * @returns {string}
+   */
+  buildAppFilterItem(componentName, drawable, label) {
+    return `    <item component="ComponentInfo{${componentName}}" drawable="${drawable}" name="${Actions.escapeXmlAttr(label)}" />\n`;
+  },
+
+  /**
+   * @param {string} txtCommands
+   * @returns {string}
+   */
+  withIcontoolInstructions(txtCommands) {
+    if (!txtCommands) return "";
+    const instructions = [
+      "1. Open your Lawnicons repository folder.",
+      "2. Copy your SVGs to the svgs folder.",
+      "3. Run the commands below from the repository root in your terminal.",
+      "",
+      "Make sure your branch is up-to-date. If not and you are familiar with git, use:",
+      "  git reset --hard upstream/develop",
+      "",
+      "If sorting is needed:",
+      "  python3 ./icontool.py sort",
+      "",
+      "Commands:",
+    ].join("\n");
+    return instructions + "\n" + txtCommands;
+  },
+
+  /**
+   * @param {import('./fflate').Zippable} iconDir
+   * @param {string} targetDrawable
+   * @param {string} sourceDrawable
+   * @param {Promise<void>[]} fetchPromises
+   */
+  queueIconFetch(iconDir, targetDrawable, sourceDrawable, fetchPromises) {
+    const fileName = `${targetDrawable}.png`;
+    if (iconDir[fileName]) return;
+
+    const url = `${CONFIG.data.assetsPath}${sourceDrawable}${CONFIG.data.iconExtension}`;
+    const p = fetch(url)
+      .then(r => r.ok ? r.arrayBuffer() : null)
+      .then(buf => {
+        if (buf) iconDir[fileName] = new Uint8Array(buf);
+      })
+      .catch(() => { });
+    fetchPromises.push(p);
+  },
+
+  /**
+   * @param {BlobPart} content
+   * @param {string} fileName
+   */
+  downloadZip(content, fileName) {
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(new Blob([content], { type: 'application/zip' }));
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+  },
+
+  /**
    * @param {string[] | null} ids
    */
   generateNamesAndIDs(ids = null) {
-    /** @type {AppEntry[]} */
-    const apps = ids
-      ? ids.flatMap(id => {
-        const app = App.state.idMap.get(id);
-        return app ? [app] : [];
-      })
-      : App.data.filter(a => App.state.selected.has(a.componentName));
+    const apps = Actions.resolveApps(ids);
     return apps.map(app => `${app.label}\n${app.componentName}`).join("\n\n");
   },
 
@@ -1067,11 +1157,7 @@ const Actions = {
   },
 
   copySelectedPkgs() {
-    const pkgs = [...App.state.selected]
-      .flatMap(id => {
-        const app = App.state.idMap.get(id);
-        return app ? [app] : [];
-      })
+    const pkgs = Actions.resolveApps([...App.state.selected])
       .map(app => app.componentName.split('/')[0]);
     Actions.copyToClipboard([...new Set(pkgs)].join("\n"));
     Actions.closeSbMenu();
@@ -1103,12 +1189,7 @@ const Actions = {
    * @param {string[] | null} ids
    */
   generateAppFilterXml(ids = null) {
-    const apps = ids
-      ? ids.flatMap(id => {
-        const app = App.state.idMap.get(id);
-        return app ? [app] : [];
-      })
-      : App.data.filter(a => App.state.selected.has(a.componentName));
+    const apps = Actions.resolveApps(ids);
     let xml = "<resources>\n";
     apps.forEach(app => {
       xml += `    ${Utils.generateXml(app)}\n`;
@@ -1127,7 +1208,7 @@ const Actions = {
       return;
     }
 
-    const selectedApps = App.data.filter(a => App.state.selected.has(a.componentName));
+    const selectedApps = Actions.resolveApps();
     if (selectedApps.length === 0) return;
 
     selectedApps.sort((a, b) => a.label.localeCompare(b.label));
@@ -1170,8 +1251,7 @@ const Actions = {
       // --- LOOP ---
       selectedApps.forEach(app => {
         const cmp = app.componentName;
-        const label = app.label.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
-        const cmdLabel = app.label.replace(/&/g, '&amp;').replace(/'/g, "'\\''");
+        const cmdLabel = Actions.escapeCommandLabel(app.label);
 
         // Resolve Drawable Name
         const appIdentity = app.componentName;
@@ -1192,25 +1272,16 @@ const Actions = {
         }
 
         // Appfilter entry
-        xmlAppFilter += `    <item component="ComponentInfo{${cmp}}" drawable="${drawable}" name="${label}" />\n`;
+        xmlAppFilter += Actions.buildAppFilterItem(cmp, drawable, app.label);
 
         // Commands
         const cmdType = "link";
         const svgPath = `"${drawable}.svg"`;
         txtCommands += `python3 ./icontool.py ${cmdType} ${svgPath} ${cmp} '${cmdLabel}'\n`;
 
-        const iconDir = /** @type {import('./fflate').Zippable} */ (zipData._icons)
-
-        // Queue Icon Fetch (only in "new" mode)
-        if (mode === "new" && !iconDir[`${drawable}.png`]) {
-          const url = `${CONFIG.data.assetsPath}${app.drawable}${CONFIG.data.iconExtension}`;
-          const p = fetch(url)
-            .then(r => r.ok ? r.arrayBuffer() : null)
-            .then(buf => {
-              if (buf) iconDir[`${drawable}.png`] = new Uint8Array(buf);
-            })
-            .catch(() => { });
-          fetchPromises.push(p);
+        if (mode === "new") {
+          const iconDir = /** @type {import('./fflate').Zippable} */ (zipData._icons);
+          Actions.queueIconFetch(iconDir, drawable, app.drawable, fetchPromises);
         }
       });
 
@@ -1231,35 +1302,15 @@ const Actions = {
 
       // 3. Commands
       if (txtCommands) {
-        const instructions = [
-          "1. Open your Lawnicons repository folder.",
-          "2. Copy your SVGs to the svgs folder.",
-          "3. Run the commands below from the repository root in your terminal.",
-          "",
-          "Make sure your branch is up-to-date. If not and you are familiar with git, use:",
-          "  git reset --hard upstream/develop",
-          "",
-          "If sorting is needed:",
-          "  python3 ./icontool.py sort",
-          "",
-          "Commands:",
-        ].join("\n");
-        txtCommands = instructions + "\n" + txtCommands;
-        zipData["icontool_commands.txt"] = fflate.strToU8(txtCommands);
+        zipData["icontool_commands.txt"] = fflate.strToU8(Actions.withIcontoolInstructions(txtCommands));
       }
 
       // 4. Zip & Download
       const content = /** @type {BlobPart} */  (fflate.zipSync(zipData, { level: 6 }));
 
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(new Blob([content], { type: 'application/zip' }));
       const date = new Date().toISOString().slice(5, 10); // MM-DD
       const name = mode === "new" ? `lawnicons-add-icons-${date}` : `lawnicons-link-app-ids-${date}`;
-      link.download = `${name}.zip`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(link.href);
+      Actions.downloadZip(content, `${name}.zip`);
 
     } catch (e) {
       console.error(e);
@@ -1314,23 +1365,17 @@ const Actions = {
       }
       usedDrawables.add(uniqueDrawable);
 
-      xmlAppFilter += `    <item component="ComponentInfo{${app.componentName}}" drawable="${uniqueDrawable}" name="${label.replace(/&/g, '&amp;').replace(/"/g, '&quot;')}" />\n`;
+      xmlAppFilter += Actions.buildAppFilterItem(app.componentName, uniqueDrawable, label);
 
       const cmdType = "link";
       const svgPath = `"${drawable}.svg"`;
-      const cmdLabel = label.replace(/&/g, '&amp;').replace(/'/g, "'\\''");
+      const cmdLabel = Actions.escapeCommandLabel(label);
       txtCommands += `python3 ./icontool.py ${cmdType} ${svgPath} ${app.componentName} '${cmdLabel}'\n`;
 
       if (mode === "new") {
         if (!zipData["_icons"]) zipData["_icons"] = {};
-        const url = `${CONFIG.data.assetsPath}${app.drawable}${CONFIG.data.iconExtension}`;
-        const p = fetch(url)
-          .then(r => r.ok ? r.arrayBuffer() : null)
-          .then(buf => {
-            if (buf) /** @type {import('./fflate').Zippable} */ (zipData["_icons"])[`${uniqueDrawable}.png`] = new Uint8Array(buf);
-          })
-          .catch(() => { });
-        fetchPromises.push(p);
+        const iconDir = /** @type {import('./fflate').Zippable} */ (zipData["_icons"]);
+        Actions.queueIconFetch(iconDir, uniqueDrawable, app.drawable, fetchPromises);
       }
     });
 
@@ -1338,34 +1383,14 @@ const Actions = {
     zipData["appfilter.xml"] = fflate.strToU8(xmlAppFilter);
 
     if (txtCommands) {
-      const instructions = [
-        "1. Open your Lawnicons repository folder.",
-        "2. Copy your SVGs to the svgs folder.",
-        "3. Run the commands below from the repository root in your terminal.",
-        "",
-        "Make sure your branch is up-to-date. If not and you are familiar with git, use:",
-        "  git reset --hard upstream/develop",
-        "",
-        "If sorting is needed:",
-        "  python3 ./icontool.py sort",
-        "",
-        "Commands:",
-      ].join("\n");
-      txtCommands = instructions + "\n" + txtCommands;
-      zipData["icontool_commands.txt"] = fflate.strToU8(txtCommands);
+      zipData["icontool_commands.txt"] = fflate.strToU8(Actions.withIcontoolInstructions(txtCommands));
     }
 
     await Promise.all(fetchPromises);
     const content = /** @type {BlobPart} */ (fflate.zipSync(zipData, { level: 6 }));
 
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(new Blob([content], { type: 'application/zip' }));
     const date = new Date().toISOString().slice(5, 10);
-    link.download = `lawnicons-contribution-${date}.zip`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(link.href);
+    Actions.downloadZip(content, `lawnicons-contribution-${date}.zip`);
   },
 
 };
