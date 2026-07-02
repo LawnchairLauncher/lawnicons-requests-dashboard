@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "lib": ["dom", "dom.iterable", "dom.asynciterable", "esnext"]
+  },
+  "fmt": {
+    "include": ["src/"],
+    "useTabs": false,
+    "lineWidth": 80,
+    "indentWidth": 2,
+    "singleQuote": true
+  },
+  "lint": {
+    "include": ["src/"],
+    "rules": {
+      "tags": ["recommended"]
+    }
+  },
+  "imports": {
+    "fflate": "npm:fflate@^0.8.3"
+  }
+}

@@ -1,5 +1,6 @@
 // @ts-check
-/// <reference path="./fflate.d.ts" />
+/** @type {typeof import('fflate')} */
+const fflate = /** @type {* & {fflate: any}} */(window).fflate;
 
 /**
  * LAWNICONS REQUEST MANAGER
@@ -389,7 +390,7 @@ const Templates = {
 
     const installsRaw = app.installs ? app.installs.replace(/[,+]/g, '') : null;
     const displayInstalls = installsRaw ? new Intl.NumberFormat('en', /** @type {Intl.NumberFormatOptions} */ { notation: "compact" })
-        .format(parseInt(installsRaw)) + "+" : "—";
+      .format(parseInt(installsRaw)) + "+" : "—";
     const installsTitle = installsRaw && installsRaw !== '0'
       ? `${app.installs} installs in Play Store`
       : 'Installs data unavailable';
@@ -456,7 +457,7 @@ const Templates = {
     const id = app.componentName;
     const isUnknown = app.drawable === "unknown";
 
-    let contentHtml = "";
+    let contentHtml;
     const label = app.label === "(Unknown App)" ? id.split('/')[0] : app.label;
 
     if (isUnknown) {
@@ -1101,7 +1102,7 @@ const Actions = {
   },
 
   /**
-   * @param {import('./fflate').Zippable} iconDir
+   * @param {import('fflate').Zippable} iconDir
    * @param {string} targetDrawable
    * @param {string} sourceDrawable
    * @param {Promise<void>[]} fetchPromises
@@ -1174,7 +1175,7 @@ const Actions = {
    * @param {string} text
    */
   copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(_ => {
+    navigator.clipboard.writeText(text).then(() => {
       Components.Toast.show("Copied!");
       UI.closeContextMenu();
     });
@@ -1223,7 +1224,7 @@ const Actions = {
       const mode = App.state.actionMode; // "new" | "link"
 
       // fflate uses a simple object mapping paths to Uint8Arrays/Strings
-      /** @type {import('./fflate').Zippable} */
+      /** @type {import('fflate').Zippable} */
       const zipData = {};
 
       // Only include icons folder in "new" mode
@@ -1282,7 +1283,7 @@ const Actions = {
         txtCommands += `python3 ./icontool.py ${cmdType} ${svgPath} ${cmp} '${cmdLabel}'\n`;
 
         if (mode === "new") {
-          const iconDir = /** @type {import('./fflate').Zippable} */ (zipData._icons);
+          const iconDir = /** @type {import('fflate').Zippable} */ (zipData._icons);
           Actions.queueIconFetch(iconDir, drawable, app.drawable, fetchPromises);
         }
       });
@@ -1332,7 +1333,7 @@ const Actions = {
     const list = App.state.contribution;
     if (list.length === 0) return;
 
-    /** @type {import('./fflate').Zippable} */
+    /** @type {import('fflate').Zippable} */
     const zipData = {};
     let xmlAppFilter = "<resources>\n";
     let txtCommands = "";
@@ -1376,7 +1377,7 @@ const Actions = {
 
       if (mode === "new") {
         if (!zipData["_icons"]) zipData["_icons"] = {};
-        const iconDir = /** @type {import('./fflate').Zippable} */ (zipData["_icons"]);
+        const iconDir = /** @type {import('fflate').Zippable} */ (zipData["_icons"]);
         Actions.queueIconFetch(iconDir, uniqueDrawable, app.drawable, fetchPromises);
       }
     });
@@ -1563,7 +1564,7 @@ const Data = {
           });
         }
       });
-    } catch(e) {
+    } catch (e) {
       console.error("Error loading appfilter:", e);
       icons = [];
     }
@@ -1792,14 +1793,14 @@ const Heuristics = {
     const tags = Utils.getTagsForApp(app.componentName);
     let factor = null;
     for (const tag of tags) {
-      // @ts-ignore
+      // @ts-expect-error: TODO: add type
       const f = CONFIG.label_factors[tag];
       if (f !== undefined && (factor === null || f > factor)) factor = f;
     }
     if (factor === null) factor = 1;
 
     const key = App.state.medianTTF !== undefined ? factor + "_at_pace" : String(factor);
-    // @ts-ignore
+    // @ts-expect-error: TODO: add type
     return row[key] ?? row[String(factor)] ?? 0;
   },
 
@@ -1849,17 +1850,19 @@ const UI = {
         /** @type {AppEntry[]} */
         const parsed = JSON.parse(savedList);
         const before = parsed.length;
-        App.state.contribution = parsed.filter(app =>
-          App.data.some(d => d.componentName === app.componentName)
+        App.state.contribution = parsed.filter((app) =>
+          App.data.some((d) => d.componentName === app.componentName),
         );
 
-        const savedOverrides = localStorage.getItem("lawnicons_contribution_overrides");
+        const savedOverrides = localStorage.getItem(
+          "lawnicons_contribution_overrides",
+        );
         if (savedOverrides) {
           /** @type {Record<string, Overrides>} */
           const parsedOverrides = JSON.parse(savedOverrides);
           App.state.contributionOverrides = {};
           for (const [id, overrides] of Object.entries(parsedOverrides)) {
-            if (App.state.contribution.some(a => a.componentName === id)) {
+            if (App.state.contribution.some((a) => a.componentName === id)) {
               App.state.contributionOverrides[id] = overrides;
             }
           }
@@ -1869,12 +1872,12 @@ const UI = {
           this.saveContribution();
         }
 
-        App.state.contribution.forEach(app => {
+        App.state.contribution.forEach((app) => {
           const tags = App.state.appTags.get(app.componentName) || new Set();
           tags.add("plan");
           App.state.appTags.set(app.componentName, tags);
         });
-      } catch { }
+      } catch { /* no-op */ }
     }
 
     if (performance.navigation.type === 0) {
@@ -2110,18 +2113,21 @@ const UI = {
               .then(r => r.blob())
               .then(async blob => {
                 try {
-                  // @ts-ignore
+                  // @ts-expect-error: File System Access API
                   const handle = await window.showSaveFilePicker({
                     suggestedName: `${drawable}.png`,
-                    types: [{
-                      description: 'PNG Image',
-                      accept: { 'image/png': ['.png'] }
-                    }]
+                    types: [
+                      {
+                        description: "PNG Image",
+                        accept: { "image/png": [".png"] },
+                      },
+                    ],
                   });
                   const writable = await handle.createWritable();
                   await writable.write(blob);
                   await writable.close();
-                } catch (err) {
+                } catch (e) {
+                  const err = /** @type {Error} */ (e);
                   if (err.name === 'AbortError') {
                     console.log('User cancelled the save dialog.');
                     return;
@@ -2558,7 +2564,6 @@ const UI = {
       if (!menu) return;
 
       if (menu) {
-        // @ts-ignore
         menu.addEventListener("toggle", (e) => {
           if (e.newState === "closed") {
             // Wait for CSS transition
@@ -4064,9 +4069,9 @@ const UI = {
   },
 
   closeContextMenu() {
-    try { /** @type {any} */ (App.dom.sortMenu).hidePopover(); } catch { }
-    try { /** @type {any} */ (App.dom.rowMenu).hidePopover(); } catch { }
-    try { /** @type {any} */ (App.dom.mobileFilterMenu).hidePopover(); } catch { }
+    try { /** @type {any} */ (App.dom.sortMenu).hidePopover(); } catch { /* no-op*/ }
+    try { /** @type {any} */ (App.dom.rowMenu).hidePopover(); } catch { /* no-op */ }
+    try { /** @type {any} */ (App.dom.mobileFilterMenu).hidePopover(); } catch { /* no-op */ }
 
     setTimeout(() => {
       App.dom.rowMenu.innerHTML = "";

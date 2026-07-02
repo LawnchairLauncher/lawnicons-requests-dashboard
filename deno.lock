@@ -1,0 +1,16 @@
+{
+  "version": "5",
+  "specifiers": {
+    "npm:fflate@~0.8.3": "0.8.3"
+  },
+  "npm": {
+    "fflate@0.8.3": {
+      "integrity": "sha512-tbZNuJrLwGUp3zshBtdy4W+ORxZuIh8a5ilyIEQDC5rY1f3U20JMry0Ll3WBzU58EZKsEuJFXhb5gwv8CsPvgA=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "npm:fflate@~0.8.3"
+    ]
+  }
+}

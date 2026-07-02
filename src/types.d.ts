@@ -1,8 +1,4 @@
-import * as FflateNamespace from './fflate';
-
 declare global {
-  const fflate: typeof FflateNamespace;
-
   type InitTuple = [
     AppRequests,
     Record<string, number>,
@@ -139,7 +135,7 @@ declare global {
     /** Whether the search query should be treated as a Regular Expression. */
     regexMode: boolean;
     /** A set of currently selected item IDs. */
-    selected: Set<string | number>;
+    selected: Set<string>;
     /** A map of application tags. */
     appTags: Map<string, Set<string>>;
     /** Metadata associated with various filters. */
