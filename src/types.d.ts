@@ -9,7 +9,7 @@ declare global {
     CreationOdds[],
     DomainStats,
     ActivityStats[],
-    ...Filter<string>[]
+    ...Filter[]
   ]
 
   interface AppRequests {
@@ -41,7 +41,7 @@ declare global {
   }
 
   interface Filter extends FilterMetadata {
-    [key: string]: FilterContents[];
+    [key: string]: string | FilterContents[] | undefined;
   }
 
   interface Icon {

@@ -598,19 +598,6 @@ const Templates = {
   },
 
   /**
-   * @param {{ value: string, label: string }[]} options
-   * @param {string} activeValue
-   * @returns {string}
-   */
-  viewMenuItems(options, activeValue) {
-    return options.map(opt => `
-      <div class="ctx-item ${activeValue === opt.value ? 'active' : ''}" tabindex="0" role="menuitemradio" aria-checked="${activeValue === opt.value}" data-action="view-option" data-value="${opt.value}">
-        <span>${opt.label}</span>
-      </div>
-    `).join("");
-  },
-
-  /**
    * @param {AppEntry} app
    * @param {string} iconUrl
    * @returns {string}
@@ -848,18 +835,6 @@ const Templates = {
     return matches.map(domain => `
       <div class="autocomplete-item" tabindex="0" role="option" data-action="regex-suggestion" data-value="^${domain}\\.">^${domain}\\.</div>
     `).join("");
-  },
-
-  /**
-   * @param {string} text
-   * @param {string} icon
-   * @returns {string}
-   */
-  toast(text, icon) {
-    return `
-      <div class="toast-icon">${icon}</div>
-      <div class="toast-text">${text}</div>
-    `;
   }
 };
 
@@ -1158,8 +1133,7 @@ const Actions = {
     selectedApps.sort((a, b) => a.label.localeCompare(b.label));
 
     // UI Feedback
-    const originalText = App.dom.sbDownloadBtn.innerHTML;
-    App.dom.sbDownloadBtn.textContent = "Processing...";
+    Components.Toast.show("Processing...");
     document.body.style.cursor = "wait";
 
     try {
@@ -1196,7 +1170,6 @@ const Actions = {
       // --- LOOP ---
       selectedApps.forEach(app => {
         const cmp = app.componentName;
-        const pkg = cmp.split('/')[0];
         const label = app.label.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
         const cmdLabel = app.label.replace(/&/g, '&amp;').replace(/'/g, "'\\''");
 
@@ -1242,7 +1215,6 @@ const Actions = {
       });
 
       // --- FINALIZE OUTPUTS ---
-      App.dom.sbDownloadBtn.textContent = "Fetching...";
       await Promise.all(fetchPromises);
 
       // 1. XML
@@ -1277,7 +1249,6 @@ const Actions = {
       }
 
       // 4. Zip & Download
-      App.dom.sbDownloadBtn.textContent = "Zipping...";
       const content = /** @type {BlobPart} */  (fflate.zipSync(zipData, { level: 6 }));
 
       const link = document.createElement("a");
@@ -1403,7 +1374,9 @@ const Actions = {
 // 7. DATA PROCESSING
 // ==========================================
 const Data = {
-  /** @param {string} url */
+  /** @param {string} url
+   * @param fallback
+   */
   async fetchJson(url, fallback = {}) {
     try {
       const response = await fetch(url);
