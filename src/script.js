@@ -1590,8 +1590,8 @@ const Data = {
     }
 
     // Sort
-    if (s.sort === "balanced") {
-      data = data.filter(app => app.requestCount >= 4 && Utils.parseInstalls(app.installs) >= 500000);
+    if (s.sort === "underrated") {
+      data = data.filter(app => app.requestCount >= 10 && Utils.parseInstalls(app.installs) > 0);
     }
 
     data = [...data];
@@ -1623,7 +1623,7 @@ const Data = {
         "name-desc": (a, b) => b.label.localeCompare(a.label) || getPop(b) - getPop(a),
         "time-desc": (a, b) => b.firstAppearance - a.firstAppearance || getPop(b) - getPop(a),
         "time-asc": (a, b) => a.firstAppearance - b.firstAppearance || getPop(b) - getPop(a),
-        "balanced": (a, b) => Heuristics.calculateBalancedScore(b) - Heuristics.calculateBalancedScore(a) || (App.state.setsStats[b.componentName.split('/')[0]] || b.requestCount) - (App.state.setsStats[a.componentName.split('/')[0]] || a.requestCount),
+        "underrated": (a, b) => Heuristics.calculateUnderratedScore(b) - Heuristics.calculateUnderratedScore(a) || (App.state.setsStats[b.componentName.split('/')[0]] || b.requestCount) - (App.state.setsStats[a.componentName.split('/')[0]] || a.requestCount),
       };
       if (sorters[s.sort]) data.sort(sorters[s.sort]);
     }
@@ -1731,38 +1731,10 @@ const Heuristics = {
   },
 
   /** @param {AppEntry} app */
-  calculateBalancedScore(app) {
-    const pkg = app.componentName.split('/')[0];
-    const domain = pkg.split('.')[0];
-    const req = app.requestCount || 1;
-    const inst = Utils.parseInstalls(app.installs);
-
-    const ds = App.state.domainStats[domain] || {};
-    const requests = ds.requests || 0;
-    const total = ds.total || 1;
-    const coverage = requests >= 4 ? (requests / total) : 0.5;
-    const significance = requests >= 4 ? 1.0 : 0.3;
-
-    const population = App.state.domainStats._population || {};
-    const isoCountries = new Set(['ad', 'ae', 'af', 'ag', 'al', 'am', 'ao', 'ar', 'at', 'au', 'az', 'ba', 'bb', 'bd', 'be', 'bf', 'bg', 'bh', 'bi', 'bj', 'bo', 'br', 'bs', 'bt', 'bw', 'by', 'bz', 'ca', 'cd', 'cf', 'cg', 'ch', 'ci', 'cl', 'cm', 'cn', 'cr', 'cu', 'cv', 'cy', 'cz', 'de', 'dj', 'dk', 'dm', 'do', 'dz', 'ec', 'ee', 'eg', 'er', 'es', 'et', 'fi', 'fj', 'fr', 'ga', 'gb', 'ge', 'gh', 'gm', 'gn', 'gq', 'gr', 'gt', 'gw', 'gy', 'hk', 'hn', 'hr', 'ht', 'hu', 'id', 'ie', 'il', 'in', 'iq', 'ir', 'it', 'jm', 'jo', 'jp', 'ke', 'kg', 'kh', 'km', 'kn', 'kp', 'kr', 'kw', 'ky', 'kz', 'la', 'lb', 'lc', 'li', 'lk', 'lr', 'ls', 'lt', 'lu', 'lv', 'ly', 'ma', 'mc', 'md', 'mg', 'mk', 'ml', 'mm', 'mn', 'mr', 'mt', 'mu', 'mv', 'mw', 'mx', 'my', 'mz', 'na', 'nc', 'ne', 'nf', 'ng', 'ni', 'nl', 'no', 'np', 'nr', 'nz', 'om', 'pa', 'pe', 'pg', 'ph', 'pk', 'pl', 'pr', 'ps', 'pt', 'py', 'qa', 'ro', 'rs', 'ru', 'rw', 'sa', 'sc', 'sd', 'se', 'sg', 'si', 'sk', 'sl', 'sm', 'sn', 'so', 'sr', 'ss', 'st', 'sv', 'sy', 'sz', 'td', 'tg', 'th', 'tj', 'tl', 'tm', 'tn', 'tr', 'tt', 'tw', 'tz', 'ua', 'ug', 'us', 'uy', 'uz', 'va', 'vc', 've', 'vi', 'vn', 'vu', 'ye', 'yt', 'za', 'zm', 'zw']);
-    const isCountry = (d) => isoCountries.has(d) && d in population;
-
-    let localImpact = 0;
-    if (isCountry(domain)) {
-      const pop = population[domain] || 1;
-      localImpact = Math.min((inst / 1_000_000) / pop * 50, 1);
-    }
-
-    const now = Date.now() / 1000;
-    const ageDays = Math.max((now - (app.firstAppearance || now)) / 86400, 1);
-
-    const w = { req: 0.35, inst: 0.25, cov: 0.15, local: 0.12, age: 0.13 };
-
-    return (w.req * Math.log(req + 1) / Math.log(100) +
-      w.inst * Math.log(inst + 1) / Math.log(100_000_000) +
-      w.cov * coverage * significance +
-      w.local * localImpact * significance +
-      w.age * (1 / Math.log(ageDays + 1)));
+  calculateUnderratedScore(app) {
+      const req = app.requestCount || 1;
+      const inst = Utils.parseInstalls(app.installs) || 1;
+      return req / inst;
   }
 };
 
@@ -1783,12 +1755,12 @@ const UI = {
     { value: "odds-asc", label: "Lowest creation odds" },
     { value: "install-desc", label: "Most installed" },
     { value: "install-asc", label: "Least installed" },
+    { value: "underrated", label: "Underrated" },
     { value: "time-desc", label: "Newest" },
     { value: "time-asc", label: "Oldest" },
     { value: "name-asc", label: "Name (A-Z)" },
     { value: "name-desc", label: "Name (Z-A)" },
     { value: "trending", label: "Trending" },
-    { value: "balanced", label: "Balanced" },
     { value: "rand", label: "Random" }
   ],
 
