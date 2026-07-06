@@ -5,8 +5,8 @@ declare global {
     CreationOdds[],
     DomainStats,
     ActivityStats[],
-    ...Filter[]
-  ]
+    ...Filter[],
+  ];
 
   interface AppRequests {
     count: number;
@@ -33,7 +33,7 @@ declare global {
 
   interface FilterContents {
     id: string;
-    existing_drawable: string,
+    existing_drawable: string;
   }
 
   interface Filter extends FilterMetadata {
@@ -54,7 +54,13 @@ declare global {
   }
 
   interface Issue {
-    id: 'nameinuse' | 'nameconflict' | 'emptyfields' | 'invalidsvg' | 'startdigit' | 'unescaped';
+    id:
+      | 'nameinuse'
+      | 'nameconflict'
+      | 'emptyfields'
+      | 'invalidsvg'
+      | 'startdigit'
+      | 'unescaped';
     label: string;
   }
 
@@ -80,12 +86,8 @@ declare global {
     total: number;
   }
 
-  interface DomainPopulation {
-    [key: string]: any;
-  }
-
   type DomainStats = {
-    _population: DomainPopulation;
+    _population: Record<string, number>;
   } & {
     [key: string]: DomainStatistic;
   };
@@ -110,14 +112,14 @@ declare global {
   }
 
   interface TrendingBaseline {
-    period_start: TrendingBaselineItem,
-    period_end: TrendingBaselineItem,
+    period_start: TrendingBaselineItem;
+    period_end: TrendingBaselineItem;
   }
 
   interface TrendingBaselineItem {
-    date: string,
-    total: number,
-    snapshot: Record<string, number>,
+    date: string;
+    total: number;
+    snapshot: Record<string, number>;
   }
 
   interface ReviewIssues {
@@ -171,7 +173,7 @@ declare global {
 
     // Statistics & Deltas
     /** Statistical data aggregated by specific sets. */
-    setsStats: Record<string, any>;
+    setsStats: Record<string, number>;
     /** Odds/probabilities array related to creation metrics. */
     creationOdds: CreationOdds[];
     /** Aggregated domain-specific metrics. */
@@ -190,11 +192,10 @@ declare global {
     activePage?: string;
     quickPickMode?: string;
     lowQualityData?: ReviewIssues[];
-    _quickPickEasy?: any[];
-    _quickPickMiddle?: any[];
+    _quickPickEasy?: (AppEntry & { _score: number })[];
+    _quickPickMiddle?: (AppEntry & { _score: number })[];
     _lastQuickPickIdx?: number;
   }
-
 }
 
-export { };
+export {};

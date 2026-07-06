@@ -2,7 +2,12 @@
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
-    "lib": ["dom", "dom.iterable", "dom.asynciterable", "esnext"]
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "dom.asynciterator",
+      "esnext"
+    ]
   },
   "fmt": {
     "include": ["src/"],
