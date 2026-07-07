@@ -1,6 +1,6 @@
 {
-  "count": 19786,
-  "lastUpdate": "2026-07-06",
+  "count": 19785,
+  "lastUpdate": "2026-07-07",
   "apps": [
     {
       "drawable": "friday_night_funkin",
@@ -13467,15 +13467,6 @@
       "lastRequested": 1779728827.0,
       "label": "Orientation Lock",
       "componentName": "com.tuyafeng.orientationlock/com.tuyafeng.orientationlock.MainActivity"
-    },
-    {
-      "drawable": "dronetower",
-      "requestCount": 8,
-      "firstAppearance": 1719055322.0,
-      "lastRequested": 1779654753.0,
-      "label": "DroneTower",
-      "componentName": "pl.pansa.dronetower/pl.pansa.dronetower.MainActivity",
-      "installs": "100,000+"
     },
     {
       "drawable": "neverland",
