@@ -20,7 +20,7 @@ from email.utils import parsedate
 COMPONENT_PATTERN = re.compile('ComponentInfo{(?P<ComponentInfo>.+)}')
 
 CONFIG = {
-    "request_limit": 30,
+    "request_limit": 50,
 }
 
 # -------------------------------------------------------
@@ -199,7 +199,42 @@ def parse_item_tag(item: ET.Element, msg: Message, zip_file: zipfile.ZipFile,
 
     return apps
 
-def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path) -> dict:
+def update_screens_graph(output_dir: Path, email_filename: str, component_ids: list[str]):
+    graph_path = output_dir / "screens_graph.json"
+    if graph_path.exists():
+        with open(graph_path, 'r') as f:
+            graph = json.load(f)
+    else:
+        graph = {}
+    
+    screen_id = str(abs(hash(email_filename)))[:8]
+    graph[screen_id] = list(set(component_ids))
+    
+    with open(graph_path, 'w') as f:
+        json.dump(graph, f, indent=2)
+
+def update_requests_graph(output_dir: Path, component_ids: list[str]):
+    graph_path = output_dir / "requests_graph.json"
+    if graph_path.exists():
+        with open(graph_path, 'r') as f:
+            graph = json.load(f)
+    else:
+        graph = {}
+    
+    unique_ids = list(set(component_ids))
+    for i, comp_a in enumerate(unique_ids):
+        if comp_a not in graph:
+            graph[comp_a] = {}
+        for comp_b in unique_ids[i+1:]:
+            graph[comp_a][comp_b] = graph[comp_a].get(comp_b, 0) + 1
+            if comp_b not in graph:
+                graph[comp_b] = {}
+            graph[comp_b][comp_a] = graph[comp_b].get(comp_a, 0) + 1
+    
+    with open(graph_path, 'w') as f:
+        json.dump(graph, f, indent=2)
+
+def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path, graph_output_path: Path = None) -> dict:
     failed_count = 0
     limit = CONFIG["request_limit"]
     
@@ -214,12 +249,17 @@ def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path) -> dict
         try:
             xml_root = extract_xml(zip_file)
             items = xml_root.findall('item')
+
+            email_component_ids = []
+            for item in items:
+                data = process_item_tag(item)
+                if data:
+                    email_component_ids.append(data[0])            
             
             if len(items) <= limit:
                 for item in items:
                     apps = parse_item_tag(item, msg, zip_file, apps, png_out_dir)
             else:
-                # Prioritise new items over existing ones
                 item_data_list = []
                 for item in items:
                     data = process_item_tag(item)
@@ -228,7 +268,6 @@ def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path) -> dict
                         is_new = component_info not in apps
                         item_data_list.append((is_new, item))
                 
-                # Prioritise country-code domains
                 ISO_COUNTRIES = {'ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bt','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','gb','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','st','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','us','uy','uz','va','vc','ve','vi','vn','vu','ye','yt','za','zm','zw'}
 
                 def is_country_domain(comp):
@@ -242,6 +281,11 @@ def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path) -> dict
                     apps = parse_item_tag(item, msg, zip_file, apps, png_out_dir)
                     
                 print(f"  Limited from {len(items)} to {limit} items (new prioritised)")
+
+            if graph_output_path and email_component_ids:
+                update_screens_graph(graph_output_path, email_file.name, email_component_ids)
+                update_requests_graph(graph_output_path, email_component_ids)
+
         except Exception as e:
             print(f"Error processing {email_file.name}: {e}")
     
@@ -303,7 +347,7 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path, ou
     apps = parse_existing_requests_json(output_path)
 
     # 2. Update State
-    apps = parse_emails(email_files, apps, png_out_path)
+    apps = parse_emails(email_files, apps, png_out_path, output_path.parent)
 
     # Remove apps already in appfilter (Done)
     if appfilter_path.exists():
