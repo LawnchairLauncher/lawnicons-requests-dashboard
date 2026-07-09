@@ -338,147 +338,6 @@ def update_sets_stats(apps: list) -> int:
     print(f"Updated sets_stats.json with {len(sets)} packages (2+ occurrences)")
     return len(sets)
 
-label_factors = {
-    "stale": 0.1,
-    "unlabeled": 1,
-    "nameinuse": 1,
-    "easy": 3,
-    "match": 5,
-    "supported": 6,
-    "wip": 8,
-}
-
-creation_odds_cap = 0.8
-
-def get_median_ttf() -> float | None:
-    """Return median time-to-fulfill from fulfillment_history.json, or None if insufficient data."""
-    fulfillment_path = REPO_ROOT / "src/assets/stats/fulfillment_history.json"
-    if not fulfillment_path.exists():
-        return None
-    try:
-        with open(fulfillment_path, "r") as f:
-            history = json.load(f)
-        if len(history) < 3:
-            return None
-        ttfs = sorted((h["fulfilled"] - h["firstAppearance"]) / 86400 for h in history)
-        return ttfs[len(ttfs) // 2]
-    except Exception:
-        return None
-
-def update_creation_odds(apps: list) -> int:
-    """Generate creation_odds.json with fulfillment probabilities.
-
-    Calibrated so the 1000th most popular request has 80% chance at max effort (wip=8).
-    Only recalculates if P_top or median TTF has changed since the previous run.
-    Returns the number of popularity levels in the creation odds table.
-    """
-    creation_odds_path = REPO_ROOT / "src/assets/stats/creation_odds.json"
-
-    sets_path = REPO_ROOT / "src/assets/stats/sets_stats.json"
-    try:
-        with open(sets_path, "r", encoding="utf-8") as f:
-            sets_stats = json.load(f)
-    except Exception:
-        sets_stats = {}
-
-    # Collect all popularity values
-    all_pops = []
-    for app in apps:
-        pkg = app.get("componentName", "").split("/")[0]
-        pop = sets_stats.get(pkg, app.get("requestCount", 0))
-        all_pops.append(pop)
-    
-    all_pops.sort(reverse=True)
-    if len(all_pops) >= 1000:
-        max_pop = all_pops[999]  # 1000th most popular
-    elif all_pops:
-        max_pop = all_pops[-1]  # least popular if < 1000
-    else:
-        print("No popularity data for creation odds")
-        return 0
-
-    # Calibration: base_1000 * 8 = 0.8 -> base_1000 = 0.1
-    base_calibration = 0.1
-
-    # Get pace
-    median_ttf = get_median_ttf()
-    scale = 365 / median_ttf if median_ttf else 1.0
-
-    prev_top = 0
-    prev_scale = 1.0
-    has_at_pace = False
-    prev_data = None
-    prev_table_top = 0
-    if creation_odds_path.exists():
-        try:
-            with open(creation_odds_path, "r", encoding="utf-8") as f:
-                prev_data = json.load(f)
-            if prev_data and isinstance(prev_data, list) and len(prev_data) > 0:
-                prev_top = prev_data[0].get("popularity", 0)
-                prev_table_top = prev_top
-                has_at_pace = any(
-                    isinstance(k, str) and k.endswith("_at_pace")
-                    for k in prev_data[0]
-                )
-                if has_at_pace:
-                    for label in label_factors:
-                        L = label_factors[label]
-                        prev_odds = prev_data[0].get(str(L), 0)
-                        prev_odds_paced = prev_data[0].get(f"{L}_at_pace", 0)
-                        if prev_odds > 0 and prev_odds_paced > 0:
-                            prev_scale = prev_odds_paced / prev_odds
-                            break
-        except Exception:
-            pass
-
-    current_top = max(all_pops) if all_pops else 0
-    full_rebuild = max_pop != prev_top or current_top != prev_table_top or not has_at_pace
-    pace_only = not full_rebuild and abs(scale - prev_scale) >= 0.01
-
-    if not full_rebuild and not pace_only:
-        print(f"Top-1000 popularity ({max_pop}) and pace unchanged, skipping creation odds update")
-        return max_pop
-
-    factors = sorted(label_factors.keys(), key=lambda k: label_factors[k])
-
-    # Remove duplicate factors (unlabeled and nameinuse both = 1)
-    seen_factors = set()
-    unique_factors = []
-    for label in factors:
-        L = label_factors[label]
-        if L not in seen_factors:
-            seen_factors.add(L)
-            unique_factors.append(label)
-    factors = unique_factors    
-
-    if pace_only:
-        table = prev_data
-        for row in table:
-            pop = row["popularity"]
-            base = (pop / max_pop) * base_calibration
-            for label in factors:
-                L = label_factors[label]
-                row[f"{L}_at_pace"] = round(min(creation_odds_cap, base * L * scale), 4)
-        print(f"Updated _at_pace fields in creation_odds.json (scale={scale:.2f}, pace={median_ttf or 'N/A'})")
-    else:
-        table = []
-        for pop in range(max(all_pops), 0, -1):
-            row = {"popularity": pop}
-            base = (pop / max_pop) * base_calibration
-            for label in factors:
-                L = label_factors[label]
-                odds = round(min(creation_odds_cap, base * L), 4)
-                odds_paced = round(min(creation_odds_cap, base * L * scale), 4)
-                row[str(L)] = odds
-                row[f"{L}_at_pace"] = odds_paced
-            table.append(row)
-        print(f"Updated creation_odds.json with {len(table)} levels (top-1000 pop={max_pop}, scale={scale:.2f}, pace={median_ttf or 'N/A'})")
-
-    with open(creation_odds_path, "w", encoding="utf-8") as f:
-        json.dump(table, f, indent=2)
-
-    return max_pop
-
 def update_domain_stats() -> int:
     """Generate domain_stats.json with request counts and appfilter coverage by domain."""
     from collections import Counter
@@ -586,6 +445,16 @@ def update_activity_stats(
     total_resolved = fulfilled_removed + expired_removed
     print(f"Updated activity_stats.json with {len(history)} entries (today: +{new_added}, -{total_resolved} resolved)")
     return len(history)
+
+label_factors = {
+    "stale": 0.1,
+    "unlabeled": 1,
+    "nameinuse": 1,
+    "easy": 3,
+    "match": 5,
+    "supported": 6,
+    "wip": 8,
+}
 
 def update_fulfillment_history(removed_components: set[str], old_apps: dict) -> int:
     """Record fulfilled requests with firstAppearance and fulfillment date.
@@ -732,10 +601,6 @@ def main() -> int:
     # --- Update sets_stats.json ---
     sets_count = update_sets_stats(requests_data.get("apps", []))
     print(f"Package sets updated: {sets_count}")
-
-    # --- Update creation_odds.json ---
-    creation_odds_count = update_creation_odds(requests_data.get("apps", []))
-    print(f"Creation odds updated: {creation_odds_count} levels")
 
     # --- Update domain_stats.json ---
     domain_count = update_domain_stats()

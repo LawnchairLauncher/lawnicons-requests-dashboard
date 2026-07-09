@@ -14,7 +14,6 @@ const CONFIG = {
   data: {
     endpoint: 'assets/requests.json',
     setsStatsPath: 'assets/stats/sets_stats.json',
-    creationOddsPath: 'assets/stats/creation_odds.json',
     domainStatsPath: 'assets/stats/domain_stats.json',
     activityStatsPath: 'assets/stats/activity_stats.json',
     assetsPath: 'extracted_png/',
@@ -105,7 +104,6 @@ const App = {
     contributionOverrides: {},
     existingSvgs: new Map(),
     setsStats: {},
-    creationOdds: [],
     domainStats: {},
     domainStatsMode: 'requests',
     activityStats: [],
@@ -422,10 +420,6 @@ const Templates = {
     const installsTitle = installsRaw && installsRaw !== '0'
       ? `${app.installs} installs in Play Store`
       : 'Installs data unavailable';
-    const rawOdds = Heuristics.calculateCreationOdds(app) * 100;
-    const displayOdds = rawOdds < 1
-      ? rawOdds.toFixed(2) + '%'
-      : rawOdds.toFixed(0) + '%';
     const trendingDelta = App.state.trendingDeltas[app.componentName];
     const reqValue = App.state.setsStats[pkg] || app.requestCount;
     const isSet = App.state.setsStats[pkg] !== undefined;
@@ -461,7 +455,7 @@ const Templates = {
       trendingDelta
         ? ` <span class="trend-indicator" title="Growth from latest email import.">↑${trendingDelta}</span>`
         : ''
-    }</div>        <div class="col creation-odds" title="Chance of this request being fulfilled within a year if you wait.">${displayOdds}</div>
+    }</div>       
         <div class="col install" title="${installsTitle}">${displayInstalls}</div>
         <div class="col first date-col">
           <div>${firstStr}</div>
@@ -1096,7 +1090,6 @@ const Actions = {
     const defaults = {
       name: 'asc',
       req: 'desc',
-      odds: 'desc',
       install: 'desc',
       time: 'desc',
     };
@@ -1564,14 +1557,12 @@ const Data = {
       const [
         json,
         setsStats,
-        creationOdds,
         domainStats,
         activityStats,
         ...filterObjects
       ] = await Promise.all([
         this.fetchJson(CONFIG.data.endpoint),
         this.fetchJson(CONFIG.data.setsStatsPath, {}),
-        this.fetchJson(CONFIG.data.creationOddsPath, []),
         this.fetchJson(CONFIG.data.domainStatsPath, {}),
         this.fetchJson(CONFIG.data.activityStatsPath, []),
         ...CONFIG.data.filters.map((id) => this.fetchFilterData(id)),
@@ -1579,7 +1570,6 @@ const Data = {
 
       App.data = json.apps;
       App.state.setsStats = setsStats;
-      App.state.creationOdds = creationOdds;
       App.state.domainStats = domainStats;
       App.state.activityStats = activityStats;
       App.state.lastUpdate = json.lastUpdate;
@@ -1863,12 +1853,6 @@ const Data = {
           const deltaB = App.state.trendingDeltas[b.componentName] || 0;
           return deltaB - deltaA || getPop(b) - getPop(a);
         },
-        'odds-desc': (a, b) =>
-          Heuristics.calculateCreationOdds(b) -
-            Heuristics.calculateCreationOdds(a) || getPop(b) - getPop(a),
-        'odds-asc': (a, b) =>
-          Heuristics.calculateCreationOdds(a) -
-            Heuristics.calculateCreationOdds(b) || getPop(b) - getPop(a),
         'install-desc': (a, b) =>
           Utils.parseInstalls(b.installs) - Utils.parseInstalls(a.installs) ||
           getPop(b) - getPop(a) ||
@@ -1980,35 +1964,9 @@ const Data = {
 
 // ==========================================
 // 8. HEURISTICS
-// Pure mathematical formulas for ranking and probability.
+// Pure mathematical formulas for ranking.
 // ==========================================
 const Heuristics = {
-  /** @param {AppEntry} app */
-  calculateCreationOdds(app) {
-    const table = App.state.creationOdds;
-    if (!table || table.length === 0) return 0;
-
-    const pkg = app.componentName.split('/')[0];
-    const pop = App.state.setsStats[pkg] || app.requestCount;
-    const row = table.find((r) => r.popularity === pop);
-    if (!row) return 0;
-
-    const tags = Utils.getTagsForApp(app.componentName);
-    let factor = null;
-    for (const tag of tags) {
-      // @ts-expect-error: TODO: add type
-      const f = CONFIG.label_factors[tag];
-      if (f !== undefined && (factor === null || f > factor)) factor = f;
-    }
-    if (factor === null) factor = 1;
-
-    const key = App.state.medianTTF !== undefined
-      ? factor + '_at_pace'
-      : String(factor);
-    // @ts-expect-error: TODO: add type
-    return row[key] ?? row[String(factor)] ?? 0;
-  },
-
   /** @param {AppEntry} app */
   calculateUnderratedScore(app) {
     const req = app.requestCount || 1;
@@ -2030,8 +1988,6 @@ const UI = {
   sortOptions: [
     { value: 'req-desc', label: 'Most requested' },
     { value: 'req-asc', label: 'Least requested' },
-    { value: 'odds-desc', label: 'Highest creation odds' },
-    { value: 'odds-asc', label: 'Lowest creation odds' },
     { value: 'install-desc', label: 'Most installed' },
     { value: 'install-asc', label: 'Least installed' },
     { value: 'underrated', label: 'Underrated' },
@@ -2330,7 +2286,6 @@ const UI = {
     const headers = {
       '.col.name': 'name',
       '.col.req': 'req',
-      '.col.creation-odds': 'odds',
       '.col.install': 'install',
       '.col.first': 'time',
     };

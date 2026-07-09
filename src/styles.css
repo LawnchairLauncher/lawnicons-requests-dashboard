@@ -886,11 +886,11 @@ select:hover,
 .list-header,
 .list-row {
   display: grid;
-  grid-template-columns: 40px 72px 3fr 100px 140px 100px 140px 140px;
+  grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 1fr 140px;
   align-items: center;
   padding: var(--space-md) var(--space-lg);
   border-bottom: 1px solid var(--outline-variant);
-  min-width: 1060px;
+  min-width: 960px;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -899,12 +899,15 @@ select:hover,
   color: var(--on-surface);
   font-weight: 700;
 }
+
 .list-header .col.name {
-  min-width: 300px;
+  min-width: 240px;
 }
+
 .list-header .col.actions {
-  display: none;
+  visibility: hidden;
 }
+
 .list-header .col.sel {
   display: flex;
   align-items: center;
@@ -919,7 +922,6 @@ select:hover,
   padding: var(--space-md) var(--space-lg);
   border-bottom: 1px solid var(--outline-variant);
 }
-
 
 .mode-select {
   width: 80px;
@@ -1176,7 +1178,6 @@ select:hover,
 /* Sortable Headers */
 .list-header .col.name,
 .list-header .col.req,
-.list-header .col.creation-odds,
 .list-header .col.install,
 .list-header .col.first {
   cursor: pointer;
@@ -1187,7 +1188,6 @@ select:hover,
 
 .list-header .col.name:hover,
 .list-header .col.req:hover,
-.list-header .col.creation-odds:hover,
 .list-header .col.install:hover,
 .list-header .col.first:hover {
   color: var(--primary);
