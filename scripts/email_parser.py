@@ -207,7 +207,10 @@ def update_screens_graph(output_dir: Path, email_filename: str, component_ids: l
     else:
         graph = {}
     
-    screen_id = str(abs(hash(email_filename)))[:8]
+    existing_ids = [k for k in graph.keys() if k.startswith('scr-')]
+    next_num = max([int(k.split('-')[1]) for k in existing_ids], default=0) + 1
+    screen_id = f"scr-{next_num:05d}"
+    
     graph[screen_id] = list(set(component_ids))
     
     with open(graph_path, 'w') as f:
