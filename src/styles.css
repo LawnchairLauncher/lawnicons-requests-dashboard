@@ -886,7 +886,7 @@ select:hover,
 .list-header,
 .list-row {
   display: grid;
-  grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 1fr 140px;
+  grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px minmax(140px, 1fr) 140px;
   align-items: center;
   padding: var(--space-md) var(--space-lg);
   border-bottom: 1px solid var(--outline-variant);
