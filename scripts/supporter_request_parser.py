@@ -231,9 +231,18 @@ def write_json_output(output_path: Path, apps: dict):
 def update_supported_json(supported_path: Path, existing_supported: set[str], new_components: set[str]):
     updated_supported = existing_supported | new_components
     
+    # Preserve done/total if they exist
+    done = 0
+    if supported_path.exists():
+        with open(supported_path, "r", encoding="utf-8") as f:
+            old = json.load(f)
+            done = old.get("done", 0)
+    
     data = {
         "label": "Supported",
         "description": "Requests from Open Collective backers and GitHub sponsors.",
+        "done": done,
+        "total": done + len(updated_supported),
         "supported": sorted(list(updated_supported))
     }
     
@@ -241,7 +250,7 @@ def update_supported_json(supported_path: Path, existing_supported: set[str], ne
     with open(supported_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
     
-    print(f"Updated supported.json with {len(new_components)} new components")
+    print(f"Updated supported.json with {len(new_components)} new components (total: {data['total']}, done: {data['done']})")
 
 def update_activity_stats_for_supporter(requests_path: Path, new_added: int, total: int):
     """Record supporter additions in activity_stats.json."""

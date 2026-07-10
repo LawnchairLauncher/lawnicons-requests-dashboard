@@ -149,7 +149,7 @@ def prune_requests(components_to_remove: set[str]) -> tuple[int, int, set[str]]:
     if removed_apps:
         requests_data["apps"] = kept_apps
         requests_data["count"] = len(kept_apps)
-        requests_data["lastUpdate"] = time.strftime("%Y-%m-%d")  # ← добавить
+        requests_data["lastUpdate"] = time.strftime("%Y-%m-%d")
         with open(REQUESTS_JSON, "w", encoding="utf-8") as f:
             json.dump(requests_data, f, indent=2)
 
@@ -577,6 +577,20 @@ def main() -> int:
         print(f"Components in upstream appfilter: {len(components)}")
         print(f"Removed fulfilled requests: {fulfilled_removed}")
         print(f"Deleted extracted PNGs (fulfilled): {fulfilled_deleted}")
+
+        # Update supported counters
+        supported_path = FILTERS_DIR / "supported.json"
+        if removed_components and supported_path.exists():
+            with open(supported_path, "r+", encoding="utf-8") as f:
+                data = json.load(f)
+                fulfilled_now = sum(1 for c in removed_components if c in data.get("supported", []))
+                if fulfilled_now > 0:
+                    data["done"] = data.get("done", 0) + fulfilled_now
+                    data["total"] = data["done"] + len(data.get("supported", []))
+                    f.seek(0)
+                    json.dump(data, f, indent=2)
+                    f.truncate()
+                    print(f"Updated supported counters: {fulfilled_now} fulfilled, {data['done']} done, {data['total']} total")        
     else:
         print("No upstream appfilter.xml changes detected.")
 

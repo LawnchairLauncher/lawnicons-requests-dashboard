@@ -1586,6 +1586,19 @@ const Data = {
 
       this._processFilters(filterObjects, App.state.filterMetadata);
 
+      // Update supported card counter
+      const supportedObj = filterObjects[CONFIG.data.filters.indexOf('supported')];
+      if (supportedObj?.done !== undefined) {
+        const el = document.getElementById('supportedSub');
+        if (el) {
+          const done = supportedObj.done;
+          const total = supportedObj.total;
+          el.textContent = done === total
+            ? `${Utils.compactNumber(done)} done`
+            : `${Utils.compactNumber(done)} of ${Utils.compactNumber(total)} done`;
+        }
+      }
+      
       // Load optional data
       await Promise.all([
         (async () => {

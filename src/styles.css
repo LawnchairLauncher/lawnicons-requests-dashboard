@@ -399,7 +399,7 @@ button.input-icon.active {
 /* Supported card */
 #supportedCard {
   flex: 0 0 auto;
-  width: 210px;
+  width: 220px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -484,6 +484,12 @@ button.input-icon.active {
 .quick-pick-btn-icon svg {
   width: 18px;
   height: 18px;
+}
+
+/* Supported card */
+#supportedCard .card-header {
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
 }
 
 /* Activity card */
@@ -1948,9 +1954,9 @@ input[type="checkbox"]:indeterminate::after {
   }
 
   #supportedCard {
-      width: 210px;
-      min-width: 210px;
-      flex: 0 0 210px;
+      width: 220px;
+      min-width: 220px;
+      flex: 0 0 220px;
     }
 
   .selection-bar {
