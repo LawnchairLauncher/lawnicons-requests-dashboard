@@ -365,6 +365,98 @@ const Utils = {
 };
 
 // ==========================================
+// 3.5 STORAGE
+// ==========================================
+/**
+ * APP STORAGE MANAGER
+ */
+const AppStorage = {
+  KEYS: {
+    contribution: 'lawnicons_contribution',
+    contributionActive: 'lawnicons_contribution_active',
+    contributionOverrides: 'lawnicons_contribution_overrides',
+  },
+
+  /**
+   * Helper to safely load and parse JSON from localStorage.
+   * @template T
+   * @param {string} key
+   * @param {T} fallback
+   * @returns {T}
+   */
+  _safeLoad(key, fallback) {
+    try {
+      const data = localStorage.getItem(key);
+      if (!data) return fallback;
+      return JSON.parse(data);
+    } catch (e) {
+      console.error(`AppStorage: failed to parse key "${key}"`, e);
+      return fallback;
+    }
+  },
+
+  /**
+   * Helper to safely save serialized JSON to localStorage.
+   * @param {string} key
+   * @param {any} value
+   */
+  _safeSave(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (e) {
+      console.error(`AppStorage: failed to save key "${key}"`, e);
+    }
+  },
+
+  /**
+   * @returns {AppEntry[]}
+   */
+  getContribution() {
+    return this._safeLoad(this.KEYS.contribution, []);
+  },
+
+  /**
+   * @param {AppEntry[]} list
+   */
+  saveContribution(list) {
+    this._safeSave(this.KEYS.contribution, list);
+  },
+
+  /**
+   * @returns {Record<string, Overrides>}
+   */
+  getOverrides() {
+    return this._safeLoad(this.KEYS.contributionOverrides, {});
+  },
+
+  /**
+   * @param {Record<string, Overrides>} overrides
+   */
+  saveOverrides(overrides) {
+    this._safeSave(this.KEYS.contributionOverrides, overrides);
+  },
+
+  /**
+   * @returns {boolean}
+   */
+  getContributionActive() {
+    const active = localStorage.getItem(this.KEYS.contributionActive);
+    return active === 'true';
+  },
+
+  /**
+   * @param {boolean} isActive
+   */
+  setContributionActive(isActive) {
+    try {
+      localStorage.setItem(this.KEYS.contributionActive, String(isActive));
+    } catch (e) {
+      console.error(`AppStorage: failed to save contribution active state`, e);
+    }
+  },
+};
+
+// ==========================================
 // 4. TEMPLATES
 // ==========================================
 const Templates = {
@@ -1554,19 +1646,14 @@ const Data = {
   async init() {
     try {
       /** @type {InitTuple} */
-      const [
-        json,
-        setsStats,
-        domainStats,
-        activityStats,
-        ...filterObjects
-      ] = await Promise.all([
-        this.fetchJson(CONFIG.data.endpoint),
-        this.fetchJson(CONFIG.data.setsStatsPath, {}),
-        this.fetchJson(CONFIG.data.domainStatsPath, {}),
-        this.fetchJson(CONFIG.data.activityStatsPath, []),
-        ...CONFIG.data.filters.map((id) => this.fetchFilterData(id)),
-      ]);
+      const [json, setsStats, domainStats, activityStats, ...filterObjects] =
+        await Promise.all([
+          this.fetchJson(CONFIG.data.endpoint),
+          this.fetchJson(CONFIG.data.setsStatsPath, {}),
+          this.fetchJson(CONFIG.data.domainStatsPath, {}),
+          this.fetchJson(CONFIG.data.activityStatsPath, []),
+          ...CONFIG.data.filters.map((id) => this.fetchFilterData(id)),
+        ]);
 
       App.data = json.apps;
       App.state.setsStats = setsStats;
@@ -1579,32 +1666,34 @@ const Data = {
 
       App.state.appTags = new Map();
       App.state.filterMetadata = new Map();
-      App.state.filterMetadata.set('plan', {
-        label: 'Plan',
-        description: 'Requests added to your contribution plan.',
+      App.state.filterMetadata.set("plan", {
+        label: "Plan",
+        description: "Requests added to your contribution plan.",
       });
 
       this._processFilters(filterObjects, App.state.filterMetadata);
 
       // Update supported card counter
-      const supportedObj = filterObjects[CONFIG.data.filters.indexOf('supported')];
+      const supportedObj =
+        filterObjects[CONFIG.data.filters.indexOf("supported")];
       if (supportedObj?.done !== undefined) {
-        const el = document.getElementById('supportedSub');
+        const el = document.getElementById("supportedSub");
         if (el) {
           const done = supportedObj.done;
           const total = supportedObj.total;
-          el.textContent = done === total
-            ? `${Utils.compactNumber(done)} done`
-            : `${Utils.compactNumber(done)} of ${Utils.compactNumber(total)} done`;
+          el.textContent =
+            done === total
+              ? `${Utils.compactNumber(done)} done`
+              : `${Utils.compactNumber(done)} of ${Utils.compactNumber(total)} done`;
         }
       }
-      
+
       // Load optional data
       await Promise.all([
         (async () => {
           /** @type {FulfillmentHistory[]} */
           const history = await this.fetchJson(
-            'assets/stats/fulfillment_history.json',
+            "assets/stats/fulfillment_history.json",
             [],
           );
           if (!(history && history.length >= 3)) return;
@@ -1623,13 +1712,13 @@ const Data = {
         (async () => {
           /** @type {TrendingBaseline} */
           const baseline = await this.fetchJson(
-            'assets/stats/trending_baseline.json',
+            "assets/stats/trending_baseline.json",
             {},
           );
-          if (
-            !(baseline?.period_start?.snapshot &&
-              baseline?.period_end?.snapshot)
-          ) return;
+          if (!(
+            baseline?.period_start?.snapshot && baseline?.period_end?.snapshot
+          ))
+            return;
 
           const startSnapshot = baseline.period_start.snapshot;
           const endSnapshot = baseline.period_end.snapshot;
@@ -1642,7 +1731,9 @@ const Data = {
             }
           }
         })(),
-      ]).catch(() => {/* no-op */});
+      ]).catch(() => {
+        /* no-op */
+      });
     } catch (error) {
       console.error('Critical initialization failure:', error);
       Components.Toast.show('Failed to load data', 'error');
@@ -1666,6 +1757,53 @@ const Data = {
       UI.buildQuickPickQueue();
       UI.renderQuickPick();
     });
+  },
+  
+  loadContributionState() {
+    const contribution = AppStorage.getContribution();
+    if (contribution.length > 0) {
+      const before = contribution.length;
+      App.state.contribution = contribution.filter((app) =>
+        App.data.some((d) => d.componentName === app.componentName)
+      );
+
+      const parsedOverrides = AppStorage.getOverrides();
+      App.state.contributionOverrides = {};
+      for (const [id, overrides] of Object.entries(parsedOverrides)) {
+        if (App.state.contribution.some((a) => a.componentName === id)) {
+          App.state.contributionOverrides[id] = overrides;
+        }
+      }
+
+      if (App.state.contribution.length < before) {
+        Data.saveContribution();
+      }
+
+      App.state.contribution.forEach((app) => {
+        const tags = App.state.appTags.get(app.componentName) || new Set();
+        tags.add('plan');
+        App.state.appTags.set(app.componentName, tags);
+      });
+    }
+
+    if (performance.navigation.type === 0) {
+      AppStorage.setContributionActive(false);
+    }
+
+    const savedActive = AppStorage.getContributionActive();
+    if (savedActive) {
+      App.state.contributionActive = true;
+      App.dom.contributionBtn.classList.add('active');
+    }
+  },
+
+  saveContribution() {
+    AppStorage.saveContribution(App.state.contribution);
+    AppStorage.setContributionActive(App.state.contributionActive);
+    AppStorage.saveOverrides(App.state.contributionOverrides);
+    if (!App.state.contributionActive) {
+      UI.updateContributionBadge();
+    }
   },
 
   /**
@@ -2017,52 +2155,7 @@ const UI = {
       App.dom.regexBtn.classList.add('active');
     }
 
-    const savedList = localStorage.getItem('lawnicons_contribution');
-    if (savedList) {
-      try {
-        /** @type {AppEntry[]} */
-        const parsed = JSON.parse(savedList);
-        const before = parsed.length;
-        App.state.contribution = parsed.filter((app) =>
-          App.data.some((d) => d.componentName === app.componentName)
-        );
-
-        const savedOverrides = localStorage.getItem(
-          'lawnicons_contribution_overrides',
-        );
-        if (savedOverrides) {
-          /** @type {Record<string, Overrides>} */
-          const parsedOverrides = JSON.parse(savedOverrides);
-          App.state.contributionOverrides = {};
-          for (const [id, overrides] of Object.entries(parsedOverrides)) {
-            if (App.state.contribution.some((a) => a.componentName === id)) {
-              App.state.contributionOverrides[id] = overrides;
-            }
-          }
-        }
-
-        if (App.state.contribution.length < before) {
-          this.saveContribution();
-        }
-
-        App.state.contribution.forEach((app) => {
-          const tags = App.state.appTags.get(app.componentName) || new Set();
-          tags.add('plan');
-          App.state.appTags.set(app.componentName, tags);
-        });
-      } catch { /* no-op */ }
-    }
-
-    if (performance.navigation.type === 0) {
-      localStorage.setItem('lawnicons_contribution_active', 'false');
-    }
-
-    const savedActive = localStorage.getItem('lawnicons_contribution_active');
-    if (savedActive === 'true') {
-      App.state.contributionActive = true;
-      App.dom.contributionBtn?.classList.add('active');
-    }
-
+    Data.loadContributionState();
     this.updateContributionBadge();
     this.renderDomainStats();
     this.renderQuickPick();
@@ -2108,7 +2201,7 @@ const UI = {
         App.dom.sentinel.style.display = '';
         App.dom.contributionBtn.style.display = '';
       }
-      this.saveContribution();
+      Data.saveContribution();
       this.render();
       Data.syncUrlState();
     });
@@ -2256,7 +2349,7 @@ const UI = {
             App.state.appTags.set(id.toString(), tags);
           }
         });
-        this.saveContribution();
+        Data.saveContribution();
         const count = App.state.selected.size;
         Components.Toast.show(
           `${count} icon${count !== 1 ? 's' : ''} added to contribution plan.`,
@@ -2432,7 +2525,7 @@ const UI = {
           );
           if (app && id) {
             delete App.state.contributionOverrides[id];
-            UI.saveContribution();
+            Data.saveContribution();
             UI.render();
           }
           UI.closeContextMenu();
@@ -2452,7 +2545,7 @@ const UI = {
             App.dom.contributionBtn.style.display = '';
             App.dom.contributionBtn.classList.remove('active');
           }
-          UI.saveContribution();
+          Data.saveContribution();
           UI.render();
           UI.closeContextMenu();
           return;
@@ -2595,7 +2688,7 @@ const UI = {
               }
               App.state.contributionOverrides[a.componentName].mode = newMode;
             });
-            UI.saveContribution();
+            Data.saveContribution();
             UI.render();
             return;
           }
@@ -2606,7 +2699,7 @@ const UI = {
             App.state.contributionOverrides[id] = {};
           }
           App.state.contributionOverrides[id].mode = mode;
-          UI.saveContribution();
+          Data.saveContribution();
           UI.updateIssues();
           return;
         }
@@ -3293,7 +3386,7 @@ const UI = {
           App.state.contributionActive = false;
           App.dom.contributionBtn.style.display = '';
           App.dom.contributionBtn.classList.remove('active');
-          this.saveContribution();
+          Data.saveContribution();
           this.render();
           Data.syncUrlState();
         };
@@ -3606,7 +3699,7 @@ const UI = {
         App.state.contributionActive = false;
         App.dom.contributionBtn.style.display = '';
         App.dom.contributionBtn.classList.remove('active');
-        UI.saveContribution();
+        Data.saveContribution();
         UI.render();
       };
     }
@@ -3869,7 +3962,7 @@ const UI = {
       }
     }
 
-    this.saveContribution();
+    Data.saveContribution();
     const issueCounts = this.updateIssues();
     if (issueCounts) {
       const downloadReady = issueCounts.emptyfields === 0 &&
@@ -3880,24 +3973,6 @@ const UI = {
           ? ''
           : 'none';
       }
-    }
-  },
-
-  saveContribution() {
-    localStorage.setItem(
-      'lawnicons_contribution',
-      JSON.stringify(App.state.contribution),
-    );
-    localStorage.setItem(
-      'lawnicons_contribution_active',
-      App.state.contributionActive.toString(),
-    );
-    localStorage.setItem(
-      'lawnicons_contribution_overrides',
-      JSON.stringify(App.state.contributionOverrides),
-    );
-    if (!App.state.contributionActive) {
-      this.updateContributionBadge();
     }
   },
 
