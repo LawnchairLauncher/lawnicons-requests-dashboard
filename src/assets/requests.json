@@ -1,6 +1,6 @@
 {
-  "count": 19772,
-  "lastUpdate": "2026-07-11",
+  "count": 19760,
+  "lastUpdate": "2026-07-12",
   "apps": [
     {
       "drawable": "friday_night_funkin",
@@ -838,15 +838,6 @@
       "label": "Lemur Browser",
       "componentName": "com.lemurbrowser.exts/com.google.android.apps.chrome.Main",
       "installs": "1,000,000+"
-    },
-    {
-      "drawable": "rocket",
-      "requestCount": 23,
-      "firstAppearance": 1718768811.0,
-      "lastRequested": 1776891321.0,
-      "label": "Rocket",
-      "componentName": "com.dbbl.mbs.apps.main/com.dbbl.mbs.apps.main.view.activity.startup.AppStartupActivity",
-      "installs": "10,000,000+"
     },
     {
       "drawable": "oralb",
@@ -5436,15 +5427,6 @@
       "installs": "1,000,000+"
     },
     {
-      "drawable": "mi_wom",
-      "requestCount": 12,
-      "firstAppearance": 1713732950.0,
-      "lastRequested": 1776075145.0,
-      "label": "Mi WOM",
-      "componentName": "co.com.myWom/co.com.myWom.MainActivity",
-      "installs": "1,000,000+"
-    },
-    {
       "drawable": "skinseed",
       "requestCount": 12,
       "firstAppearance": 1718526573.0,
@@ -5880,15 +5862,6 @@
       "label": "ScourgeBringer",
       "componentName": "com.pid.scourgebringer/crc645d6a1e7bece73b70.Program",
       "installs": "100,000+"
-    },
-    {
-      "drawable": "wom",
-      "requestCount": 11,
-      "firstAppearance": 1715345816.0,
-      "lastRequested": 1761883782.0,
-      "label": "WOM",
-      "componentName": "cl.wom.transformacion.appwommobile/cl.wom.transformacion.appwommobile.enrolamiento.activity.SplashActivity",
-      "installs": "5,000,000+"
     },
     {
       "drawable": "itinerary",
@@ -20666,15 +20639,6 @@
       "label": "Table Tennis Touch",
       "componentName": "uk.co.yakuto.TableTennisTouch/uk.co.yakuto.TableTennisTouch.PlayPlugin.tttPlayOverridingActivity",
       "installs": "10,000,000+"
-    },
-    {
-      "drawable": "whatlisten_player_de_musica",
-      "requestCount": 6,
-      "firstAppearance": 1721889553.0,
-      "lastRequested": 1774203613.0,
-      "label": "Whatlisten: Player de m\u00fasica",
-      "componentName": "br.com.music.wlisten2.app/br.com.fabiano.developer.appmusic.Main",
-      "installs": "1,000,000+"
     },
     {
       "drawable": "clock_widget",
@@ -37406,15 +37370,6 @@
       "lastRequested": 1767030563.0,
       "label": "The Parking Spot",
       "componentName": "com.theparkingspot.tpscustomer/com.theparkingspot.tpscustomer.ui.splashscreen.SplashScreenActivity",
-      "installs": "1,000,000+"
-    },
-    {
-      "drawable": "myscheme",
-      "requestCount": 4,
-      "firstAppearance": 1723995940.0,
-      "lastRequested": 1767165512.0,
-      "label": "myScheme",
-      "componentName": "in.gov.negd.myscheme/in.gov.negd.myscheme.ui.splash.SplashActivity",
       "installs": "1,000,000+"
     },
     {
@@ -61341,15 +61296,6 @@
       "installs": "500,000+"
     },
     {
-      "drawable": "fulldive_vr",
-      "requestCount": 2,
-      "firstAppearance": 1718490491.0,
-      "lastRequested": 1764229276.0,
-      "label": "Fulldive VR",
-      "componentName": "in.fulldive.shell/com.fulldive.ui.OnboardingActivity",
-      "installs": "10,000,000+"
-    },
-    {
       "drawable": "pokemoncaferemix",
       "requestCount": 2,
       "firstAppearance": 1745020800.0,
@@ -64790,15 +64736,6 @@
       "requestCount": 2,
       "firstAppearance": 1766819232.0,
       "lastRequested": 1771398448.0
-    },
-    {
-      "drawable": "unnamed_icon_8_10",
-      "label": "\u30c7\u30b8\u30bf\u30eb\u8a8d\u8a3c",
-      "componentName": "jp.go.digital.auth_and_sign/jp.go.digital.auth_and_sign.ui.main.MainActivity",
-      "requestCount": 2,
-      "firstAppearance": 1771179339.0,
-      "lastRequested": 1771372549.0,
-      "installs": "1,000,000+"
     },
     {
       "drawable": "habstick",
@@ -82135,15 +82072,6 @@
       "installs": "5,000,000+"
     },
     {
-      "drawable": "tecnonutri",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761285350.0,
-      "label": "Tecnonutri",
-      "componentName": "br.com.tecnonutri.app/br.com.tecnonutri.app.activity.splash.SplashActivity",
-      "installs": "10,000,000+"
-    },
-    {
       "drawable": "shadow_drive",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -98073,15 +98001,6 @@
       "label": "Build",
       "componentName": "com.microsoft.build.twa/com.microsoft.build.twa.LauncherActivity",
       "installs": "50,000+"
-    },
-    {
-      "drawable": "buser",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1763889585.0,
-      "label": "Buser",
-      "componentName": "br.com.buser.AppBuser/br.com.buser.SplashActivity",
-      "installs": "5,000,000+"
     },
     {
       "drawable": "cancel_subscriptions",
@@ -119796,15 +119715,6 @@
       "firstAppearance": 1772567606.0,
       "lastRequested": 1772567606.0,
       "installs": "500,000+"
-    },
-    {
-      "drawable": "color_block_builder",
-      "label": "Color Block Builder",
-      "componentName": "jp.co.goodroid.hyper.puzzle.colorblockbuilder/com.unity3d.player.UnityPlayerActivity",
-      "requestCount": 1,
-      "firstAppearance": 1772567606.0,
-      "lastRequested": 1772567606.0,
-      "installs": "5,000,000+"
     },
     {
       "drawable": "color_dots",
@@ -164632,15 +164542,6 @@
       "installs": "100,000+"
     },
     {
-      "drawable": "buser",
-      "requestCount": 1,
-      "firstAppearance": 1765644667.0,
-      "lastRequested": 1777959772.728603,
-      "label": "Buser",
-      "componentName": "br.com.buser.AppBuser/br.com.buser.AppBuser.splash.SplashActivity",
-      "installs": "5,000,000+"
-    },
-    {
       "drawable": "zoho_expense",
       "requestCount": 1,
       "firstAppearance": 1765358179.0,
@@ -170462,15 +170363,6 @@
       "firstAppearance": 1779965196.0,
       "lastRequested": 1779965196.0,
       "installs": "10,000+"
-    },
-    {
-      "drawable": "oliveboard",
-      "label": "Oliveboard",
-      "componentName": "in.oliveboard.prep/in.oliveboard.prep.ui.component.splash.SplashScreenActivity",
-      "requestCount": 1,
-      "firstAppearance": 1779965196.0,
-      "lastRequested": 1779965196.0,
-      "installs": "5,000,000+"
     },
     {
       "drawable": "ai_studio_6",
