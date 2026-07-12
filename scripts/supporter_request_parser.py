@@ -161,7 +161,7 @@ def parse_item_tag(item: ET.Element, zip_file: zipfile.ZipFile, apps: dict,
 
     return apps
 
-def parse_zips(zip_files: list[Path], apps: dict, png_out_dir: Path) -> tuple[dict, set[str]]:
+def parse_zips(zip_files: list[Path], apps: dict, png_out_dir: Path, graph_output_dir: Path = None) -> tuple[dict, set[str]]:
     failed_count = 0
     zip_components = set()
     
@@ -170,12 +170,17 @@ def parse_zips(zip_files: list[Path], apps: dict, png_out_dir: Path) -> tuple[di
             with zipfile.ZipFile(zip_path, 'r') as zip_file:
                 xml_root = extract_xml(zip_file)
                 req_time = os.path.getmtime(zip_path)
+                zip_components = set()
                 
                 for item in xml_root.findall('item'):
                     item_data = process_item_tag(item)
                     if item_data:
                         zip_components.add(item_data[0])
                     apps = parse_item_tag(item, zip_file, apps, png_out_dir, req_time)
+                
+                if graph_output_dir and zip_components:
+                    update_screens_graph(graph_output_dir, zip_path.name, list(zip_components))
+                    update_requests_graph(graph_output_dir, list(zip_components))
         except Exception as e:
             failed_count += 1
             print(f"Error processing {zip_path.name}: {e}")
@@ -285,7 +290,7 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path,
     apps_before = set(apps.keys())
     existing_supported = parse_existing_supported_json(supported_path)
 
-    apps, zip_components = parse_zips(zip_files, apps, png_out_path)
+    apps, zip_components = parse_zips(zip_files, apps, png_out_path, output_path.parent)
     
     if appfilter_path.exists():
         existing = load_existing_components(appfilter_path)
@@ -306,6 +311,47 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path,
     print(f"Processed {len(zip_files)} archives. Total requests: {len(apps)}")
     if zip_files:
         print("Don't forget to delete processed ZIP files from the zips folder.")
+
+
+def update_screens_graph(output_dir: Path, zip_filename: str, component_ids: list[str]):
+    graph_path = output_dir / "screens_graph.json"
+    if graph_path.exists():
+        with open(graph_path, 'r') as f:
+            graph = json.load(f)
+    else:
+        graph = {}
+    
+    existing_ids = [k for k in graph.keys() if k.startswith('scr-')]
+    next_num = max([int(k.split('-')[1]) for k in existing_ids], default=0) + 1
+    screen_id = f"scr-{next_num:05d}"
+    
+    graph[screen_id] = list(set(component_ids))
+    
+    with open(graph_path, 'w') as f:
+        json.dump(graph, f, indent=2)
+
+def update_requests_graph(output_dir: Path, component_ids: list[str]):
+    graph_path = output_dir / "requests_graph.json"
+    if graph_path.exists():
+        with open(graph_path, 'r') as f:
+            graph = json.load(f)
+    else:
+        graph = {}
+    
+    unique_ids = list(set(component_ids))
+    for i, comp_a in enumerate(unique_ids):
+        if comp_a not in graph:
+            graph[comp_a] = []
+        for comp_b in unique_ids[i+1:]:
+            if len(graph[comp_a]) < 30 and comp_b not in graph[comp_a]:
+                graph[comp_a].append(comp_b)
+            if comp_b not in graph:
+                graph[comp_b] = []
+            if len(graph[comp_b]) < 30 and comp_a not in graph[comp_b]:
+                graph[comp_b].append(comp_a)
+    
+    with open(graph_path, 'w') as f:
+        json.dump(graph, f, indent=2)
         
 
 # -------------------------------------------------------
