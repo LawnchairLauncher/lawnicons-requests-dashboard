@@ -1,6 +1,6 @@
 {
-  "count": 19760,
-  "lastUpdate": "2026-07-12",
+  "count": 19753,
+  "lastUpdate": "2026-07-13",
   "apps": [
     {
       "drawable": "friday_night_funkin",
@@ -42406,15 +42406,6 @@
       "lastRequested": 1776269537.0
     },
     {
-      "drawable": "ocado",
-      "requestCount": 4,
-      "firstAppearance": 1767484800.0,
-      "lastRequested": 1777959772.728603,
-      "label": "Ocado",
-      "componentName": "com.ocadoretail.mobile.android/com.ocado.mobile.android.feature.main.ui.MainActivity",
-      "installs": "100,000+"
-    },
-    {
       "drawable": "tcgplayer",
       "requestCount": 4,
       "firstAppearance": 1764720000.0,
@@ -76206,15 +76197,6 @@
       "label": "Timeleft",
       "componentName": "com.timeleft.app/com.timeleft.app.MainActivity",
       "installs": "500,000+"
-    },
-    {
-      "drawable": "ocado",
-      "label": "Ocado",
-      "componentName": "com.ocadoretail.mobile.android/com.ocado.mobile.android.feature.startup.splash.SplashScreenActivity",
-      "requestCount": 2,
-      "firstAppearance": 1776098583.0,
-      "lastRequested": 1779070959.4074323,
-      "installs": "100,000+"
     },
     {
       "drawable": "twint_3",
@@ -164736,50 +164718,6 @@
       "label": "Yamby",
       "componentName": "com.hush.yamby/com.hush.yamby.icon7",
       "installs": "5,000+"
-    },
-    {
-      "drawable": "minute_cryptic",
-      "label": "Minute Cryptic",
-      "componentName": "com.minutecryptic.app/com.minutecryptic.app.MainActivity",
-      "requestCount": 1,
-      "firstAppearance": 1779070959.4074323,
-      "lastRequested": 1779070959.4074323,
-      "installs": "100,000+"
-    },
-    {
-      "drawable": "owletdream",
-      "label": "OwletDream",
-      "componentName": "com.owletcare.sleep/com.owletcare.owletcare.SplashActivity",
-      "requestCount": 1,
-      "firstAppearance": 1779070959.4074323,
-      "lastRequested": 1779070959.4074323,
-      "installs": "100,000+"
-    },
-    {
-      "drawable": "sure_petcare",
-      "label": "Sure Petcare",
-      "componentName": "com.sureflap.surepetcare/com.sureflap.surepetcare.MainActivity",
-      "requestCount": 1,
-      "firstAppearance": 1779070959.4074323,
-      "lastRequested": 1779070959.4074323,
-      "installs": "100,000+"
-    },
-    {
-      "drawable": "isle_of_arrows",
-      "label": "Isle of Arrows",
-      "componentName": "com.gridpop.isleofarrowsandroid/com.unity3d.player.UnityPlayerActivity",
-      "requestCount": 1,
-      "firstAppearance": 1779506720.237739,
-      "lastRequested": 1779506720.237739,
-      "installs": "100,000+"
-    },
-    {
-      "drawable": "walkscape",
-      "label": "WalkScape",
-      "componentName": "com.notacult.walkscape/com.notacult.walkscape.MainActivity",
-      "requestCount": 1,
-      "firstAppearance": 1779506720.237739,
-      "lastRequested": 1779506720.237739
     },
     {
       "drawable": "camelion_smart_home",
