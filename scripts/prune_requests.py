@@ -122,7 +122,13 @@ def prune_filter_files() -> int:
         pruned = len(original) - len(cleaned)
 
         if pruned:
+            # Save done/total before overwriting for supported.json
+            saved_done = data.get('done', 0)
+            saved_total = data.get('total', 0)
             data[key] = cleaned
+            if key == 'supported':
+                data['done'] = saved_done
+                data['total'] = saved_total
             with open(filter_path, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=2)
             print(f"  Pruned {pruned} stale entries from {filter_path.name}")
