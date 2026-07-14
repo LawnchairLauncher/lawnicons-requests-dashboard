@@ -1,8 +1,8 @@
 {
   "com": {
     "requests": 13853,
-    "done": 13574,
-    "total": 27427
+    "done": 13577,
+    "total": 27430
   },
   "org": {
     "requests": 822,
@@ -21,8 +21,8 @@
   },
   "io": {
     "requests": 236,
-    "done": 292,
-    "total": 528
+    "done": 293,
+    "total": 529
   },
   "net": {
     "requests": 233,
@@ -294,6 +294,11 @@
     "done": 9,
     "total": 32
   },
+  "moe": {
+    "requests": 11,
+    "done": 20,
+    "total": 31
+  },
   "apps": {
     "requests": 8,
     "done": 22,
@@ -307,11 +312,6 @@
   "gr": {
     "requests": 21,
     "done": 9,
-    "total": 30
-  },
-  "moe": {
-    "requests": 11,
-    "done": 19,
     "total": 30
   },
   "hr": {

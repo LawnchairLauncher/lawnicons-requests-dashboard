@@ -1101,6 +1101,7 @@
   <item component="ComponentInfo{com.habby.archero/com.habby.archero.UnityPlayerActivity}" drawable="archero" name="Archero" />
   <item component="ComponentInfo{moe.koiverse.archivetune/moe.koiverse.archivetune.MainActivity}" drawable="archivetune" name="ArchiveTune" />
   <item component="ComponentInfo{moe.rukamori.archivetune/moe.rukamori.archivetune.MainActivity}" drawable="archivetune" name="ArchiveTune" />
+  <item component="ComponentInfo{moe.rukamori.archivetune/moe.rukamori.archivetune.launcher.DefaultIconAlias}" drawable="archivetune" name="ArchiveTune" />
   <item component="ComponentInfo{com.kanedias.archforums/com.kanedias.archforums.MainActivity}" drawable="archlinux_forums" name="Archlinux Forums" />
   <item component="ComponentInfo{com.google.ar.unity.arcore_depth_lab/com.unity3d.player.UnityPlayerActivity}" drawable="arcore_depth_lab" name="ARCore Depth Lab" />
   <item component="ComponentInfo{com.donnnno.arcticons.light/com.donnnno.arcticons.activities.SplashActivity}" drawable="arcticons_line_icons" name="Arcticons Black Icons" />
@@ -2236,6 +2237,7 @@
   <item component="ComponentInfo{com.box.android/com.box.android.auth.AuthenticationActivity}" drawable="box" name="Box" />
   <item component="ComponentInfo{com.box.app/com.box.app.MainActivity}" drawable="box_proxy" name="Box Proxy" />
   <item component="ComponentInfo{com.box.app/com.box.app.MainLauncherDefault}" drawable="box_proxy" name="Box Proxy" />
+  <item component="ComponentInfo{com.boxproxy.box/com.box.app.MainLauncherDefault}" drawable="box_proxy" name="Box Proxy" />
   <item component="ComponentInfo{gr.cosmote.box/gr.cosmote.box.boxCode.activities.SplashScreenActivity}" drawable="box_" name="BOX-" />
   <item component="ComponentInfo{ru.boxberry.mobile/ru.handh.android.boxberry.ui.activity.MainActivity}" drawable="boxberry" name="Boxberry" />
   <item component="ComponentInfo{com.boxter/com.boxter.MainActivity}" drawable="boxter" name="Boxter" />
@@ -7601,6 +7603,7 @@
   <item component="ComponentInfo{com.fingersoft.hillclimb/com.fingersoft.game.MainActivity}" drawable="hill_climb_racing" name="Hill Climb Racing" />
   <item component="ComponentInfo{com.fingersoft.hillclimb/com.spl.com.fingersoft.hillclimb.start}" drawable="hill_climb_racing" name="Hill Climb Racing" />
   <item component="ComponentInfo{com.fingersoft.hcr2/com.fingersoft.hcr2.AppActivity}" drawable="hill_climb_racing_2" name="Hill Climb Racing 2" />
+  <item component="ComponentInfo{com.mountains.hills/com.mountains.hills.MainActivity}" drawable="hills" name="Hills" />
   <item component="ComponentInfo{com.hiloenergie.hilo/com.hiloenergie.hilo.LauncherActivity}" drawable="hilo" name="Hilo" />
   <item component="ComponentInfo{com.mcu.visionlook/com.hikvision.hikconnect.login.LoadingActivity}" drawable="hilook" name="HiLook" />
   <item component="ComponentInfo{com.lang8.hinative/com.lang8.hinative.ui.MainActivity}" drawable="hinative" name="HiNative" />
@@ -16002,6 +16005,7 @@
   <item component="ComponentInfo{me.simpleHook/me.simpleHook.ui.activity.MainActivity}" drawable="generic_shell" name="simpleHook" />
   <item component="ComponentInfo{io.simplelogin.android.fdroid/io.simplelogin.android.module.startup.StartupActivity}" drawable="simplelogin" name="SimpleLogin" />
   <item component="ComponentInfo{io.simplelogin.android/io.simplelogin.android.module.startup.StartupActivity}" drawable="simplelogin" name="SimpleLogin" />
+  <item component="ComponentInfo{io.simplelogin.android.fdroid/io.simplelogin.android.MainActivity}" drawable="simplelogin" name="SimpleLogin" />
   <item component="ComponentInfo{com.wbrawner.simplemarkdown.free/com.wbrawner.simplemarkdown.MainActivity}" drawable="simplemarkdown" name="SimpleMarkdown" />
   <item component="ComponentInfo{com.lighttigerxiv.simple.mp/com.lighttigerxiv.simple.mp.compose.activities.main.MainActivity}" drawable="just_player" name="SimpleMP" />
   <item component="ComponentInfo{com.automattic.simplenote/com.automattic.simplenote.NotesActivity}" drawable="simplenote" name="Simplenote" />
@@ -21071,6 +21075,7 @@
   <item component="ComponentInfo{com.baidu.tieba/com.baidu.tieba.tblauncher.MainTabActivity}" drawable="baidu_tieba" name="百度贴吧 ~~ Baidu Tieba" />
   <item component="ComponentInfo{com.baidu.input/com.baidu.input.ImeLauncherActivity}" drawable="baidu_ime" name="百度输入法 ~~ Baidu IME" />
   <item component="ComponentInfo{com.zhihu.android/com.zhihu.android.app.ui.activity.LauncherActivity}" drawable="zhihu" name="知乎 ~~ Zhihu" />
+  <item component="ComponentInfo{com.github.zly2006.zhplus.lite/com.github.zly2006.zhihu.MainActivity}" drawable="zhihu_plus_plus" name="知乎++ ~~ Zhihu Plus Plus" />
   <item component="ComponentInfo{com.magicmagnet/com.magicmagnet.common.activity.SplashActivity}" drawable="magic_magnet" name="神奇磁力 ~~ Magic Magnet" />
   <item component="ComponentInfo{jp.co.stransa.android.dentalcard/jp.co.stransa.android.dentalcard.presentation.routing.RoutingActivity}" drawable="my_dentist" name="私の歯医者さん ~~ My Dentist" />
   <item component="ComponentInfo{com.mihoyo.hyperion/com.mihoyo.hyperion.ui.SplashActivity}" drawable="mihoyo_community" name="米游社 ~~ miHoYo Community" />
