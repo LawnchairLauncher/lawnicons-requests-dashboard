@@ -417,6 +417,22 @@ def update_activity_stats(
         except Exception:
             history = []
 
+    # Fill missing days with zero entries
+    if history:
+        last = history[-1]
+        last_date = date.fromisoformat(last["date"])
+        day = last_date + date.resolution
+        stop = date.fromisoformat(today)
+        while day < stop:
+            history.append({
+                "date": day.isoformat(),
+                "total": last["total"],
+                "added": 0,
+                "fulfilled": 0,
+                "expired": 0,
+            })
+            day += date.resolution
+
     last_total = history[-1]["total"] if history else total
     new_added = total - last_total + fulfilled_removed + expired_removed
 
