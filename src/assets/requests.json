@@ -1,6 +1,6 @@
 {
-  "count": 19753,
-  "lastUpdate": "2026-07-13",
+  "count": 19751,
+  "lastUpdate": "2026-07-15",
   "apps": [
     {
       "drawable": "friday_night_funkin",
@@ -49128,14 +49128,6 @@
       "installs": "500,000+"
     },
     {
-      "drawable": "lyrically",
-      "requestCount": 3,
-      "firstAppearance": 1723439295.0,
-      "lastRequested": 1772301647.0,
-      "label": "Lyrically",
-      "componentName": "com.app.lyrically/com.app.lyrically.StartupActivity"
-    },
-    {
       "drawable": "notepad_1",
       "requestCount": 3,
       "firstAppearance": 1726975946.0,
@@ -49260,15 +49252,6 @@
       "label": "StockEdge: Stock Market App",
       "componentName": "in.stockedge.app/in.stockedge.app.MainActivity",
       "installs": "1,000,000+"
-    },
-    {
-      "drawable": "now_in_android",
-      "requestCount": 3,
-      "firstAppearance": 1722967322.0,
-      "lastRequested": 1772374513.0,
-      "label": "Now in Android",
-      "componentName": "com.google.samples.apps.nowinandroid/com.google.samples.apps.nowinandroid.MainActivity",
-      "installs": "50,000+"
     },
     {
       "drawable": "meesure_measuring_by_moving",
