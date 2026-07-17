@@ -63,6 +63,10 @@
       "existing_drawable": "flamingo"
     },
     {
+      "id": "de.rossmann.app.android/de.rossmann.app.android.ui.splash.SplashScreen",
+      "existing_drawable": "rossmann"
+    },
+    {
       "id": "com.zui.camera/com.zui.camera.CameraLauncher",
       "existing_drawable": "generic_camera"
     },
@@ -193,10 +197,6 @@
     {
       "id": "com.journey.indiab/com.gxgx.daqiandy.ui.splash.SplashActivity",
       "existing_drawable": "castle"
-    },
-    {
-      "id": "cn.nubia.notepad.preset/cn.nubia.notepad.NoteListActivity",
-      "existing_drawable": "notepad"
     },
     {
       "id": "com.transsion.wallet.tecno/com.transsnet.palmpay.ui.activity.HomeActivity",
@@ -839,6 +839,10 @@
       "existing_drawable": "copy"
     },
     {
+      "id": "bitnet.hu.rossmann/com.rossmannmobile.MainActivity",
+      "existing_drawable": "rossmann"
+    },
+    {
       "id": "com.ang.onthigplx/com.ang.onthigplx.ui.launcher.HBLLauncherActivity",
       "existing_drawable": "otomoto"
     },
@@ -1377,26 +1381,6 @@
     {
       "id": "com.example.weather_app/com.example.weather_app.views.WeatherForecastActivity",
       "existing_drawable": "yahoo_weather"
-    },
-    {
-      "id": "cn.nubia.deskclock.preset/zte.com.cn.alarmclock.activity.AlarmClockActivity",
-      "existing_drawable": "generic_clock"
-    },
-    {
-      "id": "cn.nubia.contacts/cn.nubia.contacts.mainlist.PeopleActivity",
-      "existing_drawable": "generic_contacts"
-    },
-    {
-      "id": "cn.nubia.gallery3d/cn.nubia.gallery3d.app.Gallery",
-      "existing_drawable": "generic_gallery"
-    },
-    {
-      "id": "cn.nubia.contacts/cn.nubia.contacts.DialerActivity",
-      "existing_drawable": "generic_dialer"
-    },
-    {
-      "id": "cn.nubia.soundrecorder.preset/cn.zte.recorder.RecordHomeActivity",
-      "existing_drawable": "generic_microphone"
     },
     {
       "id": "cn.nubia.globalweather/com.zte.weather.ui.HomeActivity",
