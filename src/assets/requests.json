@@ -1,16 +1,7 @@
 {
-  "count": 19709,
-  "lastUpdate": "2026-07-17",
+  "count": 19705,
+  "lastUpdate": "2026-07-18",
   "apps": [
-    {
-      "drawable": "friday_night_funkin",
-      "requestCount": 42,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1780255340.0,
-      "label": "Friday Night Funkin'",
-      "componentName": "me.funkin.fnf/me.funkin.fnf.MainActivity",
-      "installs": "10,000,000+"
-    },
     {
       "drawable": "manus",
       "requestCount": 37,
@@ -77273,14 +77264,6 @@
       "installs": "5,000,000+"
     },
     {
-      "drawable": "sandbox",
-      "label": "Sandbox",
-      "componentName": "com.android.axion.sandbox/com.android.axion.sandbox.MainActivity",
-      "requestCount": 2,
-      "firstAppearance": 1779380936.0,
-      "lastRequested": 1779577131.0
-    },
-    {
       "drawable": "my_digi_3",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -112849,15 +112832,6 @@
       "installs": "100,000+"
     },
     {
-      "drawable": "uniopen",
-      "label": "uniopen",
-      "componentName": "com.unipcsc.uniopen/com.union.app.ui.MainActivity",
-      "requestCount": 1,
-      "firstAppearance": 1771252290.0,
-      "lastRequested": 1771252290.0,
-      "installs": "100,000+"
-    },
-    {
       "drawable": "visit_japan_web",
       "label": "Visit Japan Web",
       "componentName": "org.chromium.webapk.aa96aeda43c278086_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
@@ -112990,15 +112964,6 @@
       "firstAppearance": 1771252290.0,
       "lastRequested": 1771252290.0,
       "installs": "100,000+"
-    },
-    {
-      "drawable": "unnamed_icon_25_2",
-      "label": "\u9177\u6f8e",
-      "componentName": "com.coupang.mobile.lightspeed/com.coupang.mobile.activity.SplashActivity",
-      "requestCount": 1,
-      "firstAppearance": 1771252290.0,
-      "lastRequested": 1771252290.0,
-      "installs": "1,000,000+"
     },
     {
       "drawable": "unnamed_icon_27_2",
