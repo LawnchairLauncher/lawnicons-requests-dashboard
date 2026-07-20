@@ -225,6 +225,18 @@
     {
       "id": "com.xiaomi.market/com.xiaomi.market.ui.DefaultLauncherIcon",
       "existing_drawable": "getapps"
+    },
+    {
+      "id": "org.westpac.bank/au.com.westpac.banking.universal.android.ui.activity.MainActivityAliasMidnight",
+      "existing_drawable": "westpac"
+    },
+    {
+      "id": "com.myntra.android/com.myntra.android.activities.react.ReactActivity.EORS_JUNE_2026",
+      "existing_drawable": "myntra"
+    },
+    {
+      "id": "com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p4",
+      "existing_drawable": "pixel_tips"
     }
   ]
 }

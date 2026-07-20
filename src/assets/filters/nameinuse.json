@@ -63,12 +63,12 @@
       "existing_drawable": "flamingo"
     },
     {
-      "id": "com.zui.camera/com.zui.camera.CameraLauncher",
-      "existing_drawable": "generic_camera"
-    },
-    {
       "id": "com.luutinhit.launcherios/com.luutinhit.weather.WeatherActivity",
       "existing_drawable": "yahoo_weather"
+    },
+    {
+      "id": "com.zui.camera/com.zui.camera.CameraLauncher",
+      "existing_drawable": "generic_camera"
     },
     {
       "id": "com.dino.simple/com.dino.simple.MainActivity",
@@ -123,16 +123,16 @@
       "existing_drawable": "audio_share"
     },
     {
+      "id": "com.chaozhuo.gameassistant/com.chaozhuo.gameassistant.SplashActivity",
+      "existing_drawable": "octopus"
+    },
+    {
       "id": "com.appstalking.activitylauncher/com.appstalking.activitylauncher.AppTalking_SplashActivity",
       "existing_drawable": "activity_launcher"
     },
     {
       "id": "dev.randombits.intervaltimer/dev.randombits.intervaltimer.MainActivity",
       "existing_drawable": "interval_timer"
-    },
-    {
-      "id": "com.chaozhuo.gameassistant/com.chaozhuo.gameassistant.SplashActivity",
-      "existing_drawable": "octopus"
     },
     {
       "id": "com.icecoldapps.fileconverter/com.icecoldapps.fileconverter.MainActivity",
@@ -649,6 +649,10 @@
     {
       "id": "dev.goodwy.messages/dev.goodwy.messages.activities.SplashActivity.Original",
       "existing_drawable": "messages"
+    },
+    {
+      "id": "ffinbank.MyFreedom/ffinbank.app.activity.MyFreedom",
+      "existing_drawable": "freedom"
     },
     {
       "id": "com.techsial.android.unitconverter/com.techsial.android.unitconverter.SplashActivity",
@@ -1375,10 +1379,6 @@
       "existing_drawable": "yahoo_weather"
     },
     {
-      "id": "ffinbank.MyFreedom/ffinbank.app.activity.MyFreedom",
-      "existing_drawable": "freedom"
-    },
-    {
       "id": "com.fonts.emoji.fontkeyboard.free/com.fonts.emoji.fontkeyboard.free.ui.splash.SplashActivity",
       "existing_drawable": "fonts_keyboard"
     },
@@ -1617,6 +1617,18 @@
     {
       "id": "com.example.pri.toolbox/com.example.pri.toolbox.MainActivity",
       "existing_drawable": "toolbox"
+    },
+    {
+      "id": "com.tech.barbosa/com.dts.freefireth.FFMainActivity",
+      "existing_drawable": "free_fire"
+    },
+    {
+      "id": "com.xiaomi.smarthome.tv.global4/com.xiaomi.smarthome.tv.ui.MainActivity",
+      "existing_drawable": "mi_home"
+    },
+    {
+      "id": "com.cateater.stopmotionstudiopro/com.cateater.stopmotionstudio.MainActivity_start",
+      "existing_drawable": "stop_motion_studio"
     }
   ]
 }

@@ -1,18 +1,18 @@
 {
   "com": {
-    "requests": 13846,
-    "done": 13591,
-    "total": 27437
+    "requests": 13867,
+    "done": 13596,
+    "total": 27463
   },
   "org": {
-    "requests": 822,
+    "requests": 829,
     "done": 1176,
-    "total": 1998
+    "total": 2005
   },
   "de": {
-    "requests": 244,
+    "requests": 245,
     "done": 468,
-    "total": 712
+    "total": 713
   },
   "ru": {
     "requests": 225,
@@ -31,8 +31,8 @@
   },
   "app": {
     "requests": 189,
-    "done": 281,
-    "total": 470
+    "done": 283,
+    "total": 472
   },
   "br": {
     "requests": 191,
@@ -40,9 +40,9 @@
     "total": 372
   },
   "jp": {
-    "requests": 175,
+    "requests": 176,
     "done": 186,
-    "total": 361
+    "total": 362
   },
   "dev": {
     "requests": 77,
@@ -60,9 +60,9 @@
     "total": 215
   },
   "in": {
-    "requests": 66,
+    "requests": 67,
     "done": 137,
-    "total": 203
+    "total": 204
   },
   "co": {
     "requests": 106,
@@ -70,9 +70,9 @@
     "total": 202
   },
   "me": {
-    "requests": 64,
+    "requests": 65,
     "done": 132,
-    "total": 196
+    "total": 197
   },
   "nl": {
     "requests": 81,
@@ -115,9 +115,9 @@
     "total": 111
   },
   "cn": {
-    "requests": 36,
+    "requests": 37,
     "done": 68,
-    "total": 104
+    "total": 105
   },
   "uk": {
     "requests": 50,
@@ -170,9 +170,9 @@
     "total": 62
   },
   "tv": {
-    "requests": 24,
+    "requests": 25,
     "done": 35,
-    "total": 59
+    "total": 60
   },
   "uz": {
     "requests": 10,
@@ -214,6 +214,11 @@
     "done": 25,
     "total": 46
   },
+  "ir": {
+    "requests": 19,
+    "done": 26,
+    "total": 45
+  },
   "tw": {
     "requests": 13,
     "done": 32,
@@ -227,11 +232,6 @@
   "hu": {
     "requests": 10,
     "done": 34,
-    "total": 44
-  },
-  "ir": {
-    "requests": 18,
-    "done": 26,
     "total": 44
   },
   "sk": {
@@ -345,9 +345,9 @@
     "total": 24
   },
   "kz": {
-    "requests": 10,
+    "requests": 11,
     "done": 11,
-    "total": 21
+    "total": 22
   },
   "pe": {
     "requests": 11,
@@ -2372,6 +2372,11 @@
   "mindware": {
     "requests": 1,
     "done": 1,
+    "total": 2
+  },
+  "mini": {
+    "requests": 2,
+    "done": 0,
     "total": 2
   },
   "mmapps": {
@@ -6225,11 +6230,6 @@
     "total": 1
   },
   "mindmine": {
-    "requests": 1,
-    "done": 0,
-    "total": 1
-  },
-  "mini": {
     "requests": 1,
     "done": 0,
     "total": 1
