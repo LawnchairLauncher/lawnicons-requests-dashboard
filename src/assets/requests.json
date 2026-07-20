@@ -1,6 +1,6 @@
 {
-  "count": 19702,
-  "lastUpdate": "2026-07-19",
+  "count": 19739,
+  "lastUpdate": "2026-07-20",
   "apps": [
     {
       "drawable": "manus",
@@ -12,6 +12,15 @@
       "installs": "1,000,000+"
     },
     {
+      "drawable": "happ",
+      "requestCount": 35,
+      "firstAppearance": 1745020800.0,
+      "lastRequested": 1780314262.0,
+      "label": "Happ",
+      "componentName": "com.happproxy/com.happproxy.feature.main.MainActivity",
+      "installs": "1,000,000+"
+    },
+    {
       "drawable": "wendys_3",
       "requestCount": 34,
       "firstAppearance": 1708646427.0,
@@ -19,15 +28,6 @@
       "label": "Wendy's",
       "componentName": "com.wendys.nutritiontool/com.wendys.nutritiontool.MainActivity",
       "installs": "10,000,000+"
-    },
-    {
-      "drawable": "happ",
-      "requestCount": 34,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1780241625.0,
-      "label": "Happ",
-      "componentName": "com.happproxy/com.happproxy.feature.main.MainActivity",
-      "installs": "1,000,000+"
     },
     {
       "drawable": "epik",
@@ -66,6 +66,15 @@
       "installs": "10,000,000+"
     },
     {
+      "drawable": "secondscreen",
+      "requestCount": 32,
+      "firstAppearance": 1711639100.0,
+      "lastRequested": 1780314262.0,
+      "label": "SecondScreen",
+      "componentName": "com.farmerbb.secondscreen.free/com.farmerbb.secondscreen.activity.MainActivity",
+      "installs": "5,000,000+"
+    },
+    {
       "drawable": "earn_to_die_2",
       "requestCount": 31,
       "firstAppearance": 1714091400.0,
@@ -73,15 +82,6 @@
       "label": "Earn to Die 2",
       "componentName": "com.notdoppler.earntodie2/com.notdoppler.earntodie2.AppActivity",
       "installs": "100,000,000+"
-    },
-    {
-      "drawable": "secondscreen",
-      "requestCount": 31,
-      "firstAppearance": 1711639100.0,
-      "lastRequested": 1776269537.0,
-      "label": "SecondScreen",
-      "componentName": "com.farmerbb.secondscreen.free/com.farmerbb.secondscreen.activity.MainActivity",
-      "installs": "5,000,000+"
     },
     {
       "drawable": "paperize",
@@ -867,6 +867,15 @@
       "installs": "10,000,000+"
     },
     {
+      "drawable": "cursed_house_multiplayergmm",
+      "requestCount": 23,
+      "firstAppearance": 1727170981.0,
+      "lastRequested": 1780314262.0,
+      "label": "Cursed house Multiplayer(GMM)",
+      "componentName": "com.UnityUserco.EscapeHauntedHouseOnline/com.unity3d.player.UnityPlayerActivity",
+      "installs": "10,000,000+"
+    },
+    {
       "drawable": "migu",
       "requestCount": 22,
       "firstAppearance": 1724535248.0,
@@ -979,15 +988,6 @@
       "lastRequested": 1780221725.0,
       "label": "XShare Mini",
       "componentName": "com.talpa.share/com.infinix.xshare.MainActivity"
-    },
-    {
-      "drawable": "cursed_house_multiplayergmm",
-      "requestCount": 22,
-      "firstAppearance": 1727170981.0,
-      "lastRequested": 1779355901.0,
-      "label": "Cursed house Multiplayer(GMM)",
-      "componentName": "com.UnityUserco.EscapeHauntedHouseOnline/com.unity3d.player.UnityPlayerActivity",
-      "installs": "10,000,000+"
     },
     {
       "drawable": "bb_racing",
@@ -1443,6 +1443,33 @@
       "installs": "5,000,000+"
     },
     {
+      "drawable": "earn_to_die_rogue",
+      "requestCount": 20,
+      "firstAppearance": 1718535886.0,
+      "lastRequested": 1780251820.0,
+      "label": "Earn to Die Rogue",
+      "componentName": "com.notdoppler.earntodierogue/com.unity3d.player.UnityPlayerActivity",
+      "installs": "10,000,000+"
+    },
+    {
+      "drawable": "rainbow_six_mobile",
+      "requestCount": 20,
+      "firstAppearance": 1708404068.0,
+      "lastRequested": 1780251820.0,
+      "label": "Rainbow Six Mobile",
+      "componentName": "com.ubisoft.rainbowsixmobile.r6.fps.pvp.shooter/com.unity3d.player.MagnumPlayerActivity",
+      "installs": null
+    },
+    {
+      "drawable": "super_bear_adventure",
+      "requestCount": 20,
+      "firstAppearance": 1715160792.0,
+      "lastRequested": 1780314262.0,
+      "label": "Super Bear Adventure",
+      "componentName": "com.Earthkwak.Platformer/com.unity3d.player.UnityPlayerActivity",
+      "installs": "100,000,000+"
+    },
+    {
       "drawable": "myptptn",
       "requestCount": 19,
       "firstAppearance": 1719401073.0,
@@ -1468,15 +1495,6 @@
       "label": "Pixel Gun 3D",
       "componentName": "com.pixel.gun3d/com.pixelgun.MessagingAndPrime31UnityPlayerActivity",
       "installs": "100,000,000+"
-    },
-    {
-      "drawable": "earn_to_die_rogue",
-      "requestCount": 19,
-      "firstAppearance": 1718535886.0,
-      "lastRequested": 1743465600.0,
-      "label": "Earn to Die Rogue",
-      "componentName": "com.notdoppler.earntodierogue/com.unity3d.player.UnityPlayerActivity",
-      "installs": "10,000,000+"
     },
     {
       "drawable": "bait_2",
@@ -1614,15 +1632,6 @@
       "installs": "500,000+"
     },
     {
-      "drawable": "rainbow_six_mobile",
-      "requestCount": 19,
-      "firstAppearance": 1708404068.0,
-      "lastRequested": 1775968414.0,
-      "label": "Rainbow Six Mobile",
-      "componentName": "com.ubisoft.rainbowsixmobile.r6.fps.pvp.shooter/com.unity3d.player.MagnumPlayerActivity",
-      "installs": null
-    },
-    {
       "drawable": "zombie_tsunami",
       "requestCount": 19,
       "firstAppearance": 1719191333.0,
@@ -1702,15 +1711,6 @@
       "label": "Bangla Dictionary",
       "componentName": "com.hdictionary.bn/com.hdictionary.bn.DictionaryActivity",
       "installs": "10,000,000+"
-    },
-    {
-      "drawable": "super_bear_adventure",
-      "requestCount": 19,
-      "firstAppearance": 1715160792.0,
-      "lastRequested": 1779602471.0,
-      "label": "Super Bear Adventure",
-      "componentName": "com.Earthkwak.Platformer/com.unity3d.player.UnityPlayerActivity",
-      "installs": "100,000,000+"
     },
     {
       "drawable": "shell_asia",
@@ -2007,6 +2007,15 @@
       "installs": "100,000,000+"
     },
     {
+      "drawable": "blasphemous",
+      "requestCount": 18,
+      "firstAppearance": 1743648816.0,
+      "lastRequested": 1780251820.0,
+      "label": "Blasphemous",
+      "componentName": "com.thegamekitchen.blasphemousmobile/com.unity3d.player.UnityPlayerActivity",
+      "installs": "50,000+"
+    },
+    {
       "drawable": "snapmint",
       "requestCount": 17,
       "firstAppearance": 1721855740.0,
@@ -2077,15 +2086,6 @@
       "label": "Knots 3D",
       "componentName": "com.nynix.knots3d/com.nynix.knots3d.MainActivity",
       "installs": "1,000,000+"
-    },
-    {
-      "drawable": "blasphemous",
-      "requestCount": 17,
-      "firstAppearance": 1743648816.0,
-      "lastRequested": 1773422215.0,
-      "label": "Blasphemous",
-      "componentName": "com.thegamekitchen.blasphemousmobile/com.unity3d.player.UnityPlayerActivity",
-      "installs": "50,000+"
     },
     {
       "drawable": "photo_compare",
@@ -2728,6 +2728,14 @@
       "installs": "1,000,000+"
     },
     {
+      "drawable": "creative_studio",
+      "label": "Creative studio",
+      "componentName": "com.samsung.android.app.sketchbook/com.samsung.android.app.sketchbook.application.DrawingActivity",
+      "requestCount": 16,
+      "firstAppearance": 1774113487.0,
+      "lastRequested": 1780326284.0
+    },
+    {
       "drawable": "the_national_lottery",
       "requestCount": 15,
       "firstAppearance": 1712292785.0,
@@ -3165,12 +3173,12 @@
       "installs": "100,000+"
     },
     {
-      "drawable": "creative_studio",
-      "label": "Creative studio",
-      "componentName": "com.samsung.android.app.sketchbook/com.samsung.android.app.sketchbook.application.DrawingActivity",
+      "drawable": "divar",
       "requestCount": 15,
-      "firstAppearance": 1774113487.0,
-      "lastRequested": 1780247581.0
+      "firstAppearance": 1719027778.0,
+      "lastRequested": 1780315664.0,
+      "label": "Divar",
+      "componentName": "ir.divar/ir.divar.view.activity.SplashActivity"
     },
     {
       "drawable": "tiketcom",
@@ -3431,14 +3439,6 @@
       "label": "RACE THE SUN CHALLENGE EDITION",
       "componentName": "com.flippfly.racethesun/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "10,000,000+"
-    },
-    {
-      "drawable": "divar",
-      "requestCount": 14,
-      "firstAppearance": 1719027778.0,
-      "lastRequested": 1771398448.0,
-      "label": "Divar",
-      "componentName": "ir.divar/ir.divar.view.activity.SplashActivity"
     },
     {
       "drawable": "circle_search",
@@ -4755,6 +4755,23 @@
       "installs": "100,000,000+"
     },
     {
+      "drawable": "rubika",
+      "requestCount": 13,
+      "firstAppearance": 1723222851.0,
+      "lastRequested": 1780315664.0,
+      "label": "Rubika",
+      "componentName": "app.rbmain.a/org.rbmain.ui.LaunchActivity"
+    },
+    {
+      "drawable": "combat_master",
+      "requestCount": 13,
+      "firstAppearance": 1719119167.0,
+      "lastRequested": 1780292562.0,
+      "label": "Combat Master",
+      "componentName": "com.AlfaBravo.CombatMaster/com.unity3d.player.UnityPlayerActivity",
+      "installs": "10,000,000+"
+    },
+    {
       "drawable": "fermata_auto",
       "requestCount": 12,
       "firstAppearance": 1718585697.0,
@@ -5409,14 +5426,6 @@
       "installs": "10,000,000+"
     },
     {
-      "drawable": "rubika",
-      "requestCount": 12,
-      "firstAppearance": 1723222851.0,
-      "lastRequested": 1776093349.0,
-      "label": "Rubika",
-      "componentName": "app.rbmain.a/org.rbmain.ui.LaunchActivity"
-    },
-    {
       "drawable": "unnamed_icon_3",
       "requestCount": 12,
       "firstAppearance": 1719109559.0,
@@ -5649,15 +5658,6 @@
       "installs": "1,000,000+"
     },
     {
-      "drawable": "combat_master",
-      "requestCount": 12,
-      "firstAppearance": 1719119167.0,
-      "lastRequested": 1779355136.0,
-      "label": "Combat Master",
-      "componentName": "com.AlfaBravo.CombatMaster/com.unity3d.player.UnityPlayerActivity",
-      "installs": "10,000,000+"
-    },
-    {
       "drawable": "my_tom",
       "requestCount": 12,
       "firstAppearance": 1719582473.0,
@@ -5692,6 +5692,24 @@
       "label": "Dynamic Island",
       "componentName": "com.dynamicisland.notchscreenview/com.dynamicisland.notchscreenview.activity.SplashActivity",
       "installs": "1,000,000+"
+    },
+    {
+      "drawable": "heyfun",
+      "requestCount": 12,
+      "firstAppearance": 1721775683.0,
+      "lastRequested": 1780317796.0,
+      "label": "HeyFun",
+      "componentName": "com.heytap.quickgame/com.heytap.quickgame.module.others.launcher.LauncherActivity",
+      "installs": "1,000,000+"
+    },
+    {
+      "drawable": "kaspikz",
+      "requestCount": 12,
+      "firstAppearance": 1745020800.0,
+      "lastRequested": 1780314262.0,
+      "label": "Kaspi.kz",
+      "componentName": "kz.kaspi.mobile/kz.kaspi.mobile.activity.KaspiKzActivity",
+      "installs": "10,000,000+"
     },
     {
       "drawable": "appflowy",
@@ -6652,15 +6670,6 @@
       "installs": "100,000,000+"
     },
     {
-      "drawable": "heyfun",
-      "requestCount": 11,
-      "firstAppearance": 1721775683.0,
-      "lastRequested": 1779471840.0,
-      "label": "HeyFun",
-      "componentName": "com.heytap.quickgame/com.heytap.quickgame.module.others.launcher.LauncherActivity",
-      "installs": "1,000,000+"
-    },
-    {
       "drawable": "memory_zone",
       "requestCount": 11,
       "firstAppearance": 1723995940.0,
@@ -6733,12 +6742,12 @@
       "installs": "50,000+"
     },
     {
-      "drawable": "kaspikz",
+      "drawable": "ios_launcher",
       "requestCount": 11,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1779493023.0,
-      "label": "Kaspi.kz",
-      "componentName": "kz.kaspi.mobile/kz.kaspi.mobile.activity.KaspiKzActivity",
+      "firstAppearance": 1720936589.0,
+      "lastRequested": 1780303069.0,
+      "label": "iOS Launcher",
+      "componentName": "com.luutinhit.launcherios/com.luutinhit.launcherios.activity.SplashActivity",
       "installs": "10,000,000+"
     },
     {
@@ -8204,15 +8213,6 @@
       "installs": "1,000,000+"
     },
     {
-      "drawable": "ios_launcher",
-      "requestCount": 10,
-      "firstAppearance": 1720936589.0,
-      "lastRequested": 1775888210.0,
-      "label": "iOS Launcher",
-      "componentName": "com.luutinhit.launcherios/com.luutinhit.launcherios.activity.SplashActivity",
-      "installs": "10,000,000+"
-    },
-    {
       "drawable": "youtrip",
       "requestCount": 10,
       "firstAppearance": 1720025640.0,
@@ -8452,6 +8452,59 @@
       "label": "MapChart",
       "componentName": "com.whidev.mapchart/com.whidev.mapchart.MainActivity",
       "installs": "1,000,000+"
+    },
+    {
+      "drawable": "polri",
+      "requestCount": 10,
+      "firstAppearance": 1718514203.0,
+      "lastRequested": 1780330253.0,
+      "label": "POLRI",
+      "componentName": "superapps.polri.presisi.presisi/superapps.polri.presisi.presisi.MainActivity",
+      "installs": "10,000,000+"
+    },
+    {
+      "drawable": "kalnirnay_2025",
+      "requestCount": 10,
+      "firstAppearance": 1722568789.0,
+      "lastRequested": 1780326284.0,
+      "label": "KALNIRNAY 2025",
+      "componentName": "com.awt.kalnirnay/com.awt.kalnirnay.MainActivity",
+      "installs": "10,000,000+"
+    },
+    {
+      "drawable": "mech_arena",
+      "requestCount": 10,
+      "firstAppearance": 1722117648.0,
+      "lastRequested": 1780317796.0,
+      "label": "Mech Arena",
+      "componentName": "com.plarium.mechlegion/com.plarium.unity_app.UnityMainActivity",
+      "installs": "50,000,000+"
+    },
+    {
+      "drawable": "tips",
+      "requestCount": 10,
+      "firstAppearance": 1745020800.0,
+      "lastRequested": 1780292562.0,
+      "label": "Tips",
+      "componentName": "com.transsion.tips/com.transsion.tips.core.ui.MainActivity"
+    },
+    {
+      "drawable": "weather_2",
+      "requestCount": 10,
+      "firstAppearance": 1720936589.0,
+      "lastRequested": 1780303069.0,
+      "label": "Weather",
+      "componentName": "com.luutinhit.launcherios/com.luutinhit.weather.WeatherActivity",
+      "installs": "10,000,000+"
+    },
+    {
+      "drawable": "health",
+      "label": "Health",
+      "componentName": "com.fitbit.FitbitMobile/com.fitbit.HealthBrandedAlias",
+      "requestCount": 10,
+      "firstAppearance": 1779639468.0,
+      "lastRequested": 1780313103.0,
+      "installs": "100,000,000+"
     },
     {
       "drawable": "tuta_calendar",
@@ -9126,15 +9179,6 @@
       "installs": "1,000+"
     },
     {
-      "drawable": "polri",
-      "requestCount": 9,
-      "firstAppearance": 1718514203.0,
-      "lastRequested": 1766763027.0,
-      "label": "POLRI",
-      "componentName": "superapps.polri.presisi.presisi/superapps.polri.presisi.presisi.MainActivity",
-      "installs": "10,000,000+"
-    },
-    {
       "drawable": "exilium",
       "requestCount": 9,
       "firstAppearance": 1738559982.0,
@@ -9523,15 +9567,6 @@
       "installs": "50,000,000+"
     },
     {
-      "drawable": "kalnirnay_2025",
-      "requestCount": 9,
-      "firstAppearance": 1722568789.0,
-      "lastRequested": 1774011906.0,
-      "label": "KALNIRNAY 2025",
-      "componentName": "com.awt.kalnirnay/com.awt.kalnirnay.MainActivity",
-      "installs": "10,000,000+"
-    },
-    {
       "drawable": "kitchenowl",
       "requestCount": 9,
       "firstAppearance": 1721514488.0,
@@ -9897,15 +9932,6 @@
       "installs": "1,000,000+"
     },
     {
-      "drawable": "mech_arena",
-      "requestCount": 9,
-      "firstAppearance": 1722117648.0,
-      "lastRequested": 1774766410.0,
-      "label": "Mech Arena",
-      "componentName": "com.plarium.mechlegion/com.plarium.unity_app.UnityMainActivity",
-      "installs": "50,000,000+"
-    },
-    {
       "drawable": "egov_mobile",
       "requestCount": 9,
       "firstAppearance": 1728783889.0,
@@ -9931,14 +9957,6 @@
       "label": "Foodi - Food Delivery",
       "componentName": "com.foodiBd/com.foodiBd.MainActivity",
       "installs": "1,000,000+"
-    },
-    {
-      "drawable": "tips",
-      "requestCount": 9,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1775042760.0,
-      "label": "Tips",
-      "componentName": "com.transsion.tips/com.transsion.tips.core.ui.MainActivity"
     },
     {
       "drawable": "pratilipi_novel",
@@ -10267,15 +10285,6 @@
       "label": "yuu",
       "componentName": "com.tomoloyalty.yuu/com.tomoloyalty.yuu.MainActivity",
       "installs": "1,000,000+"
-    },
-    {
-      "drawable": "weather_2",
-      "requestCount": 9,
-      "firstAppearance": 1720936589.0,
-      "lastRequested": 1775888210.0,
-      "label": "Weather",
-      "componentName": "com.luutinhit.launcherios/com.luutinhit.weather.WeatherActivity",
-      "installs": "10,000,000+"
     },
     {
       "drawable": "echo_eq",
@@ -10676,15 +10685,6 @@
       "label": "Pro Metronome",
       "componentName": "com.eumlab.android.prometronome/com.eumlab.prometronome.activity.SplashActivity",
       "installs": "5,000,000+"
-    },
-    {
-      "drawable": "health",
-      "label": "Health",
-      "componentName": "com.fitbit.FitbitMobile/com.fitbit.HealthBrandedAlias",
-      "requestCount": 9,
-      "firstAppearance": 1779639468.0,
-      "lastRequested": 1780246504.0,
-      "installs": "100,000,000+"
     },
     {
       "drawable": "satunes",
@@ -13487,6 +13487,15 @@
       "installs": "5,000,000+"
     },
     {
+      "drawable": "glints_taploker",
+      "requestCount": 8,
+      "firstAppearance": 1726704589.0,
+      "lastRequested": 1780330253.0,
+      "label": "Glints TapLoker",
+      "componentName": "com.glints.candidate/com.glints.candidate.MainActivity",
+      "installs": "5,000,000+"
+    },
+    {
       "drawable": "ncell_app",
       "requestCount": 7,
       "firstAppearance": 1714999431.0,
@@ -13512,15 +13521,6 @@
       "label": "AI Hay",
       "componentName": "com.hay1.tintuc/com.hay1.tintuc.ui.SplashScreenActivity",
       "installs": "10,000,000+"
-    },
-    {
-      "drawable": "glints_taploker",
-      "requestCount": 7,
-      "firstAppearance": 1726704589.0,
-      "lastRequested": 1762837904.0,
-      "label": "Glints TapLoker",
-      "componentName": "com.glints.candidate/com.glints.candidate.MainActivity",
-      "installs": "5,000,000+"
     },
     {
       "drawable": "android_assistant",
@@ -17199,6 +17199,23 @@
       "lastRequested": 1780260206.0
     },
     {
+      "drawable": "octopus",
+      "requestCount": 7,
+      "firstAppearance": 1718817522.0,
+      "lastRequested": 1780314262.0,
+      "label": "Octopus",
+      "componentName": "com.chaozhuo.gameassistant/com.chaozhuo.gameassistant.SplashActivity"
+    },
+    {
+      "drawable": "pandavpn",
+      "requestCount": 7,
+      "firstAppearance": 1719023431.0,
+      "lastRequested": 1780326284.0,
+      "label": "PandaVPN",
+      "componentName": "com.pandavpn.androidproxy/com.pandavpn.androidproxy.ui.main.MainActivity",
+      "installs": "10,000,000+"
+    },
+    {
       "drawable": "nepali_patro",
       "requestCount": 6,
       "firstAppearance": 1745020800.0,
@@ -20090,14 +20107,6 @@
       "installs": "10,000,000+"
     },
     {
-      "drawable": "octopus",
-      "requestCount": 6,
-      "firstAppearance": 1718817522.0,
-      "lastRequested": 1772626418.0,
-      "label": "Octopus",
-      "componentName": "com.chaozhuo.gameassistant/com.chaozhuo.gameassistant.SplashActivity"
-    },
-    {
       "drawable": "administrador_de_aplicaciones",
       "requestCount": 6,
       "firstAppearance": 1718508890.0,
@@ -21621,15 +21630,6 @@
       "componentName": "com.dijia1124.plusplusbattery/com.dijia1124.plusplusbattery.MainActivity"
     },
     {
-      "drawable": "pandavpn",
-      "requestCount": 6,
-      "firstAppearance": 1719023431.0,
-      "lastRequested": 1777086081.0,
-      "label": "PandaVPN",
-      "componentName": "com.pandavpn.androidproxy/com.pandavpn.androidproxy.ui.main.MainActivity",
-      "installs": "10,000,000+"
-    },
-    {
       "drawable": "anger_of_stick_5_zombie",
       "requestCount": 6,
       "firstAppearance": 1725538532.0,
@@ -22501,6 +22501,15 @@
       "firstAppearance": 1773597532.0,
       "lastRequested": 1779333817.0,
       "installs": "500,000+"
+    },
+    {
+      "drawable": "destiny_rising",
+      "requestCount": 6,
+      "firstAppearance": 1745020800.0,
+      "lastRequested": 1780251820.0,
+      "label": "Destiny: Rising",
+      "componentName": "com.netease.g108na/com.netease.ntunisdk.external.protocol.ProtocolLauncher",
+      "installs": "1,000,000+"
     },
     {
       "drawable": "rail_sheba_3",
@@ -30086,15 +30095,6 @@
       "installs": "100,000+"
     },
     {
-      "drawable": "destiny_rising",
-      "requestCount": 5,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1776649581.0,
-      "label": "Destiny: Rising",
-      "componentName": "com.netease.g108na/com.netease.ntunisdk.external.protocol.ProtocolLauncher",
-      "installs": "1,000,000+"
-    },
-    {
       "drawable": "simpletextcrypt",
       "label": "SimpleTextCrypt",
       "componentName": "com.aidinhut.simpletextcrypt/com.aidinhut.simpletextcrypt.MainActivity",
@@ -30705,6 +30705,15 @@
       "requestCount": 5,
       "firstAppearance": 1766860960.0,
       "lastRequested": 1779925321.0
+    },
+    {
+      "drawable": "mint_browser",
+      "requestCount": 5,
+      "firstAppearance": 1720143838.0,
+      "lastRequested": 1780303069.0,
+      "label": "Mint Browser",
+      "componentName": "com.mi.globalbrowser.mini/com.miui.android.apps.chrome.Main",
+      "installs": "10,000,000+"
     },
     {
       "drawable": "panda",
@@ -41123,15 +41132,6 @@
       "installs": "5,000,000+"
     },
     {
-      "drawable": "mint_browser",
-      "requestCount": 4,
-      "firstAppearance": 1720143838.0,
-      "lastRequested": 1775713477.0,
-      "label": "Mint Browser",
-      "componentName": "com.mi.globalbrowser.mini/com.miui.android.apps.chrome.Main",
-      "installs": "10,000,000+"
-    },
-    {
       "drawable": "hollister",
       "requestCount": 4,
       "firstAppearance": 1720288287.0,
@@ -42746,6 +42746,24 @@
       "firstAppearance": 1779406935.0,
       "lastRequested": 1780074569.0,
       "installs": "100,000+"
+    },
+    {
+      "drawable": "an_bui",
+      "requestCount": 4,
+      "firstAppearance": 1726513608.0,
+      "lastRequested": 1780313103.0,
+      "label": "An Bui",
+      "componentName": "com.anbui.app/com.anbui.app.MainActivity",
+      "installs": "10,000+"
+    },
+    {
+      "drawable": "boodmo_spare_parts_expert",
+      "requestCount": 4,
+      "firstAppearance": 1736157062.0,
+      "lastRequested": 1780326284.0,
+      "label": "boodmo - Spare Parts Expert",
+      "componentName": "com.opsway.boodmo/com.opsway.boodmo.MainActivity",
+      "installs": "10,000,000+"
     },
     {
       "drawable": "nsou",
@@ -52782,15 +52800,6 @@
       "lastRequested": 1777084702.0
     },
     {
-      "drawable": "an_bui",
-      "requestCount": 3,
-      "firstAppearance": 1726513608.0,
-      "lastRequested": 1776319797.0,
-      "label": "An Bui",
-      "componentName": "com.anbui.app/com.anbui.app.MainActivity",
-      "installs": "10,000+"
-    },
-    {
       "drawable": "apple_tv_rc",
       "requestCount": 3,
       "firstAppearance": 1745020800.0,
@@ -54407,15 +54416,6 @@
       "installs": "5,000+"
     },
     {
-      "drawable": "boodmo_spare_parts_expert",
-      "requestCount": 3,
-      "firstAppearance": 1736157062.0,
-      "lastRequested": 1779516424.0,
-      "label": "boodmo - Spare Parts Expert",
-      "componentName": "com.opsway.boodmo/com.opsway.boodmo.MainActivity",
-      "installs": "10,000,000+"
-    },
-    {
       "drawable": "unnamed_icon_5_8",
       "label": "\u660e\u65e5\u65b9\u821f:\u7ec8\u672b\u5730",
       "componentName": "com.hypergryph.endfield/com.u8.sdk.U8UnityContext",
@@ -54837,6 +54837,41 @@
       "firstAppearance": 1779716857.0,
       "lastRequested": 1780128630.0,
       "installs": "500,000+"
+    },
+    {
+      "drawable": "toddle_student",
+      "requestCount": 3,
+      "firstAppearance": 1725184125.0,
+      "lastRequested": 1780303069.0,
+      "label": "Toddle Student",
+      "componentName": "com.toddle.student/com.toddle.student.MainActivity",
+      "installs": "100,000+"
+    },
+    {
+      "drawable": "qustodio_kids",
+      "label": "Qustodio Kids",
+      "componentName": "com.qustodio.qustodioapp/com.qustodio.qustodioapp.ui.splash.SplashScreenActivity",
+      "requestCount": 3,
+      "firstAppearance": 1772684314.0,
+      "lastRequested": 1780303069.0,
+      "installs": "1,000,000+"
+    },
+    {
+      "drawable": "stick_nodes",
+      "label": "Stick Nodes",
+      "componentName": "org.fortheloss.sticknodes/org.fortheloss.sticknodes.AndroidLauncher",
+      "requestCount": 3,
+      "firstAppearance": 1773329213.0,
+      "lastRequested": 1780303069.0,
+      "installs": "10,000,000+"
+    },
+    {
+      "drawable": "limbo_pc",
+      "label": "Limbo PC",
+      "componentName": "com.limbo.emu.maio/com.limbo.emu.maio.LimboEmuActivity",
+      "requestCount": 3,
+      "firstAppearance": 1771241973.0,
+      "lastRequested": 1780313103.0
     },
     {
       "drawable": "electrify_america",
@@ -56656,15 +56691,6 @@
       "label": "Sticky Terms",
       "componentName": "de.kamibox.stickyterms/com.ansca.corona.CoronaActivity",
       "installs": "50,000+"
-    },
-    {
-      "drawable": "toddle_student",
-      "requestCount": 2,
-      "firstAppearance": 1725184125.0,
-      "lastRequested": 1761075362.0,
-      "label": "Toddle Student",
-      "componentName": "com.toddle.student/com.toddle.student.MainActivity",
-      "installs": "100,000+"
     },
     {
       "drawable": "workflowy",
@@ -74236,15 +74262,6 @@
       "installs": "1,000,000+"
     },
     {
-      "drawable": "qustodio_kids",
-      "label": "Qustodio Kids",
-      "componentName": "com.qustodio.qustodioapp/com.qustodio.qustodioapp.ui.splash.SplashScreenActivity",
-      "requestCount": 2,
-      "firstAppearance": 1772684314.0,
-      "lastRequested": 1776275388.0,
-      "installs": "1,000,000+"
-    },
-    {
       "drawable": "veepn",
       "label": "VeePN",
       "componentName": "com.vpnproxy.connect/com.vpnproxy.connect.MainActivity",
@@ -74546,15 +74563,6 @@
       "firstAppearance": 1772696579.0,
       "lastRequested": 1776543063.0,
       "installs": "5,000,000+"
-    },
-    {
-      "drawable": "stick_nodes",
-      "label": "Stick Nodes",
-      "componentName": "org.fortheloss.sticknodes/org.fortheloss.sticknodes.AndroidLauncher",
-      "requestCount": 2,
-      "firstAppearance": 1773329213.0,
-      "lastRequested": 1776356407.0,
-      "installs": "10,000,000+"
     },
     {
       "drawable": "beyblade_burst",
@@ -77244,6 +77252,32 @@
       "firstAppearance": 1779602471.0,
       "lastRequested": 1779915558.0,
       "installs": "5,000,000+"
+    },
+    {
+      "drawable": "create_command",
+      "label": "Create Command",
+      "componentName": "com.anbui.cqcm.app/com.anbui.cqcm.app.MainActivity",
+      "requestCount": 2,
+      "firstAppearance": 1766948476.0,
+      "lastRequested": 1780313103.0,
+      "installs": "10,000+"
+    },
+    {
+      "drawable": "cinehd",
+      "label": "CineHD",
+      "componentName": "com.cinehd/com.cinehd.MainActivity",
+      "requestCount": 2,
+      "firstAppearance": 1776066019.0,
+      "lastRequested": 1780317796.0
+    },
+    {
+      "drawable": "freedom_1",
+      "label": "Freedom",
+      "componentName": "ffinbank.MyFreedom/ffinbank.app.activity.MyFreedom",
+      "requestCount": 2,
+      "firstAppearance": 1776626083.0,
+      "lastRequested": 1780314262.0,
+      "installs": "1,000,000+"
     },
     {
       "drawable": "my_digi_3",
@@ -107461,15 +107495,6 @@
       "installs": "1,000,000+"
     },
     {
-      "drawable": "create_command",
-      "label": "Create Command",
-      "componentName": "com.anbui.cqcm.app/com.anbui.cqcm.app.MainActivity",
-      "requestCount": 1,
-      "firstAppearance": 1766948476.0,
-      "lastRequested": 1766948476.0,
-      "installs": "10,000+"
-    },
-    {
       "drawable": "custom_navigation_bar",
       "label": "Custom Navigation Bar",
       "componentName": "xyz.paphonb.systemuituner/xyz.paphonb.systemuituner.ui.HomeActivity",
@@ -109892,14 +109917,6 @@
       "drawable": "limbo_5_1_0_mod",
       "label": "Limbo 5.1.0 Mod",
       "componentName": "com.limbo.emu.maiq/com.limbo.emu.maiq.LimboEmuActivity",
-      "requestCount": 1,
-      "firstAppearance": 1771241973.0,
-      "lastRequested": 1771241973.0
-    },
-    {
-      "drawable": "limbo_pc",
-      "label": "Limbo PC",
-      "componentName": "com.limbo.emu.maio/com.limbo.emu.maio.LimboEmuActivity",
       "requestCount": 1,
       "firstAppearance": 1771241973.0,
       "lastRequested": 1771241973.0
@@ -152256,14 +152273,6 @@
       "installs": "100,000+"
     },
     {
-      "drawable": "cinehd",
-      "label": "CineHD",
-      "componentName": "com.cinehd/com.cinehd.MainActivity",
-      "requestCount": 1,
-      "firstAppearance": 1776066019.0,
-      "lastRequested": 1776066019.0
-    },
-    {
       "drawable": "freefy",
       "label": "Freefy",
       "componentName": "com.freefy.online/com.freefy.online.MainActivity",
@@ -155630,15 +155639,6 @@
       "requestCount": 1,
       "firstAppearance": 1775863092.0,
       "lastRequested": 1775863092.0
-    },
-    {
-      "drawable": "freedom_1",
-      "label": "Freedom",
-      "componentName": "ffinbank.MyFreedom/ffinbank.app.activity.MyFreedom",
-      "requestCount": 1,
-      "firstAppearance": 1776626083.0,
-      "lastRequested": 1776626083.0,
-      "installs": "1,000,000+"
     },
     {
       "drawable": "3i",
@@ -173729,6 +173729,302 @@
       "firstAppearance": 1779562018.0,
       "lastRequested": 1779562018.0,
       "installs": "1,000,000+"
+    },
+    {
+      "drawable": "class_12_physics_guide",
+      "label": "Class 12 Physics Guide",
+      "componentName": "in.studentfactory.class12physics/in.studentfactory.class12physics.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780292562.0,
+      "lastRequested": 1780292562.0
+    },
+    {
+      "drawable": "classpad",
+      "label": "ClassPad",
+      "componentName": "jp.co.casio.fx.ClassPad2/com.casio.SubscriptionActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780313103.0,
+      "lastRequested": 1780313103.0
+    },
+    {
+      "drawable": "cubes2048_io",
+      "label": "Cubes2048.io",
+      "componentName": "com.CrazyGames.Cubes2048/com.CrazyGames.Cubes2048.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780313103.0,
+      "lastRequested": 1780313103.0
+    },
+    {
+      "drawable": "ldplayer",
+      "label": "LDPlayer",
+      "componentName": "com.ldy.funpass/com.funpass.cloudphonenet.SplashActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780313103.0,
+      "lastRequested": 1780313103.0
+    },
+    {
+      "drawable": "smash_hit_4",
+      "label": "Smash Hit 4",
+      "componentName": "com.mediocre.smashhit4/com.mediocre.smashhit.Main",
+      "requestCount": 1,
+      "firstAppearance": 1780313103.0,
+      "lastRequested": 1780313103.0
+    },
+    {
+      "drawable": "depaul",
+      "label": "Depaul",
+      "componentName": "com.buyuk.sactin.depaulnh/com.buyuk.sactinapp.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780317796.0,
+      "lastRequested": 1780317796.0
+    },
+    {
+      "drawable": "chevstrap",
+      "label": "Chevstrap",
+      "componentName": "com.chevstrap.rbx/com.chevstrap.rbx.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780314262.0,
+      "lastRequested": 1780314262.0
+    },
+    {
+      "drawable": "free_fire",
+      "label": "Free Fire",
+      "componentName": "com.tech.barbosa/com.dts.freefireth.FFMainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780314262.0,
+      "lastRequested": 1780314262.0
+    },
+    {
+      "drawable": "hide_my_ip",
+      "label": "Hide My IP",
+      "componentName": "com.hidemyip.hideme/com.hidemyip.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780314262.0,
+      "lastRequested": 1780314262.0
+    },
+    {
+      "drawable": "hidemy_name_vpn",
+      "label": "hidemy.name VPN",
+      "componentName": "com.fourksoft.openvpn/com.fourksoft.vpn.gui.activity.splash.SplashActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780314262.0,
+      "lastRequested": 1780314262.0
+    },
+    {
+      "drawable": "hub_vpn",
+      "label": "HUB VPN",
+      "componentName": "com.developerrajnagor.hubvpn/com.developerrajnagor.hubvpn.activity.SplashActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780314262.0,
+      "lastRequested": 1780314262.0
+    },
+    {
+      "drawable": "neizzir",
+      "label": "NEIZZIR",
+      "componentName": "com.br.top/com.blackhub.bronline.neizzir.activities.main.ui.NEIZZIR",
+      "requestCount": 1,
+      "firstAppearance": 1780314262.0,
+      "lastRequested": 1780314262.0
+    },
+    {
+      "drawable": "neizzir_installer",
+      "label": "NEIZZIR Installer",
+      "componentName": "com.neizzir.Installer/com.neizzir.Installer.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780314262.0,
+      "lastRequested": 1780314262.0
+    },
+    {
+      "drawable": "russian_car_driver_vaz_2108_se",
+      "label": "Russian Car Driver VAZ 2108 SE",
+      "componentName": "com.AB.RCDHDSE/com.unity3d.player.UnityPlayerActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780314262.0,
+      "lastRequested": 1780314262.0
+    },
+    {
+      "drawable": "sigma_1",
+      "label": "SIGMA",
+      "componentName": "com.studioarm.sigma/com.studioarm.sigma.FFMainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780314262.0,
+      "lastRequested": 1780314262.0
+    },
+    {
+      "drawable": "skyvpn",
+      "label": "SkyVPN",
+      "componentName": "me.skyvpn.app/me.skyvpn.app.ui.activity.SkySplashActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780314262.0,
+      "lastRequested": 1780314262.0
+    },
+    {
+      "drawable": "unnamed_icon_26",
+      "label": "\u0411\u0430\u0440\u0430\u0445\u043e\u043b\u043a\u0430",
+      "componentName": "kz.baraxolka/kz.baraxolka.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780314262.0,
+      "lastRequested": 1780314262.0
+    },
+    {
+      "drawable": "unnamed_icon_1_20",
+      "label": "\u0418\u0433\u0440\u043e\u0432\u043e\u0435 \u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u043e",
+      "componentName": "cn.nubia.gamelauncher/cn.nubia.gamelauncher.activity.GameSpaceActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780314262.0,
+      "lastRequested": 1780314262.0
+    },
+    {
+      "drawable": "westpac",
+      "label": "Westpac",
+      "componentName": "org.westpac.bank/au.com.westpac.banking.universal.android.ui.activity.MainActivityAliasMidnight",
+      "requestCount": 1,
+      "firstAppearance": 1780324391.0,
+      "lastRequested": 1780324391.0
+    },
+    {
+      "drawable": "3d_modeling_app",
+      "label": "3D Modeling App",
+      "componentName": "com.inforcegames.app3dmodelling/com.unity3d.player.UnityPlayerActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "blender_keys",
+      "label": "Blender Keys",
+      "componentName": "de.barracudabyte.blenderkeys/de.barracudabyte.blenderkeys.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "code",
+      "label": "Code",
+      "componentName": "com.sec.android.app.sbrowser.webapk.w6881360baecd9f82020f12627bb4f6271/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "forms",
+      "label": "Forms",
+      "componentName": "org.chromium.webapk.a2c8321be949a070c_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "harry_potter",
+      "label": "Harry Potter",
+      "componentName": "org.chromium.webapk.ad972738b6cde56e7_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "holy_quran",
+      "label": "Holy Quran",
+      "componentName": "org.alislam.readquran/org.alislam.readquran.activity.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "mi_home",
+      "label": "Mi Home",
+      "componentName": "com.xiaomi.smarthome.tv.global4/com.xiaomi.smarthome.tv.ui.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "mtai",
+      "label": "MTAi",
+      "componentName": "tv.mta.apps.muslimtv/tv.mta.apps.muslimtv.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "onedrive",
+      "label": "OneDrive",
+      "componentName": "org.chromium.webapk.a14dd5a01657169d1_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "powerpages_app",
+      "label": "PowerPages App",
+      "componentName": "org.chromium.webapk.abdf37cf1cbb95d55_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "salat",
+      "label": "Salat",
+      "componentName": "org.alislam.adhan/org.alislam.adhan.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "stop_motion_studio",
+      "label": "Stop Motion Studio",
+      "componentName": "com.cateater.stopmotionstudiopro/com.cateater.stopmotionstudio.MainActivity_start",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "xiaomi_kids",
+      "label": "Xiaomi Kids",
+      "componentName": "com.xun.xiaomikids/com.xiaoxun.xun.activitys.WelcomeActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "zip_password_recovery",
+      "label": "Zip password recovery",
+      "componentName": "com.peterhohsy.zip_password_recovery/com.peterhohsy.m.Activity_m",
+      "requestCount": 1,
+      "firstAppearance": 1780303069.0,
+      "lastRequested": 1780303069.0
+    },
+    {
+      "drawable": "myntra",
+      "label": "Myntra",
+      "componentName": "com.myntra.android/com.myntra.android.activities.react.ReactActivity.EORS_JUNE_2026",
+      "requestCount": 1,
+      "firstAppearance": 1780326284.0,
+      "lastRequested": 1780326284.0
+    },
+    {
+      "drawable": "abrehamrahi",
+      "label": "Abrehamrahi",
+      "componentName": "ir.sharif.drive/ir.sharif.drive.feature.onboarding.ui.splash.RoutingActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780315664.0,
+      "lastRequested": 1780315664.0
+    },
+    {
+      "drawable": "minichat",
+      "label": "Minichat",
+      "componentName": "mini.video.chat/mini.video.chat.ui.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1780315664.0,
+      "lastRequested": 1780315664.0
+    },
+    {
+      "drawable": "pixel_saya",
+      "label": "Pixel Saya",
+      "componentName": "com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p4",
+      "requestCount": 1,
+      "firstAppearance": 1780330253.0,
+      "lastRequested": 1780330253.0
     }
   ]
 }
