@@ -827,7 +827,8 @@ const Templates = {
     }
     let globalHtml = '';
     if (global > 0) {
-      globalHtml = `<div class="tooltip-value">${global} presumed country</div>`;
+      const globalLabel = global === 1 ? 'presumed country' : 'presumed countries';
+      globalHtml = `<div class="tooltip-value">${global} ${globalLabel}</div>`;
     }
     return `<div class="tooltip-label">${domain}</div>
       ${globalHtml}
@@ -1848,7 +1849,7 @@ const Data = {
         }
       }
     }
-    
+
     // Set filter
     if (query.isSet) {
       data = data.filter((app) =>
