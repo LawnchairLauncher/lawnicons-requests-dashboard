@@ -13,6 +13,8 @@ const fflate = /** @type {* & {fflate: any}} */ (window).fflate;
 const CONFIG = {
   data: {
     endpoint: 'assets/requests.json',
+    requestsGraphPath: 'assets/requests_graph.json',
+    screensGraphPath: 'assets/screens_graph.json',
     setsStatsPath: 'assets/stats/sets_stats.json',
     domainStatsPath: 'assets/stats/domain_stats.json',
     activityStatsPath: 'assets/stats/activity_stats.json',
@@ -388,6 +390,19 @@ const Templates = {
     const id = app.componentName;
     const name = app.label;
     const pkg = id.split('/')[0];
+
+    const domain = id.split('/')[0].split('.')[0];
+    const isoCountries = new Set(['ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bt','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','gb','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','st','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','us','uy','uz','va','vc','ve','vi','vn','vu','ye','yt','za','zm','zw']);
+    let idPrefix = '';
+    if (!isoCountries.has(domain) && App.state.requestsGraph[id]) {
+      const neighbors = Object.keys(App.state.requestsGraph[id]);
+      if (neighbors.length === 1) {
+        idPrefix = neighbors[0].split('/')[0].split('.')[0] + ' • ';
+      } else if (neighbors.length > 1) {
+        idPrefix = 'global • ';
+      }
+    }
+
     const isUnknown = app.drawable === 'unknown' || name === '(Unknown App)';
     const existingDrawable = App.state.existingSvgs
       ? App.state.existingSvgs.get(id)
@@ -454,7 +469,7 @@ const Templates = {
                   ${tagHtml}
                   <span class="${appNameClass}">${name}</span>
               </div>
-              <span class="item-sub" title="${id}">ID: ${id}</span>
+              <span class="item-sub" title="${idPrefix}${id}">ID: ${idPrefix}${id}</span>
           </div>
           </div>
         </div>
@@ -1602,7 +1617,8 @@ const Data = {
         }
       }
 
-      App.state.screensData = await this.fetchJson('assets/screens_graph.json', {});
+      App.state.screensData = await this.fetchJson(CONFIG.data.screensGraphPath, {});
+      App.state.requestsGraph = await this.fetchJson(CONFIG.data.requestsGraphPath, {});
       
       // Load optional data
       await Promise.all([
