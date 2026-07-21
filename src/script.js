@@ -1828,21 +1828,27 @@ const Data = {
       if (s.regexMode) {
         try {
           const regex = new RegExp(query.text, 'i');
-          data = data.filter((a) =>
-            regex.test(a.label) || regex.test(a.componentName)
-          );
+          data = data.filter((a) => {
+            if (regex.test(a.label) || regex.test(a.componentName)) return true;
+            // Check presumed country for non-geo requests
+            const domainMatch = s.search.match(/^\^([a-z]+)\\\./);
+            if (domainMatch) {
+              const searchDomain = domainMatch[1];
+              const comp = a.componentName;
+              const graph = App.state.requestsGraph;
+              if (graph[comp]) {
+                const neighbors = Object.keys(graph[comp]);
+                return neighbors.some(n => n.split('/')[0].split('.')[0] === searchDomain);
+              }
+            }
+            return false;
+          });
         } catch {
           data = [];
         }
-      } else {
-        const term = query.text.toLowerCase();
-        data = data.filter((a) =>
-          a.label.toLowerCase().includes(term) ||
-          a.componentName.toLowerCase().includes(term)
-        );
       }
     }
-
+    
     // Set filter
     if (query.isSet) {
       data = data.filter((app) =>
