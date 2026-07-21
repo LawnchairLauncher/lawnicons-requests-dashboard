@@ -827,12 +827,11 @@ const Templates = {
     }
     let globalHtml = '';
     if (global > 0) {
-      const globalLabel = global === 1 ? 'presumed country' : 'presumed countries';
-      globalHtml = `<div class="tooltip-value">${global} ${globalLabel}</div>`;
+      globalHtml = `<div class="tooltip-value">${global} non-geo</div>`;
     }
     return `<div class="tooltip-label">${domain}</div>
       ${globalHtml}
-      <div class="tooltip-value">${requests} requests</div>
+      <div class="tooltip-value">${requests} local ${requests === 1 ? 'request' : 'requests'}</div>
       <div class="tooltip-value">${done} done (${pct}%)</div>${extra}`;
   },
 
