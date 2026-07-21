@@ -2,7 +2,6 @@
 Save trending baseline snapshots for comparing request counts between email fetches.
 period_start: saved the day before the next scheduled fetch.
 period_end: saved the day after emails were fetched (last_email_fetch.txt updated).
-Baseline resets if period_end is older than 30 days.
 """
 
 import json
@@ -42,20 +41,12 @@ def get_next_fetch_date():
     if not LAST_FETCH_PATH.exists():
         return None
     last = date.fromisoformat(LAST_FETCH_PATH.read_text().strip())
-    return last + timedelta(days=60)
+    return last + timedelta(days=30)
 
 
 def main():
     today = datetime.now(MAPUTO).date()
     baseline = load_baseline()
-
-    # Reset if period_end is older than 30 days
-    if baseline.get("period_end") and baseline["period_end"].get("date"):
-        end_date = datetime.strptime(baseline["period_end"]["date"], "%Y-%m-%d").date()
-        if (today - end_date).days > 30:
-            print("Baseline older than 30 days. Deleting.")
-            BASELINE_PATH.unlink(missing_ok=True)
-            baseline = {"period_start": None, "period_end": None}
 
     with open(REQUESTS_JSON, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -73,7 +64,7 @@ def main():
     next_fetch = get_next_fetch_date()
 
     # period_start: 1 day before next fetch
-    if next_fetch and baseline.get("period_start") is None:
+    if next_fetch:
         one_day_before_fetch = next_fetch - timedelta(days=1)
         if today == one_day_before_fetch:
             baseline["period_start"] = entry
@@ -85,8 +76,8 @@ def main():
     if LAST_FETCH_PATH.exists():
         last_fetch = date.fromisoformat(LAST_FETCH_PATH.read_text().strip())
         day_after_fetch = last_fetch + timedelta(days=1)
-        if today == day_after_fetch and baseline.get("period_start") is not None and baseline.get("period_end") is None:
-            start_snapshot = baseline["period_start"]["snapshot"]
+        if today == day_after_fetch:
+            start_snapshot = baseline.get("period_start", {}).get("snapshot", {})
             filtered_snapshot = {k: v for k, v in snapshot.items() if k in start_snapshot}
             entry["snapshot"] = filtered_snapshot
             baseline["period_end"] = entry
