@@ -1955,8 +1955,14 @@ const Data = {
     if (params.has('tab')) {
       const tab = params.get('tab');
       if (tab === 'screens') App.state.activeTab = 'screens';
-    }    
-
+    }
+    if (params.has('screen')) {
+      const screenId = params.get('screen');
+      if (App.state.screensData[screenId]) {
+        App.state.activeScreenFilter = App.state.screensData[screenId];
+        App.state.activeTab = 'requests';
+      }
+    }
     if (params.has('page')) {
       const page = params.get('page');
       if (page === 'low-quality-icons') {
@@ -1988,7 +1994,17 @@ const Data = {
     }
 
     if (s.activeTab !== 'requests') params.set('tab', s.activeTab);
-    else params.delete('tab');    
+    else params.delete('tab');
+    
+    if (s.activeScreenFilter) {
+      const screenEntry = Object.entries(s.screensData).find(([_, ids]) => 
+        ids.length === s.activeScreenFilter.length && 
+        ids.every(id => s.activeScreenFilter.includes(id))
+      );
+      if (screenEntry) params.set('screen', screenEntry[0]);
+    } else {
+      params.delete('screen');
+    }    
 
     if (App.state.lowQualityActive) {
       params.set('page', 'low-quality-icons');
@@ -3371,6 +3387,7 @@ const UI = {
               document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
               document.querySelector('.tab[data-tab="requests"]')?.classList.add('active');
               App.state.activeScreenFilter = screen.ids;
+              Data.syncUrlState();
               this.render();
             });
             App.dom.container.appendChild(card);
