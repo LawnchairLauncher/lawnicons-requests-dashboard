@@ -337,18 +337,31 @@ def update_requests_graph(output_dir: Path, component_ids: list[str]):
             graph = json.load(f)
     else:
         graph = {}
-    
+
+    ISO_COUNTRIES = {'ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bt','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','gb','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','st','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','us','uy','uz','va','vc','ve','vi','vn','vu','ye','yt','za','zm','zw'}
+
+    def get_domain(comp):
+        pkg = comp.split("/")[0]
+        return pkg.split(".")[0] if "." in pkg else "unknown"
+
+    def is_country(domain):
+        return domain in ISO_COUNTRIES
+
     unique_ids = list(set(component_ids))
     for i, comp_a in enumerate(unique_ids):
-        if comp_a not in graph:
-            graph[comp_a] = []
+        domain_a = get_domain(comp_a)
         for comp_b in unique_ids[i+1:]:
-            if len(graph[comp_a]) < 30 and comp_b not in graph[comp_a]:
-                graph[comp_a].append(comp_b)
-            if comp_b not in graph:
-                graph[comp_b] = []
-            if len(graph[comp_b]) < 30 and comp_a not in graph[comp_b]:
-                graph[comp_b].append(comp_a)
+            domain_b = get_domain(comp_b)
+            
+            # Only store: non-geo key -> geo value
+            if not is_country(domain_a) and is_country(domain_b):
+                if comp_a not in graph:
+                    graph[comp_a] = {}
+                graph[comp_a][comp_b] = graph[comp_a].get(comp_b, 0) + 1
+            elif is_country(domain_a) and not is_country(domain_b):
+                if comp_b not in graph:
+                    graph[comp_b] = {}
+                graph[comp_b][comp_a] = graph[comp_b].get(comp_a, 0) + 1
     
     with open(graph_path, 'w') as f:
         json.dump(graph, f, indent=2)

@@ -389,16 +389,10 @@ def update_domain_stats() -> int:
             neighbors = req_graph[comp]
             linked_countries = set()
 
-            if isinstance(neighbors, dict):
-                for neighbor in neighbors:
-                    n_domain = get_domain(neighbor)
-                    if is_country(n_domain):
-                        linked_countries.add(n_domain)
-            elif isinstance(neighbors, list):
-                for neighbor in neighbors:
-                    n_domain = get_domain(neighbor)
-                    if is_country(n_domain):
-                        linked_countries.add(n_domain)
+            for neighbor in neighbors:
+                n_domain = get_domain(neighbor)
+                if is_country(n_domain):
+                    linked_countries.add(n_domain)
 
             # Get installs for this request
             inst = 0
