@@ -733,18 +733,17 @@ button.input-icon.active {
 
 .domain-col-global {
   background: var(--secondary);
-  opacity: 0.5;
+  opacity: 0.3;
+  border-radius: var(--shape-xsmall) var(--shape-xsmall) 0 0;
+}
+
+.domain-col-requests {
+  background: var(--secondary);
+  opacity: 0.6;
 }
 
 .domain-col-done {
   background: var(--secondary);
-  opacity: 0.9;
-  border-radius: 0;
-}
-
-.domain-col-requests {
-  background: var(--surface-container-highest);
-  border-radius: var(--shape-xsmall) var(--shape-xsmall) 0 0;
 }
 
 .domain-col:hover .domain-col-done {

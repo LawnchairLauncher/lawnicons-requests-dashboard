@@ -795,8 +795,8 @@ const Templates = {
         const directH = ((requests - (global || 0)) / max * 100).toFixed(0);
         const globalH = ((global || 0) / max * 100).toFixed(0);
         return `<div class="domain-col" data-action="domain-filter" data-domain="${domain}" data-done="${done}" data-requests="${requests}" data-total="${total}" data-global="${global || 0}">
-          <div class="domain-col-fill domain-col-requests" style="height:${directH}%"></div>
           <div class="domain-col-fill domain-col-global" style="height:${globalH}%"></div>
+          <div class="domain-col-fill domain-col-requests" style="height:${directH}%"></div>
           <div class="domain-col-fill domain-col-done" style="height:${doneH}%"></div>
           <span class="chart-label">${shortDomain}</span>
         </div>`;
