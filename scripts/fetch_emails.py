@@ -19,7 +19,7 @@ def should_fetch_today():
     today = date.today()
     if LAST_FETCH_PATH.exists():
         last = date.fromisoformat(LAST_FETCH_PATH.read_text().strip())
-        return today >= last + timedelta(days=60)
+        return today >= last + timedelta(days=30)
     return True
 
 
