@@ -135,6 +135,14 @@
       <div class="library-grid"></div>
   </div>
 
+  <div class="tabs" id="mainTabs">
+    <button class="tab active" data-tab="requests">Community requests</button>
+    <button class="tab" data-tab="screens">Screens</button>
+  </div>
+  <button id="screenSortBtn" class="chip is-hidden" title="Sort screens">
+    <span id="screenSortLabel">Most requested</span>
+  </button>
+
   <div class="controls">
     <a href="#headerCheck" id="controlsSkip">Skip filters</a>
 
@@ -193,7 +201,6 @@
       <div class="col actions">Actions</div>
     </div>
     <div id="appContainer"></div>
-
     <div id="scrollSentinel">
       <svg width="48" height="48"><use href="#ic-scroller"></use></svg>
     </div>

@@ -323,7 +323,7 @@ def update_screens_graph(output_dir: Path, zip_filename: str, component_ids: lis
     
     existing_ids = [k for k in graph.keys() if k.startswith('scr-')]
     next_num = max([int(k.split('-')[1]) for k in existing_ids], default=0) + 1
-    screen_id = f"scr-{next_num:05d}"
+    screen_id = f"scr-{next_num}"
     
     graph[screen_id] = list(set(component_ids))
     

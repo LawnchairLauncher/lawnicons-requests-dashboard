@@ -109,6 +109,10 @@ const App = {
     activityStats: [],
     trendingDeltas: {},
     lastUpdate: null,
+    activeTab: 'requests',
+    screensData: {},
+    screenSort: 'req-desc',
+    activeScreenFilter: null,
   },
 
   dom: {
@@ -174,6 +178,9 @@ const App = {
     sortMenu: /** @type {any} */ (document.getElementById('sortMenu')),
     /** @type {HTMLSpanElement} */
     sortLabel: /** @type {any} */ (document.getElementById('sortLabel')),
+    mainTabs: /** @type {HTMLElement} */ (document.getElementById('mainTabs')),
+    screenSortBtn: /** @type {HTMLButtonElement} */ (document.getElementById('screenSortBtn')),
+    screenSortLabel: /** @type {HTMLSpanElement} */ (document.getElementById('screenSortLabel')),
   },
 };
 
@@ -1598,6 +1605,8 @@ const Data = {
             : `${Utils.compactNumber(done)} of ${Utils.compactNumber(total)} done`;
         }
       }
+
+      App.state.screensData = await this.fetchJson('assets/screens_graph.json', {});
       
       // Load optional data
       await Promise.all([
@@ -1925,6 +1934,10 @@ const Data = {
         if (CONFIG.data.filters.includes(t)) App.state.activeFilters.add(t);
       });
     }
+    if (params.has('tab')) {
+      const tab = params.get('tab');
+      if (tab === 'screens') App.state.activeTab = 'screens';
+    }    
 
     if (params.has('page')) {
       const page = params.get('page');
@@ -1955,6 +1968,9 @@ const Data = {
     } else {
       params.delete('filters');
     }
+
+    if (s.activeTab !== 'requests') params.set('tab', s.activeTab);
+    else params.delete('tab');    
 
     if (App.state.lowQualityActive) {
       params.set('page', 'low-quality-icons');
@@ -2012,6 +2028,17 @@ const UI = {
     { value: 'rand', label: 'Random' },
   ],
 
+  screenSortOptions: [
+    { value: 'req-desc', label: 'Most requested' },
+    { value: 'req-asc', label: 'Least requested' },
+    { value: 'inst-desc', label: 'Most installed' },
+    { value: 'inst-asc', label: 'Least installed' },
+    { value: 'missing-desc', label: 'Most icons' },
+    { value: 'missing-asc', label: 'Least icons' },
+    { value: 'easy-desc', label: 'Easiest' },
+    { value: 'easy-asc', label: 'Hardest' },
+  ],
+
   init() {
     if (App.state.regexMode) {
       App.dom.regexBtn.classList.add('active');
@@ -2062,6 +2089,10 @@ const UI = {
       App.state.contributionActive = true;
       App.dom.contributionBtn?.classList.add('active');
     }
+
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.classList.toggle('active', tab.dataset.tab === App.state.activeTab);
+    });    
 
     this.updateContributionBadge();
     this.renderDomainStats();
@@ -2132,6 +2163,18 @@ const UI = {
         });
       },
     );
+
+    App.dom.mainTabs?.addEventListener('click', (e) => {
+      const tab = /** @type {HTMLElement} */ (e.target).closest('.tab');
+      if (!tab) return;
+      App.state.activeTab = tab.dataset.tab;
+      if (App.state.activeTab === 'requests') {
+        App.state.activeScreenFilter = null;
+      }      
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      this.render();
+    });    
 
     const activeMode = App.state.domainStatsMode;
     const activeSvg = document.querySelector(
@@ -2207,6 +2250,20 @@ const UI = {
     });
 
     App.dom.sortBtn.addEventListener('click', () => this.showSortMenu());
+
+    App.dom.screenSortBtn?.addEventListener('click', () => {
+      const menu = App.dom.sortMenu;
+      menu.innerHTML = UI.screenSortOptions.map(opt => `
+        <div class="ctx-item ${App.state.screenSort === opt.value ? 'active' : ''}" 
+            data-action="screen-sort-option" data-value="${opt.value}">
+          <span>${opt.label}</span>
+        </div>
+      `).join('');
+      const rect = App.dom.screenSortBtn.getBoundingClientRect();
+      menu.style.left = rect.left + 'px';
+      menu.style.top = (rect.bottom + 8) + 'px';
+      menu.showPopover();
+    });    
 
     App.dom.viewBtn.addEventListener('click', () => {
       App.state.view = App.state.view === 'list' ? 'grid' : 'list';
@@ -2525,6 +2582,22 @@ const UI = {
           return;
         }
 
+        if (action === 'screen-sort-option') {
+          const value = actionEl.dataset.value;
+          if (!value) return;
+          App.state.screenSort = value;
+          App.dom.screenSortLabel.textContent = actionEl.textContent.trim();
+          App.dom.sortMenu.hidePopover();
+          this.render();
+          return;
+        }
+
+        if (action === 'clear-screen-filter') {
+          App.state.activeScreenFilter = null;
+          this.render();
+          return;
+        }
+
         if (action === 'filter-tag-toggle') {
           const id = actionEl.dataset.filterId;
           if (!id) return;
@@ -2682,7 +2755,7 @@ const UI = {
       }
 
       const item = /** @type {HTMLElement} */ (target.closest('[data-id]'));
-      if (!item.dataset.id) return;
+      if (!item || !item.dataset.id) return;
       if (!App.state.contributionActive) {
         Actions.toggleSelection(item.dataset.id, /** @type {MouseEvent} */ (e));
       }
@@ -2868,6 +2941,8 @@ const UI = {
   },
 
   render() {
+    document.getElementById('lowQualityBtn')?.parentElement?.classList.remove('is-hidden');
+
     if (App.state.lowQualityActive) {
       this.renderLowQualityMode();
       return;
@@ -2903,7 +2978,6 @@ const UI = {
     document.getElementById('mainCards')?.classList.remove('is-hidden');
     const contribCards = document.getElementById('contributionCards');
     if (contribCards) contribCards.classList.add('is-hidden');
-    document.querySelector('.controls')?.classList.remove('is-hidden');
 
     const s = App.state;
     App.dom.container.innerHTML = '';
@@ -2912,6 +2986,9 @@ const UI = {
     this.generateFilters();
     this.syncFilterTagState();
     Data.process();
+    if (s.activeScreenFilter) {
+      s.currentData = s.currentData.filter(app => s.activeScreenFilter.includes(app.componentName));
+    }    
     Data.syncUrlState();
     this.updateHeader();
     this.renderIconLibrary();
@@ -2921,9 +2998,28 @@ const UI = {
     Utils.setHidden(desc, false);
     Utils.setHidden(link, false);
 
+    const tabsEl = document.getElementById('mainTabs');
+
+    if (App.state.activeTab === 'screens') {
+      document.querySelector('.controls')?.classList.add('is-hidden');
+      tabsEl.classList.remove('is-hidden');
+      App.dom.screenSortBtn.classList.remove('is-hidden');
+      const activeLabel = UI.screenSortOptions.find(o => o.value === s.screenSort)?.label || 'Most requested';
+      App.dom.screenSortLabel.textContent = activeLabel;
+      App.dom.listHeader.style.display = 'none';
+      App.dom.sentinel.style.display = 'none';
+      this.renderScreens();
+      return;
+    }
+
     if (s.currentData.length === 0) {
       App.dom.container.innerHTML = Templates.emptyState();
       this.updateHeader();
+      App.dom.listHeader.style.display = s.view === 'list' ? 'grid' : 'none';
+      App.dom.sentinel.style.display = '';
+      App.dom.screenSortBtn.classList.add('is-hidden');
+      tabsEl.classList.remove('is-hidden');
+      document.querySelector('.controls')?.classList.remove('is-hidden');
       return;
     }
 
@@ -2931,6 +3027,10 @@ const UI = {
     this.loadMore();
 
     App.dom.listHeader.style.display = s.view === 'list' ? 'grid' : 'none';
+    App.dom.sentinel.style.display = '';
+    App.dom.screenSortBtn.classList.add('is-hidden');
+    tabsEl.classList.remove('is-hidden');
+    document.querySelector('.controls')?.classList.remove('is-hidden');
   },
 
   /**
@@ -3009,6 +3109,20 @@ const UI = {
     const c = App.dom.filterBox;
     if (!c) return;
     c.innerHTML = '';
+
+    if (App.state.activeScreenFilter && App.state.activeTab === 'requests') {
+      const btn = document.createElement('button');
+      btn.className = 'tag tag-screen chip active';
+      const screenEntry = Object.entries(App.state.screensData).find(([_, ids]) => 
+        ids.length === App.state.activeScreenFilter.length && 
+        ids.every(id => App.state.activeScreenFilter.includes(id))
+      );
+      const screenId = screenEntry ? screenEntry[0].replace(/^scr-0+/, 'scr-') : 'screen';
+      btn.textContent = screenId;
+      btn.title = 'Clear screen filter';
+      btn.dataset.action = 'clear-screen-filter';
+      c.insertBefore(btn, c.firstChild);
+    }    
 
     CONFIG.data.filters.forEach((id) => {
       let count = 0;
@@ -3114,17 +3228,148 @@ const UI = {
     }
   },
 
+  renderScreens() {
+    const s = App.state;
+    App.dom.container.innerHTML = '';
+    App.dom.container.className = 'screens-grid';
+    App.dom.sbBar.classList.remove('visible');
+
+    const screens = s.screensData;
+    if (!screens || Object.keys(screens).length === 0) {
+      App.dom.container.innerHTML = '<div class="empty-state"><h3>No screens yet</h3><p>Screens will appear after email parsing.</p></div>';
+      return;
+    }
+
+    let entries = Object.entries(screens).map(([id, ids]) => {
+      let totalReq = 0;
+      const insts = [];
+      let easyCount = 0;
+      let supportedCount = 0;
+      const previewIcons = [];
+
+      ids.forEach(comp => {
+        const app = s.idMap.get(comp);
+        if (!app) return;
+        totalReq += app.requestCount || 0;
+        const inst = Utils.parseInstalls(app.installs);
+        if (inst > 0) insts.push(inst);
+        const tags = s.appTags.get(comp);
+        if (tags?.has('easy')) easyCount++;
+        if (tags?.has('supported')) supportedCount++;
+        if (previewIcons.length < 9) {
+          previewIcons.push({
+            drawable: app.drawable,
+            label: app.label,
+          });
+        }
+      });
+
+      const median = arr => {
+        if (!arr.length) return 0;
+        const sorted = [...arr].sort((a, b) => a - b);
+        const mid = Math.floor(sorted.length / 2);
+        return sorted.length % 2 ? sorted[mid] : Math.round((sorted[mid - 1] + sorted[mid]) / 2);
+      };
+
+      return {
+        id,
+        ids,
+        count: ids.length,
+        avgReq: ids.length ? Math.round(totalReq / ids.length) : 0,
+        medianInst: median(insts),
+        easyPct: ids.length ? Math.round(easyCount / ids.length * 100) : 0,
+        supportedCount,
+        previewIcons,
+      };
+    });
+
+    const [sortKey, sortDir] = s.screenSort.split('-');
+    entries.sort((a, b) => {
+      let cmp = 0;
+      if (sortKey === 'missing') cmp = a.count - b.count;
+      else if (sortKey === 'req') cmp = a.avgReq - b.avgReq;
+      else if (sortKey === 'inst') cmp = a.medianInst - b.medianInst;
+      else if (sortKey === 'easy') cmp = a.easyPct - b.easyPct;
+      return sortDir === 'desc' ? -cmp : cmp;
+    });
+
+    // Apply search and filters to screen cards
+    const query = Utils.parseSearchQuery(s.search);
+    const activeFilters = new Set([...s.activeFilters, ...query.tags]);
+
+    if (query.text) {
+      entries = entries.filter(screen => {
+        return screen.ids.some(comp => {
+          const app = s.idMap.get(comp);
+          if (!app) return false;
+
+          if (s.regexMode) {
+            try {
+              const regex = new RegExp(query.text, 'i');
+              return regex.test(app.label) || regex.test(app.componentName);
+            } catch { return false; }
+          } else {
+            const term = query.text.toLowerCase();
+            return app.label.toLowerCase().includes(term) ||
+              app.componentName.toLowerCase().includes(term);
+          }
+        });
+      });
+    }
+
+    if (entries.length === 0) {
+      App.dom.container.innerHTML = '<div class="empty-state"><svg><use href="#ic-search"/></svg><h3>No screens found</h3><p>Try adjusting your search or filters.</p></div>';
+      App.dom.container.className = '';
+      return;
+    }    
+
+    entries.forEach(screen => {
+      const card = document.createElement('div');
+      card.className = 'screen-card';
+      card.dataset.screenId = screen.id;
+
+      const cols = Math.min(screen.previewIcons.length, 3);
+      let previewHtml = '<div class="screen-preview" style="grid-template-columns:repeat(' + cols + ',56px);">';
+      screen.previewIcons.forEach(icon => {
+        previewHtml += '<img src="' + CONFIG.data.assetsPath + icon.drawable + CONFIG.data.iconExtension + '" class="screen-preview-icon" loading="lazy" onerror="this.style.display=\'none\'" alt="' + icon.label + '" />';
+      });
+      previewHtml += '</div>';
+
+      const iconLabel = screen.count === 1 ? 'icon' : 'icons';
+      const reqLabel = screen.count === 1 ? 'request' : 'requests';
+      const supLabel = screen.supportedCount === 1 ? 'supported icon' : 'supported icons';
+
+      card.innerHTML = 
+        (screen.supportedCount > 0 ? '<span class="status-pill status-supported screen-card-supported">' + screen.supportedCount + ' ' + supLabel + '</span>' : '') +
+        previewHtml +
+        '<div class="screen-card-header">' + screen.id + '</div>' +
+        '<div class="screen-card-description">' + screen.count + ' ' + iconLabel + '</div>' +
+        '<div class="screen-card-description">' + Utils.compactNumber(screen.avgReq) + ' ' + reqLabel + ' per icon</div>' +
+        '<div class="screen-card-description">' + Utils.compactNumber(screen.medianInst).replace('.0', '') + ' installs</div>' +
+        (screen.easyPct > 0 ? '<div class="screen-card-description">' + screen.easyPct + '% easy</div>' : '');
+
+            card.addEventListener('click', () => {
+              App.state.activeTab = 'requests';
+              document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+              document.querySelector('.tab[data-tab="requests"]')?.classList.add('active');
+              App.state.activeScreenFilter = screen.ids;
+              this.render();
+            });
+            App.dom.container.appendChild(card);
+          });
+        },
+
   renderLowQualityMode() {
     document.querySelector('.header-icon')?.classList.add('is-hidden');
     document.querySelector('.controls')?.classList.add('is-hidden');
     document.getElementById('iconLibraryResults')?.classList.add('is-hidden');
     document.getElementById('search-wrapper')?.classList.add('is-hidden');
+    document.getElementById('mainTabs')?.classList.add('is-hidden');
+    document.getElementById('lowQualityBtn')?.parentElement?.classList.add('is-hidden');
+    App.dom.screenSortBtn.classList.add('is-hidden');
     App.dom.listHeader.style.display = 'none';
     App.dom.sentinel.style.display = 'none';
     App.dom.contributionBtn.style.display = 'none';
-    document.getElementById('lowQualityBtn')?.parentElement?.classList.add(
-      'is-hidden',
-    );
     const badge = document.getElementById('contributionCountBadge');
     if (badge) badge.style.display = 'none';
     document.getElementById('lowQualityBtn')?.classList.add('active');
@@ -3242,9 +3487,14 @@ const UI = {
     const wrapper = btn?.parentElement;
     const badge = document.getElementById('lowQualityCountBadge');
     if (!btn || !wrapper) return;
-    const count = App.state.lowQualityData
-      ? App.state.lowQualityData.length
-      : 0;
+
+    if (App.state.lowQualityActive || App.state.contributionActive) {
+      wrapper.classList.add('is-hidden');
+      if (badge) badge.style.display = 'none';
+      return;
+    }
+
+    const count = App.state.lowQualityData ? App.state.lowQualityData.length : 0;
     if (count > 0) {
       wrapper.classList.remove('is-hidden');
       if (badge) {
@@ -3262,15 +3512,15 @@ const UI = {
     document.querySelector('.controls')?.classList.add('is-hidden');
     document.getElementById('iconLibraryResults')?.classList.add('is-hidden');
     document.getElementById('search-wrapper')?.classList.add('is-hidden');
+    document.getElementById('mainTabs')?.classList.add('is-hidden');
+    document.getElementById('lowQualityBtn')?.parentElement?.classList.add('is-hidden');
+    App.dom.screenSortBtn.classList.add('is-hidden');
     const contributionCountBadge = document.getElementById(
       'contributionCountBadge',
     );
     if (contributionCountBadge) contributionCountBadge.style.display = 'none';
     App.dom.listHeader.style.display = 'none';
     App.dom.sentinel.style.display = 'none';
-    const lowQualityWrapper = document.getElementById('lowQualityBtn')
-      ?.parentElement;
-    if (lowQualityWrapper) lowQualityWrapper.classList.add('is-hidden');
 
     App.dom.contributionBtn.style.display = 'none';
 
@@ -3619,7 +3869,7 @@ const UI = {
         };
       }
     }
-  },
+  },  
 
   updateIssues() {
     const list = document.getElementById('contributionIssuesList');
