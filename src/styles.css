@@ -699,6 +699,8 @@ button.input-icon.active {
   justify-content: flex-start;
 }
 
+
+
 .card-chart.has-bars {
   flex-direction: row;
   align-items: flex-end;
@@ -727,6 +729,11 @@ button.input-icon.active {
   width: 12px;
   min-height: 0;
   border-radius: 0;
+}
+
+.domain-col-global {
+  background: var(--secondary);
+  opacity: 0.5;
 }
 
 .domain-col-done {

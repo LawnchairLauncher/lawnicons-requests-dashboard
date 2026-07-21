@@ -350,15 +350,61 @@ def update_domain_stats() -> int:
     import xml.etree.ElementTree as ET
     
     domain_stats_path = REPO_ROOT / "src/assets/stats/domain_stats.json"
+    requests_graph_path = REPO_ROOT / "src/assets/requests_graph.json"
     
     with open(REQUESTS_JSON, "r", encoding="utf-8") as f:
         data = json.load(f)
 
+    # Load requests graph for presumed country
+    req_graph = {}
+    if requests_graph_path.exists():
+        with open(requests_graph_path, "r", encoding="utf-8") as f:
+            req_graph = json.load(f)
+
+    # ISO country set
+    iso_countries = {'ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bt','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','gb','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','st','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','us','uy','uz','va','vc','ve','vi','vn','vu','ye','yt','za','zm','zw'}
+    
+    def get_domain(comp):
+        pkg = comp.split("/")[0]
+        return pkg.split(".")[0] if "." in pkg else "unknown"
+
+    def is_country(domain):
+        return domain in iso_countries
+
+    # Counters
     requests_counter = Counter()
+    global_counter = Counter()
+
     for app in data.get("apps", []):
-        pkg = app.get("componentName", "").split("/")[0]
-        domain = pkg.split(".")[0] if "." in pkg else "unknown"
-        requests_counter[domain] += 1
+        comp = app.get("componentName", "")
+        domain = get_domain(comp)
+        
+        if is_country(domain):
+            requests_counter[domain] += 1
+        elif comp in req_graph:
+            # Find best country match among neighbors
+            neighbors = req_graph[comp]
+            if isinstance(neighbors, dict):
+                # Weighted: find country with max weight
+                best_country = None
+                best_weight = 0
+                for neighbor, weight in neighbors.items():
+                    n_domain = get_domain(neighbor)
+                    if is_country(n_domain):
+                        if weight > best_weight:
+                            best_weight = weight
+                            best_country = n_domain
+                if best_country:
+                    requests_counter[best_country] += 1
+                    global_counter[best_country] += 1
+            elif isinstance(neighbors, list):
+                # Unweighted: first country match
+                for neighbor in neighbors:
+                    n_domain = get_domain(neighbor)
+                    if is_country(n_domain):
+                        requests_counter[n_domain] += 1
+                        global_counter[n_domain] += 1
+                        break
 
     appfilter_counter = Counter()
     appfilter_path = REPO_ROOT / "src/assets/appfilter.xml"
@@ -377,12 +423,12 @@ def update_domain_stats() -> int:
         output[domain] = {
             "requests": requests_counter.get(domain, 0),
             "done": appfilter_counter.get(domain, 0),
-            "total": requests_counter.get(domain, 0) + appfilter_counter.get(domain, 0)
+            "total": requests_counter.get(domain, 0) + appfilter_counter.get(domain, 0),
+            "global": global_counter.get(domain, 0)
         }
 
     output = dict(sorted(output.items(), key=lambda x: (-x[1]["total"], x[0])))
 
-    # Preserve _population if it exists
     if domain_stats_path.exists():
         try:
             with open(domain_stats_path, "r", encoding="utf-8") as f:
@@ -395,7 +441,8 @@ def update_domain_stats() -> int:
     with open(domain_stats_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2)
 
-    print(f"Updated domain_stats.json with {len(output)} domains")
+    total_global = sum(global_counter.values())
+    print(f"Updated domain_stats.json with {len(output)} domains ({total_global} presumed country assignments)")
     return len(output)
 
 def update_activity_stats(

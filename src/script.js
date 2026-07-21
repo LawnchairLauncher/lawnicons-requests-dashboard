@@ -768,26 +768,26 @@ const Templates = {
   },
 
   /**
-   * @param {[string, number, number, number][]} entries
+   * @param {[string, number, number, number, number][]} entries
    * @param {number} max
    * @returns {string}
    */
   domainStatsCard(entries, max) {
     return `<div class="card-chart has-bars">
-        ${
-      entries.map(([domain, done, requests, total]) => {
+      ${entries.map(([domain, done, requests, total, global]) => {
         const shortDomain = domain.length > 3 ? domain.slice(0, 3) : domain;
         const doneH = (done / max * 100).toFixed(0);
-        const reqH = (requests / max * 100).toFixed(0);
-        return `<div class="domain-col" data-action="domain-filter" data-domain="${domain}" data-done="${done}" data-requests="${requests}" data-total="${total}">
-            <div class="domain-col-fill domain-col-requests" style="height:${reqH}%"></div>
-            <div class="domain-col-fill domain-col-done" style="height:${doneH}%"></div>
-            <span class="chart-label">${shortDomain}</span>
-          </div>`;
-      }).join('')
-    }
-      </div>
-      <div class="tooltip"></div>`;
+        const directH = ((requests - (global || 0)) / max * 100).toFixed(0);
+        const globalH = ((global || 0) / max * 100).toFixed(0);
+        return `<div class="domain-col" data-action="domain-filter" data-domain="${domain}" data-done="${done}" data-requests="${requests}" data-total="${total}" data-global="${global || 0}">
+          <div class="domain-col-fill domain-col-requests" style="height:${directH}%"></div>
+          <div class="domain-col-fill domain-col-global" style="height:${globalH}%"></div>
+          <div class="domain-col-fill domain-col-done" style="height:${doneH}%"></div>
+          <span class="chart-label">${shortDomain}</span>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="tooltip"></div>`;
   },
 
   /**
@@ -798,30 +798,26 @@ const Templates = {
    * @param {string} mode
    * @param {number} extraValue
    * @param {number} population
+   * @param {number} global
    * @returns {string}
    */
-  domainStatsTooltip(
-    domain,
-    done,
-    requests,
-    total,
-    mode,
-    extraValue,
-    population,
-  ) {
+  domainStatsTooltip(domain, done, requests, total, mode, extraValue, population, global) {
     const pct = total ? (done / total * 100).toFixed(1) : 0;
     let extra = '';
     if (mode === 'local' && extraValue && population > 0) {
       const pctLocals = (extraValue / 1_000_000 / population * 100).toFixed(1);
       extra = `<div class="tooltip-value">Affects ${pctLocals}% locals</div>`;
     } else if (mode === 'coverage') {
-      extra = `<div class="tooltip-value">${
-        ((requests / total) * 100).toFixed(1)
-      }% uncovered</div>`;
+      extra = `<div class="tooltip-value">${((requests / total) * 100).toFixed(1)}% uncovered</div>`;
+    }
+    let globalHtml = '';
+    if (global > 0) {
+      globalHtml = `<div class="tooltip-value">${global} presumed country</div>`;
     }
     return `<div class="tooltip-label">${domain}</div>
-        <div class="tooltip-value">${requests} requests</div>
-        <div class="tooltip-value">${done} done (${pct}%)</div>${extra}`;
+      ${globalHtml}
+      <div class="tooltip-value">${requests} requests</div>
+      <div class="tooltip-value">${done} done (${pct}%)</div>${extra}`;
   },
 
   /**
@@ -4398,12 +4394,10 @@ const UI = {
       }
     }
 
-    /** @type {[string, any, number, number][]} */
+    /** @type {[string, any, number, number, number][]} */
     let entries = Object.entries(data)
       .filter(([domain]) => isCountry(domain) && domain !== '_population')
-      .map((
-        [domain, stats],
-      ) => [domain, stats.done, stats.requests, stats.total]);
+      .map(([domain, stats]) => [domain, stats.done, stats.requests, stats.total, stats.global || 0]);
 
     if (mode === 'local') {
       entries = entries
@@ -4466,6 +4460,7 @@ const UI = {
       const done = parseInt(col.dataset.done ?? '');
       const requests = parseInt(col.dataset.requests ?? '');
       const total = parseInt(col.dataset.total ?? '');
+      const globalVal = parseInt(col.dataset.global ?? '0');
       const avgInst = App.state?._domainAvgInstalls?.[domain ?? ''] || 0;
       const pop = population[domain ?? ''] || 0;
       const html = Templates.domainStatsTooltip(
@@ -4476,6 +4471,7 @@ const UI = {
         mode,
         avgInst,
         pop,
+        globalVal
       );
 
       const rect = col.getBoundingClientRect();
