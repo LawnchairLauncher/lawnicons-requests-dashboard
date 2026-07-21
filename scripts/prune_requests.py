@@ -612,7 +612,41 @@ def main() -> int:
                     f.seek(0)
                     json.dump(data, f, indent=2)
                     f.truncate()
-                    print(f"Updated supported counters: {fulfilled_now} fulfilled, {data['done']} done, {data['total']} total")        
+                    print(f"Updated supported counters: {fulfilled_now} fulfilled, {data['done']} done, {data['total']} total")
+
+        # Clean screens_graph from fulfilled requests
+        screens_graph_path = REPO_ROOT / "src/assets/screens_graph.json"
+        if removed_components and screens_graph_path.exists():
+            with open(screens_graph_path, "r", encoding="utf-8") as f:
+                screens = json.load(f)
+            
+            updated_screens = {}
+            for screen_id, comps in screens.items():
+                filtered = [c for c in comps if c not in removed_components]
+                if filtered:
+                    updated_screens[screen_id] = filtered
+            
+            with open(screens_graph_path, "w", encoding="utf-8") as f:
+                json.dump(updated_screens, f, indent=2)
+            
+            removed_count = sum(len(v) for v in screens.values()) - sum(len(v) for v in updated_screens.values())
+            if removed_count > 0:
+                print(f"Cleaned {removed_count} fulfilled requests from screens_graph")
+
+        # Clean requests_graph from fulfilled requests
+        requests_graph_path = REPO_ROOT / "src/assets/requests_graph.json"
+        if removed_components and requests_graph_path.exists():
+            with open(requests_graph_path, "r", encoding="utf-8") as f:
+                req_graph = json.load(f)
+            
+            for comp in removed_components:
+                req_graph.pop(comp, None)
+            
+            with open(requests_graph_path, "w", encoding="utf-8") as f:
+                json.dump(req_graph, f, indent=2)
+            
+            print(f"Cleaned fulfilled requests from requests_graph")
+            
     else:
         print("No upstream appfilter.xml changes detected.")
 
