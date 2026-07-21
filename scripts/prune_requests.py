@@ -371,9 +371,13 @@ def update_domain_stats() -> int:
     def is_country(domain):
         return domain in iso_countries
 
+    # Build apps dict for quick installs lookup
+    apps_dict = {app["componentName"]: app for app in data.get("apps", [])}
+
     # Counters
     requests_counter = Counter()
     global_counter = Counter()
+    global_installs_counter = Counter()
 
     for app in data.get("apps", []):
         comp = app.get("componentName", "")
@@ -382,29 +386,31 @@ def update_domain_stats() -> int:
         if is_country(domain):
             requests_counter[domain] += 1
         elif comp in req_graph:
-            # Find best country match among neighbors
             neighbors = req_graph[comp]
+            linked_countries = set()
+
             if isinstance(neighbors, dict):
-                # Weighted: find country with max weight
-                best_country = None
-                best_weight = 0
-                for neighbor, weight in neighbors.items():
-                    n_domain = get_domain(neighbor)
-                    if is_country(n_domain):
-                        if weight > best_weight:
-                            best_weight = weight
-                            best_country = n_domain
-                if best_country:
-                    requests_counter[best_country] += 1
-                    global_counter[best_country] += 1
-            elif isinstance(neighbors, list):
-                # Unweighted: first country match
                 for neighbor in neighbors:
                     n_domain = get_domain(neighbor)
                     if is_country(n_domain):
-                        requests_counter[n_domain] += 1
-                        global_counter[n_domain] += 1
-                        break
+                        linked_countries.add(n_domain)
+            elif isinstance(neighbors, list):
+                for neighbor in neighbors:
+                    n_domain = get_domain(neighbor)
+                    if is_country(n_domain):
+                        linked_countries.add(n_domain)
+
+            # Get installs for this request
+            inst = 0
+            app_data = apps_dict.get(comp)
+            if app_data:
+                inst_str = app_data.get("installs", "0").replace(",", "").replace("+", "")
+                inst = int(inst_str) if inst_str.isdigit() else 0
+
+            for country in linked_countries:
+                requests_counter[country] += 1
+                global_counter[country] += 1
+                global_installs_counter[country] += inst
 
     appfilter_counter = Counter()
     appfilter_path = REPO_ROOT / "src/assets/appfilter.xml"
@@ -424,7 +430,8 @@ def update_domain_stats() -> int:
             "requests": requests_counter.get(domain, 0),
             "done": appfilter_counter.get(domain, 0),
             "total": requests_counter.get(domain, 0) + appfilter_counter.get(domain, 0),
-            "global": global_counter.get(domain, 0)
+            "global": global_counter.get(domain, 0),
+            "global_installs": global_installs_counter.get(domain, 0)
         }
 
     output = dict(sorted(output.items(), key=lambda x: (-x[1]["total"], x[0])))

@@ -4387,6 +4387,15 @@ const UI = {
           domainCountsI[domain] = (domainCountsI[domain] || 0) + 1;
         }
       });
+
+      // Add global_installs to domain stats for local impact
+      for (const [domain, stats] of Object.entries(data)) {
+        if (isCountry(domain) && stats.global_installs > 0) {
+          domainSumsI[domain] = (domainSumsI[domain] || 0) + stats.global_installs;
+          domainCountsI[domain] = (domainCountsI[domain] || 0) + stats.global;
+        }
+      }
+
       for (const d of Object.keys(domainSumsI)) {
         App.state._domainAvgInstalls[d] = Math.round(
           domainSumsI[d] / domainCountsI[d],
