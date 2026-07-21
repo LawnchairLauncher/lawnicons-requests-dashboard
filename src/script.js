@@ -3376,7 +3376,31 @@ const UI = {
       card.innerHTML = 
         (screen.supportedCount > 0 ? '<span class="status-pill status-supported screen-card-supported">' + screen.supportedCount + ' ' + supLabel + '</span>' : '') +
         previewHtml +
-        '<div class="screen-card-header">' + screen.id + '</div>' +
+        (function() {
+          const countries = new Set();
+          const graph = App.state.requestsGraph;
+          if (graph) {
+            screen.ids.forEach(comp => {
+              const domain = comp.split('/')[0].split('.')[0];
+              const isoCountries = new Set(['ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bt','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','gb','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','st','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','us','uy','uz','va','vc','ve','vi','vn','vu','ye','yt','za','zm','zw']);
+              if (isoCountries.has(domain)) {
+                countries.add(domain);
+              } else if (graph[comp]) {
+                const geoNeighbors = Object.keys(graph[comp]).filter(n => isoCountries.has(n.split('/')[0].split('.')[0]));
+                if (geoNeighbors.length > 0) {
+                  geoNeighbors.forEach(n => countries.add(n.split('/')[0].split('.')[0]));
+                } else {
+                  countries.add('us');
+                }
+              } else {
+                countries.add('us');
+              }
+            });
+          }
+          const arr = [...countries].sort();
+          const countryStr = arr.length > 3 ? 'global' : arr.join(', ');
+          return '<div class="screen-card-header"><span>' + screen.id + '</span>' + (countryStr ? '<span class="screen-card-countries">' + countryStr + '</span>' : '') + '</div>';
+        })() +
         '<div class="screen-card-description">' + screen.count + ' ' + iconLabel + '</div>' +
         '<div class="screen-card-description">' + Utils.compactNumber(screen.avgReq) + ' ' + reqLabel + ' per icon</div>' +
         '<div class="screen-card-description">' + Utils.compactNumber(screen.medianInst).replace('.0', '') + ' installs</div>' +

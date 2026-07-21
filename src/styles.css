@@ -2123,12 +2123,16 @@ input[type="checkbox"]:indeterminate::after {
 }
 
 .screen-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.screen-card-countries {
+  font-size: 16px;
   font-weight: 600;
-  color: var(--on-surface);
-  font-size: 15px;
+  color: var(--on-surface-variant);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .screen-card-description {
