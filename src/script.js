@@ -1830,7 +1830,6 @@ const Data = {
           const regex = new RegExp(query.text, 'i');
           data = data.filter((a) => {
             if (regex.test(a.label) || regex.test(a.componentName)) return true;
-            // Check presumed country for non-geo requests
             const domainMatch = s.search.match(/^\^([a-z]+)\\\./);
             if (domainMatch) {
               const searchDomain = domainMatch[1];
@@ -1846,6 +1845,12 @@ const Data = {
         } catch {
           data = [];
         }
+      } else {
+        const term = query.text.toLowerCase();
+        data = data.filter((a) =>
+          a.label.toLowerCase().includes(term) ||
+          a.componentName.toLowerCase().includes(term)
+        );
       }
     }
 
