@@ -4827,8 +4827,24 @@ const UI = {
   showMobileFilterPopover() {
     const menu = App.dom.mobileFilterMenu;
     menu.innerHTML = '';
+
+    // Screen filter
+    if (App.state.activeScreenFilter) {
+      const screenEntry = Object.entries(App.state.screensData).find(([_, ids]) => 
+        ids.length === App.state.activeScreenFilter.length && 
+        ids.every(id => App.state.activeScreenFilter.includes(id))
+      );
+      const screenId = screenEntry ? screenEntry[0].replace(/^scr-0+/, 'scr-') : 'screen';
+      menu.innerHTML += `
+        <div class="ctx-item active" data-action="clear-screen-filter">
+          <span class="check-icon">${ICONS.check}</span>
+          <span>${screenId}</span>
+        </div>
+      `;
+    }
+
     const s = App.state.activeFilters;
-    menu.innerHTML = CONFIG.data.filters.map((id) => {
+    menu.innerHTML += CONFIG.data.filters.map((id) => {
       let count = 0;
       App.state.appTags.forEach((tags) => {
         if (tags.has(id)) count++;
