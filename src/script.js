@@ -4505,7 +4505,7 @@ const UI = {
     if (title) {
       if (mode === 'local') title.textContent = 'Local impact';
       else if (mode === 'coverage') title.textContent = 'Lowest coverage';
-      else title.textContent = 'Top domains';
+      else title.textContent = 'Country distribution';
     }
 
     const sub = /** @type {HTMLElement} */ (document.querySelector(
