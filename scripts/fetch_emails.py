@@ -111,7 +111,10 @@ def main():
         with open(filepath, "wb") as f:
             f.write(raw_email)
 
-        mail.store(eid, "+FLAGS", "\\Seen")
+        try:
+            mail.store(eid, "+FLAGS", "\\Seen")
+        except Exception as e:
+            print(f"Warning: failed to mark as seen: {e}")
         saved += 1
 
     fetched_ids = set(sender_candidates.values())

@@ -29,7 +29,9 @@ jobs:
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          PYTHONUNBUFFERED: 1
         run: python scripts/fetch_emails.py
+        timeout-minutes: 30
 
       - name: Parse emails
         run: |
