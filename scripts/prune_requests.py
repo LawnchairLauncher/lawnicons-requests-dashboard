@@ -386,6 +386,9 @@ def update_domain_stats() -> int:
         if is_country(domain):
             requests_counter[domain] += 1
         elif comp in req_graph:
+            # Count for the non-geo domain itself
+            requests_counter[domain] += 1
+            
             neighbors = req_graph[comp]
             linked_countries = set()
 
@@ -405,6 +408,9 @@ def update_domain_stats() -> int:
                 requests_counter[country] += 1
                 global_counter[country] += 1
                 global_installs_counter[country] += inst
+        else:
+            # Non-geo, not in graph — still count for its domain
+            requests_counter[domain] += 1
 
     appfilter_counter = Counter()
     appfilter_path = REPO_ROOT / "src/assets/appfilter.xml"
