@@ -1,6 +1,6 @@
 """
 Save trending baseline snapshots for comparing request counts between email fetches.
-period_start: saved the day before the next scheduled fetch.
+period_start: saved 2 days before the next scheduled fetch.
 period_end: saved the day after emails were fetched (last_email_fetch.txt updated).
 """
 
@@ -63,10 +63,10 @@ def main():
 
     next_fetch = get_next_fetch_date()
 
-    # period_start: 1 day before next fetch
+    # period_start: 2 days before next fetch
     if next_fetch:
-        one_day_before_fetch = next_fetch - timedelta(days=1)
-        if today == one_day_before_fetch:
+        two_days_before_fetch = next_fetch - timedelta(days=2)
+        if today == two_days_before_fetch:
             baseline["period_start"] = entry
             print(f"Saved period_start with {len(snapshot)} entries")
             save_baseline(baseline)

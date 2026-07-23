@@ -25,6 +25,13 @@ jobs:
       - name: Install dependencies
         run: pip install requests google-play-scraper lxml
 
+      - name: Clean emails
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          PYTHONUNBUFFERED: 1
+        run: python scripts/clean_emails.py
+
       - name: Fetch new emails
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
