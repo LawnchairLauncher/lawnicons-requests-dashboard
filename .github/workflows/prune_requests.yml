@@ -30,6 +30,7 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           PYTHONUNBUFFERED: 1
         run: python scripts/clean_emails.py
+        timeout-minutes: 15
 
       - name: Fetch new emails
         env:
