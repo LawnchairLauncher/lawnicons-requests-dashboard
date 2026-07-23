@@ -2,8 +2,8 @@ name: Prune Requests
 
 on:
   schedule:
-    - cron: '0 0 * * *'
-      timezone: 'Africa/Maputo'
+    - cron: '0 5 * * *'
+      timezone: 'Europe/Moscow'
   workflow_dispatch:
 
 permissions:
