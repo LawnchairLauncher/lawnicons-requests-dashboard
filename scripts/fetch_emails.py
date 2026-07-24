@@ -12,7 +12,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 EMAILS_DIR = REPO_ROOT / "emails"
 LAST_FETCH_PATH = REPO_ROOT / "src/assets/last_email_fetch.txt"
-MAX_EMAILS = 1
+MAX_EMAILS = 300
 
 
 def should_fetch_today():
