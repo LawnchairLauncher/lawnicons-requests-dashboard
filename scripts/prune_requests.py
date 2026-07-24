@@ -401,7 +401,8 @@ def update_domain_stats() -> int:
             inst = 0
             app_data = apps_dict.get(comp)
             if app_data:
-                inst_str = app_data.get("installs", "0").replace(",", "").replace("+", "")
+                inst_val = app_data.get("installs")
+                inst_str = (inst_val or "0").replace(",", "").replace("+", "")
                 inst = int(inst_str) if inst_str.isdigit() else 0
 
             for country in linked_countries:
