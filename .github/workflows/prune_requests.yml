@@ -63,7 +63,6 @@ jobs:
         run: python scripts/generate_auto_tags.py src/assets/requests.json src/assets/filters src/assets/appfilter.xml
 
       - name: Commit and push changes
-        if: steps.prune_requests.outputs.requests_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
