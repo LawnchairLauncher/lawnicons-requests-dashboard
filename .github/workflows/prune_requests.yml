@@ -2,7 +2,8 @@ name: Prune Requests
 
 on:
   schedule:
-    - cron: '47 2 * * *'
+    - cron: '17 5 * * *'
+      timezone: Europe/Moscow
   workflow_dispatch:
 
 permissions:
@@ -38,7 +39,6 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           PYTHONUNBUFFERED: 1
         run: python scripts/fetch_emails.py
-        timeout-minutes: 30
 
       - name: Parse emails
         run: |
