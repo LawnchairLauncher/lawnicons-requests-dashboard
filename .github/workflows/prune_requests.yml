@@ -2,7 +2,7 @@ name: Prune Requests
 
 on:
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '47 2 * * *'
   workflow_dispatch:
 
 permissions:
