@@ -1,15 +1,15 @@
 {
   "com": {
     "requests": 13867,
-    "done": 13613,
-    "total": 27480,
+    "done": 13597,
+    "total": 27464,
     "global": 0,
     "global_installs": 0
   },
   "org": {
     "requests": 829,
-    "done": 1181,
-    "total": 2010,
+    "done": 1176,
+    "total": 2005,
     "global": 0,
     "global_installs": 0
   },
@@ -244,13 +244,6 @@
     "global": 0,
     "global_installs": 0
   },
-  "kz": {
-    "requests": 43,
-    "done": 11,
-    "total": 54,
-    "global": 32,
-    "global_installs": 279000000
-  },
   "uz": {
     "requests": 10,
     "done": 44,
@@ -286,13 +279,6 @@
     "global": 0,
     "global_installs": 0
   },
-  "ir": {
-    "requests": 23,
-    "done": 26,
-    "total": 49,
-    "global": 4,
-    "global_installs": 20000000
-  },
   "nz": {
     "requests": 16,
     "done": 33,
@@ -306,6 +292,13 @@
     "total": 47,
     "global": 0,
     "global_installs": 0
+  },
+  "ir": {
+    "requests": 21,
+    "done": 26,
+    "total": 47,
+    "global": 2,
+    "global_installs": 10000000
   },
   "tr": {
     "requests": 21,
@@ -355,6 +348,13 @@
     "total": 40,
     "global": 0,
     "global_installs": 0
+  },
+  "kz": {
+    "requests": 27,
+    "done": 11,
+    "total": 38,
+    "global": 16,
+    "global_installs": 139500000
   },
   "sg": {
     "requests": 13,
@@ -524,13 +524,6 @@
     "global": 0,
     "global_installs": 0
   },
-  "foundation": {
-    "requests": 3,
-    "done": 14,
-    "total": 17,
-    "global": 0,
-    "global_installs": 0
-  },
   "lt": {
     "requests": 4,
     "done": 13,
@@ -569,6 +562,13 @@
   "ee": {
     "requests": 5,
     "done": 11,
+    "total": 16,
+    "global": 0,
+    "global_installs": 0
+  },
+  "foundation": {
+    "requests": 3,
+    "done": 13,
     "total": 16,
     "global": 0,
     "global_installs": 0
@@ -1686,13 +1686,6 @@
     "global": 0,
     "global_installs": 0
   },
-  "ws": {
-    "requests": 1,
-    "done": 3,
-    "total": 4,
-    "global": 0,
-    "global_installs": 0
-  },
   "zebpay": {
     "requests": 4,
     "done": 0,
@@ -2326,6 +2319,13 @@
   "word": {
     "requests": 2,
     "done": 1,
+    "total": 3,
+    "global": 0,
+    "global_installs": 0
+  },
+  "ws": {
+    "requests": 1,
+    "done": 2,
     "total": 3,
     "global": 0,
     "global_installs": 0
@@ -4157,7 +4157,7 @@
     "global": 0,
     "global_installs": 0
   },
-  "App}\" drawable=\"google_shortcuts_launcher\" name=\"Google Shortcuts Launcher\" ": {
+  "App}": {
     "requests": 0,
     "done": 1,
     "total": 1,
