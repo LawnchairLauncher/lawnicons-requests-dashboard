@@ -831,7 +831,7 @@ const Templates = {
     }
     return `<div class="tooltip-label">${domain}</div>
       ${globalHtml}
-      <div class="tooltip-value">${requests} local ${requests === 1 ? 'request' : 'requests'}</div>
+      <div class="tooltip-value">${requests - global} local ${requests - global === 1 ? 'request' : 'requests'}</div>
       <div class="tooltip-value">${done} done (${pct}%)</div>${extra}`;
   },
 
