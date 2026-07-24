@@ -161,9 +161,13 @@ def parse_item_tag(item: ET.Element, zip_file: zipfile.ZipFile, apps: dict,
 
     return apps
 
-def parse_zips(zip_files: list[Path], apps: dict, png_out_dir: Path, graph_output_dir: Path = None) -> tuple[dict, set[str]]:
+def parse_zips(zip_files: list[Path], apps: dict, png_out_dir: Path, graph_output_dir: Path = None, appfilter_path: Path = None) -> tuple[dict, set[str]]:
     failed_count = 0
     zip_components = set()
+    
+    existing_components = set()
+    if appfilter_path and appfilter_path.exists():
+        existing_components = load_existing_components(appfilter_path)
     
     for zip_path in zip_files:
         try:
@@ -179,7 +183,7 @@ def parse_zips(zip_files: list[Path], apps: dict, png_out_dir: Path, graph_outpu
                     apps = parse_item_tag(item, zip_file, apps, png_out_dir, req_time)
                 
                 if graph_output_dir and zip_components:
-                    update_screens_graph(graph_output_dir, zip_path.name, list(zip_components))
+                    update_screens_graph(graph_output_dir, zip_path.name, list(zip_components), existing_components)
                     update_requests_graph(graph_output_dir, list(zip_components))
         except Exception as e:
             failed_count += 1
@@ -290,7 +294,7 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path,
     apps_before = set(apps.keys())
     existing_supported = parse_existing_supported_json(supported_path)
 
-    apps, zip_components = parse_zips(zip_files, apps, png_out_path, output_path.parent)
+    apps, zip_components = parse_zips(zip_files, apps, png_out_path, output_path.parent, appfilter_path)
     
     if appfilter_path.exists():
         existing = load_existing_components(appfilter_path)
@@ -313,7 +317,11 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path,
         print("Don't forget to delete processed ZIP files from the zips folder.")
 
 
-def update_screens_graph(output_dir: Path, zip_filename: str, component_ids: list[str]):
+def update_screens_graph(output_dir: Path, zip_filename: str, component_ids: list[str], existing_components: set[str]):
+    component_ids = [c for c in component_ids if c not in existing_components]
+    if not component_ids:
+        return
+        
     graph_path = output_dir / "screens_graph.json"
     if graph_path.exists():
         with open(graph_path, 'r') as f:

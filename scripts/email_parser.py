@@ -199,7 +199,12 @@ def parse_item_tag(item: ET.Element, msg: Message, zip_file: zipfile.ZipFile,
 
     return apps
 
-def update_screens_graph(output_dir: Path, email_filename: str, component_ids: list[str]):
+def update_screens_graph(output_dir: Path, email_filename: str, component_ids: list[str], existing_components: set[str]):
+    # Filter out already fulfilled requests
+    component_ids = [c for c in component_ids if c not in existing_components]
+    if not component_ids:
+        return
+
     graph_path = output_dir / "screens_graph.json"
     if graph_path.exists():
         with open(graph_path, 'r') as f:
@@ -252,9 +257,13 @@ def update_requests_graph(output_dir: Path, component_ids: list[str]):
     with open(graph_path, 'w') as f:
         json.dump(graph, f, indent=2)
 
-def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path, graph_output_path: Path = None) -> dict:
+def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path, graph_output_path: Path = None, appfilter_path: Path = None) -> dict:
     failed_count = 0
     limit = CONFIG["request_limit"]
+
+    existing_components = set()
+    if appfilter_path and appfilter_path.exists():
+        existing_components = load_existing_components(appfilter_path)    
     
     for email_file in email_files:
         msg = read_email(email_file)
@@ -301,7 +310,7 @@ def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path, graph_o
                 print(f"  Limited from {len(items)} to {limit} items (new prioritised)")
 
             if graph_output_path and email_component_ids:
-                update_screens_graph(graph_output_path, email_file.name, email_component_ids)
+                update_screens_graph(graph_output_path, email_file.name, email_component_ids, existing_components)
                 update_requests_graph(graph_output_path, email_component_ids)
 
         except Exception as e:
@@ -365,7 +374,7 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path, ou
     apps = parse_existing_requests_json(output_path)
 
     # 2. Update State
-    apps = parse_emails(email_files, apps, png_out_path, output_path.parent)
+    apps = parse_emails(email_files, apps, png_out_path, output_path.parent, appfilter_path)
 
     # Remove apps already in appfilter (Done)
     if appfilter_path.exists():
