@@ -3141,6 +3141,17 @@ const UI = {
     const containerParent = container.parentElement;
     if (!containerParent) return;
     const containerWidth = containerParent.getBoundingClientRect().width;
+
+    if (containerWidth < 500) {
+      container.style.position = '';
+      container.style.height = '';
+      cards.forEach(c => {
+        c.style.width = '';
+        c.style.marginBottom = `${gap}px`;
+      });
+      return;
+    }
+
     const columnCount = Math.max(1, Math.floor((containerWidth + gap) / (216 + gap)));
     const cardWidth = (containerWidth - (columnCount - 1) * gap) / columnCount;
 
@@ -3157,7 +3168,7 @@ const UI = {
     });
 
     container.style.height = `${Math.max(...colHeights)}px`;
-  },  
+},
 
   showSortMenu() {
     const menu = App.dom.sortMenu;
