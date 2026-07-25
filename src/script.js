@@ -4451,7 +4451,7 @@ const UI = {
             : '0';
           const inst = parseInt(instStr, 10) || 0;
           const pop = population[domain] || 1;
-          if (inst / 1_000_000 > pop * 3) return;
+          if (inst / 1_000_000 > pop) return;
           domainSumsI[domain] = (domainSumsI[domain] || 0) + inst;
           domainCountsI[domain] = (domainCountsI[domain] || 0) + 1;
         }
@@ -4459,7 +4459,10 @@ const UI = {
 
       // Add global_installs to domain stats for local impact
       for (const [domain, stats] of Object.entries(data)) {
-        if (isCountry(domain) && stats.global_installs > 0) {
+        if (isCountry(domain) && stats.global_installs > 0 && stats.global > 0) {
+          const avgGlobalInst = stats.global_installs / stats.global;
+          const pop = population[domain] || 1;
+          if (avgGlobalInst / 1_000_000 > pop) continue;
           domainSumsI[domain] = (domainSumsI[domain] || 0) + stats.global_installs;
           domainCountsI[domain] = (domainCountsI[domain] || 0) + stats.global;
         }
@@ -4479,7 +4482,7 @@ const UI = {
 
     if (mode === 'local') {
       entries = entries
-        .filter(([, , requests]) => requests > 5)
+        .filter(([, , requests, total]) => total - requests > 5)
         .sort((a, b) => {
           const domainAvgInstalls = App.state._domainAvgInstalls ?? {};
 
@@ -4493,15 +4496,15 @@ const UI = {
         });
     } else if (mode === 'coverage') {
       entries = entries
-        .filter(([, , requests]) => requests >= 5)
+        .filter(([, , requests, total]) => total - requests > 5)
         .sort((a, b) => {
-          const pctA = a[2] / a[3];
-          const pctB = b[2] / b[3];
-          return pctB - pctA;
+          const pctA = a[1] / a[3];
+          const pctB = b[1] / b[3];
+          return pctA - pctB;
         });
     } else {
       entries = entries
-        .filter(([, , requests]) => requests >= 5)
+        .filter(([, , requests, total]) => total - requests > 5)
         .sort((a, b) => b[3] - a[3]);
     }
 
