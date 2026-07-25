@@ -1636,12 +1636,15 @@ const Data = {
 
           /** @type {number[]} */
           const ttfs = history
-            .map((h) => (h.fulfilled - h.firstAppearance) / 86400)
-            .sort((a, b) => a - b);
+              .filter(h => h.label_factor !== 5 && h.label_factor !== 1)
+              .map(h => (h.fulfilled - h.firstAppearance) / 86400)
+              .sort((a, b) => a - b);
 
-          const medianIndex = Math.floor(ttfs.length / 2);
-
-          App.state.medianTTF = Math.round(ttfs[medianIndex]);
+          if (ttfs.length > 0) {
+            const medianIndex = Math.floor(ttfs.length / 2);
+            App.state.medianTTF = Math.round(ttfs[medianIndex]);
+            App.state.medianTTFCount = ttfs.length;
+          }
         })(),
         (async () => {
           /** @type {TrendingBaseline} */
@@ -4562,9 +4565,7 @@ const UI = {
     const paceEl = document.getElementById('activityPace');
     if (paceEl && App.state.medianTTF !== undefined) {
       paceEl.textContent = `${App.state.medianTTF}d from ask to icon`;
-      const count = App.state._fulfillmentData?.length || 0;
-      paceEl.title =
-        `Median time from request to icon, based on ${count} fulfilled requests.`;
+      paceEl.title = `Median time from request to icon, based on ${App.state.medianTTFCount} fulfilled requests.`;
     }
 
     /** @type {SVGElement | null} */
