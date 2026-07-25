@@ -25,6 +25,8 @@ CONFIG = {
     "request_limit": 50,
 }
 
+ISO_COUNTRIES = {'ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bt','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','st','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','uk','us','uy','uz','va','vc','ve','vi','vn','vu','ye','yt','za','zm','zw'}
+
 # -------------------------------------------------------
 # CLI
 # -------------------------------------------------------
@@ -231,8 +233,6 @@ def update_requests_graph(output_dir: Path, component_ids: list[str]):
     else:
         graph = {}
 
-    ISO_COUNTRIES = {'ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bt','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','gb','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','st','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','us','uy','uz','va','vc','ve','vi','vn','vu','ye','yt','za','zm','zw'}
-
     def get_domain(comp):
         pkg = comp.split("/")[0]
         return pkg.split(".")[0] if "." in pkg else "unknown"
@@ -297,8 +297,6 @@ def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path, graph_o
                         is_new = component_info not in apps
                         item_data_list.append((is_new, item))
                 
-                ISO_COUNTRIES = {'ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bt','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','gb','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','st','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','us','uy','uz','va','vc','ve','vi','vn','vu','ye','yt','za','zm','zw'}
-
                 def is_country_domain(comp):
                     pkg = comp.split('/')[0]
                     domain = pkg.split('.')[0]
