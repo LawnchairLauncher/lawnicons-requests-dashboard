@@ -2,7 +2,7 @@ name: Prune Requests
 
 on:
   schedule:
-    - cron: '17 5 * * *'
+    - cron: '17 1 * * *'
       timezone: Europe/Moscow
   workflow_dispatch:
 
@@ -24,35 +24,6 @@ jobs:
 
       - name: Install dependencies
         run: pip install requests google-play-scraper lxml
-
-      - name: Clean emails
-        env:
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          PYTHONUNBUFFERED: 1
-        run: python scripts/clean_emails.py
-        timeout-minutes: 15
-
-      - name: Fetch new emails
-        env:
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          PYTHONUNBUFFERED: 1
-        run: python scripts/fetch_emails.py
-
-      - name: Parse emails
-        run: |
-          if [ "$(ls -A emails/ 2>/dev/null)" ]; then
-            python scripts/email_parser.py emails/ src/assets/appfilter.xml src/extracted_png src/assets
-          else
-            echo "No emails to parse."
-          fi
-
-      - name: Cleanup emails
-        run: rm -rf emails/
-
-      - name: Save trending baseline
-        run: python scripts/save_trending_baseline.py
 
       - name: Prune requests
         id: prune_requests

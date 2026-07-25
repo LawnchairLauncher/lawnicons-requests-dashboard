@@ -1,6 +1,7 @@
 """
 Refactored Email -> Request Processor
 Outputs flat JSON structure with firstAppearance tracking.
+Run: python3 scripts/email_parser.py emails/ src/assets/appfilter.xml src/extracted_png src/assets
 """
 
 import argparse
@@ -10,6 +11,7 @@ import io
 import os
 import zipfile
 import email
+import shutil
 import lxml.etree as ET
 from time import mktime
 from datetime import date
@@ -371,30 +373,97 @@ def write_json_output(output_path: Path, apps: dict):
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
 
+def save_trending_snapshot(period_key, apps, output_path):
+    baseline_path = output_path.parent / "stats" / "trending_baseline.json"
+    baseline = {}
+    if baseline_path.exists():
+        with open(baseline_path, "r", encoding="utf-8") as f:
+            baseline = json.load(f)
+    
+    snapshot = {}
+    for app in apps:
+        comp = app.get("componentName", "")
+        req = app.get("requestCount", 0)
+        if comp and req >= 10:
+            snapshot[comp] = req
+    
+    baseline[period_key] = {
+        "date": date.today().isoformat(),
+        "total": len(apps),
+        "snapshot": snapshot
+    }
+    
+    baseline_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(baseline_path, "w", encoding="utf-8") as f:
+        json.dump(baseline, f, indent=2)
+    print(f"Saved trending {period_key} with {len(snapshot)} entries")
+
+
+def deduplicate_emails(email_files):
+    sender_latest = {}
+    for file_path in email_files:
+        try:
+            msg = read_email(file_path)
+            sender = msg.get("From", "unknown")
+            date_str = msg.get("Date")
+            ts = mktime(parsedate(date_str)) if date_str else 0
+            
+            if sender not in sender_latest or ts > sender_latest[sender][0]:
+                if sender in sender_latest:
+                    old_path = sender_latest[sender][1]
+                    if old_path.exists():
+                        old_path.unlink()
+                        print(f"  Removed duplicate: {old_path.name}")
+                sender_latest[sender] = (ts, file_path)
+            else:
+                file_path.unlink()
+                print(f"  Removed duplicate: {file_path.name}")
+        except Exception as e:
+            print(f"  Warning: could not read {file_path.name}: {e}")
+    
+    remaining = [p for p in email_files if p.exists()]
+    removed = len(email_files) - len(remaining)
+    if removed:
+        print(f"Deduplication: kept {len(remaining)} of {len(email_files)} emails")
+    return remaining
+
 def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path, output_path: Path):
     email_files = load_emails(folder_path)
+    
+    if email_files:
+        email_files = deduplicate_emails(email_files)
 
-    # 1. Load State
     apps = parse_existing_requests_json(output_path)
+    
+    # Save period_start before parsing
+    if email_files:
+        save_trending_snapshot("period_start", list(apps.values()), output_path)
 
-    # 2. Update State
     apps = parse_emails(email_files, apps, png_out_path, output_path.parent, appfilter_path)
 
-    # Remove apps already in appfilter (Done)
     if appfilter_path.exists():
         existing = load_existing_components(appfilter_path)
         apps = {k: v for k, v in apps.items() if k not in existing}
     else:
         print("Warning: appfilter.xml not found, skipping deduplication.")
 
-    # 3. Save
     write_json_output(output_path, apps)
 
-    # 4. Cleanup
+    # Save period_end after parsing
+    if email_files:
+        save_trending_snapshot("period_end", list(apps.values()), output_path)
+
     keep_pngs = {a["drawable"] for a in apps.values()}
     delete_unused_pngs(png_out_path, keep_pngs)
 
     print(f"Processed {len(email_files)} emails. Total requests: {len(apps)}")
+
+    answer = input("Delete processed emails? (Y/N): ").strip().upper()
+    if answer == 'Y':
+        shutil.rmtree(folder_path)
+        print("Emails deleted.")
+    else:
+        print("Emails kept.")    
 
 # -------------------------------------------------------
 # MAIN
