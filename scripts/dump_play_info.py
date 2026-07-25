@@ -18,7 +18,7 @@ SLEEP_MIN = 0.5
 SLEEP_MAX = 1
 SAVE_INTERVAL = 10         # Autosave every N requests
 MAX_CONSECUTIVE_ERRORS = 5 # Stop if IP blocked
-BATCH_LIMIT = 200         # Max apps to update per run (Set 0 for infinite)
+BATCH_LIMIT = 500         # Max apps to update per run (Set 0 for infinite)
 
 # Packages that don't exist in Play Store
 NON_PLAY_STORE_PREFIXES = ("org.chromium.webapk", "com.sec.android.app.sbrowser.webapk")
