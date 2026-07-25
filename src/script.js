@@ -539,7 +539,7 @@ const Templates = {
     return `
       <div class="grid-card ${
       isSelected ? 'selected' : ''
-    }" data-id="${id}" title="${label}"
+    }" data-id="${id}" title="${label}\nFirst time: ${Utils.formatDate(app.firstAppearance)}"
         tabindex="0" role="checkbox" aria-checked="${isSelected}">
         ${contentHtml}
         <div class="grid-overlay-tags">${tagHtml}</div>
