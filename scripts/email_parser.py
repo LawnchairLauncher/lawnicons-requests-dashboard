@@ -310,8 +310,12 @@ def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path, graph_o
                 print(f"  Limited from {len(items)} to {limit} items (new prioritised)")
 
             if graph_output_path and email_component_ids:
-                update_screens_graph(graph_output_path, email_file.name, email_component_ids, existing_components)
-                update_requests_graph(graph_output_path, email_component_ids)
+                if len(items) <= limit:
+                    graph_ids = email_component_ids
+                else:
+                    graph_ids = [process_item_tag(item)[0] for _, item in item_data_list[:limit] if process_item_tag(item)]
+                update_screens_graph(graph_output_path, email_file.name, graph_ids, existing_components)
+                update_requests_graph(graph_output_path, graph_ids)
 
         except Exception as e:
             print(f"Error processing {email_file.name}: {e}")
