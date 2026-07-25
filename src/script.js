@@ -333,9 +333,10 @@ const Utils = {
    * @returns {string}
    */
   compactNumber(num) {
-    if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-    if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
-    return num.toString();
+      if (num >= 1000000000) return (num / 1000000000).toFixed(1) + 'B';
+      if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+      if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+      return num.toString();
   },
 
   /**
@@ -3408,7 +3409,7 @@ const UI = {
         })() +
         '<div class="screen-card-description">' + screen.count + ' ' + iconLabel + '</div>' +
         '<div class="screen-card-description">' + Utils.compactNumber(screen.avgReq) + ' ' + reqLabel + ' per icon</div>' +
-        '<div class="screen-card-description">' + Utils.compactNumber(screen.medianInst).replace('.0', '') + ' installs</div>' +
+        (screen.medianInst > 0 ? '<div class="screen-card-description">' + Utils.compactNumber(screen.medianInst) + ' installs</div>' : '') +
         (screen.easyPct > 0 ? '<div class="screen-card-description">' + screen.easyPct + '% easy</div>' : '');
 
             card.addEventListener('click', () => {
