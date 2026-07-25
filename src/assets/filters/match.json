@@ -15,6 +15,10 @@
       "existing_drawable": "aha_games"
     },
     {
+      "id": "ru.innim.my_finance/ru.innim.my_finance.MainActivity",
+      "existing_drawable": "money_manager"
+    },
+    {
       "id": "com.sameerasw.essentials/com.sameerasw.essentials.AppFreezingLauncher",
       "existing_drawable": "essentials"
     },
@@ -85,6 +89,10 @@
     {
       "id": "org.vita3k.emulator/org.vita3k.emulator.MainActivity",
       "existing_drawable": "vita3k"
+    },
+    {
+      "id": "com.kowx712.supermanager/me.weishu.kernelsu.ui.MainActivity",
+      "existing_drawable": "kernelsu"
     },
     {
       "id": "net.zedge.android/net.zedge.android.MainMusicFest",
@@ -297,6 +305,10 @@
     {
       "id": "net.bat.store/net.bat.store.ThreeDayRecallIconAliasActivity",
       "existing_drawable": "aha_games"
+    },
+    {
+      "id": "com.huawei.it.myhuawei/leakcanary.internal.activity.LeakLauncherActivity",
+      "existing_drawable": "my_huawei"
     },
     {
       "id": "de.blitzer.plus/com.eifrig.blitzerde.activity.splash.SplashActivityAlias10",

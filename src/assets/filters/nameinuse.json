@@ -507,16 +507,8 @@
       "existing_drawable": "apple_music"
     },
     {
-      "id": "com.woden.celestis/com.woden.celestis.module_home.HomeActivityNew",
-      "existing_drawable": "loklok"
-    },
-    {
       "id": "io.ggapp.gg/io.ggapp.gg.MainActivity",
       "existing_drawable": "gg"
-    },
-    {
-      "id": "com.pdfreader.editor.viewer.pdfviewer/com.pdfreader.editor.presentation.splash.SplashActivity",
-      "existing_drawable": "generic_pdf_file"
     },
     {
       "id": "com.awfs.coordination/za.co.woolworths.financial.services.android.startup.view.StartupActivity",
@@ -680,7 +672,7 @@
     },
     {
       "id": "com.pdf.reader.editor.viewer.pro/com.pdf.reader.viewer.editor.ui.activities.SplashActivity",
-      "existing_drawable": "generic_pdf_file"
+      "existing_drawable": "generic_pdf_square"
     },
     {
       "id": "com.pri.icebox/com.pri.icebox.MainActivity",
@@ -765,10 +757,6 @@
     {
       "id": "video.photo.hd.camera/com.ijoysoft.cameratab.activity.SplashActivity",
       "existing_drawable": "generic_camera"
-    },
-    {
-      "id": "to.boosty.android/to.boosty.android.ui.root.MainActivity",
-      "existing_drawable": "boosty"
     },
     {
       "id": "com.sosauce.cutecalc/com.sosauce.vanilla.MainActivity",
@@ -1683,14 +1671,6 @@
       "existing_drawable": "free_fire"
     },
     {
-      "id": "com.xiaomi.smarthome.tv.global4/com.xiaomi.smarthome.tv.ui.MainActivity",
-      "existing_drawable": "mi_home"
-    },
-    {
-      "id": "com.huawei.it.myhuawei/com.huawei.myhuawei.ui.HwSplashActivity",
-      "existing_drawable": "my_huawei"
-    },
-    {
       "id": "xcom.niteshray.xapps.xblockit/xcom.niteshray.xapps.xblockit.MainActivity",
       "existing_drawable": "blockit"
     },
@@ -1707,32 +1687,12 @@
       "existing_drawable": "generic_shell"
     },
     {
-      "id": "app.passwordstore.pando85/app.passwordstore.ui.main.LaunchActivity",
-      "existing_drawable": "password_store"
-    },
-    {
       "id": "com.weather.forecast.weatherchannel/com.weather.forecast.weatherchannel.activities.SettingActivity",
       "existing_drawable": "yahoo_weather"
     },
     {
       "id": "com.jndapp.skyline.linex.iconpack/com.jndapp.skyline.linex.iconpack.MainActivity",
       "existing_drawable": "skyline"
-    },
-    {
-      "id": "com.hoodles.alltrails/com.alltrails.alltrails.StartActivity",
-      "existing_drawable": "alltrails"
-    },
-    {
-      "id": "com.morphe.youtube/com.morphe.youtube.morphe_original_1",
-      "existing_drawable": "youtube"
-    },
-    {
-      "id": "com.aeroinsta.android/com.instagram.android.activity.MainTabActivity",
-      "existing_drawable": "instagram"
-    },
-    {
-      "id": "be.aion.android.app/be.aion.android.app.initialization.ui.InitializationActivity",
-      "existing_drawable": "unicredit"
     },
     {
       "id": "dk.coop.coopplus/dk.coop.coopplus.splash.SplashActivity",
@@ -1745,10 +1705,6 @@
     {
       "id": "cz.vanama.scorecounter/cz.vanama.scorecounter.presentation.AppActivity",
       "existing_drawable": "score_counter"
-    },
-    {
-      "id": "com.ivy.wallet.debug/com.ivy.wallet.RootActivity",
-      "existing_drawable": "ivy_wallet"
     },
     {
       "id": "fitnesstraining.workout.stopwatch.hiit.intervaltimer/com.lengos.intervaltimer.splash.SplashActivity",
@@ -1767,24 +1723,12 @@
       "existing_drawable": "myhealth"
     },
     {
-      "id": "com.community.mbox.afen/com.transsion.subroom.activity.SplashActivity",
-      "existing_drawable": "moviebox"
-    },
-    {
       "id": "ccetywa.sat/oxT.BD.Y.ADe",
       "existing_drawable": "generic_shell"
     },
     {
-      "id": "com.mojang.mine261301/com.mojang.minecraftpe.MainActivity",
-      "existing_drawable": "minecraft"
-    },
-    {
       "id": "amazon.shop.barcode.scanner/amazon.barcode.scanner.SplashActivity",
       "existing_drawable": "generic_qr_reader"
-    },
-    {
-      "id": "com.kowx712.supermanager/me.weishu.kernelsu.MainActivityOfficial",
-      "existing_drawable": "kernelsu"
     },
     {
       "id": "com.asakahn.quicksearch/com.asakahn.quicksearch.SearchActivity",
@@ -1801,14 +1745,6 @@
     {
       "id": "com.kuma.smartnotify/com.kuma.smartnotify.ContactPicker",
       "existing_drawable": "generic_contacts"
-    },
-    {
-      "id": "com.happymod.app/com.happymod.app.hmmvp.main.LaunchActivity",
-      "existing_drawable": "happymod"
-    },
-    {
-      "id": "com.vtool.qrcodereader.barcodescanner/com.ecomobile.qrcode.screens.splash.SplashActivity",
-      "existing_drawable": "generic_qr_reader"
     },
     {
       "id": "com.atmasciences.gizmo/com.atmasciences.gizmo.MainActivity",
@@ -1829,14 +1765,6 @@
     {
       "id": "app.signal.id/app.signal.id.MainActivity",
       "existing_drawable": "signal"
-    },
-    {
-      "id": "app.passwordstore.agrahn/app.passwordstore.ui.main.LaunchActivity",
-      "existing_drawable": "password_store"
-    },
-    {
-      "id": "com.clarord.miclaro/com.clarord.miclaro.controller.LoginActivity",
-      "existing_drawable": "mi_claro"
     },
     {
       "id": "com.weather.forecast.dailyalert/com.wxfcst.dailyalert.ui.launcher.LauncherActivity",
@@ -1867,14 +1795,6 @@
       "existing_drawable": "start"
     },
     {
-      "id": "yt.morphe.noname.exe/yt.morphe.noname.exe.morphe_black_2",
-      "existing_drawable": "morphe"
-    },
-    {
-      "id": "com.hadrian.deltarune/com.hadrian.deltarune.RunnerActivity",
-      "existing_drawable": "deltarune"
-    },
-    {
       "id": "com.buff.game.appmobile/com.buff.game.appmobile.MainActivity",
       "existing_drawable": "buff"
     },
@@ -1887,20 +1807,12 @@
       "existing_drawable": "apk_editor_pro"
     },
     {
-      "id": "com.lknninex.glo/com.lknninex.glo.MainActivity",
-      "existing_drawable": "glo"
-    },
-    {
-      "id": "com.playdigious.shapez.epic/com.google.firebase.MessagingUnityPlayerActivity",
-      "existing_drawable": "shapez"
-    },
-    {
-      "id": "com.netflix.NGP.tombofthemask/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "tomb_of_the_mask"
-    },
-    {
       "id": "jp.co.canon.oip.android.opal/jp.co.canon.oip.android.opal.ui.activity.MainActivity",
       "existing_drawable": "generic_printer"
+    },
+    {
+      "id": "habittracker.todolist.tickit.daily.planner/habittracker.todolist.tickit.daily.planner.feature.main.SplashActivity",
+      "existing_drawable": "vervedo"
     },
     {
       "id": "com.rk.meowtac/com.rk.meowtac.MainActivity",
@@ -1911,16 +1823,16 @@
       "existing_drawable": "myhealth"
     },
     {
+      "id": "com.google.android.kk/com.thekirankumar.youtubeauto.activity.MainPhoneActivity",
+      "existing_drawable": "youtube"
+    },
+    {
       "id": "and.brainworks.arrows.out.escape.puzzle.game/com.google.firebase.MessagingUnityPlayerActivity",
       "existing_drawable": "arrow"
     },
     {
       "id": "com.batterypro.batteryrepairlife2020/com.battery.batteryrepairlife.ui.activity.SplashActivity",
       "existing_drawable": "battery_health"
-    },
-    {
-      "id": "com.cutestudio.edge.lighting.colors/com.cutestudio.edgelightingalert.notificationalert.activities.SplashActivity",
-      "existing_drawable": "edge_lighting"
     },
     {
       "id": "com.gaming.booster.optimizer.apps/com.demo.gamebooster.splashAds.SplashActivity",
@@ -1943,24 +1855,8 @@
       "existing_drawable": "tomtom"
     },
     {
-      "id": "com.fourg.lteModeOnly.speedTest.dataUsage.network/com.fourg.lteModeOnly.speedTest.dataUsage.network.activities.SplashActivity",
-      "existing_drawable": "forcelte"
-    },
-    {
-      "id": "com.samsung.android.airtel.stubapp/com.samsung.android.airtel.stubapp.ui.StubActivity",
-      "existing_drawable": "my_airtel"
-    },
-    {
       "id": "com.smsmessengapp.textsmsapp/com.smsmessengapp.textsmsapp.addrelated.NewFireBaseAds.SplashActivity",
       "existing_drawable": "messages"
-    },
-    {
-      "id": "top.nkbe.npatch/top.nkbe.npatch.ui.activity.MainActivity",
-      "existing_drawable": "lspatch_lsposed"
-    },
-    {
-      "id": "com.android.packageinstaller/com.rosan.installer.ui.activity.LauncherAlias",
-      "existing_drawable": "installerx"
     },
     {
       "id": "nl.tango/com.comarch.clm.mobile.tango.TangoBaseActivity",
@@ -1979,24 +1875,8 @@
       "existing_drawable": "all_video_downloader"
     },
     {
-      "id": "com.yomobigroup.chat/com.transsion.subroom.activity.SplashActivity",
-      "existing_drawable": "moviebox"
-    },
-    {
-      "id": "com.pdfreaderapp.alldocumentreader.pdfviewer/com.adjut.sdkwallpaperx.SplashActivity",
-      "existing_drawable": "generic_pdf_file"
-    },
-    {
       "id": "org.stingle.photos/org.stingle.photos.CameraXActivity",
       "existing_drawable": "generic_camera"
-    },
-    {
-      "id": "com.daufood.ppt/com.iproject.dominos.ui.splash.SplashActivity",
-      "existing_drawable": "dominos_pizza"
-    },
-    {
-      "id": "pdfreader.pdfviewer.free.officetool/pdfreader.pdfviewer.free.officetool.ui.R3WelcomeActivity",
-      "existing_drawable": "generic_pdf_file"
     },
     {
       "id": "ua.radioplayer.app/ua.radioplayer.radioplayer.MainActivity",
@@ -2031,10 +1911,6 @@
       "existing_drawable": "fidelity"
     },
     {
-      "id": "com.pony.decibelmeter.soundmeter/com.binghuo.soundmeter.launcher.LauncherActivity",
-      "existing_drawable": "sound_meter"
-    },
-    {
       "id": "com.trekound.tallycounter/com.trekound.tallycounter.MainActivity",
       "existing_drawable": "counter"
     },
@@ -2047,16 +1923,8 @@
       "existing_drawable": "calendar"
     },
     {
-      "id": "com.eurekateam.fmradio/com.eurekateam.fmradio.MainActivity",
-      "existing_drawable": "generic_fm_radio"
-    },
-    {
       "id": "esy.ycebylfl/jj.Il",
       "existing_drawable": "generic_shell"
-    },
-    {
-      "id": "ch.protonvpn.android.morphe/ch.protonvpn.android.RoutingActivity",
-      "existing_drawable": "proton_vpn"
     },
     {
       "id": "az.gov.my/az.idda.mygov.ui.activities.launcher.LauncherActivity",
@@ -2067,14 +1935,6 @@
       "existing_drawable": "ivoox"
     },
     {
-      "id": "moe.tarsin.ehviewer.cc/com.hippo.ehviewer.ui.MainActivity",
-      "existing_drawable": "ehviewer"
-    },
-    {
-      "id": "touch.assistivetouch.easytouch/touch.assistivetouch.easytouch.splash.SplashActivity",
-      "existing_drawable": "assistive_touch"
-    },
-    {
       "id": "com.documentsui.shortcut/com.documentsui.launcher.MainActivity",
       "existing_drawable": "generic_files"
     },
@@ -2083,72 +1943,20 @@
       "existing_drawable": "generic_contacts"
     },
     {
-      "id": "com.mousquetaires.netto/com.mousquetaires.netto.netto_flutter.MainActivity",
-      "existing_drawable": "netto"
-    },
-    {
-      "id": "com.example.nextdns/com.example.nextdns.MainActivity",
-      "existing_drawable": "nextdns"
-    },
-    {
-      "id": "io.github.qwq233.keyattestation/io.github.vvb2060.keyattestation.home.HomeActivity",
-      "existing_drawable": "key_attestation"
-    },
-    {
       "id": "la.biblia.catolica.latinoamericana/king.james.bible.android.activity.LaunchActivity",
       "existing_drawable": "generic_bible"
-    },
-    {
-      "id": "dev.jason.com.google.android.inputmethod.latin/com.google.android.libraries.inputmethod.launcher.LauncherActivity",
-      "existing_drawable": "gboard"
     },
     {
       "id": "com.jlabs.habittracker/com.jlabs.habittracker.MainActivity",
       "existing_drawable": "habits"
     },
     {
-      "id": "io.quotex.x/io.quotex.webview.MainActivity",
-      "existing_drawable": "quotex"
-    },
-    {
       "id": "com.luutinhit.launcherios17/com.luutinhit.weather.WeatherActivity",
       "existing_drawable": "yahoo_weather"
     },
     {
-      "id": "com.amazon.photos/com.amazon.photos.MainActivity",
-      "existing_drawable": "amazon_photos"
-    },
-    {
-      "id": "com.audible.application.kindle/com.audible.application.MainLauncher",
-      "existing_drawable": "audible"
-    },
-    {
       "id": "com.amazon.ags.app/com.amazon.ags.app.ui.library.LibraryActivity",
       "existing_drawable": "generic_games"
-    },
-    {
-      "id": "ru.innim.my_finance/ru.innim.my_finance.MainActivityAlias2",
-      "existing_drawable": "money_manager"
-    },
-    {
-      "id": "wj.bcngmr.ykztj.mldvhy/cn.toside.music.mobile.MainActivity",
-      "existing_drawable": "lx_music"
-    },
-    {
-      "id": "com.firsttouchgames.hero2/com.firsttouchgames.hero2.MainActivity",
-      "existing_drawable": "score_hero"
-    },
-    {
-      "id": "com.dot.gallery.gplay/com.dot.gallery.Launcher_ReFra",
-      "existing_drawable": "refra"
-    },
-    {
-      "id": "com.zte.mifavor.launcher/app.lawnchair.LawnchairLauncher",
-      "existing_drawable": "lawnchair"
-    },
-    {
-      "id": "com.king.candycrushsaga.flexion/com.king.candycrushsaga.FlexionActivity",
-      "existing_drawable": "candy_crush_saga"
     },
     {
       "id": "com.taymay.icon.theme/com.taymay.icon.theme.AppSplash",
@@ -2157,10 +1965,6 @@
     {
       "id": "com.wyze.wifianalyzer/com.wyze.wifianalyzer.MainActivity",
       "existing_drawable": "wifi_analyzer"
-    },
-    {
-      "id": "com.netflix.NGP.Solitaire/com.mobilityware.sflnativeandroidutils.SFLLaunchActivity",
-      "existing_drawable": "generic_solitaire"
     },
     {
       "id": "tad.hideapps.hiddenspace.apphider.webapps/tad.hideapps.hiddenspace.apphider.webapps.Calculator",
@@ -2173,10 +1977,6 @@
     {
       "id": "com.external.castle/com.gxgx.daqiandy.ui.splash.SplashActivity",
       "existing_drawable": "castle"
-    },
-    {
-      "id": "com.winlatcn/com.winlator.MainActivity",
-      "existing_drawable": "winlator"
     },
     {
       "id": "com.domobile.applock.ind/com.domobile.applockwatcher.LaunchActivity",
@@ -2207,32 +2007,8 @@
       "existing_drawable": "generic_shell"
     },
     {
-      "id": "com.risa.umbra/com.risa.umbra.module_home.HomeActivityNew",
-      "existing_drawable": "loklok"
-    },
-    {
-      "id": "com.github.digitalsoftwaresolutions.openconnect/app.openconnect.MainActivity",
-      "existing_drawable": "openconnect"
-    },
-    {
-      "id": "com.minimilitia.undeectablemod.byneerajmods/com.appsomniacs.da2.DA2Activity",
-      "existing_drawable": "mini_militia"
-    },
-    {
-      "id": "com.community.mbox.affr/com.transsion.subroom.activity.SplashActivity",
-      "existing_drawable": "moviebox"
-    },
-    {
       "id": "com.video.wallpaperlive/com.video.wallpaperlive.MainActivity",
       "existing_drawable": "video_to_wallpaper"
-    },
-    {
-      "id": "de.bmw.connected.mobile20.cn/com.mobileconnected.MainActivity",
-      "existing_drawable": "my_bmw"
-    },
-    {
-      "id": "io.ente.locker.fdroid/io.ente.locker.MainActivity",
-      "existing_drawable": "ente_locker"
     },
     {
       "id": "com.ptvag.android.adacgasprices/de.adac.mobile.navigation.features.onboarding.StartActivity",
@@ -2241,14 +2017,6 @@
     {
       "id": "com.mohammed.alrehaili.ayah/com.yourname.ayah.MainActivity",
       "existing_drawable": "ayah"
-    },
-    {
-      "id": "net.slions.fulguris.full.playstore/fulguris.activity.SplashActivity",
-      "existing_drawable": "fulguris"
-    },
-    {
-      "id": "net.slions.fulguris.full.playstore/fulguris.activity.IncognitoActivity",
-      "existing_drawable": "fulguris"
     },
     {
       "id": "com.vayunmathur.weather/com.vayunmathur.weather.MainActivity",
@@ -2279,14 +2047,6 @@
       "existing_drawable": "stellarium"
     },
     {
-      "id": "com.pikashow.mobile/com.pikashow.mobile.MainActivity",
-      "existing_drawable": "pikashow"
-    },
-    {
-      "id": "com.vayunmathur.music/com.vayunmathur.music.MainActivity",
-      "existing_drawable": "music_player"
-    },
-    {
       "id": "com.lsj.notes/com.lsj.notes.MainActivity",
       "existing_drawable": "samsung_notes"
     },
@@ -2301,10 +2061,6 @@
     {
       "id": "com.crdoid.music/com.kabouzeid.gramophone.ui.activities.MainActivity",
       "existing_drawable": "music_player"
-    },
-    {
-      "id": "com.google.android.GoogleCamerb3/com.android.camera.CameraLauncher",
-      "existing_drawable": "generic_camera"
     }
   ]
 }
