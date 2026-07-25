@@ -2262,9 +2262,13 @@ const UI = {
       },
     );
 
+    let resizeTimer = 0;
     addEventListener('resize', () => {
       this.renderDomainStats();
       this.renderActivityCard();
+      if (App.state.activeTab !== 'screens') return;
+        clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => UI.layoutMasonry(), 100)
     });
 
     App.dom.container.addEventListener('error', (event) => {
@@ -3121,6 +3125,40 @@ const UI = {
     return true;
   },
 
+  layoutMasonry() {
+    const container = App.dom.container;
+    const cards = [...container.children].filter(c => c instanceof HTMLElement);
+    if (cards.length === 0) return;
+
+    cards.forEach(c => {
+      c.style.position = '';
+      c.style.width = '';
+      c.style.left = '';
+      c.style.top = '';
+    });
+
+    const gap = 16;
+    const containerParent = container.parentElement;
+    if (!containerParent) return;
+    const containerWidth = containerParent.getBoundingClientRect().width;
+    const columnCount = Math.max(1, Math.floor((containerWidth + gap) / (216 + gap)));
+    const cardWidth = (containerWidth - (columnCount - 1) * gap) / columnCount;
+
+    container.style.position = 'relative';
+    const colHeights = new Array(columnCount).fill(0);
+
+    cards.forEach(card => {
+      card.style.position = 'absolute';
+      card.style.width = `${cardWidth}px`;
+      const shortestCol = colHeights.indexOf(Math.min(...colHeights));
+      card.style.left = `${shortestCol * (cardWidth + gap)}px`;
+      card.style.top = `${colHeights[shortestCol]}px`;
+      colHeights[shortestCol] += card.getBoundingClientRect().height + gap;
+    });
+
+    container.style.height = `${Math.max(...colHeights)}px`;
+  },  
+
   showSortMenu() {
     const menu = App.dom.sortMenu;
     const options = UI.sortOptions.filter((opt) => {
@@ -3283,7 +3321,7 @@ const UI = {
 
     let entries = Object.entries(screens).map(([id, ids]) => {
       let totalReq = 0;
-      const insts = [];
+      let totalInst = 0;
       let easyCount = 0;
       let supportedCount = 0;
       const previewIcons = [];
@@ -3293,7 +3331,7 @@ const UI = {
         if (!app) return;
         totalReq += app.requestCount || 0;
         const inst = Utils.parseInstalls(app.installs);
-        if (inst > 0) insts.push(inst);
+        if (inst > 0) totalInst += inst;
         const tags = s.appTags.get(comp);
         if (tags?.has('easy')) easyCount++;
         if (tags?.has('supported')) supportedCount++;
@@ -3305,22 +3343,15 @@ const UI = {
         }
       });
 
-      const median = arr => {
-        if (!arr.length) return 0;
-        const sorted = [...arr].sort((a, b) => a - b);
-        const mid = Math.floor(sorted.length / 2);
-        return sorted.length % 2 ? sorted[mid] : Math.round((sorted[mid - 1] + sorted[mid]) / 2);
-      };
-
       return {
-        id,
-        ids,
-        count: ids.length,
-        avgReq: ids.length ? Math.round(totalReq / ids.length) : 0,
-        medianInst: median(insts),
-        easyPct: ids.length ? Math.round(easyCount / ids.length * 100) : 0,
-        supportedCount,
-        previewIcons,
+          id,
+          ids,
+          count: ids.length,
+          sumReq: totalReq,
+          sumInst: totalInst,
+          easyPct: ids.length ? Math.round(easyCount / ids.length * 100) : 0,
+          supportedCount,
+          previewIcons,
       };
     });
 
@@ -3328,8 +3359,8 @@ const UI = {
     entries.sort((a, b) => {
       let cmp = 0;
       if (sortKey === 'missing') cmp = a.count - b.count;
-      else if (sortKey === 'req') cmp = a.avgReq - b.avgReq;
-      else if (sortKey === 'inst') cmp = a.medianInst - b.medianInst;
+      else if (sortKey === 'req') cmp = a.sumReq - b.sumReq;
+      else if (sortKey === 'inst') cmp = a.sumInst - b.sumInst;
       else if (sortKey === 'easy') cmp = a.easyPct - b.easyPct;
       return sortDir === 'desc' ? -cmp : cmp;
     });
@@ -3364,65 +3395,76 @@ const UI = {
       return;
     }    
 
+    if (!App.state._screenCardCache) App.state._screenCardCache = new Map();
+
     entries.forEach(screen => {
-      const card = document.createElement('div');
-      card.className = 'screen-card';
-      card.dataset.screenId = screen.id;
+      let card = App.state._screenCardCache.get(screen.id);
 
-      const cols = Math.min(screen.previewIcons.length, 3);
-      let previewHtml = '<div class="screen-preview" style="grid-template-columns:repeat(' + cols + ',56px);">';
-      screen.previewIcons.forEach(icon => {
-        previewHtml += '<img src="' + CONFIG.data.assetsPath + icon.drawable + CONFIG.data.iconExtension + '" class="screen-preview-icon" loading="lazy" onerror="this.style.display=\'none\'" alt="' + icon.label + '" />';
-      });
-      previewHtml += '</div>';
+      if (!card) {
+        card = document.createElement('div');
+        card.className = 'screen-card';
+        card.dataset.screenId = screen.id;
 
-      const iconLabel = screen.count === 1 ? 'icon' : 'icons';
-      const reqLabel = screen.count === 1 ? 'request' : 'requests';
-      const supLabel = screen.supportedCount === 1 ? 'supported icon' : 'supported icons';
+        const cols = Math.min(screen.previewIcons.length, 3);
+        let previewHtml = '<div class="screen-preview" style="grid-template-columns:repeat(' + cols + ',56px);">';
+        screen.previewIcons.forEach(icon => {
+          previewHtml += '<img src="' + CONFIG.data.assetsPath + icon.drawable + CONFIG.data.iconExtension + '" class="screen-preview-icon" loading="lazy" onerror="this.style.display=\'none\'" alt="' + icon.label + '" />';
+        });
+        previewHtml += '</div>';
 
-      card.innerHTML = 
-        (screen.supportedCount > 0 ? '<span class="status-pill status-supported screen-card-supported">' + screen.supportedCount + ' ' + supLabel + '</span>' : '') +
-        previewHtml +
-        (function() {
-          const countries = new Set();
-          const graph = App.state.requestsGraph;
-          if (graph) {
-            screen.ids.forEach(comp => {
-              const domain = comp.split('/')[0].split('.')[0];
-              if (ISO_COUNTRIES.has(domain)) {
-                countries.add(domain);
-              } else if (graph[comp]) {
-                const geoNeighbors = Object.keys(graph[comp]).filter(n => ISO_COUNTRIES.has(n.split('/')[0].split('.')[0]));
-                if (geoNeighbors.length > 0) {
-                  geoNeighbors.forEach(n => countries.add(n.split('/')[0].split('.')[0]));
+        const iconLabel = screen.count === 1 ? 'icon' : 'icons';
+        const reqLabel = screen.count === 1 ? 'request' : 'requests';
+        const supLabel = screen.supportedCount === 1 ? 'supported icon' : 'supported icons';
+
+        card.innerHTML = 
+          (screen.supportedCount > 0 ? '<span class="status-pill status-supported screen-card-supported">' + screen.supportedCount + ' ' + supLabel + '</span>' : '') +
+          previewHtml +
+          (function() {
+            const countries = new Set();
+            const graph = App.state.requestsGraph;
+            if (graph) {
+              screen.ids.forEach(comp => {
+                const domain = comp.split('/')[0].split('.')[0];
+                if (ISO_COUNTRIES.has(domain)) {
+                  countries.add(domain);
+                } else if (graph[comp]) {
+                  const geoNeighbors = Object.keys(graph[comp]).filter(n => ISO_COUNTRIES.has(n.split('/')[0].split('.')[0]));
+                  if (geoNeighbors.length > 0) {
+                    geoNeighbors.forEach(n => countries.add(n.split('/')[0].split('.')[0]));
+                  } else {
+                    countries.add('us');
+                  }
                 } else {
                   countries.add('us');
                 }
-              } else {
-                countries.add('us');
-              }
-            });
-          }
-          const arr = [...countries].sort();
-          const countryStr = arr.length > 3 ? 'global' : arr.join(', ');
-          return '<div class="screen-card-header"><span>' + screen.id + '</span>' + (countryStr ? '<span class="screen-card-countries">' + countryStr + '</span>' : '') + '</div>';
-        })() +
-        '<div class="screen-card-description">' + screen.count + ' ' + iconLabel + '</div>' +
-        '<div class="screen-card-description">' + Utils.compactNumber(screen.avgReq) + ' ' + reqLabel + ' per icon</div>' +
-        (screen.medianInst > 0 ? '<div class="screen-card-description">' + Utils.compactNumber(screen.medianInst) + ' installs</div>' : '') +
-        (screen.easyPct > 0 ? '<div class="screen-card-description">' + screen.easyPct + '% easy</div>' : '');
+              });
+            }
+            const arr = [...countries].sort();
+            const countryStr = arr.length > 3 ? 'global' : arr.join(', ');
+            return '<div class="screen-card-header"><span>' + screen.id + '</span>' + (countryStr ? '<span class="screen-card-countries">' + countryStr + '</span>' : '') + '</div>';
+          })() +
+          '<div class="screen-card-description">' + screen.count + ' ' + iconLabel + '</div>' +
+          '<div class="screen-card-description">' + Utils.compactNumber(screen.sumReq) + ' ' + reqLabel + '</div>' +
+          (screen.sumInst > 0 ? '<div class="screen-card-description">' + Utils.compactNumber(screen.sumInst) + ' installs</div>' : '') +
+          (screen.easyPct > 0 ? '<div class="screen-card-description">' + screen.easyPct + '% easy</div>' : '');
 
-            card.addEventListener('click', () => {
-              App.state.activeTab = 'requests';
-              document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-              document.querySelector('.tab[data-tab="requests"]')?.classList.add('active');
-              App.state.activeScreenFilter = screen.ids;
-              Data.syncUrlState();
-              this.render();
-            });
-            App.dom.container.appendChild(card);
-          });
-        },
+        card.addEventListener('click', () => {
+          App.state.activeTab = 'requests';
+          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+          document.querySelector('.tab[data-tab="requests"]')?.classList.add('active');
+          App.state.activeScreenFilter = screen.ids;
+          Data.syncUrlState();
+          this.render();
+        });
+
+        App.state._screenCardCache.set(screen.id, card);
+      }
+
+      App.dom.container.appendChild(card);
+    });
+
+    this.layoutMasonry();
+  },
 
   renderLowQualityMode() {
     document.querySelector('.header-icon')?.classList.add('is-hidden');

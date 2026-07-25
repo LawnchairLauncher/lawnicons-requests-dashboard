@@ -2073,15 +2073,13 @@ input[type="checkbox"]:indeterminate::after {
 
 /* Screens */
 .screens-grid {
-  column-count: auto;
-  column-width: 216px;
-  column-gap: var(--space-md);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(216px, 1fr));
+  gap: var(--space-md);
+  align-items: start;
   padding-bottom: 100px;
-}
-
-.screen-card {
-  break-inside: avoid;
-  margin-bottom: var(--space-md);
+  display: block;
+  position: relative;
 }
 
 .screen-card {
