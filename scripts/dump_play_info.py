@@ -11,7 +11,9 @@ from google_play_scraper import app as play_app
 # CONFIG
 JSON_PATH = "src/assets/requests.json"
 DEAD_PATH = "src/assets/dead_links.json"
+EASY_PATH = "src/assets/filters/easy.json"
 ICON_DIR = "src/extracted_png/"
+
 
 # Throttling & Limits
 SLEEP_MIN = 0.5
@@ -114,6 +116,14 @@ def main():
     updated_session = 0
     attempted = 0
     consecutive_errors = 0
+
+    easy_ids = set()
+    if os.path.exists(EASY_PATH):
+        with open(EASY_PATH) as f:
+            easy_data = json.load(f)
+        easy_ids = set(easy_data.get("easy", []))
+
+    apps.sort(key=lambda app: (app['componentName'] not in easy_ids, app.get('requestCount', 0)))    
     
     print(f"📋 Loaded {total} apps. {len(DEAD_SET)} known dead links.")
     if BATCH_LIMIT > 0:
