@@ -2640,6 +2640,26 @@ const UI = {
           return;
         }
 
+        if (action === 'screen-add-to-plan') {
+          const screenId = actionEl.dataset.screenId;
+          if (screenId && App.state.screensData[screenId]) {
+            const ids = App.state.screensData[screenId];
+            ids.forEach(id => {
+              const app = App.state.idMap.get(id);
+              if (app && !App.state.contribution.some(a => a.componentName === id)) {
+                App.state.contribution.push(app);
+                const tags = App.state.appTags.get(id) || new Set();
+                tags.add('plan');
+                App.state.appTags.set(id, tags);
+              }
+            });
+            UI.saveContribution();
+            UI.updateContributionBadge();
+            Components.Toast.show(`${ids.length} icons added to plan`);
+          }
+          return;
+        }
+
         if (action === 'clear-screen-filter') {
           App.state.activeScreenFilter = null;
           this.render();
@@ -3128,7 +3148,7 @@ const UI = {
     return true;
   },
 
-  layoutMasonry() {
+layoutMasonry() {
     const container = App.dom.container;
     const cards = [...container.children].filter(c => c instanceof HTMLElement);
     if (cards.length === 0) return;
@@ -3139,6 +3159,8 @@ const UI = {
       c.style.left = '';
       c.style.top = '';
     });
+    container.style.position = '';
+    container.style.height = '';
 
     const gap = 16;
     const containerParent = container.parentElement;
@@ -3146,10 +3168,7 @@ const UI = {
     const containerWidth = containerParent.getBoundingClientRect().width;
 
     if (containerWidth < 500) {
-      container.style.position = '';
-      container.style.height = '';
       cards.forEach(c => {
-        c.style.width = '';
         c.style.marginBottom = `${gap}px`;
       });
       return;
@@ -3158,16 +3177,21 @@ const UI = {
     const columnCount = Math.max(1, Math.floor((containerWidth + gap) / (216 + gap)));
     const cardWidth = (containerWidth - (columnCount - 1) * gap) / columnCount;
 
+    cards.forEach(c => {
+      c.style.width = `${cardWidth}px`;
+    });
+
+    const heights = cards.map(c => c.getBoundingClientRect().height);
+
     container.style.position = 'relative';
     const colHeights = new Array(columnCount).fill(0);
 
-    cards.forEach(card => {
+    cards.forEach((card, i) => {
       card.style.position = 'absolute';
-      card.style.width = `${cardWidth}px`;
       const shortestCol = colHeights.indexOf(Math.min(...colHeights));
       card.style.left = `${shortestCol * (cardWidth + gap)}px`;
       card.style.top = `${colHeights[shortestCol]}px`;
-      colHeights[shortestCol] += card.getBoundingClientRect().height + gap;
+      colHeights[shortestCol] += heights[i] + gap;
     });
 
     container.style.height = `${Math.max(...colHeights)}px`;
@@ -3409,70 +3433,63 @@ const UI = {
       return;
     }    
 
-    if (!App.state._screenCardCache) App.state._screenCardCache = new Map();
-
     entries.forEach(screen => {
-      let card = App.state._screenCardCache.get(screen.id);
+      const card = document.createElement('div');
+      card.className = 'screen-card';
+      card.dataset.screenId = screen.id;
 
-      if (!card) {
-        card = document.createElement('div');
-        card.className = 'screen-card';
-        card.dataset.screenId = screen.id;
+      const cols = Math.min(screen.previewIcons.length, 3);
+      let previewHtml = '<div class="screen-preview" style="grid-template-columns:repeat(' + cols + ',56px);">';
+      screen.previewIcons.forEach(icon => {
+        previewHtml += '<img src="' + CONFIG.data.assetsPath + icon.drawable + CONFIG.data.iconExtension + '" class="screen-preview-icon" loading="lazy" onerror="this.style.display=\'none\'" alt="' + icon.label + '" />';
+      });
+      previewHtml += '</div>';
 
-        const cols = Math.min(screen.previewIcons.length, 3);
-        let previewHtml = '<div class="screen-preview" style="grid-template-columns:repeat(' + cols + ',56px);">';
-        screen.previewIcons.forEach(icon => {
-          previewHtml += '<img src="' + CONFIG.data.assetsPath + icon.drawable + CONFIG.data.iconExtension + '" class="screen-preview-icon" loading="lazy" onerror="this.style.display=\'none\'" alt="' + icon.label + '" />';
-        });
-        previewHtml += '</div>';
+      const iconLabel = screen.count === 1 ? 'icon' : 'icons';
+      const reqLabel = screen.count === 1 ? 'request' : 'requests';
+      const supLabel = screen.supportedCount === 1 ? 'supported icon' : 'supported icons';
 
-        const iconLabel = screen.count === 1 ? 'icon' : 'icons';
-        const reqLabel = screen.count === 1 ? 'request' : 'requests';
-        const supLabel = screen.supportedCount === 1 ? 'supported icon' : 'supported icons';
-
-        card.innerHTML = 
-          (screen.supportedCount > 0 ? '<span class="status-pill status-supported screen-card-supported">' + screen.supportedCount + ' ' + supLabel + '</span>' : '') +
-          previewHtml +
-          (function() {
-            const countries = new Set();
-            const graph = App.state.requestsGraph;
-            if (graph) {
-              screen.ids.forEach(comp => {
-                const domain = comp.split('/')[0].split('.')[0];
-                if (ISO_COUNTRIES.has(domain)) {
-                  countries.add(domain);
-                } else if (graph[comp]) {
-                  const geoNeighbors = Object.keys(graph[comp]).filter(n => ISO_COUNTRIES.has(n.split('/')[0].split('.')[0]));
-                  if (geoNeighbors.length > 0) {
-                    geoNeighbors.forEach(n => countries.add(n.split('/')[0].split('.')[0]));
-                  } else {
-                    countries.add('us');
-                  }
+      card.innerHTML = 
+        (screen.supportedCount > 0 ? '<span class="status-pill status-supported screen-card-supported">' + screen.supportedCount + ' ' + supLabel + '</span>' : '') +
+        previewHtml +
+        (function() {
+          const countries = new Set();
+          const graph = App.state.requestsGraph;
+          if (graph) {
+            screen.ids.forEach(comp => {
+              const domain = comp.split('/')[0].split('.')[0];
+              if (ISO_COUNTRIES.has(domain)) {
+                countries.add(domain);
+              } else if (graph[comp]) {
+                const geoNeighbors = Object.keys(graph[comp]).filter(n => ISO_COUNTRIES.has(n.split('/')[0].split('.')[0]));
+                if (geoNeighbors.length > 0) {
+                  geoNeighbors.forEach(n => countries.add(n.split('/')[0].split('.')[0]));
                 } else {
                   countries.add('us');
                 }
-              });
-            }
-            const arr = [...countries].sort();
-            const countryStr = arr.length > 3 ? 'global' : arr.join(', ');
-            return '<div class="screen-card-header"><span>' + screen.id + '</span>' + (countryStr ? '<span class="screen-card-countries">' + countryStr + '</span>' : '') + '</div>';
-          })() +
-          '<div class="screen-card-description">' + screen.count + ' ' + iconLabel + '</div>' +
-          '<div class="screen-card-description">' + Utils.compactNumber(screen.sumReq) + ' ' + reqLabel + '</div>' +
-          (screen.sumInst > 0 ? '<div class="screen-card-description">' + Utils.compactNumber(screen.sumInst) + ' installs</div>' : '') +
-          (screen.easyPct > 0 ? '<div class="screen-card-description">' + screen.easyPct + '% easy</div>' : '');
+              } else {
+                countries.add('us');
+              }
+            });
+          }
+          const arr = [...countries].sort();
+          const countryStr = arr.length > 3 ? 'global' : arr.join(', ');
+          return '<div class="screen-card-header"><span>' + screen.id + '</span>' + (countryStr ? '<span class="screen-card-countries">' + countryStr + '</span>' : '') + '</div>';
+        })() +
+        '<div class="screen-card-description">' + screen.count + ' ' + iconLabel + '</div>' +
+        '<div class="screen-card-description">' + Utils.compactNumber(screen.sumReq) + ' ' + reqLabel + '</div>' +
+        (screen.sumInst > 0 ? '<div class="screen-card-description">' + Utils.compactNumber(screen.sumInst) + ' installs</div>' : '') +
+        '<button class="screen-card-add-to-plan" data-action="screen-add-to-plan" data-screen-id="' + screen.id + '" title="Add to plan"><svg><use href="#ic-add-to-plan"/></svg></button>'
 
-        card.addEventListener('click', () => {
-          App.state.activeTab = 'requests';
-          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-          document.querySelector('.tab[data-tab="requests"]')?.classList.add('active');
-          App.state.activeScreenFilter = screen.ids;
-          Data.syncUrlState();
-          this.render();
-        });
-
-        App.state._screenCardCache.set(screen.id, card);
-      }
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('[data-action]')) return;
+        App.state.activeTab = 'requests';
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelector('.tab[data-tab="requests"]')?.classList.add('active');
+        App.state.activeScreenFilter = screen.ids;
+        Data.syncUrlState();
+        this.render();
+      });
 
       App.dom.container.appendChild(card);
     });

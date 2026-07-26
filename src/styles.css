@@ -2138,6 +2138,37 @@ input[type="checkbox"]:indeterminate::after {
   font-size: 14px;
 }
 
+.screen-card-add-to-plan {
+  position: absolute;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--shape-xlarge);
+  background: var(--surface-container-high);
+  border: none;
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.screen-card:hover .screen-card-add-to-plan {
+  opacity: 1;
+}
+
+.screen-card-add-to-plan:hover {
+  background: var(--surface-container-highest);
+}
+
+.screen-card-add-to-plan svg {
+  width: 28px;
+  height: 28px;
+}
+
 /* ==========================================
    Regex Autocomplete
    ========================================== */
