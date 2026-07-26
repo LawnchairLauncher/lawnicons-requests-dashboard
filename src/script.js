@@ -3478,11 +3478,11 @@ layoutMasonry() {
         })() +
         '<div class="screen-card-description">' + screen.count + ' ' + iconLabel + '</div>' +
         '<div class="screen-card-description">' + Utils.compactNumber(screen.sumReq) + ' ' + reqLabel + '</div>' +
-        (screen.sumInst > 0 ? '<div class="screen-card-description">' + Utils.compactNumber(screen.sumInst) + ' installs</div>' : '') +
-        '<button class="screen-card-add-to-plan" data-action="screen-add-to-plan" data-screen-id="' + screen.id + '" title="Add to plan"><svg><use href="#ic-add-to-plan"/></svg></button>'
+        (screen.sumInst > 0 ? '<div class="screen-card-description">' + Utils.compactNumber(screen.sumInst) + ' installs</div>' : '') +   (screen.easyPct > 0 ? '<div class="screen-card-description">' + screen.easyPct + '% easy</div>' : '') +
+        '<button class="screen-card-add-to-plan" data-action="screen-add-to-plan" data-screen-id="' + screen.id + '" title="Add to plan"><svg><use href="#ic-add-to-plan"/></svg></button>';
 
       card.addEventListener('click', (e) => {
-        if (e.target.closest('[data-action]')) return;
+        if (e.target instanceof HTMLElement && e.target.closest('[data-action]')) return;
         App.state.activeTab = 'requests';
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
         document.querySelector('.tab[data-tab="requests"]')?.classList.add('active');
