@@ -409,6 +409,18 @@ def update_domain_stats() -> int:
                 requests_counter[country] += 1
                 global_counter[country] += 1
                 global_installs_counter[country] += inst
+
+        elif domain == 'com':
+            requests_counter['us'] += 1
+            global_counter['us'] += 1
+            inst = 0
+            app_data = apps_dict.get(comp)
+            if app_data:
+                inst_val = app_data.get("installs")
+                inst_str = (inst_val or "0").replace(",", "").replace("+", "")
+                inst = int(inst_str) if inst_str.isdigit() else 0
+            global_installs_counter['us'] += inst
+
         else:
             # Non-geo, not in graph — still count for its domain
             requests_counter[domain] += 1
