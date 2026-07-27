@@ -300,7 +300,7 @@ def generate_stale_list() -> int:
     stale_file_path = FILTERS_DIR / "stale.json"
     output_data = {
         "label": "Stale",
-        "description": "Requests on death row.",
+        "description": "Requests on death row. Double-check if the app is still around.",
         "stale": stale_components
     }
 
