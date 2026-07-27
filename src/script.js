@@ -1849,13 +1849,22 @@ const Data = {
       if (s.regexMode) {
         try {
           const regex = new RegExp(query.text, 'i');
+          const isUsSearch = query.text === '^us\\.';
+          const graph = App.state.requestsGraph;
+          
           data = data.filter((a) => {
             if (regex.test(a.label) || regex.test(a.componentName)) return true;
+            
+            if (isUsSearch) {
+              const comp = a.componentName;
+              const domain = comp.split('/')[0].split('.')[0];
+              if (domain === 'com' && !graph[comp]) return true;
+            }
+            
             const domainMatch = s.search.match(/^\^([a-z]+)\\\./);
             if (domainMatch) {
               const searchDomain = domainMatch[1];
               const comp = a.componentName;
-              const graph = App.state.requestsGraph;
               if (graph[comp]) {
                 const neighbors = Object.keys(graph[comp]);
                 return neighbors.some(n => n.split('/')[0].split('.')[0] === searchDomain);
