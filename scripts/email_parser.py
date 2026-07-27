@@ -1,7 +1,7 @@
 """
 Refactored Email -> Request Processor
 Outputs flat JSON structure with firstAppearance tracking.
-Run: python3 scripts/email_parser.py emails/ src/assets/appfilter.xml src/extracted_png src/assets
+Run: python3 scripts/email_parser.py emails/ src/assets/appfilter.xml src/extracted_images src/assets
 """
 
 import argparse
@@ -18,6 +18,7 @@ from datetime import date
 from pathlib import Path
 from email.message import Message
 from email.utils import parsedate
+from PIL import Image
 
 COMPONENT_PATTERN = re.compile('ComponentInfo{(?P<ComponentInfo>.+)}')
 
@@ -35,7 +36,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Parse icon request emails into requests.json")
     parser.add_argument("folder_path", type=str, help="Folder containing .eml files")
     parser.add_argument("appfilter_path", type=str, help="Current appfilter.xml path")
-    parser.add_argument("extracted_png_folder_path", type=str, help="Output folder for PNGs")
+    parser.add_argument("image_out_path", type=str, help="Output folder for images")
     parser.add_argument("requests_path", type=str, help="Folder containing requests.json")
     return parser.parse_args()
 
@@ -65,31 +66,30 @@ def extract_xml(zip_file: zipfile.ZipFile) -> ET.Element:
     xml_string = zip_file.read('!appfilter.xml')
     return ET.fromstring(xml_string)
 
-def extract_png(zip_file: zipfile.ZipFile, drawable_name: str, out_dir: Path,
+def extract_image(zip_file: zipfile.ZipFile, drawable_name: str, out_dir: Path,
                 target_name: str | None = None, overwrite: bool = False) -> str:
     base_name = target_name or drawable_name
     candidate_name = base_name
     try:
         for file_info in zip_file.infolist():
             if file_info.filename.endswith(f'{base_name}.png'):
-                with zip_file.open(file_info.filename) as png_file:
-                    png_content = png_file.read()
+                with zip_file.open(file_info.filename) as source_file:
+                    image_data = source_file.read()
                 
-                png_path = out_dir / f"{candidate_name}.png"
+                image_path = out_dir / f"{candidate_name}.webp"
                 if not overwrite:
-                    # Deduplicate filename only for newly created entries.
                     count = 1
-                    while png_path.exists():
+                    while image_path.exists():
                         candidate_name = f"{base_name}_{count}"
-                        png_path = out_dir / f"{candidate_name}.png"
+                        image_path = out_dir / f"{candidate_name}.webp"
                         count += 1
 
                 out_dir.mkdir(parents=True, exist_ok=True)
-                with open(png_path, 'wb') as f:
-                    f.write(png_content)
+                img = Image.open(io.BytesIO(image_data))
+                img.save(image_path, "webp", quality=90)
                 return candidate_name
     except Exception as e:
-        print(f"Error extracting PNG '{drawable_name}': {e}")
+        print(f"Error extracting image '{drawable_name}': {e}")
     return candidate_name
 
 # -------------------------------------------------------
@@ -156,7 +156,7 @@ def process_item_tag(item: ET.Element) -> tuple[str, str, str] | None:
     return match.group('ComponentInfo'), name, draw
 
 def parse_item_tag(item: ET.Element, msg: Message, zip_file: zipfile.ZipFile,
-                   apps: dict, png_out_dir: Path) -> dict:
+                   apps: dict, image_out_dir: Path) -> dict:
 
     item_data = process_item_tag(item)
     if not item_data: return apps
@@ -170,12 +170,14 @@ def parse_item_tag(item: ET.Element, msg: Message, zip_file: zipfile.ZipFile,
         entry["requestCount"] += 1
         entry["lastRequested"] = max(entry.get("lastRequested", 0), req_time)
 
-        # Refresh PNG for existing requests while keeping their drawable key stable.
+        # Refresh image for existing requests while keeping their drawable key stable.
         existing_drawable = entry.get("drawable") or drawable
-        entry["drawable"] = extract_png(
+        if existing_drawable.endswith('.png'):
+            existing_drawable = existing_drawable[:-4]
+        entry["drawable"] = extract_image(
             zip_file,
             drawable,
-            png_out_dir,
+            image_out_dir,
             target_name=existing_drawable,
             overwrite=True,
         )
@@ -195,7 +197,7 @@ def parse_item_tag(item: ET.Element, msg: Message, zip_file: zipfile.ZipFile,
 
     # 2. Create New
     try:
-        drawable_name = extract_png(zip_file, drawable, png_out_dir)
+        drawable_name = extract_image(zip_file, drawable, image_out_dir)
         apps[component_info] = create_app_entry(
             app_name, component_info, drawable_name, req_time)
     except Exception as e:
@@ -259,7 +261,7 @@ def update_requests_graph(output_dir: Path, component_ids: list[str]):
     with open(graph_path, 'w') as f:
         json.dump(graph, f, indent=2)
 
-def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path, graph_output_path: Path = None, appfilter_path: Path = None) -> dict:
+def parse_emails(email_files: list[Path], apps: dict, image_out_dir: Path, graph_output_path: Path = None, appfilter_path: Path = None) -> dict:
     failed_count = 0
     limit = CONFIG["request_limit"]
 
@@ -287,7 +289,7 @@ def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path, graph_o
             
             if len(items) <= limit:
                 for item in items:
-                    apps = parse_item_tag(item, msg, zip_file, apps, png_out_dir)
+                    apps = parse_item_tag(item, msg, zip_file, apps, image_out_dir)
             else:
                 item_data_list = []
                 for item in items:
@@ -305,7 +307,7 @@ def parse_emails(email_files: list[Path], apps: dict, png_out_dir: Path, graph_o
                 item_data_list.sort(key=lambda x: (not x[0], not is_country_domain(x[1].get('component', ''))))
                 
                 for _, item in item_data_list[:limit]:
-                    apps = parse_item_tag(item, msg, zip_file, apps, png_out_dir)
+                    apps = parse_item_tag(item, msg, zip_file, apps, image_out_dir)
                     
                 print(f"  Limited from {len(items)} to {limit} items (new prioritised)")
 
@@ -340,10 +342,10 @@ def load_existing_components(appfilter_path: Path) -> set[str]:
         if match: components.add(match.group(1))
     return components
 
-def delete_unused_pngs(out_dir: Path, keep: set[str]):
+def delete_unused_images(out_dir: Path, keep: set[str]):
     if not out_dir.exists(): return
     for f in os.listdir(out_dir):
-        if f.endswith(".png"):
+        if f.endswith(".webp"):
             name = os.path.splitext(f)[0]
             if name == "_ic_default": continue
             if name not in keep:
@@ -425,7 +427,7 @@ def deduplicate_emails(email_files):
         print(f"Deduplication: kept {len(remaining)} of {len(email_files)} emails")
     return remaining
 
-def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path, output_path: Path):
+def run_pipeline(folder_path: Path, appfilter_path: Path, image_out_path: Path, output_path: Path):
     email_files = load_emails(folder_path)
     
     if email_files:
@@ -437,7 +439,7 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path, ou
     if email_files:
         save_trending_snapshot("period_start", list(apps.values()), output_path)
 
-    apps = parse_emails(email_files, apps, png_out_path, output_path.parent, appfilter_path)
+    apps = parse_emails(email_files, apps, image_out_path, output_path.parent, appfilter_path)
 
     if appfilter_path.exists():
         existing = load_existing_components(appfilter_path)
@@ -451,8 +453,8 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path, ou
     if email_files:
         save_trending_snapshot("period_end", list(apps.values()), output_path)
 
-    keep_pngs = {a["drawable"] for a in apps.values()}
-    delete_unused_pngs(png_out_path, keep_pngs)
+    keep_images = {a["drawable"] for a in apps.values()}
+    delete_unused_images(image_out_path, keep_images)
 
     print(f"Processed {len(email_files)} emails. Total requests: {len(apps)}")
 
@@ -471,7 +473,7 @@ def main():
     run_pipeline(
         folder_path=Path(args.folder_path),
         appfilter_path=Path(args.appfilter_path),
-        png_out_path=Path(args.extracted_png_folder_path),
+        image_out_path=Path(args.image_out_path),
         output_path=Path(args.requests_path) / "requests.json"
     )
 

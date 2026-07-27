@@ -12,7 +12,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 LOCAL_APPFILTER = REPO_ROOT / "src/assets/appfilter.xml"
 REQUESTS_JSON = REPO_ROOT / "src/assets/requests.json"
-EXTRACTED_PNG_DIR = REPO_ROOT / "src/extracted_png"
+EXTRACTED_IMAGE_DIR = REPO_ROOT / "src/extracted_images"
 FILTERS_DIR = REPO_ROOT / "src/assets/filters"
 
 UPSTREAM_APPFILTER = "https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/app/assets/appfilter.xml"
@@ -67,10 +67,10 @@ def load_upstream_components(xml_bytes: bytes) -> set[str]:
     return components
 
 
-def delete_drawable_png(drawable_name: str) -> bool:
+def delete_drawable_image(drawable_name: str) -> bool:
     if not drawable_name:
         return False
-    drawable_path = EXTRACTED_PNG_DIR / f"{drawable_name}.png"
+    drawable_path = EXTRACTED_IMAGE_DIR / f"{drawable_name}.webp"
     if not drawable_path.exists():
         return False
     drawable_path.unlink()
@@ -159,19 +159,19 @@ def prune_requests(components_to_remove: set[str]) -> tuple[int, int, set[str]]:
         with open(REQUESTS_JSON, "w", encoding="utf-8") as f:
             json.dump(requests_data, f, indent=2)
 
-    deleted_png_count = 0
+    deleted_image_count = 0
     seen_drawables = set()
     for app in removed_apps:
         drawable = app.get("drawable", "")
         if not drawable or drawable in seen_drawables:
             continue
         seen_drawables.add(drawable)
-        if delete_drawable_png(drawable):
-            deleted_png_count += 1
+        if delete_drawable_image(drawable):
+            deleted_image_count += 1
 
     removed_components = {app.get("componentName", "") for app in removed_apps}
     removed_components.discard("")
-    return len(removed_apps), deleted_png_count, removed_components
+    return len(removed_apps), deleted_image_count, removed_components
 
 
 def is_expired(app: dict, now: float) -> bool:
@@ -196,7 +196,7 @@ def is_expired(app: dict, now: float) -> bool:
 
 
 def prune_expired_requests() -> tuple[int, int]:
-    """Remove expired requests from requests.json and delete their PNGs."""
+    """Remove expired requests from requests.json and delete their images."""
     with open(REQUESTS_JSON, "r", encoding="utf-8") as f:
         requests_data = json.load(f)
 
@@ -218,15 +218,15 @@ def prune_expired_requests() -> tuple[int, int]:
         with open(REQUESTS_JSON, "w", encoding="utf-8") as f:
             json.dump(requests_data, f, indent=2)
 
-    deleted_png_count = 0
+    deleted_image_count = 0
     seen_drawables = set()
     for app in removed_apps:
         drawable = app.get("drawable", "")
         if not drawable or drawable in seen_drawables:
             continue
         seen_drawables.add(drawable)
-        if delete_drawable_png(drawable):
-            deleted_png_count += 1
+        if delete_drawable_image(drawable):
+            deleted_image_count += 1
 
     for app in removed_apps:
         label = app.get("label", "?")
@@ -235,7 +235,7 @@ def prune_expired_requests() -> tuple[int, int]:
         age = (now - last) / (365.25 * 86400) if last else float("inf")
         print(f"  Expired: {label} (requests={count}, age={age:.1f}y)")
 
-    return len(removed_apps), deleted_png_count
+    return len(removed_apps), deleted_image_count
 
 
 def generate_stale_list() -> int:
@@ -665,7 +665,7 @@ def main() -> int:
 
         print(f"Components in upstream appfilter: {len(components)}")
         print(f"Removed fulfilled requests: {fulfilled_removed}")
-        print(f"Deleted extracted PNGs (fulfilled): {fulfilled_deleted}")
+        print(f"Deleted extracted images (fulfilled): {fulfilled_deleted}")
 
         # Update supported counters
         supported_path = FILTERS_DIR / "supported.json"
@@ -722,7 +722,7 @@ def main() -> int:
     # --- Expired request pruning (runs unconditionally) ---
     expired_removed, expired_deleted = prune_expired_requests()
     print(f"Removed expired requests: {expired_removed}")
-    print(f"Deleted extracted PNGs (expired): {expired_deleted}")
+    print(f"Deleted extracted images (expired): {expired_deleted}")
 
     # Load requests for later use
     with open(REQUESTS_JSON, "r") as f:

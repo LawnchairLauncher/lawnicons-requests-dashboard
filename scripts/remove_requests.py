@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 
 INPUT_FILE = "src/assets/requests.json"
-ICONS_DIR = "src/extracted_png"
+ICONS_DIR = "src/extracted_images"
 
 def main():
     if len(sys.argv) < 2:
@@ -26,7 +26,7 @@ def main():
         if app.get("componentName") in to_remove:
             drawable = app.get("drawable")
             if drawable:
-                drawables_to_remove.add(f"{drawable}.png")
+                drawables_to_remove.add(f"{drawable}.webp")
 
     original_count = len(data["apps"])
     data["apps"] = [app for app in data["apps"] if app.get("componentName") not in to_remove]

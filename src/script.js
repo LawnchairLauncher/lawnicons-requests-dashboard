@@ -18,8 +18,8 @@ const CONFIG = {
     setsStatsPath: 'assets/stats/sets_stats.json',
     domainStatsPath: 'assets/stats/domain_stats.json',
     activityStatsPath: 'assets/stats/activity_stats.json',
-    assetsPath: 'extracted_png/',
-    iconExtension: '.png',
+    assetsPath: 'extracted_images/',
+    iconExtension: '.webp',
     filterPath: 'assets/filters/',
     // Order matters for UI
     filters: [
@@ -486,7 +486,7 @@ const Templates = {
           <div>Last: ${lastStr}</div>
         </div>
         <div class="actions-col">
-          <a class="action-btn" data-action="download-png" data-url="${iconUrl}" data-drawable="${app.drawable}" title="Download PNG"
+          <a class="action-btn" data-action="download-image" data-url="${iconUrl}" data-drawable="${app.drawable}" title="Download image"
               tabindex="0" role="button" aria-label="Download">${ICONS.downloadImage}</a>
           <a class="action-btn" href="${CONFIG.urls.playStore}${pkg}" target="_blank" title="Play Store"
             tabindex="0" role="button" aria-label="Play Store" >${ICONS.play}</a>
@@ -1217,7 +1217,7 @@ const Actions = {
    * @param {Promise<void>[]} fetchPromises
    */
   queueIconFetch(iconDir, targetDrawable, sourceDrawable, fetchPromises) {
-    const fileName = `${targetDrawable}.png`;
+    const fileName = `${targetDrawable}${CONFIG.data.iconExtension}`;
     if (iconDir[fileName]) return;
 
     const url =
@@ -2443,7 +2443,7 @@ const UI = {
       if (actionEl) {
         const action = actionEl.dataset.action;
 
-        if (action === 'download-png') {
+        if (action === 'download-image') {
           const url = actionEl.dataset.url;
           const drawable = actionEl.dataset.drawable;
           if (url && drawable) {
@@ -2453,11 +2453,11 @@ const UI = {
                 try {
                   // @ts-expect-error: File System Access API
                   const handle = await showSaveFilePicker({
-                    suggestedName: `${drawable}.png`,
+                    suggestedName: `${drawable}${CONFIG.data.iconExtension}`,
                     types: [
                       {
-                        description: 'PNG Image',
-                        accept: { 'image/png': ['.png'] },
+                        description: 'Image',
+                        accept: { 'image/webp': [CONFIG.data.iconExtension] },
                       },
                     ],
                   });
@@ -2473,13 +2473,13 @@ const UI = {
 
                   const a = document.createElement('a');
                   a.href = URL.createObjectURL(blob);
-                  a.download = `${drawable}.png`;
+                  a.download = `${drawable}${CONFIG.data.iconExtension}`;
                   a.click();
                   URL.revokeObjectURL(a.href);
                 }
               })
               .catch(() =>
-                Components.Toast.show('Failed to download PNG', 'error')
+                Components.Toast.show('Failed to download image', 'error')
               );
           }
           return;
@@ -4872,7 +4872,7 @@ layoutMasonry() {
     const card = document.getElementById('quickPickCard');
     if (!card) return;
 
-    card.style.backgroundImage = `url('extracted_png/${app.drawable}.png')`;
+    card.style.backgroundImage = `url('${CONFIG.data.assetsPath}${app.drawable}${CONFIG.data.iconExtension}')`;
     card.style.backgroundSize = 'cover';
     card.style.backgroundPosition = 'center';
     card.style.backgroundRepeat = 'no-repeat';

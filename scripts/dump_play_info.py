@@ -1,18 +1,20 @@
 import json
 import time
 import random
+import io
 import os
 import requests
 import re
 import unicodedata
 import signal
 from google_play_scraper import app as play_app
+from PIL import Image
 
 # CONFIG
 JSON_PATH = "src/assets/requests.json"
 DEAD_PATH = "src/assets/dead_links.json"
 EASY_PATH = "src/assets/filters/easy.json"
-ICON_DIR = "src/extracted_png/"
+ICON_DIR = "src/extracted_images/"
 
 
 # Throttling & Limits
@@ -53,16 +55,16 @@ def download_icon(url, filename):
             os.makedirs(ICON_DIR, exist_ok=True)
             
             candidate = filename
-            path = os.path.join(ICON_DIR, f"{candidate}.png")
+            path = os.path.join(ICON_DIR, f"{candidate}.webp")
             counter = 2
             
             while os.path.exists(path):
                 candidate = f"{filename}_{counter}"
-                path = os.path.join(ICON_DIR, f"{candidate}.png")
+                path = os.path.join(ICON_DIR, f"{candidate}.webp")
                 counter += 1
-            
-            with open(path, 'wb') as f:
-                f.write(response.content)
+
+            img = Image.open(io.BytesIO(response.content))
+            img.save(path, "webp", quality=90)
             return candidate
     except Exception as e:
         print(f"Icon DL Error: {e}")

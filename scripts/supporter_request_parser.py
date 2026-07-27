@@ -8,14 +8,18 @@ python3 scripts/supporter_request_parser.py zips src/assets/appfilter.xml src/ex
 
 import argparse
 import json
+import io
 import re
 import os
 import zipfile
 import lxml.etree as ET
 from datetime import date
 from pathlib import Path
+from PIL import Image
 
 COMPONENT_PATTERN = re.compile('ComponentInfo{(?P<ComponentInfo>.+)}')
+
+ISO_COUNTRIES = {'ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bt','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','st','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','uk','us','uy','uz','va','vc','ve','vi','vn','vu','ye','yt','za','zm','zw'}
 
 # -------------------------------------------------------
 # CLI
@@ -25,7 +29,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Parse icon request ZIPs into requests.json")
     parser.add_argument("folder_path", type=str, help="Folder containing .zip files")
     parser.add_argument("appfilter_path", type=str, help="Current appfilter.xml path")
-    parser.add_argument("extracted_png_folder_path", type=str, help="Output folder for PNGs")
+    parser.add_argument("image_out_path", type=str, help="Output folder for images")
     parser.add_argument("requests_path", type=str, help="Folder containing requests.json")
     parser.add_argument("supported_path", type=str, help="Path to supported.json")
     return parser.parse_args()
@@ -43,30 +47,30 @@ def extract_xml(zip_file: zipfile.ZipFile) -> ET.Element:
     xml_string = zip_file.read('!appfilter.xml')
     return ET.fromstring(xml_string)
 
-def extract_png(zip_file: zipfile.ZipFile, drawable_name: str, out_dir: Path,
+def extract_image(zip_file: zipfile.ZipFile, drawable_name: str, out_dir: Path,
                 target_name: str | None = None, overwrite: bool = False) -> str:
     base_name = target_name or drawable_name
     candidate_name = base_name
     try:
         for file_info in zip_file.infolist():
             if file_info.filename.endswith(f'{base_name}.png'):
-                with zip_file.open(file_info.filename) as png_file:
-                    png_content = png_file.read()
+                with zip_file.open(file_info.filename) as source_file:
+                    image_data = source_file.read()
                 
-                png_path = out_dir / f"{candidate_name}.png"
+                image_path = out_dir / f"{candidate_name}.webp"
                 if not overwrite:
                     count = 1
-                    while png_path.exists():
+                    while image_path.exists():
                         candidate_name = f"{base_name}_{count}"
-                        png_path = out_dir / f"{candidate_name}.png"
+                        image_path = out_dir / f"{candidate_name}.webp"
                         count += 1
 
                 out_dir.mkdir(parents=True, exist_ok=True)
-                with open(png_path, 'wb') as f:
-                    f.write(png_content)
+                img = Image.open(io.BytesIO(png_data))
+                img.save(image_path, "webp", quality=90)
                 return candidate_name
     except Exception as e:
-        print(f"Error extracting PNG '{drawable_name}': {e}")
+        print(f"Error extracting image '{drawable_name}': {e}")
     return candidate_name
 
 # -------------------------------------------------------
@@ -131,7 +135,7 @@ def process_item_tag(item: ET.Element) -> tuple[str, str, str] | None:
     return match.group('ComponentInfo'), name, draw
 
 def parse_item_tag(item: ET.Element, zip_file: zipfile.ZipFile, apps: dict, 
-                   png_out_dir: Path, req_time: float) -> dict:
+                   image_out_dir: Path, req_time: float) -> dict:
     
     item_data = process_item_tag(item)
     if not item_data: return apps
@@ -144,8 +148,8 @@ def parse_item_tag(item: ET.Element, zip_file: zipfile.ZipFile, apps: dict,
         entry["lastRequested"] = max(entry.get("lastRequested", 0), req_time)
 
         existing_drawable = entry.get("drawable") or drawable
-        entry["drawable"] = extract_png(
-            zip_file, drawable, png_out_dir, target_name=existing_drawable, overwrite=True)
+        entry["drawable"] = extract_image(
+            zip_file, drawable, image_out_dir, target_name=existing_drawable, overwrite=True)
 
         if "firstAppearance" not in entry:
             entry["firstAppearance"] = entry["lastRequested"]
@@ -154,14 +158,14 @@ def parse_item_tag(item: ET.Element, zip_file: zipfile.ZipFile, apps: dict,
         return apps
 
     try:
-        drawable_name = extract_png(zip_file, drawable, png_out_dir)
+        drawable_name = extract_image(zip_file, drawable, image_out_dir)
         apps[component_info] = create_app_entry(app_name, component_info, drawable_name, req_time)
     except Exception as e:
         print(f"Failed to process new request {component_info}: {e}")
 
     return apps
 
-def parse_zips(zip_files: list[Path], apps: dict, png_out_dir: Path, graph_output_dir: Path = None, appfilter_path: Path = None) -> tuple[dict, set[str]]:
+def parse_zips(zip_files: list[Path], apps: dict, image_out_dir: Path, graph_output_dir: Path = None, appfilter_path: Path = None) -> tuple[dict, set[str]]:
     failed_count = 0
     zip_components = set()
     
@@ -180,7 +184,7 @@ def parse_zips(zip_files: list[Path], apps: dict, png_out_dir: Path, graph_outpu
                     item_data = process_item_tag(item)
                     if item_data:
                         zip_components.add(item_data[0])
-                    apps = parse_item_tag(item, zip_file, apps, png_out_dir, req_time)
+                    apps = parse_item_tag(item, zip_file, apps, image_out_dir, req_time)
                 
                 if graph_output_dir and zip_components:
                     update_screens_graph(graph_output_dir, zip_path.name, list(zip_components), existing_components)
@@ -209,10 +213,10 @@ def load_existing_components(appfilter_path: Path) -> set[str]:
         if match: components.add(match.group(1))
     return components
 
-def delete_unused_pngs(out_dir: Path, keep: set[str]):
+def delete_unused_images(out_dir: Path, keep: set[str]):
     if not out_dir.exists(): return
     for f in os.listdir(out_dir):
-        if f.endswith(".png"):
+        if f.endswith(".webp"):
             name = os.path.splitext(f)[0]
             if name == "_ic_default": continue
             if name not in keep:
@@ -286,7 +290,7 @@ def update_activity_stats_for_supporter(requests_path: Path, new_added: int, tot
     with open(activity_stats_path, "w") as f:
         json.dump(history, f, indent=2)    
 
-def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path, 
+def run_pipeline(folder_path: Path, appfilter_path: Path, image_out_path: Path, 
                  output_path: Path, supported_path: Path):
     zip_files = load_zips(folder_path)
 
@@ -294,7 +298,7 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path,
     apps_before = set(apps.keys())
     existing_supported = parse_existing_supported_json(supported_path)
 
-    apps, zip_components = parse_zips(zip_files, apps, png_out_path, output_path.parent, appfilter_path)
+    apps, zip_components = parse_zips(zip_files, apps, image_out_path, output_path.parent, appfilter_path)
     
     if appfilter_path.exists():
         existing = load_existing_components(appfilter_path)
@@ -309,8 +313,8 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, png_out_path: Path,
     if new_added > 0:
         update_activity_stats_for_supporter(output_path.parent, new_added, len(apps))
 
-    keep_pngs = {a["drawable"] for a in apps.values()}
-    delete_unused_pngs(png_out_path, keep_pngs)
+    keep_images = {a["drawable"] for a in apps.values()}
+    delete_unused_images(image_out_path, keep_images)
 
     print(f"Processed {len(zip_files)} archives. Total requests: {len(apps)}")
     if zip_files:
@@ -345,8 +349,6 @@ def update_requests_graph(output_dir: Path, component_ids: list[str]):
             graph = json.load(f)
     else:
         graph = {}
-
-    ISO_COUNTRIES = {'ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bt','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','nc','ne','nf','ng','ni','nl','no','np','nr','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','st','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','uk','us','uy','uz','va','vc','ve','vi','vn','vu','ye','yt','za','zm','zw'}
 
     def get_domain(comp):
         pkg = comp.split("/")[0]
@@ -383,7 +385,7 @@ def main():
     run_pipeline(
         folder_path=Path(args.folder_path),
         appfilter_path=Path(args.appfilter_path),
-        png_out_path=Path(args.extracted_png_folder_path),
+        image_out_path=Path(args.image_out_path),
         output_path=Path(args.requests_path) / "requests.json",
         supported_path=Path(args.supported_path)
     )
