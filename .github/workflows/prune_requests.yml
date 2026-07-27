@@ -23,7 +23,7 @@ jobs:
           python-version: '3.13'
 
       - name: Install dependencies
-        run: pip install requests google-play-scraper lxml
+        run: pip install requests google-play-scraper lxml Pillow
 
       - name: Prune requests
         id: prune_requests
