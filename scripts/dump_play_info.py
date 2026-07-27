@@ -101,6 +101,18 @@ def save_state():
     except Exception as e:
         print(f"FAILED: {e}")
 
+def is_small_image(drawable_name):
+    if not drawable_name or drawable_name == 'unknown':
+        return True
+    path = os.path.join(ICON_DIR, f"{drawable_name}.webp")
+    if not os.path.exists(path):
+        return True
+    try:
+        img = Image.open(path)
+        return img.width < 256 or img.height < 256
+    except:
+        return True
+
 def main():
     global DATA, IS_INTERRUPTED
     
@@ -152,7 +164,9 @@ def main():
             continue
 
         if pkg in DEAD_SET: continue
-        if 'installs' in app and app.get('drawable') != 'unknown': continue
+        needs_installs = 'installs' not in app
+        needs_icon = app.get('drawable') == 'unknown' or is_small_image(app.get('drawable'))
+        if not needs_installs and not needs_icon: continue
 
         attempted += 1
 
@@ -167,7 +181,7 @@ def main():
             if app.get('label') == '(Unknown App)' or not app.get('label'):
                 app['label'] = details.get('title', 'Unknown')
 
-            if app.get('drawable') == 'unknown':
+            if app.get('drawable') == 'unknown' or is_small_image(app.get('drawable')):
                 icon_url = details.get('icon')
                 if icon_url:
                     clean_name = sanitize_name(app['label'])
