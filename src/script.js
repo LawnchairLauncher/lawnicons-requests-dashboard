@@ -1861,16 +1861,17 @@ const Data = {
               if (domain === 'com' && !graph[comp]) return true;
             }
             
-            const domainMatch = s.search.match(/^\^([a-z]+)\\\./);
+            const domainMatch = s.search.match(/^\^\(([a-z|]+)\)\\\./);
             if (domainMatch) {
-              const searchDomain = domainMatch[1];
+              const searchDomains = domainMatch[1].split('|');
               const comp = a.componentName;
+              const graph = App.state.requestsGraph;
               if (graph[comp]) {
                 const neighbors = Object.keys(graph[comp]);
-                return neighbors.some(n => n.split('/')[0].split('.')[0] === searchDomain);
+                return neighbors.some(n => searchDomains.includes(n.split('/')[0].split('.')[0]));
               }
+              return false;
             }
-            return false;
           });
         } catch {
           data = [];
