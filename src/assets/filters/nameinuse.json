@@ -35,10 +35,6 @@
       "existing_drawable": "komiku"
     },
     {
-      "id": "com.snackshotvideos.videostatus.videosaver/com.snackshotvideos.videostatus.videosaver.activitys.SplashActivity",
-      "existing_drawable": "generic_gallery"
-    },
-    {
       "id": "com.fadcam.beta/com.fadcam.MainActivity.MinimalIcon",
       "existing_drawable": "fadcam"
     },
@@ -251,10 +247,6 @@
       "existing_drawable": "metro"
     },
     {
-      "id": "com.flux/com.flux.MainActivity",
-      "existing_drawable": "flux"
-    },
-    {
       "id": "com.splendapps.adler/com.splendapps.adler.MainActivity",
       "existing_drawable": "notepad"
     },
@@ -265,10 +257,6 @@
     {
       "id": "com.mdev.intervaltimer/com.mdev.intervaltimer.ui.MainActivity",
       "existing_drawable": "interval_timer"
-    },
-    {
-      "id": "com.ketchapp.rush/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "rush"
     },
     {
       "id": "com.tclhz.gallery/com.tcl.gallery.app.GalleryActivity",
@@ -363,10 +351,6 @@
       "existing_drawable": "generic_shell"
     },
     {
-      "id": "com.cyanchill.missingcore.music/com.cyanchill.missingcore.music.MainActivity",
-      "existing_drawable": "music_player"
-    },
-    {
       "id": "com.techsial.android.unitconverter/com.techsial.android.unitconverter.SplashActivity",
       "existing_drawable": "unit_converter"
     },
@@ -401,6 +385,10 @@
     {
       "id": "it.compass.android.mycompass/it.compass.android.mycompass.MainActivity",
       "existing_drawable": "generic_compass"
+    },
+    {
+      "id": "com.lenovo.cochat.oversea/com.samsundot.talking.activity.GuideActivity",
+      "existing_drawable": "myhub"
     },
     {
       "id": "com.aks_labs.tulsi/com.aks_labs.tulsi.MainActivity",
@@ -1267,6 +1255,10 @@
       "existing_drawable": "vervedo"
     },
     {
+      "id": "com.jahertor.stickynotes/com.jahertor.stickynotes.activities.MainActivity",
+      "existing_drawable": "sticky_notes"
+    },
+    {
       "id": "com.rk.meowtac/com.rk.meowtac.MainActivity",
       "existing_drawable": "tic_tac_toe"
     },
@@ -1515,6 +1507,10 @@
       "existing_drawable": "music_player"
     },
     {
+      "id": "tr.com.basarsubasi.simplefitnessapp/tr.com.basarsubasi.simplefitnessapp.MainActivity",
+      "existing_drawable": "simple"
+    },
+    {
       "id": "com.taskrabbit.droid.rabbit/com.taskrabbit.droid.rabbit.MainActivity",
       "existing_drawable": "tasker"
     },
@@ -1693,10 +1689,6 @@
     {
       "id": "video.photo.hd.camera/com.ijoysoft.cameratab.activity.SplashActivity",
       "existing_drawable": "generic_camera"
-    },
-    {
-      "id": "com.sosauce.cutecalc/com.sosauce.vanilla.MainActivity",
-      "existing_drawable": "vanilla"
     },
     {
       "id": "com.kaspersky.secure.connection/com.kaspersky.remote.security_service.SplashScreenLauncherActivity",
@@ -1957,6 +1949,10 @@
     {
       "id": "com.appstation.wordly/com.appstation.wordly.MainActivity",
       "existing_drawable": "wordly"
+    },
+    {
+      "id": "com.gooseeggstudio.simple/com.unity3d.player.PrivacyActivity",
+      "existing_drawable": "simple"
     },
     {
       "id": "com.dish.wireless.boostone/com.dish.wireless.boostone.ui.screens.splash.SplashActivity",
