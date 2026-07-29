@@ -275,10 +275,6 @@
       "existing_drawable": "hma_oss"
     },
     {
-      "id": "tv.danmaku.bili/tv.danmaku.bili.MainActivity",
-      "existing_drawable": "bilibili"
-    },
-    {
       "id": "com.xiaomi.xmsf/io.github.magisk317.mipush.feature.wizard.WelcomeActivity",
       "existing_drawable": "xiaomi_service_framework"
     },
@@ -297,10 +293,6 @@
     {
       "id": "org.torproject.android/org.torproject.android.main.Paint",
       "existing_drawable": "orbot"
-    },
-    {
-      "id": "com.hero.iot/com.hero.iot.ui.splash.SplashActivity",
-      "existing_drawable": "qubo"
     },
     {
       "id": "iad1tya.echo.music/iad1tya.echo.music.MainActivityStatic",
@@ -431,10 +423,6 @@
       "existing_drawable": "discover"
     },
     {
-      "id": "org.vita3k.emulator/org.vita3k.emulator.MainActivity",
-      "existing_drawable": "vita3k"
-    },
-    {
       "id": "com.kowx712.supermanager/me.weishu.kernelsu.ui.MainActivity",
       "existing_drawable": "kernelsu"
     },
@@ -493,10 +481,6 @@
     {
       "id": "com.android.deskclock/com.android.BBKClock.Timer",
       "existing_drawable": "generic_clock"
-    },
-    {
-      "id": "com.twitter.android/com.x.android.main.MainActivity",
-      "existing_drawable": "x"
     }
   ]
 }
