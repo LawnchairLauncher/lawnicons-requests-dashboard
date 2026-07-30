@@ -185,12 +185,10 @@ def main():
             DEAD_SET.add(pkg)
             continue
         if pkg in DEAD_SET: continue
-        if app['componentName'] in nameinuse_ids or app['componentName'] in match_ids:
-            continue
-        if pkg in sets_pkgs:
-            continue        
+        
+        skip_icon = app['componentName'] in nameinuse_ids or app['componentName'] in match_ids or pkg in sets_pkgs
         needs_installs = 'installs' not in app
-        needs_icon = app.get('drawable') == 'unknown' or is_small_image(app.get('drawable'))
+        needs_icon = not skip_icon and (app.get('drawable') == 'unknown' or is_small_image(app.get('drawable')))
         if not needs_installs and not needs_icon: continue
 
         attempted += 1
@@ -206,14 +204,14 @@ def main():
             if app.get('label') == '(Unknown App)' or not app.get('label'):
                 app['label'] = details.get('title', 'Unknown')
 
-            if app.get('drawable') == 'unknown' or is_small_image(app.get('drawable')):
+            if not skip_icon and (app.get('drawable') == 'unknown' or is_small_image(app.get('drawable'))):
                 icon_url = details.get('icon')
                 if icon_url:
                     clean_name = sanitize_name(app['label'])
                     new_drawable = download_icon(icon_url, clean_name)
                     if new_drawable:
                         app['drawable'] = new_drawable
-                        print(f"[Icon: {new_drawable}]", end=" ")
+                        print(f"[Icon: {new_drawable}]", end=" ")                  
 
             print(f"OK ({app['installs']})")
             updated_session += 1
