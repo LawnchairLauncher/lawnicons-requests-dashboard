@@ -178,7 +178,7 @@ def is_expired(app: dict, now: float) -> bool:
     """Check if an app request is expired.
 
     A request is expired when it was last made >= 1 year ago AND has been
-    requested at most 2^(full years since last update) + 1 times.
+    requested at most 3^(full years since last update) times.
     """
     last_requested = app.get("lastRequested", 0)
     request_count = app.get("requestCount", 0)
@@ -192,7 +192,7 @@ def is_expired(app: dict, now: float) -> bool:
     if full_years < 1:
         return False
 
-    return request_count <= 2**full_years + 1
+    return request_count <= 3 ** full_years
 
 
 def prune_expired_requests() -> tuple[int, int]:
@@ -272,7 +272,7 @@ def generate_stale_list() -> int:
             continue
 
         n = 1
-        while 2 ** n + 1 < request_count:
+        while 3 ** n < request_count:
             n += 1
         
         expiration_at = last_requested + (n * seconds_per_year)
