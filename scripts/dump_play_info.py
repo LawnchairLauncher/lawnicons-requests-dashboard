@@ -14,6 +14,9 @@ from PIL import Image
 JSON_PATH = "src/assets/requests.json"
 DEAD_PATH = "src/assets/dead_links.json"
 EASY_PATH = "src/assets/filters/easy.json"
+NAMEINUSE_PATH = "src/assets/filters/nameinuse.json"
+MATCH_PATH = "src/assets/filters/match.json"
+SETS_PATH = "src/assets/stats/sets_stats.json"
 ICON_DIR = "src/extracted_images/"
 
 
@@ -143,6 +146,25 @@ def main():
     if BATCH_LIMIT > 0:
         print(f"🎯 Target: Update max {BATCH_LIMIT} apps this session.")
 
+    nameinuse_ids = set()
+    match_ids = set()
+    sets_pkgs = set()
+
+    if os.path.exists(NAMEINUSE_PATH):
+        with open(NAMEINUSE_PATH) as f:
+            nameinuse_data = json.load(f)
+            nameinuse_ids = {item['id'] for item in nameinuse_data.get('nameinuse', [])}
+
+    if os.path.exists(MATCH_PATH):
+        with open(MATCH_PATH) as f:
+            match_data = json.load(f)
+            match_ids = {item['id'] for item in match_data.get('match', [])}
+
+    if os.path.exists(SETS_PATH):
+        with open(SETS_PATH) as f:
+            sets_stats = json.load(f)
+            sets_pkgs = set(sets_stats.keys())
+
     for i, app in enumerate(apps):
         if IS_INTERRUPTED: break
         
@@ -162,8 +184,11 @@ def main():
         if pkg.startswith(NON_PLAY_STORE_PREFIXES):
             DEAD_SET.add(pkg)
             continue
-
         if pkg in DEAD_SET: continue
+        if app['componentName'] in nameinuse_ids or app['componentName'] in match_ids:
+            continue
+        if pkg in sets_pkgs:
+            continue        
         needs_installs = 'installs' not in app
         needs_icon = app.get('drawable') == 'unknown' or is_small_image(app.get('drawable'))
         if not needs_installs and not needs_icon: continue
