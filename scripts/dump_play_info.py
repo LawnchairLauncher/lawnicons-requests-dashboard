@@ -16,6 +16,7 @@ DEAD_PATH = "src/assets/dead_links.json"
 EASY_PATH = "src/assets/filters/easy.json"
 NAMEINUSE_PATH = "src/assets/filters/nameinuse.json"
 MATCH_PATH = "src/assets/filters/match.json"
+STALE_PATH = "src/assets/filters/stale.json"
 SETS_PATH = "src/assets/stats/sets_stats.json"
 ICON_DIR = "src/extracted_images/"
 
@@ -140,6 +141,12 @@ def main():
             easy_data = json.load(f)
         easy_ids = set(easy_data.get("easy", []))
 
+    stale_ids = set()
+    if os.path.exists(STALE_PATH):
+        with open(STALE_PATH) as f:
+            stale_data = json.load(f)
+            stale_ids = set(stale_data.get('stale', []))        
+
     apps.sort(key=lambda app: (app['componentName'] not in easy_ids, app.get('requestCount', 0)))    
     
     print(f"📋 Loaded {total} apps. {len(DEAD_SET)} known dead links.")
@@ -200,6 +207,8 @@ def main():
             
             # Update Data
             app['installs'] = details.get('installs', '0')
+            if app['componentName'] in stale_ids:
+                app['lastRequested'] = time.time()
             
             if app.get('label') == '(Unknown App)' or not app.get('label'):
                 app['label'] = details.get('title', 'Unknown')
