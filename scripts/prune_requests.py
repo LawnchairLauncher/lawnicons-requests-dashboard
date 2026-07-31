@@ -760,6 +760,12 @@ def main() -> int:
     # --- Update Play Store metadata for new requests ---
     os.system(f"{sys.executable} scripts/dump_play_info.py")
 
+    # --- Regenerate stale.json after Play Store sync ---
+    with open(REQUESTS_JSON, "r") as f:
+        requests_data = json.load(f)
+    stale_count = generate_stale_list()
+    print(f"Stale requests after sync: {stale_count}")    
+
     # --- Workflow outputs ---
     has_changes = appfilter_changed or expired_removed > 0
     set_workflow_output("appfilter_changed", str(appfilter_changed).lower())
