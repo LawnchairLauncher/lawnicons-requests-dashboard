@@ -147,7 +147,11 @@ def main():
             stale_data = json.load(f)
             stale_ids = set(stale_data.get('stale', []))        
 
-    apps.sort(key=lambda app: (app['componentName'] not in easy_ids, app.get('requestCount', 0)))    
+    apps.sort(key=lambda app: (
+        app['componentName'] not in stale_ids,
+        app['componentName'] not in easy_ids,
+        app.get('requestCount', 0)
+    )) 
     
     print(f"📋 Loaded {total} apps. {len(DEAD_SET)} known dead links.")
     if BATCH_LIMIT > 0:
