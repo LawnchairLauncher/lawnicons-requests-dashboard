@@ -192,7 +192,7 @@ def is_expired(app: dict, now: float) -> bool:
     if full_years < 1:
         return False
 
-    return request_count <= 3 ** full_years
+    return request_count <= 3 ** full_years + 3
 
 
 def prune_expired_requests() -> tuple[int, int]:
@@ -272,7 +272,7 @@ def generate_stale_list() -> int:
             continue
 
         n = 1
-        while 3 ** n < request_count:
+        while 3 ** n + 3 < request_count:
             n += 1
         
         expiration_at = last_requested + (n * seconds_per_year)

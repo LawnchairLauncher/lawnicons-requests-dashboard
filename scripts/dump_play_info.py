@@ -57,19 +57,16 @@ def download_icon(url, filename):
         response = requests.get(url, timeout=10)
         if response.status_code == 200:
             os.makedirs(ICON_DIR, exist_ok=True)
-            
-            candidate = filename
-            path = os.path.join(ICON_DIR, f"{candidate}.webp")
-            counter = 2
-            
-            while os.path.exists(path):
-                candidate = f"{filename}_{counter}"
-                path = os.path.join(ICON_DIR, f"{candidate}.webp")
-                counter += 1
 
+            for ext in ['.webp']:
+                old_path = os.path.join(ICON_DIR, f"{filename}{ext}")
+                if os.path.exists(old_path):
+                    os.remove(old_path)
+            
+            path = os.path.join(ICON_DIR, f"{filename}.webp")
             img = Image.open(io.BytesIO(response.content))
             img.save(path, "webp", quality=90)
-            return candidate
+            return filename
     except Exception as e:
         print(f"Icon DL Error: {e}")
     return None
