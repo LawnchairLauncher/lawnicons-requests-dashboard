@@ -155,11 +155,12 @@ def main():
         print("✅ Nothing to sync.")
         return      
 
-    apps.sort(key=lambda app: (
+    sorted_apps = sorted(apps, key=lambda app: (
         app['componentName'] not in stale_ids,
+        app.get('drawable') != 'unknown' and not is_small_image(app.get('drawable')),
         app['componentName'] not in easy_ids,
         app.get('requestCount', 0)
-    )) 
+    ))
     
     print(f"📋 Loaded {total} apps. {len(DEAD_SET)} known dead links.")
     if BATCH_LIMIT > 0:
@@ -184,7 +185,7 @@ def main():
             sets_stats = json.load(f)
             sets_pkgs = set(sets_stats.keys())
 
-    for i, app in enumerate(apps):
+    for i, app in enumerate(sorted_apps):
         if IS_INTERRUPTED: break
         
         # Batch Limit Check
