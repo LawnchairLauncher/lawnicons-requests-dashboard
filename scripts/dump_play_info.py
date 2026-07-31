@@ -26,7 +26,7 @@ SLEEP_MIN = 0.5
 SLEEP_MAX = 1
 SAVE_INTERVAL = 10         # Autosave every N requests
 MAX_CONSECUTIVE_ERRORS = 5 # Stop if IP blocked
-BATCH_LIMIT = 500         # Max apps to update per run (Set 0 for infinite)
+BATCH_LIMIT = 10         # Max apps to update per run (Set 0 for infinite)
 
 # Packages that don't exist in Play Store
 NON_PLAY_STORE_PREFIXES = ("org.chromium.webapk", "com.sec.android.app.sbrowser.webapk")
@@ -145,7 +145,15 @@ def main():
     if os.path.exists(STALE_PATH):
         with open(STALE_PATH) as f:
             stale_data = json.load(f)
-            stale_ids = set(stale_data.get('stale', []))        
+            stale_ids = set(stale_data.get('stale', []))
+
+    has_stale = len(stale_ids) > 0
+    has_missing_installs = any('installs' not in a for a in apps)
+    has_missing_icon = any(a.get('drawable') == 'unknown' for a in apps)
+
+    if not has_stale and not has_missing_installs and not has_missing_icon:
+        print("✅ Nothing to sync.")
+        return      
 
     apps.sort(key=lambda app: (
         app['componentName'] not in stale_ids,
@@ -200,7 +208,8 @@ def main():
         skip_icon = app['componentName'] in nameinuse_ids or app['componentName'] in match_ids or pkg in sets_pkgs
         needs_installs = 'installs' not in app
         needs_icon = not skip_icon and (app.get('drawable') == 'unknown' or is_small_image(app.get('drawable')))
-        if not needs_installs and not needs_icon: continue
+        is_stale = app['componentName'] in stale_ids
+        if not needs_installs and not needs_icon and not is_stale: continue
 
         attempted += 1
 

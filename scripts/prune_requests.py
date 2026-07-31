@@ -758,12 +758,7 @@ def main() -> int:
     print(f"Activity stats updated: {history_count} entries")    
 
     # --- Update Play Store metadata for new requests ---
-    new_without_installs = [a for a in requests_data.get("apps", []) if 'installs' not in a]
-    if new_without_installs:
-        print(f"Found {len(new_without_installs)} apps without Play Store data. Running dump_play_info...")
-        os.system(f"{sys.executable} scripts/dump_play_info.py")
-    else:
-        print("All apps have Play Store metadata, skipping Play Store sync.")
+    os.system(f"{sys.executable} scripts/dump_play_info.py")
 
     # --- Workflow outputs ---
     has_changes = appfilter_changed or expired_removed > 0
