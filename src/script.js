@@ -1909,6 +1909,10 @@ const Data = {
       );
     }
 
+    if (s.sort === 'finishers' && !App.state._finisherScores) {
+      Heuristics.calculateFinisherScores()
+    }    
+
     data = [...data];
     if (s.sort === 'rand') {
       for (let i = data.length - 1; i > 0; i--) {
@@ -1966,6 +1970,19 @@ const Data = {
               b.requestCount) -
             (App.state.setsStats[a.componentName.split('/')[0]] ||
               a.requestCount),
+        'finishers': (a, b) => {
+          const dataA = App.state._finisherScores?.[a.componentName];
+          const dataB = App.state._finisherScores?.[b.componentName];
+          
+          if (dataA && dataB) {
+            if (dataA.score !== dataB.score) return dataB.score - dataA.score;
+            return dataA.avgSize - dataB.avgSize;
+          }
+          if (dataA) return -1;
+          if (dataB) return 1;
+          
+          return getPop(b) - getPop(a);
+        }, 
       };
       if (sorters[s.sort]) data.sort(sorters[s.sort]);
     }
@@ -2082,6 +2099,31 @@ const Heuristics = {
     const inst = Utils.parseInstalls(app.installs) || 1;
     return req / inst;
   },
+
+calculateFinisherScores() {
+  const screens = App.state.screensData;
+  const screenList = Object.values(screens).map(comps => new Set(comps));
+  /** @type {Record<string, {score: number, avgSize: number}>} */
+  const scores = {};
+
+  const compToScreens = new Map();
+  for (const screen of screenList) {
+    for (const comp of screen) {
+      if (!compToScreens.has(comp)) compToScreens.set(comp, new Set());
+      compToScreens.get(comp).add(screen);
+    }
+  }
+
+  for (const [comp, scrns] of compToScreens) {
+    const closing = [...scrns].filter(s => s.size === 1);
+    const score = closing.length;
+    const totalSize = [...scrns].reduce((sum, s) => sum + s.size, 0);
+    const avgSize = scrns.size > 0 ? totalSize / scrns.size : Infinity;
+    scores[comp] = { score, avgSize };
+  }
+
+  App.state._finisherScores = scores;
+},
 };
 
 // ==========================================
@@ -2099,6 +2141,7 @@ const UI = {
     { value: 'req-asc', label: 'Least requested' },
     { value: 'install-desc', label: 'Most installed' },
     { value: 'install-asc', label: 'Least installed' },
+    { value: 'finishers', label: 'Screen finishers' },
     { value: 'underrated', label: 'Underrated' },
     { value: 'time-desc', label: 'Newest' },
     { value: 'time-asc', label: 'Oldest' },
