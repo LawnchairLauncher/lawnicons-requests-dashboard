@@ -58,7 +58,7 @@ def download_icon(url, filename):
         if response.status_code == 200:
             os.makedirs(ICON_DIR, exist_ok=True)
 
-            for ext in ['.webp']:
+            for ext in ['.webp', '.png']:
                 old_path = os.path.join(ICON_DIR, f"{filename}{ext}")
                 if os.path.exists(old_path):
                     os.remove(old_path)
@@ -68,7 +68,7 @@ def download_icon(url, filename):
             img.save(path, "webp", quality=90)
             return filename
     except Exception as e:
-        print(f"Icon DL Error: {e}")
+        raise Exception(f"Icon DL Error: {e}")
     return None
 
 def load_dead_links():
@@ -226,12 +226,15 @@ def main():
 
             if not skip_icon and (app.get('drawable') == 'unknown' or is_small_image(app.get('drawable'))):
                 icon_url = details.get('icon')
-                if icon_url:
+                if icon_url is None:
+                    DEAD_SET.add(pkg)
+                    print(f"Dead/NoIcon", end=" ")
+                elif icon_url:
                     clean_name = sanitize_name(app['label'])
                     new_drawable = download_icon(icon_url, clean_name)
                     if new_drawable:
                         app['drawable'] = new_drawable
-                        print(f"[Icon: {new_drawable}]", end=" ")                  
+                        print(f"[Icon: {new_drawable}]", end=" ")               
 
             print(f"OK ({app['installs']})")
             updated_session += 1
