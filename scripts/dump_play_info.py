@@ -243,7 +243,7 @@ def main():
 
         except Exception as e:
             error_str = str(e).lower()
-            if "404" in error_str or "not found" in error_str:
+            if "404" in error_str or "not found" in error_str or "cannot identify image" in error_str:
                 print("Dead/404")
                 DEAD_SET.add(pkg)
                 consecutive_errors = 0
