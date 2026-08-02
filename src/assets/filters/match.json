@@ -3,6 +3,10 @@
   "description": "Requests with an existing package.",
   "match": [
     {
+      "id": "com.iqoo.website/com.vivo.website.feedback.HotQuestionEntry",
+      "existing_drawable": "iqoo_store"
+    },
+    {
       "id": "ir.ilmili.telegraph/org.telegram.messenger.PremiumIcon",
       "existing_drawable": "graph_messenger"
     },
@@ -13,10 +17,6 @@
     {
       "id": "easy.launcher/easy.launcher.AppStartActivity",
       "existing_drawable": "generic_keyboard"
-    },
-    {
-      "id": "com.iqoo.website/com.vivo.website.feedback.HotQuestionEntry",
-      "existing_drawable": "iqoo_store"
     },
     {
       "id": "org.torproject.vpn/org.torproject.vpn.ui.iconsetting.model.LauncherDefault",
