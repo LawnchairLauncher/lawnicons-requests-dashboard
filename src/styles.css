@@ -1889,7 +1889,6 @@ input[type="checkbox"]:indeterminate::after {
   .screen-preview {
     grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)) !important;
   }
-}  
 
   /* Switch Header to Stacked Layout */
   .header {
