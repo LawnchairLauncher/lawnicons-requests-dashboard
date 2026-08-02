@@ -1886,8 +1886,6 @@ input[type="checkbox"]:indeterminate::after {
   .mobile-only {
     display: flex !important;
   }
-
-@media (max-width: 900px) {
   .screen-preview {
     grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)) !important;
   }
@@ -2073,11 +2071,6 @@ input[type="checkbox"]:indeterminate::after {
 
 /* Screens */
 .screens-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: var(--space-md);
-  align-items: start;
-  padding-bottom: 100px;
   display: block;
   position: relative;
 }

@@ -5037,18 +5037,6 @@ layoutMasonry() {
     menu.style.visibility = 'visible';
   },
 
-  /**
-   * @param {HTMLElement} menuEl
-   */
-  focusMenu(menuEl) {
-    // Wait for browser to render the popover
-    requestAnimationFrame(() => {
-      const firstItem =
-        /** @type {HTMLElement} */ (menuEl.querySelector('.ctx-item'));
-      if (firstItem) firstItem.focus();
-    });
-  },
-
   closeContextMenu() {
     try {
       /** @type {any} */ (App.dom.sortMenu).hidePopover();
