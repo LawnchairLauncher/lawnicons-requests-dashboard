@@ -398,9 +398,12 @@ const Templates = {
     let idPrefix = '';
     if (!ISO_COUNTRIES.has(domain) && App.state.requestsGraph[id]) {
       const neighbors = Object.keys(App.state.requestsGraph[id]);
-      if (neighbors.length === 1) {
-        idPrefix = neighbors[0].split('/')[0].split('.')[0] + ' • ';
-      } else if (neighbors.length > 1) {
+      const geoCountries = [...new Set(neighbors.map(n => n.split('/')[0].split('.')[0]).filter(d => ISO_COUNTRIES.has(d)))];
+      if (geoCountries.length === 1) {
+        idPrefix = geoCountries[0] + ' • ';
+      } else if (geoCountries.length >= 2 && geoCountries.length <= 3) {
+        idPrefix = geoCountries.join(', ') + ' • ';
+      } else if (geoCountries.length >= 4) {
         idPrefix = 'global • ';
       }
     }
