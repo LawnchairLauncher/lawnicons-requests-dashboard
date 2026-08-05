@@ -18,6 +18,7 @@ const CONFIG = {
     setsStatsPath: 'assets/stats/sets_stats.json',
     domainStatsPath: 'assets/stats/domain_stats.json',
     activityStatsPath: 'assets/stats/activity_stats.json',
+    contestPath: 'assets/contest.json',
     assetsPath: 'extracted_images/',
     iconExtension: '.webp',
     filterPath: 'assets/filters/',
@@ -1624,6 +1625,7 @@ const Data = {
 
       App.state.screensData = await this.fetchJson(CONFIG.data.screensGraphPath, {});
       App.state.requestsGraph = await this.fetchJson(CONFIG.data.requestsGraphPath, {});
+      App.state.contestData = await this.fetchJson(CONFIG.data.contestPath, []);
       
       // Load optional data
       await Promise.all([
@@ -2021,6 +2023,7 @@ const Data = {
     if (params.has('tab')) {
       const tab = params.get('tab');
       if (tab === 'screens') App.state.activeTab = 'screens';
+      else if (tab === 'contest') App.state.activeTab = 'contest';
     }
     if (params.has('screen')) {
       const screenId = params.get('screen');
@@ -2300,6 +2303,15 @@ const UI = {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       this.render();
+    });
+
+    document.querySelectorAll('#contestSection .tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        App.state.activeTab = 'contest';
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        UI.renderContest();
+      });
     });    
 
     const activeMode = App.state.domainStatsMode;
@@ -2351,9 +2363,14 @@ const UI = {
     addEventListener('resize', () => {
       this.renderDomainStats();
       this.renderActivityCard();
-      if (App.state.activeTab !== 'screens') return;
+      if (App.state.activeTab === 'screens') {
         clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => UI.layoutMasonry(), 100)
+        resizeTimer = setTimeout(() => UI.layoutMasonry(), 100);
+      }
+      if (App.state.activeTab === 'contest') {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => UI.layoutMasonry(), 100);
+      }
     });
 
     App.dom.container.addEventListener('error', (event) => {
@@ -3129,6 +3146,15 @@ const UI = {
     const contribCards = document.getElementById('contributionCards');
     if (contribCards) contribCards.classList.add('is-hidden');
 
+    const contestTab = document.querySelector('.tab[data-tab="contest"]');
+    if (contestTab) {
+      if (App.state.contestData && App.state.contestData.length > 0) {
+        contestTab.classList.remove('is-hidden');
+      } else {
+        contestTab.classList.add('is-hidden');
+      }
+    }
+
     const s = App.state;
     App.dom.container.innerHTML = '';
     App.dom.container.className = s.view === 'grid' ? 'grid-container' : '';
@@ -3161,6 +3187,16 @@ const UI = {
       this.renderScreens();
       return;
     }
+
+    if (App.state.activeTab === 'contest') {
+      document.querySelector('.controls')?.classList.add('is-hidden');
+      document.getElementById('mainTabs')?.classList.remove('is-hidden');
+      App.dom.screenSortBtn.classList.add('is-hidden');
+      App.dom.listHeader.style.display = 'none';
+      App.dom.sentinel.style.display = 'none';
+      this.renderContest();
+      return;
+    }    
 
     if (s.currentData.length === 0) {
       App.dom.container.innerHTML = Templates.emptyState();
@@ -3244,7 +3280,7 @@ layoutMasonry() {
     container.style.position = '';
     container.style.height = '';
 
-    const gap = 16;
+    const gap = parseFloat(getComputedStyle(container).columnGap) || parseFloat(getComputedStyle(container).gap) || 16;
     const containerParent = container.parentElement;
     if (!containerParent) return;
     const containerWidth = containerParent.getBoundingClientRect().width;
@@ -3577,6 +3613,60 @@ layoutMasonry() {
     });
 
     this.layoutMasonry();
+  },
+
+  renderContest() {
+    App.dom.container.innerHTML = '';
+    App.dom.container.className = 'screens-grid';
+    App.dom.sbBar.classList.remove('visible');
+    document.querySelector('.controls')?.classList.add('is-hidden');
+    App.dom.screenSortBtn.classList.add('is-hidden');
+    App.dom.listHeader.style.display = 'none';
+    App.dom.sentinel.style.display = 'none';
+    document.getElementById('contestSection')?.classList.remove('is-hidden');
+
+    const entries = App.state.contestData;
+    entries.forEach(entry => {
+      const card = document.createElement('div');
+      card.className = 'screen-card';
+      card.innerHTML = `
+        <div class="screen-preview" style="grid-template-columns:1fr; grid-auto-rows:auto;">
+          <img src="${entry.url}" loading="lazy" alt="Entry #${entry.id}" style="width:100%; height:auto; border-radius:var(--shape-small);" onclick="window.open('${entry.url}')" />
+        </div>
+        <div class="screen-card-header"><span>#${entry.id}</span></div>
+        <div class="screen-card-description">${entry.author}</div>
+      `;
+      card.addEventListener('click', () => {
+        window.open(entry.url);
+      });
+      App.dom.container.appendChild(card);
+    });
+
+    const images = App.dom.container.querySelectorAll('img');
+    let loaded = 0;
+    const total = images.length;
+
+    if (total === 0) {
+      this.layoutMasonry();
+    } else {
+      images.forEach(img => {
+        const onDone = () => {
+          loaded++;
+          if (loaded === total) {
+            setTimeout(() => {
+              this.layoutMasonry();
+              setTimeout(() => this.layoutMasonry(), 100);
+            }, 200);
+          }
+        };
+        if (img.naturalWidth > 0) {
+          onDone();
+        } else {
+          img.onload = onDone;
+          img.onerror = onDone;
+        }
+      });
+    }
   },
 
   renderLowQualityMode() {
