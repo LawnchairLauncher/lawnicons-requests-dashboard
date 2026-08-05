@@ -2305,6 +2305,11 @@ const UI = {
       this.render();
     });
 
+    const contestTab = document.querySelector('.tab[data-tab="contest"]');
+    if (contestTab) {
+      contestTab.classList.remove('is-hidden');
+    }
+
     document.querySelectorAll('#contestSection .tab').forEach(tab => {
       tab.addEventListener('click', () => {
         App.state.activeTab = 'contest';
@@ -3146,15 +3151,6 @@ const UI = {
     const contribCards = document.getElementById('contributionCards');
     if (contribCards) contribCards.classList.add('is-hidden');
 
-    const contestTab = document.querySelector('.tab[data-tab="contest"]');
-    if (contestTab) {
-      if (App.state.contestData && App.state.contestData.length > 0) {
-        contestTab.classList.remove('is-hidden');
-      } else {
-        contestTab.classList.add('is-hidden');
-      }
-    }
-
     const s = App.state;
     App.dom.container.innerHTML = '';
     App.dom.container.className = s.view === 'grid' ? 'grid-container' : '';
@@ -3617,6 +3613,12 @@ layoutMasonry() {
 
   renderContest() {
     App.dom.container.innerHTML = '';
+    const entries = App.state.contestData;
+    if (!entries || entries.length === 0) {
+      App.dom.container.innerHTML = '<div class="empty-state"><h3>No submissions yet</h3><p>Submissions will appear after the contest starts.</p></div>';
+      document.getElementById('mainTabs')?.classList.remove('is-hidden');
+      return;
+    }    
     App.dom.container.className = 'screens-grid';
     App.dom.sbBar.classList.remove('visible');
     document.querySelector('.controls')?.classList.add('is-hidden');
@@ -3625,7 +3627,6 @@ layoutMasonry() {
     App.dom.sentinel.style.display = 'none';
     document.getElementById('contestSection')?.classList.remove('is-hidden');
 
-    const entries = App.state.contestData;
     entries.forEach(entry => {
       const card = document.createElement('div');
       card.className = 'screen-card';
