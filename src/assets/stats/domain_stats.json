@@ -1,17 +1,17 @@
 {
   "com": {
-    "requests": 3753,
-    "done": 13900,
-    "total": 17653,
+    "requests": 3752,
+    "done": 13909,
+    "total": 17661,
     "global": 0,
     "global_installs": 0
   },
   "us": {
-    "requests": 13461,
+    "requests": 13459,
     "done": 27,
-    "total": 13488,
-    "global": 13441,
-    "global_installs": 57062073049
+    "total": 13486,
+    "global": 13439,
+    "global_installs": 57052063049
   },
   "org": {
     "requests": 1075,
@@ -21,11 +21,11 @@
     "global_installs": 0
   },
   "de": {
-    "requests": 1715,
+    "requests": 1714,
     "done": 480,
-    "total": 2195,
-    "global": 1423,
-    "global_installs": 6360381415
+    "total": 2194,
+    "global": 1422,
+    "global_installs": 6360281415
   },
   "ru": {
     "requests": 1393,
@@ -560,8 +560,8 @@
     "global_installs": 100500000
   },
   "apps": {
-    "requests": 8,
-    "done": 22,
+    "requests": 7,
+    "done": 23,
     "total": 30,
     "global": 0,
     "global_installs": 0
@@ -6267,6 +6267,13 @@
   "coffee": {
     "requests": 1,
     "done": 0,
+    "total": 1,
+    "global": 0,
+    "global_installs": 0
+  },
+  "coldstream": {
+    "requests": 0,
+    "done": 1,
     "total": 1,
     "global": 0,
     "global_installs": 0

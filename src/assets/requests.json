@@ -1,6 +1,6 @@
 {
-  "count": 23864,
-  "lastUpdate": "2026-08-04",
+  "count": 23860,
+  "lastUpdate": "2026-08-06",
   "apps": [
     {
       "drawable": "one_3",
@@ -4351,15 +4351,6 @@
       "label": "Quartz Components",
       "componentName": "com.quartzcomponents.app/com.matkit.base.activity.ScanActivity",
       "installs": "100,000+"
-    },
-    {
-      "drawable": "infinity_meta_2",
-      "requestCount": 2,
-      "firstAppearance": 1721552837.0,
-      "lastRequested": 1785469962.9667416,
-      "label": "Infinity Meta",
-      "componentName": "apps.infinitylearn.lms/apps.infinitylearn.lms.SplashActivity",
-      "installs": "1,000,000+"
     },
     {
       "drawable": "oma_dna_2",
@@ -157174,15 +157165,6 @@
       "installs": "5,000+"
     },
     {
-      "drawable": "reward_search_automator",
-      "label": "Reward Search Automator",
-      "componentName": "com.spin311.microsoft_automatic_rewards/com.spin311.microsoft_automatic_rewards.MainActivity",
-      "requestCount": 2,
-      "firstAppearance": 1771556746.0,
-      "lastRequested": 1773807871.0,
-      "installs": "10,000+"
-    },
-    {
       "drawable": "stickerhub",
       "label": "StickerHub",
       "componentName": "com.meta.inno.sticker/com.meta.inno.monopoly_sticker.MainActivity",
@@ -163700,15 +163682,6 @@
       "requestCount": 2,
       "firstAppearance": 1774852686.0,
       "lastRequested": 1782131473.0
-    },
-    {
-      "drawable": "kanjilookup",
-      "label": "KanjiLookup",
-      "componentName": "com.telethon.kanjilookup/com.telethon.kanjilookup.KanjiSearchMain",
-      "requestCount": 2,
-      "firstAppearance": 1774852686.0,
-      "lastRequested": 1782131473.0,
-      "installs": "100,000+"
     },
     {
       "drawable": "mainquest",
@@ -206477,15 +206450,6 @@
       "label": "Frameo",
       "componentName": "net.frameo.app/net.frameo.app.ui.activities.AGalleryPicker",
       "installs": "5,000,000+"
-    },
-    {
-      "drawable": "indsmart",
-      "requestCount": 14,
-      "firstAppearance": 1722754810.0,
-      "lastRequested": 1782112084.0,
-      "label": "IndSMART",
-      "componentName": "com.iexceed.ib.digitalbankingprod/com.iexceed.SplashScreen",
-      "installs": "10,000,000+"
     },
     {
       "drawable": "monefy_budget_expenses_app",
