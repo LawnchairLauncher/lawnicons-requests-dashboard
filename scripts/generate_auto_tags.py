@@ -151,7 +151,9 @@ def main(input_file, output_dir, appfilter_path):
         
         added = len(new_easy) - len(easy_components)
         if added > 0:
-            easy_data['easy'] = sorted(new_easy)
+            old_list = easy_data.get('easy', [])
+            new_only = sorted(new_easy - easy_components)
+            easy_data['easy'] = old_list + new_only
             with open(easy_path, 'w') as f:
                 json.dump(easy_data, f, indent=2)
             print(f"Propagated easy tag to {added} additional components in same packages")    
