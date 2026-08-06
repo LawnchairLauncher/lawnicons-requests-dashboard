@@ -66,32 +66,6 @@ def load_appfilter_data(appfilter_path):
 
     return existing_packages, existing_names
 
-    try:
-        # Use iterparse for memory efficiency if file is huge, but parse is fine for ~2MB
-        tree = ET.parse(appfilter_path)
-        root = tree.getroot()
-        
-        for item in root.findall('item'):
-            # 1. Extract Package Core
-            comp = item.get('component')
-            if comp:
-                # Format: ComponentInfo{package/class}
-                match = re.search(r'ComponentInfo\{([^/]+)', comp)
-                if match:
-                    pkg = match.group(1)
-                    existing_packages.add(pkg)
-            
-            # 2. Extract Name (Label)
-            # We use the 'name' attribute to check for Label Conflicts
-            raw_name = item.get('name')
-            if raw_name:
-                existing_names.add(sanitize_drawable_name(raw_name))
-                
-    except Exception as e:
-        print(f"Error parsing appfilter: {e}")
-
-    return existing_packages, existing_names
-
 def write_json(output_dir, filename, key, data_list):
     path = os.path.join(output_dir, filename)
     output_data = {
@@ -155,6 +129,32 @@ def main(input_file, output_dir, appfilter_path):
     # 3. Output
     write_json(output_dir, "nameinuse.json", "nameinuse", nameinuse_data)
     write_json(output_dir, "match.json", "match", match_data)
+
+    # Propagate easy tag to all components of the same package
+    easy_path = os.path.join(output_dir, "easy.json")
+    if os.path.exists(easy_path):
+        with open(easy_path, 'r') as f:
+            easy_data = json.load(f)
+        
+        easy_components = set(easy_data.get('easy', []))
+        easy_pkgs = {comp.split('/')[0] for comp in easy_components 
+                    if not comp.split('/')[0].startswith(PWA_PACKAGE_PREFIXES)}
+        
+        new_easy = set(easy_components)
+        for app in apps:
+            comp = app.get('componentName', '')
+            pkg = comp.split('/')[0]
+            if pkg.startswith(PWA_PACKAGE_PREFIXES):
+                continue
+            if pkg in easy_pkgs:
+                new_easy.add(comp)
+        
+        added = len(new_easy) - len(easy_components)
+        if added > 0:
+            easy_data['easy'] = sorted(new_easy)
+            with open(easy_path, 'w') as f:
+                json.dump(easy_data, f, indent=2)
+            print(f"Propagated easy tag to {added} additional components in same packages")    
     
     print(f"Generated tags: {len(nameinuse_data)} nameinuses, {len(match_data)} matches.")
 

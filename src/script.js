@@ -1744,18 +1744,6 @@ const Data = {
         });
       }
     });
-
-    const easyPkgs = new Set();
-    App.state.appTags.forEach((tags, appId) => {
-      if (tags.has('easy')) {
-        easyPkgs.add(appId.split('/')[0]);
-      }
-    });
-    App.data.forEach((app) => {
-      if (easyPkgs.has(app.componentName.split('/')[0])) {
-        this.addTag(app.componentName, 'easy');
-      }
-    });
   },
 
   async loadAppfilterXml() {
