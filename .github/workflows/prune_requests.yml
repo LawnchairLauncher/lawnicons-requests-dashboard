@@ -23,7 +23,7 @@ jobs:
           python-version: '3.13'
 
       - name: Install dependencies
-        run: pip install requests google-play-scraper lxml Pillow
+        run: pip install requests google-play-scraper lxml Pillow svgelements
 
       - name: Prune requests
         id: prune_requests
@@ -32,6 +32,19 @@ jobs:
       - name: Auto generate tags
         if: steps.prune_requests.outputs.appfilter_changed == 'true'
         run: python scripts/generate_auto_tags.py src/assets/requests.json src/assets/filters src/assets/appfilter.xml
+
+      - name: Clone Lawnicons SVGs
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/LawnchairLauncher/lawnicons.git lawnicons-temp
+          cd lawnicons-temp
+          git sparse-checkout set svgs
+          cd ..
+          mkdir -p src/assets/qa_issues/svgs
+          cp -r lawnicons-temp/svgs/* src/assets/qa_issues/svgs/
+          rm -rf lawnicons-temp
+
+      - name: Run incremental review
+        run: python scripts/incremental_review.py
 
       - name: Commit and push changes
         run: |
