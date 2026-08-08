@@ -3870,7 +3870,7 @@ layoutMasonry() {
     App.dom.sentinel.style.display = 'none';
 
     App.dom.header.textContent = 'Icon review';
-    App.dom.headerCount.textContent = '';
+    App.dom.headerCount.textContent = 'Beta • Core checks only';
     App.dom.sbBar.classList.remove('visible');
     App.dom.container.className = '';
 
