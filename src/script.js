@@ -2038,6 +2038,8 @@ const Data = {
         App.state.lowQualityActive = true;
       } else if (page === 'contribution-plan') {
         App.state.contributionActive = true;
+      } else if (page === 'icon-review') {
+        App.state.iconReviewActive = true;
       }
     }
   },
@@ -2079,6 +2081,8 @@ const Data = {
       params.set('page', 'low-quality-icons');
     } else if (App.state.contributionActive) {
       params.set('page', 'contribution-plan');
+    } else if (App.state.iconReviewActive) {
+      params.set('page', 'icon-review');
     } else {
       params.delete('page');
     }
@@ -2451,6 +2455,22 @@ const UI = {
       this.showMobileFilterPopover();
     });
 
+    document.getElementById('iconReviewBtn')?.addEventListener('click', () => {
+      if (App.state.iconReviewActive) {
+        App.state.iconReviewActive = false;
+        document.getElementById('iconReviewBtn')?.classList.remove('active');
+      } else {
+        App.state.iconReviewActive = true;
+        App.state.lowQualityActive = false;
+        App.state.contributionActive = false;
+        document.getElementById('iconReviewBtn')?.classList.add('active');
+        document.getElementById('lowQualityBtn')?.classList.remove('active');
+        App.dom.contributionBtn.classList.remove('active');
+      }
+      this.render();
+      Data.syncUrlState();
+    });    
+
     document.getElementById('sbContributeBtn')?.addEventListener(
       'click',
       () => {
@@ -2473,7 +2493,7 @@ const UI = {
         Actions.clearAllSelections();
         this.render();
       },
-    );
+    ); 
 
     App.dom.sbDownloadBtn.addEventListener('click', () => {
       App.state.actionMode = 'new';
@@ -2867,6 +2887,7 @@ const UI = {
       const libraryCard =
         /** @type {HTMLElement} */ (target.closest('.library-icon-card'));
       if (libraryCard) {
+        if (libraryCard.closest('#iconReviewResults')) return;
         e.stopPropagation();
         const drawable = libraryCard.dataset.drawable;
         const icon = App.state.existingIcons.find((i) =>
@@ -3114,13 +3135,25 @@ const UI = {
 
   render() {
     document.getElementById('lowQualityBtn')?.parentElement?.classList.remove('is-hidden');
+    document.getElementById('iconReviewBtn')?.classList.remove('is-hidden');
+    document.getElementById('iconReviewBtn')?.classList.remove('active');
 
     if (App.state.lowQualityActive) {
+      document.getElementById('iconReviewBtn')?.classList.add('is-hidden');
       this.renderLowQualityMode();
       return;
     }
 
+    if (App.state.iconReviewActive) {
+      document.getElementById('iconReviewBtn')?.classList.add('is-hidden');
+      document.getElementById('lowQualityBtn')?.parentElement?.classList.add('is-hidden');
+      document.getElementById('contributionBtn').style.display = 'none';
+      this.renderIconReview();
+      return;
+    }
+
     if (App.state.contributionActive) {
+      document.getElementById('iconReviewBtn')?.classList.add('is-hidden');
       this.renderContributionMode();
       return;
     }
@@ -3131,6 +3164,9 @@ const UI = {
 
     const backBtn = document.getElementById('contributionBackBtn');
     if (backBtn) backBtn.remove();
+
+    const iconReviewBackBtn = document.getElementById('iconReviewBackBtn');
+    if (iconReviewBackBtn) iconReviewBackBtn.remove();
 
     document.querySelector('.header-icon')?.classList.remove('is-hidden');
     document.getElementById('search-wrapper')?.classList.remove('is-hidden');
@@ -3145,6 +3181,7 @@ const UI = {
     );
     const appfilterLink = document.getElementById('appfilterLink');
     if (appfilterLink) appfilterLink.classList.add('is-hidden');
+    document.getElementById('guidesLink')?.classList.add('is-hidden');
 
     document.querySelector('.cards-row')?.classList.remove('is-hidden');
     document.getElementById('mainCards')?.classList.remove('is-hidden');
@@ -3797,7 +3834,7 @@ layoutMasonry() {
     const badge = document.getElementById('lowQualityCountBadge');
     if (!btn || !wrapper) return;
 
-    if (App.state.lowQualityActive || App.state.contributionActive) {
+    if (App.state.lowQualityActive || App.state.iconReviewActive || App.state.contributionActive) {
       wrapper.classList.add('is-hidden');
       if (badge) badge.style.display = 'none';
       return;
@@ -3814,6 +3851,206 @@ layoutMasonry() {
       wrapper.classList.add('is-hidden');
       if (badge) badge.style.display = 'none';
     }
+  },
+
+  renderIconReview() {
+    document.querySelector('.header-icon')?.classList.add('is-hidden');
+    document.querySelector('.controls')?.classList.add('is-hidden');
+    document.getElementById('iconLibraryResults')?.classList.add('is-hidden');
+    document.getElementById('search-wrapper')?.classList.add('is-hidden');
+    document.getElementById('mainTabs')?.classList.add('is-hidden');
+    document.getElementById('lowQualityBtn')?.parentElement?.classList.add('is-hidden');
+    document.getElementById('iconReviewBtn')?.classList.add('active');
+    const contribBtn = document.getElementById('contributionBtn');
+    if (contribBtn) contribBtn.style.display = 'none';
+    const contribBadge = document.getElementById('contributionCountBadge');
+    if (contribBadge) contribBadge.style.display = 'none';
+    App.dom.screenSortBtn.classList.add('is-hidden');
+    App.dom.listHeader.style.display = 'none';
+    App.dom.sentinel.style.display = 'none';
+
+    App.dom.header.textContent = 'Icon review';
+    App.dom.headerCount.textContent = '';
+    App.dom.sbBar.classList.remove('visible');
+    App.dom.container.className = '';
+
+    if (!document.getElementById('iconReviewBackBtn')) {
+      document.querySelector('.header-left')?.insertAdjacentHTML('afterbegin', `
+        <button class="header-link back-btn" id="iconReviewBackBtn" title="Back to requests">
+          <svg><use href="#ic-arrow-back"/></svg>
+        </button>
+      `);
+      document.getElementById('iconReviewBackBtn')?.addEventListener('click', () => {
+        App.state.iconReviewActive = false;
+        document.getElementById('iconReviewBtn')?.classList.remove('active');
+        this.render();
+        Data.syncUrlState();
+      });
+    }
+
+    document.getElementById('mainCards')?.classList.add('is-hidden');
+
+    const headerRight = document.querySelector('.header-right');
+    if (headerRight) {
+      headerRight.querySelectorAll('a').forEach(a => a.classList.add('is-hidden'));
+      if (!document.getElementById('guidesLink')) {
+        headerRight.insertAdjacentHTML('afterbegin', `
+          <a id="guidesLink" href="https://github.com/LawnchairLauncher/lawnicons/blob/develop/CONTRIBUTING.md#contributing-icons-tldr" class="header-link" title="Design guidelines" target="_blank" rel="noopener">
+            <svg><use href="#ic-guides"/></svg>
+          </a>
+        `);
+      } else {
+        document.getElementById('guidesLink')?.classList.remove('is-hidden');
+      }
+    }    
+
+    App.dom.container.innerHTML = `
+      <div id="iconReviewDrop" class="empty-state">
+        <svg><use href="#ic-upload"/></svg>
+        <h3>Drop SVGs</h3>
+      </div>
+      <div id="iconReviewResults" class="qa-container"></div>
+    `;
+
+    const hasFiles = (App.state._iconReviewFiles?.length > 0) || (document.getElementById('iconReviewResults')?.querySelectorAll('.qa-card').length > 0);
+
+    if (hasFiles) {
+      document.getElementById('iconReviewDrop')?.classList.add('is-hidden');
+      const clearBtn = document.createElement('button');
+      clearBtn.id = 'iconReviewClearBtn';
+      clearBtn.className = 'sb-action-btn sb-action-btn-icon contribution-clear-btn';
+      clearBtn.title = 'Remove all';
+      clearBtn.style.cssText = 'position:fixed; bottom:var(--space-xxl); left:var(--space-xxl); z-index:900;';
+      clearBtn.innerHTML = '<svg><use href="#ic-remove"/></svg>';
+      clearBtn.addEventListener('click', () => {
+        const resultsContainer = document.getElementById('iconReviewResults');
+        if (resultsContainer) resultsContainer.innerHTML = '';
+        const dropZone = document.getElementById('iconReviewDrop');
+        if (dropZone) dropZone.classList.remove('is-hidden');
+        clearBtn.remove();
+      });
+      App.dom.container.appendChild(clearBtn);
+    }
+
+    const dropZone = document.getElementById('iconReviewDrop');
+
+    let overlay = document.getElementById('iconReviewOverlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'iconReviewOverlay';
+      overlay.className = 'icon-review-overlay';
+      overlay.innerHTML = `<svg><use href="#ic-upload"/></svg><span>Drop SVGs</span>`;
+      document.body.appendChild(overlay);
+    }
+
+    const fileInput = document.getElementById('iconReviewInput');
+    const resultsContainer = document.getElementById('iconReviewResults');
+
+    fileInput?.addEventListener('change', () => {
+      if (fileInput.files) this.handleIconReviewFiles(fileInput.files);
+    });
+
+    document.addEventListener('dragover', (e) => {
+      if (!App.state.iconReviewActive) return;
+      e.preventDefault();
+      overlay.style.display = 'flex';
+      const dropZone = document.getElementById('iconReviewDrop');
+      if (dropZone) dropZone.classList.add('is-hidden');
+    });
+
+    document.addEventListener('dragleave', (e) => {
+      if (!App.state.iconReviewActive) return;
+      if (e.clientX <= 0 || e.clientY <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight) {
+        overlay.style.display = 'none';
+        const dropZone = document.getElementById('iconReviewDrop');
+        const hasCards = document.getElementById('iconReviewResults')?.querySelectorAll('.qa-card').length > 0;
+        if (dropZone && !hasCards) dropZone.classList.remove('is-hidden');
+      }
+    });
+
+    overlay.addEventListener('drop', (e) => {
+      e.preventDefault();
+      overlay.style.display = 'none';
+      if (e.dataTransfer?.files) {
+        this.handleIconReviewFiles(e.dataTransfer.files);
+        const dropZoneAfter = document.getElementById('iconReviewDrop');
+        if (dropZoneAfter) dropZoneAfter.classList.add('is-hidden');
+      }
+    });
+
+    document.getElementById('iconReviewClearBtn')?.addEventListener('click', () => {
+      if (resultsContainer) resultsContainer.innerHTML = '';
+      const dropZone = document.getElementById('iconReviewDrop');
+      if (dropZone) dropZone.classList.remove('is-hidden');
+      document.getElementById('iconReviewClearBtn')?.remove();
+    });    
+  },
+
+  handleIconReviewFiles(files) {
+    const resultsContainer = document.getElementById('iconReviewResults');
+    if (!resultsContainer) return;
+
+    Array.from(files).forEach(file => {
+      if (!file.name.endsWith('.svg')) return;
+      
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const content = e.target?.result;
+        if (typeof content !== 'string') return;
+        
+        const drawable = file.name.replace('.svg', '');
+        const existingCard = resultsContainer.querySelector(`.qa-card[data-drawable="${drawable}"]`);
+        if (existingCard) existingCard.remove();
+        const issues = this.reviewSingleSvg(content);
+        
+        const card = document.createElement('div');
+        card.className = 'library-icon-card qa-card';
+        card.dataset.drawable = drawable;
+        card.title = drawable;
+        
+        if (issues.length > 0) {
+          const issueList = issues.map(i => `<div class="item-sub">${i}</div>`).join('');
+          card.innerHTML = `
+            <img src="data:image/svg+xml;base64,${btoa(content)}" alt="${drawable}" loading="lazy" />
+            <div class="qa-filename">${drawable}</div>
+            <div class="qa-issues">${issueList}</div>
+          `;
+        } else {
+          card.innerHTML = `
+            <img src="data:image/svg+xml;base64,${btoa(content)}" alt="${drawable}" loading="lazy" />
+            <div class="qa-filename">${drawable}</div>
+            <div class="qa-issues"><div class="item-sub" style="color:var(--on-pine-container)">Pass</div></div>
+          `;
+        }
+        
+        resultsContainer.appendChild(card);
+        const dropZone = document.getElementById('iconReviewDrop');
+        if (dropZone) dropZone.classList.add('is-hidden');
+
+        let clearBtn = document.getElementById('iconReviewClearBtn');
+        if (!clearBtn) {
+          clearBtn = document.createElement('button');
+          clearBtn.id = 'iconReviewClearBtn';
+          clearBtn.className = 'sb-action-btn sb-action-btn-icon contribution-clear-btn';
+          clearBtn.title = 'Remove all';
+          clearBtn.style.cssText = 'position:fixed; bottom:var(--space-xxl); left:var(--space-xxl); z-index:900;';
+          clearBtn.innerHTML = '<svg><use href="#ic-remove"/></svg>';
+          clearBtn.addEventListener('click', () => {
+            const rc = document.getElementById('iconReviewResults');
+            if (rc) rc.innerHTML = '';
+            const dz = document.getElementById('iconReviewDrop');
+            if (dz) dz.classList.remove('is-hidden');
+            clearBtn.remove();
+          });
+          App.dom.container.appendChild(clearBtn);
+        }        
+      };
+      reader.readAsText(file);
+    });
+  },
+
+  reviewSingleSvg(content) {
+    return lintSVG(content);
   },
 
   renderContributionMode() {
