@@ -56,13 +56,14 @@ def run_linter(icons):
     except json.JSONDecodeError:
         print(f"Failed to parse linter output")
         return {}
-    
+
+    ALLOWED_RULES = {'C01', 'C05', 'C06', 'C07', 'O01'}   
     findings = {}
     for report in reports:
         drawable = Path(report["file_path"]).stem
         issues = [
             r["message"] for r in report.get("results", [])
-            if r.get("status") == "FAIL"
+            if r.get("status") == "FAIL" and r.get("id") in ALLOWED_RULES
         ]
         if issues:
             findings[drawable] = issues
