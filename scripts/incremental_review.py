@@ -126,6 +126,12 @@ def main():
     save_json(REVIEW_ISSUES_PATH, review_issues)
     save_json(REVIEW_PASS_PATH, review_pass)
 
+    for icon in new_icons:
+        if icon not in findings:
+            svg_path = LAWNICONS_SVGS_DIR / f"{icon}.svg"
+            if svg_path.exists():
+                svg_path.unlink()    
+
     new_issues = sum(1 for i in new_icons if i in findings)
     fixed = sum(1 for i in review_icons if i not in findings)
     print(f"New issues: {new_issues}, Fixed: {fixed}")
