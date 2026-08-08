@@ -1090,13 +1090,13 @@ select:hover,
 
 .qa-container .library-icon-card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   height: auto;
   min-height: 80px;
   padding: 16px;
-  gap: 16px;
+  gap: 12px;
   break-inside: avoid;
   margin-bottom: var(--space-sm);
   background: var(--surface-container-low);
@@ -1111,8 +1111,8 @@ select:hover,
 }
 
 .qa-container .library-icon-card img {
-  width: 56px;
-  height: 56px;
+  width: 80px;
+  height: 80px;
   flex-shrink: 0;
   margin: 0;
 }
@@ -1125,8 +1125,10 @@ select:hover,
   color: var(--on-surface-variant);
   line-height: 1.4;
   font-family: monospace;
-  flex: 1;
+  text-align: left;
+  width: 100%;
 }
+
 .header-link-wrapper {
     position: relative;
     display: inline-flex;

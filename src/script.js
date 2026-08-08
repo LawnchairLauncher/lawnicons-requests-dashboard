@@ -3774,13 +3774,11 @@ layoutMasonry() {
             `<div class="item-sub">${i}</div>`
           ).join('');
           html += `
-                      <div class="library-icon-card" data-drawable="${item.drawable}" title="${
-            item.issues.join('\n')
-          }">
-                          <img src="${svgUrl}" alt="${item.drawable}" loading="lazy" onerror="this.parentElement.remove()" />
-                          <div class="qa-issues">${issueList}</div>
-                      </div>
-                  `;
+            <div class="library-icon-card qa-card" data-drawable="${item.drawable}" title="${item.issues.join('\n')}">
+              <img src="${svgUrl}" alt="${item.drawable}" loading="lazy" onerror="this.parentElement.remove()" />
+              <div class="qa-issues">${issueList}</div>
+            </div>
+          `;
         });
 
         App.dom.container.innerHTML = html;
