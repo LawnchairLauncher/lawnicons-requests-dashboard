@@ -1,6 +1,6 @@
 {
-  "count": 23859,
-  "lastUpdate": "2026-08-08",
+  "count": 23846,
+  "lastUpdate": "2026-08-09",
   "apps": [
     {
       "drawable": "one_3",
@@ -49550,15 +49550,6 @@
       "installs": "500,000+"
     },
     {
-      "drawable": "imagineart_2",
-      "label": "ImagineArt",
-      "componentName": "com.vyroai.aiart/com.vyro.imagineart.MainActivity",
-      "requestCount": 2,
-      "firstAppearance": 1782035233.0,
-      "lastRequested": 1783988042.0,
-      "installs": "10,000,000+"
-    },
-    {
       "drawable": "kinzoo_2",
       "label": "Kinzoo",
       "componentName": "com.kinzoo.android/com.kinzoo.android.AuthActivity",
@@ -54283,15 +54274,6 @@
       "label": "QuitNow: Quit smoking for good",
       "componentName": "com.EAGINsoftware.dejaloYa/com.fewlaps.quitnow.MainActivity",
       "installs": "5,000,000+"
-    },
-    {
-      "drawable": "ai_image_generator_imagineart",
-      "requestCount": 4,
-      "firstAppearance": 1723436116.0,
-      "lastRequested": 1785498107.6222458,
-      "label": "AI Image Generator: ImagineArt",
-      "componentName": "com.vyroai.aiart/com.vyroai.aiart.ui.activity.ImagineActivity",
-      "installs": "10,000,000+"
     },
     {
       "drawable": "opensky_app_for_drone_flyers",
@@ -60355,15 +60337,6 @@
       "installs": "1,000,000+"
     },
     {
-      "drawable": "e_boks_dk_2",
-      "requestCount": 6,
-      "firstAppearance": 1726379933.0,
-      "lastRequested": 1784557919.0,
-      "label": "e-Boks.dk",
-      "componentName": "com.eboks.activities/dk.eboks.app.presentation.ui.start.screens.StartActivity",
-      "installs": "1,000,000+"
-    },
-    {
       "drawable": "mixtube",
       "requestCount": 6,
       "firstAppearance": 1745020800.0,
@@ -61394,15 +61367,6 @@
       "lastRequested": 1782763611.0,
       "label": "Sleeper",
       "componentName": "com.sleeperbot/com.sleeperbot.MainActivity",
-      "installs": "1,000,000+"
-    },
-    {
-      "drawable": "1177",
-      "requestCount": 7,
-      "firstAppearance": 1726010779.0,
-      "lastRequested": 1784302301.0,
-      "label": "1177",
-      "componentName": "se.vardguiden1177/se.vardguiden1177.MainActivity",
       "installs": "1,000,000+"
     },
     {
@@ -62778,15 +62742,6 @@
       "installs": "500,000+"
     },
     {
-      "drawable": "plugshare_ev_tesla_map",
-      "requestCount": 9,
-      "firstAppearance": 1712196287.0,
-      "lastRequested": 1743465600.0,
-      "label": "PlugShare - EV & Tesla Map",
-      "componentName": "com.xatori.Plugshare/com.xatori.plugshare.ui.SplashScreenActivity",
-      "installs": "1,000,000+"
-    },
-    {
       "drawable": "package_inc_management_games",
       "requestCount": 9,
       "firstAppearance": 1718495755.0,
@@ -62794,15 +62749,6 @@
       "label": "Package Inc - Management Games",
       "componentName": "com.infinitygames.packageinc/com.unity3d.player.UnityPlayerActivity",
       "installs": "100,000+"
-    },
-    {
-      "drawable": "netmod_vpn_client_v2ray_ssh",
-      "requestCount": 9,
-      "firstAppearance": 1720278980.0,
-      "lastRequested": 1743465600.0,
-      "label": "NetMod VPN Client (V2Ray/SSH)",
-      "componentName": "com.netmod.syna/com.netmod.syna.ui.activity.SplashScreen_Activity",
-      "installs": "1,000,000+"
     },
     {
       "drawable": "notification_light_for_pixel",
@@ -63792,15 +63738,6 @@
       "installs": "10,000,000+"
     },
     {
-      "drawable": "netmod_2",
-      "requestCount": 10,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1783747543.0,
-      "label": "NetMod",
-      "componentName": "com.netmod.syna/com.netmod.syna.MainActivity",
-      "installs": "1,000,000+"
-    },
-    {
       "drawable": "md_vinyl_music_player_widget",
       "requestCount": 10,
       "firstAppearance": 1719022446.0,
@@ -63993,15 +63930,6 @@
       "lastRequested": 1781378969.0,
       "label": "NoRoot Firewall",
       "componentName": "app.greyshirts.firewall/app.greyshirts.firewall.ui.ActivityPager"
-    },
-    {
-      "drawable": "speechify_voice_ai_assistant",
-      "requestCount": 11,
-      "firstAppearance": 1721910140.0,
-      "lastRequested": 1783484373.0,
-      "label": "Speechify \u2013 Voice AI Assistant",
-      "componentName": "com.cliffweitzman.speechify2/com.cliffweitzman.speechify2.screens.splash.SplashScreenActivity",
-      "installs": "10,000,000+"
     },
     {
       "drawable": "weather_10",
@@ -64493,24 +64421,6 @@
       "componentName": "com.tribalfs.gmh/com.tribalfs.gmh.ui.main.MainActivity"
     },
     {
-      "drawable": "url_cleaner",
-      "requestCount": 14,
-      "firstAppearance": 1717740049.0,
-      "lastRequested": 1784019161.0,
-      "label": "URL Cleaner",
-      "componentName": "com.svenjacobs.app.leon/com.svenjacobs.app.leon.MainActivity",
-      "installs": "1,000+"
-    },
-    {
-      "drawable": "bimby",
-      "requestCount": 14,
-      "firstAppearance": 1724656053.0,
-      "lastRequested": 1784372292.0,
-      "label": "Bimby",
-      "componentName": "com.vorwerk.cookidoo/com.cookidoo.android.presentation.splash.SplashScreenActivity",
-      "installs": "5,000,000+"
-    },
-    {
       "drawable": "unnamed_icon_3_10",
       "requestCount": 14,
       "firstAppearance": 1727098655.0,
@@ -64711,15 +64621,6 @@
       "installs": "1,000+"
     },
     {
-      "drawable": "tor_vpn",
-      "requestCount": 19,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1778115211.0,
-      "label": "Tor VPN",
-      "componentName": "org.torproject.vpn/org.torproject.vpn.ui.iconsetting.model.LauncherDefault",
-      "installs": "50,000+"
-    },
-    {
       "drawable": "circle_to_search_2",
       "requestCount": 19,
       "firstAppearance": 1727296892.0,
@@ -64753,15 +64654,6 @@
       "lastRequested": 1761167014.0,
       "label": "Shaft",
       "componentName": "ceui.lisa.pixiv/ceui.lisa.activities.MainActivity"
-    },
-    {
-      "drawable": "dailyal",
-      "requestCount": 21,
-      "firstAppearance": 1718454822.0,
-      "lastRequested": 1781856414.0,
-      "label": "DailyAL",
-      "componentName": "io.github.jica98/com.teen.dailyanimelist.MainActivity",
-      "installs": "5,000+"
     },
     {
       "drawable": "xshare_mini",
@@ -197985,15 +197877,6 @@
       "label": "ForkNSausage",
       "componentName": "com.kadka.forknsausage/by.saygames.SayKitActivity",
       "installs": "50,000,000+"
-    },
-    {
-      "drawable": "plugshare",
-      "requestCount": 7,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1783577493.0,
-      "label": "PlugShare",
-      "componentName": "com.xatori.Plugshare/com.xatori.plugshare.ui.splashscreen.SplashScreenActivity",
-      "installs": "1,000,000+"
     },
     {
       "drawable": "fake_update",
