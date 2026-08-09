@@ -28,6 +28,7 @@ const CONFIG = {
       'wip',
       'supported',
       'easy',
+      'foss',
       'nameinuse',
       'match',
       'stale',

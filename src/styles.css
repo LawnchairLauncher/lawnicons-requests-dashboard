@@ -79,6 +79,10 @@
   --clay-container: #3D2A1C;
   --on-clay-container: #f5d5c0;
 
+  /* Source: #607D8B */
+  --slate-container: #37474f;
+  --on-slate-container: #e7eef3;
+
   /* Pie chart colors */
   --chart-1: #8CB4FF;
   --chart-2: #C4B5FD;
@@ -1419,6 +1423,11 @@ select:hover,
 .status-easy {
   background: var(--tertiary-container);
   color: var(--on-tertiary-container);
+}
+
+.status-foss {
+  background: var(--slate-container);
+  color: var(--on-slate-container);
 }
 
 .status-nameinuse {
