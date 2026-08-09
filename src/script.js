@@ -2348,26 +2348,10 @@ const UI = {
       },
     );
 
-    document.querySelectorAll("[data-action='quick-pick-mode']").forEach(
-      (el) => {
-        el.addEventListener('click', () => {
-          const e = /** @type HTMLElement */ (el);
-          const mode = e.dataset.mode;
-          if (!mode) return;
-          App.state.quickPickMode = mode;
-          document.querySelectorAll("[data-action='quick-pick-mode']").forEach(
-            (sp) => {
-              const s = /** @type HTMLElement */ (sp);
-              const span = s.closest('span');
-              if (span) {
-                span.classList.toggle('active', s.dataset.mode === mode);
-              }
-            },
-          );
-          this.pickRandomQuickPick();
-        });
-      },
-    );
+    document.getElementById('quickPickNext')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      UI.pickRandomQuickPick();
+    });
 
     let resizeTimer = 0;
     addEventListener('resize', () => {
@@ -5160,10 +5144,7 @@ layoutMasonry() {
     const isCountry = (/** @type {string} */ d) =>
       ISO_COUNTRIES.has(d) && d in POP;
 
-    // Calc local_impact per country
-    /** @type {Record<string, number>} */
     const domainInstalls = {};
-    /** @type {Record<string, number>} */
     const domainInstCounts = {};
     App.data.forEach((app) => {
       const pkg = app.componentName.split('/')[0];
@@ -5174,7 +5155,6 @@ layoutMasonry() {
       domainInstCounts[domain] = (domainInstCounts[domain] || 0) + 1;
     });
 
-    /** @type {Record<string, number>} */
     const localImpact = {};
     for (const d of Object.keys(domainInstalls)) {
       const s = App.state.domainStats[d] || {};
@@ -5190,73 +5170,47 @@ layoutMasonry() {
     const q2 = liValues[Math.floor(n / 2)] || 0;
     const q3 = liValues[Math.floor(3 * n / 4)] || 0;
 
-    const quartileUrgency = (/** @type {number} */ li) => {
+    const quartileUrgency = (li) => {
       if (li >= q3) return 1.0;
       if (li >= q2) return 0.75;
       if (li >= q1) return 0.5;
       return 0.25;
     };
 
-    App.state._quickPickMiddle = [];
-    App.state._quickPickEasy = [];
+    App.state._quickPickQueue = [];
 
     App.data.forEach((app) => {
       const tags = App.state.appTags.get(app.componentName) || new Set();
-
-      const isStale = tags.has('stale');
-      if (isStale) return;
+      if (tags.has('stale') || tags.has('easy') || tags.has('match') || tags.has('nameinuse')) return;
 
       const inst = Utils.parseInstalls(app.installs);
       if (inst < 500000) return;
       if (app.requestCount < 5) return;
 
-      const isEasy = tags.has('easy');
-      const isMatch = tags.has('match');
-      const isNameInUse = tags.has('nameinuse');
-
-      const pkg = app.componentName.split('/')[0];
-      const domain = pkg.split('.')[0];
-      const req = app.requestCount || 0;
-
+      const domain = app.componentName.split('/')[0].split('.')[0];
       let urg = 0.5;
       if (isCountry(domain)) {
         const li = localImpact[domain] || 0;
         urg = quartileUrgency(li);
       }
       const urgencyMod = 0.5 + 0.5 * urg;
-      const score = Math.log(inst + 1) * Math.sqrt(req) * urgencyMod;
+      const score = Math.log(inst + 1) * Math.sqrt(app.requestCount || 0) * urgencyMod;
 
-      /** @type {(AppEntry & { _score: number })} */
-      const item = { ...app, _score: score };
-
-      // Easy: only easy, excl. match and nameinuse
-      if (isEasy && !isMatch && !isNameInUse) {
-        App.state._quickPickEasy?.push(item);
-      }
-
-      // Middle+: excl. easy, match and nameinuse
-      if (!isEasy && !isMatch && !isNameInUse) {
-        App.state._quickPickMiddle?.push(item);
-      }
+      App.state._quickPickQueue.push({ ...app, _score: score });
     });
 
-    App.state._quickPickMiddle.sort((a, b) => b._score - a._score);
-    App.state._quickPickEasy.sort((a, b) => b._score - a._score);
-
-    App.state.quickPickMode = App.state.quickPickMode || 'easy';
+    App.state._quickPickQueue.sort((a, b) => b._score - a._score);
   },
 
   renderQuickPick() {
-    if (!App.state._quickPickMiddle || !App.state._quickPickMiddle.length) {
+    if (!App.state._quickPickQueue || !App.state._quickPickQueue.length) {
       this.buildQuickPickQueue();
     }
     this.pickRandomQuickPick();
   },
 
   pickRandomQuickPick() {
-    const queue = App.state.quickPickMode === 'easy'
-      ? App.state._quickPickEasy
-      : App.state._quickPickMiddle;
+    const queue = App.state._quickPickQueue;
     if (!queue || !queue.length) return;
 
     const idx = Math.floor(Math.random() * queue.length);

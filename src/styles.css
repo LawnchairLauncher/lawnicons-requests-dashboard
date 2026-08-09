@@ -464,12 +464,14 @@ button.input-icon.active {
 
 .quick-pick-actions-bg {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: var(--space-sm);
   align-items: center;
-  width: 100%;
+  width: fit-content;
+  margin: 0 auto;
   background: rgba(50, 53, 58, 0.9);
   border-radius: var(--shape-small);
-  padding: 4px 8px;
+  padding: var(--space-xs) var(--space-sm);
 }
 
 .quick-pick-btn-icon {
