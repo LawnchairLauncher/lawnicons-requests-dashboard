@@ -187,6 +187,7 @@ const App = {
     mainTabs: /** @type {HTMLElement} */ (document.getElementById('mainTabs')),
     screenSortBtn: /** @type {HTMLButtonElement} */ (document.getElementById('screenSortBtn')),
     screenSortLabel: /** @type {HTMLSpanElement} */ (document.getElementById('screenSortLabel')),
+    /** @type {string} */ defaultHeader: '',
   },
 };
 
@@ -2228,6 +2229,8 @@ const UI = {
       tab.classList.toggle('active', tab.dataset.tab === App.state.activeTab);
     });    
 
+    App.dom.defaultHeader = App.dom.header.textContent;
+
     this.updateContributionBadge();
     this.renderDomainStats();
     this.renderQuickPick();
@@ -2243,7 +2246,7 @@ const UI = {
     document.getElementById('lowQualityBtn')?.addEventListener('click', () => {
       App.state.lowQualityActive = !App.state.lowQualityActive;
       if (!App.state.lowQualityActive) {
-        App.dom.header.textContent = 'Lawnicons';
+        App.dom.header.textContent = App.dom.defaultHeader;
         App.dom.contributionBtn.style.display = '';
         document.getElementById('lowQualityBtn')?.classList.remove('active');
       } else {
@@ -2269,7 +2272,7 @@ const UI = {
         App.state.contributionActive,
       );
       if (!App.state.contributionActive) {
-        App.dom.header.textContent = 'Lawnicons';
+        App.dom.header.textContent = App.dom.defaultHeader;
         App.dom.sentinel.style.display = '';
         App.dom.contributionBtn.style.display = '';
       }
@@ -3155,7 +3158,7 @@ const UI = {
 
     document.querySelector('.header-icon')?.classList.remove('is-hidden');
     document.getElementById('search-wrapper')?.classList.remove('is-hidden');
-    App.dom.header.textContent = 'Lawnicons';
+    App.dom.header.textContent = App.dom.defaultHeader;
     App.dom.contributionBtn.style.display = '';
     this.updateContributionBadge();
     this.updateLowQualityBadge();
