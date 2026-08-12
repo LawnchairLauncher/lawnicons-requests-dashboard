@@ -1,6 +1,6 @@
 {
-  "count": 23841,
-  "lastUpdate": "2026-08-11",
+  "count": 23818,
+  "lastUpdate": "2026-08-12",
   "apps": [
     {
       "drawable": "one_3",
@@ -20256,14 +20256,6 @@
       "installs": "500,000+"
     },
     {
-      "drawable": "fleksy_beta",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1764418518.0,
-      "label": "Fleksy Beta",
-      "componentName": "com.syntellia.fleksy.keyboard/com.syntellia.fleksy.hostpage.hostactivity.HostActivity"
-    },
-    {
       "drawable": "manulifemove",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -21711,14 +21703,6 @@
       "firstAppearance": 1766930823.0,
       "lastRequested": 1766930823.0,
       "installs": "500,000+"
-    },
-    {
-      "drawable": "filimo",
-      "label": "Filimo",
-      "componentName": "com.aparat.filimo/com.bluevod.app.ui.aliases.NewLogoSplashActivityAlias",
-      "requestCount": 1,
-      "firstAppearance": 1766852050.0,
-      "lastRequested": 1766852050.0
     },
     {
       "drawable": "famila_nordost",
@@ -27744,15 +27728,6 @@
       "firstAppearance": 1774006696.0,
       "lastRequested": 1774006696.0,
       "installs": "100,000+"
-    },
-    {
-      "drawable": "dmm_2",
-      "label": "DMM \u52d5\u753b",
-      "componentName": "com.dmm.app.movieplayer/com.dmm.app.movieplayer.MainActivity",
-      "requestCount": 1,
-      "firstAppearance": 1774006696.0,
-      "lastRequested": 1774006696.0,
-      "installs": "1,000,000+"
     },
     {
       "drawable": "mgs_player",
@@ -34761,14 +34736,6 @@
       "lastRequested": 1776093349.0
     },
     {
-      "drawable": "filimo_1",
-      "label": "Filimo",
-      "componentName": "com.aparat.filimo/com.bluevod.app.ui.aliases.DefaultLauncherAlias",
-      "requestCount": 1,
-      "firstAppearance": 1776093349.0,
-      "lastRequested": 1776093349.0
-    },
-    {
       "drawable": "pocketly",
       "label": "Pocketly",
       "componentName": "ir.english_pocket.hvm.english_pocket/pocket_source.features.PocketlyActivity",
@@ -35522,15 +35489,6 @@
       "firstAppearance": 1779623466.0,
       "lastRequested": 1779623466.0,
       "installs": "10,000+"
-    },
-    {
-      "drawable": "cinema_fv_5_2",
-      "label": "Cinema FV-5",
-      "componentName": "com.flavionet.android.cinema.lite/com.flavionet.android.cinema.Main",
-      "requestCount": 1,
-      "firstAppearance": 1779623466.0,
-      "lastRequested": 1779623466.0,
-      "installs": "10,000,000+"
     },
     {
       "drawable": "font2mtz",
@@ -39330,15 +39288,6 @@
       "installs": "10,000,000+"
     },
     {
-      "drawable": "meetme_2",
-      "label": "MeetMe",
-      "componentName": "com.myyearbook.m/com.lovoo.ui.activities.LovooStartActivity",
-      "requestCount": 1,
-      "firstAppearance": 1783350880.0,
-      "lastRequested": 1783350880.0,
-      "installs": "100,000,000+"
-    },
-    {
       "drawable": "numerology",
       "label": "Numerology",
       "componentName": "com.mirofox.numerologija/com.mirofox.numerologija.activities.MainActivity",
@@ -40876,15 +40825,6 @@
       "firstAppearance": 1780983482.0,
       "lastRequested": 1780983482.0,
       "installs": "1,000+"
-    },
-    {
-      "drawable": "edrawmind_2",
-      "label": "EdrawMind",
-      "componentName": "com.edrawsoft.mindmasterg/com.edrawsoft.mindmaster.view.app_view.other.AdActivity",
-      "requestCount": 1,
-      "firstAppearance": 1780983482.0,
-      "lastRequested": 1780983482.0,
-      "installs": "500,000+"
     },
     {
       "drawable": "elta_2",
@@ -44368,15 +44308,6 @@
       "label": "CloudPlayer",
       "componentName": "com.doubleTwist.cloudPlayer/com.doubleTwist.cloudPlayer.HomeActivity",
       "installs": "1,000,000+"
-    },
-    {
-      "drawable": "k_fasting_2",
-      "requestCount": 2,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1771431544.0,
-      "label": "k Fasting",
-      "componentName": "com.kompanion.fasting.android/com.kompanion.fasting.android.MainActivity",
-      "installs": "10,000,000+"
     },
     {
       "drawable": "scaler",
@@ -52077,15 +52008,6 @@
       "installs": "100,000+"
     },
     {
-      "drawable": "appfolio_portal_2",
-      "label": "AppFolio Portal",
-      "componentName": "com.appfolio.resident_portal/com.appfolio.resident_portal.BrowserLauncherActivity",
-      "requestCount": 3,
-      "firstAppearance": 1771388000.0,
-      "lastRequested": 1780128630.0,
-      "installs": "1,000,000+"
-    },
-    {
       "drawable": "mixer",
       "label": "Mixer",
       "componentName": "com.shapley.ai.mixy/com.shapley.ai.mixy.MainActivity",
@@ -53397,15 +53319,6 @@
       "installs": "1,000,000+"
     },
     {
-      "drawable": "appfolio_portal_3",
-      "requestCount": 4,
-      "firstAppearance": 1730137156.0,
-      "lastRequested": 1785539820.978238,
-      "label": "AppFolio Portal",
-      "componentName": "com.appfolio.resident_portal/com.appfolio.resident_portal.MainActivity",
-      "installs": "1,000,000+"
-    },
-    {
       "drawable": "easy_cleaner_2",
       "requestCount": 4,
       "firstAppearance": 1725556021.0,
@@ -53925,15 +53838,6 @@
       "installs": "1,000,000+"
     },
     {
-      "drawable": "dmm",
-      "requestCount": 4,
-      "firstAppearance": 1721043680.0,
-      "lastRequested": 1785498057.07808,
-      "label": "DMM\u52d5\u753b\u30d7\u30ec\u30a4\u30e4\u30fc",
-      "componentName": "com.dmm.app.movieplayer/com.dmm.app.movieplayer.activity.SplashActivity",
-      "installs": "1,000,000+"
-    },
-    {
       "drawable": "shiftbase",
       "requestCount": 4,
       "firstAppearance": 1721128373.0,
@@ -54193,15 +54097,6 @@
       "label": "Charge Control [ROOT]",
       "componentName": "com.rhs.ccontrol/com.rhs.ccontrol.Activities.SplashActivity",
       "installs": "100,000+"
-    },
-    {
-      "drawable": "mon_e_leclerc",
-      "requestCount": 4,
-      "firstAppearance": 1724164723.0,
-      "lastRequested": 1785498097.050666,
-      "label": "Mon E.Leclerc",
-      "componentName": "com.infomil.bill/crc6435345d4d1ccc2513.MainActivity",
-      "installs": "10,000,000+"
     },
     {
       "drawable": "rogers_bank_2",
@@ -55733,15 +55628,6 @@
       "lastRequested": 1782841335.0,
       "label": "PayJoy",
       "componentName": "com.payjoy.status/com.payjoy.status.ui.SplashActivity"
-    },
-    {
-      "drawable": "mon_espace_france_travail_2",
-      "requestCount": 4,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1784473586.0,
-      "label": "Mon Espace France Travail",
-      "componentName": "com.poleemploi.poleemploietmoi/poleemploi.poleemploietmoi.droid.activities.MainActivity",
-      "installs": "10,000,000+"
     },
     {
       "drawable": "openstore",
@@ -58285,15 +58171,6 @@
       "label": "ATB-MARKET",
       "componentName": "com.atb.atbmarket/com.atb.atbmarket.MainActivity",
       "installs": "1,000,000+"
-    },
-    {
-      "drawable": "original_sound_2",
-      "requestCount": 5,
-      "firstAppearance": 1727159568.0,
-      "lastRequested": 1782440429.0,
-      "label": "Original sound",
-      "componentName": "com.yscoco.yssound/com.yscoco.yssound.ui.activity.SplashActivity",
-      "installs": "500,000+"
     },
     {
       "drawable": "merlin_ai_ai_chat_assistant",
@@ -61361,15 +61238,6 @@
       "installs": "10,000,000+"
     },
     {
-      "drawable": "myheritage_2",
-      "requestCount": 7,
-      "firstAppearance": 1727238748.0,
-      "lastRequested": 1783412977.0,
-      "label": "MyHeritage",
-      "componentName": "air.com.myheritage.mobile/air.com.myheritage.mobile.main.activities.SplashScreenActivity",
-      "installs": "10,000,000+"
-    },
-    {
       "drawable": "scratch_2",
       "requestCount": 7,
       "firstAppearance": 1724054197.0,
@@ -61394,15 +61262,6 @@
       "label": "Tracket",
       "componentName": "com.tracket.app/com.tracket.root.MainActivity",
       "installs": "500,000+"
-    },
-    {
-      "drawable": "mon_eleclerc",
-      "requestCount": 7,
-      "firstAppearance": 1724164723.0,
-      "lastRequested": 1782753493.0,
-      "label": "Mon E.Leclerc",
-      "componentName": "com.infomil.bill/crc641d2f0cb11ae9d69e.MainActivity",
-      "installs": "5,000,000+"
     },
     {
       "drawable": "fortuneo_banque_bourse",
@@ -62593,15 +62452,6 @@
       "installs": "10,000+"
     },
     {
-      "drawable": "wispr_flow",
-      "label": "Wispr Flow",
-      "componentName": "com.wispr.flowapp/com.wispr.flowapp.activity.MainActivity",
-      "requestCount": 8,
-      "firstAppearance": 1773597532.0,
-      "lastRequested": 1781090688.0,
-      "installs": "500,000+"
-    },
-    {
       "drawable": "zinli_2",
       "requestCount": 8,
       "firstAppearance": 1718535886.0,
@@ -62845,14 +62695,6 @@
       "label": "Odd Bot Out",
       "componentName": "com.martinmagni.oddbotout/com.martinmagni.oddbotout.OddBotOut",
       "installs": "5,000,000+"
-    },
-    {
-      "drawable": "fleksy",
-      "requestCount": 9,
-      "firstAppearance": 1719404963.0,
-      "lastRequested": 1774817979.0,
-      "label": "Fleksy",
-      "componentName": "com.syntellia.fleksy.keyboard/com.syntellia.fleksy.settings.activities.SplashActivity"
     },
     {
       "drawable": "muj_vlak",
@@ -64190,24 +64032,6 @@
       "lastRequested": 1783662424.0,
       "label": "HiPaint: Sketch & Draw art",
       "componentName": "com.aige.hipaint/com.aige.hipaint.inkpaint.activity.WelcomeActivity",
-      "installs": "1,000,000+"
-    },
-    {
-      "drawable": "paperknife",
-      "label": "PaperKnife",
-      "componentName": "com.paperknife.app/com.paperknife.app.MainActivity",
-      "requestCount": 12,
-      "firstAppearance": 1771701942.0,
-      "lastRequested": 1783579692.0,
-      "installs": "1,000+"
-    },
-    {
-      "drawable": "dreamehome_2",
-      "requestCount": 12,
-      "firstAppearance": 1724225162.0,
-      "lastRequested": 1784406306.0,
-      "label": "Dreamehome",
-      "componentName": "com.dreame.smartlife/com.dreame.smartlife.ui.activity.SplashActivity",
       "installs": "1,000,000+"
     },
     {
@@ -177638,15 +177462,6 @@
       "installs": "1,000,000+"
     },
     {
-      "drawable": "indigo_flight_booking_app",
-      "requestCount": 4,
-      "firstAppearance": 1708491290.0,
-      "lastRequested": 1785498342.81996,
-      "label": "IndiGo Flight Booking App",
-      "componentName": "in.goindigo.android/in.goindigo.android.ui.modules.splash.SplashActivity",
-      "installs": "10,000,000+"
-    },
-    {
       "drawable": "save_the_doge",
       "requestCount": 4,
       "firstAppearance": 1708646427.0,
@@ -188980,14 +188795,6 @@
       "firstAppearance": 1766859784.0,
       "lastRequested": 1777097055.0,
       "installs": "10,000,000+"
-    },
-    {
-      "drawable": "filimo",
-      "requestCount": 5,
-      "firstAppearance": 1764720000.0,
-      "lastRequested": 1777959772.728603,
-      "label": "\u0641\u06cc\u0644\u06cc\u0645\u0648",
-      "componentName": "com.aparat.filimo/com.bluevod.app.features.splash.SplashActivity"
     },
     {
       "drawable": "bergfex_touren",
@@ -207285,15 +207092,6 @@
       "lastRequested": 1781414430.0,
       "label": "ShootingPlus V3",
       "componentName": "com.qx.qgbox/com.qx.qgbox.activity.MainActivity",
-      "installs": "10,000,000+"
-    },
-    {
-      "drawable": "indigo",
-      "requestCount": 16,
-      "firstAppearance": 1708491290.0,
-      "lastRequested": 1784369125.0,
-      "label": "IndiGo",
-      "componentName": "in.goindigo.android/in.goindigo.android.MainActivity",
       "installs": "10,000,000+"
     },
     {
