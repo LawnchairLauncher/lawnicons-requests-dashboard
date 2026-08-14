@@ -1,17 +1,17 @@
 {
   "com": {
-    "requests": 3735,
-    "done": 13945,
-    "total": 17680,
+    "requests": 3733,
+    "done": 13950,
+    "total": 17683,
     "global": 0,
     "global_installs": 0
   },
   "us": {
-    "requests": 13439,
+    "requests": 13438,
     "done": 27,
-    "total": 13466,
-    "global": 13419,
-    "global_installs": 56904008049
+    "total": 13465,
+    "global": 13418,
+    "global_installs": 56903008049
   },
   "org": {
     "requests": 1074,
@@ -28,10 +28,10 @@
     "global_installs": 6336780315
   },
   "ru": {
-    "requests": 1386,
+    "requests": 1385,
     "done": 371,
-    "total": 1757,
-    "global": 1114,
+    "total": 1756,
+    "global": 1113,
     "global_installs": 6423406787
   },
   "jp": {
@@ -56,10 +56,10 @@
     "global_installs": 2072490860
   },
   "it": {
-    "requests": 481,
+    "requests": 480,
     "done": 118,
-    "total": 599,
-    "global": 360,
+    "total": 598,
+    "global": 359,
     "global_installs": 1542703255
   },
   "io": {
@@ -189,15 +189,15 @@
     "global_installs": 402075261
   },
   "ar": {
-    "requests": 185,
+    "requests": 184,
     "done": 32,
-    "total": 217,
-    "global": 163,
+    "total": 216,
+    "global": 162,
     "global_installs": 550999110
   },
   "me": {
-    "requests": 73,
-    "done": 134,
+    "requests": 72,
+    "done": 135,
     "total": 207,
     "global": 0,
     "global_installs": 0
@@ -314,13 +314,6 @@
     "global": 82,
     "global_installs": 172584100
   },
-  "pt": {
-    "requests": 33,
-    "done": 53,
-    "total": 86,
-    "global": 20,
-    "global_installs": 26110000
-  },
   "by": {
     "requests": 71,
     "done": 14,
@@ -334,6 +327,13 @@
     "total": 85,
     "global": 39,
     "global_installs": 1396036000
+  },
+  "pt": {
+    "requests": 30,
+    "done": 53,
+    "total": 83,
+    "global": 17,
+    "global_installs": 25010000
   },
   "ro": {
     "requests": 40,
@@ -686,10 +686,10 @@
     "global_installs": 0
   },
   "az": {
-    "requests": 16,
+    "requests": 15,
     "done": 3,
-    "total": 19,
-    "global": 12,
+    "total": 18,
+    "global": 11,
     "global_installs": 12500000
   },
   "lv": {
