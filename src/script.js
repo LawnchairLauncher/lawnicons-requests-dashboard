@@ -914,6 +914,9 @@ const Templates = {
       <div class="ctx-item" role="menuitem" tabindex="0" data-action="sb-download-metadata">
         ${ICONS.download}<span>Download metadata</span>
       </div>
+      <div class="ctx-item" role="menuitem" tabindex="0" data-action="sb-remove-from-plan">
+        <span>Remove from plan</span>
+      </div>
       <div class="ctx-divider"></div>
       <div class="ctx-section">Copy</div>
       <div class="ctx-item" role="menuitem" tabindex="0" data-action="sb-copy-appfilter">
@@ -2702,6 +2705,24 @@ const UI = {
         if (action === 'sb-download-metadata') {
           App.state.actionMode = 'link';
           Actions.downloadBundle();
+          Actions.closeSbMenu();
+          return;
+        }
+
+        if (action === 'sb-remove-from-plan') {
+          App.state.selected.forEach(id => {
+            const app = App.state.contribution.find(a => a.componentName === id);
+            if (app) {
+              App.state.contribution = App.state.contribution.filter(a => a.componentName !== id);
+              const tags = App.state.appTags.get(id);
+              if (tags) tags.delete('plan');
+            }
+          });
+          UI.saveContribution();
+          const count = App.state.selected.size;
+          Components.Toast.show(`${count} icon${count !== 1 ? 's' : ''} removed from plan.`);
+          Actions.clearAllSelections();
+          UI.render();
           Actions.closeSbMenu();
           return;
         }
