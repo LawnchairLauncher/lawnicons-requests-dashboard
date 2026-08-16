@@ -315,10 +315,6 @@
       "existing_drawable": "smart_home"
     },
     {
-      "id": "nl.beterDichtbij/nl.beterDichtbij.views.startup.StartupActivity",
-      "existing_drawable": "beterdichtbij"
-    },
-    {
       "id": "com.awfs.coordination/za.co.woolworths.financial.services.android.startup.view.StartupActivity",
       "existing_drawable": "woolworths"
     },
@@ -921,6 +917,10 @@
     {
       "id": "com.launcher.smart.android.beta/com.launcher.smart.android.beta.settings.ui.ThemesActivity",
       "existing_drawable": "themes"
+    },
+    {
+      "id": "com.gyc.ace.kjv/com.gyc.ace.kjv.ActivityWelcome",
+      "existing_drawable": "generic_bible"
     },
     {
       "id": "com.AppAuxin.ios_calculator/com.AppAuxin.ios_calculator.MainActivity",
