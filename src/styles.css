@@ -83,6 +83,10 @@
   --slate-container: #37474f;
   --on-slate-container: #e7eef3;
 
+  /* Source: #E91E63 */
+  --rose-container: #6d2745;
+  --on-rose-container: #ffd8e7;
+
   /* Pie chart colors */
   --chart-1: #8CB4FF;
   --chart-2: #C4B5FD;
@@ -1430,6 +1434,11 @@ select:hover,
 .status-foss {
   background: var(--slate-container);
   color: var(--on-slate-container);
+}
+
+.status-akin {
+  background: var(--rose-container);
+  color: var(--on-rose-container);
 }
 
 .status-nameinuse {

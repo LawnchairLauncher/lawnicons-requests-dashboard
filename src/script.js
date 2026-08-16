@@ -31,6 +31,7 @@ const CONFIG = {
       'foss',
       'nameinuse',
       'match',
+      'akin',
       'stale',
       'unlabeled',
     ],
