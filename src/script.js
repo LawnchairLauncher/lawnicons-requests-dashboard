@@ -22,6 +22,7 @@ const CONFIG = {
     assetsPath: 'extracted_images/',
     iconExtension: '.webp',
     filterPath: 'assets/filters/',
+    svgPath: 'assets/qa_issues/svgs/',
     // Order matters for UI
     filters: [
       'plan',
@@ -427,7 +428,7 @@ const Templates = {
 
     const existingSvgHtml = existingDrawable
       ? `<span class="existing-svg-wrapper">
-         <img src="https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${existingDrawable}.svg" 
+         <img src="${CONFIG.data.svgPath}${existingDrawable}.svg" 
               class="existing-svg" 
               alt="Icon of '${existingDrawable}'"
               title="${existingDrawable}.svg"
@@ -565,7 +566,7 @@ const Templates = {
    */
   libraryIconCard(icon) {
     const svgUrl =
-      `https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${icon.drawable}.svg`;
+      `${CONFIG.data.svgPath}${icon.drawable}.svg`;
     return `
           <div class="library-icon-card"
               data-drawable="${icon.drawable}"
@@ -584,7 +585,7 @@ const Templates = {
    */
   libraryIconMenu(icon) {
     const svgUrl =
-      `https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${icon.drawable}.svg`;
+      `${CONFIG.data.svgPath}${icon.drawable}.svg`;
     const githubUrl =
       `https://github.com/LawnchairLauncher/lawnicons/blob/develop/svgs/${icon.drawable}.svg`;
     return `
@@ -710,7 +711,7 @@ const Templates = {
 
     const libraryIconHtml = existsInLibrary
       ? `<span class="library-icon-card" title="${libraryTitle}">
-                <img src="https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${drawable}.svg" 
+                <img src="${CONFIG.data.svgPath}${drawable}.svg" 
                       alt="${drawable}" 
                       loading="lazy"
                       onerror="this.parentElement.remove()" />
@@ -2610,7 +2611,7 @@ const UI = {
           const drawable = actionEl.dataset.drawable;
           if (drawable) {
             const svgUrl =
-              `https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${drawable}.svg`;
+              `${CONFIG.data.svgPath}${drawable}.svg`;
             fetch(svgUrl)
               .then((r) => r.text())
               .then((svgText) => {
@@ -3816,7 +3817,7 @@ layoutMasonry() {
         let html = '';
         data.forEach((item) => {
           const svgUrl =
-            `https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${item.drawable}.svg`;
+            `${CONFIG.data.svgPath}${item.drawable}.svg`;
           const issueList = item.issues.map((i) =>
             `<div class="item-sub">${i}</div>`
           ).join('');
@@ -4665,7 +4666,7 @@ layoutMasonry() {
       if (existsInLibrary) {
         libraryIconCol.innerHTML =
           `<span class="library-icon-card" title="${libraryTitle}">
-                  <img src="https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/svgs/${drawable}.svg" 
+                  <img src="${CONFIG.data.svgPath}${drawable}.svg" 
                       alt="${drawable}" 
                       loading="lazy"
                       onerror="this.parentElement.remove()" />
