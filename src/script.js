@@ -1669,7 +1669,7 @@ const Data = {
             if (App.state.supportedSpeedup) {
               const descEl = document.getElementById('supportedDesc');
               if (descEl) {
-                descEl.innerHTML = `Supported requests are fulfilled <span style="color: var(--on-teal-container); font-weight: 700;">${App.state.supportedSpeedup}x faster</span>.`;
+                descEl.innerHTML = `Supported requests are fulfilled at least <span style="color: var(--on-teal-container); font-weight: 700;">${App.state.supportedSpeedup}x faster</span>.`;
               }
             }
           }
