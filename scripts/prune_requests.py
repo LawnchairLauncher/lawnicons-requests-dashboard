@@ -626,7 +626,230 @@ def update_fulfillment_history(removed_components: set[str], old_apps: dict) -> 
         json.dump(history, f, indent=2)
     
     print(f"Updated fulfillment_history.json: +{added} entries, {len(history)} total (last 365 days)")
-    return len(history)   
+    return len(history)
+
+def calculate_roi_scores():
+    """Calculate ROI score for each request and update requests.json."""
+    import math
+    from collections import Counter
+    
+    with open(REQUESTS_JSON, "r", encoding="utf-8") as f:
+        requests_data = json.load(f)
+    
+    apps = requests_data.get("apps", [])
+    
+    # Load required data
+    with open(REPO_ROOT / "src/assets/filters/easy.json") as f:
+        easy = set(json.load(f).get("easy", []))
+    
+    with open(REPO_ROOT / "src/assets/filters/foss.json") as f:
+        foss = set(json.load(f).get("foss", []))
+    
+    with open(REPO_ROOT / "src/assets/requests_graph.json") as f:
+        graph = json.load(f)
+    
+    with open(REPO_ROOT / "src/assets/stats/domain_stats.json") as f:
+        domain_stats = json.load(f)
+    
+    with open(REPO_ROOT / "src/assets/screens_graph.json") as f:
+        screens_graph = json.load(f)
+    
+    with open(REPO_ROOT / "src/assets/stats/trending_baseline.json") as f:
+        trending = json.load(f)
+    
+    # 90d May-July 2026
+    USER_LOSS = {
+        'in': 5231, 'us': 2806, 'br': 1842, 'ru': 1810, 'id': 1681,
+        'ph': 957, 'mx': 820, 'uk': 643, 'bd': 616, 'de': 588,
+        'vn': 568, 'tr': 478, 'ar': 447, 'pk': 424, 'ca': 423,
+        'it': 393, 'jp': 342, 'co': 341, 'pl': 339, 'ua': 315,
+        've': 308, 'eg': 288, 'fr': 281, 'my': 268, 'es': 253,
+        'ng': 232, 'nl': 205, 'hk': 202, 'pe': 171, 'za': 168,
+        'th': 163, 'dz': 157, 'ir': 153, 'ec': 150, 'ro': 149,
+        'lk': 132, 'sa': 123, 'by': 109, 'ke': 104, 'ae': 95,
+        'sg': 85, 'ch': 78, 'mg': 77, 'cz': 71, 'et': 61,
+        'sv': 60, 'no': 51, 'tz': 47, 'uz': 46, 'at': 39,
+        'bg': 39, 'zw': 38, 'zm': 21, 'pa': 17, 'ci': 14,
+        'bt': 2, 'aw': 1
+    }
+    
+    MAX_LOSS = max(USER_LOSS.values())
+    POPULATION = domain_stats.get('_population', {})
+    
+    ISO_COUNTRIES = {'ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','ne','ng','ni','nl','no','np','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','uk','us','uy','uz','vc','ve','vi','vn','ye','za','zm','zw'}
+    
+    def parse_installs(s):
+        if not s:
+            return 0
+        clean = s.replace(',', '').replace('+', '')
+        return int(clean) if clean.isdigit() else 0
+    
+    def country_loss_weight(comp):
+        # Direct geo domain
+        domain = comp.split('/')[0].split('.')[0]
+        if domain in USER_LOSS:
+            return USER_LOSS[domain] / MAX_LOSS
+        
+        # Presumed through graph
+        if comp not in graph:
+            return 0
+        countries = set()
+        for n in graph[comp]:
+            nd = n.split('/')[0].split('.')[0]
+            if nd in ISO_COUNTRIES:
+                countries.add(nd)
+        total_weight = sum(USER_LOSS.get(c, 0) for c in countries)
+        return total_weight / MAX_LOSS if countries else 0
+    
+    def local_impact(comp):
+        # Direct geo domain
+        domain = comp.split('/')[0].split('.')[0]
+        if domain in ISO_COUNTRIES:
+            stats = domain_stats.get(domain, {})
+            requests = stats.get('requests', 0)
+            total = stats.get('total', 0)
+            pop = POPULATION.get(domain, 1)
+            if pop > 0 and requests > 0:
+                return (total - requests) / pop
+        
+        # Presumed through graph
+        if comp not in graph:
+            return 0
+        countries = set()
+        for n in graph[comp]:
+            nd = n.split('/')[0].split('.')[0]
+            if nd in ISO_COUNTRIES:
+                countries.add(nd)
+        impacts = []
+        for c in countries:
+            stats = domain_stats.get(c, {})
+            requests = stats.get('requests', 0)
+            total = stats.get('total', 0)
+            pop = POPULATION.get(c, 1)
+            if pop > 0 and requests > 0:
+                impacts.append((total - requests) / pop)
+        return sum(impacts) / len(impacts) if impacts else 0
+    
+    def coverage_gap(comp):
+        # Direct geo domain
+        domain = comp.split('/')[0].split('.')[0]
+        if domain in ISO_COUNTRIES:
+            stats = domain_stats.get(domain, {})
+            requests = stats.get('requests', 0)
+            done = stats.get('done', 0)
+            total = requests + done
+            if total > 0:
+                return requests / total
+        
+        # Presumed through graph
+        if comp not in graph:
+            return 1.0
+        countries = set()
+        for n in graph[comp]:
+            nd = n.split('/')[0].split('.')[0]
+            if nd in ISO_COUNTRIES:
+                countries.add(nd)
+        if not countries:
+            return 1.0
+        gaps = []
+        for c in countries:
+            stats = domain_stats.get(c, {})
+            requests = stats.get('requests', 0)
+            done = stats.get('done', 0)
+            total = requests + done
+            if total > 0:
+                gaps.append(requests / total)
+        return min(gaps) if gaps else 1.0
+    
+    # Finisher scores
+    finisher_scores = {}
+    screen_sets = [set(comps) for comps in screens_graph.values()]
+    for screen in screen_sets:
+        for comp in screen:
+            finisher_scores[comp] = finisher_scores.get(comp, 0) + (1.0 / len(screen))
+    
+    # Trending deltas
+    trending_deltas = {}
+    if trending.get('period_start', {}).get('snapshot') and trending.get('period_end', {}).get('snapshot'):
+        start = trending['period_start']['snapshot']
+        end = trending['period_end']['snapshot']
+        for comp, count in end.items():
+            if comp in start:
+                delta = count - start[comp]
+                if delta > 0:
+                    trending_deltas[comp] = delta
+    
+    # Calculate median installs for fallback
+    all_installs = []
+    for app in apps:
+        s = parse_installs(app.get('installs', '0'))
+        if s > 0:
+            all_installs.append(s)
+    
+    median_installs = 0
+    if all_installs:
+        all_installs.sort()
+        mid = len(all_installs) // 2
+        median_installs = all_installs[mid]
+    
+    # Calculate scores
+    scores_list = []
+    for app in apps:
+        comp = app.get('componentName', '')
+        installs = parse_installs(app.get('installs', '0'))
+        req_count = app.get('requestCount', 0)
+        loss_weight = country_loss_weight(comp)
+        impact = local_impact(comp)
+        gap = coverage_gap(comp)
+        finisher = finisher_scores.get(comp, 0)
+        trend = trending_deltas.get(comp, 0)
+        
+        is_easy = comp in easy
+        is_foss = comp in foss
+        
+        complexity = 1 if is_easy else 10
+
+        # Use median installs for unknown, with soft penalty
+        if installs == 0:
+            installs = median_installs
+            installs_penalty = 0.5
+        else:
+            installs_penalty = 1.0
+
+        impact_log = math.log1p(impact)
+        
+        # If local impact is high, reduce complexity penalty
+        if impact_log > 1.0:
+            complexity = 1
+        elif impact_log > 0.5:
+            complexity = min(complexity, 3)
+
+        installs_log = math.log10(installs + 1) if installs > 0 else 0
+        req_log = math.log(req_count + 1)
+        trend_log = math.log(trend + 1) if trend > 0 else 0
+        
+        score = (
+            (loss_weight * 10 + 1) *
+            (1 + impact_log * 8) *
+            (1 + installs_log * 0.5) *
+            (1 + req_log * 0.5) *
+            (1 + gap * 2) *
+            (1 + finisher * 2) *
+            (1.3 if is_foss else 1.0) *
+            (1 + trend_log) *
+            installs_penalty
+        ) / complexity
+        
+        scores_list.append((app, score))
+    
+    for app, score in scores_list:
+        app['roi_score'] = round(score, 2)
+    
+    with open(REQUESTS_JSON, "w", encoding="utf-8") as f:
+        json.dump(requests_data, f, indent=2)
+    
+    print(f"Calculated ROI scores for {len(apps)} requests")
+    return len(apps)
     
 def main() -> int:
 
@@ -745,6 +968,10 @@ def main() -> int:
     domain_count = update_domain_stats()
     print(f"Domain stats updated: {domain_count} domains")
 
+    # --- Calculate ROI scores ---
+    roi_count = calculate_roi_scores()
+    print(f"ROI scores calculated: {roi_count}")
+
     # --- Re-load requests.json to capture the final state after all pruning ---
     with open(REQUESTS_JSON, "r") as f:
         requests_data = json.load(f)
@@ -764,7 +991,8 @@ def main() -> int:
     with open(REQUESTS_JSON, "r") as f:
         requests_data = json.load(f)
     stale_count = generate_stale_list()
-    print(f"Stale requests after sync: {stale_count}")    
+    print(f"Stale requests after sync: {stale_count}")
+
 
     # --- Workflow outputs ---
     has_changes = appfilter_changed or expired_removed > 0

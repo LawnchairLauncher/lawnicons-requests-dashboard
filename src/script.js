@@ -487,7 +487,8 @@ const Templates = {
       trendingDelta
         ? ` <span class="trend-indicator" title="Growth from latest email import.">↑${trendingDelta}</span>`
         : ''
-    }</div>       
+    }</div>
+        <div class="col roi">${app.roi_score ? Utils.compactNumber(app.roi_score) : '—'}</div>
         <div class="col install" title="${installsTitle}">${displayInstalls}</div>
         <div class="col first date-col">
           <div>${firstStr}</div>
@@ -1121,6 +1122,7 @@ const Actions = {
     const defaults = {
       name: 'asc',
       req: 'desc',
+      roi: 'desc',
       install: 'desc',
       time: 'desc',
     };
@@ -1955,6 +1957,8 @@ const Data = {
           const deltaB = App.state.trendingDeltas[b.componentName] || 0;
           return deltaB - deltaA || getPop(b) - getPop(a);
         },
+        'roi-desc': (a, b) => (b.roi_score || 0) - (a.roi_score || 0),
+        'roi-asc': (a, b) => (a.roi_score || 0) - (b.roi_score || 0),
         'install-desc': (a, b) =>
           Utils.parseInstalls(b.installs) - Utils.parseInstalls(a.installs) ||
           getPop(b) - getPop(a) ||
@@ -2156,6 +2160,8 @@ const UI = {
   sortOptions: [
     { value: 'req-desc', label: 'Most requested' },
     { value: 'req-asc', label: 'Least requested' },
+    { value: 'roi-desc', label: 'Highest ROI' },
+    { value: 'roi-asc', label: 'Lowest ROI' },
     { value: 'install-desc', label: 'Most installed' },
     { value: 'install-asc', label: 'Least installed' },
     { value: 'time-desc', label: 'Newest' },
@@ -2521,6 +2527,7 @@ const UI = {
     const headers = {
       '.col.name': 'name',
       '.col.req': 'req',
+      '.col.roi': 'roi',
       '.col.install': 'install',
       '.col.first': 'time',
     };
