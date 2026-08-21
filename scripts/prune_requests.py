@@ -827,7 +827,16 @@ def calculate_roi_scores():
         installs_log = math.log10(installs + 1) if installs > 0 else 0
         req_log = math.log(req_count + 1)
         trend_log = math.log(trend + 1) if trend > 0 else 0
-        
+
+        # Age factor by half-years
+        last_requested = app.get('lastRequested', 0)
+        if last_requested > 0:
+            age_days = (time.time() - last_requested) / 86400
+            half_years = int(age_days / 180)
+            age_multiplier = 1 + half_years * 1.0
+        else:
+            age_multiplier = 1.0
+
         score = (
             (loss_weight * 10 + 1) *
             (1 + impact_log * 8) *
@@ -836,6 +845,7 @@ def calculate_roi_scores():
             (1 + gap * 2) *
             (1 + finisher * 2) *
             (1.3 if is_foss else 1.0) *
+            age_multiplier *
             (1 + trend_log) *
             installs_penalty
         ) / complexity
