@@ -2322,16 +2322,23 @@ const UI = {
       Utils.handleImageError(event);
     }, true);
 
+    /** @type {number | undefined} */
+    let searchTimeout;
     App.dom.inputSearch.addEventListener('input', (e) => {
       const target = /** @type HTMLInputElement */ (e.target);
       const val = target.value;
       App.state.search = val;
       Utils.setHidden(App.dom.clearBtn, val.length === 0);
       this.renderIconLibrary();
-      this.render();
+      
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        this.render();
+      }, 300);
     });
 
     App.dom.clearBtn.addEventListener('click', () => {
+      clearTimeout(searchTimeout);
       App.state.search = '';
       App.dom.inputSearch.value = '';
       Utils.setHidden(App.dom.clearBtn, true);
@@ -2374,6 +2381,7 @@ const UI = {
     App.dom.viewIconGrid.classList.remove('active');
 
     App.dom.regexBtn.addEventListener('click', () => {
+      clearTimeout(searchTimeout);
       App.state.regexMode = !App.state.regexMode;
       App.dom.regexBtn.classList.toggle('active', App.state.regexMode);
       this.render();
