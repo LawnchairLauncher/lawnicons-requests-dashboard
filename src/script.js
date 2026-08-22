@@ -1916,16 +1916,7 @@ const Data = {
       );
     }
 
-    // Sort
-    if (s.sort === 'underrated') {
-      data = data.filter((app) =>
-        app.requestCount >= 10 && Utils.parseInstalls(app.installs) > 0
-      );
-    }
-
-    if (s.sort === 'finishers' && !App.state._finisherScores) {
-      Heuristics.calculateFinisherScores()
-    }    
+    // Sort 
 
     data = [...data];
     if (s.sort === 'rand') {
@@ -1979,26 +1970,6 @@ const Data = {
           b.firstAppearance - a.firstAppearance || getPop(b) - getPop(a),
         'time-asc': (a, b) =>
           a.firstAppearance - b.firstAppearance || getPop(b) - getPop(a),
-        'underrated': (a, b) =>
-          Heuristics.calculateUnderratedScore(b) -
-            Heuristics.calculateUnderratedScore(a) ||
-          (App.state.setsStats[b.componentName.split('/')[0]] ||
-              b.requestCount) -
-            (App.state.setsStats[a.componentName.split('/')[0]] ||
-              a.requestCount),
-        'finishers': (a, b) => {
-          const dataA = App.state._finisherScores?.[a.componentName];
-          const dataB = App.state._finisherScores?.[b.componentName];
-          
-          if (dataA && dataB) {
-            if (dataA.score !== dataB.score) return dataB.score - dataA.score;
-            return dataA.avgSize - dataB.avgSize;
-          }
-          if (dataA) return -1;
-          if (dataB) return 1;
-          
-          return getPop(b) - getPop(a);
-        }, 
       };
       if (sorters[s.sort]) data.sort(sorters[s.sort]);
     }
@@ -2113,39 +2084,7 @@ const Data = {
 // 8. HEURISTICS
 // Pure mathematical formulas for ranking.
 // ==========================================
-const Heuristics = {
-  /** @param {AppEntry} app */
-  calculateUnderratedScore(app) {
-    const req = app.requestCount || 1;
-    const inst = Utils.parseInstalls(app.installs) || 1;
-    return req / inst;
-  },
-
-calculateFinisherScores() {
-  const screens = App.state.screensData;
-  const screenList = Object.values(screens).map(comps => new Set(comps));
-  /** @type {Record<string, {score: number, avgSize: number}>} */
-  const scores = {};
-
-  const compToScreens = new Map();
-  for (const screen of screenList) {
-    for (const comp of screen) {
-      if (!compToScreens.has(comp)) compToScreens.set(comp, new Set());
-      compToScreens.get(comp).add(screen);
-    }
-  }
-
-  for (const [comp, scrns] of compToScreens) {
-    const closing = [...scrns].filter(s => s.size === 1);
-    const score = closing.length;
-    const totalSize = [...scrns].reduce((sum, s) => sum + s.size, 0);
-    const avgSize = scrns.size > 0 ? totalSize / scrns.size : Infinity;
-    scores[comp] = { score, avgSize };
-  }
-
-  App.state._finisherScores = scores;
-},
-};
+const Heuristics = {};
 
 // ==========================================
 // 9. UI LOGIC
@@ -2169,8 +2108,6 @@ const UI = {
     { value: 'name-asc', label: 'Name (A-Z)' },
     { value: 'name-desc', label: 'Name (Z-A)' },
     { value: 'trending', label: 'Trending' },
-    { value: 'finishers', label: 'Screen finishers' },
-    { value: 'underrated', label: 'Underrated' },
     { value: 'rand', label: 'Random' },
   ],
 
