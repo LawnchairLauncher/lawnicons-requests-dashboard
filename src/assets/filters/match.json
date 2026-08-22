@@ -23,6 +23,10 @@
       "existing_drawable": "generic_keyboard"
     },
     {
+      "id": "com.matiks.app/com.matiks.app.MainActivity",
+      "existing_drawable": "matiks"
+    },
+    {
       "id": "org.telegram.messenger/com.exteragram.messenger.AyuTyan",
       "existing_drawable": "telegram"
     },
@@ -189,10 +193,6 @@
     {
       "id": "wasaver.downloadstatus.videosaver.wasticker.downloader/wasaver.downloadstatus.videosaver.wasticker.downloader.features.MainActivity",
       "existing_drawable": "status_saver"
-    },
-    {
-      "id": "com.facebook.lite/com.aincrad.application.MainActivity",
-      "existing_drawable": "facebook"
     },
     {
       "id": "com.sec.android.app.camera/com.sec.android.app.camera.DocumentScanner",

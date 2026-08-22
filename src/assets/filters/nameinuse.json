@@ -311,6 +311,10 @@
       "existing_drawable": "easy_launcher"
     },
     {
+      "id": "pt.cetelem.homebanking/pt.cetelem.hb.MainActivity",
+      "existing_drawable": "cetelem"
+    },
+    {
       "id": "com.bosch.sh.ui.android/com.bosch.sh.android.core.ux.launcher.LauncherActivity",
       "existing_drawable": "smart_home"
     },
@@ -357,6 +361,10 @@
     {
       "id": "com.authenticator.authservice2/com.authenticator.authservice.controllers.settings.PasscodeCheckActivity",
       "existing_drawable": "generic_shell"
+    },
+    {
+      "id": "com.useorigin.employee.android/com.useorigin.employee.android.MainActivity",
+      "existing_drawable": "origin"
     },
     {
       "id": "com.tct.smart.notes/com.tct.smart.notes.noteList.NoteMainActivity",
@@ -441,6 +449,10 @@
     {
       "id": "apps.syrupy.metadatacleaner/apps.syrupy.metadatacleaner.MainActivity",
       "existing_drawable": "metadata_remover"
+    },
+    {
+      "id": "com.mixtubepro.musicplayer.create/com.tb.vanced.hook.ui.activity.SplashActivity",
+      "existing_drawable": "mixtube"
     },
     {
       "id": "nekox.messenger.broken/org.telegram.messenger.MomogramDefaultIcon",
@@ -1453,6 +1465,10 @@
     {
       "id": "com.taymay.icon.theme/com.taymay.icon.theme.AppSplash",
       "existing_drawable": "icon_changer"
+    },
+    {
+      "id": "livio.reversi/livio.reversi.ReversiBase",
+      "existing_drawable": "reversi"
     },
     {
       "id": "com.wyze.wifianalyzer/com.wyze.wifianalyzer.MainActivity",

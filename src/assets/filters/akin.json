@@ -471,6 +471,10 @@
       "existing_drawable": "simple"
     },
     {
+      "id": "com.vivamoney/com.dynamic_bank.dynamic_bank.MainActivity",
+      "existing_drawable": "viva"
+    },
+    {
       "id": "online.eseva.gujaraticalendarpanchang/online.eseva.gujaraticalendarpanchang.SplashScreen",
       "existing_drawable": "calendar"
     },
@@ -675,10 +679,6 @@
       "existing_drawable": "duo"
     },
     {
-      "id": "com.basmo.BibleChat/com.bookvitals.bibleChat.DriverActivity",
-      "existing_drawable": "generic_bible"
-    },
-    {
       "id": "com.densaldanha.pocketprayers/com.ryanheise.audioservice.AudioServiceActivity",
       "existing_drawable": "pocket"
     },
@@ -791,6 +791,10 @@
       "existing_drawable": "modo"
     },
     {
+      "id": "com.mediocre.smashhit4/com.mediocre.smashhit.Main",
+      "existing_drawable": "smash"
+    },
+    {
       "id": "com.jndapp.lux.yellow.iconpack/com.jndapp.lux.yellow.iconpack.MainActivity",
       "existing_drawable": "lux"
     },
@@ -895,10 +899,6 @@
       "existing_drawable": "tandem"
     },
     {
-      "id": "com.indus.appstore/com.indus.appstore.DefaultIconLauncherActivityAlias",
-      "existing_drawable": "indus"
-    },
-    {
       "id": "co.bytemark.tgt/co.bytemark.splash.SplashScreenActivity",
       "existing_drawable": "transit"
     },
@@ -909,10 +909,6 @@
     {
       "id": "com.timgostony.rainrain/com.timgostony.rainrain.activities.LaunchActivity",
       "existing_drawable": "discord"
-    },
-    {
-      "id": "com.clogica.videocrop/com.clogica.videocrop.activity.SplashActivity",
-      "existing_drawable": "smart"
     },
     {
       "id": "com.free.vpn.fastvpn.securevpn/com.free.vpn.fastvpn.securevpn.activity.LoadingActivity",
@@ -1043,10 +1039,6 @@
       "existing_drawable": "generic_chess"
     },
     {
-      "id": "com.indus.appstore/com.indus.appstore.BetaIconLauncherActivityAlias",
-      "existing_drawable": "indus"
-    },
-    {
       "id": "com.kddi.market/com.kddi.market.activity.ActivityMain",
       "existing_drawable": "au"
     },
@@ -1115,16 +1107,8 @@
       "existing_drawable": "nespresso"
     },
     {
-      "id": "com.nomad88.nomadmusic/com.nomad88.nomadmusic.ui.launcher.LauncherActivity",
-      "existing_drawable": "nomad"
-    },
-    {
       "id": "com.lenovoimage.MotoZXPrint/com.gb.print.dbprint.WelcomeActivity",
       "existing_drawable": "moto"
-    },
-    {
-      "id": "vn.lotus.messenger/vn.lotus.messenger.MainActivity",
-      "existing_drawable": "lotus"
     },
     {
       "id": "com.amurcanov.tgwsproxy/com.amurcanov.tgwsproxy.MainActivity",
@@ -1253,10 +1237,6 @@
     {
       "id": "com.ga.iconpack.stoneplus/com.ga.iconpack.stoneplus.MainActivity",
       "existing_drawable": "stone"
-    },
-    {
-      "id": "com.indus.appstore/com.indus.appstore.applicationLayer.onboarding.activity.LauncherActivity",
-      "existing_drawable": "indus"
     },
     {
       "id": "com.tera.verse/com.tera.verse.SplashActivity",
@@ -1523,6 +1503,10 @@
       "existing_drawable": "snoop"
     },
     {
+      "id": "com.cascade.badminton.game/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "smash"
+    },
+    {
       "id": "com.bbva.GEMA/com.bbva.GEMA.module.splash.HomeActivity",
       "existing_drawable": "bbva"
     },
@@ -1589,6 +1573,10 @@
     {
       "id": "com.tummygames.sliceit/com.google.firebase.MessagingUnityPlayerActivity",
       "existing_drawable": "slice"
+    },
+    {
+      "id": "com.vivavpn.vpn/com.vivavpn.vpn.ui.MainActivity",
+      "existing_drawable": "viva"
     },
     {
       "id": "jp.naver.linecamera.android/jp.naver.linecamera.android.activity.ProxyActivity",
@@ -2187,6 +2175,10 @@
       "existing_drawable": "funko"
     },
     {
+      "id": "com.appiolab.originxlockscreenandaod/com.appiolab.originxlockscreenandaod.Activity.SplashActivity",
+      "existing_drawable": "origin"
+    },
+    {
       "id": "com.tripledot.tiles.mosaic/com.unity3d.player.UnityPlayerActivity",
       "existing_drawable": "generic_grid_3x3"
     },
@@ -2365,6 +2357,10 @@
     {
       "id": "com.freesquaregames.xsurvive/com.unity3d.player.UnityPlayerActivity",
       "existing_drawable": "x"
+    },
+    {
+      "id": "com.viva.vivaone/com.viva.vivaone.activity.SplashActivity",
+      "existing_drawable": "viva"
     },
     {
       "id": "com.firigames.phoenix2/com.firigames.phoenix2.Phoenix2Activity",
@@ -3789,6 +3785,10 @@
     {
       "id": "ru.bus62.SmartTransport/ru.bus62.SmartTransport.splash.SplashActivity",
       "existing_drawable": "smart"
+    },
+    {
+      "id": "smart.theme.dream.originos6launcher/smart.theme.dream.originos6launcher.TopActivity",
+      "existing_drawable": "origin"
     },
     {
       "id": "com.bose.app.android.brussels/com.bragi.earbuds.presentation.main.MainActivity",
