@@ -2097,6 +2097,8 @@ const UI = {
   regexListEl: null,
 
   sortOptions: [
+    { value: 'name-asc', label: 'Name (A-Z)' },
+    { value: 'name-desc', label: 'Name (Z-A)' },
     { value: 'req-desc', label: 'Most requested' },
     { value: 'req-asc', label: 'Least requested' },
     { value: 'roi-desc', label: 'Highest ROI' },
@@ -2105,8 +2107,6 @@ const UI = {
     { value: 'install-asc', label: 'Least installed' },
     { value: 'time-desc', label: 'Newest' },
     { value: 'time-asc', label: 'Oldest' },
-    { value: 'name-asc', label: 'Name (A-Z)' },
-    { value: 'name-desc', label: 'Name (Z-A)' },
     { value: 'trending', label: 'Trending' },
     { value: 'rand', label: 'Random' },
   ],
