@@ -687,6 +687,23 @@ def calculate_roi_scores():
         clean = s.replace(',', '').replace('+', '')
         return int(clean) if clean.isdigit() else 0
     
+    # Calculate average installs per country (direct geo domains only)
+    avg_installs_by_country = {}
+    installs_sum_by_country = {}
+    installs_count_by_country = {}
+    
+    for app in apps:
+        comp = app.get('componentName', '')
+        domain = comp.split('/')[0].split('.')[0]
+        if domain in ISO_COUNTRIES:
+            inst = parse_installs(app.get('installs', '0'))
+            if inst > 0:
+                installs_sum_by_country[domain] = installs_sum_by_country.get(domain, 0) + inst
+                installs_count_by_country[domain] = installs_count_by_country.get(domain, 0) + 1
+    
+    for domain in installs_sum_by_country:
+        avg_installs_by_country[domain] = installs_sum_by_country[domain] / installs_count_by_country[domain]
+    
     def country_loss_weight(comp):
         # Direct geo domain
         domain = comp.split('/')[0].split('.')[0]
@@ -712,26 +729,38 @@ def calculate_roi_scores():
             requests = stats.get('requests', 0)
             total = stats.get('total', 0)
             pop = POPULATION.get(domain, 1)
-            if pop > 0 and requests > 0:
-                return (total - requests) / pop
+            avg_installs = avg_installs_by_country.get(domain, 0)
+            
+            if pop > 0 and avg_installs > 0 and total > 0:
+                uncovered_ratio = requests / total
+                affected = (avg_installs / 1_000_000) * uncovered_ratio
+                return (affected / pop) * 100
         
         # Presumed through graph
-        if comp not in graph:
-            return 0
-        countries = set()
-        for n in graph[comp]:
-            nd = n.split('/')[0].split('.')[0]
-            if nd in ISO_COUNTRIES:
-                countries.add(nd)
-        impacts = []
-        for c in countries:
-            stats = domain_stats.get(c, {})
-            requests = stats.get('requests', 0)
-            total = stats.get('total', 0)
-            pop = POPULATION.get(c, 1)
-            if pop > 0 and requests > 0:
-                impacts.append((total - requests) / pop)
-        return sum(impacts) / len(impacts) if impacts else 0
+        if comp in graph:
+            countries = set()
+            for n in graph[comp]:
+                nd = n.split('/')[0].split('.')[0]
+                if nd in ISO_COUNTRIES:
+                    countries.add(nd)
+            impacts = []
+            for c in countries:
+                stats = domain_stats.get(c, {})
+                requests = stats.get('requests', 0)
+                total = stats.get('total', 0)
+                pop = POPULATION.get(c, 1)
+                avg_installs = avg_installs_by_country.get(c, 0)
+                
+                if pop > 0 and avg_installs > 0 and total > 0:
+                    uncovered_ratio = requests / total
+                    affected = (avg_installs / 1_000_000) * uncovered_ratio
+                    impacts.append((affected / pop) * 100)
+            
+            if impacts:
+                return sum(impacts) / len(impacts)
+        
+        # Fallback
+        return 0.01
     
     def coverage_gap(comp):
         # Direct geo domain
@@ -822,7 +851,10 @@ def calculate_roi_scores():
         else:
             installs_penalty = 1.0
 
-        impact_log = math.log1p(impact)
+        if impact > 0:
+            impact_log = math.log1p(impact)
+        else:
+            impact_log = math.log1p(0.01)
         
         # If local impact is high, reduce complexity penalty
         if impact_log > 1.0:
