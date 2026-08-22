@@ -644,6 +644,9 @@ def calculate_roi_scores():
     
     with open(REPO_ROOT / "src/assets/filters/foss.json") as f:
         foss = set(json.load(f).get("foss", []))
+
+    with open(REPO_ROOT / "src/assets/filters/stale.json") as f:
+        stale = set(json.load(f).get("stale", []))
     
     with open(REPO_ROOT / "src/assets/requests_graph.json") as f:
         graph = json.load(f)
@@ -796,6 +799,9 @@ def calculate_roi_scores():
     scores_list = []
     for app in apps:
         comp = app.get('componentName', '')
+        if comp in stale:
+            app['roi_score'] = 0
+            continue
         installs = parse_installs(app.get('installs', '0'))
         req_count = app.get('requestCount', 0)
         loss_weight = country_loss_weight(comp)
