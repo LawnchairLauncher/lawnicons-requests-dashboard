@@ -844,7 +844,6 @@ def calculate_roi_scores():
         
         complexity = 1 if is_easy else 10
 
-        # Use median installs for unknown, with soft penalty
         if installs == 0:
             installs = median_installs
             installs_penalty = 0.5
@@ -856,13 +855,16 @@ def calculate_roi_scores():
         else:
             impact_log = math.log1p(0.01)
         
-        # If local impact is high, reduce complexity penalty
         if impact_log > 1.0:
             complexity = 1
         elif impact_log > 0.5:
             complexity = min(complexity, 3)
 
-        installs_log = math.log10(installs + 1) if installs > 0 else 0
+        if installs >= 1_000_000:
+            installs_log = math.log10(installs / 1_000_000 + 1)
+        else:
+            installs_log = 0
+
         req_log = math.log(req_count + 1)
         trend_log = math.log(trend + 1) if trend > 0 else 0
 
@@ -878,7 +880,7 @@ def calculate_roi_scores():
         score = (
             (loss_weight * 10 + 1) *
             (1 + impact_log * 8) *
-            (1 + installs_log * 0.5) *
+            (1 + installs_log * 5) *
             (1 + req_log * 0.5) *
             (1 + gap * 2) *
             (1 + finisher * 2) *
