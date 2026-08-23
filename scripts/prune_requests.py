@@ -722,15 +722,21 @@ def calculate_roi_scores():
             return USER_LOSS[domain] / MAX_LOSS
         
         # Presumed through graph
-        if comp not in graph:
-            return 0
-        countries = set()
-        for n in graph[comp]:
-            nd = n.split('/')[0].split('.')[0]
-            if nd in ISO_COUNTRIES:
-                countries.add(nd)
-        total_weight = sum(USER_LOSS.get(c, 0) for c in countries)
-        return total_weight / MAX_LOSS if countries else 0
+        if comp in graph:
+            countries = set()
+            for n in graph[comp]:
+                nd = n.split('/')[0].split('.')[0]
+                if nd in ISO_COUNTRIES:
+                    countries.add(nd)
+            if countries:
+                total_weight = sum(USER_LOSS.get(c, 0) for c in countries)
+                return total_weight / MAX_LOSS
+        
+        # com domain without graph — presumed US
+        if domain == 'com':
+            return USER_LOSS.get('us', 0) / MAX_LOSS
+        
+        return 0
     
     def local_impact(comp):
         # Direct geo domain
@@ -770,6 +776,19 @@ def calculate_roi_scores():
             if impacts:
                 return sum(impacts) / len(impacts)
         
+        # com domain without graph — presumed US
+        if domain == 'com':
+            stats = domain_stats.get('us', {})
+            requests = stats.get('requests', 0)
+            total = stats.get('total', 0)
+            pop = POPULATION.get('us', 1)
+            avg_installs = avg_installs_by_country.get('us', 0)
+            
+            if pop > 0 and avg_installs > 0 and total > 0:
+                uncovered_ratio = requests / total
+                affected = (avg_installs / 1_000_000) * uncovered_ratio
+                return (affected / pop) * 100
+        
         # Fallback
         return 0.01
     
@@ -785,24 +804,33 @@ def calculate_roi_scores():
                 return requests / total
         
         # Presumed through graph
-        if comp not in graph:
-            return 1.0
-        countries = set()
-        for n in graph[comp]:
-            nd = n.split('/')[0].split('.')[0]
-            if nd in ISO_COUNTRIES:
-                countries.add(nd)
-        if not countries:
-            return 1.0
-        gaps = []
-        for c in countries:
-            stats = domain_stats.get(c, {})
+        if comp in graph:
+            countries = set()
+            for n in graph[comp]:
+                nd = n.split('/')[0].split('.')[0]
+                if nd in ISO_COUNTRIES:
+                    countries.add(nd)
+            if countries:
+                gaps = []
+                for c in countries:
+                    stats = domain_stats.get(c, {})
+                    requests = stats.get('requests', 0)
+                    done = stats.get('done', 0)
+                    total = requests + done
+                    if total > 0:
+                        gaps.append(requests / total)
+                return min(gaps) if gaps else 1.0
+        
+        # com domain without graph — presumed US
+        if domain == 'com':
+            stats = domain_stats.get('us', {})
             requests = stats.get('requests', 0)
             done = stats.get('done', 0)
             total = requests + done
             if total > 0:
-                gaps.append(requests / total)
-        return min(gaps) if gaps else 1.0
+                return requests / total
+        
+        return 1.0
     
     # Finisher scores
     finisher_scores = {}
