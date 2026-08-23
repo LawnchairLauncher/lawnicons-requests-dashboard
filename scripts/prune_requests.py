@@ -701,7 +701,7 @@ def calculate_roi_scores():
                 installs_sum_by_country[domain] = installs_sum_by_country.get(domain, 0) + inst
                 installs_count_by_country[domain] = installs_count_by_country.get(domain, 0) + 1
     
-    for domain in installs_sum_by_country:
+    for domain in sorted(installs_sum_by_country):
         avg_installs_by_country[domain] = installs_sum_by_country[domain] / installs_count_by_country[domain]
     
     def country_loss_weight(comp):
@@ -887,13 +887,18 @@ def calculate_roi_scores():
         
         scores_list.append((app, score))
     
+    changed = 0
     for app, score in scores_list:
-        app['roi_score'] = round(score, 2)
+        new_score = round(score, 2)
+        if app.get('roi_score') != new_score:
+            app['roi_score'] = new_score
+            changed += 1
     
-    with open(REQUESTS_JSON, "w", encoding="utf-8") as f:
-        json.dump(requests_data, f, indent=2)
+    if changed > 0:
+        with open(REQUESTS_JSON, "w", encoding="utf-8") as f:
+            json.dump(requests_data, f, indent=2)
     
-    print(f"Calculated ROI scores for {len(apps)} requests")
+    print(f"Calculated ROI scores for {len(apps)} requests ({changed} changed)")
     return len(apps)
     
 def main() -> int:
@@ -1013,10 +1018,6 @@ def main() -> int:
     domain_count = update_domain_stats()
     print(f"Domain stats updated: {domain_count} domains")
 
-    # --- Calculate ROI scores ---
-    roi_count = calculate_roi_scores()
-    print(f"ROI scores calculated: {roi_count}")
-
     # --- Re-load requests.json to capture the final state after all pruning ---
     with open(REQUESTS_JSON, "r") as f:
         requests_data = json.load(f)
@@ -1032,12 +1033,17 @@ def main() -> int:
     # --- Update Play Store metadata for new requests ---
     os.system(f"{sys.executable} scripts/dump_play_info.py")
 
-    # --- Regenerate stale.json after Play Store sync ---
+    # --- Re-load requests.json after Play Store sync ---
     with open(REQUESTS_JSON, "r") as f:
         requests_data = json.load(f)
+
+    # --- Calculate ROI scores (after installs updated) ---
+    roi_count = calculate_roi_scores()
+    print(f"ROI scores calculated: {roi_count}")
+
+    # --- Regenerate stale.json after Play Store sync and ROI ---
     stale_count = generate_stale_list()
     print(f"Stale requests after sync: {stale_count}")
-
 
     # --- Workflow outputs ---
     has_changes = appfilter_changed or expired_removed > 0
