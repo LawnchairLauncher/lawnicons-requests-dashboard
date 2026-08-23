@@ -357,11 +357,30 @@ def delete_unused_images(out_dir: Path, keep: set[str]):
 # -------------------------------------------------------
 
 def write_json_output(output_path: Path, apps: dict):
-    # Convert dict back to flat list
-    apps_list = list(apps.values())
+    # Preserve existing order, append new requests at the end
+    existing_order = []
+    new_entries = []
     
-    # Sort by Request Count (Descending)
-    apps_list.sort(key=lambda x: x['requestCount'], reverse=True)
+    if output_path.exists():
+        with open(output_path, "r", encoding="utf-8") as f:
+            old_data = json.load(f)
+        existing_ids = []
+        for app in old_data.get("apps", []):
+            comp = app.get("componentName")
+            if comp in apps:
+                existing_ids.append(comp)
+        
+        seen = set()
+        for comp in existing_ids:
+            if comp not in seen:
+                seen.add(comp)
+                existing_order.append(apps[comp])
+        
+        for comp, entry in apps.items():
+            if comp not in seen:
+                new_entries.append(entry)
+    
+    apps_list = existing_order + new_entries
     
     data = {
         "count": len(apps_list),
