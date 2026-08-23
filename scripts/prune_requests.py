@@ -842,7 +842,7 @@ def calculate_roi_scores():
         is_easy = comp in easy
         is_foss = comp in foss
         
-        complexity = 1 if is_easy else 10
+        complexity = 1 if is_easy else 15
 
         if installs == 0:
             installs = median_installs
@@ -854,11 +854,6 @@ def calculate_roi_scores():
             impact_log = math.log1p(impact)
         else:
             impact_log = math.log1p(0.01)
-        
-        if impact_log > 1.0:
-            complexity = 1
-        elif impact_log > 0.5:
-            complexity = min(complexity, 3)
 
         if installs >= 1_000_000:
             installs_log = math.log10(installs / 1_000_000 + 1)
