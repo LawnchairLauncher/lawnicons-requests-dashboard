@@ -1,3 +1,5 @@
+# python3 scripts/dump_play_info.py
+
 import json
 import time
 import random
