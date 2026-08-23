@@ -871,10 +871,6 @@
       "existing_drawable": "generic_games"
     },
     {
-      "id": "com.vayunmathur.camera/com.vayunmathur.camera.MainActivity",
-      "existing_drawable": "generic_camera"
-    },
-    {
       "id": "com.android.launcher3/com.android.xrz.activity.XrzLockScreenActivity",
       "existing_drawable": "generic_power"
     },
@@ -1107,12 +1103,12 @@
       "existing_drawable": "bump"
     },
     {
-      "id": "pt.cetelem.homebanking/pt.cetelem.hb.MainActivity",
-      "existing_drawable": "cetelem"
-    },
-    {
       "id": "com.bosch.sh.ui.android/com.bosch.sh.android.core.ux.launcher.LauncherActivity",
       "existing_drawable": "smart_home"
+    },
+    {
+      "id": "com.zenkit.todo/com.zenkit.todo.MainActivity",
+      "existing_drawable": "tasks"
     },
     {
       "id": "com.binghuo.currencyconverter/com.binghuo.currencyconverter.launcher.LauncherActivity",
@@ -2003,10 +1999,6 @@
       "existing_drawable": "icon_changer"
     },
     {
-      "id": "livio.reversi/livio.reversi.ReversiBase",
-      "existing_drawable": "reversi"
-    },
-    {
       "id": "tad.hideapps.hiddenspace.apphider.webapps/tad.hideapps.hiddenspace.apphider.webapps.Calculator",
       "existing_drawable": "generic_calculator_plus_minus_multi_equal"
     },
@@ -2103,10 +2095,6 @@
       "existing_drawable": "shelter"
     },
     {
-      "id": "com.qrfamily.qrcodereaderscanner/com.qrfamily.qrcodereaderscanner.scanner.activity.SplashActivity",
-      "existing_drawable": "generic_qr_reader"
-    },
-    {
       "id": "org.Ayugram.messenges/com.exteragram.messenger.ExteraIcon",
       "existing_drawable": "ayugram"
     },
@@ -2133,10 +2121,6 @@
     {
       "id": "com.android.systemmanager/com.android.systemmanager.MainActivity",
       "existing_drawable": "system_manager"
-    },
-    {
-      "id": "com.naranjax.mx/com.naranjax.MainActivity",
-      "existing_drawable": "naranja_x"
     },
     {
       "id": "org.moedog.ehviewer/com.hippo.ehviewer.ui.MainActivity",
@@ -2219,10 +2203,6 @@
       "existing_drawable": "easy_launcher"
     },
     {
-      "id": "com.picsart.studio.light/com.socialin.android.photo.picsinphoto.MainPagerActivity",
-      "existing_drawable": "picsart"
-    },
-    {
       "id": "com.getmodsapk.sai/com.aefyr.sai.ui.activities.MainActivity",
       "existing_drawable": "xapks_installer"
     },
@@ -2233,10 +2213,6 @@
     {
       "id": "ai.lumi.app/ai.lumi.app.MainActivity",
       "existing_drawable": "lumi"
-    },
-    {
-      "id": "com.bigduckgames.flowbridges/com.bigduckgames.flow.flow",
-      "existing_drawable": "flow_free"
     },
     {
       "id": "com.bible.holy.bible.for.women/com.offline.bible.IconDefault",
@@ -2263,10 +2239,6 @@
       "existing_drawable": "cemu"
     },
     {
-      "id": "com.musicdownloader.musicfreeapp825v2/com.musicdownloader.appdownloadmusic25.ui.splash.SplashActivity",
-      "existing_drawable": "apple_music"
-    },
-    {
       "id": "com.mixtubelite.musicpla/com.tb.vanced.hook.ui.activity.SplashActivity",
       "existing_drawable": "mixtube"
     },
@@ -2277,10 +2249,6 @@
     {
       "id": "com.easyinc.pdfviewer/com.github.barteksc.sample.Activity_Start",
       "existing_drawable": "generic_pdf_file"
-    },
-    {
-      "id": "com.birds.chess/com.dynamo.android.DefoldActivity",
-      "existing_drawable": "generic_chess"
     },
     {
       "id": "co.tempo.media/co.tempo.media.MainActivity",
@@ -2303,20 +2271,12 @@
       "existing_drawable": "wallet"
     },
     {
-      "id": "co.doctoralia/co.doctoralia.MainActivity",
-      "existing_drawable": "doctoralia"
-    },
-    {
       "id": "io.github.kennethchoinfosec.haven/io.github.kennethchoinfosec.haven.ui.MainActivity",
       "existing_drawable": "terminal"
     },
     {
       "id": "com.sparkappz.cubetimer/com.sparkappz.cubetimer.common.ui.MainActivity",
       "existing_drawable": "generic_grid_3x3"
-    },
-    {
-      "id": "com.rocks.music/com.rocks.music.musicplayer.MusicSplash",
-      "existing_drawable": "apple_music"
     },
     {
       "id": "com.mojang.mine1208101/com.mojang.minecraftpe.MainActivity",
@@ -2335,20 +2295,8 @@
       "existing_drawable": "themes"
     },
     {
-      "id": "io.ente.locker.independent/io.ente.locker.MainActivity",
-      "existing_drawable": "ente_locker"
-    },
-    {
       "id": "er.notepad.notes.notebook.checklist.calendar/er.notepad.notes.notebook.checklist.calendar.Activity.SplashActivity",
       "existing_drawable": "notepad"
-    },
-    {
-      "id": "com.netease.market.buff/com.netease.buff.entry.launcher.icon2900",
-      "existing_drawable": "buff"
-    },
-    {
-      "id": "com.unlimited.unblock.free.accelerator.top/com.unlimited.unblock.free.accelerator.top.splash.SplashActivity",
-      "existing_drawable": "expressvpn"
     },
     {
       "id": "com.hash.prism/com.hash.prism.MainActivity",
@@ -2367,10 +2315,6 @@
       "existing_drawable": "audio_converter"
     },
     {
-      "id": "qibladirectioncompass.qiblafinder.truenorthcompass/qibladirectioncompass.qiblafinder.truenorthcompass.activities.SplashActivity",
-      "existing_drawable": "qibla_compass"
-    },
-    {
       "id": "ai.firstorder.auth/ai.firstorder.auth.MainActivity",
       "existing_drawable": "generic_shell"
     },
@@ -2381,10 +2325,6 @@
     {
       "id": "com.mojang.mine1213101/com.mojang.minecraftpe.MainActivity",
       "existing_drawable": "minecraft"
-    },
-    {
-      "id": "com.remini.xyz/com.bendingspoons.remini.MainActivity",
-      "existing_drawable": "remini"
     },
     {
       "id": "dev.goodwy.voicerecorder/dev.goodwy.voicerecorder.activities.SplashActivity.Original",
