@@ -1,0 +1,10 @@
+{
+  "description": "Dynamic package prefixes to exclude from dashboard",
+  "packages": [
+    "com.discoverfinancial.mobile",
+    "com.cinepolis.go",
+    "com.coppel.coppelap",
+    "id.co.bankbkemobile.digitalbank",
+    "br.com.gabba.Caixa"
+  ]
+}
