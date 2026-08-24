@@ -782,7 +782,6 @@ def calculate_roi_scores():
             
             if impacts:
                 return sum(impacts) / len(impacts)
-                return sum(impacts) / len(impacts)
         
         # com domain without graph — presumed US
         if domain == 'com':
@@ -862,18 +861,8 @@ def calculate_roi_scores():
                 if delta > 0:
                     trending_deltas[comp] = delta
     
-    # Calculate median installs for fallback
-    all_installs = []
-    for app in apps:
-        s = parse_installs(app.get('installs', '0'))
-        if s > 0:
-            all_installs.append(s)
-    
-    median_installs = 0
-    if all_installs:
-        all_installs.sort()
-        mid = len(all_installs) // 2
-        median_installs = all_installs[mid]
+    # Fallback installs for unknown
+    median_installs = 100000
     
     # Calculate scores
     scores_list = []
