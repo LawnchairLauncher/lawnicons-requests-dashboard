@@ -738,7 +738,7 @@ def calculate_roi_scores():
         
         return 0
     
-    def local_impact(comp):
+    def local_impact(comp, installs=0):
         # Direct geo domain
         domain = comp.split('/')[0].split('.')[0]
         if domain in ISO_COUNTRIES:
@@ -746,11 +746,15 @@ def calculate_roi_scores():
             requests = stats.get('requests', 0)
             total = stats.get('total', 0)
             pop = POPULATION.get(domain, 1)
-            avg_installs = avg_installs_by_country.get(domain, 0)
+            actual_installs = installs if installs > 0 else avg_installs_by_country.get(domain, 0)
             
-            if pop > 0 and avg_installs > 0 and total > 0:
+            # Skip if installs exceed population (global installs, not local)
+            if actual_installs / 1_000_000 > pop:
+                return 0.01
+            
+            if pop > 0 and actual_installs > 0 and total > 0:
                 uncovered_ratio = requests / total
-                affected = (avg_installs / 1_000_000) * uncovered_ratio
+                affected = (actual_installs / 1_000_000) * uncovered_ratio
                 return (affected / pop) * 100
         
         # Presumed through graph
@@ -782,11 +786,15 @@ def calculate_roi_scores():
             requests = stats.get('requests', 0)
             total = stats.get('total', 0)
             pop = POPULATION.get('us', 1)
-            avg_installs = avg_installs_by_country.get('us', 0)
+            actual_installs = installs if installs > 0 else avg_installs_by_country.get('us', 0)
             
-            if pop > 0 and avg_installs > 0 and total > 0:
+            # Skip if installs exceed population (global installs, not local)
+            if actual_installs / 1_000_000 > pop:
+                return 0.01
+            
+            if pop > 0 and actual_installs > 0 and total > 0:
                 uncovered_ratio = requests / total
-                affected = (avg_installs / 1_000_000) * uncovered_ratio
+                affected = (actual_installs / 1_000_000) * uncovered_ratio
                 return (affected / pop) * 100
         
         # Fallback
@@ -873,7 +881,7 @@ def calculate_roi_scores():
         installs = parse_installs(app.get('installs', '0'))
         req_count = app.get('requestCount', 0)
         loss_weight = country_loss_weight(comp)
-        impact = local_impact(comp)
+        impact = local_impact(comp, installs)
         gap = coverage_gap(comp)
         finisher = finisher_scores.get(comp, 0)
         trend = trending_deltas.get(comp, 0)
@@ -890,14 +898,32 @@ def calculate_roi_scores():
             installs_penalty = 1.0
 
         if impact > 0:
-            impact_log = math.log1p(impact)
+            impact_pow = impact ** 0.7
         else:
-            impact_log = math.log1p(0.01)
+            impact_pow = 0.01 ** 0.7
 
         if installs >= 1_000_000:
             installs_log = math.log10(installs / 1_000_000 + 1)
         else:
             installs_log = 0
+
+        # Install multiplier and geo boost based on market penetration
+        domain_for_pen = comp.split('/')[0].split('.')[0]
+        installs_multiplier = 1 + installs_log * 5
+        geo_boost = 1.0
+        
+        if domain_for_pen in ISO_COUNTRIES and installs > 0:
+            pop_for_pen = POPULATION.get(domain_for_pen, 1)
+            if installs / 1_000_000 > pop_for_pen:
+                penetration = 0
+            else:
+                penetration = (installs / 1_000_000) / pop_for_pen * 100
+            
+            if penetration >= 10:
+                installs_multiplier = 1 + installs_log * 15
+                geo_boost = 3.0
+            elif penetration >= 5:
+                installs_multiplier = 1 + installs_log * 10
 
         req_log = math.log(req_count + 1)
         trend_log = math.log(trend + 1) if trend > 0 else 0
@@ -915,8 +941,9 @@ def calculate_roi_scores():
 
         score = (
             (loss_weight * 10 + 1) *
-            (1 + impact_log * 8) *
-            (1 + installs_log * 5) *
+            (1 + impact_pow * 3) *
+            installs_multiplier *
+            geo_boost *
             (1 + req_log * 2) *
             (1 + gap * 2) *
             finisher_multiplier *
