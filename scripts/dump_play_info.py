@@ -232,11 +232,17 @@ def main():
                     DEAD_SET.add(pkg)
                     print(f"Dead/NoIcon", end=" ")
                 elif icon_url:
-                    clean_name = sanitize_name(app['label'])
-                    new_drawable = download_icon(icon_url, clean_name)
+                    old_drawable = app.get('drawable', '')
+                    if old_drawable and old_drawable != 'unknown':
+                        new_drawable = download_icon(icon_url, old_drawable)
+                    else:
+                        clean_name = sanitize_name(app['label'])
+                        if clean_name == 'icon' or clean_name.startswith('icon_'):
+                            clean_name = pkg.replace('.', '_')
+                        new_drawable = download_icon(icon_url, clean_name)
                     if new_drawable:
                         app['drawable'] = new_drawable
-                        print(f"[Icon: {new_drawable}]", end=" ")               
+                        print(f"[Icon: {new_drawable}]", end=" ")   
 
             print(f"OK ({app['installs']})")
             updated_session += 1

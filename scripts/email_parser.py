@@ -198,6 +198,10 @@ def parse_item_tag(item: ET.Element, msg: Message, zip_file: zipfile.ZipFile,
     # 2. Create New
     try:
         drawable_name = extract_image(zip_file, drawable, image_out_dir)
+        if drawable_name == 'icon' or drawable_name.startswith('icon_'):
+            pkg = component_info.split('/')[0]
+            fallback = pkg.replace('.', '_')
+            drawable_name = extract_image(zip_file, drawable, image_out_dir, target_name=fallback)
         apps[component_info] = create_app_entry(
             app_name, component_info, drawable_name, req_time)
     except Exception as e:
