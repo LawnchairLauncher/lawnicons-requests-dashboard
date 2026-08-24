@@ -770,14 +770,18 @@ def calculate_roi_scores():
                 requests = stats.get('requests', 0)
                 total = stats.get('total', 0)
                 pop = POPULATION.get(c, 1)
-                avg_installs = avg_installs_by_country.get(c, 0)
+                actual_installs = installs if installs > 0 else avg_installs_by_country.get(c, 0)
                 
-                if pop > 0 and avg_installs > 0 and total > 0:
+                if actual_installs / 1_000_000 > pop:
+                    continue
+                
+                if pop > 0 and actual_installs > 0 and total > 0:
                     uncovered_ratio = requests / total
-                    affected = (avg_installs / 1_000_000) * uncovered_ratio
+                    affected = (actual_installs / 1_000_000) * uncovered_ratio
                     impacts.append((affected / pop) * 100)
             
             if impacts:
+                return sum(impacts) / len(impacts)
                 return sum(impacts) / len(impacts)
         
         # com domain without graph — presumed US
@@ -902,14 +906,14 @@ def calculate_roi_scores():
         else:
             impact_pow = 0.01 ** 0.7
 
-        if installs >= 1_000_000:
-            installs_log = math.log10(installs / 1_000_000 + 1)
+        if installs > 0:
+            installs_sqrt = installs ** 0.5
         else:
-            installs_log = 0
+            installs_sqrt = 0
 
         # Install multiplier and geo boost based on market penetration
         domain_for_pen = comp.split('/')[0].split('.')[0]
-        installs_multiplier = 1 + installs_log * 5
+        installs_multiplier = 1 + installs_sqrt * 0.003
         geo_boost = 1.0
         
         if domain_for_pen in ISO_COUNTRIES and installs > 0:
@@ -920,10 +924,10 @@ def calculate_roi_scores():
                 penetration = (installs / 1_000_000) / pop_for_pen * 100
             
             if penetration >= 10:
-                installs_multiplier = 1 + installs_log * 15
+                installs_multiplier = 1 + installs_sqrt * 0.01
                 geo_boost = 3.0
             elif penetration >= 5:
-                installs_multiplier = 1 + installs_log * 10
+                installs_multiplier = 1 + installs_sqrt * 0.005
 
         req_log = math.log(req_count + 1)
         trend_log = math.log(trend + 1) if trend > 0 else 0
