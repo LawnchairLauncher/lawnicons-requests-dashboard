@@ -107,6 +107,10 @@
       "existing_drawable": "flow"
     },
     {
+      "id": "com.herorescue2.pullpin.howtoloot/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "hero"
+    },
+    {
       "id": "com.now.vpn/com.cocos.game.AppCheckActivity",
       "existing_drawable": "now"
     },
@@ -249,10 +253,6 @@
     {
       "id": "com.jndapp.minimalistwallpapers/com.jndapp.minimalistwallpapers.activity.SplashScreen",
       "existing_drawable": "tasks"
-    },
-    {
-      "id": "com.gojek.gopaymerchant/com.gojek.gopaymerchant.MainActivity",
-      "existing_drawable": "gopay"
     },
     {
       "id": "air.com.my.bonuslink/air.com.my.bonuslink.MainActivity",
@@ -651,6 +651,10 @@
       "existing_drawable": "busybox"
     },
     {
+      "id": "com.weirdjohnny.idle.rpg/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "hero"
+    },
+    {
       "id": "com.yourvoice.ccApp/com.yourvoice.ccApp.MainActivity",
       "existing_drawable": "coffee"
     },
@@ -761,10 +765,6 @@
     {
       "id": "com.waxmoon.ma.gp/com.waxmoon.mobile.module.home.MainActivity",
       "existing_drawable": "multi"
-    },
-    {
-      "id": "com.justalk.kids.android/com.juphoon.justalk.ui.splash.SplashActivityDefault",
-      "existing_drawable": "justalk"
     },
     {
       "id": "com.pingsecure.client.app/com.pingsecure.client.app.MainActivity",
@@ -2659,6 +2659,10 @@
       "existing_drawable": "jellyfin"
     },
     {
+      "id": "com.MuskitoGames.HeroTime/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "hero"
+    },
+    {
       "id": "com.softmachine.tempomobile/crc647574f349d8e2e236.SplashActivity",
       "existing_drawable": "tempo"
     },
@@ -3347,10 +3351,6 @@
       "existing_drawable": "walmart"
     },
     {
-      "id": "com.justalk.kids.android/com.juphoon.justalk.ui.splash.SplashActivity1",
-      "existing_drawable": "justalk"
-    },
-    {
       "id": "com.igg.castleclash/com.igg.castleclash.CastleClash",
       "existing_drawable": "castle"
     },
@@ -3537,6 +3537,10 @@
     {
       "id": "joybits.doodlegod_hd/com.joybits.doodleeverything.GameActivity",
       "existing_drawable": "doodle"
+    },
+    {
+      "id": "com.playhardlab.herofactory/com.google.android.archive.ReactivateActivity",
+      "existing_drawable": "hero"
     },
     {
       "id": "com.playflix.kick.breakragdoll.games/com.google.android.archive.ReactivateActivity",
@@ -3765,6 +3769,10 @@
     {
       "id": "de.aok.aokident/com.verimi.aok.ident.MainActivity",
       "existing_drawable": "aok"
+    },
+    {
+      "id": "com.nexters.herowars/com.google.firebase.MessagingUnityPlayerActivity",
+      "existing_drawable": "hero"
     },
     {
       "id": "com.kayac.DrawFight/com.unity3d.player.UnityPlayerActivity",
@@ -4185,6 +4193,10 @@
     {
       "id": "com.jxhy.official/com.modo.cocos.MainActivity",
       "existing_drawable": "garden"
+    },
+    {
+      "id": "com.FunFlavorGames.HeroPark2/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "hero"
     },
     {
       "id": "com.percent.aos.cooptd/com.unity3d.player.UnityPlayerActivity",
@@ -4921,6 +4933,10 @@
     {
       "id": "com.proWAStickerApps.catsmemes.memesdegatos/com.proWAStickerApps.catsmemes.SplashActivity",
       "existing_drawable": "stickers"
+    },
+    {
+      "id": "hero_of_minotaurs.kulplant/org.renpy.android.PythonSDLActivity",
+      "existing_drawable": "hero"
     },
     {
       "id": "bible.trivia.quiz.question.answer.spelling.correct.knowledge.test.game/com.unity3d.player.UnityPlayerActivity",
