@@ -832,12 +832,12 @@ def calculate_roi_scores():
         
         return 1.0
     
-    # Finisher scores
+    # Finisher scores — count screens that request closes (size = 1)
     finisher_scores = {}
-    screen_sets = [set(comps) for comps in screens_graph.values()]
-    for screen in screen_sets:
-        for comp in screen:
-            finisher_scores[comp] = finisher_scores.get(comp, 0) + (1.0 / len(screen))
+    for comps in screens_graph.values():
+        if len(comps) == 1:
+            comp = next(iter(comps))
+            finisher_scores[comp] = finisher_scores.get(comp, 0) + 1
     
     # Trending deltas
     trending_deltas = {}
@@ -911,13 +911,15 @@ def calculate_roi_scores():
         else:
             age_multiplier = 1.0
 
+        finisher_multiplier = min(1 + finisher * 0.5, 10)
+
         score = (
             (loss_weight * 10 + 1) *
             (1 + impact_log * 8) *
             (1 + installs_log * 5) *
-            (1 + req_log * 0.5) *
+            (1 + req_log * 2) *
             (1 + gap * 2) *
-            (1 + finisher * 2) *
+            finisher_multiplier *
             (1.3 if is_foss else 1.0) *
             age_multiplier *
             (1 + trend_log) *
