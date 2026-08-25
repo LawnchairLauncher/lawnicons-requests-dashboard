@@ -203,14 +203,6 @@
       "existing_drawable": "bump"
     },
     {
-      "id": "com.superb.launcher/com.superb.iconpack.presentation.activity.IconPackActivity",
-      "existing_drawable": "themed_icon_calendar_31"
-    },
-    {
-      "id": "easy.launcher/easy.launcher.AppStartActivity",
-      "existing_drawable": "generic_keyboard"
-    },
-    {
       "id": "org.telegram.messenger/com.exteragram.messenger.AyuTyan",
       "existing_drawable": "telegram"
     },
@@ -260,27 +252,27 @@
     },
     {
       "id": "com.superb.launcher/com.games.launcher.GamesActivity",
-      "existing_drawable": "themed_icon_calendar_31"
+      "existing_drawable": "superb_launcher_icons"
     },
     {
       "id": "com.superb.launcher/com.hdvideoplayer.allformat.supportplayer.MainActivity",
-      "existing_drawable": "themed_icon_calendar_31"
+      "existing_drawable": "superb_launcher_icons"
     },
     {
       "id": "com.superb.launcher/com.superb.launcher.startup.recommended.TransparentFolderActivity",
-      "existing_drawable": "themed_icon_calendar_31"
+      "existing_drawable": "superb_launcher_icons"
     },
     {
       "id": "com.superb.launcher/com.xvideodownloader.statusdownloader.masterdownloader.MainActivity",
-      "existing_drawable": "themed_icon_calendar_31"
+      "existing_drawable": "superb_launcher_icons"
     },
     {
       "id": "com.superb.launcher/com.superb.wallpaper.WallpaperActivity",
-      "existing_drawable": "themed_icon_calendar_31"
+      "existing_drawable": "superb_launcher_icons"
     },
     {
       "id": "com.superb.launcher/com.superb.launcher.LauncherLauncher",
-      "existing_drawable": "themed_icon_calendar_31"
+      "existing_drawable": "superb_launcher_icons"
     },
     {
       "id": "com.vkontakte.android/com.vk.android.launcher.icons.IconAlias.StaticIcon2",
@@ -369,10 +361,6 @@
     {
       "id": "com.limbo.emu.main/com.limbo.emu.main.Splash2Activity",
       "existing_drawable": "limbo_x86"
-    },
-    {
-      "id": "wasaver.downloadstatus.videosaver.wasticker.downloader/wasaver.downloadstatus.videosaver.wasticker.downloader.features.MainActivity",
-      "existing_drawable": "status_saver"
     },
     {
       "id": "com.sec.android.app.camera/com.sec.android.app.camera.DocumentScanner",
@@ -537,10 +525,6 @@
     {
       "id": "com.android.settings/com.android.settings.Settings$FaceUnlockSettingsActivity",
       "existing_drawable": "generic_settings"
-    },
-    {
-      "id": "com.android.music/com.android.music.TrackBrowserActivity",
-      "existing_drawable": "generic_player"
     },
     {
       "id": "com.android.settings/com.android.settings.newsettings.PrivateSpaceSettings",

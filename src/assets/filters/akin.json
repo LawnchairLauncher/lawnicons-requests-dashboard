@@ -51,6 +51,10 @@
       "existing_drawable": "rider"
     },
     {
+      "id": "com.xvideostudio.videocompress/com.xvideostudio.videoeditor.mvvm.ui.activity.SplashActivity",
+      "existing_drawable": "generic_player"
+    },
+    {
       "id": "com.treydev.pns/com.treydev.shades.activities.SplashActivity",
       "existing_drawable": "generic_power"
     },
@@ -152,15 +156,11 @@
     },
     {
       "id": "com.lstapps.musiclivewallpaper/com.lstapps.musiclivewallpaper.MainActivity",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "com.xq.archeroii/com.unity3d.player.DxxUnityActivity",
       "existing_drawable": "archero"
-    },
-    {
-      "id": "com.oakever.arrows/com.beatles.unity.delegate.unity.DelegateActivity",
-      "existing_drawable": "arrows"
     },
     {
       "id": "com.maheshtechnicals.sealplus/com.junkfood.seal.MainActivity",
@@ -584,7 +584,7 @@
     },
     {
       "id": "com.bowerswilkins.splice/com.bowerswilkins.splice.views.StartupView",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "com.draw.sketch.ardrawing.paint.anime/com.draw.sketch.ardrawing.paint.anime.MainActivity",
@@ -619,6 +619,10 @@
       "existing_drawable": "generic_solitaire"
     },
     {
+      "id": "com.shopee.mitra.id/com.shopee.biz_base.activity.SplashActivity",
+      "existing_drawable": "mitra"
+    },
+    {
       "id": "in.swiggy.deliveryapp/in.swiggy.deliveryapp.activity.MainActivity",
       "existing_drawable": "swiggy"
     },
@@ -649,6 +653,10 @@
     {
       "id": "com.smartpack.busyboxinstaller/com.smartpack.busyboxinstaller.MainActivity",
       "existing_drawable": "busybox"
+    },
+    {
+      "id": "it.penny.app/digital.riag.appsolution.MainActivity",
+      "existing_drawable": "penny"
     },
     {
       "id": "com.weirdjohnny.idle.rpg/com.unity3d.player.UnityPlayerActivity",
@@ -709,10 +717,6 @@
     {
       "id": "com.amurcanov.tgwsproxy/com.amurcanov.tgwsproxy.MainActivity",
       "existing_drawable": "telegram"
-    },
-    {
-      "id": "com.excean.parallelspace/com.excelliance.kxqp.ui.ckp48cn85zneg",
-      "existing_drawable": "parallel"
     },
     {
       "id": "com.QuanticBit.NeonValley/com.unity3d.player.UnityPlayerGameActivity",
@@ -867,6 +871,10 @@
       "existing_drawable": "vpn_super_unlimited_proxy"
     },
     {
+      "id": "kallossoft.videotophoto/kallossoft.videotophoto.MainActivity",
+      "existing_drawable": "generic_player"
+    },
+    {
       "id": "com.orange.meditel.mediteletmoi/com.example.maxit_app.MainActivity",
       "existing_drawable": "max"
     },
@@ -899,12 +907,16 @@
       "existing_drawable": "tile"
     },
     {
+      "id": "mp3videoconverter.videotomp3converter.audioconverter/mp3videoconverter.videotomp3converter.audioconverter.activity.MainActivity",
+      "existing_drawable": "generic_player"
+    },
+    {
       "id": "com.larkvideo.player/com.dywx.larkplayer.main.MainActivity",
       "existing_drawable": "lark"
     },
     {
-      "id": "com.appcoins.wallet/com.asfoundation.wallet.main.MainActivity",
-      "existing_drawable": "aptoide"
+      "id": "com.olimsoft.android.oplayer.pro/com.olimsoft.android.oplayer.StartActivity",
+      "existing_drawable": "generic_player"
     },
     {
       "id": "com.telcel.imk/com.amco.activities.NewSplashActivity",
@@ -951,6 +963,10 @@
       "existing_drawable": "vibrator"
     },
     {
+      "id": "com.technicles.videosplitter/com.technicles.videosplitter.HomePageActivity",
+      "existing_drawable": "generic_player"
+    },
+    {
       "id": "com.huawei.videoeditor/com.huawei.hms.ml.mediacreative.LauncherActivity",
       "existing_drawable": "petal"
     },
@@ -965,10 +981,6 @@
     {
       "id": "com.salesforce.authenticator/com.toopher.android.activities.SplashActivity",
       "existing_drawable": "salesforce"
-    },
-    {
-      "id": "com.sainsburys.gol/com.sainsburys.gol.entry.EntryActivity",
-      "existing_drawable": "sainsburys"
     },
     {
       "id": "net.fast_notepad_notes_app.fastnotepad/net.fast_notepad_notes_app.fastnotepad.MainActivity",
@@ -997,6 +1009,10 @@
     {
       "id": "com.lenovo.otp/com.lenovo.otp.android.LauncherActivity",
       "existing_drawable": "lenovo"
+    },
+    {
+      "id": "mp3converter.videotomp3.ringtonemaker/mp3converter.videotomp3.ringtonemaker.Activity.MainActivity",
+      "existing_drawable": "generic_player"
     },
     {
       "id": "air.com.aceviral.motox3m/com.unity3d.player.UnityPlayerActivity",
@@ -1209,6 +1225,10 @@
     {
       "id": "de.kamibox.zipzap/com.ansca.corona.CoronaActivity",
       "existing_drawable": "zip"
+    },
+    {
+      "id": "com.qustodio.qustodioapp/com.qustodio.qustodioapp.ui.splash.SplashScreenActivity",
+      "existing_drawable": "qustodio"
     },
     {
       "id": "com.anz.lotus/com.anz.lotus.ui.MainActivity",
@@ -1460,15 +1480,11 @@
     },
     {
       "id": "com.light.music.recognition/com.light.music.recognition.activity.SplashActivity",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "com.MojoFilterMediaLLC.RPGSoundSystem/com.pocketbard.pocketbard.MainActivity",
       "existing_drawable": "pocket"
-    },
-    {
-      "id": "com.sivale.android/f5VTZ7.opqtM1.s3kIC9.sXA2c4",
-      "existing_drawable": "up"
     },
     {
       "id": "com.bcbsmn.mobile/com.castlight.clh.view.MainActivity",
@@ -1584,7 +1600,7 @@
     },
     {
       "id": "io.music_assistant.client/io.music_assistant.client.MainActivity",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "com.hingehealth.phoenix/com.hingehealth.phoenix.MainActivity",
@@ -1667,6 +1683,10 @@
       "existing_drawable": "allen"
     },
     {
+      "id": "com.freeconvert.video_compressor/com.freeconvert.video_compressor.MainActivity",
+      "existing_drawable": "generic_player"
+    },
+    {
       "id": "com.enel.mobile.recharge2/com.enel.mobile.juicepass.MainActivity",
       "existing_drawable": "enel"
     },
@@ -1701,6 +1721,10 @@
     {
       "id": "cz.mallpay/cz.mallpay.MainActivity",
       "existing_drawable": "just_eat"
+    },
+    {
+      "id": "com.proxy.videowidget/com.proxy.videowidget.presentation.app.MainActivity",
+      "existing_drawable": "generic_player"
     },
     {
       "id": "gr.boxnow.customer/gr.boxnow.customer.StartingActivity",
@@ -1944,7 +1968,7 @@
     },
     {
       "id": "app.pg.scalechordprogression/app.pg.libscalechordprogression.ActivityMain",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "com.keuwl.arduinobluetooth/com.keuwl.arduinobluetooth.BlueToothMainActivity",
@@ -2052,7 +2076,7 @@
     },
     {
       "id": "com.radioks/com.radioks.MainActivity",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "com.TendaGames.NewNinjaRaidenRevenge/com.unity3d.player.UnityPlayerActivity",
@@ -2097,10 +2121,6 @@
     {
       "id": "com.linenotifyplus.linenotification/com.linenotifyplus.linenotification.MainActivity",
       "existing_drawable": "line"
-    },
-    {
-      "id": "com.sivale.android/sKg7A4.rNdP69.ih8AQ3.cBEc41",
-      "existing_drawable": "up"
     },
     {
       "id": "com.zepto.rider/com.zepto.rider.MainActivity",
@@ -2307,14 +2327,6 @@
       "existing_drawable": "generic_compass"
     },
     {
-      "id": "com.sivale.android/lAbF82.iOf5L9.c6jIY5.yoJyW1",
-      "existing_drawable": "up"
-    },
-    {
-      "id": "com.sivale.android/lZMOD8.iELct1.xrdbD4.ghVZs9",
-      "existing_drawable": "up"
-    },
-    {
       "id": "de.md.video/de.md.video.core.presentation.MainActivity",
       "existing_drawable": "freenet"
     },
@@ -2404,7 +2416,7 @@
     },
     {
       "id": "com.singgenix.suno/com.singgenix.suno.MainActivity",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "com.rayark.rush/com.google.firebase.MessagingUnityPlayerActivity",
@@ -2751,6 +2763,10 @@
       "existing_drawable": "smart"
     },
     {
+      "id": "com.backgroundvideorecorder.videosnapshorts/com.bravo.video.recorder.background.feature.splash.SplashActivity",
+      "existing_drawable": "generic_player"
+    },
+    {
       "id": "jp.gr.java_conf.ken1.sampler1/jp.gr.java_conf.ken1.sampler1.MainActivity",
       "existing_drawable": "simple"
     },
@@ -2791,6 +2807,10 @@
       "existing_drawable": "seriesguide"
     },
     {
+      "id": "download.video.tiktok.nowatermark.tiktokdownloader/download.video.tiktok.nowatermark.tiktokdownloader.ui.activities.SplashActivity",
+      "existing_drawable": "generic_player"
+    },
+    {
       "id": "com.dong.multirun/com.dong.multirun.app.main.MainActivity",
       "existing_drawable": "multi"
     },
@@ -2801,6 +2821,10 @@
     {
       "id": "com.genuine.leone/com.genuine.leone.ui.splash.SplashActivity",
       "existing_drawable": "generic_dialer"
+    },
+    {
+      "id": "com.videopulse.pkvideo.pulsepk/com.videopulse.pkvideo.pulsepk.activity.HomeActivity",
+      "existing_drawable": "generic_player"
     },
     {
       "id": "net.mobigame.edge.extended/net.mobigame.edge.EdgeActivity",
@@ -3212,7 +3236,7 @@
     },
     {
       "id": "com.amanotes.rock.anna/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "com.iptv.smartplayer.onlinetv/com.iptv.smartplayer.onlinetv.MainActivity",
@@ -3241,6 +3265,10 @@
     {
       "id": "com.gebril.moneycounter/com.gebril.moneycounter.MainActivity",
       "existing_drawable": "money"
+    },
+    {
+      "id": "com.otoreport.bospulsa/com.exlusoft.otoreport.SplashScreenActivity",
+      "existing_drawable": "mitra"
     },
     {
       "id": "com.bonpreu.mobile.android/com.ocado.mobile.android.feature.main.ui.MainActivity",
@@ -3367,6 +3395,10 @@
       "existing_drawable": "moto"
     },
     {
+      "id": "video.watermaker.remover.logo.videowatermark/com.remove.watermaker.ui.SplashActivity",
+      "existing_drawable": "generic_player"
+    },
+    {
       "id": "net.comtor.claro.softphone/net.comtor.claro.softphone.MainActivity",
       "existing_drawable": "claro"
     },
@@ -3385,6 +3417,10 @@
     {
       "id": "vpn.free.proxy.ping/com.pingvpn.app.PingActivity",
       "existing_drawable": "ping"
+    },
+    {
+      "id": "xyz.anim.video.livewallpaper/xyz.anim.video.livewallpaper.ui.MainActivity2",
+      "existing_drawable": "generic_player"
     },
     {
       "id": "com.arshi.filemanager/com.arshi.filemanager.view.home.MainActivity",
@@ -3852,11 +3888,11 @@
     },
     {
       "id": "jp.co.sony.mc.musicpro.c/jp.co.sony.mc.musicpro.ui.WelcomeActivity",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "com.georgie.musicvu/com.georgie.musicvu.PreferencesFromXml",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "smartsiren.app/smartsiren.app.MainActivity",
@@ -3933,6 +3969,10 @@
     {
       "id": "com.YsoCorp.NinjaHands2/com.unity3d.player.UnityPlayerActivity",
       "existing_drawable": "ninja"
+    },
+    {
+      "id": "nz.co.electrickiwi.mobile.app/com.energytechglobal.theelectrickiwi.app.stage.MainActivity",
+      "existing_drawable": "kiwi"
     },
     {
       "id": "com.loyalconnect.sushitrain/com.webviewapp.main.SplashActivity",
@@ -4640,7 +4680,7 @@
     },
     {
       "id": "com.yy.freemusic.global/com.project.gugu.music.ui.activity.SplashActivity",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "brownmonster.app.game.rushrallyremastered/brownmonster.app.game.rushrallyremastered.RushRallyRemasteredActivity",
@@ -4704,7 +4744,7 @@
     },
     {
       "id": "com.musicleague.app/com.musicleague.app.MainActivity",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "mtec.energy.app/integ.hub.test.MainActivity",
@@ -4741,6 +4781,10 @@
     {
       "id": "com.adfone.timfun/com.akross.rewardapps.MainActivity",
       "existing_drawable": "tim"
+    },
+    {
+      "id": "luma.sora.pika.runway.video.ai/luma.sora.pika.runway.video.ai.MainActivity",
+      "existing_drawable": "generic_player"
     },
     {
       "id": "com.uc.caffeine/com.uc.caffeine.MainActivity",
@@ -5035,6 +5079,10 @@
       "existing_drawable": "max"
     },
     {
+      "id": "com.clogica.videotomp3audioconverter/com.clogica.videotomp3audioconverter.activity.SplashActivity",
+      "existing_drawable": "generic_player"
+    },
+    {
       "id": "com.eup.todaiisuper/mobi.eup.presentations.splash.SplashActivity",
       "existing_drawable": "todaii"
     },
@@ -5119,10 +5167,6 @@
       "existing_drawable": "trendyol"
     },
     {
-      "id": "com.sivale.android/bpxPK9.eMBcw0.pIwrJ3.vxx7A6",
-      "existing_drawable": "up"
-    },
-    {
       "id": "com.zamzam.deenbuddy/com.zamzam.deenbuddy.MainActivity",
       "existing_drawable": "deen"
     },
@@ -5137,6 +5181,10 @@
     {
       "id": "com.notepad.notebook.todolist/com.notepad.notebook.todolist.activity.SplashActivity",
       "existing_drawable": "notepad"
+    },
+    {
+      "id": "com.psoffritti.video.to.gif/com.psoffritti.video.to.gif.ui.MainActivity",
+      "existing_drawable": "generic_player"
     },
     {
       "id": "com.musicplayer.arcmusic/com.musicplayer.arcmusic.MainActivity",

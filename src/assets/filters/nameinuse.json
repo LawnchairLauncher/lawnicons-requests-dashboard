@@ -43,6 +43,10 @@
       "existing_drawable": "generic_shell"
     },
     {
+      "id": "com.akbon.oxygenos/com.akbon.oxygenos.MainActivity",
+      "existing_drawable": "oxygen_icons"
+    },
+    {
       "id": "com.luutinhit.launcherios/com.luutinhit.weather.WeatherActivity",
       "existing_drawable": "yahoo_weather"
     },
@@ -211,6 +215,10 @@
       "existing_drawable": "izzi"
     },
     {
+      "id": "com.huawei.himovie/com.huawei.himovie.ui.login.SplashScreenActivity",
+      "existing_drawable": "generic_player"
+    },
+    {
       "id": "tk.zwander.wifilist.free/tk.zwander.wifilist.MainActivity",
       "existing_drawable": "wifilist"
     },
@@ -257,6 +265,10 @@
     {
       "id": "com.splendapps.adler/com.splendapps.adler.MainActivity",
       "existing_drawable": "notepad"
+    },
+    {
+      "id": "secure.unblock.unlimited.proxy.snap.hotspot.shield/kiwi.unblock.proxy.activity.splash.SplashActivity",
+      "existing_drawable": "kiwi"
     },
     {
       "id": "com.balsoy.fatih.compass/com.balsoy.fatih.compass.MainActivity",
@@ -437,6 +449,10 @@
     {
       "id": "privacyfriendlyshoppinglist.secuso.org.privacyfriendlyshoppinglist/privacyfriendlyshoppinglist.secuso.org.privacyfriendlyshoppinglist.ui.main.SplashActivity",
       "existing_drawable": "shopping_list"
+    },
+    {
+      "id": "hu.penny.app/digital.riag.appsolution.MainActivity",
+      "existing_drawable": "penny"
     },
     {
       "id": "netgenius.bizcal/netgenius.bizcal.main",
@@ -2080,7 +2096,7 @@
     },
     {
       "id": "com.crdoid.music/com.kabouzeid.gramophone.ui.activities.MainActivity",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "vault.goldclock/vault.goldclock.ClockActivityMain",
@@ -2123,10 +2139,6 @@
       "existing_drawable": "ehviewer"
     },
     {
-      "id": "jl.musicalnotes/jl.musicalnotes.activity.MainActivity",
-      "existing_drawable": "samsung_notes"
-    },
-    {
       "id": "org.billthefarmer.scope/org.billthefarmer.scope.Main",
       "existing_drawable": "oscilloscope"
     },
@@ -2160,7 +2172,7 @@
     },
     {
       "id": "org.calyxos.twelve/org.lineageos.twelve.MainActivity",
-      "existing_drawable": "music_player"
+      "existing_drawable": "apple_music"
     },
     {
       "id": "com.rianixia.cameras/com.android.camera.CameraLauncher",
@@ -2173,10 +2185,6 @@
     {
       "id": "com.hesheng.flashlight/com.hesheng.flashlight.activity.FlashLightActivity",
       "existing_drawable": "flashlight"
-    },
-    {
-      "id": "com.scoregame.gamebooster/com.scoregame.gamebooster.ui.main.MainActivity",
-      "existing_drawable": "game_booster"
     },
     {
       "id": "com.gimica.nonocross/com.unity3d.player.UnityPlayerActivity",
@@ -2353,10 +2361,6 @@
     {
       "id": "com.sweetvrn.tools.soundmeter/com.sweetvrn.tools.soundmeter.splash.SplashActivity",
       "existing_drawable": "sound_meter"
-    },
-    {
-      "id": "com.musicplan.playermusic/com.musicplan.playermusic.activities.MainActivity",
-      "existing_drawable": "apple_music"
     },
     {
       "id": "uk.co.eastcoasttrainsltd/com.firstgroup.splash.controller.SplashActivity",
