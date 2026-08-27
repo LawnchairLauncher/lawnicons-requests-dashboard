@@ -950,7 +950,7 @@ def calculate_roi_scores():
     
     changed = 0
     for app, score in scores_list:
-        new_score = round(score, 2)
+        new_score = round(score)
         if app.get('roi_score') != new_score:
             app['roi_score'] = new_score
             changed += 1
