@@ -188,7 +188,7 @@ def main():
         if IS_INTERRUPTED: break
         
         # Batch Limit Check
-        if BATCH_LIMIT > 0 and updated_session >= BATCH_LIMIT:
+        if BATCH_LIMIT > 0 and attempted >= BATCH_LIMIT:
             print(f"\n✅ Batch limit reached ({BATCH_LIMIT}). Stopping gracefully.")
             break
 
