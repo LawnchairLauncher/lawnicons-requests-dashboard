@@ -47,8 +47,10 @@ signal.signal(signal.SIGINT, signal_handler)
 
 def sanitize_name(label):
     if not label: return "icon"
-    name = unicodedata.normalize('NFD', label).encode('ascii', 'ignore').decode("utf-8")
-    name = re.sub(r'[^a-z0-9]+', '_', name.lower())
+    ascii_name = unicodedata.normalize('NFD', label).encode('ascii', 'ignore').decode("utf-8")
+    if ascii_name != label:
+        return None
+    name = re.sub(r'[^a-z0-9]+', '_', ascii_name.lower())
     name = name.strip('_')
     if name and name[0].isdigit():
         name = "_" + name
@@ -237,7 +239,7 @@ def main():
                         new_drawable = download_icon(icon_url, old_drawable)
                     else:
                         clean_name = sanitize_name(app['label'])
-                        if clean_name == 'icon' or clean_name.startswith('icon_'):
+                        if clean_name is None:
                             clean_name = pkg.replace('.', '_')
                         new_drawable = download_icon(icon_url, clean_name)
                     if new_drawable:
