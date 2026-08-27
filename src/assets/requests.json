@@ -1359,7 +1359,7 @@
       "lastRequested": 1787130925.0,
       "label": "Eitaa",
       "componentName": "ir.eitaa.messenger/ir.eitaa.ui.LaunchActivity",
-      "roi_score": 35
+      "roi_score": 32
     },
     {
       "drawable": "kafa_topu_2",
@@ -2108,7 +2108,7 @@
       "lastRequested": 1787130925.0,
       "label": "Rubika",
       "componentName": "app.rbmain.a/org.rbmain.ui.LaunchActivity",
-      "roi_score": 2564
+      "roi_score": 2537
     },
     {
       "drawable": "divar",
@@ -2117,7 +2117,7 @@
       "lastRequested": 1787127602.0,
       "label": "Divar",
       "componentName": "ir.divar/ir.divar.view.activity.SplashActivity",
-      "roi_score": 505
+      "roi_score": 460
     },
     {
       "drawable": "linex_adaptive_2",
@@ -2425,7 +2425,7 @@
       "lastRequested": 1787127602.0,
       "label": "\u0412\u0438\u0434\u0435\u043e\u043f\u043b\u0435\u0435\u0440",
       "componentName": "com.hihonor.hnvideoplayer/com.honor.videoplayer.MainActivity",
-      "roi_score": 3800
+      "roi_score": 3745
     },
     {
       "drawable": "nutstore_android",
@@ -7883,7 +7883,7 @@
       "lastRequested": 1787130925.0,
       "label": "\u0634\u0627\u062f",
       "componentName": "ir.medu.shad/org.rbmain.ui.LaunchActivity",
-      "roi_score": 206
+      "roi_score": 187
     },
     {
       "drawable": "xbox_family_settings",
@@ -15066,7 +15066,7 @@
       "lastRequested": 1784196820.0,
       "label": "Karing",
       "componentName": "com.nebula.karing/com.nebula.karing.MainActivity",
-      "roi_score": 537.0
+      "roi_score": 505
     },
     {
       "drawable": "companion_5",
@@ -15311,7 +15311,7 @@
       "requestCount": 8,
       "firstAppearance": 1771906264.0,
       "lastRequested": 1787127602.0,
-      "roi_score": 42
+      "roi_score": 41
     },
     {
       "drawable": "ncell_app",
@@ -19269,7 +19269,7 @@
       "lastRequested": 1787127602.0,
       "label": "Aptoide Games",
       "componentName": "com.aptoide.android.aptoidegames/com.aptoide.android.aptoidegames.MainActivity",
-      "roi_score": 24
+      "roi_score": 23
     },
     {
       "drawable": "floating_sandbox_mobile",
@@ -22789,7 +22789,7 @@
       "requestCount": 6,
       "firstAppearance": 1772188142.0,
       "lastRequested": 1787127602.0,
-      "roi_score": 339
+      "roi_score": 333
     },
     {
       "drawable": "messages_8",
@@ -23437,7 +23437,8 @@
       "lastRequested": 1771313958.0,
       "label": "Coreply",
       "componentName": "app.coreply.coreplyapp/app.coreply.coreplyapp.SettingsActivity",
-      "roi_score": 32
+      "roi_score": 34,
+      "installs": "100+"
     },
     {
       "drawable": "libgen",
@@ -42218,7 +42219,8 @@
       "requestCount": 4,
       "firstAppearance": 1774346836.0,
       "lastRequested": 1784019161.0,
-      "roi_score": 1202
+      "roi_score": 151,
+      "installs": "100+"
     },
     {
       "drawable": "dominion_energy",
@@ -43203,7 +43205,7 @@
       "lastRequested": 1786618847.0,
       "label": "Pasargad MBanking",
       "componentName": "mob.banking.android.pasargad/mobile.banking.activity.StartActivity",
-      "roi_score": 14
+      "roi_score": 13
     },
     {
       "drawable": "cameringo",
@@ -43702,7 +43704,7 @@
       "requestCount": 4,
       "firstAppearance": 1782321320.0,
       "lastRequested": 1785936444.0,
-      "roi_score": 10
+      "roi_score": 9
     },
     {
       "drawable": "duckassist",
@@ -54597,7 +54599,7 @@
       "requestCount": 3,
       "firstAppearance": 1766636855.0,
       "lastRequested": 1771548931.0,
-      "roi_score": 260
+      "roi_score": 237
     },
     {
       "drawable": "afvalwijzer",
@@ -56574,7 +56576,8 @@
       "requestCount": 3,
       "firstAppearance": 1777010309.0,
       "lastRequested": 1784571956.0,
-      "roi_score": 2133
+      "roi_score": 2133,
+      "installs": "0+"
     },
     {
       "drawable": "gapgpt",
@@ -56583,7 +56586,7 @@
       "requestCount": 3,
       "firstAppearance": 1776093349.0,
       "lastRequested": 1783259178.0,
-      "roi_score": 184
+      "roi_score": 171
     },
     {
       "drawable": "lovable_2",
@@ -70905,7 +70908,7 @@
       "requestCount": 2,
       "firstAppearance": 1776093349.0,
       "lastRequested": 1785936444.0,
-      "roi_score": 110
+      "roi_score": 100
     },
     {
       "drawable": "korzinka_2",
@@ -71100,7 +71103,7 @@
       "requestCount": 2,
       "firstAppearance": 1782389236.0,
       "lastRequested": 1787127602.0,
-      "roi_score": 221
+      "roi_score": 218
     },
     {
       "drawable": "ownly_1",
@@ -76284,7 +76287,8 @@
       "requestCount": 2,
       "firstAppearance": 1779965323.0,
       "lastRequested": 1780260206.0,
-      "roi_score": 553
+      "roi_score": 63,
+      "installs": "100+"
     },
     {
       "drawable": "my_digi",
@@ -77911,7 +77915,8 @@
       "requestCount": 2,
       "firstAppearance": 1781158689.0,
       "lastRequested": 1781888505.0,
-      "roi_score": 142
+      "roi_score": 14,
+      "installs": "1+"
     },
     {
       "drawable": "wedshoots_2",
@@ -81390,7 +81395,7 @@
       "requestCount": 2,
       "firstAppearance": 1783259178.0,
       "lastRequested": 1786705040.0,
-      "roi_score": 12
+      "roi_score": 11
     },
     {
       "drawable": "ir_ayantech_pishkhan24",
@@ -95364,7 +95369,7 @@
       "requestCount": 2,
       "firstAppearance": 1766852050.0,
       "lastRequested": 1781511914.0,
-      "roi_score": 11
+      "roi_score": 10
     },
     {
       "drawable": "abfall_app_kreis_steinburg",
@@ -101333,7 +101338,7 @@
       "requestCount": 2,
       "firstAppearance": 1786618847.0,
       "lastRequested": 1786705040.0,
-      "roi_score": 15
+      "roi_score": 14
     },
     {
       "drawable": "levilauncher",
@@ -111747,7 +111752,7 @@
       "lastRequested": 1763038887.0,
       "label": "ZyBank",
       "componentName": "ir.zybank.app/ir.zybank.app.view.activity.SplashActivity",
-      "roi_score": 11
+      "roi_score": 10
     },
     {
       "drawable": "hot51",
@@ -135375,7 +135380,7 @@
       "requestCount": 1,
       "firstAppearance": 1776093349.0,
       "lastRequested": 1776093349.0,
-      "roi_score": 82
+      "roi_score": 75
     },
     {
       "drawable": "vpn_share_2",
@@ -135412,7 +135417,7 @@
       "requestCount": 1,
       "firstAppearance": 1776093349.0,
       "lastRequested": 1776093349.0,
-      "roi_score": 82
+      "roi_score": 75
     },
     {
       "drawable": "indyx_2",
@@ -138900,7 +138905,7 @@
       "requestCount": 1,
       "firstAppearance": 1783935708.0,
       "lastRequested": 1783935708.0,
-      "roi_score": 238
+      "roi_score": 223
     },
     {
       "drawable": "ru_sogaz_app",
@@ -140128,7 +140133,7 @@
       "requestCount": 1,
       "firstAppearance": 1783259178.0,
       "lastRequested": 1783259178.0,
-      "roi_score": 82
+      "roi_score": 75
     },
     {
       "drawable": "ir_stts_bjt",
@@ -140137,7 +140142,7 @@
       "requestCount": 1,
       "firstAppearance": 1783259178.0,
       "lastRequested": 1783259178.0,
-      "roi_score": 82
+      "roi_score": 75
     },
     {
       "drawable": "com_jobvision_app",
@@ -140156,7 +140161,7 @@
       "requestCount": 1,
       "firstAppearance": 1783259178.0,
       "lastRequested": 1783259178.0,
-      "roi_score": 82
+      "roi_score": 75
     },
     {
       "drawable": "blu",
@@ -140165,7 +140170,7 @@
       "requestCount": 1,
       "firstAppearance": 1783259178.0,
       "lastRequested": 1783259178.0,
-      "roi_score": 82
+      "roi_score": 75
     },
     {
       "drawable": "creality_cloud_lite_2",
@@ -156415,7 +156420,7 @@
       "requestCount": 1,
       "firstAppearance": 1771463720.0,
       "lastRequested": 1771463720.0,
-      "roi_score": 11
+      "roi_score": 10
     },
     {
       "drawable": "my_daily_hadith",
@@ -157601,7 +157606,8 @@
       "requestCount": 1,
       "firstAppearance": 1771398448.0,
       "lastRequested": 1771398448.0,
-      "roi_score": 11
+      "roi_score": 4,
+      "installs": "100,000+"
     },
     {
       "drawable": "india_vpn_2",
@@ -160879,7 +160885,8 @@
       "requestCount": 1,
       "firstAppearance": 1771950940.0,
       "lastRequested": 1771950940.0,
-      "roi_score": 55.0
+      "roi_score": 80,
+      "installs": "1,000,000+"
     },
     {
       "drawable": "heygen___ai_spokesperson_video_creator",
@@ -217768,7 +217775,7 @@
       "requestCount": 1,
       "firstAppearance": 1783259178.0,
       "lastRequested": 1783259178.0,
-      "roi_score": 7.0
+      "roi_score": 6
     },
     {
       "drawable": "rade",
@@ -217815,7 +217822,7 @@
       "requestCount": 1,
       "firstAppearance": 1783259178.0,
       "lastRequested": 1783259178.0,
-      "roi_score": 7.0
+      "roi_score": 6
     },
     {
       "drawable": "sheypoor",
@@ -226645,7 +226652,7 @@
       "requestCount": 1,
       "firstAppearance": 1781418933.0,
       "lastRequested": 1781418933.0,
-      "roi_score": 8
+      "roi_score": 7
     },
     {
       "drawable": "flipd",
@@ -242132,7 +242139,7 @@
       "requestCount": 1,
       "firstAppearance": 1786705040.0,
       "lastRequested": 1786705040.0,
-      "roi_score": 9
+      "roi_score": 8
     },
     {
       "drawable": "glimpse_notifications_1",
@@ -242151,7 +242158,7 @@
       "requestCount": 1,
       "firstAppearance": 1786705040.0,
       "lastRequested": 1786705040.0,
-      "roi_score": 9
+      "roi_score": 8
     },
     {
       "drawable": "tabdeal",
@@ -258700,7 +258707,7 @@
       "requestCount": 1,
       "firstAppearance": 1787127602.0,
       "lastRequested": 1787127602.0,
-      "roi_score": 165
+      "roi_score": 163
     },
     {
       "drawable": "me_minipay_app",
@@ -258709,7 +258716,7 @@
       "requestCount": 1,
       "firstAppearance": 1787127602.0,
       "lastRequested": 1787127602.0,
-      "roi_score": 165
+      "roi_score": 163
     },
     {
       "drawable": "ir_tejaratbank_totp_mobile_android",
@@ -258746,7 +258753,7 @@
       "requestCount": 1,
       "firstAppearance": 1787127602.0,
       "lastRequested": 1787127602.0,
-      "roi_score": 165
+      "roi_score": 163
     },
     {
       "drawable": "karnet_app_ir",
@@ -258764,7 +258771,7 @@
       "requestCount": 1,
       "firstAppearance": 1787127602.0,
       "lastRequested": 1787127602.0,
-      "roi_score": 82
+      "roi_score": 75
     },
     {
       "drawable": "bpl_transport",
