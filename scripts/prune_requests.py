@@ -781,7 +781,7 @@ def calculate_roi_scores():
                     impacts.append((affected / pop) * 100)
             
             if impacts:
-                return sum(impacts) / len(impacts)
+                return sum(impacts)
         
         # com domain without graph — presumed US
         if domain == 'com':
@@ -830,7 +830,7 @@ def calculate_roi_scores():
                     total = requests + done
                     if total > 0:
                         gaps.append(requests / total)
-                return min(gaps) if gaps else 1.0
+                return max(gaps) if gaps else 1.0
         
         # com domain without graph — presumed US
         if domain == 'com':
