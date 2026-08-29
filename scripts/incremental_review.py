@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
 Incremental SVG reviewer for Lawnicons dashboard.
-Checks 90 new icons + 10 from review_issues.json per run.
+Checks 100 new icons + 100 from review_issues.json per run.
 Updates review_issues.json and review_pass.json.
 """
 
 import json
 import subprocess
 import sys
+import random
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -17,8 +18,8 @@ REVIEW_PASS_PATH = ASSETS_DIR / "review_pass.json"
 LAWNICONS_SVGS_DIR = REPO_ROOT / "src/assets/qa_issues/svgs"
 LINTER_PATH = REPO_ROOT / "scripts/lint_icons.py"
 
-NEW_PER_RUN = 90
-REVIEW_PER_RUN = 10
+NEW_PER_RUN = 100
+REVIEW_PER_RUN = 100
 
 
 def load_json(path):
@@ -87,8 +88,8 @@ def main():
     # Pick 90 new icons
     new_icons = [i for i in all_icons if i not in checked_set][:NEW_PER_RUN]
 
-    # Pick 10 from review_issues for re-check
-    review_icons = list(issues_map.keys())[:REVIEW_PER_RUN]
+    # Pick random from review_issues for re-check
+    review_icons = random.sample(list(issues_map.keys()), min(REVIEW_PER_RUN, len(issues_map)))
 
     to_check = new_icons + review_icons
     if not to_check:
