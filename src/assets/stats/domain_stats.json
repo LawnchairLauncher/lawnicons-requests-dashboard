@@ -1,17 +1,17 @@
 {
   "com": {
-    "requests": 5827,
-    "done": 14079,
-    "total": 19906,
+    "requests": 5826,
+    "done": 14085,
+    "total": 19911,
     "global": 0,
     "global_installs": 0
   },
   "us": {
-    "requests": 13187,
+    "requests": 13182,
     "done": 27,
-    "total": 13214,
-    "global": 13166,
-    "global_installs": 51561937219
+    "total": 13209,
+    "global": 13161,
+    "global_installs": 51545337219
   },
   "de": {
     "requests": 2246,
@@ -398,19 +398,19 @@
     "global": 29,
     "global_installs": 39165000
   },
-  "ci": {
-    "requests": 73,
-    "done": 1,
-    "total": 74,
-    "global": 71,
-    "global_installs": 482001500
-  },
   "am": {
     "requests": 67,
     "done": 5,
     "total": 72,
     "global": 63,
     "global_installs": 257013600
+  },
+  "ci": {
+    "requests": 71,
+    "done": 1,
+    "total": 72,
+    "global": 69,
+    "global_installs": 471501500
   },
   "tn": {
     "requests": 68,
@@ -469,11 +469,11 @@
     "global_installs": 0
   },
   "la": {
-    "requests": 57,
-    "done": 2,
-    "total": 59,
-    "global": 55,
-    "global_installs": 559181000
+    "requests": 53,
+    "done": 4,
+    "total": 57,
+    "global": 53,
+    "global_installs": 548681000
   },
   "sk": {
     "requests": 34,
@@ -671,13 +671,6 @@
     "global": 20,
     "global_installs": 403701100
   },
-  "tz": {
-    "requests": 25,
-    "done": 0,
-    "total": 25,
-    "global": 23,
-    "global_installs": 68365000
-  },
   "za": {
     "requests": 16,
     "done": 9,
@@ -712,6 +705,13 @@
     "total": 24,
     "global": 0,
     "global_installs": 0
+  },
+  "tz": {
+    "requests": 24,
+    "done": 0,
+    "total": 24,
+    "global": 22,
+    "global_installs": 67365000
   },
   "az": {
     "requests": 19,
@@ -1400,8 +1400,8 @@
     "global_installs": 0
   },
   "english": {
-    "requests": 4,
-    "done": 2,
+    "requests": 2,
+    "done": 4,
     "total": 6,
     "global": 0,
     "global_installs": 0
@@ -2121,8 +2121,8 @@
     "global_installs": 0
   },
   "bible": {
-    "requests": 3,
-    "done": 0,
+    "requests": 2,
+    "done": 1,
     "total": 3,
     "global": 0,
     "global_installs": 0
@@ -4697,8 +4697,8 @@
     "global_installs": 0
   },
   "wiktoria": {
-    "requests": 1,
-    "done": 1,
+    "requests": 0,
+    "done": 2,
     "total": 2,
     "global": 0,
     "global_installs": 0
