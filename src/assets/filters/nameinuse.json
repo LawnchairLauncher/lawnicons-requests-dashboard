@@ -83,6 +83,10 @@
       "existing_drawable": "ping"
     },
     {
+      "id": "org.skvalex.cr/org.skvalex.cr.LauncherActivity",
+      "existing_drawable": "generic_dialer"
+    },
+    {
       "id": "com.zui.weather/com.zui.weather.ui2.MainPageActivity",
       "existing_drawable": "yahoo_weather"
     },
@@ -176,7 +180,7 @@
     },
     {
       "id": "com.tclhz.gallery/com.tcl.gallery.app.GalleryActivity",
-      "existing_drawable": "generic_gallery"
+      "existing_drawable": "xgallery"
     },
     {
       "id": "org.prauga.messages/org.prauga.messages.feature.main.MainActivity",
@@ -440,7 +444,7 @@
     },
     {
       "id": "com.photogalleryapp.picturegallery/com.photogalleryapp.picturegallery.activities.SplashActivity",
-      "existing_drawable": "generic_gallery"
+      "existing_drawable": "xgallery"
     },
     {
       "id": "com.transsion.wallet/com.transsion.wallet.ui.activity.MainActivity",
@@ -480,7 +484,7 @@
     },
     {
       "id": "com.metzger100.calculator/com.metzger100.calculator.MainActivity",
-      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
+      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
     },
     {
       "id": "com.orange.es.orangetv/com.orange.es.orangetv.presentation.view.feature.splash.activity.SplashActivity",
@@ -540,7 +544,7 @@
     },
     {
       "id": "com.pixel.gallery/com.pixel.gallery.MainActivity",
-      "existing_drawable": "generic_gallery"
+      "existing_drawable": "xgallery"
     },
     {
       "id": "com.pri.pedometer/com.pri.pedometer.MainActivity",
@@ -739,6 +743,10 @@
       "existing_drawable": "video_editor"
     },
     {
+      "id": "com.smsrobot.call.recorder.callsbox/com.smsrobot.call.recorder.callsbox.StartActivity",
+      "existing_drawable": "generic_dialer"
+    },
+    {
       "id": "at.vucak.impostor/at.vucak.impostor.MainActivity",
       "existing_drawable": "impostor"
     },
@@ -772,7 +780,7 @@
     },
     {
       "id": "com.pdf.reader.editor.viewer.pro/com.pdf.reader.viewer.editor.ui.activities.SplashActivity",
-      "existing_drawable": "generic_pdf_square"
+      "existing_drawable": "generic_pdf_file"
     },
     {
       "id": "com.pri.icebox/com.pri.icebox.MainActivity",
@@ -800,7 +808,7 @@
     },
     {
       "id": "com.appslab.gallery/com.appslab.gallery.MainActivity",
-      "existing_drawable": "generic_gallery"
+      "existing_drawable": "xgallery"
     },
     {
       "id": "com.fastsigninemail.securemail.bestemail/com.fastsigninemail.securemail.bestemail.ui.splash.SplashActivity",
@@ -960,7 +968,7 @@
     },
     {
       "id": "com.aks_labs.tulsi/com.aks_labs.tulsi.MainActivity",
-      "existing_drawable": "generic_gallery"
+      "existing_drawable": "xgallery"
     },
     {
       "id": "com.microapps.screenmirroring/com.zipoapps.premiumhelper.ui.splash.PHSplashActivity",
@@ -1032,7 +1040,7 @@
     },
     {
       "id": "com.PaLoApp.calculator2/com.PaLoApp.calculator2.Calculator",
-      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
+      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
     },
     {
       "id": "ca.autotrader.userapp/ca.autotrader.userapp.legacy.ui.phone.SplashActivity",
@@ -1044,7 +1052,7 @@
     },
     {
       "id": "photogallery.ai.photoeditor.photo.albums/photogallery.ai.photoeditor.photo.albums.activities.SplashActivityScreen",
-      "existing_drawable": "generic_gallery"
+      "existing_drawable": "xgallery"
     },
     {
       "id": "com.moleskine.notes/com.moleskine.notes.ui.splash.SplashActivity",
@@ -1119,6 +1127,10 @@
       "existing_drawable": "smart_home"
     },
     {
+      "id": "com.mmb.filemanager/com.mmb.filemanager.activities.SplashActivity.Blue",
+      "existing_drawable": "ds_file"
+    },
+    {
       "id": "com.zenkit.todo/com.zenkit.todo.MainActivity",
       "existing_drawable": "tasks"
     },
@@ -1140,7 +1152,7 @@
     },
     {
       "id": "com.floatingimage/com.floatingimage.activity.ActivityHome",
-      "existing_drawable": "generic_gallery"
+      "existing_drawable": "xgallery"
     },
     {
       "id": "partisan.weforge.xyz.pulse/partisan.weforge.xyz.pulse.WelcomeActivity",
@@ -1204,7 +1216,7 @@
     },
     {
       "id": "com.dariaos.calculator/com.dariaos.calculator.MainActivity",
-      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
+      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
     },
     {
       "id": "com.dariaos.toolbox/com.dariaos.toolbox.ui.MainActivity",
@@ -1264,7 +1276,7 @@
     },
     {
       "id": "com.mediastudio.allvideodownloader.downloadvideoshd.bestdownloader/video.downloader.fastdownloader.download.activities.OnBoardingActivity",
-      "existing_drawable": "all_video_downloader"
+      "existing_drawable": "download_progress_plus_plus"
     },
     {
       "id": "com.artgenerator.texttoimage.aiart.outpaiting/com.apero.artimindchatbox.classes.main.splash.SDKSplashActivity",
@@ -1504,7 +1516,7 @@
     },
     {
       "id": "com.AppAuxin.ios_calculator/com.AppAuxin.ios_calculator.MainActivity",
-      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
+      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
     },
     {
       "id": "com.callassistant.android/com.callassistant.android.ui.main.MainActivity",
@@ -1564,7 +1576,7 @@
     },
     {
       "id": "gallery.photogallery.album.editor/gallery.photogallery.album.editor.activity.CoreActivity",
-      "existing_drawable": "generic_gallery"
+      "existing_drawable": "xgallery"
     },
     {
       "id": "com.gateio.authenticator/com.gateio.authenticator.activity.SplashActivity",
@@ -1604,7 +1616,7 @@
     },
     {
       "id": "com.umoligames.pianotiles/com.umosun.pianotiles.Piano",
-      "existing_drawable": "windows"
+      "existing_drawable": "generic_grid_2x2"
     },
     {
       "id": "com.swishapp/com.swishapp.MainActivity",
@@ -1632,7 +1644,7 @@
     },
     {
       "id": "com.flir.myflir.s62/com.flir.monarch.ui.library.LibraryActivity",
-      "existing_drawable": "generic_gallery"
+      "existing_drawable": "xgallery"
     },
     {
       "id": "com.motorola.messaging/com.android.messaging.ui.conversationlist.ConversationListActivity",
@@ -1659,12 +1671,8 @@
       "existing_drawable": "albo"
     },
     {
-      "id": "com.photogallery.galleryvault.galleryapp/com.photogallery.galleryvault.galleryapp.activities.SplashActivity",
-      "existing_drawable": "generic_gallery"
-    },
-    {
       "id": "picture.gallery.media.photo.album/com.ijoysoft.gallery.activity.WelcomeActivity",
-      "existing_drawable": "generic_gallery"
+      "existing_drawable": "xgallery"
     },
     {
       "id": "com.ultrahdcamera.zoom.beauty.highquality.photoeditor/example.beauty.makeupcamera.photoeditinc.activity.splash.SplashScreenActivity",
@@ -1795,6 +1803,10 @@
       "existing_drawable": "generic_contacts"
     },
     {
+      "id": "com.mmb.filemanager/com.mmb.filemanager.activities.SplashActivity.Orange",
+      "existing_drawable": "ds_file"
+    },
+    {
       "id": "com.atmasciences.gizmo/com.atmasciences.gizmo.MainActivity",
       "existing_drawable": "gizmo"
     },
@@ -1833,10 +1845,6 @@
     {
       "id": "com.lge.tv.remoteapps/com.lge.tv.remoteapps.MainActivity",
       "existing_drawable": "android_tv_remote_service"
-    },
-    {
-      "id": "com.willb.batteryhealth/com.willb.batteryhealth.MainActivity",
-      "existing_drawable": "battery_health"
     },
     {
       "id": "ru.start.androidmobile/ru.start.androidmobile.ui.activities.utils.ActivitySplash",
@@ -1888,7 +1896,7 @@
     },
     {
       "id": "com.batterypro.batteryrepairlife2020/com.battery.batteryrepairlife.ui.activity.SplashActivity",
-      "existing_drawable": "battery_health"
+      "existing_drawable": "apk_info"
     },
     {
       "id": "com.gaming.booster.optimizer.apps/com.demo.gamebooster.splashAds.SplashActivity",
@@ -2003,10 +2011,6 @@
       "existing_drawable": "icon_changer"
     },
     {
-      "id": "tad.hideapps.hiddenspace.apphider.webapps/tad.hideapps.hiddenspace.apphider.webapps.Calculator",
-      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
-    },
-    {
       "id": "io.github.jqssun.displaymirror/io.github.jqssun.displaymirror.MirrorMainActivity",
       "existing_drawable": "mirror"
     },
@@ -2020,7 +2024,7 @@
     },
     {
       "id": "com.nhstudio.icalculator/com.nhstudio.icalculator.ui.CalculatorActivity",
-      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
+      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
     },
     {
       "id": "com.nhstudio.alarmioss/com.nhstudio.alarmioss.MainActivity",
@@ -2056,7 +2060,7 @@
     },
     {
       "id": "com.vagujhelyigergely.calculatorm3/com.vagujhelyigergely.calculatorm3.MainActivity",
-      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
+      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
     },
     {
       "id": "pl.upaid.gopay/pl.upaid.gopay.feature.main.presentation.MainActivity",
@@ -2139,10 +2143,6 @@
       "existing_drawable": "just_eat"
     },
     {
-      "id": "gallery.photo.gallerylock.photolock.album/gallery.photo.gallerylock.photolock.album.activities.SplashActivity",
-      "existing_drawable": "generic_gallery"
-    },
-    {
       "id": "vtebo2.rezdpneqo9vt.d2wjkhzv77ptrycwv/com.dergoogler.mmrl.wx.ui.activity.MainActivity",
       "existing_drawable": "webui_x"
     },
@@ -2160,7 +2160,7 @@
     },
     {
       "id": "org.calyxos.glimpse/org.lineageos.glimpse.MainActivity",
-      "existing_drawable": "generic_gallery"
+      "existing_drawable": "xgallery"
     },
     {
       "id": "org.calyxos.twelve/org.lineageos.twelve.MainActivity",
@@ -2324,7 +2324,7 @@
     },
     {
       "id": "com.photomanager.imagephotogallery/com.photomanager.imagephotogallery.Activity_Photo_Gallery.Splash_Activity_Pho",
-      "existing_drawable": "generic_gallery"
+      "existing_drawable": "xgallery"
     },
     {
       "id": "com.googol.android.apps.oneplayer/com.zs.audiofy.MainActivity",

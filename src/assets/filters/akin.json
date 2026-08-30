@@ -216,7 +216,7 @@
     },
     {
       "id": "ua.com.radiokot.photoprism/ua.com.radiokot.photoprism.features.gallery.view.GalleryActivity",
-      "existing_drawable": "generic_gallery"
+      "existing_drawable": "xgallery"
     },
     {
       "id": "com.droidfoundry.tools/com.droidfoundry.tools.start.StartActivity",
@@ -576,7 +576,7 @@
     },
     {
       "id": "com.myscript.calculator.lenovo/com.myscript.calculator.BootstrapActivity",
-      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
+      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
     },
     {
       "id": "com.gameloft.android.gdc/com.gameloft.android.gdc.AYCELoadingActivity",
@@ -5225,10 +5225,6 @@
     {
       "id": "net.nhiroki.bluelinesolarinfo/net.nhiroki.bluelinesolarinfo.activities.MainActivity",
       "existing_drawable": "blue"
-    },
-    {
-      "id": "SVS.pdfinspector/SVS.pdfinspector.MainActivity",
-      "existing_drawable": "pdf_viewer_plus"
     },
     {
       "id": "com.kalab.pgnviewer/com.kalab.pgnviewer.activity.GameListActivity",
