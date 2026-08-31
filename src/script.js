@@ -492,7 +492,7 @@ const Templates = {
         ? ` <span class="trend-indicator" title="Growth from latest email import.">↑${trendingDelta}</span>`
         : ''
     }</div>
-        <div class="col roi">${app.roi_score ? Utils.compactNumber(app.roi_score) : '—'}</div>
+        <div class="col roi priority-${app.priority || 'low'}">${app.priority || 'Low'}</div>
         <div class="col install" title="${installsTitle}">${displayInstalls}</div>
         <div class="col first date-col">
           <div>${firstStr}</div>
