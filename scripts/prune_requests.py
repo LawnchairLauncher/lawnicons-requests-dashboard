@@ -270,7 +270,7 @@ def generate_stale_list() -> int:
 
     now = time.time()
     seconds_per_year = 365.25 * 86400
-    THIRTY_DAYS_IN_SECONDS = 30 * 24 * 60 * 60
+    QUARTER_IN_SECONDS = 90 * 24 * 60 * 60
 
     request_expiration_dates = []
     
@@ -294,7 +294,7 @@ def generate_stale_list() -> int:
         return 0
 
     earliest_expiration = min(date for _, date in request_expiration_dates)
-    window_end = earliest_expiration + THIRTY_DAYS_IN_SECONDS
+    window_end = earliest_expiration + QUARTER_IN_SECONDS
 
     start_date = time.strftime("%Y-%m-%d", time.localtime(earliest_expiration))
     end_date = time.strftime("%Y-%m-%d", time.localtime(window_end))
