@@ -492,7 +492,7 @@ const Templates = {
         ? ` <span class="trend-indicator" title="Growth from latest email import.">↑${trendingDelta}</span>`
         : ''
     }</div>
-        <div class="col roi priority-${app.priority || 'low'}">${app.priority || 'Low'}</div>
+        <div class="col roi priority-${(app.priority || 'low').toLowerCase()}">${app.priority || '—'}</div>
         <div class="col install" title="${installsTitle}">${displayInstalls}</div>
         <div class="col first date-col">
           <div>${firstStr}</div>
@@ -2139,8 +2139,8 @@ const UI = {
     { value: 'name-desc', label: 'Name (Z-A)' },
     { value: 'req-desc', label: 'Most requested' },
     { value: 'req-asc', label: 'Least requested' },
-    { value: 'roi-desc', label: 'Highest ROI' },
-    { value: 'roi-asc', label: 'Lowest ROI' },
+    { value: 'roi-desc', label: 'Highest priority' },
+    { value: 'roi-asc', label: 'Lowest priority' },
     { value: 'install-desc', label: 'Most installed' },
     { value: 'install-asc', label: 'Least installed' },
     { value: 'time-desc', label: 'Newest' },

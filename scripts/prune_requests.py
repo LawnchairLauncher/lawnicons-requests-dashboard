@@ -952,16 +952,19 @@ def calculate_roi_scores():
     all_scores = sorted([score for _, score in scores_list if score > 0], reverse=True)
     total = len(all_scores)
     
+    p1 = all_scores[int(total * 0.01)] if total > 100 else 0
     p5 = all_scores[int(total * 0.05)] if total > 20 else 0
     p25 = all_scores[int(total * 0.25)] if total > 4 else 0
     p50 = all_scores[int(total * 0.50)] if total > 2 else 0
     
     def get_priority(score):
-        if score > p5:
+        if score <= 0:
+            return '—'
+        if score > p1:
             return 'Critical'
-        if score > p25:
+        if score > p5:
             return 'High'
-        if score > p50:
+        if score > p25:
             return 'Medium'
         return 'Low'
     
