@@ -2247,9 +2247,10 @@ const UI = {
       if (
         !App.state.contributionActive && App.state.contribution.length === 0
       ) {
-        Components.Toast.show(
-          'Contribution plan is empty. Add at least 1 request.',
-        );
+        App.state.contributionActive = true;
+        App.dom.contributionBtn.classList.add('active');
+        this.render();
+        Data.syncUrlState();
         return;
       }
       App.state.contributionActive = !App.state.contributionActive;
@@ -4350,6 +4351,16 @@ layoutMasonry() {
     if (!hasIcons) {
       document.getElementById('contributionCards')?.classList.add('is-hidden');
       App.dom.headerCount.textContent = '0 icons';
+      
+      App.dom.container.innerHTML = `
+        <div id="contributionDrop" class="empty-state">
+          <svg><use href="#ic-upload"/></svg>
+          <h3>Drop appfilter.xml</h3>
+          <p>or add at least 1 request from the icon request dashboard</p>
+        </div>
+      `;
+      
+      this.initContributionDrop();
       return;
     }
 
@@ -4416,7 +4427,102 @@ layoutMasonry() {
         };
       }
     }
-  },  
+  },
+
+  initContributionDrop() {
+    const dropZone = document.getElementById('contributionDrop');
+    if (!dropZone) return;
+
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.xml';
+    fileInput.style.display = 'none';
+    document.body.appendChild(fileInput);
+
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files) this.importAppfilterXml(fileInput.files[0]);
+    });
+
+    // Global drop zone
+    let overlay = document.getElementById('contributionOverlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'contributionOverlay';
+      overlay.className = 'icon-review-overlay';
+      overlay.innerHTML = `<svg><use href="#ic-upload"/></svg><span>Drop appfilter.xml</span>`;
+      document.body.appendChild(overlay);
+    }
+
+    document.addEventListener('dragover', (e) => {
+      if (App.state.contributionActive && App.state.contribution.length === 0) {
+        e.preventDefault();
+        overlay.style.display = 'flex';
+      }
+    });
+
+    document.addEventListener('dragleave', (e) => {
+      if (e.clientX <= 0 || e.clientY <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight) {
+        overlay.style.display = 'none';
+      }
+    });
+
+    document.addEventListener('drop', (e) => {
+      if (App.state.contributionActive && App.state.contribution.length === 0) {
+        e.preventDefault();
+        overlay.style.display = 'none';
+        const file = e.dataTransfer?.files?.[0];
+        if (file) UI.importAppfilterXml(file);
+      }
+    });
+  },
+
+  importAppfilterXml(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const xmlText = e.target?.result;
+      if (typeof xmlText !== 'string') return;
+
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+      const items = xmlDoc.querySelectorAll('item');
+
+      let added = 0;
+      items.forEach((item) => {
+        const component = item.getAttribute('component') || '';
+        const drawable = item.getAttribute('drawable') || '';
+        const name = item.getAttribute('name') || '';
+
+        const match = component.match(/ComponentInfo\{([^}]+)\}/);
+        const componentName = match ? match[1] : component;
+
+        const app = App.state.idMap.get(componentName);
+        if (app && !App.state.contribution.some((a) => a.componentName === componentName)) {
+          App.state.contribution.push(app);
+          const tags = App.state.appTags.get(componentName) || new Set();
+          tags.add('plan');
+          App.state.appTags.set(componentName, tags);
+
+          if (drawable || name) {
+            App.state.contributionOverrides[componentName] = {
+              drawable: drawable || undefined,
+              label: name || undefined,
+              mode: 'link',
+            };
+          }
+          added++;
+        }
+      });
+
+      this.saveContribution();
+      Components.Toast.show(
+        `${added} icon${added !== 1 ? 's' : ''} added to contribution plan.`,
+      );
+      this.render();
+    };
+    reader.readAsText(file);
+  },
 
   updateIssues() {
     const list = document.getElementById('contributionIssuesList');
