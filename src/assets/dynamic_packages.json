@@ -1,5 +1,5 @@
 {
-  "description": "Dynamic package prefixes to exclude from dashboard",
+  "description": "Dynamic package prefixes and dead apps to exclude from dashboard.",
   "packages": [
     "com.discoverfinancial.mobile",
     "com.cinepolis.go",
@@ -7,6 +7,8 @@
     "id.co.bankbkemobile.digitalbank",
     "br.com.gabba.Caixa",
     "com.textra",
-    "com.TotalPlay.totalplay"
+    "com.TotalPlay.totalplay",
+    "com.skype.raider",
+    "com.google.android.apps.podcasts"
   ]
 }
