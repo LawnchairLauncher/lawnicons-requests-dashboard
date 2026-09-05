@@ -512,7 +512,7 @@ def update_activity_stats(
             day += date.resolution
 
     last_total = history[-1]["total"] if history else total
-    new_added = total - last_total + fulfilled_removed + expired_removed
+    new_added = max(0, total - last_total + fulfilled_removed + expired_removed)
 
     entry = {
         "date": today,
