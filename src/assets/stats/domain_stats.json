@@ -1,24 +1,24 @@
 {
   "com": {
-    "requests": 5809,
+    "requests": 5821,
     "done": 14110,
-    "total": 19919,
+    "total": 19931,
     "global": 0,
     "global_installs": 0
   },
   "us": {
-    "requests": 13172,
+    "requests": 13169,
     "done": 27,
-    "total": 13199,
-    "global": 13151,
-    "global_installs": 52046003769
+    "total": 13196,
+    "global": 13148,
+    "global_installs": 52044502769
   },
   "de": {
-    "requests": 2237,
+    "requests": 2278,
     "done": 486,
-    "total": 2723,
-    "global": 1935,
-    "global_installs": 9140803386
+    "total": 2764,
+    "global": 1963,
+    "global_installs": 9144815386
   },
   "ru": {
     "requests": 2065,
@@ -28,9 +28,9 @@
     "global_installs": 12582887398
   },
   "org": {
-    "requests": 1229,
+    "requests": 1230,
     "done": 1190,
-    "total": 2419,
+    "total": 2420,
     "global": 0,
     "global_installs": 0
   },
@@ -69,19 +69,19 @@
     "global": 559,
     "global_installs": 3053284336
   },
+  "fr": {
+    "requests": 626,
+    "done": 67,
+    "total": 693,
+    "global": 544,
+    "global_installs": 2706498972
+  },
   "it": {
     "requests": 563,
     "done": 118,
     "total": 681,
     "global": 429,
     "global_installs": 2776043355
-  },
-  "fr": {
-    "requests": 598,
-    "done": 67,
-    "total": 665,
-    "global": 516,
-    "global_installs": 2702486972
   },
   "pl": {
     "requests": 501,
@@ -98,25 +98,32 @@
     "global_installs": 0
   },
   "app": {
-    "requests": 271,
+    "requests": 276,
     "done": 295,
-    "total": 566,
+    "total": 571,
     "global": 0,
     "global_installs": 0
   },
   "net": {
-    "requests": 299,
+    "requests": 300,
     "done": 258,
-    "total": 557,
+    "total": 558,
     "global": 0,
     "global_installs": 0
   },
   "ch": {
-    "requests": 404,
+    "requests": 432,
     "done": 107,
-    "total": 511,
-    "global": 363,
-    "global_installs": 1271710421
+    "total": 539,
+    "global": 390,
+    "global_installs": 1275721421
+  },
+  "es": {
+    "requests": 391,
+    "done": 36,
+    "total": 427,
+    "global": 337,
+    "global_installs": 1396656115
   },
   "cz": {
     "requests": 349,
@@ -124,13 +131,6 @@
     "total": 416,
     "global": 287,
     "global_installs": 1313493200
-  },
-  "es": {
-    "requests": 362,
-    "done": 36,
-    "total": 398,
-    "global": 309,
-    "global_installs": 1392644115
   },
   "nl": {
     "requests": 297,
@@ -181,6 +181,13 @@
     "global": 239,
     "global_installs": 398174800
   },
+  "uk": {
+    "requests": 206,
+    "done": 55,
+    "total": 261,
+    "global": 129,
+    "global_installs": 1295896100
+  },
   "co": {
     "requests": 157,
     "done": 103,
@@ -223,13 +230,6 @@
     "global": 194,
     "global_installs": 389633015
   },
-  "uk": {
-    "requests": 177,
-    "done": 55,
-    "total": 232,
-    "global": 101,
-    "global_installs": 1291884100
-  },
   "me": {
     "requests": 80,
     "done": 137,
@@ -259,9 +259,9 @@
     "global_installs": 936783600
   },
   "air": {
-    "requests": 137,
+    "requests": 138,
     "done": 35,
-    "total": 172,
+    "total": 173,
     "global": 0,
     "global_installs": 0
   },
@@ -1931,6 +1931,13 @@
     "global": 0,
     "global_installs": 0
   },
+  "menion": {
+    "requests": 4,
+    "done": 0,
+    "total": 4,
+    "global": 0,
+    "global_installs": 0
+  },
   "mini": {
     "requests": 4,
     "done": 0,
@@ -2389,13 +2396,6 @@
   "mendeleev": {
     "requests": 0,
     "done": 3,
-    "total": 3,
-    "global": 0,
-    "global_installs": 0
-  },
-  "menion": {
-    "requests": 3,
-    "done": 0,
     "total": 3,
     "global": 0,
     "global_installs": 0
@@ -6957,6 +6957,13 @@
     "global": 0,
     "global_installs": 0
   },
+  "defikataster": {
+    "requests": 1,
+    "done": 0,
+    "total": 1,
+    "global": 0,
+    "global_installs": 0
+  },
   "dental": {
     "requests": 1,
     "done": 0,
@@ -7469,6 +7476,13 @@
     "global_installs": 0
   },
   "esim": {
+    "requests": 1,
+    "done": 0,
+    "total": 1,
+    "global": 0,
+    "global_installs": 0
+  },
+  "esm": {
     "requests": 1,
     "done": 0,
     "total": 1,
