@@ -66,7 +66,7 @@ def extract_image(zip_file: zipfile.ZipFile, drawable_name: str, out_dir: Path,
                         count += 1
 
                 out_dir.mkdir(parents=True, exist_ok=True)
-                img = Image.open(io.BytesIO(png_data))
+                img = Image.open(io.BytesIO(image_data))
                 img.save(image_path, "webp", quality=90)
                 return candidate_name
     except Exception as e:

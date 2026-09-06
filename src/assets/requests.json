@@ -1,6 +1,6 @@
 {
-  "count": 26445,
-  "lastUpdate": "2026-09-05",
+  "count": 26481,
+  "lastUpdate": "2026-09-06",
   "apps": [
     {
       "drawable": "happ",
@@ -7194,6 +7194,17 @@
       "priority": "Medium"
     },
     {
+      "drawable": "nearby_glasses",
+      "label": "Nearby Glasses",
+      "componentName": "ch.pocketpc.nearbyglasses/ch.pocketpc.nearbyglasses.MainActivity",
+      "requestCount": 13,
+      "firstAppearance": 1773745747.0,
+      "lastRequested": 1788698531.2205195,
+      "installs": "100,000+",
+      "roi_score": 14,
+      "priority": "Low"
+    },
+    {
       "drawable": "com_netease_mail",
       "requestCount": 12,
       "firstAppearance": 1718482160.0,
@@ -8543,17 +8554,6 @@
       "installs": "10,000,000+",
       "roi_score": 4146,
       "priority": "High"
-    },
-    {
-      "drawable": "nearby_glasses",
-      "label": "Nearby Glasses",
-      "componentName": "ch.pocketpc.nearbyglasses/ch.pocketpc.nearbyglasses.MainActivity",
-      "requestCount": 12,
-      "firstAppearance": 1773745747.0,
-      "lastRequested": 1784522313.0,
-      "installs": "100,000+",
-      "roi_score": 14,
-      "priority": "Low"
     },
     {
       "drawable": "member_tools",
@@ -12672,6 +12672,28 @@
       "priority": "Low"
     },
     {
+      "drawable": "broccoli",
+      "requestCount": 10,
+      "firstAppearance": 1718538347.0,
+      "lastRequested": 1788698531.2205195,
+      "label": "Broccoli",
+      "componentName": "com.flauschcode.broccoli/com.flauschcode.broccoli.MainActivity",
+      "installs": "1,000+",
+      "roi_score": 310,
+      "priority": "Medium"
+    },
+    {
+      "drawable": "every_door",
+      "requestCount": 10,
+      "firstAppearance": 1712830001.0,
+      "lastRequested": 1788698531.2205195,
+      "label": "Every Door",
+      "componentName": "info.zverev.ilya.every_door/info.zverev.ilya.every_door.MainActivity",
+      "installs": "10,000+",
+      "roi_score": 6,
+      "priority": "Low"
+    },
+    {
       "drawable": "lane",
       "label": "Lane",
       "componentName": "com.skiy.lane/com.skiy.lane.SplashActivity",
@@ -12948,17 +12970,6 @@
       "componentName": "com.tplink.aginet/com.tplink.isp.component.account.login.view.WelcomeActivity",
       "installs": "1,000,000+",
       "roi_score": 626,
-      "priority": "Medium"
-    },
-    {
-      "drawable": "broccoli",
-      "requestCount": 9,
-      "firstAppearance": 1718538347.0,
-      "lastRequested": 1760986886.0,
-      "label": "Broccoli",
-      "componentName": "com.flauschcode.broccoli/com.flauschcode.broccoli.MainActivity",
-      "installs": "1,000+",
-      "roi_score": 310,
       "priority": "Medium"
     },
     {
@@ -14237,17 +14248,6 @@
       "componentName": "app.signal.id/com.signal.app.presentation.entrance.view.EntranceActivity",
       "installs": "5,000,000+",
       "roi_score": 29,
-      "priority": "Low"
-    },
-    {
-      "drawable": "every_door",
-      "requestCount": 9,
-      "firstAppearance": 1712830001.0,
-      "lastRequested": 1743465600.0,
-      "label": "Every Door",
-      "componentName": "info.zverev.ilya.every_door/info.zverev.ilya.every_door.MainActivity",
-      "installs": "10,000+",
-      "roi_score": 6,
       "priority": "Low"
     },
     {
@@ -19592,6 +19592,17 @@
       "priority": "Low"
     },
     {
+      "drawable": "whosampled_2",
+      "requestCount": 8,
+      "firstAppearance": 1729159034.0,
+      "lastRequested": 1788698531.2205195,
+      "label": "WhoSampled",
+      "componentName": "com.whosampled/com.whosampled.activities.MainActivity",
+      "installs": "500,000+",
+      "roi_score": 2054,
+      "priority": "Medium"
+    },
+    {
       "drawable": "almanac_2",
       "label": "Almanac",
       "componentName": "com.voodoo.almanac/com.google.firebase.MessagingUnityPlayerActivity",
@@ -20798,17 +20809,6 @@
       "componentName": "com.akmal.dailydeeds/com.akmal.dailydeeds.ui.main.router.MainRouterActivity",
       "installs": "100,000+",
       "roi_score": 614,
-      "priority": "Medium"
-    },
-    {
-      "drawable": "whosampled_2",
-      "requestCount": 7,
-      "firstAppearance": 1729159034.0,
-      "lastRequested": 1784376285.0,
-      "label": "WhoSampled",
-      "componentName": "com.whosampled/com.whosampled.activities.MainActivity",
-      "installs": "500,000+",
-      "roi_score": 2054,
       "priority": "Medium"
     },
     {
@@ -31891,6 +31891,17 @@
       "priority": "Medium"
     },
     {
+      "drawable": "wero",
+      "requestCount": 6,
+      "firstAppearance": 1743465600.0,
+      "lastRequested": 1788698531.2205195,
+      "label": "Wero",
+      "componentName": "eu.epicompany.wero.wallet/eu.epicompany.wero.wallet.MainActivity",
+      "installs": "1,000,000+",
+      "roi_score": 4,
+      "priority": "Low"
+    },
+    {
       "drawable": "eskimo",
       "requestCount": 5,
       "firstAppearance": 1727383166.0,
@@ -39048,17 +39059,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "wero",
-      "requestCount": 5,
-      "firstAppearance": 1743465600.0,
-      "lastRequested": 1785499979.8389802,
-      "label": "Wero",
-      "componentName": "eu.epicompany.wero.wallet/eu.epicompany.wero.wallet.MainActivity",
-      "installs": "1,000,000+",
-      "roi_score": 4,
-      "priority": "Low"
-    },
-    {
       "drawable": "eve_for_matter",
       "requestCount": 5,
       "firstAppearance": 1743465600.0,
@@ -42602,6 +42602,28 @@
       "priority": "Low"
     },
     {
+      "drawable": "tonies",
+      "requestCount": 5,
+      "firstAppearance": 1724754084.0,
+      "lastRequested": 1788698531.2205195,
+      "label": "tonies",
+      "componentName": "com.tonies.app/com.tonies.app.MainActivity",
+      "installs": "1,000,000+",
+      "roi_score": 1061,
+      "priority": "Medium"
+    },
+    {
+      "drawable": "picture_mushroom",
+      "requestCount": 5,
+      "firstAppearance": 1719174388.0,
+      "lastRequested": 1788698531.2205195,
+      "label": "Picture Mushroom",
+      "componentName": "com.glority.picturemushroom/com.glority.android.picturexx.splash.SplashActivity",
+      "installs": "1,000,000+",
+      "roi_score": 81,
+      "priority": "Low"
+    },
+    {
       "drawable": "mobiel_you_2",
       "requestCount": 4,
       "firstAppearance": 1719128890.0,
@@ -45678,17 +45700,6 @@
       "lastRequested": 1776447912.0,
       "label": "iPray: Prayer Times & Qibla",
       "componentName": "com.guidedways.ipray/com.guidedways.ipray.screen.IPSplashLauncher",
-      "installs": "1,000,000+",
-      "roi_score": 1061,
-      "priority": "Medium"
-    },
-    {
-      "drawable": "tonies",
-      "requestCount": 4,
-      "firstAppearance": 1724754084.0,
-      "lastRequested": 1775813943.0,
-      "label": "tonies",
-      "componentName": "com.tonies.app/com.tonies.app.MainActivity",
       "installs": "1,000,000+",
       "roi_score": 1061,
       "priority": "Medium"
@@ -55653,17 +55664,6 @@
       "installs": "100,000,000+",
       "roi_score": 9764,
       "priority": "High"
-    },
-    {
-      "drawable": "picture_mushroom",
-      "requestCount": 4,
-      "firstAppearance": 1719174388.0,
-      "lastRequested": 1784289266.0,
-      "label": "Picture Mushroom",
-      "componentName": "com.glority.picturemushroom/com.glority.android.picturexx.splash.SplashActivity",
-      "installs": "1,000,000+",
-      "roi_score": 81,
-      "priority": "Low"
     },
     {
       "drawable": "prayer_tutorial",
@@ -74316,6 +74316,28 @@
       "priority": "Low"
     },
     {
+      "drawable": "barmenia",
+      "label": "Barmenia",
+      "componentName": "de.barmenia.meinebarmenia/de.barmenia.meinebarmenia.MainActivity",
+      "requestCount": 3,
+      "firstAppearance": 1766861947.0,
+      "lastRequested": 1788698531.2205195,
+      "installs": "500,000+",
+      "roi_score": 281,
+      "priority": "Medium"
+    },
+    {
+      "drawable": "b90_die_grunen",
+      "label": "B90/DIE GR\u00dcNEN",
+      "componentName": "de.gruene.wkapp/de.gruene.wkapp.MainActivity",
+      "requestCount": 3,
+      "firstAppearance": 1766861947.0,
+      "lastRequested": 1788698531.2205195,
+      "installs": "10,000+",
+      "roi_score": 2,
+      "priority": "Low"
+    },
+    {
       "drawable": "lupa_2",
       "requestCount": 2,
       "firstAppearance": 1745020800.0,
@@ -84279,17 +84301,6 @@
       "firstAppearance": 1767133136.0,
       "lastRequested": 1780629410.0,
       "roi_score": 561,
-      "priority": "Medium"
-    },
-    {
-      "drawable": "barmenia",
-      "label": "Barmenia",
-      "componentName": "de.barmenia.meinebarmenia/de.barmenia.meinebarmenia.MainActivity",
-      "requestCount": 2,
-      "firstAppearance": 1766861947.0,
-      "lastRequested": 1782578792.0,
-      "installs": "500,000+",
-      "roi_score": 281,
       "priority": "Medium"
     },
     {
@@ -104935,17 +104946,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "b90_die_grunen",
-      "label": "B90/DIE GR\u00dcNEN",
-      "componentName": "de.gruene.wkapp/de.gruene.wkapp.MainActivity",
-      "requestCount": 2,
-      "firstAppearance": 1766861947.0,
-      "lastRequested": 1782578792.0,
-      "installs": "10,000+",
-      "roi_score": 2,
-      "priority": "Low"
-    },
-    {
       "drawable": "coordinate_joker",
       "label": "Coordinate Joker",
       "componentName": "com.github.siggel.coordinatejoker/com.github.siggel.coordinatejoker.MainActivity",
@@ -111923,6 +111923,39 @@
       "firstAppearance": 1785882566.0,
       "lastRequested": 1787259691.0,
       "roi_score": 23,
+      "priority": "Low"
+    },
+    {
+      "drawable": "gls_app",
+      "requestCount": 2,
+      "firstAppearance": 1745020800.0,
+      "lastRequested": 1788698531.2205195,
+      "label": "GLS App",
+      "componentName": "com.gls.glsappde.consumer/com.gls.glsappde.consumer.MainActivity",
+      "installs": "500,000+",
+      "roi_score": 23,
+      "priority": "Low"
+    },
+    {
+      "drawable": "geovelo_2",
+      "label": "Geovelo",
+      "componentName": "fr.geovelo/fr.geovelo.views.MainActivity",
+      "requestCount": 2,
+      "firstAppearance": 1783412977.0,
+      "lastRequested": 1788698531.2205195,
+      "installs": "1,000,000+",
+      "roi_score": 327,
+      "priority": "Medium"
+    },
+    {
+      "drawable": "baba",
+      "label": "Baba",
+      "componentName": "com.ravenfeld.panoramax.baba/com.ravenfeld.panoramax.baba.MainActivity",
+      "requestCount": 2,
+      "firstAppearance": 1782821889.0,
+      "lastRequested": 1788698531.2205195,
+      "installs": "1,000+",
+      "roi_score": 9,
       "priority": "Low"
     },
     {
@@ -118931,17 +118964,6 @@
       "componentName": "com.famories.app/com.famories.app.MainActivity",
       "installs": "5,000+",
       "roi_score": 4,
-      "priority": "Low"
-    },
-    {
-      "drawable": "gls_app",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1785486620.157421,
-      "label": "GLS App",
-      "componentName": "com.gls.glsappde.consumer/com.gls.glsappde.consumer.MainActivity",
-      "installs": "500,000+",
-      "roi_score": 23,
       "priority": "Low"
     },
     {
@@ -154634,17 +154656,6 @@
       "installs": "50,000+",
       "roi_score": 222,
       "priority": "Low"
-    },
-    {
-      "drawable": "geovelo_2",
-      "label": "Geovelo",
-      "componentName": "fr.geovelo/fr.geovelo.views.MainActivity",
-      "requestCount": 1,
-      "firstAppearance": 1783412977.0,
-      "lastRequested": 1783412977.0,
-      "installs": "1,000,000+",
-      "roi_score": 327,
-      "priority": "Medium"
     },
     {
       "drawable": "immoweb_2",
@@ -231891,17 +231902,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "baba",
-      "label": "Baba",
-      "componentName": "com.ravenfeld.panoramax.baba/com.ravenfeld.panoramax.baba.MainActivity",
-      "requestCount": 1,
-      "firstAppearance": 1782821889.0,
-      "lastRequested": 1782821889.0,
-      "installs": "1,000+",
-      "roi_score": 9,
-      "priority": "Low"
-    },
-    {
       "drawable": "catalog_viva",
       "label": "Catalog Viva",
       "componentName": "com.catalogViva/com.catalogViva.MainActivity",
@@ -285110,6 +285110,294 @@
       "roi_score": 4,
       "installs": "10,000+",
       "priority": "Low"
+    },
+    {
+      "drawable": "aok_ident_app",
+      "label": "AOK Ident-App",
+      "componentName": "de.aok.aokident/com.tsystems.idp.aok.ident.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "allchords",
+      "label": "AllChords",
+      "componentName": "com.mv2studio.allchodrs/com.mv2studio.allchodrs.activity.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "biwapp",
+      "label": "BIWAPP",
+      "componentName": "de.mplg.biwapp/crc64bbf494366918b84d.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "beverstedt",
+      "label": "Beverstedt",
+      "componentName": "app.orts.beverstedt/app.orts.beverstedt.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "bikeandridebox",
+      "label": "BikeandRideBox",
+      "componentName": "de.bikeandpark.portal/de.bikeandpark.portal.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "cadenberge",
+      "label": "Cadenberge",
+      "componentName": "app.orts.cadenberge/app.orts.cadenberge.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "comaps_test",
+      "label": "CoMaps Test",
+      "componentName": "app.comaps.test/app.organicmaps.DownloadResourcesActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "converter",
+      "label": "Converter",
+      "componentName": "air.com.intemodino.lengthconverter/air.com.intemodino.lengthconverter.AppEntry",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "cux_und_quer",
+      "label": "CuX und quer",
+      "componentName": "de.tafmobile.mobility.cuxundquer/de.tafmobile.mobility.ui.main.splash.SplashActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "defikataster",
+      "label": "Defikataster",
+      "componentName": "defikataster.defikataster/crc64368f9ae342d36745.SplashActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "dorffunk",
+      "label": "DorfFunk",
+      "componentName": "de.fhg.iese.dd.dorffunk.android/crc6461eb73f39586dd21.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "e_station",
+      "label": "E-Station",
+      "componentName": "de.jkg_apps.ebikeladestationen/com.example.estation.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "echosos",
+      "label": "EchoSOS",
+      "componentName": "ch.mobilemed.echo112/ch.mobilemed.echo112.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "fahrradfinden",
+      "label": "FahrradFinden",
+      "componentName": "com.fahrradfinden/com.fahrradfinden.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "frostpendeln_tracker_v4",
+      "label": "Frostpendeln Tracker V4",
+      "componentName": "app.floot.uea8d713ed0e944a28d8deb93401495c0/app.floot.uea8d713ed0e944a28d8deb93401495c0.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "guitar_chord_transposer",
+      "label": "Guitar Chord Transposer",
+      "componentName": "es.davidtrigo.chordstransposer/es.davidtrigo.chordstransposer.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "icd_auskunft",
+      "label": "ICD Auskunft",
+      "componentName": "de.tk.apps.android.icd/de.tk.icdapp.SplashScreen",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "it_s_my_bike",
+      "label": "IT'S MY BIKE",
+      "componentName": "com.iotventure.itsmybike/com.iotventure.itsmybike.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "image_to_text",
+      "label": "Image To Text",
+      "componentName": "com.imagetotext.textscanner/com.imagetotext.textscanner.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "kosmos_plus",
+      "label": "KOSMOS-PLUS",
+      "componentName": "com.kosmos.plus/com.kosmos.plus.InitActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "locus_gis",
+      "label": "Locus GIS",
+      "componentName": "menion.android.locus.gis/com.asamm.android.library.androidCore.features.startScreen.StartScreen",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "meine_pegel",
+      "label": "Meine Pegel",
+      "componentName": "de.hochwasserzentralen.app/de.hochwasserzentralen.app.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "mergin_maps",
+      "label": "Mergin Maps",
+      "componentName": "uk.co.lutraconsulting/uk.co.lutraconsulting.MMActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "my_axa_mobile",
+      "label": "My AXA Mobile",
+      "componentName": "de.axa.noa/de.axa.noa.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "osm_viewer",
+      "label": "OSM Viewer",
+      "componentName": "com.applikationsprogramvara.osmviewer/com.applikationsprogramvara.osmviewer.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "obsidentify",
+      "label": "ObsIdentify",
+      "componentName": "org.observation.obsidentify/org.observation.obsidentify.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "politpro",
+      "label": "PolitPro",
+      "componentName": "de.maguone.politpro/de.maguone.politpro.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "rufmobil",
+      "label": "RufMobil",
+      "componentName": "esm.ansat.meinrufmobil/crc641b13183602bd24ba.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "sg_hemmoor",
+      "label": "SG Hemmoor",
+      "componentName": "app.orts.hemmoor/app.orts.hemmoor.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "schiffdorf",
+      "label": "SchiffDORF",
+      "componentName": "de.schiffdorf.app/com.example.schiffdorf.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "stiftung_warentest",
+      "label": "Stiftung Warentest",
+      "componentName": "de.stiftungwarentest.ePaper/com.sprylab.purple.android.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "tipp_tapp",
+      "label": "Tipp-Tapp",
+      "componentName": "net.tasso.tipptapp/crc64102db56fe40076d5.SplashActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "veloplanner",
+      "label": "VeloPlanner",
+      "componentName": "com.veloplanner.mobile/com.veloplanner.mobile.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "bike_energy",
+      "label": "bike_energy",
+      "componentName": "com.bikeenergy.app/com.bikeenergy.app.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "presseportal",
+      "label": "presseportal",
+      "componentName": "com.newsaktuell.presseportal/com.newsaktuell.presseportal.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
+    },
+    {
+      "drawable": "toom",
+      "label": "toom",
+      "componentName": "de.toom.app/de.toom.app.features.main.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1788698531.2205195,
+      "lastRequested": 1788698531.2205195
     }
   ]
 }
