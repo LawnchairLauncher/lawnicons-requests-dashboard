@@ -650,6 +650,10 @@ def calculate_roi_scores():
     apps = requests_data.get("apps", [])
     
     # Load required data
+
+    with open(REPO_ROOT / "src/assets/filters/supported.json") as f:
+        supported = set(json.load(f).get("supported", []))
+
     with open(REPO_ROOT / "src/assets/filters/easy.json") as f:
         easy = set(json.load(f).get("easy", []))
     
@@ -884,6 +888,9 @@ def calculate_roi_scores():
         
         complexity = 1 if is_easy else 15
 
+        is_supported = comp in supported
+        supported_multiplier = 15.0 if is_supported else 1.0
+
         if installs == 0:
             installs = median_installs
             installs_penalty = 0.5
@@ -943,7 +950,8 @@ def calculate_roi_scores():
             (1.3 if is_foss else 1.0) *
             age_multiplier *
             (1 + trend_log) *
-            installs_penalty
+            installs_penalty *
+            supported_multiplier
         ) / complexity
         
         scores_list.append((app, score))
