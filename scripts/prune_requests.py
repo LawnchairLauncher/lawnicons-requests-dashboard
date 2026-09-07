@@ -1039,10 +1039,12 @@ def main() -> int:
         if removed_components and supported_path.exists():
             with open(supported_path, "r+", encoding="utf-8") as f:
                 data = json.load(f)
-                fulfilled_now = sum(1 for c in removed_components if c in data.get("supported", []))
+                supported_list = data.get("supported", [])
+                fulfilled_now = sum(1 for c in removed_components if c in supported_list)
                 if fulfilled_now > 0:
+                    data["supported"] = [c for c in supported_list if c not in removed_components]
                     data["done"] = data.get("done", 0) + fulfilled_now
-                    data["total"] = data["done"] + len(data.get("supported", []))
+                    data["total"] = data["done"] + len(data["supported"])
                     f.seek(0)
                     json.dump(data, f, indent=2)
                     f.truncate()
