@@ -263,6 +263,10 @@
       "existing_drawable": "material"
     },
     {
+      "id": "org.hempuli.baba/org.hempuli.baba.ChowdrenActivity",
+      "existing_drawable": "baba"
+    },
+    {
       "id": "com.lge.media.lgxboom/com.lge.media.lgxboom.home.firsthome.FirstHomeActivity",
       "existing_drawable": "lg_smartworld"
     },
@@ -5273,6 +5277,14 @@
     {
       "id": "com.TE.WEWallet/com.emeint.android.mwallet2.view.StartupActivity",
       "existing_drawable": "we"
+    },
+    {
+      "id": "de.aok.aokident/com.tsystems.idp.aok.ident.MainActivity",
+      "existing_drawable": "aok"
+    },
+    {
+      "id": "menion.android.locus.gis/com.asamm.android.library.androidCore.features.startScreen.StartScreen",
+      "existing_drawable": "locus"
     }
   ]
 }
