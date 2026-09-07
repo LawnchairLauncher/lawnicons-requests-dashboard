@@ -22,6 +22,7 @@ const CONFIG = {
     assetsPath: 'extracted_images/',
     iconExtension: '.webp',
     filterPath: 'assets/filters/',
+    supportedIssuesPath: 'assets/supported_issues.json',
     svgPath: 'assets/qa_issues/svgs/',
     // Order matters for UI
     filters: [
@@ -424,6 +425,16 @@ const Templates = {
     const appNameClass = isUnknown ? 'app-name is-hidden' : 'app-name';
 
     const tagHtml = tags.map((tagId) => {
+      if (tagId === 'supported') {
+        const issueEntry = Object.entries(App.state.supportedIssues || {}).find(([name, comps]) =>
+          name.startsWith('#') && comps.includes(id)
+        );
+        if (issueEntry) {
+          const issueNum = issueEntry[0].slice(1);
+          const issueUrl = `https://github.com/LawnchairLauncher/lawnicons/issues/${issueNum}`;
+          return `<a class="status-pill status-supported" href="${issueUrl}" target="_blank" rel="noopener" title="Issue #${issueNum}">${issueEntry[0]}</a>`;
+        }
+      }
       const meta = App.state.filterMetadata.get(tagId);
       const label = meta ? meta.label : tagId;
       const desc = meta ? meta.description : '';
@@ -1639,6 +1650,7 @@ const Data = {
       App.state.screensData = await this.fetchJson(CONFIG.data.screensGraphPath, {});
       App.state.requestsGraph = await this.fetchJson(CONFIG.data.requestsGraphPath, {});
       App.state.contestData = await this.fetchJson(CONFIG.data.contestPath, []);
+      App.state.supportedIssues = await this.fetchJson(CONFIG.data.supportedIssuesPath, {});
       
       // Load optional data
       await Promise.all([

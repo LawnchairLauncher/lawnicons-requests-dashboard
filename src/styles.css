@@ -1428,6 +1428,14 @@ grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px minmax(14
   color: var(--on-teal-container);
 }
 
+.status-pill.status-supported {
+  text-decoration: none;
+}
+
+.status-pill.status-supported:hover {
+  text-decoration: underline;
+}
+
 .status-easy {
   background: var(--tertiary-container);
   color: var(--on-tertiary-container);
@@ -1447,6 +1455,7 @@ grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px minmax(14
   background: var(--orange-container);
   color: var(--on-orange-container);
 }
+
 .status-match {
   background: var(--pine-container);
   color: var(--on-pine-container);

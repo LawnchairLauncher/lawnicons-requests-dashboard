@@ -299,6 +299,10 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, image_out_path: Path,
     existing_supported = parse_existing_supported_json(supported_path)
 
     apps, zip_components = parse_zips(zip_files, apps, image_out_path, output_path.parent, appfilter_path)
+
+    issue_num = input("Enter issue number for supported requests (e.g. 1234): ").strip()
+    if issue_num:
+        update_supported_issues(output_path.parent, f"#{issue_num}", list(zip_components))
     
     if appfilter_path.exists():
         existing = load_existing_components(appfilter_path)
@@ -375,7 +379,22 @@ def update_requests_graph(output_dir: Path, component_ids: list[str]):
     
     with open(graph_path, 'w') as f:
         json.dump(graph, f, indent=2)
-        
+
+def update_supported_issues(output_dir: Path, issue_name: str, component_ids: list[str]):
+    issues_path = output_dir / "supported_issues.json"
+    if issues_path.exists():
+        with open(issues_path) as f:
+            issues = json.load(f)
+    else:
+        issues = {}
+    
+    issues[issue_name] = list(set(component_ids))
+    
+    issues_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(issues_path, 'w') as f:
+        json.dump(issues, f, indent=2)
+    
+    print(f"Updated supported_issues.json with {issue_name}: {len(component_ids)} components")
 
 # -------------------------------------------------------
 # MAIN
