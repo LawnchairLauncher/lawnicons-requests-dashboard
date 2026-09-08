@@ -2314,7 +2314,7 @@ const UI = {
 
     const contestTab = document.querySelector('.tab[data-tab="contest"]');
     if (contestTab) {
-      contestTab.classList.remove('is-hidden');
+      contestTab.classList.add('is-hidden');
     }
 
     document.querySelectorAll('#contestSection .tab').forEach(tab => {
