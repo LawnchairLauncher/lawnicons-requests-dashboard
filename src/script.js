@@ -3204,6 +3204,8 @@ const UI = {
       App.dom.viewLabel.textContent = 'Table';
     }
     App.dom.container.innerHTML = '';
+    App.dom.container.style.position = '';
+    App.dom.container.style.height = '';
     App.dom.container.className = s.view === 'grid' ? 'grid-container' : s.view === 'screens' ? 'screens-grid' : '';
 
     this.generateFilters();
