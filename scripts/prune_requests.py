@@ -676,6 +676,7 @@ def calculate_roi_scores():
         trending = json.load(f)
     
     # 90d May-July 2026
+    # Some countries estimated from median loss/requests ratio (2.05)
     USER_LOSS = {
         'in': 5231, 'us': 2806, 'br': 1842, 'ru': 1810, 'id': 1681,
         'ph': 957, 'mx': 820, 'uk': 643, 'bd': 616, 'de': 588,
@@ -688,7 +689,11 @@ def calculate_roi_scores():
         'sg': 85, 'ch': 78, 'mg': 77, 'cz': 71, 'et': 61,
         'sv': 60, 'no': 51, 'tz': 47, 'uz': 46, 'at': 39,
         'bg': 39, 'zw': 38, 'zm': 21, 'pa': 17, 'ci': 14,
-        'bt': 2, 'aw': 1
+        'bt': 2, 'aw': 1,
+        'cn': 1884, 'se': 1281, 'fi': 529, 'au': 525, 
+        'kr': 355,'ma': 283, 'be': 275, 'rs': 269, 
+        'cl': 195,'il': 168, 'dk': 166, 'hr': 154, 
+        'am': 137,'tn': 135, 'kz': 117, 'la': 109
     }
     
     MAX_LOSS = max(USER_LOSS.values())
