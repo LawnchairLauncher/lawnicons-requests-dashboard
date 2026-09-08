@@ -179,10 +179,8 @@ const App = {
     sortBtn: /** @type {any} */ (document.getElementById('sortBtn')),
     /** @type {HTMLButtonElement} */
     viewBtn: /** @type {any} */ (document.getElementById('viewBtn')),
-    /** @type {HTMLElement} */
-    viewIconList: /** @type {any} */ (document.getElementById('viewIconList')),
-    /** @type {HTMLElement} */
-    viewIconGrid: /** @type {any} */ (document.getElementById('viewIconGrid')),
+    /** @type {HTMLSpanElement} */
+    viewLabel: /** @type {any} */ (document.getElementById('viewLabel')),
     /** @type {HTMLElement} */
     sortMenu: /** @type {any} */ (document.getElementById('sortMenu')),
     /** @type {HTMLSpanElement} */
@@ -2036,7 +2034,14 @@ const Data = {
     }
     if (params.has('view')) {
       const v = params.get('view');
-      if (v === 'list' || v === 'grid') App.state.view = v;
+      if (v === 'list' || v === 'grid' || v === 'screens') {
+        App.state.view = v;
+        if (v === 'screens') {
+          App.state.activeTab = 'screens';
+        } else {
+          App.state.activeTab = 'requests';
+        }
+      }
     }
     if (params.has('sort')) {
       App.state.sort = params.get('sort') || DEFAULTS.sort;
@@ -2051,11 +2056,6 @@ const Data = {
       params.get('filters')?.split(',').forEach((t) => {
         if (CONFIG.data.filters.includes(t)) App.state.activeFilters.add(t);
       });
-    }
-    if (params.has('tab')) {
-      const tab = params.get('tab');
-      if (tab === 'screens') App.state.activeTab = 'screens';
-      else if (tab === 'contest') App.state.activeTab = 'contest';
     }
     if (params.has('screen')) {
       const screenId = params.get('screen');
@@ -2096,8 +2096,8 @@ const Data = {
       params.delete('filters');
     }
 
-    if (s.activeTab !== 'requests') params.set('tab', s.activeTab);
-    else params.delete('tab');
+    if (s.view === 'screens') params.set('view', 'screens');
+    else if (s.view === DEFAULTS.view) params.delete('view');
     
     if (s.activeScreenFilter) {
       const screenEntry = Object.entries(s.screensData).find(([_, ids]) => 
@@ -2300,32 +2300,6 @@ const UI = {
       },
     );
 
-    App.dom.mainTabs?.addEventListener('click', (e) => {
-      const tab = /** @type {HTMLElement} */ (e.target).closest('.tab');
-      if (!tab) return;
-      App.state.activeTab = tab.dataset.tab;
-      if (App.state.activeTab === 'requests') {
-        App.state.activeScreenFilter = null;
-      }      
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      this.render();
-    });
-
-    const contestTab = document.querySelector('.tab[data-tab="contest"]');
-    if (contestTab) {
-      contestTab.classList.add('is-hidden');
-    }
-
-    document.querySelectorAll('#contestSection .tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        App.state.activeTab = 'contest';
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        UI.renderContest();
-      });
-    });    
-
     const activeMode = App.state.domainStatsMode;
     const activeSvg = document.querySelector(
       `[data-action='domain-stats-mode'][data-mode='${activeMode}']`,
@@ -2416,20 +2390,23 @@ const UI = {
     });    
 
     App.dom.viewBtn.addEventListener('click', () => {
-      App.state.view = App.state.view === 'list' ? 'grid' : 'list';
-      App.dom.viewIconList.classList.toggle(
-        'active',
-        App.state.view === 'list',
-      );
-      App.dom.viewIconGrid.classList.toggle(
-        'active',
-        App.state.view === 'grid',
-      );
-      this.render();
+      const menu = App.dom.sortMenu;
+      menu.innerHTML = `
+        <div class="ctx-item ${App.state.view === 'list' && App.state.activeTab === 'requests' ? 'active' : ''}" data-action="view-option" data-value="table">
+          <span>Table</span>
+        </div>
+        <div class="ctx-item ${App.state.view === 'grid' && App.state.activeTab === 'requests' ? 'active' : ''}" data-action="view-option" data-value="grid">
+          <span>Grid</span>
+        </div>
+        <div class="ctx-item ${App.state.activeTab === 'screens' ? 'active' : ''}" data-action="view-option" data-value="screens">
+          <span>Screens</span>
+        </div>
+      `;
+      const rect = App.dom.viewBtn.getBoundingClientRect();
+      menu.style.left = rect.left + 'px';
+      menu.style.top = (rect.bottom + 8) + 'px';
+      menu.showPopover();
     });
-
-    App.dom.viewIconList.classList.add('active');
-    App.dom.viewIconGrid.classList.remove('active');
 
     App.dom.regexBtn.addEventListener('click', () => {
       clearTimeout(searchTimeout);
@@ -2755,6 +2732,22 @@ const UI = {
             .join('\n');
           Actions.copyToClipboard(entries);
           Actions.closeSbMenu();
+          return;
+        }
+
+        if (action === 'view-option') {
+          const value = actionEl.dataset.value;
+          if (value === 'screens') {
+            App.state.activeTab = 'screens';
+            App.state.view = 'screens';
+            App.dom.viewLabel.textContent = 'Screens';
+          } else {
+            App.state.activeTab = 'requests';
+            App.state.view = value === 'table' ? 'list' : value;
+            App.dom.viewLabel.textContent = value === 'table' ? 'Table' : 'Grid';
+          }
+          App.dom.sortMenu.hidePopover();
+          this.render();
           return;
         }
 
@@ -3203,8 +3196,15 @@ const UI = {
     if (contribCards) contribCards.classList.add('is-hidden');
 
     const s = App.state;
+    if (s.view === 'screens') {
+      App.dom.viewLabel.textContent = 'Screens';
+    } else if (s.view === 'grid') {
+      App.dom.viewLabel.textContent = 'Grid';
+    } else {
+      App.dom.viewLabel.textContent = 'Table';
+    }
     App.dom.container.innerHTML = '';
-    App.dom.container.className = s.view === 'grid' ? 'grid-container' : '';
+    App.dom.container.className = s.view === 'grid' ? 'grid-container' : s.view === 'screens' ? 'screens-grid' : '';
 
     this.generateFilters();
     this.syncFilterTagState();
@@ -3221,12 +3221,11 @@ const UI = {
     Utils.setHidden(desc, false);
     Utils.setHidden(link, false);
 
-    const tabsEl = document.getElementById('mainTabs');
-
     if (App.state.activeTab === 'screens') {
-      document.querySelector('.controls')?.classList.add('is-hidden');
-      tabsEl.classList.remove('is-hidden');
+      App.dom.sortBtn.classList.add('is-hidden');
       App.dom.screenSortBtn.classList.remove('is-hidden');
+      document.getElementById('filterContainer')?.classList.add('is-hidden');
+      App.dom.mobileFilterBtn.classList.add('is-hidden');
       const activeLabel = UI.screenSortOptions.find(o => o.value === s.screenSort)?.label || 'Most requested';
       App.dom.screenSortLabel.textContent = activeLabel;
       App.dom.listHeader.style.display = 'none';
@@ -3236,14 +3235,18 @@ const UI = {
     }
 
     if (App.state.activeTab === 'contest') {
-      document.querySelector('.controls')?.classList.add('is-hidden');
       document.getElementById('mainTabs')?.classList.remove('is-hidden');
       App.dom.screenSortBtn.classList.add('is-hidden');
       App.dom.listHeader.style.display = 'none';
       App.dom.sentinel.style.display = 'none';
       this.renderContest();
       return;
-    }    
+    }
+
+    App.dom.sortBtn.classList.remove('is-hidden');
+    App.dom.screenSortBtn.classList.add('is-hidden');
+    document.getElementById('filterContainer')?.classList.remove('is-hidden');
+    App.dom.mobileFilterBtn.classList.remove('is-hidden');
 
     if (s.currentData.length === 0) {
       App.dom.container.innerHTML = Templates.emptyState();
@@ -3251,7 +3254,6 @@ const UI = {
       App.dom.listHeader.style.display = s.view === 'list' ? 'grid' : 'none';
       App.dom.sentinel.style.display = '';
       App.dom.screenSortBtn.classList.add('is-hidden');
-      tabsEl.classList.remove('is-hidden');
       document.querySelector('.controls')?.classList.remove('is-hidden');
       return;
     }
@@ -3262,7 +3264,6 @@ const UI = {
     App.dom.listHeader.style.display = s.view === 'list' ? 'grid' : 'none';
     App.dom.sentinel.style.display = '';
     App.dom.screenSortBtn.classList.add('is-hidden');
-    tabsEl.classList.remove('is-hidden');
     document.querySelector('.controls')?.classList.remove('is-hidden');
   },
 
@@ -3649,8 +3650,8 @@ layoutMasonry() {
       card.addEventListener('click', (e) => {
         if (e.target instanceof HTMLElement && e.target.closest('[data-action]')) return;
         App.state.activeTab = 'requests';
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.querySelector('.tab[data-tab="requests"]')?.classList.add('active');
+        App.state.view = 'list';
+        App.dom.viewLabel.textContent = 'Table';
         App.state.activeScreenFilter = screen.ids;
         Data.syncUrlState();
         this.render();

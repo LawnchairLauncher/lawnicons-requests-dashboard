@@ -137,26 +137,19 @@
       <div class="library-grid"></div>
   </div>
 
-  <div class="tabs" id="mainTabs">
-    <button class="tab active" data-tab="requests">Icon requests</button>
-    <button class="tab" data-tab="screens">Screens</button>
-    <button class="tab is-hidden" data-tab="contest">Contest</button>
-  </div>
-  <button id="screenSortBtn" class="chip is-hidden" title="Sort screens">
-    <span id="screenSortLabel">Most requested</span>
-  </button>
-
   <div class="controls">
     <a href="#headerCheck" id="controlsSkip">Skip filters</a>
 
     <div class="controls-bottom">
       <div class="control-group">
-        <button id="viewBtn" class="control-group-btn" title="List or grid view">
-          <svg id="viewIconList" class="active"><use href="#ic-list-view"/></svg>
-          <svg id="viewIconGrid"><use href="#ic-grid-view"/></svg>
+        <button id="viewBtn" class="chip" title="View">
+          <span id="viewLabel">Table</span>
         </button>
         <button id="sortBtn" class="chip" title="Sort by">
           <span id="sortLabel">Most requested</span>
+        </button>
+        <button id="screenSortBtn" class="chip is-hidden" title="Sort screens">
+          <span id="screenSortLabel">Most requested</span>
         </button>
       </div>
 
