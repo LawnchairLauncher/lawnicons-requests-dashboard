@@ -121,7 +121,6 @@ const App = {
     activeTab: 'requests',
     screensData: {},
     screenSort: 'req-desc',
-    activeScreenFilter: null,
   },
 
   dom: {
@@ -1861,61 +1860,72 @@ const Data = {
 
     // Text Search
     if (query.text) {
-      const issueMatch = query.text.match(/^#(\d+)$/);
-      if (issueMatch) {
-        const issueKey = `#${issueMatch[1]}`;
-        const issueComps = App.state.supportedIssues?.[issueKey];
-        if (issueComps) {
-          data = data.filter(app => issueComps.includes(app.componentName));
+      const screenMatch = query.text.match(/^scr-(\d+)$/);
+      if (screenMatch) {
+        const screenId = `scr-${screenMatch[1]}`;
+        const screenComps = App.state.screensData?.[screenId];
+        if (screenComps) {
+          data = data.filter(app => screenComps.includes(app.componentName));
         } else {
           data = [];
         }
-      } else if (s.regexMode) {
-        try {
-          const regex = new RegExp(query.text, 'i');
-          const isUsSearch = query.text === '^us\\.';
-          const graph = App.state.requestsGraph;
-          
-          data = data.filter((a) => {
-            if (regex.test(a.label) || regex.test(a.componentName)) return true;
-            
-            if (isUsSearch) {
-              const comp = a.componentName;
-              const domain = comp.split('/')[0].split('.')[0];
-              if (domain === 'com' && !graph[comp]) return true;
-            }
-            
-            const domainMatch = s.search.match(/^\^([a-z]+)\\\./);
-            if (domainMatch) {
-              const searchDomain = domainMatch[1];
-              const comp = a.componentName;
-              const graph = App.state.requestsGraph;
-              if (graph[comp]) {
-                const neighbors = Object.keys(graph[comp]);
-                return neighbors.some(n => n.split('/')[0].split('.')[0] === searchDomain);
-              }
-            }
-            const multiDomainMatch = s.search.match(/^\^\(([a-z|]+)\)\\\./);
-            if (multiDomainMatch) {
-              const searchDomains = multiDomainMatch[1].split('|');
-              const comp = a.componentName;
-              const graph = App.state.requestsGraph;
-              if (graph[comp]) {
-                const neighbors = Object.keys(graph[comp]);
-                return neighbors.some(n => searchDomains.includes(n.split('/')[0].split('.')[0]));
-              }
-              return false;
-            }
-          });
-        } catch {
-          data = [];
-        }
       } else {
-        const term = query.text.toLowerCase();
-        data = data.filter((a) =>
-          a.label.toLowerCase().includes(term) ||
-          a.componentName.toLowerCase().includes(term)
-        );
+        const issueMatch = query.text.match(/^#(\d+)$/);
+        if (issueMatch) {
+          const issueKey = `#${issueMatch[1]}`;
+          const issueComps = App.state.supportedIssues?.[issueKey];
+          if (issueComps) {
+            data = data.filter(app => issueComps.includes(app.componentName));
+          } else {
+            data = [];
+          }
+        } else if (s.regexMode) {
+          try {
+            const regex = new RegExp(query.text, 'i');
+            const isUsSearch = query.text === '^us\\.';
+            const graph = App.state.requestsGraph;
+            
+            data = data.filter((a) => {
+              if (regex.test(a.label) || regex.test(a.componentName)) return true;
+              
+              if (isUsSearch) {
+                const comp = a.componentName;
+                const domain = comp.split('/')[0].split('.')[0];
+                if (domain === 'com' && !graph[comp]) return true;
+              }
+              
+              const domainMatch = s.search.match(/^\^([a-z]+)\\\./);
+              if (domainMatch) {
+                const searchDomain = domainMatch[1];
+                const comp = a.componentName;
+                const graph = App.state.requestsGraph;
+                if (graph[comp]) {
+                  const neighbors = Object.keys(graph[comp]);
+                  return neighbors.some(n => n.split('/')[0].split('.')[0] === searchDomain);
+                }
+              }
+              const multiDomainMatch = s.search.match(/^\^\(([a-z|]+)\)\\\./);
+              if (multiDomainMatch) {
+                const searchDomains = multiDomainMatch[1].split('|');
+                const comp = a.componentName;
+                const graph = App.state.requestsGraph;
+                if (graph[comp]) {
+                  const neighbors = Object.keys(graph[comp]);
+                  return neighbors.some(n => searchDomains.includes(n.split('/')[0].split('.')[0]));
+                }
+                return false;
+              }
+            });
+          } catch {
+            data = [];
+          }
+        } else {
+          const term = query.text.toLowerCase();
+          data = data.filter((a) =>
+            a.label.toLowerCase().includes(term) ||
+            a.componentName.toLowerCase().includes(term)
+          );
+        }
       }
     }
 
@@ -2053,13 +2063,6 @@ const Data = {
         if (CONFIG.data.filters.includes(t)) App.state.activeFilters.add(t);
       });
     }
-    if (params.has('screen')) {
-      const screenId = params.get('screen');
-      if (App.state.screensData[screenId]) {
-        App.state.activeScreenFilter = App.state.screensData[screenId];
-        App.state.activeTab = 'requests';
-      }
-    }
     if (params.has('page')) {
       const page = params.get('page');
       if (page === 'low-quality-icons') {
@@ -2091,19 +2094,6 @@ const Data = {
     } else {
       params.delete('filters');
     }
-
-    if (s.view === 'screens') params.set('view', 'screens');
-    else if (s.view === DEFAULTS.view) params.delete('view');
-    
-    if (s.activeScreenFilter) {
-      const screenEntry = Object.entries(s.screensData).find(([_, ids]) => 
-        ids.length === s.activeScreenFilter.length && 
-        ids.every(id => s.activeScreenFilter.includes(id))
-      );
-      if (screenEntry) params.set('screen', screenEntry[0]);
-    } else {
-      params.delete('screen');
-    }    
 
     if (App.state.lowQualityActive) {
       params.set('page', 'low-quality-icons');
@@ -2723,12 +2713,6 @@ const UI = {
           return;
         }
 
-        if (action === 'clear-screen-filter') {
-          App.state.activeScreenFilter = null;
-          this.render();
-          return;
-        }
-
         if (action === 'filter-tag-toggle') {
           const id = actionEl.dataset.filterId;
           if (!id) return;
@@ -3137,9 +3121,6 @@ const UI = {
     this.generateFilters();
     this.syncFilterTagState();
     Data.process();
-    if (s.activeScreenFilter) {
-      s.currentData = s.currentData.filter(app => s.activeScreenFilter.includes(app.componentName));
-    }    
     Data.syncUrlState();
     this.updateHeader();
     this.renderIconLibrary();
@@ -3316,20 +3297,6 @@ layoutMasonry() {
     const c = App.dom.filterBox;
     if (!c) return;
     c.innerHTML = '';
-
-    if (App.state.activeScreenFilter && App.state.activeTab === 'requests') {
-      const btn = document.createElement('button');
-      btn.className = 'tag tag-screen chip active';
-      const screenEntry = Object.entries(App.state.screensData).find(([_, ids]) => 
-        ids.length === App.state.activeScreenFilter.length && 
-        ids.every(id => App.state.activeScreenFilter.includes(id))
-      );
-      const screenId = screenEntry ? screenEntry[0].replace(/^scr-0+/, 'scr-') : 'screen';
-      btn.textContent = screenId;
-      btn.title = 'Clear screen filter';
-      btn.dataset.action = 'clear-screen-filter';
-      c.insertBefore(btn, c.firstChild);
-    }    
 
     CONFIG.data.filters.forEach((id) => {
       let count = 0;
@@ -3579,7 +3546,9 @@ layoutMasonry() {
         App.state.activeTab = 'requests';
         App.state.view = 'list';
         App.dom.viewLabel.textContent = 'Table';
-        App.state.activeScreenFilter = screen.ids;
+        App.state.search = screen.id;
+        App.dom.inputSearch.value = screen.id;
+        Utils.setHidden(App.dom.clearBtn, false);
         Data.syncUrlState();
         this.render();
       });
@@ -5125,21 +5094,6 @@ renderContributionMode() {
   showMobileFilterPopover() {
     const menu = App.dom.mobileFilterMenu;
     menu.innerHTML = '';
-
-    // Screen filter
-    if (App.state.activeScreenFilter) {
-      const screenEntry = Object.entries(App.state.screensData).find(([_, ids]) => 
-        ids.length === App.state.activeScreenFilter.length && 
-        ids.every(id => App.state.activeScreenFilter.includes(id))
-      );
-      const screenId = screenEntry ? screenEntry[0].replace(/^scr-0+/, 'scr-') : 'screen';
-      menu.innerHTML += `
-        <div class="ctx-item active" data-action="clear-screen-filter">
-          <span class="check-icon">${ICONS.check}</span>
-          <span>${screenId}</span>
-        </div>
-      `;
-    }
 
     const s = App.state.activeFilters;
     menu.innerHTML += CONFIG.data.filters.map((id) => {
