@@ -3155,20 +3155,22 @@ const UI = {
     document.getElementById('iconReviewBtn')?.classList.remove('active');
 
     if (App.state.lowQualityActive) {
+      document.getElementById('sectionTitle')?.classList.add('is-hidden');
       document.getElementById('iconReviewBtn')?.classList.add('is-hidden');
       this.renderLowQualityMode();
       return;
     }
 
     if (App.state.iconReviewActive) {
+      document.getElementById('sectionTitle')?.classList.add('is-hidden');
       document.getElementById('iconReviewBtn')?.classList.add('is-hidden');
       document.getElementById('lowQualityBtn')?.parentElement?.classList.add('is-hidden');
-      document.getElementById('contributionBtn').style.display = 'none';
       this.renderIconReview();
       return;
     }
 
     if (App.state.contributionActive) {
+      document.getElementById('sectionTitle')?.classList.add('is-hidden');
       document.getElementById('iconReviewBtn')?.classList.add('is-hidden');
       this.renderContributionMode();
       return;
@@ -3186,6 +3188,7 @@ const UI = {
 
     document.querySelector('.header-icon')?.classList.remove('is-hidden');
     document.getElementById('search-wrapper')?.classList.remove('is-hidden');
+    document.getElementById('sectionTitle')?.classList.remove('is-hidden');
     App.dom.header.textContent = App.dom.defaultHeader;
     App.dom.contributionBtn.style.display = '';
     this.updateContributionBadge();
