@@ -1874,7 +1874,16 @@ const Data = {
 
     // Text Search
     if (query.text) {
-      if (s.regexMode) {
+      const issueMatch = query.text.match(/^#(\d+)$/);
+      if (issueMatch) {
+        const issueKey = `#${issueMatch[1]}`;
+        const issueComps = App.state.supportedIssues?.[issueKey];
+        if (issueComps) {
+          data = data.filter(app => issueComps.includes(app.componentName));
+        } else {
+          data = [];
+        }
+      } else if (s.regexMode) {
         try {
           const regex = new RegExp(query.text, 'i');
           const isUsSearch = query.text === '^us\\.';
