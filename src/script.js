@@ -3232,6 +3232,11 @@ const UI = {
     Utils.setHidden(desc, false);
     Utils.setHidden(link, false);
 
+    const sectionTitle = document.getElementById('sectionTitle');
+    if (sectionTitle) {
+      sectionTitle.innerHTML = `Community requests <span style="color: var(--on-surface-variant); margin-left: var(--space-xs)">${Utils.compactNumber(s.currentData.length)}</span>`;
+    }
+
     if (App.state.activeTab === 'screens') {
       App.dom.sortBtn.classList.add('is-hidden');
       App.dom.screenSortBtn.classList.remove('is-hidden');
@@ -3474,15 +3479,15 @@ layoutMasonry() {
 
     // Text
     const countEl = App.dom.headerCount;
-    let displayText = `${Utils.compactNumber(total)} requests`;
     if (App.state.lastUpdate) {
       const timeAgo = Utils.timeAgo(App.state.lastUpdate);
       const fullDate = new Date(App.state.lastUpdate + 'T00:00:00')
         .toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-      displayText +=
-        ` • <a href="https://github.com/LawnchairLauncher/lawnicons-requests-dashboard" target="_blank" title="Last update: ${fullDate}">${timeAgo}</a>`;
+      countEl.innerHTML =
+        `<a href="https://github.com/LawnchairLauncher/lawnicons-requests-dashboard" target="_blank" title="Last update: ${fullDate}">Last update: ${timeAgo}</a>`;
+    } else {
+      countEl.innerHTML = '';
     }
-    countEl.innerHTML = displayText;
 
     // Checkbox
     const hc = App.dom.headerCheck;
@@ -5428,7 +5433,9 @@ layoutMasonry() {
     Utils.setHidden(container, false);
 
     const title = container.querySelector('.library-title');
-    if (title) title.textContent = 'Found in Lawnicons';
+    if (title) {
+      title.innerHTML = `Found in Lawnicons <span style="color: var(--on-surface-variant); margin-left: var(--space-xs)">${matches.length}</span>`;
+    }
 
     const grid = container.querySelector('.library-grid');
     if (grid) {

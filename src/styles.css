@@ -2090,13 +2090,14 @@ input[type="checkbox"]:indeterminate::after {
     display: flex;
     align-items: center;
     gap: var(--space-sm);
-    margin-bottom: var(--space-md);
 }
 
-.icon-library-results .library-title {
+.icon-library-results .library-title,
+.library-title {
     font-size: 18px;
     font-weight: 600;
     color: var(--on-surface);
+    margin-bottom: var(--space-md);
 }
 
 .icon-library-results .library-grid {
@@ -2134,32 +2135,6 @@ input[type="checkbox"]:indeterminate::after {
   height: 40px;
   object-fit: contain;
   filter: brightness(0) invert(0.9);
-}
-
-/* Tabs */
-.tabs {
-  display: flex;
-  gap: var(--space-lg);
-  margin-bottom: var(--space-lg);
-}
-
-.tab {
-  background: none;
-  border: none;
-  color: var(--on-surface-variant);
-  font-size: 18px;
-  font-weight: 600;
-  padding: 0;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.tab:hover {
-  color: var(--on-surface);
-}
-
-.tab.active {
-  color: var(--primary);
 }
 
 /* Screens */
