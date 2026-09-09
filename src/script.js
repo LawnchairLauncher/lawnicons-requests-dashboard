@@ -3,7 +3,7 @@
 const fflate = /** @type {* & {fflate: any}} */ (window).fflate;
 
 /**
- * LAWNICONS REQUEST MANAGER
+ * LAWNICONS REQUEST DASHBOARD
  */
 
 // ==========================================

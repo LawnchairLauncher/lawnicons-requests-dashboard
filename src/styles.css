@@ -209,7 +209,7 @@ body:has(.context-menu:popover-open) {
    ========================================= */
 .header {
   display: grid;
-  grid-template-columns: 200px 1fr auto; /* Left | Center (Search) | Right */
+  grid-template-columns: 300px 1fr auto; /* Left | Center (Search) | Right */
   gap: var(--space-xl);
   align-items: center;
   padding: var(--space-xl) 0;
