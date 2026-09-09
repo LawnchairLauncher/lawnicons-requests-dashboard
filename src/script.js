@@ -145,36 +145,26 @@ const App = {
 
     /** @type {HTMLDivElement} */
     filterBox: /** @type {any} */ (document.getElementById('filterContainer')),
-
     /** @type {HTMLButtonElement} */
-    mobileFilterBtn:
-      /** @type {any} */ (document.getElementById('mobileFilterBtn')),
+    mobileFilterBtn: /** @type {any} */ (document.getElementById('mobileFilterBtn')),
     /** @type {HTMLSpanElement} */
-    mobileFilterCount:
-      /** @type {any} */ (document.getElementById('mobileFilterCount')),
+    mobileFilterCount: /** @type {any} */ (document.getElementById('mobileFilterCount')),
     /** @type {HTMLElement} */
-    mobileFilterMenu:
-      /** @type {any} */ (document.getElementById('mobileFilterMenu')),
-
+    mobileFilterMenu: /** @type {any} */ (document.getElementById('mobileFilterMenu')),
     /** @type {HTMLHeadingElement} */
     header: /** @type {any} */ (document.querySelector('.header-info h1')),
-
     /** @type {HTMLDivElement} */
     sbBar: /** @type {any} */ (document.getElementById('selectionBar')),
     /** @type {HTMLDivElement} */
     sbCount: /** @type {any} */ (document.getElementById('sbCount')),
     /** @type {HTMLButtonElement} */
-    sbDownloadBtn:
-      /** @type {any} */ (document.getElementById('sbDownloadBtn')),
+    sbDownloadBtn: /** @type {any} */ (document.getElementById('sbDownloadBtn')),
     /** @type {HTMLButtonElement} */
     sbMenuBtn: /** @type {any} */ (document.getElementById('sbMenuBtn')),
     /** @type {HTMLElement} */
     rowMenu: /** @type {any} */ (document.getElementById('rowMenu')),
     /** @type {HTMLDivElement} */
     toastBox: /** @type {any} */ (document.getElementById('toastContainer')),
-    contributionBtn: /** @type {HTMLButtonElement} */ (document.getElementById(
-      'contributionBtn',
-    )),
     /** @type {HTMLButtonElement} */
     sortBtn: /** @type {any} */ (document.getElementById('sortBtn')),
     /** @type {HTMLButtonElement} */
@@ -185,7 +175,6 @@ const App = {
     sortMenu: /** @type {any} */ (document.getElementById('sortMenu')),
     /** @type {HTMLSpanElement} */
     sortLabel: /** @type {any} */ (document.getElementById('sortLabel')),
-    mainTabs: /** @type {HTMLElement} */ (document.getElementById('mainTabs')),
     screenSortBtn: /** @type {HTMLButtonElement} */ (document.getElementById('screenSortBtn')),
     screenSortLabel: /** @type {HTMLSpanElement} */ (document.getElementById('screenSortLabel')),
     /** @type {string} */ defaultHeader: '',
@@ -1733,8 +1722,6 @@ const Data = {
     ]).finally(() => {
       UI.init();
       UI.updateLowQualityBadge();
-      UI.buildQuickPickQueue();
-      UI.renderQuickPick();
     });
   },
 
@@ -2229,18 +2216,12 @@ const UI = {
     const savedActive = localStorage.getItem('lawnicons_contribution_active');
     if (savedActive === 'true') {
       App.state.contributionActive = true;
-      App.dom.contributionBtn?.classList.add('active');
     }
-
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.classList.toggle('active', tab.dataset.tab === App.state.activeTab);
-    });    
 
     App.dom.defaultHeader = App.dom.header.textContent;
 
     this.updateContributionBadge();
     this.renderDomainStats();
-    this.renderQuickPick();
     this.renderActivityCard();
     this.generateFilters();
     this.initObserver();
@@ -2250,41 +2231,21 @@ const UI = {
   },
 
   handleEvents() {
-    document.getElementById('lowQualityBtn')?.addEventListener('click', () => {
-      App.state.lowQualityActive = !App.state.lowQualityActive;
-      if (!App.state.lowQualityActive) {
-        App.dom.header.textContent = App.dom.defaultHeader;
-        App.dom.contributionBtn.style.display = '';
-        document.getElementById('lowQualityBtn')?.classList.remove('active');
-      } else {
-        App.state.contributionActive = false;
-        App.dom.contributionBtn.classList.remove('active');
-      }
+
+    document.getElementById('toolsContribution')?.addEventListener('click', () => {
+      App.state.contributionActive = true;
       this.render();
       Data.syncUrlState();
     });
 
-    App.dom.contributionBtn?.addEventListener('click', () => {
-      if (
-        !App.state.contributionActive && App.state.contribution.length === 0
-      ) {
-        App.state.contributionActive = true;
-        App.dom.contributionBtn.classList.add('active');
-        this.render();
-        Data.syncUrlState();
-        return;
-      }
-      App.state.contributionActive = !App.state.contributionActive;
-      App.dom.contributionBtn.classList.toggle(
-        'active',
-        App.state.contributionActive,
-      );
-      if (!App.state.contributionActive) {
-        App.dom.header.textContent = App.dom.defaultHeader;
-        App.dom.sentinel.style.display = '';
-        App.dom.contributionBtn.style.display = '';
-      }
-      this.saveContribution();
+    document.getElementById('toolsIconReview')?.addEventListener('click', () => {
+      App.state.iconReviewActive = true;
+      this.render();
+      Data.syncUrlState();
+    });
+
+    document.getElementById('toolsLowQuality')?.addEventListener('click', () => {
+      App.state.lowQualityActive = true;
       this.render();
       Data.syncUrlState();
     });
@@ -2317,26 +2278,6 @@ const UI = {
       const span = activeSvg.closest('span');
       if (span) span.classList.add('active');
     }
-
-    document.getElementById('quickPickDownload')?.addEventListener(
-      'click',
-      (e) => {
-        e.preventDefault();
-        const queue = App.state.quickPickMode === 'easy'
-          ? App.state._quickPickEasy
-          : App.state._quickPickMiddle;
-        if (!queue || !queue.length) return;
-        const app = queue[App.state._lastQuickPickIdx || 0];
-        App.state.selected.clear();
-        App.state.selected.add(app.componentName);
-        Actions.downloadBundle();
-      },
-    );
-
-    document.getElementById('quickPickNext')?.addEventListener('click', (e) => {
-      e.preventDefault();
-      UI.pickRandomQuickPick();
-    });
 
     let resizeTimer = 0;
     addEventListener('resize', () => {
@@ -2435,22 +2376,6 @@ const UI = {
     App.dom.mobileFilterBtn.addEventListener('click', () => {
       this.showMobileFilterPopover();
     });
-
-    document.getElementById('iconReviewBtn')?.addEventListener('click', () => {
-      if (App.state.iconReviewActive) {
-        App.state.iconReviewActive = false;
-        document.getElementById('iconReviewBtn')?.classList.remove('active');
-      } else {
-        App.state.iconReviewActive = true;
-        App.state.lowQualityActive = false;
-        App.state.contributionActive = false;
-        document.getElementById('iconReviewBtn')?.classList.add('active');
-        document.getElementById('lowQualityBtn')?.classList.remove('active');
-        App.dom.contributionBtn.classList.remove('active');
-      }
-      this.render();
-      Data.syncUrlState();
-    });    
 
     document.getElementById('sbContributeBtn')?.addEventListener(
       'click',
@@ -2660,8 +2585,6 @@ const UI = {
           if (App.state.contribution.length === 0) {
             App.state.contributionActive = false;
             App.state.activeFilters.delete('plan');
-            App.dom.contributionBtn.style.display = '';
-            App.dom.contributionBtn.classList.remove('active');
           }
           UI.saveContribution();
           UI.render();
@@ -3150,33 +3073,24 @@ const UI = {
   },
 
   render() {
-    document.getElementById('lowQualityBtn')?.parentElement?.classList.remove('is-hidden');
-    document.getElementById('iconReviewBtn')?.classList.remove('is-hidden');
-    document.getElementById('iconReviewBtn')?.classList.remove('active');
-
     if (App.state.lowQualityActive) {
       document.getElementById('sectionTitle')?.classList.add('is-hidden');
-      document.getElementById('iconReviewBtn')?.classList.add('is-hidden');
       this.renderLowQualityMode();
       return;
     }
 
     if (App.state.iconReviewActive) {
       document.getElementById('sectionTitle')?.classList.add('is-hidden');
-      document.getElementById('iconReviewBtn')?.classList.add('is-hidden');
-      document.getElementById('lowQualityBtn')?.parentElement?.classList.add('is-hidden');
       this.renderIconReview();
       return;
     }
 
     if (App.state.contributionActive) {
       document.getElementById('sectionTitle')?.classList.add('is-hidden');
-      document.getElementById('iconReviewBtn')?.classList.add('is-hidden');
       this.renderContributionMode();
       return;
     }
 
-    document.getElementById('lowQualityBtn')?.classList.remove('active');
     const lowQualityBackBtn = document.getElementById('lowQualityBackBtn');
     if (lowQualityBackBtn) lowQualityBackBtn.remove();
 
@@ -3189,8 +3103,8 @@ const UI = {
     document.querySelector('.header-icon')?.classList.remove('is-hidden');
     document.getElementById('search-wrapper')?.classList.remove('is-hidden');
     document.getElementById('sectionTitle')?.classList.remove('is-hidden');
+    document.querySelector('.list-viewport')?.classList.remove('is-hidden');
     App.dom.header.textContent = App.dom.defaultHeader;
-    App.dom.contributionBtn.style.display = '';
     this.updateContributionBadge();
     this.updateLowQualityBadge();
 
@@ -3250,15 +3164,6 @@ const UI = {
       App.dom.listHeader.style.display = 'none';
       App.dom.sentinel.style.display = 'none';
       this.renderScreens();
-      return;
-    }
-
-    if (App.state.activeTab === 'contest') {
-      document.getElementById('mainTabs')?.classList.remove('is-hidden');
-      App.dom.screenSortBtn.classList.add('is-hidden');
-      App.dom.listHeader.style.display = 'none';
-      App.dom.sentinel.style.display = 'none';
-      this.renderContest();
       return;
     }
 
@@ -3747,14 +3652,9 @@ layoutMasonry() {
     document.getElementById('iconLibraryResults')?.classList.add('is-hidden');
     document.getElementById('search-wrapper')?.classList.add('is-hidden');
     document.getElementById('mainTabs')?.classList.add('is-hidden');
-    document.getElementById('lowQualityBtn')?.parentElement?.classList.add('is-hidden');
     App.dom.screenSortBtn.classList.add('is-hidden');
     App.dom.listHeader.style.display = 'none';
     App.dom.sentinel.style.display = 'none';
-    App.dom.contributionBtn.style.display = 'none';
-    const badge = document.getElementById('contributionCountBadge');
-    if (badge) badge.style.display = 'none';
-    document.getElementById('lowQualityBtn')?.classList.add('active');
 
     App.dom.header.textContent = 'Low quality icons';
     App.dom.headerCount.textContent = '';
@@ -3774,7 +3674,6 @@ layoutMasonry() {
       if (newLowQABack) {
         newLowQABack.onclick = () => {
           App.state.lowQualityActive = false;
-          document.getElementById('lowQualityBtn')?.classList.remove('active');
           this.render();
           Data.syncUrlState();
         };
@@ -3817,7 +3716,6 @@ layoutMasonry() {
         }`;
         if (data.length === 0) {
           App.state.lowQualityActive = false;
-          document.getElementById('lowQualityBtn')?.classList.remove('active');
           Components.Toast.show('All existing icons look good.');
           this.render();
           return;
@@ -3828,7 +3726,6 @@ layoutMasonry() {
           return;
         }
 
-        // Sort by issue count descending
         data.sort(
           /** @type {(a: ReviewIssues, b: ReviewIssues) => number} */
           (a, b) =>
@@ -3836,7 +3733,6 @@ layoutMasonry() {
             a.drawable.localeCompare(b.drawable),
         );
 
-        // Build cards
         let html = '';
         data.forEach((item) => {
           const svgUrl =
@@ -3863,27 +3759,11 @@ layoutMasonry() {
   },
 
   updateLowQualityBadge() {
-    const btn = document.getElementById('lowQualityBtn');
-    const wrapper = btn?.parentElement;
-    const badge = document.getElementById('lowQualityCountBadge');
-    if (!btn || !wrapper) return;
-
-    if (App.state.lowQualityActive || App.state.iconReviewActive || App.state.contributionActive) {
-      wrapper.classList.add('is-hidden');
-      if (badge) badge.style.display = 'none';
-      return;
-    }
-
+    const toolsLowQualityCount = document.getElementById('toolsLowQualityCount');
     const count = App.state.lowQualityData ? App.state.lowQualityData.length : 0;
-    if (count > 0) {
-      wrapper.classList.remove('is-hidden');
-      if (badge) {
-        badge.textContent = count.toString();
-        badge.style.display = 'flex';
-      }
-    } else {
-      wrapper.classList.add('is-hidden');
-      if (badge) badge.style.display = 'none';
+
+    if (toolsLowQualityCount) {
+      toolsLowQualityCount.textContent = count > 0 ? count.toString() : '';
     }
   },
 
@@ -3893,12 +3773,6 @@ layoutMasonry() {
     document.getElementById('iconLibraryResults')?.classList.add('is-hidden');
     document.getElementById('search-wrapper')?.classList.add('is-hidden');
     document.getElementById('mainTabs')?.classList.add('is-hidden');
-    document.getElementById('lowQualityBtn')?.parentElement?.classList.add('is-hidden');
-    document.getElementById('iconReviewBtn')?.classList.add('active');
-    const contribBtn = document.getElementById('contributionBtn');
-    if (contribBtn) contribBtn.style.display = 'none';
-    const contribBadge = document.getElementById('contributionCountBadge');
-    if (contribBadge) contribBadge.style.display = 'none';
     App.dom.screenSortBtn.classList.add('is-hidden');
     App.dom.listHeader.style.display = 'none';
     App.dom.sentinel.style.display = 'none';
@@ -3916,7 +3790,6 @@ layoutMasonry() {
       `);
       document.getElementById('iconReviewBackBtn')?.addEventListener('click', () => {
         App.state.iconReviewActive = false;
-        document.getElementById('iconReviewBtn')?.classList.remove('active');
         this.render();
         Data.syncUrlState();
       });
@@ -4087,7 +3960,7 @@ layoutMasonry() {
     return lintSVG(content);
   },
 
-  renderContributionMode() {
+renderContributionMode() {
     document.querySelector('.header-icon')?.classList.add('is-hidden');
     document.querySelector('.controls')?.classList.add('is-hidden');
     document.getElementById('iconLibraryResults')?.classList.add('is-hidden');
@@ -4101,8 +3974,6 @@ layoutMasonry() {
     if (contributionCountBadge) contributionCountBadge.style.display = 'none';
     App.dom.listHeader.style.display = 'none';
     App.dom.sentinel.style.display = 'none';
-
-    App.dom.contributionBtn.style.display = 'none';
 
     App.dom.header.textContent = 'Contribution plan';
 
@@ -4121,8 +3992,6 @@ layoutMasonry() {
       if (newContributionBackBtn) {
         newContributionBackBtn.onclick = () => {
           App.state.contributionActive = false;
-          App.dom.contributionBtn.style.display = '';
-          App.dom.contributionBtn.classList.remove('active');
           this.saveContribution();
           this.render();
           Data.syncUrlState();
@@ -4444,8 +4313,6 @@ layoutMasonry() {
         App.state.activeFilters.delete('plan');
         App.state.contributionOverrides = {};
         App.state.contributionActive = false;
-        App.dom.contributionBtn.style.display = '';
-        App.dom.contributionBtn.classList.remove('active');
         UI.saveContribution();
         UI.render();
       };
@@ -4837,11 +4704,10 @@ layoutMasonry() {
   },
 
   updateContributionBadge() {
-    const badge = document.getElementById('contributionCountBadge');
-    if (!badge) return;
     const count = App.state.contribution.length;
-    badge.textContent = count.toString();
-    badge.style.display = count > 0 ? 'flex' : 'none';
+
+    const toolsCount = document.getElementById('toolsContributionCount');
+    if (toolsCount) toolsCount.textContent = count > 0 ? count.toString() : '';
   },
 
   renderDomainStats() {
@@ -5291,93 +5157,6 @@ layoutMasonry() {
     menu.style.left = `${rect.right - menu.offsetWidth}px`;
     menu.style.top = `${rect.bottom + 8}px`;
     menu.style.visibility = 'visible';
-  },
-
-  buildQuickPickQueue() {
-    const POP = App.state.domainStats._population || {};
-    const isCountry = (/** @type {string} */ d) =>
-      ISO_COUNTRIES.has(d) && d in POP;
-
-    const domainInstalls = {};
-    const domainInstCounts = {};
-    App.data.forEach((app) => {
-      const pkg = app.componentName.split('/')[0];
-      const domain = pkg.split('.')[0];
-      if (!isCountry(domain)) return;
-      const inst = Utils.parseInstalls(app.installs);
-      domainInstalls[domain] = (domainInstalls[domain] || 0) + inst;
-      domainInstCounts[domain] = (domainInstCounts[domain] || 0) + 1;
-    });
-
-    const localImpact = {};
-    for (const d of Object.keys(domainInstalls)) {
-      const s = App.state.domainStats[d] || {};
-      const unf = s.requests || 0;
-      const avg = Math.round(domainInstalls[d] / domainInstCounts[d]);
-      const pop = POP[d] || 1;
-      localImpact[d] = unf * avg / pop;
-    }
-
-    const liValues = Object.values(localImpact).sort((a, b) => a - b);
-    const n = liValues.length;
-    const q1 = liValues[Math.floor(n / 4)] || 0;
-    const q2 = liValues[Math.floor(n / 2)] || 0;
-    const q3 = liValues[Math.floor(3 * n / 4)] || 0;
-
-    const quartileUrgency = (li) => {
-      if (li >= q3) return 1.0;
-      if (li >= q2) return 0.75;
-      if (li >= q1) return 0.5;
-      return 0.25;
-    };
-
-    App.state._quickPickQueue = [];
-
-    App.data.forEach((app) => {
-      const tags = App.state.appTags.get(app.componentName) || new Set();
-      if (tags.has('stale') || tags.has('easy') || tags.has('match') || tags.has('nameinuse')) return;
-
-      const inst = Utils.parseInstalls(app.installs);
-      if (inst < 500000) return;
-      if (app.requestCount < 5) return;
-
-      const domain = app.componentName.split('/')[0].split('.')[0];
-      let urg = 0.5;
-      if (isCountry(domain)) {
-        const li = localImpact[domain] || 0;
-        urg = quartileUrgency(li);
-      }
-      const urgencyMod = 0.5 + 0.5 * urg;
-      const score = Math.log(inst + 1) * Math.sqrt(app.requestCount || 0) * urgencyMod;
-
-      App.state._quickPickQueue.push({ ...app, _score: score });
-    });
-
-    App.state._quickPickQueue.sort((a, b) => b._score - a._score);
-  },
-
-  renderQuickPick() {
-    if (!App.state._quickPickQueue || !App.state._quickPickQueue.length) {
-      this.buildQuickPickQueue();
-    }
-    this.pickRandomQuickPick();
-  },
-
-  pickRandomQuickPick() {
-    const queue = App.state._quickPickQueue;
-    if (!queue || !queue.length) return;
-
-    const idx = Math.floor(Math.random() * queue.length);
-    App.state._lastQuickPickIdx = idx;
-    const app = queue[idx];
-    const card = document.getElementById('quickPickCard');
-    if (!card) return;
-
-    card.style.backgroundImage = `url('${CONFIG.data.assetsPath}${app.drawable}${CONFIG.data.iconExtension}')`;
-    card.style.backgroundSize = 'cover';
-    card.style.backgroundPosition = 'center';
-    card.style.backgroundRepeat = 'no-repeat';
-    card.title = app.label;
   },
 
   renderIconLibrary() {

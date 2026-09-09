@@ -37,7 +37,7 @@
         <div id="headerCount" class="header-sub"></div>
       </div>
     </div>
-    <div class="header-center">
+    <div class="header-right">
       <div class="input-wrapper" id="search-wrapper" title="Search">
         <div class="input-icon">
           <svg id="searchIcon"><use href="#ic-search"/></svg>
@@ -50,25 +50,6 @@
           <svg><use href="#ic-regex"/></svg>
         </button>
       </div>
-      <span class="header-link-wrapper is-hidden">
-        <button id="lowQualityBtn" class="header-link" title="Low quality icons">
-          <svg><use href="#ic-low-quality-icons"/></svg>
-        </button>
-        <span class="contribution-count-badge" id="lowQualityCountBadge"></span>
-      </span>
-      <span class="header-link-wrapper">
-        <button id="iconReviewBtn" class="header-link" title="Icon review">
-          <svg><use href="#ic-icon-review"/></svg>
-        </button>
-      </span>      
-      <span class="header-link-wrapper">
-          <button id="contributionBtn" class="header-link" title="Contribution plan">
-              <svg><use href="#ic-contribution-plan"/></svg>
-          </button>
-          <span class="contribution-count-badge" id="contributionCountBadge"></span>
-      </span>
-    </div>
-    <div class="header-right">
       <a href="https://github.com/LawnchairLauncher/lawnchair" class="header-link" title="Lawnchair on GitHub">
         <svg><use href="#ic-lawnchair"></use></svg>
       </a>
@@ -90,16 +71,14 @@
           class="link is-hidden" id="supportedLink">Become a supporter</a>
       </div>
 
-      <div id="quickPickCard" class="card">
-        <div class="quick-pick-actions">
-          <div class="quick-pick-actions-bg">
-            <a id="quickPickNext" class="quick-pick-btn-icon" href="#" title="Next icon">
-              <svg><use href="#ic-middle-plus"/></svg>
-            </a>
-            <a id="quickPickDownload" class="quick-pick-btn-icon" href="#" title="Download zip archive">
-              <svg><use href="#ic-download"/></svg>
-            </a>
-          </div>
+      <div id="toolsCard" class="card">
+        <div class="card-header">
+          <span class="card-title">Tools</span>
+        </div>
+        <div class="tools-links">
+          <a href="#" id="toolsContribution" class="link"><span>Contribution plan</span> <span class="card-sub" id="toolsContributionCount"></span></a>
+          <a href="#" id="toolsIconReview" class="link"><span>Icon review</span></a>
+          <a href="#" id="toolsLowQuality" class="link"><span>Low quality icons</span> <span class="card-sub" id="toolsLowQualityCount"></span></a>
         </div>
       </div>
 

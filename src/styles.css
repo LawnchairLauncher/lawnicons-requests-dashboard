@@ -209,25 +209,26 @@ body:has(.context-menu:popover-open) {
    ========================================= */
 .header {
   display: grid;
-  grid-template-columns: 300px 1fr auto; /* Left | Center (Search) | Right */
-  gap: var(--space-xl);
+  grid-template-columns: 300px 1fr;
   align-items: center;
   padding: var(--space-xl) 0;
 }
 
-.header-left, .header-right {
+.header-left,
+.header-right {
   display: flex;
   align-items: center;
   gap: var(--space-md);
 }
 
-.header-center {
+.header-right {
   width: 100%;
   max-width: 540px;
-  justify-self: center;
+  justify-self: end;
   display: flex;
   align-items: center;
   gap: var(--space-md);
+  justify-content: flex-end;
 }
 
 .header-icon {
@@ -414,98 +415,55 @@ button.input-icon.active {
 }
 
 #supportedCard .card-header {
+  justify-content: space-between;
   margin-bottom: var(--space-sm);
 }
 
-/* Quick pick */
-.cards-row #quickPickCard {
-  position: relative;
-  width: 120px;
-  min-width: 120px;
-  height: 120px;
-  flex: 0 0 120px;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: var(--space-lg);
-  overflow: visible;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+/* Tools card */
+#toolsCard {
+  flex: 0 0 auto;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
 }
 
-.quick-pick-actions {
-  position: absolute;
-  bottom: var(--space-lg);
-  left: var(--space-lg);
-  right: var(--space-lg);
+.tools-links {
+  display: flex;
+  flex-direction: column;
+  gap: 5.5px;
+}
+
+.tools-links .link {
+  margin-top: 0;
+}
+
+.tools-links a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 2;
+  margin-top: 0;
 }
 
-.quick-pick-actions span:has(svg) {
-  display: inline-flex;
-  align-items: center;
-  line-height: 0;
-}
-
-.quick-pick-actions span:has(svg) svg {
-  width: 18px;
-  height: 18px;
-  color: var(--on-surface-variant);
-  cursor: pointer;
-  transition: color 0.2s;
-  flex-shrink: 0;
-}
-
-.quick-pick-actions span:has(svg):hover svg {
-  color: var(--primary);
-}
-
-.quick-pick-actions-bg {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-sm);
-  align-items: center;
-  width: fit-content;
-  margin: 0 auto;
-  background: rgba(50, 53, 58, 0.9);
-  border-radius: var(--shape-small);
-  padding: var(--space-xs) var(--space-sm);
-}
-
-.quick-pick-btn-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--on-surface-variant);
-  transition: color 0.2s;
+.tools-links a:hover {
   text-decoration: none;
 }
 
-.quick-pick-btn-icon:hover {
-  color: var(--primary);
-}
-
-.quick-pick-btn-icon svg {
-  width: 18px;
-  height: 18px;
-}
-
-/* Supported card */
-#supportedCard .card-header {
-  justify-content: space-between;
-  margin-bottom: var(--space-sm);
+.tools-links a:hover > span:first-child {
+  text-decoration: underline;
+  text-underline-offset: 1px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--primary);
 }
 
 /* Activity card */
 #activityCard {
   display: flex;
   flex-direction: column;
+}
+
+#activityCard,
+#domainStatsCard {
+  min-width: 300px;
 }
 
 #activityCard .card-header {
@@ -1995,7 +1953,7 @@ input[type="checkbox"]:indeterminate::after {
   .header-left { grid-column: 1; grid-row: 1; }
   .header-right { grid-column: 2; grid-row: 1; }
   
-  .header-center {
+  .header-right {
     grid-column: 1 / -1;
     grid-row: 2;
     max-width: none;
@@ -2063,10 +2021,16 @@ input[type="checkbox"]:indeterminate::after {
   }
 
   #supportedCard {
-      width: 220px;
-      min-width: 220px;
-      flex: 0 0 220px;
-    }
+    width: 220px;
+    min-width: 220px;
+    flex: 0 0 220px;
+  }
+
+  #toolsCard {
+    width: 180px;
+    min-width: 180px;
+    flex: 0 0 180px;
+  }
 
   .selection-bar {
       left: var(--space-xl);
