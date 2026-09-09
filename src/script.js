@@ -3391,8 +3391,11 @@ layoutMasonry() {
       const timeAgo = Utils.timeAgo(App.state.lastUpdate);
       const fullDate = new Date(App.state.lastUpdate + 'T00:00:00')
         .toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      const displayText = timeAgo === 'Today'
+        ? 'Updated today'
+        : `Updated ${timeAgo} ago`;
       countEl.innerHTML =
-        `<a href="https://github.com/LawnchairLauncher/lawnicons-requests-dashboard" target="_blank" title="Last update: ${fullDate}">Last update: ${timeAgo}</a>`;
+        `<a href="https://github.com/LawnchairLauncher/lawnicons-requests-dashboard" target="_blank" title="Last update: ${fullDate}">${displayText}</a>`;
     } else {
       countEl.innerHTML = '';
     }
