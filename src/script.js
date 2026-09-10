@@ -2,6 +2,8 @@
 /** @type {typeof import('fflate')} */
 const fflate = /** @type {* & {fflate: any}} */ (window).fflate;
 
+/** @typedef {[string, number, number, number, number, number]} DomainEntry */
+
 /**
  * LAWNICONS REQUEST DASHBOARD
  */
@@ -795,21 +797,38 @@ const Templates = {
   },
 
   /**
-   * @param {[string, number, number, number, number][]} entries
+   * @param {DomainEntry[]} entries
    * @param {number} max
+   * @param {string} [mode]
    * @returns {string}
    */
-  domainStatsCard(entries, max) {
+  domainStatsCard(entries, max, mode = 'requests') {
     return `<div class="card-chart has-bars">
-      ${entries.map(([domain, done, requests, total, global]) => {
+      ${entries.map(([domain, done, requests, total, global, metric]) => {
         const shortDomain = domain.length > 3 ? domain.slice(0, 3) : domain;
-        const doneH = (done / max * 100).toFixed(0);
-        const directH = ((requests - (global || 0)) / max * 100).toFixed(0);
-        const globalH = ((global || 0) / max * 100).toFixed(0);
+        
+        let bars;
+        if (mode === 'requests') {
+          const doneH = (done / max * 100).toFixed(0);
+          const directH = ((requests - (global || 0)) / max * 100).toFixed(0);
+          const globalH = ((global || 0) / max * 100).toFixed(0);
+          bars = `<div class="domain-col-fill domain-col-global" style="height:${globalH}%"></div>
+                  <div class="domain-col-fill domain-col-requests" style="height:${directH}%"></div>
+                  <div class="domain-col-fill domain-col-done" style="height:${doneH}%"></div>`;
+        } else if (mode === 'local') {
+          const lightH = metric.toFixed(0);
+          const darkH = (100 - metric).toFixed(0);
+          bars = `<div class="domain-col-fill domain-col-global" style="height:${darkH}%"></div>
+                  <div class="domain-col-fill domain-col-done" style="height:${lightH}%"></div>`;
+        } else {
+          const uncoveredH = metric.toFixed(0);
+          const coveredH = (100 - metric).toFixed(0);
+          bars = `<div class="domain-col-fill domain-col-global" style="height:${uncoveredH}%"></div>
+                  <div class="domain-col-fill domain-col-done" style="height:${coveredH}%"></div>`;
+        }
+        
         return `<div class="domain-col" data-action="domain-filter" data-domain="${domain}" data-done="${done}" data-requests="${requests}" data-total="${total}" data-global="${global || 0}">
-          <div class="domain-col-fill domain-col-global" style="height:${globalH}%"></div>
-          <div class="domain-col-fill domain-col-requests" style="height:${directH}%"></div>
-          <div class="domain-col-fill domain-col-done" style="height:${doneH}%"></div>
+          ${bars}
           <span class="chart-label">${shortDomain}</span>
         </div>`;
       }).join('')}
@@ -4722,7 +4741,6 @@ renderContributionMode() {
         }
       });
 
-      // Add global_installs to domain stats for local impact
       for (const [domain, stats] of Object.entries(data)) {
         if (isCountry(domain) && stats.global_installs > 0 && stats.global > 0) {
           const avgGlobalInst = stats.global_installs / stats.global;
@@ -4740,40 +4758,49 @@ renderContributionMode() {
       }
     }
 
-    /** @type {[string, any, number, number, number][]} */
+    /** @type {DomainEntry[]} */
     let entries = Object.entries(data)
-      .filter(([domain]) => isCountry(domain) && domain !== '_population')
-      .map(([domain, stats]) => [domain, stats.done, stats.requests, stats.total, stats.global || 0]);
+      .filter(([domain]) => isCountry(domain))
+      .map(([domain, stats]) => [
+        domain,
+        stats.done,
+        stats.requests,
+        stats.total,
+        stats.global || 0,
+        0,
+      ]);
 
-    if (mode === 'local') {
-      entries = entries
-        .filter(([, , requests, total]) => total - requests > 5)
-        .sort((a, b) => {
-          const domainAvgInstalls = App.state._domainAvgInstalls ?? {};
+    entries = entries.filter(([, , requests, total]) => total - requests > 5);
 
-          const instA = domainAvgInstalls[a[0]] || 0;
-          const instB = domainAvgInstalls[b[0]] || 0;
-          const popA = population[a[0]] || 1;
-          const popB = population[b[0]] || 1;
-          const scoreA = instA / popA;
-          const scoreB = instB / popB;
-          return scoreB - scoreA;
-        });
-    } else if (mode === 'coverage') {
-      entries = entries
-        .filter(([, , requests, total]) => total - requests > 5)
-        .sort((a, b) => {
-          const pctA = a[1] / a[3];
-          const pctB = b[1] / b[3];
-          return pctA - pctB;
-        });
-    } else {
-      entries = entries
-        .filter(([, , requests, total]) => total - requests > 5)
-        .sort((a, b) => b[3] - a[3]);
-    }
+    /** @type {Record<string, number>} */
+    const avgInstalls = App.state._domainAvgInstalls ?? {};
 
-    const max = Math.max(...entries.map((e) => e[3]), 1);
+    /**
+     * @param {DomainEntry} e
+     * @returns {number}
+     */
+    const getMetric = (e) => {
+      const [domain, , requests, total] = e;
+      if (mode === 'local') {
+        const inst = avgInstalls[domain] || 0;
+        const pop = population[domain] || 1;
+        return (inst / 1_000_000 / pop) * 100;
+      }
+      if (mode === 'coverage') {
+        return total > 0 ? (requests / total) * 100 : 0;
+      }
+      return total;
+    };
+
+    entries = entries
+      .map((e) => /** @type {DomainEntry} */ ([
+        e[0], e[1], e[2], e[3], e[4], getMetric(e),
+      ]))
+      .sort((a, b) => b[5] - a[5]);
+
+    const max = mode === 'requests'
+      ? Math.max(...entries.map((e) => e[5]), 1)
+      : 100;
 
     const title = document.querySelector('#domainStatsCard .card-title');
     if (title) {
@@ -4787,7 +4814,7 @@ renderContributionMode() {
     ));
     if (sub) sub.style.display = 'none';
 
-    container.innerHTML = Templates.domainStatsCard(entries, max);
+    container.innerHTML = Templates.domainStatsCard(entries, max, mode);
 
     /** @type {HTMLElement | null} */
     const tooltip = container.querySelector('.tooltip');
@@ -4807,7 +4834,7 @@ renderContributionMode() {
       const requests = parseInt(col.dataset.requests ?? '');
       const total = parseInt(col.dataset.total ?? '');
       const globalVal = parseInt(col.dataset.global ?? '0');
-      const avgInst = App.state?._domainAvgInstalls?.[domain ?? ''] || 0;
+      const avgInst = avgInstalls[domain ?? ''] || 0;
       const pop = population[domain ?? ''] || 0;
       const html = Templates.domainStatsTooltip(
         domain ?? '',

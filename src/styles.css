@@ -111,13 +111,13 @@
   --shape-full: 9999999px;
 
   /** Spacing tokens */
-    --space-2xs: 2px;
-    --space-xs: 4px;
-    --space-sm: 8px;
-    --space-md: 12px;
-    --space-lg: 16px;
-    --space-xl: 24px;
-    --space-xxl: 32px;
+  --space-2xs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-xxl: 32px;
 
   /** Elevation tokens */
   --elevation-1: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
@@ -670,8 +670,6 @@ button.input-icon.active {
   flex-direction: column;
   justify-content: flex-start;
 }
-
-
 
 .card-chart.has-bars {
   flex-direction: row;
