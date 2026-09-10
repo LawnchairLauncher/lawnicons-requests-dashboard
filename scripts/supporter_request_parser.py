@@ -1,9 +1,9 @@
-""""
+"""
 Refactored ZIP -> Request Processor
 Outputs flat JSON structure with firstAppearance tracking.
 
 Usage
-python3 scripts/supporter_request_parser.py zips src/assets/appfilter.xml src/extracted_png src/assets src/assets/filters/supported.json
+python3 scripts/supporter_request_parser.py zips src/assets/appfilter.xml src/extracted_images src/assets src/assets/filters/supported.json
 """
 
 import argparse
@@ -165,39 +165,32 @@ def parse_item_tag(item: ET.Element, zip_file: zipfile.ZipFile, apps: dict,
 
     return apps
 
-def parse_zips(zip_files: list[Path], apps: dict, image_out_dir: Path, graph_output_dir: Path = None, appfilter_path: Path = None) -> tuple[dict, set[str]]:
-    failed_count = 0
-    zip_components = set()
-    
+def parse_zips(zip_files, apps, image_out_dir, graph_output_dir=None, appfilter_path=None):
     existing_components = set()
     if appfilter_path and appfilter_path.exists():
         existing_components = load_existing_components(appfilter_path)
-    
+
     for zip_path in zip_files:
         try:
             with zipfile.ZipFile(zip_path, 'r') as zip_file:
                 xml_root = extract_xml(zip_file)
                 req_time = os.path.getmtime(zip_path)
                 zip_components = set()
-                
+
                 for item in xml_root.findall('item'):
                     item_data = process_item_tag(item)
                     if item_data:
                         zip_components.add(item_data[0])
                     apps = parse_item_tag(item, zip_file, apps, image_out_dir, req_time)
-                
+
                 if graph_output_dir and zip_components:
                     update_screens_graph(graph_output_dir, zip_path.name, list(zip_components), existing_components)
                     update_requests_graph(graph_output_dir, list(zip_components))
-        except Exception as e:
-            failed_count += 1
-            print(f"Error processing {zip_path.name}: {e}")
-    
-    if failed_count > 0:
-        word = "archive" if failed_count == 1 else "archives"
-        print(f"Skipped {failed_count} {word} without valid structure")
 
-    return apps, zip_components
+            yield zip_path.name, zip_components, apps
+
+        except Exception as e:
+            print(f"Error processing {zip_path.name}: {e}")
 
 # -------------------------------------------------------
 # UTILITIES
@@ -267,7 +260,7 @@ def update_supported_json(supported_path: Path, existing_supported: set[str], ne
 
 def update_activity_stats_for_supporter(requests_path: Path, new_added: int, total: int):
     """Record supporter additions in activity_stats.json."""
-    activity_stats_path = requests_path / "activity_stats.json"
+    activity_stats_path = requests_path / "stats" / "activity_stats.json"
     today = date.today().isoformat()
     
     history = []
@@ -290,7 +283,7 @@ def update_activity_stats_for_supporter(requests_path: Path, new_added: int, tot
     with open(activity_stats_path, "w") as f:
         json.dump(history, f, indent=2)    
 
-def run_pipeline(folder_path: Path, appfilter_path: Path, image_out_path: Path, 
+def run_pipeline(folder_path: Path, appfilter_path: Path, image_out_path: Path,
                  output_path: Path, supported_path: Path):
     zip_files = load_zips(folder_path)
 
@@ -298,12 +291,21 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, image_out_path: Path,
     apps_before = set(apps.keys())
     existing_supported = parse_existing_supported_json(supported_path)
 
-    apps, zip_components = parse_zips(zip_files, apps, image_out_path, output_path.parent, appfilter_path)
+    all_new_components = set()
+    unknown_counter = 0
 
-    issue_num = input("Enter issue number for supported requests (e.g. 1234): ").strip()
-    if issue_num:
-        update_supported_issues(output_path.parent, f"#{issue_num}", list(zip_components))
-    
+    for zip_name, zip_components, apps in parse_zips(
+        zip_files, apps, image_out_path, output_path.parent, appfilter_path
+    ):
+        issue_num = input(f"Issue number for {zip_name} (e.g. 1234): ").strip().lstrip('#')
+        if issue_num:
+            issue_key = f"#{issue_num}"
+        else:
+            unknown_counter += 1
+            issue_key = f"#???{unknown_counter}"
+        update_supported_issues(output_path.parent, issue_key, list(zip_components))
+        all_new_components |= zip_components
+
     if appfilter_path.exists():
         existing = load_existing_components(appfilter_path)
         apps = {k: v for k, v in apps.items() if k not in existing}
@@ -311,7 +313,7 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, image_out_path: Path,
         print("Warning: appfilter.xml not found, skipping deduplication.")
 
     write_json_output(output_path, apps)
-    update_supported_json(supported_path, existing_supported, zip_components)
+    update_supported_json(supported_path, existing_supported, all_new_components)
 
     new_added = len(set(apps.keys()) - apps_before)
     if new_added > 0:
