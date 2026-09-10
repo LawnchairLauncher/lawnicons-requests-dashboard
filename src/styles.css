@@ -444,6 +444,10 @@ button.input-icon.active {
   margin-top: 0;
 }
 
+.tools-links a > span:first-child {
+  font-weight: 600;
+}
+
 .tools-links a:hover {
   text-decoration: none;
 }
