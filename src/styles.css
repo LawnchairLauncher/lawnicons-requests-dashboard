@@ -333,6 +333,10 @@ body:has(.context-menu:popover-open) {
   font-weight: 500;
 }
 
+.input-wrapper input::placeholder {
+  color: var(--on-surface-variant);
+}
+
 /* Icon Button (Inside Input) */
 .input-icon {
   background: transparent;
