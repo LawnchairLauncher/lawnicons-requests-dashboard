@@ -738,8 +738,8 @@ def calculate_roi_scores():
                 if nd in ISO_COUNTRIES:
                     countries.add(nd)
             if countries:
-                total_weight = sum(USER_LOSS.get(c, 0) for c in countries)
-                return total_weight / MAX_LOSS
+                max_loss = max(USER_LOSS.get(c, 0) for c in countries)
+                return max_loss / MAX_LOSS
         
         # com domain without graph — presumed US
         if domain == 'com':
