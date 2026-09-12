@@ -788,10 +788,10 @@ def calculate_roi_scores():
                     uncovered_ratio = requests / total
                     affected = (actual_installs / 1_000_000) * uncovered_ratio
                     impacts.append((affected / pop) * 100)
-            
+
             if impacts:
-                return sum(impacts)
-        
+                return sum(impacts) / len(impacts)
+                    
         # com domain without graph — presumed US
         if domain == 'com':
             stats = domain_stats.get('us', {})
@@ -891,7 +891,7 @@ def calculate_roi_scores():
         is_easy = comp in easy
         is_foss = comp in foss
         
-        complexity = 1 if is_easy else 15
+        complexity = 1 if is_easy else 10
 
         is_supported = comp in supported
         supported_multiplier = 15.0 if is_supported else 1.0
@@ -926,7 +926,7 @@ def calculate_roi_scores():
             
             if penetration >= 10:
                 installs_multiplier = 1 + installs_sqrt * 0.01
-                geo_boost = 3.0
+                geo_boost = 2.0
             elif penetration >= 5:
                 installs_multiplier = 1 + installs_sqrt * 0.005
 
@@ -949,7 +949,7 @@ def calculate_roi_scores():
             (1 + impact_pow * 3) *
             installs_multiplier *
             geo_boost *
-            (1 + req_log * 2) *
+            (1 + req_log * 10) *
             (1 + gap * 2) *
             finisher_multiplier *
             (1.3 if is_foss else 1.0) *
