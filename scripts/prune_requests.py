@@ -883,7 +883,6 @@ def calculate_roi_scores():
         installs = parse_installs(app.get('installs', '0'))
         req_count = app.get('requestCount', 0)
         loss_weight = country_loss_weight(comp)
-        impact = local_impact(comp, installs)
         gap = coverage_gap(comp)
         finisher = finisher_scores.get(comp, 0)
         trend = trending_deltas.get(comp, 0)
@@ -901,11 +900,6 @@ def calculate_roi_scores():
             installs_penalty = 0.5
         else:
             installs_penalty = 1.0
-
-        if impact > 0:
-            impact_pow = impact ** 0.7
-        else:
-            impact_pow = 0.01 ** 0.7
 
         if installs > 0:
             installs_sqrt = installs ** 0.5
@@ -946,7 +940,6 @@ def calculate_roi_scores():
 
         score = (
             (loss_weight * 10 + 1) *
-            (1 + impact_pow * 3) *
             installs_multiplier *
             geo_boost *
             (1 + req_log * 10) *
