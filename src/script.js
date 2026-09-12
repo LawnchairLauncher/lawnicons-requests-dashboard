@@ -221,6 +221,7 @@ const Utils = {
       label = label.slice(tildeIdx + 2).trim();
     }
     let name = label.replace(/&amp;/g, ' and ').replace(/&/g, ' and ');
+    name = name.replace(/['\u2019`]/g, '');
     name = name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     name = name.toLowerCase().replace(/[^a-z0-9]+/g, '_');
     name = name.replace(/^_+|_+$/g, '');

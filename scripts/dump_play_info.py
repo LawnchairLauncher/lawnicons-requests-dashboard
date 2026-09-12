@@ -47,6 +47,7 @@ signal.signal(signal.SIGINT, signal_handler)
 
 def sanitize_name(label):
     if not label: return "icon"
+    label = label.replace("'", '').replace("\u2019", '').replace('`', '')
     ascii_name = unicodedata.normalize('NFD', label).encode('ascii', 'ignore').decode("utf-8")
     if ascii_name != label:
         return None
