@@ -927,14 +927,15 @@ def calculate_roi_scores():
         req_log = math.log(req_count + 1)
         trend_log = math.log(trend + 1) if trend > 0 else 0
 
-        # Age factor by half-years
+        # Span factor by half-years (first → last request)
+        first_appearance = app.get('firstAppearance', 0)
         last_requested = app.get('lastRequested', 0)
-        if last_requested > 0:
-            age_days = (time.time() - last_requested) / 86400
-            half_years = int(age_days / 180)
-            age_multiplier = 1 + half_years * 1.0
+        if first_appearance > 0 and last_requested > first_appearance:
+            span_days = (last_requested - first_appearance) / 86400
+            span_half_years = span_days / 180
+            span_multiplier = 1 + span_half_years * 0.5
         else:
-            age_multiplier = 1.0
+            span_multiplier = 1.0
 
         finisher_multiplier = min(1 + finisher * 0.5, 10)
 
@@ -946,7 +947,7 @@ def calculate_roi_scores():
             (1 + gap * 2) *
             finisher_multiplier *
             (1.3 if is_foss else 1.0) *
-            age_multiplier *
+            span_multiplier *
             (1 + trend_log) *
             installs_penalty *
             supported_multiplier
