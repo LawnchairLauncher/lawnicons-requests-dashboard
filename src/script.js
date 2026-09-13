@@ -539,17 +539,16 @@ const Templates = {
         `<img src="${iconUrl}" loading="lazy" data-error-mode="show-next-fallback" alt="${label}" />
       <div class="fallback-icon-grid is-hidden">No Icon</div>`;
     }
-
-    // Only show WIP tags on grid to avoid clutter
-    // const tagHtml = tags
-    //   .filter((tagId) => tagId === 'wip')
-    //   .map((tagId) => {
-    //     const meta = App.state.filterMetadata.get(tagId);
-    //     const label = meta ? meta.label : tagId;
-    //     const desc = meta ? meta.description : `Tagged with "${tagId}"`;
-    //     return `<span class="status-pill status-${tagId}" title="${desc}">${label}</span>`;
-    //   })
-    //   .join('');
+    
+    const tagHtml = tags
+      .filter((tagId) => tagId === 'plan')
+      .map((tagId) => {
+        const meta = App.state.filterMetadata.get(tagId);
+        const label = meta ? meta.label : tagId;
+        const desc = meta ? meta.description : `Tagged with "${tagId}"`;
+        return `<span class="status-pill status-${tagId}" title="${desc}">${label}</span>`;
+      })
+      .join('');
 
     return `
       <div class="grid-card ${
