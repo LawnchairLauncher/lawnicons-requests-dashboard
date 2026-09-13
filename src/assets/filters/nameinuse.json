@@ -47,10 +47,6 @@
       "existing_drawable": "oxygen_icons"
     },
     {
-      "id": "com.luutinhit.launcherios/com.luutinhit.weather.WeatherActivity",
-      "existing_drawable": "yahoo_weather"
-    },
-    {
       "id": "com.zui.camera/com.zui.camera.CameraLauncher",
       "existing_drawable": "generic_camera"
     },
@@ -1577,6 +1573,10 @@
     {
       "id": "gallery.photogallery.album.editor/gallery.photogallery.album.editor.activity.CoreActivity",
       "existing_drawable": "xgallery"
+    },
+    {
+      "id": "com.apple.launcher/com.launcherios.widget.ui.splash.ActivitySplash",
+      "existing_drawable": "ios_launcher"
     },
     {
       "id": "com.gateio.authenticator/com.gateio.authenticator.activity.SplashActivity",

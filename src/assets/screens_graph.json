@@ -49,7 +49,6 @@
   "scr-7": [
     "com.mi.globalbrowser.mini/com.miui.android.apps.chrome.Main",
     "com.qustodio.qustodioapp/com.qustodio.qustodioapp.ui.splash.SplashScreenActivity",
-    "com.luutinhit.launcherios/com.luutinhit.launcherios.activity.SplashActivity",
     "org.chromium.webapk.a2c8321be949a070c_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "com.sec.android.app.sbrowser.webapk.w6881360baecd9f82020f12627bb4f6271/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "org.alislam.adhan/org.alislam.adhan.MainActivity",
@@ -64,8 +63,7 @@
     "org.fortheloss.sticknodes/org.fortheloss.sticknodes.AndroidLauncher",
     "org.chromium.webapk.abdf37cf1cbb95d55_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "de.barracudabyte.blenderkeys/de.barracudabyte.blenderkeys.MainActivity",
-    "com.toddle.student/com.toddle.student.MainActivity",
-    "com.luutinhit.launcherios/com.luutinhit.weather.WeatherActivity"
+    "com.toddle.student/com.toddle.student.MainActivity"
   ],
   "scr-8": [
     "com.opsway.boodmo/com.opsway.boodmo.MainActivity",
@@ -2924,7 +2922,6 @@
     "com.tanksblitz/com.tb.engine.Activity",
     "com.hihonor.hnofficelauncher/com.hihonor.hnofficelauncher.MainActivity",
     "com.sdkit.search.app/com.sdkit.searchapp.app.presentation.SearchAppActivity",
-    "com.luutinhit.launcherios/com.luutinhit.weather.WeatherActivity",
     "app.wotblitz.com/com.dava.engine.DavaActivity",
     "com.swiftgames.survival/com.google.firebase.MessagingUnityPlayerActivity",
     "com.ucool.hero/com.sdk.platform.MainUnityActivity",
@@ -2953,7 +2950,6 @@
     "com.pavilionlab.weather.forecast.live.widget/com.pavilionlab.weather.forecast.live.widget.ui.home.MainActivity",
     "com.example.qms/com.example.qms.MainActivity",
     "ru.sovcomcard.halva.v1/ru.sovcomcard.halva.v1.DEFAULT",
-    "com.luutinhit.launcherios/com.luutinhit.launcherios.activity.SplashActivity",
     "com.star.union.planetant/com.star.union.planetant.MainActivity",
     "ru.dlvry.tommyfish/ru.lifemart.android.MainActivity",
     "com.frojo.pickle/com.google.firebase.MessagingUnityPlayerActivity",
@@ -3060,7 +3056,6 @@
     "com.syf.amazonstorecard/com.synchronyfinancial.plugin.SynchronyPlugInActivity",
     "com.openai.sora/com.openai.sora.MainActivity",
     "io.cred.roboapp.android/io.cred.roboapp.application.welcome.ui.WelcomeSplashActivity",
-    "com.embeepay.mpm/com.embee.uk.common.ui.activity.MainActivity",
     "com.wendys.nutritiontool/com.wendys.nutritiontool.MainActivity",
     "com.shortwave.android/shortwave.android.ui.MainActivity",
     "com.paltool.microwave_flutter/com.paltool.microwave_flutter.MainActivity",
@@ -7197,9 +7192,7 @@
     "com.leodesol.games.linesthegame/com.leodesol.games.linesthegame.RunnerActivity",
     "com.luutinhit.controlcenter/com.luutinhit.intro.SplashActivity",
     "win.fkey.netboost/win.fkey.netboost.MainActivity",
-    "com.luutinhit.launcherios/com.luutinhit.launcherios.activity.SplashActivity",
     "com.zeptolab.evopop/com.unity3d.player.UnityPlayerActivity",
-    "com.luutinhit.launcherios/com.luutinhit.weather.WeatherActivity",
     "com.luutinhit.launcherios17/com.luutinhit.launcherios17.activity.SplashActivity"
   ],
   "scr-593": [
@@ -7760,7 +7753,6 @@
     "com.txtnet.txtnetbrowser/com.txtnet.txtnetbrowser.MainBrowserScreen",
     "com.apps.share.uninstaller/com.app.share.applicationsharer.ui.MainActivity",
     "com.tung91.flatico/com.tung91.flatico.HomeActivity",
-    "com.benx9.tulip/com.benx9.tulip.LicenseActivity",
     "ru.yomyo.filetransfer/ru.yomyo.filetransfer.MainActivity",
     "com.dark.badlock/com.dark.badlock.MainActivity",
     "psh.doc_scanner.doc_kit/psh.doc_scanner.doc_kit.MainActivity",
@@ -12651,7 +12643,6 @@
     "app.tunit.tunit_flutter_mobile/app.tunit.tunit_flutter_mobile.MainActivity",
     "com.appastic.autostart/com.appastic.autostart.MainActivity",
     "lt.norfa.mobile/lt.norfa.mobile.MainActivity",
-    "lt.pigu.pigu/lt.pigu.ui.common.activity.LauncherActivity",
     "com.google.android.apps.labs.whisk/com.google.android.apps.labs.whisk.MainActivity",
     "lt.iki.app/lt.iki.app.features.splash.SplashActivity",
     "de.walk15.pedometer/de.walk15.pedometer.MainActivity"
@@ -15091,8 +15082,7 @@
   "scr-1184": [
     "com.clairmail.fth/com.fifththird.mobilebanking.digital.routing.RoutingActivity",
     "com.adpmobile.android/com.adpmobile.android.auth.ui.AuthAppActivity",
-    "org.collegeboard.pivot/org.collegeboard.bfschool.AppActivity",
-    "ca.pinterest.saver.downloader.pin/ca.pinterest.saver.downloader.pin.ui.activity.MainActivity"
+    "org.collegeboard.pivot/org.collegeboard.bfschool.AppActivity"
   ],
   "scr-1185": [
     "com.ai.assistance.operit.provider/com.ai.assistance.operit.provider.MainComposeActivity",
@@ -15415,7 +15405,6 @@
     "com.AlexHK.BitCoiner/com.unity3d.player.UnityPlayerActivity",
     "com.launcher.ios27.liquid.glass/com.hk.feature.setting.splash.SplashLauncherActivity",
     "com.westover.dogdo/com.cocos.game.AppActivity",
-    "com.luutinhit.launcherios/com.luutinhit.launcherios.activity.SplashActivity",
     "com.room.ai.planner.design/home.ai.design.main.MainActivity",
     "com.transsion.itelcloud/com.juanvision.modulelogin.activity.SplashActivity",
     "com.kayac.noodle_master/com.unity3d.player.UnityPlayerActivity",
@@ -15424,7 +15413,6 @@
     "com.mojang.mine265022/com.mojang.minecraftpe.MainActivity",
     "com.coffeestainstudios.goatsimulator.free/com.epicgames.ue4.SplashActivity",
     "com.LinkedSquad.SchoolBoyRunaway/com.unity3d.player.UnityPlayerActivity",
-    "com.luutinhit.launcherios/com.luutinhit.weather.WeatherActivity",
     "com.BVBGames.LMaker/com.unity3d.player.UnityPlayerActivity",
     "top.setapp.playground3d/com.releasedata.ReleaseDataActivity.SplashActivityKing",
     "com.binary.hyperdroid/com.binary.hyperdroid.SplashActivity",
