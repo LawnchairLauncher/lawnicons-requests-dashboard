@@ -1386,7 +1386,7 @@ grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px minmax(14
   color: var(--on-clay-container);
 }
 
-.status-wip {
+.status-rare {
   background: var(--primary-container);
   color: var(--on-primary-container);
 }

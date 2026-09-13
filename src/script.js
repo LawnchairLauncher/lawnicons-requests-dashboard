@@ -29,7 +29,7 @@ const CONFIG = {
     // Order matters for UI
     filters: [
       'plan',
-      'wip',
+      'rare',
       'supported',
       'easy',
       'foss',
@@ -47,7 +47,7 @@ const CONFIG = {
     easy: 3,
     match: 5,
     supported: 6,
-    wip: 8,
+    rare: 1,
   },
   urls: {
     playStore: 'https://play.google.com/store/apps/details?id=',
@@ -541,15 +541,15 @@ const Templates = {
     }
 
     // Only show WIP tags on grid to avoid clutter
-    const tagHtml = tags
-      .filter((tagId) => tagId === 'wip')
-      .map((tagId) => {
-        const meta = App.state.filterMetadata.get(tagId);
-        const label = meta ? meta.label : tagId;
-        const desc = meta ? meta.description : `Tagged with "${tagId}"`;
-        return `<span class="status-pill status-${tagId}" title="${desc}">${label}</span>`;
-      })
-      .join('');
+    // const tagHtml = tags
+    //   .filter((tagId) => tagId === 'wip')
+    //   .map((tagId) => {
+    //     const meta = App.state.filterMetadata.get(tagId);
+    //     const label = meta ? meta.label : tagId;
+    //     const desc = meta ? meta.description : `Tagged with "${tagId}"`;
+    //     return `<span class="status-pill status-${tagId}" title="${desc}">${label}</span>`;
+    //   })
+    //   .join('');
 
     return `
       <div class="grid-card ${
