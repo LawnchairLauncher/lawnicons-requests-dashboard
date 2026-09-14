@@ -2100,6 +2100,18 @@ input[type="checkbox"]:indeterminate::after {
   color: var(--on-surface);
 }
 
+.goal-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.goal-bar-wrapper .goal-bar {
+  flex: 1;
+  margin-bottom: 0;
+}
+
 /* Icon Library Results */
 .icon-library-results {
   margin-bottom: var(--space-lg);

@@ -5168,7 +5168,7 @@ renderContributionMode() {
     const s = App.state;
     const container = document.getElementById('iconLibraryResults');
     const cardsRow = document.querySelector('.cards-row');
-    const goalBar = document.getElementById('goalBar');
+    const goalBar = document.querySelector('.goal-bar-wrapper');
 
     if (!container || !cardsRow) return;
 
