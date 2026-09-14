@@ -29,6 +29,7 @@ const CONFIG = {
     // Order matters for UI
     filters: [
       'plan',
+      'tbd',
       'rare',
       'supported',
       'easy',

@@ -87,6 +87,10 @@
   --rose-container: #6d2745;
   --on-rose-container: #ffd8e7;
 
+/* Source: #424242 */
+--graphite-container: #383838;
+--on-graphite-container: #e8e8f0;
+
   /* Pie chart colors */
   --chart-1: #8CB4FF;
   --chart-2: #C4B5FD;
@@ -1427,6 +1431,11 @@ grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px minmax(14
 .status-match {
   background: var(--pine-container);
   color: var(--on-pine-container);
+}
+
+.status-tbd {
+  background: var(--graphite-container);
+  color: var(--on-graphite-container);
 }
 
 .status-stale {
