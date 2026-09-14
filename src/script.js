@@ -3080,19 +3080,24 @@ const UI = {
   },
 
   render() {
+    const goalBar = document.querySelector('.goal-bar-wrapper');
+    
     if (App.state.lowQualityActive) {
+      goalBar?.classList.add('is-hidden');
       document.getElementById('sectionTitle')?.classList.add('is-hidden');
       this.renderLowQualityMode();
       return;
     }
 
     if (App.state.iconReviewActive) {
+      goalBar?.classList.add('is-hidden');
       document.getElementById('sectionTitle')?.classList.add('is-hidden');
       this.renderIconReview();
       return;
     }
 
     if (App.state.contributionActive) {
+      goalBar?.classList.add('is-hidden');
       document.getElementById('sectionTitle')?.classList.add('is-hidden');
       this.renderContributionMode();
       return;
@@ -3647,6 +3652,7 @@ layoutMasonry() {
     document.getElementById('iconLibraryResults')?.classList.add('is-hidden');
     document.getElementById('search-wrapper')?.classList.add('is-hidden');
     document.getElementById('mainTabs')?.classList.add('is-hidden');
+    document.querySelector('.goal-bar-wrapper')?.classList.add('is-hidden');
     App.dom.screenSortBtn.classList.add('is-hidden');
     App.dom.listHeader.style.display = 'none';
     App.dom.sentinel.style.display = 'none';
@@ -3768,6 +3774,7 @@ layoutMasonry() {
     document.getElementById('iconLibraryResults')?.classList.add('is-hidden');
     document.getElementById('search-wrapper')?.classList.add('is-hidden');
     document.getElementById('mainTabs')?.classList.add('is-hidden');
+    document.querySelector('.goal-bar-wrapper')?.classList.add('is-hidden');
     App.dom.screenSortBtn.classList.add('is-hidden');
     App.dom.listHeader.style.display = 'none';
     App.dom.sentinel.style.display = 'none';
@@ -3962,6 +3969,7 @@ renderContributionMode() {
     document.getElementById('search-wrapper')?.classList.add('is-hidden');
     document.getElementById('mainTabs')?.classList.add('is-hidden');
     document.getElementById('lowQualityBtn')?.parentElement?.classList.add('is-hidden');
+    document.querySelector('.goal-bar-wrapper')?.classList.add('is-hidden');
     App.dom.screenSortBtn.classList.add('is-hidden');
     const contributionCountBadge = document.getElementById(
       'contributionCountBadge',
