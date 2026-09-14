@@ -61,6 +61,8 @@ const CONFIG = {
   },
 };
 
+const GOAL_START = 12324;
+
 const ISO_COUNTRIES = new Set(['ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','ne','ng','ni','nl','no','np','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','uk','us','uy','uz','vc','ve','vi','vn','ye','za','zm','zw']);
 
 const ICONS = {
@@ -2233,6 +2235,7 @@ const UI = {
     this.updateContributionBadge();
     this.renderDomainStats();
     this.renderActivityCard();
+    this.renderGoalBar();
     this.generateFilters();
     this.initObserver();
     this.initRegexAutocomplete();
@@ -5052,6 +5055,23 @@ renderContributionMode() {
     });
   },
 
+  async renderGoalBar() {
+    const tbd = await Data.fetchJson('assets/filters/tbd.json', { tbd: [] });
+    const total = GOAL_START;
+    const remaining = tbd.tbd.length;
+    const located = Math.max(0, total - remaining);
+    const pct = total > 0 ? (located / total) * 100 : 0;
+    
+    const fill = document.getElementById('goalFill');
+    const left = document.getElementById('goalLeft');
+    
+    if (fill) fill.style.width = `${pct}%`;
+    if (left) {
+      left.textContent = 
+        `${Utils.compactNumber(located)} / ${Utils.compactNumber(total)} requests located`;
+    }
+  },
+
   initRegexAutocomplete() {
     const input = App.dom.inputSearch;
     const wrapper = document.getElementById('search-wrapper');
@@ -5148,6 +5168,7 @@ renderContributionMode() {
     const s = App.state;
     const container = document.getElementById('iconLibraryResults');
     const cardsRow = document.querySelector('.cards-row');
+    const goalBar = document.getElementById('goalBar');
 
     if (!container || !cardsRow) return;
 
@@ -5156,6 +5177,7 @@ renderContributionMode() {
     if (!query || !s.existingIcons || s.existingIcons.length === 0) {
       Utils.setHidden(container, true);
       Utils.setHidden(cardsRow, false);
+      Utils.setHidden(goalBar, false);
       return;
     }
 
@@ -5173,6 +5195,7 @@ renderContributionMode() {
     if (matches.length === 0) {
       Utils.setHidden(container, true);
       Utils.setHidden(cardsRow, false);
+      Utils.setHidden(goalBar, false);
       return;
     }
 
@@ -5198,6 +5221,7 @@ renderContributionMode() {
 
     Utils.setHidden(cardsRow, true);
     Utils.setHidden(container, false);
+    Utils.setHidden(goalBar, true);
 
     const title = container.querySelector('.library-title');
     if (title) {
