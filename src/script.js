@@ -65,6 +65,259 @@ const GOAL_START = 12324;
 
 const ISO_COUNTRIES = new Set(['ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','ne','ng','ni','nl','no','np','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','uk','us','uy','uz','vc','ve','vi','vn','ye','za','zm','zw']);
 
+const TOP_COUNTRIES = ['br', 'cn', 'fr', 'de', 'in', 'jp', 'pl', 'ru', 'se', 'us'];
+const COUNTRIES = {
+  "aw": "Aruba",
+  "af": "Afghanistan",
+  "ao": "Angola",
+  "ai": "Anguilla",
+  "ax": "Åland Islands",
+  "al": "Albania",
+  "ad": "Andorra",
+  "ae": "United Arab Emirates",
+  "ar": "Argentina",
+  "am": "Armenia",
+  "as": "American Samoa",
+  "aq": "Antarctica",
+  "tf": "French Southern Territories",
+  "ag": "Antigua and Barbuda",
+  "au": "Australia",
+  "at": "Austria",
+  "az": "Azerbaijan",
+  "bi": "Burundi",
+  "be": "Belgium",
+  "bj": "Benin",
+  "bq": "Bonaire, Sint Eustatius and Saba",
+  "bf": "Burkina Faso",
+  "bd": "Bangladesh",
+  "bg": "Bulgaria",
+  "bh": "Bahrain",
+  "bs": "Bahamas",
+  "ba": "Bosnia and Herzegovina",
+  "bl": "Saint Barthélemy",
+  "by": "Belarus",
+  "bz": "Belize",
+  "bm": "Bermuda",
+  "bo": "Bolivia, Plurinational State of",
+  "br": "Brazil",
+  "bb": "Barbados",
+  "bn": "Brunei Darussalam",
+  "bt": "Bhutan",
+  "bv": "Bouvet Island",
+  "bw": "Botswana",
+  "cf": "Central African Republic",
+  "ca": "Canada",
+  "cc": "Cocos (Keeling) Islands",
+  "ch": "Switzerland",
+  "cl": "Chile",
+  "cn": "China",
+  "ci": "Côte d'Ivoire",
+  "cm": "Cameroon",
+  "cd": "Congo, The Democratic Republic of the",
+  "cg": "Congo",
+  "ck": "Cook Islands",
+  "co": "Colombia",
+  "km": "Comoros",
+  "cv": "Cabo Verde",
+  "cr": "Costa Rica",
+  "cu": "Cuba",
+  "cw": "Curaçao",
+  "cx": "Christmas Island",
+  "ky": "Cayman Islands",
+  "cy": "Cyprus",
+  "cz": "Czechia",
+  "de": "Germany",
+  "dj": "Djibouti",
+  "dm": "Dominica",
+  "dk": "Denmark",
+  "do": "Dominican Republic",
+  "dz": "Algeria",
+  "ec": "Ecuador",
+  "eg": "Egypt",
+  "er": "Eritrea",
+  "eh": "Western Sahara",
+  "es": "Spain",
+  "ee": "Estonia",
+  "et": "Ethiopia",
+  "fi": "Finland",
+  "fj": "Fiji",
+  "fk": "Falkland Islands (Malvinas)",
+  "fr": "France",
+  "fo": "Faroe Islands",
+  "fm": "Micronesia, Federated States of",
+  "ga": "Gabon",
+  "gb": "United Kingdom",
+  "ge": "Georgia",
+  "gg": "Guernsey",
+  "gh": "Ghana",
+  "gi": "Gibraltar",
+  "gn": "Guinea",
+  "gp": "Guadeloupe",
+  "gm": "Gambia",
+  "gw": "Guinea-Bissau",
+  "gq": "Equatorial Guinea",
+  "gr": "Greece",
+  "gd": "Grenada",
+  "gl": "Greenland",
+  "gt": "Guatemala",
+  "gf": "French Guiana",
+  "gu": "Guam",
+  "gy": "Guyana",
+  "hk": "Hong Kong",
+  "hm": "Heard Island and McDonald Islands",
+  "hn": "Honduras",
+  "hr": "Croatia",
+  "ht": "Haiti",
+  "hu": "Hungary",
+  "id": "Indonesia",
+  "im": "Isle of Man",
+  "in": "India",
+  "io": "British Indian Ocean Territory",
+  "ie": "Ireland",
+  "ir": "Iran, Islamic Republic of",
+  "iq": "Iraq",
+  "is": "Iceland",
+  "il": "Israel",
+  "it": "Italy",
+  "jm": "Jamaica",
+  "je": "Jersey",
+  "jo": "Jordan",
+  "jp": "Japan",
+  "kz": "Kazakhstan",
+  "ke": "Kenya",
+  "kg": "Kyrgyzstan",
+  "kh": "Cambodia",
+  "ki": "Kiribati",
+  "kn": "Saint Kitts and Nevis",
+  "kr": "Korea, Republic of",
+  "kw": "Kuwait",
+  "la": "Lao People's Democratic Republic",
+  "lb": "Lebanon",
+  "lr": "Liberia",
+  "ly": "Libya",
+  "lc": "Saint Lucia",
+  "li": "Liechtenstein",
+  "lk": "Sri Lanka",
+  "ls": "Lesotho",
+  "lt": "Lithuania",
+  "lu": "Luxembourg",
+  "lv": "Latvia",
+  "mo": "Macao",
+  "mf": "Saint Martin (French part)",
+  "ma": "Morocco",
+  "mc": "Monaco",
+  "md": "Moldova, Republic of",
+  "mg": "Madagascar",
+  "mv": "Maldives",
+  "mx": "Mexico",
+  "mh": "Marshall Islands",
+  "mk": "North Macedonia",
+  "ml": "Mali",
+  "mt": "Malta",
+  "mm": "Myanmar",
+  "me": "Montenegro",
+  "mn": "Mongolia",
+  "mp": "Northern Mariana Islands",
+  "mz": "Mozambique",
+  "mr": "Mauritania",
+  "ms": "Montserrat",
+  "mq": "Martinique",
+  "mu": "Mauritius",
+  "mw": "Malawi",
+  "my": "Malaysia",
+  "yt": "Mayotte",
+  "na": "Namibia",
+  "nc": "New Caledonia",
+  "ne": "Niger",
+  "nf": "Norfolk Island",
+  "ng": "Nigeria",
+  "ni": "Nicaragua",
+  "nu": "Niue",
+  "nl": "Netherlands",
+  "no": "Norway",
+  "np": "Nepal",
+  "nr": "Nauru",
+  "nz": "New Zealand",
+  "om": "Oman",
+  "pk": "Pakistan",
+  "pa": "Panama",
+  "pn": "Pitcairn",
+  "pe": "Peru",
+  "ph": "Philippines",
+  "pw": "Palau",
+  "pg": "Papua New Guinea",
+  "pl": "Poland",
+  "pr": "Puerto Rico",
+  "kp": "Korea, Democratic People's Republic of",
+  "pt": "Portugal",
+  "py": "Paraguay",
+  "ps": "Palestine, State of",
+  "pf": "French Polynesia",
+  "qa": "Qatar",
+  "re": "Réunion",
+  "ro": "Romania",
+  "ru": "Russia",
+  "rw": "Rwanda",
+  "sa": "Saudi Arabia",
+  "sd": "Sudan",
+  "sn": "Senegal",
+  "sg": "Singapore",
+  "gs": "South Georgia and the South Sandwich Islands",
+  "sh": "Saint Helena, Ascension and Tristan da Cunha",
+  "sj": "Svalbard and Jan Mayen",
+  "sb": "Solomon Islands",
+  "sl": "Sierra Leone",
+  "sv": "El Salvador",
+  "sm": "San Marino",
+  "so": "Somalia",
+  "pm": "Saint Pierre and Miquelon",
+  "rs": "Serbia",
+  "ss": "South Sudan",
+  "st": "Sao Tome and Principe",
+  "sr": "Suriname",
+  "sk": "Slovakia",
+  "si": "Slovenia",
+  "se": "Sweden",
+  "sz": "Eswatini",
+  "sx": "Sint Maarten (Dutch part)",
+  "sc": "Seychelles",
+  "sy": "Syrian Arab Republic",
+  "tc": "Turks and Caicos Islands",
+  "td": "Chad",
+  "tg": "Togo",
+  "th": "Thailand",
+  "tj": "Tajikistan",
+  "tk": "Tokelau",
+  "tm": "Turkmenistan",
+  "tl": "Timor-Leste",
+  "to": "Tonga",
+  "tt": "Trinidad and Tobago",
+  "tn": "Tunisia",
+  "tr": "Türkiye",
+  "tv": "Tuvalu",
+  "tw": "Taiwan, Province of China",
+  "tz": "Tanzania, United Republic of",
+  "ug": "Uganda",
+  "ua": "Ukraine",
+  "um": "United States Minor Outlying Islands",
+  "uy": "Uruguay",
+  "us": "United States",
+  "uz": "Uzbekistan",
+  "va": "Holy See (Vatican City State)",
+  "vc": "Saint Vincent and the Grenadines",
+  "ve": "Venezuela, Bolivarian Republic of",
+  "vg": "Virgin Islands, British",
+  "vi": "Virgin Islands, U.S.",
+  "vn": "Viet Nam",
+  "vu": "Vanuatu",
+  "wf": "Wallis and Futuna",
+  "ws": "Samoa",
+  "ye": "Yemen",
+  "za": "South Africa",
+  "zm": "Zambia",
+  "zw": "Zimbabwe"
+}
+
 const ICONS = {
   check: `<svg><use href="#ic-check"/></svg>`,
   download: `<svg><use href="#ic-download"/></svg>`,
@@ -702,6 +955,10 @@ const Templates = {
       ? overrides.drawable
       : defaultSvg;
 
+    const country = overrides.country || '';
+    const countryName = country ? (COUNTRIES[country] || country) : '';
+    const countryDisplay = country ? `${countryName} (${country})` : '';
+
     const mode = (overrides.mode === 'link') ? 'link' : 'new';
 
     const existingIcon = App.state.existingIcons.find((icon) =>
@@ -753,6 +1010,19 @@ const Templates = {
                       </div>
                       <span class="item-sub" title="${id}">ID: ${id}</span>
                   </div>
+              </div>
+              <div class="col country">
+                <div class="country-autocomplete" data-id="${id}">
+                  <input 
+                    type="text" 
+                    class="contribution-country-input"
+                    value="${countryDisplay}"
+                    autocomplete="off"
+                    data-id="${id}"
+                  />
+                  <input type="hidden" class="contribution-country-value" value="${country}" />
+                  <span class="item-sub">Name or ISO code.</span>
+                </div>
               </div>
               <div class="col svg-name">
                   <input type="text" class="contribution-svg-input" value="${drawable}" data-id="${id}" data-field="drawable" oninput="UI.updateContributionField(this)" title="SVG name" />
@@ -2309,6 +2579,71 @@ const UI = {
     App.dom.container.addEventListener('error', (event) => {
       Utils.handleImageError(event);
     }, true);
+
+    // Country input — show suggestions
+    App.dom.container.addEventListener('input', (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      if (!target.classList.contains('contribution-country-input')) return;
+      UI.showCountrySuggestions(target);
+    });
+
+    // Country suggestion click
+    App.dom.container.addEventListener('click', (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLElement)) return;
+      const sugg = target.closest('.country-suggestion');
+      if (sugg) UI.applyCountrySuggestion(sugg);
+    });
+
+    App.dom.container.addEventListener('focusin', (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      if (!target.classList.contains('contribution-country-input')) return;
+      UI.showCountrySuggestions(target, true);
+    });
+
+    // Country input blur — hide suggestions + validate
+    App.dom.container.addEventListener('focusout', (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      if (!target.classList.contains('contribution-country-input')) return;
+      
+      const value = target.value.trim();
+      const wrapper = target.closest('.country-autocomplete');
+      const id = wrapper?.dataset.id;
+      const hidden = wrapper?.querySelector('.contribution-country-value');
+      
+      let code = null;
+      const m = value.match(/\(([a-z]{2})\)$/i);
+      if (m) code = m[1].toLowerCase();
+      else if (/^[a-z]{2}$/i.test(value) && COUNTRIES[value.toLowerCase()]) {
+        code = value.toLowerCase();
+      }
+      
+      if (code) {
+        const name = COUNTRIES[code] || code;
+        target.value = `${name} (${code})`;
+        if (hidden) hidden.value = code;
+        if (id) {
+          if (!App.state.contributionOverrides[id]) {
+            App.state.contributionOverrides[id] = {};
+          }
+          App.state.contributionOverrides[id].country = code;
+          UI.saveContribution();
+        }
+      } else if (!value) {
+        if (hidden) hidden.value = '';
+        if (id && App.state.contributionOverrides[id]) {
+          delete App.state.contributionOverrides[id].country;
+          UI.saveContribution();
+        }
+      }
+      
+      setTimeout(() => {
+        wrapper?.querySelector('.country-suggestions')?.classList.add('is-hidden');
+      }, 150);
+    });
 
     /** @type {number | undefined} */
     let searchTimeout;
@@ -4028,6 +4363,7 @@ renderContributionMode() {
               <div class="col mode">Mode</div>
               <div class="col icon">Icon</div>
               <div class="col name">Name</div>
+              <div class="col country">Country</div>
               <div class="col svg-name">SVG name</div>
               <div class="col library-icon"></div>
               <div class="col actions"></div>  
@@ -4293,9 +4629,11 @@ renderContributionMode() {
 
     const downloadHtml = `
         <div class="contribution-download-wrapper">
-          <button class="sb-action-btn" id="contributionDownloadBtn" style="${
-      downloadReady ? '' : 'display:none'
-    }">
+          <button class="sb-action-btn secondary" id="contributionCopyCountriesBtn">
+            <svg><use href="#ic-copy"/></svg>
+            <span>Copy countries</span>
+          </button>
+          <button class="sb-action-btn" id="contributionDownloadBtn">
             <svg><use href="#ic-download"/></svg>
             <span>Download</span>
           </button>
@@ -4319,6 +4657,11 @@ renderContributionMode() {
         UI.saveContribution();
         UI.render();
       };
+    }
+
+    const copyCountriesBtn = document.getElementById('contributionCopyCountriesBtn');
+    if (copyCountriesBtn) {
+      copyCountriesBtn.onclick = () => { this.copyCountries(); };
     }
 
     if (downloadReady) {
@@ -4686,6 +5029,101 @@ renderContributionMode() {
           : 'none';
       }
     }
+  },
+
+  showCountrySuggestions(input, showTop = false) {
+    const term = input.value.trim().toLowerCase();
+    const wrapper = input.closest('.country-autocomplete');
+    if (!wrapper) return;
+    
+    let suggestions = wrapper.querySelector('.country-suggestions');
+    if (!suggestions) {
+      suggestions = document.createElement('div');
+      suggestions.className = 'country-suggestions';
+      wrapper.appendChild(suggestions);
+    }
+    
+    if (!term && !showTop) {
+      suggestions.classList.add('is-hidden');
+      return;
+    }
+    
+    let matches;
+    
+    if (!term && showTop) {
+      // All 10 top countries
+      matches = TOP_COUNTRIES.map(code => ({ code, name: COUNTRIES[code] || code }));
+    } else {
+      // Filter, top-5 by relevance
+      matches = Object.entries(COUNTRIES)
+        .map(([code, name]) => ({ code, name }))
+        .filter(c => 
+          c.name.toLowerCase().includes(term) || 
+          c.code.toLowerCase() === term
+        )
+        .sort((a, b) => {
+          const aStart = a.name.toLowerCase().startsWith(term) || a.code === term;
+          const bStart = b.name.toLowerCase().startsWith(term) || b.code === term;
+          if (aStart !== bStart) return aStart ? -1 : 1;
+          return a.name.localeCompare(b.name);
+        })
+        .slice(0, 5);
+    }
+    
+    if (!matches.length) {
+      suggestions.classList.add('is-hidden');
+      return;
+    }
+    
+    suggestions.innerHTML = matches.map(c => 
+      `<div class="country-suggestion" data-code="${c.code}" data-name="${c.name}">${c.name} (${c.code})</div>`
+    ).join('');
+    suggestions.classList.remove('is-hidden');
+  },
+
+  applyCountrySuggestion(suggEl) {
+    const wrapper = suggEl.closest('.country-autocomplete');
+    if (!wrapper) return;
+    const id = wrapper.dataset.id;
+    const code = suggEl.dataset.code;
+    const name = suggEl.dataset.name;
+    
+    const input = wrapper.querySelector('.contribution-country-input');
+    const hidden = wrapper.querySelector('.contribution-country-value');
+    if (input) input.value = `${name} (${code})`;
+    if (hidden) hidden.value = code;
+    
+    wrapper.querySelector('.country-suggestions')?.classList.add('is-hidden');
+    
+    if (!App.state.contributionOverrides[id]) {
+      App.state.contributionOverrides[id] = {};
+    }
+    App.state.contributionOverrides[id].country = code;
+    this.saveContribution();
+  },
+
+  copyCountries() {
+    const grouped = {};
+    App.state.contribution.forEach((app) => {
+      const id = app.componentName;
+      const country = App.state.contributionOverrides[id]?.country;
+      if (!country) return;
+      const pkg = id.split('/')[0];
+      if (!grouped[country]) grouped[country] = [];
+      grouped[country].push(pkg);
+    });
+    
+    if (!Object.keys(grouped).length) {
+      Components.Toast.show('No countries selected');
+      return;
+    }
+    
+    const sorted = {};
+    Object.keys(grouped).sort().forEach(k => {
+      sorted[k] = [...new Set(grouped[k])].sort();
+    });
+    
+    Actions.copyToClipboard(JSON.stringify(sorted, null, 2));
   },
 
   saveContribution() {
