@@ -5123,7 +5123,12 @@ renderContributionMode() {
       sorted[k] = [...new Set(grouped[k])].sort();
     });
     
-    Actions.copyToClipboard(JSON.stringify(sorted, null, 2));
+    const lines = Object.keys(sorted).map(code => {
+      const pkgs = sorted[code].join(', ');
+      return `${code}: ${pkgs}`;
+    });
+    
+    Actions.copyToClipboard(lines.join('\n'));
   },
 
   saveContribution() {
