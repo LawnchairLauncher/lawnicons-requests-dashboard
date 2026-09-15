@@ -52834,9 +52834,6 @@
   "com.swarajk1.easyemicalculator/com.swarajk1.easyemicalculator.EMICalculatorActivity": {
     "in.callyzer.individual/com.websoptimization.callyzerpro.MainActivity": 1
   },
-  "com.bajaj.salesapp/com.bajaj.salesapp.ui.activity.splash.SplashActivity": {
-    "in.callyzer.individual/com.websoptimization.callyzerpro.MainActivity": 1
-  },
   "com.nig.ikasa/com.nig.ikasa.MainActivity": {
     "jp.co.japannetbank.smtapp.balance/jp.co.paypay.bank.SplashActivity": 1,
     "jp.co.park24.tcpquickapps/jp.co.park24.tcarapps.splash.TcpSplashActivity": 1,
@@ -70041,9 +70038,6 @@
   "com.wMapsat_19655631/com.appsgeyser.multiTabApp.MainNavigationActivity": {
     "tr.gov.dbys.mobile/com.dias.depozitoapp.LauncherActivity": 1
   },
-  "com.nexuskeet/com.nexuskeet.MainActivity": {
-    "tr.gov.dbys.mobile/com.dias.depozitoapp.LauncherActivity": 1
-  },
   "com.logicedge.opencodemobile/com.logicedge.opencodemobile.MainActivity": {
     "tr.gov.dbys.mobile/com.dias.depozitoapp.LauncherActivity": 1
   },
@@ -70762,19 +70756,10 @@
   "com.neonplay.casualbuca_android/com.unity3d.player.UnityPlayerActivity": {
     "cl.solem.pocae/cl.solem.pocae.MainActivity": 1
   },
-  "com.starbucksrewards.gt/com.starbucksrewards.gt.MainActivity": {
-    "cl.solem.pocae/cl.solem.pocae.MainActivity": 1
-  },
   "com.rdapps.gamepad/com.rdapps.gamepad.MainActivity": {
     "cl.solem.pocae/cl.solem.pocae.MainActivity": 1
   },
   "com.tubusguatemala.app/com.tubusguatemala.app.MainActivity": {
-    "cl.solem.pocae/cl.solem.pocae.MainActivity": 1
-  },
-  "com.qmsoluciones.tacobellguatemala/com.qmsoluciones.tacobellguatemala.SplashActivity": {
-    "cl.solem.pocae/cl.solem.pocae.MainActivity": 1
-  },
-  "com.dominos.latin.america/com.dominos.latin.america.MainActivity": {
     "cl.solem.pocae/cl.solem.pocae.MainActivity": 1
   },
   "com.intcomex.smart/com.smart.ThingSplashActivity": {
@@ -71328,18 +71313,6 @@
     "ru.ok.dating/com.vk.standalone.base.ui.activities.MainMiniAppActivity": 1
   },
   "org.chromium.webapk.a2fb984e44af38214_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity": {
-    "ru.mail.intranet/ru.mail.intranet.main.ui.main.MainActivity": 1,
-    "ru.mail.horo.android/ru.mail.horo.android.ui.SplashActivity": 1,
-    "ru.mail.my/ru.mail.my.activity.StartupActivity": 1,
-    "ru.ok.dating/com.vk.standalone.base.ui.activities.MainMiniAppActivity": 1
-  },
-  "com.leozimgranny.grannyreawakening/com.unity3d.player.UnityPlayerActivity": {
-    "ru.mail.intranet/ru.mail.intranet.main.ui.main.MainActivity": 1,
-    "ru.mail.horo.android/ru.mail.horo.android.ui.SplashActivity": 1,
-    "ru.mail.my/ru.mail.my.activity.StartupActivity": 1,
-    "ru.ok.dating/com.vk.standalone.base.ui.activities.MainMiniAppActivity": 1
-  },
-  "com.besome.sketch/com.besome.sketch.InitActivity": {
     "ru.mail.intranet/ru.mail.intranet.main.ui.main.MainActivity": 1,
     "ru.mail.horo.android/ru.mail.horo.android.ui.SplashActivity": 1,
     "ru.mail.my/ru.mail.my.activity.StartupActivity": 1,
@@ -72528,12 +72501,6 @@
     "br.com.kurotoshiro.kuro_reader_pro/br.com.kurotoshiro.leitor_manga.FlexMainActivity": 1,
     "uk.co.bbc.wsuniversal/uk.co.bbc.chrysalis.discovery.ui.DiscoveryActivity": 1
   },
-  "com.mauriciotogneri.fileexplorer/com.mauriciotogneri.fileexplorer.activities.MainActivity": {
-    "mx.com.proceso.app/com.newspaperdirect.pressreader.android.oem.Main": 1,
-    "de.saschawillems.vulkancapsviewer/org.qtproject.qt.android.bindings.QtActivity": 1,
-    "br.com.kurotoshiro.kuro_reader_pro/br.com.kurotoshiro.leitor_manga.FlexMainActivity": 1,
-    "uk.co.bbc.wsuniversal/uk.co.bbc.chrysalis.discovery.ui.DiscoveryActivity": 1
-  },
   "blue.kaleidoscope.vulkan_lens/blue.kaleidoscope.vulkan_lens.MainActivity": {
     "mx.com.proceso.app/com.newspaperdirect.pressreader.android.oem.Main": 1,
     "de.saschawillems.vulkancapsviewer/org.qtproject.qt.android.bindings.QtActivity": 1,
@@ -72556,9 +72523,6 @@
     "uk.nktnet.webviewkiosk/uk.nktnet.webviewkiosk.MainActivity": 1
   },
   "com.epai.oblender/com.epai.oblender.StartupActivity": {
-    "uk.nktnet.webviewkiosk/uk.nktnet.webviewkiosk.MainActivity": 1
-  },
-  "net.east_hino.standard_explorer/net.east_hino.standard_explorer.ui.ActivityMain": {
     "uk.nktnet.webviewkiosk/uk.nktnet.webviewkiosk.MainActivity": 1
   },
   "com.promise.apollo/com.promise.augusta.InitActivity": {
@@ -73575,12 +73539,6 @@
     "sg.mediacorp.android/axis.android.sdk.app.startup.ui.StartupActivity": 1,
     "in.ndhm.phr/in.ndhm.phr.MainActivity": 1
   },
-  "com.softwinner.camera/com.softwinner.camera.CameraLauncher": {
-    "ec.edu.uea.app/ec.edu.uea.app.MainActivity": 1
-  },
-  "com.softwinner.videoplayer/com.softwinner.videoplayer.view.activity.HomePageActivity": {
-    "ec.edu.uea.app/ec.edu.uea.app.MainActivity": 1
-  },
   "com.trans.pvztv/com.transmension.mobile.IntroVideoActivity": {
     "ec.edu.uea.app/ec.edu.uea.app.MainActivity": 1
   },
@@ -73594,9 +73552,6 @@
     "de.hp.volume/de.hp.volume.Main": 1
   },
   "org.vita3kplus.emulator/org.vita3k.emulator.MainActivity": {
-    "de.hp.volume/de.hp.volume.Main": 1
-  },
-  "com.larpkeeper.debug/com.tonapps.tonkeeper.DefaultLauncherIcon": {
     "de.hp.volume/de.hp.volume.Main": 1
   },
   "com.Chillow.CustomRise/com.google.android.games.VkQualityTest.VkQualityTestActivity": {
@@ -73629,25 +73584,16 @@
   "aether.widgets.kwgt/aether.widgets.kwgt.MainActivity": {
     "de.hp.volume/de.hp.volume.Main": 1
   },
-  "org.larpgram.cc/org.telegram.messenger.DefaultIcon": {
-    "de.hp.volume/de.hp.volume.Main": 1
-  },
   "cdev.lines/cdev.lines.MySettingsActivity": {
     "de.hp.volume/de.hp.volume.Main": 1
   },
   "com.kalay.equalizer/com.kalay.equalizer.Activities.MainActivity": {
     "de.hp.volume/de.hp.volume.Main": 1
   },
-  "flashgram.org.web/org.telegram.messenger.DefaultIcon": {
-    "de.hp.volume/de.hp.volume.Main": 1
-  },
   "com.maudau/com.maudau.main.MainActivity": {
     "de.hp.volume/de.hp.volume.Main": 1
   },
   "com.owpengram.messenger/org.telegram.messenger.DefaultIcon": {
-    "de.hp.volume/de.hp.volume.Main": 1
-  },
-  "com.example.monobank/com.example.monobank.MainActivity": {
     "de.hp.volume/de.hp.volume.Main": 1
   },
   "com.messenger.airgram/org.telegram.messenger.DefaultIcon": {
@@ -73670,16 +73616,10 @@
   "com.roblox.clienc/com.roblox.client.startup.ActivitySplash": {
     "de.hp.volume/de.hp.volume.Main": 1
   },
-  "org.ShuzaGramV2.com.web/org.telegram.messenger.DefaultIcon": {
-    "de.hp.volume/de.hp.volume.Main": 1
-  },
   "com.leosfortune/com.leosfortune.LeosFortuneActivity": {
     "de.hp.volume/de.hp.volume.Main": 1
   },
   "com.unixgram.app/com.unixgram.app.MainActivity": {
-    "de.hp.volume/de.hp.volume.Main": 1
-  },
-  "com.wavegram.messenger.web/org.telegram.messenger.DefaultIcon": {
     "de.hp.volume/de.hp.volume.Main": 1
   },
   "com.virtunum.android/com.virtunum.android.MainActivity": {
@@ -73695,9 +73635,6 @@
     "de.hp.volume/de.hp.volume.Main": 1
   },
   "com.lailaixiong.funnyprint/cn.lailaixiong.funnyprint.MainActivity": {
-    "de.hp.volume/de.hp.volume.Main": 1
-  },
-  "org.mytelegram.messenger/org.telegram.messenger.DefaultIcon": {
     "de.hp.volume/de.hp.volume.Main": 1
   },
   "com.disney.wheresmywater2_goo/com.disney.wheresmywater2_goo.ActivitySkuGoogle": {
@@ -74663,12 +74600,6 @@
     "de.szalkowski.activitylauncher/de.szalkowski.activitylauncher.entrypoint.MainActivity": 1,
     "ru.iamtagir.game.android/com.unity3d.player.UnityPlayerActivity": 1
   },
-  "com.qr.code.reader.scanner.qrscan.android/ch.android.launcher.AppStartupActivity": {
-    "ru.iamtagir.thatlevelagain2.android/com.unity3d.player.UnityPlayerActivity": 1,
-    "ru.iiec.jvdroid/ru.iiec.jvdroid.JvActivity": 1,
-    "de.szalkowski.activitylauncher/de.szalkowski.activitylauncher.entrypoint.MainActivity": 1,
-    "ru.iamtagir.game.android/com.unity3d.player.UnityPlayerActivity": 1
-  },
   "com.keuwl.audiofrequencycounter/com.keuwl.audiofrequencycounter.MainActivity": {
     "ru.iamtagir.thatlevelagain2.android/com.unity3d.player.UnityPlayerActivity": 1,
     "ru.iiec.jvdroid/ru.iiec.jvdroid.JvActivity": 1,
@@ -74918,13 +74849,6 @@
     "sa.gov.mc.balaghtejari/app.ui.SplashRouterActivity": 1
   },
   "com.fitbod.fitbod/com.fitbod.fitbod.main.MainActivity": {
-    "co.tamatem.awadremake/com.unity3d.player.UnityPlayerActivity": 1,
-    "ca.psiphon.conduit/ca.psiphon.conduit.MainActivity": 1,
-    "ru.skillcap.dominoes/com.unity3d.player.UnityPlayerActivity": 1,
-    "sa.zid.mazeed/sa.zid.mazeed.MainActivity": 1,
-    "sa.gov.mc.balaghtejari/app.ui.SplashRouterActivity": 1
-  },
-  "com.empg.olxsa/com.empg.olxsa.MainActivity": {
     "co.tamatem.awadremake/com.unity3d.player.UnityPlayerActivity": 1,
     "ca.psiphon.conduit/ca.psiphon.conduit.MainActivity": 1,
     "ru.skillcap.dominoes/com.unity3d.player.UnityPlayerActivity": 1,
@@ -75184,13 +75108,6 @@
     "sa.zid.mazeed/sa.zid.mazeed.MainActivity": 1,
     "sa.gov.mc.balaghtejari/app.ui.SplashRouterActivity": 1
   },
-  "com.almanea.ios.sa.almanea/com.almanea.ios.sa.almanea.MainActivity": {
-    "co.tamatem.awadremake/com.unity3d.player.UnityPlayerActivity": 1,
-    "ca.psiphon.conduit/ca.psiphon.conduit.MainActivity": 1,
-    "ru.skillcap.dominoes/com.unity3d.player.UnityPlayerActivity": 1,
-    "sa.zid.mazeed/sa.zid.mazeed.MainActivity": 1,
-    "sa.gov.mc.balaghtejari/app.ui.SplashRouterActivity": 1
-  },
   "com.posbankbh.einvoiceqrreader/com.posbankbh.einvoiceqrreader.MainActivity": {
     "co.tamatem.awadremake/com.unity3d.player.UnityPlayerActivity": 1,
     "ca.psiphon.conduit/ca.psiphon.conduit.MainActivity": 1,
@@ -75354,13 +75271,6 @@
     "sa.zid.mazeed/sa.zid.mazeed.MainActivity": 1,
     "sa.gov.mc.balaghtejari/app.ui.SplashRouterActivity": 1
   },
-  "free.alquran.holyquran/free.alquran.holyquran.view.DisclaimerActivityNew": {
-    "co.tamatem.awadremake/com.unity3d.player.UnityPlayerActivity": 1,
-    "ca.psiphon.conduit/ca.psiphon.conduit.MainActivity": 1,
-    "ru.skillcap.dominoes/com.unity3d.player.UnityPlayerActivity": 1,
-    "sa.zid.mazeed/sa.zid.mazeed.MainActivity": 1,
-    "sa.gov.mc.balaghtejari/app.ui.SplashRouterActivity": 1
-  },
   "com.zeptolab.ctrm.free.google/com.zeptolab.ctrm.CTRMActivity": {
     "co.tamatem.awadremake/com.unity3d.player.UnityPlayerActivity": 1,
     "ca.psiphon.conduit/ca.psiphon.conduit.MainActivity": 1,
@@ -75417,9 +75327,6 @@
     "sa.com.stc.qitaf/sa.com.stc.qitaf.MainActivity": 1
   },
   "zombie.survival.dead.shooting/com.me.game.pmupdatesdk.MainActivity": {
-    "sa.com.stc.qitaf/sa.com.stc.qitaf.MainActivity": 1
-  },
-  "com.file.manager.file.organizer.file.explorer.manage.files/com.file.manager.file.organizer.file.explorer.manage.files.ui.activity.splash.SplashActivity": {
     "sa.com.stc.qitaf/sa.com.stc.qitaf.MainActivity": 1
   },
   "com.mtmtunnel.lite/prince.open.vpn.activities.SpashActivity": {
@@ -75540,10 +75447,6 @@
     "co.infotura.leads/co.infotura.leads.MainActivity": 1,
     "in.swiggy.android.toing/in.swiggy.android.HomeIcon": 1
   },
-  "com.coolappstore.everdialer.by.svhp/com.coolappstore.everdialer.by.svhp.MainActivityNothingIcon": {
-    "co.infotura.leads/co.infotura.leads.MainActivity": 1,
-    "in.swiggy.android.toing/in.swiggy.android.HomeIcon": 1
-  },
   "com.softloom.eduloompro/com.softloom.eduloompro.MainActivity": {
     "co.infotura.leads/co.infotura.leads.MainActivity": 1,
     "in.swiggy.android.toing/in.swiggy.android.HomeIcon": 1
@@ -75609,20 +75512,6 @@
     "se.tv4.tv4playtab/se.tv4.tv4playtab.MainActivity": 1
   },
   "com.sebkort.sase/se.eurocard.ui.main.MainActivity": {
-    "se.stc.trainingclub/se.stc.trainingclub.MainActivity": 1,
-    "se.axfood.willys/se.axfood.willys.MainActivity": 1,
-    "ba.raiffeisenbank.mobile.prod/ba.raiffeisenbank.mobile.prod.launcher_e62c12445c514d8b115c06f1e72efc7257be5cb21bb06df7718b7dc353155608": 1,
-    "se.booli/se.booli.features.main.MainActivity": 1,
-    "se.sj.android/se.sj.android.activity.SjNavigationDrawer": 1,
-    "se.parkster.client.android/se.parkster.client.android.base.feature.start.MainActivity": 1,
-    "se.liseberg.liseberg/se.liseberg.liseberg.splash.SplashActivity": 1,
-    "se.axfood.hemkop/se.axfood.hemkop.MainActivity": 1,
-    "se.tvmatchen.android/com.livesportontv.MainActivity": 1,
-    "ba.bhtelecom.mojbhtelecom/ba.bhtelecom.mojbhtelecom.MainActivity": 1,
-    "se.sas.android/se.sas.MainActivity": 1,
-    "se.tv4.tv4playtab/se.tv4.tv4playtab.MainActivity": 1
-  },
-  "radio.fm.online/com.appmind.countryradios.screens.splash.SplashActivity": {
     "se.stc.trainingclub/se.stc.trainingclub.MainActivity": 1,
     "se.axfood.willys/se.axfood.willys.MainActivity": 1,
     "ba.raiffeisenbank.mobile.prod/ba.raiffeisenbank.mobile.prod.launcher_e62c12445c514d8b115c06f1e72efc7257be5cb21bb06df7718b7dc353155608": 1,
@@ -75836,9 +75725,6 @@
     "se.illusionlabs.touchgrindbmx2/se.illusionlabs.touchgrindbmx2.B2Activity": 1,
     "se.ace.fishinc/com.google.firebase.MessagingUnityPlayerActivity": 1,
     "ar.drawing.paint.draw.sketch.art.trace.drawing.app/ar.drawing.paint.draw.sketch.art.trace.drawing.app.ui.activity.SplashActivity": 1
-  },
-  "com.cookpad.android.activities/com.cookpad.android.app.gateway.GatewayActivity": {
-    "cu.axel.smartdock/cu.axel.smartdock.activities.MainActivity": 1
   },
   "com.panda.widgetcove/com.panda.widgetcove.MainActivity": {
     "cu.axel.smartdock/cu.axel.smartdock.activities.MainActivity": 1
@@ -77147,9 +77033,6 @@
   "com.wael.mangamello/com.wael.mangamello.MainActivity": {
     "ca.doophie.sceniclauncher/ca.doophie.sceniclauncher.MainActivity": 1
   },
-  "com.abmo.mangaslayer/com.abmo.mangaslayer.ui.main.MainActivity": {
-    "ca.doophie.sceniclauncher/ca.doophie.sceniclauncher.MainActivity": 1
-  },
   "com.Games751.LifeGallery/com.unity3d.player.UnityPlayerActivity": {
     "ca.doophie.sceniclauncher/ca.doophie.sceniclauncher.MainActivity": 1
   },
@@ -77721,9 +77604,6 @@
   "com.highsecure.ledkeyboard/com.highsecure.ledkeyboard.features.feature_splash.ui.SplashActivity": {
     "tr.com.eywin.dynamic.island.notch/tr.com.eywin.dynamic.island.notch.SplashActivity": 1
   },
-  "com.blogspot.novalabsandroid.fakecallerid/com.blogspot.novalabsandroid.fakecallerid.ConfigCallActivity": {
-    "tr.com.eywin.dynamic.island.notch/tr.com.eywin.dynamic.island.notch.SplashActivity": 1
-  },
   "gz.aas.calcqm/gz.aas.calcqm.MainActivity": {
     "tw.com.quickscanner.invoice/tw.com.quickscanner.invoice.ui.launchscreen.LaunchScreenActivity": 1,
     "tw.com.taishinbank.richart/tw.com.taishinbank.richart.TSRichart": 1,
@@ -77864,10 +77744,6 @@
     "co.pamobile.mcpe.texture.shader/co.pamobile.mcpe.texture.shader.MainActivity": 1,
     "ru.Tags.Rapira/com.unity3d.player.UnityPlayerActivity": 1
   },
-  "com.mathieu.budmaldash00/com.mathieu.budmaldash00.GeometryJump": {
-    "co.pamobile.mcpe.texture.shader/co.pamobile.mcpe.texture.shader.MainActivity": 1,
-    "ru.Tags.Rapira/com.unity3d.player.UnityPlayerActivity": 1
-  },
   "okovpn.app/okovpn.app.MainActivity": {
     "co.pamobile.mcpe.texture.shader/co.pamobile.mcpe.texture.shader.MainActivity": 1,
     "ru.Tags.Rapira/com.unity3d.player.UnityPlayerActivity": 1
@@ -78003,12 +77879,6 @@
     "cn.nubia.externdevice/cn.nubia.externdevice.start.AppStartActivity": 1,
     "uk.gov.hmrc.ptcalc/uk.gov.hmrc.ptcalc.presentation.splash.SplashActivity": 1
   },
-  "com.bitmango.go.bubblepop/com.p1splatform.core.CustomActivity": {
-    "cn.nubia.inspiredwallpaper/cn.nubia.inspiredwallpaper.base.AppStartIntentActivity": 1,
-    "jp.konami.masterduel/jp.konami.masterduel.plugins.YgomdMainActivity": 1,
-    "cn.nubia.externdevice/cn.nubia.externdevice.start.AppStartActivity": 1,
-    "uk.gov.hmrc.ptcalc/uk.gov.hmrc.ptcalc.presentation.splash.SplashActivity": 1
-  },
   "com.studiobside.starMain/com.google.firebase.MessagingUnityPlayerActivity": {
     "cn.nubia.inspiredwallpaper/cn.nubia.inspiredwallpaper.base.AppStartIntentActivity": 1,
     "jp.konami.masterduel/jp.konami.masterduel.plugins.YgomdMainActivity": 1,
@@ -78052,12 +77922,6 @@
     "uk.gov.hmrc.ptcalc/uk.gov.hmrc.ptcalc.presentation.splash.SplashActivity": 1
   },
   "com.accrosoft.weducwesthill/com.accrosoft.weducmobile.activity.WeducActivity": {
-    "cn.nubia.inspiredwallpaper/cn.nubia.inspiredwallpaper.base.AppStartIntentActivity": 1,
-    "jp.konami.masterduel/jp.konami.masterduel.plugins.YgomdMainActivity": 1,
-    "cn.nubia.externdevice/cn.nubia.externdevice.start.AppStartActivity": 1,
-    "uk.gov.hmrc.ptcalc/uk.gov.hmrc.ptcalc.presentation.splash.SplashActivity": 1
-  },
-  "mahjong.free.games/com.google.firebase.MessagingUnityPlayerActivity": {
     "cn.nubia.inspiredwallpaper/cn.nubia.inspiredwallpaper.base.AppStartIntentActivity": 1,
     "jp.konami.masterduel/jp.konami.masterduel.plugins.YgomdMainActivity": 1,
     "cn.nubia.externdevice/cn.nubia.externdevice.start.AppStartActivity": 1,
@@ -78461,19 +78325,6 @@
     "jp.nanaco.android/jp.nanaco.android.MainActivity": 1,
     "jp.nicolet.collection2/com.unity3d.player.UnityPlayerActivity": 1
   },
-  "com.morphpatches.app/com.webtoapp.ui.shell.ShellActivity": {
-    "ru.yanus171.feedexfork/ru.yanus171.feedexfork.activity.HomeActivity": 1,
-    "jp.co.sony.mc.sog12.onlinemanual/jp.co.sony.mc.sog12.onlinemanual.MainActivity": 1,
-    "jp.go.digital.vrs.vpa/jp.go.digital.vrs.vpa.ui.splash.SplashActivity": 1,
-    "jp.meganeichiba.mobile/jp.meganeichiba.mobile.MainActivity": 1,
-    "jp.co.navitime.buslocation/jp.co.navitime.buslocation.MainActivity": 1,
-    "jp.pocketpharmacy.jahis_android/jp.pocketpharmacy.jahis_android.activity.SplashScreenActivity": 1,
-    "jp.auone.wallet/jp.auone.wallet.activity.AppStartActivity": 1,
-    "jp.co.alphapolis.novel_manage/jp.co.alphapolis.novel_manage.activities.MainActivity": 1,
-    "jp.oridio.museum/jp.oridio.museum.AdsActivity": 1,
-    "jp.nanaco.android/jp.nanaco.android.MainActivity": 1,
-    "jp.nicolet.collection2/com.unity3d.player.UnityPlayerActivity": 1
-  },
   "moe.n4tsu.dextop/moe.n4tsu.dextop.DextopLauncherActivity": {
     "ru.yanus171.feedexfork/ru.yanus171.feedexfork.activity.HomeActivity": 1,
     "jp.co.sony.mc.sog12.onlinemanual/jp.co.sony.mc.sog12.onlinemanual.MainActivity": 1,
@@ -78573,17 +78424,6 @@
     "uk.gov.hmrc.ptcalc/uk.gov.hmrc.ptcalc.presentation.splash.SplashActivity": 1
   },
   "com.elink.fittrackhealth.pro/com.fittrack.myhealth.MainActivity": {
-    "uk.co.triumphmotorcycles.mytriumph/uk.co.triumphmotorcycles.mytriumph.app.activities.SplashScreenActivity": 1,
-    "uk.gov.documentchecking/uk.gov.idcheck.app.onboarding.OnboardingActivity": 1,
-    "uk.pokerstars.casino/com.ngapp.activity.UpdaterActivity": 1,
-    "uk.co.ucb/com.thisisaim.templateapp.view.activity.intro.IntroActivity": 1,
-    "uk.co.dreamcargiveaways/uk.co.dreamcargiveaways.MainActivity": 1,
-    "uk.co.cardfactory.app.cardfactory/com.poqstudio.app.platform.presentation.splash.view.SplashActivity": 1,
-    "jp.co.goodroid.hyper.puzzle.arrows3dcubepuzzle/com.unity3d.player.UnityPlayerActivity": 1,
-    "de.fff.ccgt/de.fff.ccgt.activity.Splash": 1,
-    "uk.gov.hmrc.ptcalc/uk.gov.hmrc.ptcalc.presentation.splash.SplashActivity": 1
-  },
-  "com.resmed.myair.eu1/com.resmed.mon.AliasDefaultActivity": {
     "uk.co.triumphmotorcycles.mytriumph/uk.co.triumphmotorcycles.mytriumph.app.activities.SplashScreenActivity": 1,
     "uk.gov.documentchecking/uk.gov.idcheck.app.onboarding.OnboardingActivity": 1,
     "uk.pokerstars.casino/com.ngapp.activity.UpdaterActivity": 1,
@@ -79458,14 +79298,6 @@
   "com.xgimi.zhushou/com.xgimi.zhushou.splash.SplashActivity": {
     "cn.TuHu.android/cn.TuHu.Activity.Welcome": 1
   },
-  "com.examobile.bubblelevel/com.examobile.bubblelevel.activity.MainActivity": {
-    "it.doveconviene.android/it.doveconviene.android.ui.splashsequantial.SplashSequentialActivity": 1,
-    "it.wind.myWind/it.wind.windtre.SplashActivity": 1,
-    "it.fortech.fatturaoneclick/it.fortech.fatturaoneclick.SplashScreen": 1,
-    "it.bnl.apps.banking/it.bnl.apps.mobilebanking.MainActivity": 1,
-    "ru.bnice.asolver/ru.bnice.asolver.MainActivity": 1,
-    "it.sisalute.fasie.mobile/it.sisalute.fasie.mobile.MainActivity": 1
-  },
   "com.livxow.tv/com.livxow.tv.activities.SplashActivity": {
     "it.doveconviene.android/it.doveconviene.android.ui.splashsequantial.SplashSequentialActivity": 1,
     "it.wind.myWind/it.wind.windtre.SplashActivity": 1,
@@ -79796,9 +79628,6 @@
     "jp.pokemon.pokemonchampions/com.unity3d.player.UnityPlayerActivity": 1
   },
   "com.grabtok.tiktokvideodownloader.nowatermark/com.tapi.tik.downloader.ui.splash.SplashActivity": {
-    "ar.drawing.sketch.paint.trace.draw.picture.paper/ar.drawing.sketch.paint.trace.draw.picture.paper.MainActivity": 1
-  },
-  "com.NeronsBrother.SupremeDuelist2021/com.unity3d.player.UnityPlayerActivity": {
     "ar.drawing.sketch.paint.trace.draw.picture.paper/ar.drawing.sketch.paint.trace.draw.picture.paper.MainActivity": 1
   },
   "com.nube.credit.view/com.tintack.bedframe.seesaw.LauansCloser": {
@@ -80293,9 +80122,6 @@
   "com.just4funanimals.snakeonscreen/com.just4funanimals.snakeonscreen.MainActivity": {
     "de.swejuppotto.timewarpscan/de.swejuppotto.timewarpscan.ui.SplashActivity": 1
   },
-  "com.dmobileapps.camera/com.dmobileapps.camera.MainActivity": {
-    "de.swejuppotto.timewarpscan/de.swejuppotto.timewarpscan.ui.SplashActivity": 1
-  },
   "org.chromium.webapk.a83cbe0b9c39569de_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity": {
     "de.swejuppotto.timewarpscan/de.swejuppotto.timewarpscan.ui.SplashActivity": 1
   },
@@ -80306,9 +80132,6 @@
     "de.swejuppotto.timewarpscan/de.swejuppotto.timewarpscan.ui.SplashActivity": 1
   },
   "com.spectrum.access/com.spectrum.access.MainActivity": {
-    "de.swejuppotto.timewarpscan/de.swejuppotto.timewarpscan.ui.SplashActivity": 1
-  },
-  "com.bluelight.computer.winlauncher.prolauncher/com.bluelight.computer.winlauncher.prolauncher.googleclock.main.DeskClock": {
     "de.swejuppotto.timewarpscan/de.swejuppotto.timewarpscan.ui.SplashActivity": 1
   },
   "com.nishal.hidescreen.screenguard.screenprivacy/com.example.hidescreen.splash.SplashActivity": {
@@ -80510,16 +80333,6 @@
     "mg.itworks.bf/mg.itworks.bf.MainActivity": 1,
     "mg.ohabolana/mg.ohabolana.MainActivity": 1
   },
-  "com.appgcam.gcamera/com.appgcam.gcamera.ui.SplashActivity": {
-    "in.playsimple.triple.tile.matchgame.pair.three.puzzle.object.royale/in.playsimple.AppActivity": 1,
-    "mg.itworks.bf/mg.itworks.bf.MainActivity": 1,
-    "mg.ohabolana/mg.ohabolana.MainActivity": 1
-  },
-  "net.bat.ahaofflinegame/net.bat.store.view.activity.OfflineMainActivity": {
-    "in.playsimple.triple.tile.matchgame.pair.three.puzzle.object.royale/in.playsimple.AppActivity": 1,
-    "mg.itworks.bf/mg.itworks.bf.MainActivity": 1,
-    "mg.ohabolana/mg.ohabolana.MainActivity": 1
-  },
   "com.master.triple3d.find/com.braze.unity.BrazeUnityPlayerActivity": {
     "in.playsimple.triple.tile.matchgame.pair.three.puzzle.object.royale/in.playsimple.AppActivity": 1,
     "mg.itworks.bf/mg.itworks.bf.MainActivity": 1,
@@ -80606,13 +80419,6 @@
     "hr.lunc.client/hr.lunc.client.SplashActivityDefault": 1
   },
   "com.gras_savoye.sante/com.gras_savoye.sante.MainActivity": {
-    "fr.tisseo.android/fr.tisseo.android.activity.home.HomeActivity": 1,
-    "fr.lekiosque/fr.lekiosque.useCases.splash.SplashScreenActivity": 1,
-    "fr.gouv.franceidentite/fr.gouv.franceidentite.features.app.ui.activity.AppActivity": 1,
-    "fr.cityway.android_v2.lia/fr.cityway.product.presentation.view.activity.SplashScreenActivity": 1,
-    "hr.lunc.client/hr.lunc.client.SplashActivityDefault": 1
-  },
-  "com.google.android.apps.googlecamera.fishfood/com.android.camera.CameraLauncher": {
     "fr.tisseo.android/fr.tisseo.android.activity.home.HomeActivity": 1,
     "fr.lekiosque/fr.lekiosque.useCases.splash.SplashScreenActivity": 1,
     "fr.gouv.franceidentite/fr.gouv.franceidentite.features.app.ui.activity.AppActivity": 1,
@@ -81193,12 +80999,6 @@
     "es.aena.mobile/es.aena.mobile.ui.homeActivity.HomeActivity": 1,
     "es.correos.app/es.correos.app.MainActivity": 1
   },
-  "com.spotiweb.app.nemecio/com.spotiweb.app.nemecio.MainActivity": {
-    "uk.gov.HomeOffice.ho3/com.worldreach.eta.MainActivity": 1,
-    "es.doctoralia/es.doctoralia.MainActivity": 1,
-    "es.aena.mobile/es.aena.mobile.ui.homeActivity.HomeActivity": 1,
-    "es.correos.app/es.correos.app.MainActivity": 1
-  },
   "com.mo2o.vueling/com.vueling.presentation.activities.HelloImageActivity": {
     "uk.gov.HomeOffice.ho3/com.worldreach.eta.MainActivity": 1,
     "es.doctoralia/es.doctoralia.MainActivity": 1,
@@ -81589,22 +81389,6 @@
     "lv.mcprotector.mcpro24fps/lv.mcprotector.mcpro24fps.MainActivity": 1,
     "ru.ozon.fintech.finance/ru.ozon.fintech.features.tabber.presentation.finance.FinanceActivity": 1
   },
-  "xyz.anilabx.app/xyz.anilabx.app.AniLabXSplash": {
-    "ru.aladdin.mfa/ru.aladdin.mfa.MainActivity": 1,
-    "ru.naavtobus.app/ru.naavtobus.app.MainActivity": 1,
-    "ru.ozon.select/ru.ozon.app.android.select.feature.entry.OzonSelectActivity": 1,
-    "ru.kfc.kfc_delivery/ru.kfc.kfc_delivery.MainActivity": 1,
-    "ru.bgm42.begemag/crc64b44bf7e69672e8d6.SplashScreen": 1,
-    "ru.vsemedu.cloud.coffebulka/ru.vsemedu.cloud.coffebulka.MainActivity": 1,
-    "cz.bsc.rc/ru.rencredit.authorization.splash.presentation.SplashActivity": 1,
-    "ru.cybernevod.sushisell/ru.lifemart.android.MainActivity": 1,
-    "ru.wantdrive/ru.wantdrive.MainActivity": 1,
-    "ru.mntk.dostavka.prod/ru.app.main.MainActivity": 1,
-    "ru.sogaz.app/ru.sogaz.app.LaunchActivity": 1,
-    "ru.gosuslugi.goskey/idpoint.application.MainActivity": 1,
-    "lv.mcprotector.mcpro24fps/lv.mcprotector.mcpro24fps.MainActivity": 1,
-    "ru.ozon.fintech.finance/ru.ozon.fintech.features.tabber.presentation.finance.FinanceActivity": 1
-  },
   "com.wgturn.android/com.wireguard.android.activity.MainActivity": {
     "ru.aladdin.mfa/ru.aladdin.mfa.MainActivity": 1,
     "ru.naavtobus.app/ru.naavtobus.app.MainActivity": 1,
@@ -81654,22 +81438,6 @@
     "ru.ozon.fintech.finance/ru.ozon.fintech.features.tabber.presentation.finance.FinanceActivity": 1
   },
   "air.com.gs.aqualife3d.android/air.com.gs.aqualife3d.android.AIRAppEntry": {
-    "ru.aladdin.mfa/ru.aladdin.mfa.MainActivity": 1,
-    "ru.naavtobus.app/ru.naavtobus.app.MainActivity": 1,
-    "ru.ozon.select/ru.ozon.app.android.select.feature.entry.OzonSelectActivity": 1,
-    "ru.kfc.kfc_delivery/ru.kfc.kfc_delivery.MainActivity": 1,
-    "ru.bgm42.begemag/crc64b44bf7e69672e8d6.SplashScreen": 1,
-    "ru.vsemedu.cloud.coffebulka/ru.vsemedu.cloud.coffebulka.MainActivity": 1,
-    "cz.bsc.rc/ru.rencredit.authorization.splash.presentation.SplashActivity": 1,
-    "ru.cybernevod.sushisell/ru.lifemart.android.MainActivity": 1,
-    "ru.wantdrive/ru.wantdrive.MainActivity": 1,
-    "ru.mntk.dostavka.prod/ru.app.main.MainActivity": 1,
-    "ru.sogaz.app/ru.sogaz.app.LaunchActivity": 1,
-    "ru.gosuslugi.goskey/idpoint.application.MainActivity": 1,
-    "lv.mcprotector.mcpro24fps/lv.mcprotector.mcpro24fps.MainActivity": 1,
-    "ru.ozon.fintech.finance/ru.ozon.fintech.features.tabber.presentation.finance.FinanceActivity": 1
-  },
-  "com.podsas.sasflix/com.podsas.sasflix.MainActivity": {
     "ru.aladdin.mfa/ru.aladdin.mfa.MainActivity": 1,
     "ru.naavtobus.app/ru.naavtobus.app.MainActivity": 1,
     "ru.ozon.select/ru.ozon.app.android.select.feature.entry.OzonSelectActivity": 1,
@@ -82091,10 +81859,6 @@
   },
   "com.yproviewer.yacinetv/com.yproviewer.yacinetv.MainActivity": {
     "qa.gov.moi.metrash/qa.gov.moi.metrash.M2Prd112": 1
-  },
-  "app.netmirror.nmv2/app.netmirror.nmv2.MainActivity": {
-    "qa.gov.moi.metrash/qa.gov.moi.metrash.M2Prd112": 1,
-    "in.swiggy.android.toing/in.swiggy.android.HomeIcon": 1
   },
   "topic.election.sector/com.android.vending.a.UI": {
     "qa.gov.moi.metrash/qa.gov.moi.metrash.M2Prd112": 1
