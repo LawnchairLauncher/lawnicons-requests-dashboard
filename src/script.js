@@ -5095,7 +5095,8 @@ renderContributionMode() {
       return `${code}: ${pkgs}`;
     });
     
-    Actions.copyToClipboard(lines.join('\n'));
+    const output = '```\n' + lines.join('\n') + '\n```';
+    Actions.copyToClipboard(output);
   },
 
   saveContribution() {
