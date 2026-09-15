@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Parse community country identifications and update requests_graph + tbd.
 
-Usage:
-  python3 scripts/parse_request_countries.py   # paste list, then Enter twice
+PR name: Add community-identified countries
+Usage: python3 scripts/parse_request_countries.py
 """
 
 import json
