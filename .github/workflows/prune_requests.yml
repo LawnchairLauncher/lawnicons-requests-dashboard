@@ -30,7 +30,6 @@ jobs:
         run: python scripts/prune_requests.py
 
       - name: Auto generate tags
-        if: steps.prune_requests.outputs.appfilter_changed == 'true'
         run: python scripts/generate_auto_tags.py src/assets/requests.json src/assets/filters src/assets/appfilter.xml
 
       - name: Clone Lawnicons SVGs
