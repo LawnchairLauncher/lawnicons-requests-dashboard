@@ -61,262 +61,194 @@ const CONFIG = {
   },
 };
 
-const GOAL_START = 12324;
-
 const ISO_COUNTRIES = new Set(['ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','ne','ng','ni','nl','no','np','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','uk','us','uy','uz','vc','ve','vi','vn','ye','za','zm','zw']);
 
+const GOAL_START = 12324;
 const TOP_COUNTRIES = ['br', 'cn', 'fr', 'de', 'in', 'jp', 'pl', 'ru', 'se', 'us'];
 const COUNTRIES = {
-  "aw": "Aruba",
-  "af": "Afghanistan",
-  "ao": "Angola",
-  "ai": "Anguilla",
-  "ax": "Åland Islands",
-  "al": "Albania",
   "ad": "Andorra",
   "ae": "United Arab Emirates",
-  "ar": "Argentina",
-  "am": "Armenia",
-  "as": "American Samoa",
-  "aq": "Antarctica",
-  "tf": "French Southern Territories",
+  "af": "Afghanistan",
   "ag": "Antigua and Barbuda",
-  "au": "Australia",
+  "al": "Albania",
+  "am": "Armenia",
+  "ao": "Angola",
+  "ar": "Argentina",
   "at": "Austria",
+  "au": "Australia",
   "az": "Azerbaijan",
-  "bi": "Burundi",
-  "be": "Belgium",
-  "bj": "Benin",
-  "bq": "Bonaire, Sint Eustatius and Saba",
-  "bf": "Burkina Faso",
+  "ba": "Bosnia and Herzegovina",
+  "bb": "Barbados",
   "bd": "Bangladesh",
+  "be": "Belgium",
+  "bf": "Burkina Faso",
   "bg": "Bulgaria",
   "bh": "Bahrain",
-  "bs": "Bahamas",
-  "ba": "Bosnia and Herzegovina",
-  "bl": "Saint Barthélemy",
-  "by": "Belarus",
-  "bz": "Belize",
-  "bm": "Bermuda",
+  "bi": "Burundi",
+  "bj": "Benin",
   "bo": "Bolivia, Plurinational State of",
   "br": "Brazil",
-  "bb": "Barbados",
-  "bn": "Brunei Darussalam",
-  "bt": "Bhutan",
-  "bv": "Bouvet Island",
+  "bs": "Bahamas",
   "bw": "Botswana",
-  "cf": "Central African Republic",
+  "by": "Belarus",
+  "bz": "Belize",
   "ca": "Canada",
-  "cc": "Cocos (Keeling) Islands",
-  "ch": "Switzerland",
-  "cl": "Chile",
-  "cn": "China",
-  "ci": "Côte d'Ivoire",
-  "cm": "Cameroon",
   "cd": "Congo, The Democratic Republic of the",
+  "cf": "Central African Republic",
   "cg": "Congo",
-  "ck": "Cook Islands",
-  "co": "Colombia",
-  "km": "Comoros",
-  "cv": "Cabo Verde",
+  "ch": "Switzerland",
+  "ci": "Côte d'Ivoire",
+  "cl": "Chile",
+  "cm": "Cameroon",
+  "cn": "China",
   "cr": "Costa Rica",
   "cu": "Cuba",
-  "cw": "Curaçao",
-  "cx": "Christmas Island",
-  "ky": "Cayman Islands",
+  "cv": "Cabo Verde",
   "cy": "Cyprus",
   "cz": "Czechia",
   "de": "Germany",
   "dj": "Djibouti",
-  "dm": "Dominica",
   "dk": "Denmark",
+  "dm": "Dominica",
   "do": "Dominican Republic",
   "dz": "Algeria",
   "ec": "Ecuador",
+  "ee": "Estonia",
   "eg": "Egypt",
   "er": "Eritrea",
-  "eh": "Western Sahara",
   "es": "Spain",
-  "ee": "Estonia",
   "et": "Ethiopia",
   "fi": "Finland",
   "fj": "Fiji",
-  "fk": "Falkland Islands (Malvinas)",
   "fr": "France",
-  "fo": "Faroe Islands",
-  "fm": "Micronesia, Federated States of",
   "ga": "Gabon",
-  "gb": "United Kingdom",
   "ge": "Georgia",
-  "gg": "Guernsey",
   "gh": "Ghana",
-  "gi": "Gibraltar",
-  "gn": "Guinea",
-  "gp": "Guadeloupe",
   "gm": "Gambia",
-  "gw": "Guinea-Bissau",
+  "gn": "Guinea",
   "gq": "Equatorial Guinea",
   "gr": "Greece",
-  "gd": "Grenada",
-  "gl": "Greenland",
   "gt": "Guatemala",
-  "gf": "French Guiana",
-  "gu": "Guam",
+  "gw": "Guinea-Bissau",
   "gy": "Guyana",
   "hk": "Hong Kong",
-  "hm": "Heard Island and McDonald Islands",
   "hn": "Honduras",
   "hr": "Croatia",
   "ht": "Haiti",
   "hu": "Hungary",
   "id": "Indonesia",
-  "im": "Isle of Man",
-  "in": "India",
-  "io": "British Indian Ocean Territory",
   "ie": "Ireland",
-  "ir": "Iran, Islamic Republic of",
-  "iq": "Iraq",
-  "is": "Iceland",
   "il": "Israel",
+  "in": "India",
+  "iq": "Iraq",
+  "ir": "Iran, Islamic Republic of",
   "it": "Italy",
   "jm": "Jamaica",
-  "je": "Jersey",
   "jo": "Jordan",
   "jp": "Japan",
-  "kz": "Kazakhstan",
   "ke": "Kenya",
   "kg": "Kyrgyzstan",
   "kh": "Cambodia",
-  "ki": "Kiribati",
+  "km": "Comoros",
   "kn": "Saint Kitts and Nevis",
+  "kp": "Korea, Democratic People's Republic of",
   "kr": "Korea, Republic of",
   "kw": "Kuwait",
+  "ky": "Cayman Islands",
+  "kz": "Kazakhstan",
   "la": "Lao People's Democratic Republic",
   "lb": "Lebanon",
-  "lr": "Liberia",
-  "ly": "Libya",
   "lc": "Saint Lucia",
   "li": "Liechtenstein",
   "lk": "Sri Lanka",
+  "lr": "Liberia",
   "ls": "Lesotho",
   "lt": "Lithuania",
   "lu": "Luxembourg",
   "lv": "Latvia",
-  "mo": "Macao",
-  "mf": "Saint Martin (French part)",
+  "ly": "Libya",
   "ma": "Morocco",
   "mc": "Monaco",
   "md": "Moldova, Republic of",
   "mg": "Madagascar",
-  "mv": "Maldives",
-  "mx": "Mexico",
-  "mh": "Marshall Islands",
   "mk": "North Macedonia",
   "ml": "Mali",
-  "mt": "Malta",
   "mm": "Myanmar",
-  "me": "Montenegro",
   "mn": "Mongolia",
-  "mp": "Northern Mariana Islands",
-  "mz": "Mozambique",
   "mr": "Mauritania",
-  "ms": "Montserrat",
-  "mq": "Martinique",
+  "mt": "Malta",
   "mu": "Mauritius",
+  "mv": "Maldives",
   "mw": "Malawi",
+  "mx": "Mexico",
   "my": "Malaysia",
-  "yt": "Mayotte",
+  "mz": "Mozambique",
   "na": "Namibia",
-  "nc": "New Caledonia",
   "ne": "Niger",
-  "nf": "Norfolk Island",
   "ng": "Nigeria",
   "ni": "Nicaragua",
-  "nu": "Niue",
   "nl": "Netherlands",
   "no": "Norway",
   "np": "Nepal",
-  "nr": "Nauru",
   "nz": "New Zealand",
   "om": "Oman",
-  "pk": "Pakistan",
   "pa": "Panama",
-  "pn": "Pitcairn",
   "pe": "Peru",
-  "ph": "Philippines",
-  "pw": "Palau",
   "pg": "Papua New Guinea",
+  "ph": "Philippines",
+  "pk": "Pakistan",
   "pl": "Poland",
   "pr": "Puerto Rico",
-  "kp": "Korea, Democratic People's Republic of",
+  "ps": "Palestine, State of",
   "pt": "Portugal",
   "py": "Paraguay",
-  "ps": "Palestine, State of",
-  "pf": "French Polynesia",
   "qa": "Qatar",
-  "re": "Réunion",
   "ro": "Romania",
+  "rs": "Serbia",
   "ru": "Russia",
   "rw": "Rwanda",
   "sa": "Saudi Arabia",
-  "sd": "Sudan",
-  "sn": "Senegal",
-  "sg": "Singapore",
-  "gs": "South Georgia and the South Sandwich Islands",
-  "sh": "Saint Helena, Ascension and Tristan da Cunha",
-  "sj": "Svalbard and Jan Mayen",
-  "sb": "Solomon Islands",
-  "sl": "Sierra Leone",
-  "sv": "El Salvador",
-  "sm": "San Marino",
-  "so": "Somalia",
-  "pm": "Saint Pierre and Miquelon",
-  "rs": "Serbia",
-  "ss": "South Sudan",
-  "st": "Sao Tome and Principe",
-  "sr": "Suriname",
-  "sk": "Slovakia",
-  "si": "Slovenia",
-  "se": "Sweden",
-  "sz": "Eswatini",
-  "sx": "Sint Maarten (Dutch part)",
   "sc": "Seychelles",
+  "sd": "Sudan",
+  "se": "Sweden",
+  "sg": "Singapore",
+  "si": "Slovenia",
+  "sk": "Slovakia",
+  "sl": "Sierra Leone",
+  "sm": "San Marino",
+  "sn": "Senegal",
+  "so": "Somalia",
+  "sr": "Suriname",
+  "ss": "South Sudan",
+  "sv": "El Salvador",
   "sy": "Syrian Arab Republic",
-  "tc": "Turks and Caicos Islands",
+  "sz": "Eswatini",
   "td": "Chad",
   "tg": "Togo",
   "th": "Thailand",
   "tj": "Tajikistan",
-  "tk": "Tokelau",
-  "tm": "Turkmenistan",
   "tl": "Timor-Leste",
-  "to": "Tonga",
-  "tt": "Trinidad and Tobago",
+  "tm": "Turkmenistan",
   "tn": "Tunisia",
   "tr": "Türkiye",
-  "tv": "Tuvalu",
+  "tt": "Trinidad and Tobago",
   "tw": "Taiwan, Province of China",
   "tz": "Tanzania, United Republic of",
-  "ug": "Uganda",
   "ua": "Ukraine",
-  "um": "United States Minor Outlying Islands",
-  "uy": "Uruguay",
+  "ug": "Uganda",
+  "uk": 'United Kingdom',
   "us": "United States",
+  "uy": "Uruguay",
   "uz": "Uzbekistan",
-  "va": "Holy See (Vatican City State)",
   "vc": "Saint Vincent and the Grenadines",
   "ve": "Venezuela, Bolivarian Republic of",
-  "vg": "Virgin Islands, British",
   "vi": "Virgin Islands, U.S.",
   "vn": "Viet Nam",
-  "vu": "Vanuatu",
-  "wf": "Wallis and Futuna",
-  "ws": "Samoa",
   "ye": "Yemen",
   "za": "South Africa",
   "zm": "Zambia",
   "zw": "Zimbabwe"
-}
+};
 
 const ICONS = {
   check: `<svg><use href="#ic-check"/></svg>`,
@@ -1021,8 +953,8 @@ const Templates = {
                     data-id="${id}"
                   />
                   <input type="hidden" class="contribution-country-value" value="${country}" />
-                  <span class="item-sub">Name or ISO code.</span>
                 </div>
+                <span class="item-sub">Country or ISO code.</span>
               </div>
               <div class="col svg-name">
                   <input type="text" class="contribution-svg-input" value="${drawable}" data-id="${id}" data-field="drawable" oninput="UI.updateContributionField(this)" title="SVG name" />
@@ -5032,7 +4964,8 @@ renderContributionMode() {
   },
 
   showCountrySuggestions(input, showTop = false) {
-    const term = input.value.trim().toLowerCase();
+    let term = input.value.trim().toLowerCase();
+    term = term.replace(/\s*\([a-z]{0,2}\)?$/i, '').trim();
     const wrapper = input.closest('.country-autocomplete');
     if (!wrapper) return;
     
@@ -5051,10 +4984,8 @@ renderContributionMode() {
     let matches;
     
     if (!term && showTop) {
-      // All 10 top countries
       matches = TOP_COUNTRIES.map(code => ({ code, name: COUNTRIES[code] || code }));
     } else {
-      // Filter, top-5 by relevance
       matches = Object.entries(COUNTRIES)
         .map(([code, name]) => ({ code, name }))
         .filter(c => 
@@ -5075,19 +5006,54 @@ renderContributionMode() {
       return;
     }
     
-    suggestions.innerHTML = matches.map(c => 
+    let html = matches.map(c => 
       `<div class="country-suggestion" data-code="${c.code}" data-name="${c.name}">${c.name} (${c.code})</div>`
     ).join('');
+    
+    // If exactly 1 match — add "Set all" option
+    if (matches.length === 1) {
+      const c = matches[0];
+      html += `<div class="country-suggestion country-suggestion-all" data-code="${c.code}" data-name="${c.name}" data-set-all="true">Set all to ${c.name} (${c.code})</div>`;
+    }
+    
+    suggestions.innerHTML = html;
     suggestions.classList.remove('is-hidden');
   },
 
   applyCountrySuggestion(suggEl) {
     const wrapper = suggEl.closest('.country-autocomplete');
     if (!wrapper) return;
-    const id = wrapper.dataset.id;
     const code = suggEl.dataset.code;
     const name = suggEl.dataset.name;
+    const setAll = suggEl.dataset.setAll === 'true';
     
+    if (setAll) {
+      // Apply to all contribution entries
+      App.state.contribution.forEach(app => {
+        const id = app.componentName;
+        if (!App.state.contributionOverrides[id]) {
+          App.state.contributionOverrides[id] = {};
+        }
+        App.state.contributionOverrides[id].country = code;
+      });
+      
+      // Update all visible inputs
+      document.querySelectorAll('.contribution-country-input').forEach(input => {
+        input.value = `${name} (${code})`;
+      });
+      document.querySelectorAll('.contribution-country-value').forEach(hidden => {
+        hidden.value = code;
+      });
+      
+      // Hide all suggestion lists
+      document.querySelectorAll('.country-suggestions').forEach(s => s.classList.add('is-hidden'));
+      
+      this.saveContribution();
+      return;
+    }
+    
+    // Regular single-apply
+    const id = wrapper.dataset.id;
     const input = wrapper.querySelector('.contribution-country-input');
     const hidden = wrapper.querySelector('.contribution-country-value');
     if (input) input.value = `${name} (${code})`;
