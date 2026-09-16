@@ -3,10 +3,6 @@
   "description": "Requests with an existing package.",
   "match": [
     {
-      "id": "com.android.deskclock/com.android.BBKClock.Timer",
-      "existing_drawable": "generic_clock"
-    },
-    {
       "id": "com.sameerasw.essentials/com.sameerasw.essentials.AppFreezingLauncher",
       "existing_drawable": "essentials"
     },
@@ -21,10 +17,6 @@
     {
       "id": "me.yuki.folk/me.bmax.apatch.ui.MainActivityDefault",
       "existing_drawable": "apatch"
-    },
-    {
-      "id": "iad1tya.echo.music/iad1tya.echo.music.MainActivityLegacy",
-      "existing_drawable": "echo_music"
     },
     {
       "id": "br.com.brainweb.ifood/br.com.brainweb.ifood.AppIconClub",
@@ -87,14 +79,6 @@
       "existing_drawable": "kernelsu"
     },
     {
-      "id": "net.zedge.android/net.zedge.android.MainMusicFest",
-      "existing_drawable": "zedge"
-    },
-    {
-      "id": "net.zedge.android/net.zedge.android.MainCatDay",
-      "existing_drawable": "zedge"
-    },
-    {
       "id": "com.tokopedia.tkpd/com.ss.android.ugc.aweme.splash.SplashActivity",
       "existing_drawable": "tokopedia"
     },
@@ -135,14 +119,6 @@
       "existing_drawable": "sbi_neobank"
     },
     {
-      "id": "net.zedge.android/net.zedge.android.MainWildDay",
-      "existing_drawable": "zedge"
-    },
-    {
-      "id": "net.zedge.android/net.zedge.android.MainEmojiDay",
-      "existing_drawable": "zedge"
-    },
-    {
       "id": "ru.libappc/ru.libapp.LauncherAnimeLib",
       "existing_drawable": "mangalib"
     },
@@ -159,10 +135,6 @@
       "existing_drawable": "iconify"
     },
     {
-      "id": "net.zedge.android/net.zedge.android.MainSummer",
-      "existing_drawable": "zedge"
-    },
-    {
       "id": "com.zhiliaoapp.musically/com.windukk.mod.icon.parody",
       "existing_drawable": "tiktok"
     },
@@ -173,10 +145,6 @@
     {
       "id": "com.zhiliaoapp.musically/com.windukk.mod.icon.metal",
       "existing_drawable": "tiktok"
-    },
-    {
-      "id": "net.zedge.android/net.zedge.android.MainTropical",
-      "existing_drawable": "zedge"
     },
     {
       "id": "com.radolyn.ayugram/com.exteragram.messenger.SunsetIcon",
@@ -239,10 +207,6 @@
       "existing_drawable": "imagineart"
     },
     {
-      "id": "net.zedge.android/net.zedge.android.MainDogDay",
-      "existing_drawable": "zedge"
-    },
-    {
       "id": "com.superb.launcher/com.games.launcher.GamesActivity",
       "existing_drawable": "superb_launcher_icons"
     },
@@ -301,10 +265,6 @@
     {
       "id": "com.vkontakte.android/com.vk.android.launcher.icons.IconAlias.EventIcon9",
       "existing_drawable": "vk"
-    },
-    {
-      "id": "net.zedge.android/net.zedge.android.MainAnimeDay",
-      "existing_drawable": "zedge"
     },
     {
       "id": "com.eljur.client/com.eljur.client.feature.splash.view.SplashActivityAlias4",
@@ -447,10 +407,6 @@
       "existing_drawable": "neon"
     },
     {
-      "id": "com.spotiweb.app.nemecio/com.spoticap.app.MainActivity",
-      "existing_drawable": "spotify"
-    },
-    {
       "id": "cz.seznam.mapy/cz.seznam.mapy.PremiumActivity",
       "existing_drawable": "mapy"
     },
@@ -493,10 +449,6 @@
     {
       "id": "app.morphe.android.youtube/app.morphe.android.youtube.morphe_play_black_2",
       "existing_drawable": "youtube"
-    },
-    {
-      "id": "net.zedge.android/net.zedge.android.MainPhotographyDay",
-      "existing_drawable": "zedge"
     },
     {
       "id": "it.infocert.mobile.dike/it.infocert.mobile.infocertsign.MainActivity",
@@ -555,10 +507,6 @@
       "existing_drawable": "apimater"
     },
     {
-      "id": "pie.icon.pack.ddt/dev.ddt.dashboard.engine.MainActivity",
-      "existing_drawable": "piecons_icons"
-    },
-    {
       "id": "com.hearthborn.studios.ncalc/com.hearthborn.studios.ncalc.MainActivity",
       "existing_drawable": "generic_calculator_plus_minus_multi_equal"
     },
@@ -575,16 +523,8 @@
       "existing_drawable": "archivetune"
     },
     {
-      "id": "com.duolingo/com.duolingo.app.StreakSaverLauncher2AlarmClock",
-      "existing_drawable": "duolingo"
-    },
-    {
       "id": "com.zhiliaoapp.musically/com.windukk.mod.icon.hlx",
       "existing_drawable": "tiktok"
-    },
-    {
-      "id": "com.yandex.bank/com.yb.screens.MainActivityEmo",
-      "existing_drawable": "yandex_pay"
     },
     {
       "id": "com.antutu.ABenchMark/com.xj.app.DeepLinkRouterActivity",
@@ -607,32 +547,8 @@
       "existing_drawable": "huawei_themes"
     },
     {
-      "id": "pl.bluemedia.autopay.transport/pl.bluemedia.autopay.transport.MainActivity",
-      "existing_drawable": "autopay"
-    },
-    {
-      "id": "in.okcredit.merchant/in.okcredit.merchant.MainActivityDefault",
-      "existing_drawable": "okcredit"
-    },
-    {
-      "id": "fi.moovy.app/fi.finnpark.app.InitialActivity",
-      "existing_drawable": "moovy"
-    },
-    {
       "id": "org.ironfoxoss.ironfox/org.ironfoxoss.ironfox.AppMomo",
       "existing_drawable": "firefox"
-    },
-    {
-      "id": "com.naviapp/com.naviapp.HomePageActivityDefault",
-      "existing_drawable": "navi"
-    },
-    {
-      "id": "net.zedge.android/net.zedge.android.MainZedgeBirthday",
-      "existing_drawable": "zedge"
-    },
-    {
-      "id": "net.zedge.android/net.zedge.android.MainBackToSchool",
-      "existing_drawable": "zedge"
     },
     {
       "id": "in.moreretail.grocery/in.moreretail.grocery.MainActivityregular",
@@ -649,14 +565,6 @@
     {
       "id": "com.gmail.heagoo.apkeditor.pro/com.gmail.heagoo.apkeditor.pro.SplashActivity",
       "existing_drawable": "apk_editor_pro"
-    },
-    {
-      "id": "com.zvooq.openplay/com.zvooq.openplay.IconGrunge",
-      "existing_drawable": "zvuk"
-    },
-    {
-      "id": "ru.kinopoisk/ru.kinopoisk.GamesAlias",
-      "existing_drawable": "kinopoisk"
     },
     {
       "id": "com.luckydeveloper.apkshare/com.luckydeveloper.shareit.ui.activities.MainActivity",
@@ -753,10 +661,6 @@
     {
       "id": "com.ea.games.r3_row/com.byfen.archiver.MainActivity",
       "existing_drawable": "real_racing_3"
-    },
-    {
-      "id": "com.lilithgame.roc.gp/com.google.android.archive.ReactivateActivity",
-      "existing_drawable": "rise_of_kingdoms_lost_crusade"
     }
   ]
 }
