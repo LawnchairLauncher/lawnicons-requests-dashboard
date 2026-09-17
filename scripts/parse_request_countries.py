@@ -112,7 +112,7 @@ else:
     tbd['tbd'] = sorted(tbd_set)
     
     with open(TBD_JSON, 'w', encoding='utf-8') as f:
-        json.dump(tbd, f, indent=2, ensure_ascii=False)
+        json.dump(tbd, f, indent=2, ensure_ascii=True)
     
     print()
     print(f'TBD before: {before}')
