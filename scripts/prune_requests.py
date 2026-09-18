@@ -873,13 +873,18 @@ def calculate_roi_scores():
     # Fallback installs for unknown
     median_installs = 100000
     
+    changed = 0
     # Calculate scores
     scores_list = []
     for app in apps:
         comp = app.get('componentName', '')
         if comp in stale:
-            app['roi_score'] = 0
-            app['priority'] = '—'
+            if app.get('roi_score') != 0:
+                app['roi_score'] = 0
+                changed += 1
+            if 'priority' in app:
+                del app['priority']
+                changed += 1
             continue
         installs = parse_installs(app.get('installs', '0'))
         req_count = app.get('requestCount', 0)
@@ -963,11 +968,10 @@ def calculate_roi_scores():
     p1 = all_scores[int(total * 0.01)] if total > 100 else 0
     p5 = all_scores[int(total * 0.05)] if total > 20 else 0
     p25 = all_scores[int(total * 0.25)] if total > 4 else 0
-    p50 = all_scores[int(total * 0.50)] if total > 2 else 0
     
     def get_priority(score):
         if score <= 0:
-            return '—'
+            return None
         if score > p1:
             return 'Critical'
         if score > p5:
@@ -976,7 +980,6 @@ def calculate_roi_scores():
             return 'Medium'
         return 'Low'
     
-    changed = 0
     for app, score in scores_list:
         new_score = round(score)
         if app.get('roi_score') != new_score:
@@ -984,19 +987,23 @@ def calculate_roi_scores():
             changed += 1
         
         priority = get_priority(new_score)
-        if app.get('priority') != priority:
-            app['priority'] = priority
-            changed += 1
+        if priority is None:
+            if 'priority' in app:
+                del app['priority']
+                changed += 1
+        else:
+            if app.get('priority') != priority:
+                app['priority'] = priority
+                changed += 1
     
     # Final pass: any app with roi_score == 0 must have no priority
     for app in apps:
-        if app.get('roi_score') == 0 and app.get('priority') != '—':
-            app['priority'] = '—'
+        if app.get('roi_score') == 0 and 'priority' in app:
+            del app['priority']
             changed += 1
 
-    if changed > 0:
-        with open(REQUESTS_JSON, "w", encoding="utf-8") as f:
-            json.dump(requests_data, f, indent=2)
+    with open(REQUESTS_JSON, "w", encoding="utf-8") as f:
+        json.dump(requests_data, f, indent=2)
     
     print(f"Calculated ROI scores for {len(apps)} requests ({changed} changed)")
     return len(apps)
