@@ -1174,13 +1174,13 @@ def main() -> int:
     with open(REQUESTS_JSON, "r") as f:
         requests_data = json.load(f)
 
-    # --- Calculate ROI scores (after installs updated) ---
-    roi_count = calculate_roi_scores()
-    print(f"ROI scores calculated: {roi_count}")
-
-    # --- Regenerate stale.json after Play Store sync and ROI ---
+    # --- Regenerate stale.json after Play Store sync (BEFORE ROI) ---
     stale_count = generate_stale_list()
     print(f"Stale requests after sync: {stale_count}")
+
+    # --- Calculate ROI scores (after installs updated and stale refreshed) ---
+    roi_count = calculate_roi_scores()
+    print(f"ROI scores calculated: {roi_count}")
 
     # --- Workflow outputs ---
     has_changes = appfilter_changed or expired_removed > 0
