@@ -879,6 +879,7 @@ def calculate_roi_scores():
         comp = app.get('componentName', '')
         if comp in stale:
             app['roi_score'] = 0
+            app['priority'] = '—'
             continue
         installs = parse_installs(app.get('installs', '0'))
         req_count = app.get('requestCount', 0)
