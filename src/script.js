@@ -596,6 +596,11 @@ const Templates = {
       }
     }
 
+    const isTbd = App.state.appTags.get(id)?.has('tbd');
+    const idLine = isTbd
+      ? `<a class="link" href="https://app.sensortower.com/overview/${pkg}" target="_blank" rel="noopener">Find countries</a> • ID: ${idPrefix}${id}`
+      : `ID: ${idPrefix}${id}`;
+
     const isUnknown = app.drawable === 'unknown' || name === '(Unknown App)';
     const existingDrawable = App.state.existingSvgs
       ? App.state.existingSvgs.get(id)
@@ -667,13 +672,13 @@ const Templates = {
         <div class="name-col">
           <div class="name-content">
             ${existingSvgHtml}
-          <div class="name-details">
+            <div class="name-details">
               <div class="name-row">
-                  ${tagHtml}
-                  <span class="${appNameClass}">${name}</span>
+                ${tagHtml}
+                <span class="${appNameClass}">${name}</span>
               </div>
-              <span class="item-sub" title="${idPrefix}${id}">ID: ${idPrefix}${id}</span>
-          </div>
+              <span class="item-sub" title="${idPrefix}${id}">${idLine}</span>
+            </div>
           </div>
         </div>
         <div class="col req">${displayReq}${
@@ -955,7 +960,7 @@ const Templates = {
                   />
                   <input type="hidden" class="contribution-country-value" value="${country}" />
                 </div>
-                <span class="item-sub">Country or ISO code.</span>
+                <span class="item-sub"><a class="link" href="https://app.sensortower.com/overview/${pkg}" target="_blank" rel="noopener">Find countries</a></span>
               </div>
               <div class="col svg-name">
                   <input type="text" class="contribution-svg-input" value="${drawable}" data-id="${id}" data-field="drawable" oninput="UI.updateContributionField(this)" title="SVG name" />
