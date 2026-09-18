@@ -988,6 +988,14 @@ def calculate_roi_scores():
             app['priority'] = priority
             changed += 1
     
+    # Final pass: stale requests must have no priority
+    for app in apps:
+        comp = app.get('componentName', '')
+        if comp in stale and app.get('priority') != '—':
+            app['roi_score'] = 0
+            app['priority'] = '—'
+            changed += 1
+
     if changed > 0:
         with open(REQUESTS_JSON, "w", encoding="utf-8") as f:
             json.dump(requests_data, f, indent=2)
