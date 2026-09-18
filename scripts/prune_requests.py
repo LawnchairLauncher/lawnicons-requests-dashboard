@@ -988,11 +988,9 @@ def calculate_roi_scores():
             app['priority'] = priority
             changed += 1
     
-    # Final pass: stale requests must have no priority
+    # Final pass: any app with roi_score == 0 must have no priority
     for app in apps:
-        comp = app.get('componentName', '')
-        if comp in stale and app.get('priority') != '—':
-            app['roi_score'] = 0
+        if app.get('roi_score') == 0 and app.get('priority') != '—':
             app['priority'] = '—'
             changed += 1
 
