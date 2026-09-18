@@ -1549,11 +1549,10 @@ const Actions = {
    */
   generateAppFilterXml(ids = null) {
     const apps = Actions.resolveApps(ids);
-    let xml = '<resources>\n';
+    let xml = '';
     apps.forEach((app) => {
       xml += `    ${Utils.generateXml(app)}\n`;
     });
-    xml += '</resources>';
     return xml;
   },
 
@@ -1588,7 +1587,7 @@ const Actions = {
         zipData._icons = {};
       }
 
-      let xmlAppFilter = '<resources>\n';
+      let xmlAppFilter = '';
       let txtCommands = '';
 
       /**
@@ -1655,7 +1654,6 @@ const Actions = {
       await Promise.all(fetchPromises);
 
       // 1. XML
-      xmlAppFilter += '</resources>';
       zipData['appfilter.xml'] = fflate.strToU8(xmlAppFilter);
 
       // 2. Config
@@ -1704,7 +1702,7 @@ const Actions = {
 
     /** @type {import('fflate').Zippable} */
     const zipData = {};
-    let xmlAppFilter = '<resources>\n';
+    let xmlAppFilter = '';
     let txtCommands = '';
 
     const usedDrawables = new Set();
@@ -1779,7 +1777,6 @@ const Actions = {
       }
     });
 
-    xmlAppFilter += '</resources>';
     zipData['appfilter.xml'] = fflate.strToU8(xmlAppFilter);
 
     if (txtCommands) {
