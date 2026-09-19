@@ -231,7 +231,7 @@ const COUNTRIES = {
   "tl": "Timor-Leste",
   "tm": "Turkmenistan",
   "tn": "Tunisia",
-  "tr": "Turkiye",
+  "tr": "Türkiye",
   "tt": "Trinidad and Tobago",
   "tw": "Taiwan",
   "tz": "Tanzania",
@@ -249,6 +249,10 @@ const COUNTRIES = {
   "za": "South Africa",
   "zm": "Zambia",
   "zw": "Zimbabwe"
+};
+
+const COUNTRY_ALIASES = {
+  'tr': ['turkey', 'türkiye', 'turkiye'],
 };
 
 const ICONS = {
@@ -4991,13 +4995,20 @@ renderContributionMode() {
     } else {
       matches = Object.entries(COUNTRIES)
         .map(([code, name]) => ({ code, name }))
-        .filter(c => 
-          c.name.toLowerCase().includes(term) || 
-          c.code.toLowerCase() === term
-        )
+        .filter(c => {
+          if (c.name.toLowerCase().includes(term)) return true;
+          if (c.code.toLowerCase() === term) return true;
+          const aliases = COUNTRY_ALIASES[c.code];
+          if (aliases && aliases.some(a => a.includes(term) || term.includes(a))) return true;
+          return false;
+        })
         .sort((a, b) => {
-          const aStart = a.name.toLowerCase().startsWith(term) || a.code === term;
-          const bStart = b.name.toLowerCase().startsWith(term) || b.code === term;
+          const aName = a.name.toLowerCase();
+          const bName = b.name.toLowerCase();
+          const aStart = aName.startsWith(term) || a.code === term ||
+            (COUNTRY_ALIASES[a.code]?.some(al => al.startsWith(term)) ?? false);
+          const bStart = bName.startsWith(term) || b.code === term ||
+            (COUNTRY_ALIASES[b.code]?.some(al => al.startsWith(term)) ?? false);
           if (aStart !== bStart) return aStart ? -1 : 1;
           return a.name.localeCompare(b.name);
         })
