@@ -1,17 +1,10 @@
 {
   "com": {
-    "requests": 11507,
+    "requests": 20102,
     "done": 14451,
-    "total": 25958,
+    "total": 34553,
     "global": 0,
     "global_installs": 0
-  },
-  "us": {
-    "requests": 9748,
-    "done": 27,
-    "total": 9775,
-    "global": 9725,
-    "global_installs": 39083805080
   },
   "de": {
     "requests": 3114,
@@ -61,6 +54,13 @@
     "total": 1507,
     "global": 1370,
     "global_installs": 3569161465
+  },
+  "us": {
+    "requests": 1153,
+    "done": 27,
+    "total": 1180,
+    "global": 1130,
+    "global_installs": 3182915760
   },
   "it": {
     "requests": 959,
