@@ -163,6 +163,15 @@ body {
   text-decoration-color: var(--primary);
 }
 
+.toast .link {
+  font-size: inherit;
+  cursor: pointer;
+  margin-top: 0;
+  align-self: center;
+  font-size: inherit;
+  cursor: pointer;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

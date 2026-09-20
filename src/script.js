@@ -1191,8 +1191,9 @@ const Components = {
     /**
      * @param {string} text
      * @param {"info" | "success" | "error"} [type]
+     * @param {{ duration?: number, action?: () => void }} [opts]
      */
-    show(text, type = 'info') {
+    show(text, type = 'info', opts = {}) {
       const key = `${text}-${type}`;
       if (this.activeToasts.has(key)) return;
 
@@ -1210,10 +1211,23 @@ const Components = {
       if (type === 'error') iconSvg = `<svg><use href="#ic-error"/></svg>`;
       if (type === 'success') iconSvg = `<svg><use href="#ic-download"/></svg>`;
 
-      el.innerHTML = `${iconSvg} ${text}`;
+      if (opts.action) {
+        const link = document.createElement('span');
+        link.className = 'link';
+        link.textContent = text;
+        link.addEventListener('click', () => {
+          opts.action?.();
+          this.remove(el);
+        });
+        el.innerHTML = iconSvg;
+        el.appendChild(link);
+      } else {
+        el.innerHTML = `${iconSvg} ${text}`;
+      }
+
       App.dom.toastBox.appendChild(el);
 
-      setTimeout(() => this.remove(el), 2500);
+      setTimeout(() => this.remove(el), opts.duration ?? 2500);
     },
 
     /**
@@ -5042,6 +5056,15 @@ renderContributionMode() {
     const setAll = suggEl.dataset.setAll === 'true';
     
     if (setAll) {
+      // Snapshot previous country values for undo
+      /** @type {Record<string, string | undefined>} */
+      const snapshot = {};
+      App.state.contribution.forEach(app => {
+        const id = app.componentName;
+        snapshot[id] = App.state.contributionOverrides[id]?.country;
+      });
+      App.state._setAllSnapshot = snapshot;
+
       // Apply to all contribution entries
       App.state.contribution.forEach(app => {
         const id = app.componentName;
@@ -5063,6 +5086,42 @@ renderContributionMode() {
       document.querySelectorAll('.country-suggestions').forEach(s => s.classList.add('is-hidden'));
       
       this.saveContribution();
+
+      Components.Toast.show(`Undo: Set all to ${name} (${code})`, 'info', {
+        duration: 60000,
+        action: () => {
+          const snap = App.state._setAllSnapshot;
+          if (!snap) return;
+
+          App.state.contribution.forEach(app => {
+            const id = app.componentName;
+            const prev = snap[id];
+            if (!App.state.contributionOverrides[id]) {
+              App.state.contributionOverrides[id] = {};
+            }
+            if (prev === undefined) {
+              delete App.state.contributionOverrides[id].country;
+            } else {
+              App.state.contributionOverrides[id].country = prev;
+            }
+          });
+
+          // Refresh visible inputs
+          App.state.contribution.forEach(app => {
+            const id = app.componentName;
+            const row = document.querySelector(`.contribution-row[data-id="${id}"]`);
+            if (!row) return;
+            const input = row.querySelector('.contribution-country-input');
+            const hidden = row.querySelector('.contribution-country-value');
+            const c = App.state.contributionOverrides[id]?.country || '';
+            if (input) input.value = c ? `${COUNTRIES[c] || c} (${c})` : '';
+            if (hidden) hidden.value = c;
+          });
+
+          this.saveContribution();
+          App.state._setAllSnapshot = null;
+        },
+      });
       return;
     }
     
