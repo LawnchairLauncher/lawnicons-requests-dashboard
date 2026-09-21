@@ -1,12 +1,10 @@
 {
   "label": "Supported",
   "description": "Requests from Open Collective backers and GitHub sponsors.",
-  "done": 47,
+  "done": 54,
   "total": 108,
   "supported": [
     "app.floot.uea8d713ed0e944a28d8deb93401495c0/app.floot.uea8d713ed0e944a28d8deb93401495c0.MainActivity",
-    "app.morphe.android.apps.youtube.music/app.morphe.android.apps.youtube.music.morphe_play_black_1",
-    "app.morphe.android.youtube/app.morphe.android.youtube.morphe_play_black_1",
     "app.murinelauncher/com.android.launcher3.Launcher",
     "app.orts.beverstedt/app.orts.beverstedt.MainActivity",
     "app.orts.cadenberge/app.orts.cadenberge.MainActivity",
@@ -22,8 +20,6 @@
     "com.apptionlabs.meater_app/com.apptionlabs.meater_app.MainActivity",
     "com.axs.android/com.axs.android.ui.content.main.MainActivity",
     "com.barnesandnoble.app/com.barnesandnoble.app.MainActivity",
-    "com.brivo.pass/com.brivo.pass.ui.activities.RoutingActivity",
-    "com.etrade.mobilepro.activity/com.etrade.mobilepro.launcher.AppLauncherActivity",
     "com.fahrradfinden/com.fahrradfinden.MainActivity",
     "com.glority.picturemushroom/com.glority.android.picturexx.splash.SplashActivity",
     "com.gls.glsappde.consumer/com.gls.glsappde.consumer.MainActivity",
@@ -42,7 +38,6 @@
     "com.passportparking.mobile.parkingkitty/com.passportparking.mobile.ParkingKittyApp",
     "com.pawspik/com.smart.ThingSplashActivity",
     "com.paytronix.client.android.app.blackrockcoffee/com.paytronix.nexgenfl.MainActivity",
-    "com.petkit.oversea/com.petkit.android.activities.registe.SplashActivity",
     "com.rover.android/com.rover.android.deeplink.DeepLinkWithSplashActivity",
     "com.toasttab.consumer/com.toasttab.consumer.core.splash.SplashActivity",
     "com.tovala.tovala/com.tovala.tovala.start.splash.SplashActivity",
@@ -55,7 +50,6 @@
     "de.jkg_apps.ebikeladestationen/com.example.estation.MainActivity",
     "de.schiffdorf.app/com.example.schiffdorf.MainActivity",
     "de.tafmobile.mobility.cuxundquer/de.tafmobile.mobility.ui.main.splash.SplashActivity",
-    "dev.cognitivity.chronal/dev.cognitivity.chronal.activity.MainActivity",
     "edu.berkeley.bsl.myshake/com.dt.myshake.ui.ui.base.SplashActivity",
     "es.davidtrigo.chordstransposer/es.davidtrigo.chordstransposer.MainActivity",
     "eu.epicompany.wero.wallet/eu.epicompany.wero.wallet.MainActivity",
@@ -63,7 +57,6 @@
     "menion.android.locus.gis/com.asamm.android.library.androidCore.features.startScreen.StartScreen",
     "net.recollect.clarkcounty/com.routeware.mobile_oscar.MainActivity",
     "net.tasso.tipptapp/crc64102db56fe40076d5.SplashActivity",
-    "org.bookshop.app/org.bookshop.app.MainActivity",
     "org.kp.m/org.kp.m.splashscreen.view.SplashActivity"
   ]
 }
