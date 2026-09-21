@@ -3,12 +3,12 @@
   "description": "Requests potentially related to existing single-word names.",
   "akin": [
     {
-      "id": "com.scopely.monopolygo/com.scopely.unity.ScopelyUnityActivity",
-      "existing_drawable": "monopoly"
-    },
-    {
       "id": "ru.ozon.fintech.finance/ru.ozon.fintech.features.tabber.presentation.finance.FinanceActivity",
       "existing_drawable": "ozon"
+    },
+    {
+      "id": "com.scopely.monopolygo/com.scopely.unity.ScopelyUnityActivity",
+      "existing_drawable": "monopoly"
     },
     {
       "id": "com.notdoppler.earntodie2/com.notdoppler.earntodie2.AppActivity",
@@ -67,6 +67,14 @@
       "existing_drawable": "circle"
     },
     {
+      "id": "com.mojang.minecraftedu/com.mojang.minecraftpe.MainActivity",
+      "existing_drawable": "minecraft"
+    },
+    {
+      "id": "com.maheshtechnicals.sealplus/com.junkfood.seal.MainActivity",
+      "existing_drawable": "seal"
+    },
+    {
       "id": "de.tutao.calendar/de.tutao.calendar.MainActivity",
       "existing_drawable": "tuta"
     },
@@ -77,10 +85,6 @@
     {
       "id": "com.codebrewgames.pocketcity2/com.unity3d.player.UnityPlayerActivity",
       "existing_drawable": "pocket"
-    },
-    {
-      "id": "com.mojang.minecraftedu/com.mojang.minecraftpe.MainActivity",
-      "existing_drawable": "minecraft"
     },
     {
       "id": "de.freenet.internet/de.freenet.flex.views.MainActivity",
@@ -103,16 +107,24 @@
       "existing_drawable": "elements"
     },
     {
-      "id": "com.app.flowlauncher/com.app.flowlauncher.homeScreen.HomeActivity",
-      "existing_drawable": "flow"
-    },
-    {
       "id": "com.herorescue2.pullpin.howtoloot/com.unity3d.player.UnityPlayerActivity",
       "existing_drawable": "hero"
     },
     {
       "id": "com.now.vpn/com.cocos.game.AppCheckActivity",
       "existing_drawable": "now"
+    },
+    {
+      "id": "com.bluelightcard.user/co.uk.bluelightcard.androidduo.redirect.RedirectActivity",
+      "existing_drawable": "blue"
+    },
+    {
+      "id": "brownmonster.app.game.rushrally3/brownmonster.app.game.rushrally3.RushRally3Activity",
+      "existing_drawable": "rush"
+    },
+    {
+      "id": "com.app.flowlauncher/com.app.flowlauncher.homeScreen.HomeActivity",
+      "existing_drawable": "flow"
     },
     {
       "id": "com.amrg.bluetooth_codec_converter/com.amrg.bluetooth_codec_converter.ui.base.SharedActivity",
@@ -123,16 +135,20 @@
       "existing_drawable": "twitch"
     },
     {
-      "id": "com.bluelightcard.user/co.uk.bluelightcard.androidduo.redirect.RedirectActivity",
-      "existing_drawable": "blue"
+      "id": "com.clarodrive.android/com.owncloud.android.ui.splash.SplashActivity",
+      "existing_drawable": "claro"
+    },
+    {
+      "id": "com.easybrain.arrow.puzzle.game/com.easybrain.template.SplashActivity",
+      "existing_drawable": "arrow"
+    },
+    {
+      "id": "com.maazm7d.termuxhub/com.maazm7d.termuxhub.MainActivity",
+      "existing_drawable": "termux"
     },
     {
       "id": "com.ubercab.uberlite/com.ubercab.uberlite.feature.RootActivity",
       "existing_drawable": "uber"
-    },
-    {
-      "id": "brownmonster.app.game.rushrally3/brownmonster.app.game.rushrally3.RushRally3Activity",
-      "existing_drawable": "rush"
     },
     {
       "id": "com.trendyol.go/com.trendyol.go.splash.impl.GoSplashActivity",
@@ -159,12 +175,8 @@
       "existing_drawable": "archero"
     },
     {
-      "id": "com.maheshtechnicals.sealplus/com.junkfood.seal.MainActivity",
-      "existing_drawable": "seal"
-    },
-    {
-      "id": "com.clarodrive.android/com.owncloud.android.ui.splash.SplashActivity",
-      "existing_drawable": "claro"
+      "id": "app.ninjavpn.android/app.ninjavpn.android.app.Dashboard",
+      "existing_drawable": "ninja"
     },
     {
       "id": "com.martinmagni.drivemad/com.martinmagni.fancade.Fancade",
@@ -175,60 +187,20 @@
       "existing_drawable": "generic_moon"
     },
     {
-      "id": "app.ninjavpn.android/app.ninjavpn.android.app.Dashboard",
-      "existing_drawable": "ninja"
-    },
-    {
-      "id": "com.microsoft.xboxfamily/com.xboxfamily.MainActivity",
-      "existing_drawable": "xbox"
-    },
-    {
       "id": "com.supernova.networkswitch/com.supernova.networkswitch.presentation.ui.activity.MainActivity",
       "existing_drawable": "generic_dialer"
-    },
-    {
-      "id": "com.hardcodecoder.pulse/com.hardcodecoder.pulse.SplashActivity",
-      "existing_drawable": "pulse"
-    },
-    {
-      "id": "club.boxbox.android/club.boxbox.android.ui.launcher.LauncherActivity",
-      "existing_drawable": "box"
     },
     {
       "id": "me.pou.app3d/com.unity3d.player.UnityPlayerActivity",
       "existing_drawable": "pou"
     },
     {
-      "id": "com.easybrain.arrow.puzzle.game/com.easybrain.template.SplashActivity",
-      "existing_drawable": "arrow"
-    },
-    {
-      "id": "com.maazm7d.termuxhub/com.maazm7d.termuxhub.MainActivity",
-      "existing_drawable": "termux"
-    },
-    {
       "id": "com.opentouchgaming.deltatouch/com.opentouchgaming.deltatouch.EntryActivity",
       "existing_drawable": "delta"
     },
     {
-      "id": "ua.com.radiokot.photoprism/ua.com.radiokot.photoprism.features.gallery.view.GalleryActivity",
-      "existing_drawable": "xgallery"
-    },
-    {
-      "id": "com.droidfoundry.tools/com.droidfoundry.tools.start.StartActivity",
-      "existing_drawable": "smart"
-    },
-    {
       "id": "com.lge.tonentalkplus.tonentalkfree/com.lge.tonentalkfree.activity.IntroActivity",
       "existing_drawable": "lg_smartworld"
-    },
-    {
-      "id": "com.fujifilm_dsc.app.remoteshooter/com.fujifilm_dsc.app.remoteshooter.InitializeActivity",
-      "existing_drawable": "generic_camera"
-    },
-    {
-      "id": "com.trendyol.go/com.trendyol.go.splash.GoSplashActivity",
-      "existing_drawable": "trendyol"
     },
     {
       "id": "com.tree.idle.cat.office/com.google.firebase.MessagingUnityPlayerActivity",
@@ -243,8 +215,44 @@
       "existing_drawable": "rush"
     },
     {
+      "id": "com.microsoft.xboxfamily/com.xboxfamily.MainActivity",
+      "existing_drawable": "xbox"
+    },
+    {
+      "id": "com.hardcodecoder.pulse/com.hardcodecoder.pulse.SplashActivity",
+      "existing_drawable": "pulse"
+    },
+    {
+      "id": "club.boxbox.android/club.boxbox.android.ui.launcher.LauncherActivity",
+      "existing_drawable": "box"
+    },
+    {
+      "id": "ua.com.radiokot.photoprism/ua.com.radiokot.photoprism.features.gallery.view.GalleryActivity",
+      "existing_drawable": "xgallery"
+    },
+    {
+      "id": "com.droidfoundry.tools/com.droidfoundry.tools.start.StartActivity",
+      "existing_drawable": "smart"
+    },
+    {
+      "id": "com.fujifilm_dsc.app.remoteshooter/com.fujifilm_dsc.app.remoteshooter.InitializeActivity",
+      "existing_drawable": "generic_camera"
+    },
+    {
+      "id": "com.trendyol.go/com.trendyol.go.splash.GoSplashActivity",
+      "existing_drawable": "trendyol"
+    },
+    {
       "id": "com.zjx.ztezscreenshot/com.zjx.jyandroid.MainApp.MainActivity",
       "existing_drawable": "gg"
+    },
+    {
+      "id": "org.hempuli.baba/org.hempuli.baba.ChowdrenActivity",
+      "existing_drawable": "baba"
+    },
+    {
+      "id": "com.craxiom.networksurvey/com.craxiom.networksurvey.NetworkSurveyActivity",
+      "existing_drawable": "generic_dialer"
     },
     {
       "id": "com.jndapp.minimalistwallpapers/com.jndapp.minimalistwallpapers.activity.SplashScreen",
@@ -257,10 +265,6 @@
     {
       "id": "eb.material.widgets.kustom.pack/org.kustom.api.dashboard.DashboardActivity",
       "existing_drawable": "material"
-    },
-    {
-      "id": "org.hempuli.baba/org.hempuli.baba.ChowdrenActivity",
-      "existing_drawable": "baba"
     },
     {
       "id": "com.lge.media.lgxboom/com.lge.media.lgxboom.home.firsthome.FirstHomeActivity",
@@ -283,8 +287,20 @@
       "existing_drawable": "google"
     },
     {
-      "id": "com.craxiom.networksurvey/com.craxiom.networksurvey.NetworkSurveyActivity",
-      "existing_drawable": "generic_dialer"
+      "id": "com.moonfrog.ludo.club/com.moonfrog.mf.unityextendedactivity.UnityExtendedActivity",
+      "existing_drawable": "ludo_king"
+    },
+    {
+      "id": "com.oakever.tiletrip/com.bridge.soniclib.MainActivity",
+      "existing_drawable": "tile"
+    },
+    {
+      "id": "com.com.tann.dice/com.tann.dice.AndroidLauncher",
+      "existing_drawable": "slice"
+    },
+    {
+      "id": "ca.cgagnier.wlednativeandroid/ca.cgagnier.wlednativeandroid.ui.MainActivity",
+      "existing_drawable": "wled"
     },
     {
       "id": "com.hapibits.soundlift/com.hapibits.soundlift.MainActivity",
@@ -331,10 +347,6 @@
       "existing_drawable": "stone"
     },
     {
-      "id": "com.moonfrog.ludo.club/com.moonfrog.mf.unityextendedactivity.UnityExtendedActivity",
-      "existing_drawable": "ludo_king"
-    },
-    {
       "id": "com.chillyroom.soulknightprequel/com.chillyroomsdk.sdkbridge.BasePlayerActivity",
       "existing_drawable": "soul"
     },
@@ -345,6 +357,14 @@
     {
       "id": "eu.darken.bluemusic/eu.darken.bluemusic.main.ui.MainActivity",
       "existing_drawable": "bluetooth"
+    },
+    {
+      "id": "com.bwcreation.phone_temperature_new/com.bwcreation.phone_temperature_new.MainActivity",
+      "existing_drawable": "generic_dialer"
+    },
+    {
+      "id": "com.hitappsgames.wordsolitaire/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "generic_solitaire"
     },
     {
       "id": "com.adguard.email/com.adguard.email.MainActivity",
@@ -363,24 +383,12 @@
       "existing_drawable": "zona"
     },
     {
-      "id": "com.bwcreation.phone_temperature_new/com.bwcreation.phone_temperature_new.MainActivity",
-      "existing_drawable": "generic_dialer"
-    },
-    {
-      "id": "com.oakever.tiletrip/com.bridge.soniclib.MainActivity",
-      "existing_drawable": "tile"
-    },
-    {
       "id": "vanillakwgt.kustom.pack/org.kustom.api.dashboard.DashboardActivity",
       "existing_drawable": "vanilla"
     },
     {
       "id": "com.square_enix.android_googleplay.chrono/com.square_enix.android_googleplay.chrono.LicensingActivity",
       "existing_drawable": "chrono"
-    },
-    {
-      "id": "com.com.tann.dice/com.tann.dice.AndroidLauncher",
-      "existing_drawable": "slice"
     },
     {
       "id": "com.refuelgames.rally/com.refuelgames.rally.RacerNativeActivity",
@@ -423,16 +431,40 @@
       "existing_drawable": "granny"
     },
     {
-      "id": "ca.cgagnier.wlednativeandroid/ca.cgagnier.wlednativeandroid.ui.MainActivity",
-      "existing_drawable": "wled"
+      "id": "com.vivo.symmetry/com.vivo.symmetry.launch.SplashActivity",
+      "existing_drawable": "vivo"
+    },
+    {
+      "id": "com.ceyhanapps.theme/com.ceyhanapps.theme.MainActivity",
+      "existing_drawable": "themes"
+    },
+    {
+      "id": "com.lge.media.lgsoundbar/com.lge.media.lgsoundbar.setup.splash.SplashActivity",
+      "existing_drawable": "lg_smartworld"
+    },
+    {
+      "id": "com.edf.edfetmoi/com.edf.edfetmoi.presentation.feature.splash.presentation.SplashActivity",
+      "existing_drawable": "edf"
+    },
+    {
+      "id": "biblereader.olivetree/biblereader.olivetree.activities.BibleReaderActivity",
+      "existing_drawable": "generic_bible"
+    },
+    {
+      "id": "com.waybefore.fastlikeafox/com.waybefore.fastlikeafox.AndroidLauncher",
+      "existing_drawable": "fast"
+    },
+    {
+      "id": "com.bookmark.money/com.zoostudio.moneylover.ui.ActivitySplash",
+      "existing_drawable": "money"
+    },
+    {
+      "id": "com.tom.bluetoothDevicesWidget/com.tom.bluetoothdeviceswidget.MainActivity",
+      "existing_drawable": "bluetooth"
     },
     {
       "id": "com.roosterbank.parent/com.roosterbank.parent.MainActivity",
       "existing_drawable": "natwest"
-    },
-    {
-      "id": "com.vivo.symmetry/com.vivo.symmetry.launch.SplashActivity",
-      "existing_drawable": "vivo"
     },
     {
       "id": "com.appplayysmartt/com.appplayysmartt.app.v2.ui.activities.SplashActivity",
@@ -467,10 +499,6 @@
       "existing_drawable": "flip"
     },
     {
-      "id": "com.ceyhanapps.theme/com.ceyhanapps.theme.MainActivity",
-      "existing_drawable": "themes"
-    },
-    {
       "id": "com.henrikherzig.simplewol/com.henrikherzig.simplewol.MainActivity",
       "existing_drawable": "simple"
     },
@@ -487,32 +515,12 @@
       "existing_drawable": "aptoide"
     },
     {
-      "id": "com.hitappsgames.wordsolitaire/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "generic_solitaire"
-    },
-    {
-      "id": "com.lge.media.lgsoundbar/com.lge.media.lgsoundbar.setup.splash.SplashActivity",
-      "existing_drawable": "lg_smartworld"
-    },
-    {
-      "id": "com.edf.edfetmoi/com.edf.edfetmoi.presentation.feature.splash.presentation.SplashActivity",
-      "existing_drawable": "edf"
-    },
-    {
-      "id": "biblereader.olivetree/biblereader.olivetree.activities.BibleReaderActivity",
-      "existing_drawable": "generic_bible"
-    },
-    {
       "id": "com.myprog.netscan/com.myprog.netscan.MainActivity",
       "existing_drawable": "generic_dialer"
     },
     {
       "id": "com.tapuniverse.stitchphotos/com.tapuniverse.stitchphotos.MainActivity",
       "existing_drawable": "stitch"
-    },
-    {
-      "id": "com.waybefore.fastlikeafox/com.waybefore.fastlikeafox.AndroidLauncher",
-      "existing_drawable": "fast"
     },
     {
       "id": "com.Graypow.RallyHorizon/com.unity3d.player.UnityPlayerActivity",
@@ -527,16 +535,76 @@
       "existing_drawable": "ninja"
     },
     {
-      "id": "com.bookmark.money/com.zoostudio.moneylover.ui.ActivitySplash",
-      "existing_drawable": "money"
-    },
-    {
       "id": "br.com.netcombo.now/br.com.netcombo.now.ui.splashScreen.SplashScreenActivity",
       "existing_drawable": "claro"
     },
     {
       "id": "com.xfinity.cloudtvr/com.xfinity.common.view.LaunchActivity",
       "existing_drawable": "xfinity"
+    },
+    {
+      "id": "com.cypherstack.stackwallet/com.cypherstack.stackwallet.MainActivity",
+      "existing_drawable": "stack"
+    },
+    {
+      "id": "com.gameloft.android.gdc/com.gameloft.android.gdc.AYCELoadingActivity",
+      "existing_drawable": "claro"
+    },
+    {
+      "id": "com.draw.sketch.ardrawing.paint.anime/com.draw.sketch.ardrawing.paint.anime.MainActivity",
+      "existing_drawable": "pencil"
+    },
+    {
+      "id": "com.merge.element.universe/com.google.firebase.MessagingUnityPlayerActivity",
+      "existing_drawable": "element"
+    },
+    {
+      "id": "com.globalhitss.claro.pay/com.globalhitss.claro.pay.ui.activities.SplashScreen",
+      "existing_drawable": "claro"
+    },
+    {
+      "id": "in.swiggy.deliveryapp/in.swiggy.deliveryapp.activity.MainActivity",
+      "existing_drawable": "swiggy"
+    },
+    {
+      "id": "com.creativepixels.camodark.iconpack.app/com.creativepixels.camodark.iconpack.app.MainActivity",
+      "existing_drawable": "camo"
+    },
+    {
+      "id": "com.dimchi.crush/com.dimchi.QtCrusher.QtCrusherActivity",
+      "existing_drawable": "will"
+    },
+    {
+      "id": "com.thedawah.furqan/com.thedawah.furqan.MainActivity",
+      "existing_drawable": "quranic"
+    },
+    {
+      "id": "net.countrymania.brick/net.countrymania.brick.activities.start.StartActivity",
+      "existing_drawable": "copy"
+    },
+    {
+      "id": "com.rapido.rider/com.rapido.rider.splash.presentation.ui.SplashScreenActivity",
+      "existing_drawable": "rapido"
+    },
+    {
+      "id": "com.DVloper.Granny3/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "granny"
+    },
+    {
+      "id": "in.juspay.jatrisaathi/com.mobility.movingtech.MainActivity",
+      "existing_drawable": "yatri"
+    },
+    {
+      "id": "com.amurcanov.tgwsproxy/com.amurcanov.tgwsproxy.MainActivity",
+      "existing_drawable": "telegram"
+    },
+    {
+      "id": "com.glo.darkicons/com.moto.glo.MainActivity",
+      "existing_drawable": "glo"
+    },
+    {
+      "id": "com.yourname.pdftoolkit/com.yourname.pdftoolkit.ui.MainActivity",
+      "existing_drawable": "pdf_viewer_plus"
     },
     {
       "id": "com.ss.android.ugc.tiktok.pro/com.ss.android.ugc.aweme.splash.SplashActivity",
@@ -555,14 +623,6 @@
       "existing_drawable": "dns"
     },
     {
-      "id": "com.tom.bluetoothDevicesWidget/com.tom.bluetoothdeviceswidget.MainActivity",
-      "existing_drawable": "bluetooth"
-    },
-    {
-      "id": "com.cypherstack.stackwallet/com.cypherstack.stackwallet.MainActivity",
-      "existing_drawable": "stack"
-    },
-    {
       "id": "com.parkindigo.ca/com.parkindigo.ui.activity.SingleActivity",
       "existing_drawable": "indigo"
     },
@@ -579,16 +639,8 @@
       "existing_drawable": "generic_calculator_minus_multi_plus_equal"
     },
     {
-      "id": "com.gameloft.android.gdc/com.gameloft.android.gdc.AYCELoadingActivity",
-      "existing_drawable": "claro"
-    },
-    {
       "id": "com.bowerswilkins.splice/com.bowerswilkins.splice.views.StartupView",
       "existing_drawable": "apple_music"
-    },
-    {
-      "id": "com.draw.sketch.ardrawing.paint.anime/com.draw.sketch.ardrawing.paint.anime.MainActivity",
-      "existing_drawable": "pencil"
     },
     {
       "id": "dev.raincord.manager/com.aliucord.manager.MainActivity",
@@ -597,14 +649,6 @@
     {
       "id": "com.smashdev.pdfeditorplus/com.mobisystems.office.splashScreen.SplashScreenActivity",
       "existing_drawable": "pdf_viewer_plus"
-    },
-    {
-      "id": "com.merge.element.universe/com.google.firebase.MessagingUnityPlayerActivity",
-      "existing_drawable": "element"
-    },
-    {
-      "id": "com.globalhitss.claro.pay/com.globalhitss.claro.pay.ui.activities.SplashScreen",
-      "existing_drawable": "claro"
     },
     {
       "id": "com.potatovpn.free.proxy.wifi/com.potatovpn.free.proxy.wifi.SplashActivity",
@@ -621,14 +665,6 @@
     {
       "id": "com.shopee.mitra.id/com.shopee.biz_base.activity.SplashActivity",
       "existing_drawable": "mitra"
-    },
-    {
-      "id": "in.swiggy.deliveryapp/in.swiggy.deliveryapp.activity.MainActivity",
-      "existing_drawable": "swiggy"
-    },
-    {
-      "id": "com.creativepixels.camodark.iconpack.app/com.creativepixels.camodark.iconpack.app.MainActivity",
-      "existing_drawable": "camo"
     },
     {
       "id": "com.motionvolt.flipdiving/com.unity3d.player.UnityPlayerActivity",
@@ -663,16 +699,8 @@
       "existing_drawable": "coffee"
     },
     {
-      "id": "com.dimchi.crush/com.dimchi.QtCrusher.QtCrusherActivity",
-      "existing_drawable": "will"
-    },
-    {
       "id": "com.frontrow.flow/com.frontrow.flow.ui.splash.SplashActivity",
       "existing_drawable": "flow"
-    },
-    {
-      "id": "com.thedawah.furqan/com.thedawah.furqan.MainActivity",
-      "existing_drawable": "quranic"
     },
     {
       "id": "com.superplaystudios.dicedreams/com.superplaystudios.dicedreams.LaunchWithTimerActivity",
@@ -683,10 +711,6 @@
       "existing_drawable": "ozon"
     },
     {
-      "id": "net.countrymania.brick/net.countrymania.brick.activities.start.StartActivity",
-      "existing_drawable": "copy"
-    },
-    {
       "id": "dev.robin.flip_2_dnd/dev.robin.flip_2_dnd.MainActivity",
       "existing_drawable": "flip"
     },
@@ -695,24 +719,40 @@
       "existing_drawable": "coop"
     },
     {
-      "id": "com.rapido.rider/com.rapido.rider.splash.presentation.ui.SplashScreenActivity",
-      "existing_drawable": "rapido"
-    },
-    {
-      "id": "com.DVloper.Granny3/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "granny"
-    },
-    {
       "id": "lsafer.edgeseek/net.lsafer.edgeseek.app.android.MainActivity",
       "existing_drawable": "edge"
     },
     {
-      "id": "in.juspay.jatrisaathi/com.mobility.movingtech.MainActivity",
-      "existing_drawable": "yatri"
+      "id": "com.google.location.nearby.apps.fastpair.validator/com.google.location.nearby.apps.fastpair.validator.WelcomeActivity",
+      "existing_drawable": "fast"
     },
     {
-      "id": "com.amurcanov.tgwsproxy/com.amurcanov.tgwsproxy.MainActivity",
-      "existing_drawable": "telegram"
+      "id": "com.pingsecure.client.app/com.pingsecure.client.app.MainActivity",
+      "existing_drawable": "ping"
+    },
+    {
+      "id": "free.vpnegypt.turbo.secure.tunnel.unblock.proxy/free.vpnegypt.turbo.secure.tunnel.unblock.proxy.MainActivity",
+      "existing_drawable": "vpn_super_unlimited_proxy"
+    },
+    {
+      "id": "com.DefaultCompany.RainWorld2019Tst/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "discord"
+    },
+    {
+      "id": "air.com.aceviral.motox3m/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "moto"
+    },
+    {
+      "id": "com.stealthgame.master/by.saygames.SayKitActivity",
+      "existing_drawable": "stealth"
+    },
+    {
+      "id": "com.polaris.iot/com.polaris.iot.presentation.MainActivity",
+      "existing_drawable": "polaris"
+    },
+    {
+      "id": "ru.ozon.select/ru.ozon.app.android.select.feature.entry.OzonSelectActivity",
+      "existing_drawable": "ozon"
     },
     {
       "id": "com.QuanticBit.NeonValley/com.unity3d.player.UnityPlayerGameActivity",
@@ -729,10 +769,6 @@
     {
       "id": "com.nth.swisspost/crc64949597a28fd8c3d8.MainActivity",
       "existing_drawable": "swiss"
-    },
-    {
-      "id": "com.google.location.nearby.apps.fastpair.validator/com.google.location.nearby.apps.fastpair.validator.WelcomeActivity",
-      "existing_drawable": "fast"
     },
     {
       "id": "it.censa.scoreboardsimple/it.censa.scoreboard_simple.MainActivity",
@@ -765,18 +801,6 @@
     {
       "id": "com.waxmoon.ma.gp/com.waxmoon.mobile.module.home.MainActivity",
       "existing_drawable": "multi"
-    },
-    {
-      "id": "com.pingsecure.client.app/com.pingsecure.client.app.MainActivity",
-      "existing_drawable": "ping"
-    },
-    {
-      "id": "com.glo.darkicons/com.moto.glo.MainActivity",
-      "existing_drawable": "glo"
-    },
-    {
-      "id": "com.yourname.pdftoolkit/com.yourname.pdftoolkit.ui.MainActivity",
-      "existing_drawable": "pdf_viewer_plus"
     },
     {
       "id": "com.hantor.CozyMag/com.hantor.CozyMag.SplashActivity",
@@ -863,10 +887,6 @@
       "existing_drawable": "line"
     },
     {
-      "id": "free.vpnegypt.turbo.secure.tunnel.unblock.proxy/free.vpnegypt.turbo.secure.tunnel.unblock.proxy.MainActivity",
-      "existing_drawable": "vpn_super_unlimited_proxy"
-    },
-    {
       "id": "kallossoft.videotophoto/kallossoft.videotophoto.MainActivity",
       "existing_drawable": "generic_player"
     },
@@ -877,10 +897,6 @@
     {
       "id": "com.imaginstudio.imagetools.pixellae/com.imaginstudio.imagetools.pixellae.MainActivity",
       "existing_drawable": "pixellab"
-    },
-    {
-      "id": "com.DefaultCompany.RainWorld2019Tst/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "discord"
     },
     {
       "id": "jp.co.rakuten.broadband.sim/jp.co.rakuten.broadband.sim.activity.RbSplashActivity",
@@ -899,16 +915,60 @@
       "existing_drawable": "pocket"
     },
     {
+      "id": "com.larkvideo.player/com.dywx.larkplayer.main.MainActivity",
+      "existing_drawable": "lark"
+    },
+    {
+      "id": "com.icecoldapps.screenshoteasy/com.icecoldapps.screenshoteasy.viewStart",
+      "existing_drawable": "screenshot"
+    },
+    {
+      "id": "com.salesforce.authenticator/com.toopher.android.activities.SplashActivity",
+      "existing_drawable": "salesforce"
+    },
+    {
+      "id": "com.networkscanner.app/com.networkscanner.app.ui.MainActivity",
+      "existing_drawable": "generic_dialer"
+    },
+    {
+      "id": "com.quarkstudio.smartactionnotch/com.quarkstudio.smartactionnotch.MainActivity",
+      "existing_drawable": "smart"
+    },
+    {
+      "id": "eu.artectrex.bunny/eu.artectrex.bunny.MainActivity",
+      "existing_drawable": "discord"
+    },
+    {
+      "id": "com.pdfscanner.pdfscannerandroid/com.pdfscanner.pdfscannerandroid.activity.MainActivity",
+      "existing_drawable": "pdfgear"
+    },
+    {
+      "id": "com.eivaagames.RealPool3DFree/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "real"
+    },
+    {
+      "id": "com.nestle.nespresso.nespresso/com.nestle.nespresso.nespresso.main.MainActivity",
+      "existing_drawable": "nespresso"
+    },
+    {
+      "id": "com.shallotgames.coffeegolf/com.singular.unitybridge.SingularUnityActivity",
+      "existing_drawable": "coffee"
+    },
+    {
+      "id": "com.proxy.videowidget/com.proxy.videowidget.presentation.app.MainActivity",
+      "existing_drawable": "generic_player"
+    },
+    {
+      "id": "com.easybrain.brick.balls.blast/com.easybrain.brick.balls.blast.SplashActivity",
+      "existing_drawable": "copy"
+    },
+    {
       "id": "funvent.tilepark/funvent.tilepark.PlatformActivity",
       "existing_drawable": "tile"
     },
     {
       "id": "mp3videoconverter.videotomp3converter.audioconverter/mp3videoconverter.videotomp3converter.audioconverter.activity.MainActivity",
       "existing_drawable": "generic_player"
-    },
-    {
-      "id": "com.larkvideo.player/com.dywx.larkplayer.main.MainActivity",
-      "existing_drawable": "lark"
     },
     {
       "id": "com.olimsoft.android.oplayer.pro/com.olimsoft.android.oplayer.StartActivity",
@@ -937,10 +997,6 @@
     {
       "id": "com.infinitecampus.parent.campusportalhybrid/com.campusportalhybrid.MainActivity",
       "existing_drawable": "campus"
-    },
-    {
-      "id": "com.icecoldapps.screenshoteasy/com.icecoldapps.screenshoteasy.viewStart",
-      "existing_drawable": "screenshot"
     },
     {
       "id": "tv.plex.photos/tv.plex.photos.MainActivity",
@@ -975,10 +1031,6 @@
       "existing_drawable": "terabox"
     },
     {
-      "id": "com.salesforce.authenticator/com.toopher.android.activities.SplashActivity",
-      "existing_drawable": "salesforce"
-    },
-    {
       "id": "net.fast_notepad_notes_app.fastnotepad/net.fast_notepad_notes_app.fastnotepad.MainActivity",
       "existing_drawable": "fast"
     },
@@ -987,16 +1039,8 @@
       "existing_drawable": "shopee"
     },
     {
-      "id": "com.networkscanner.app/com.networkscanner.app.ui.MainActivity",
-      "existing_drawable": "generic_dialer"
-    },
-    {
       "id": "com.oakever.tiletrip/com.meevii.soniclib.MainActivity",
       "existing_drawable": "tile"
-    },
-    {
-      "id": "com.quarkstudio.smartactionnotch/com.quarkstudio.smartactionnotch.MainActivity",
-      "existing_drawable": "smart"
     },
     {
       "id": "com.softshalanepal.sharehub/com.example.share_hub.MainActivity",
@@ -1011,20 +1055,12 @@
       "existing_drawable": "generic_player"
     },
     {
-      "id": "air.com.aceviral.motox3m/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "moto"
-    },
-    {
       "id": "app.ladb.connect/app.ladb.connect.views.MainActivity",
       "existing_drawable": "ladb"
     },
     {
       "id": "com.orange.myorange.ocm/com.samea.super_app.MainActivity",
       "existing_drawable": "orange"
-    },
-    {
-      "id": "com.stealthgame.master/by.saygames.SayKitActivity",
-      "existing_drawable": "stealth"
     },
     {
       "id": "com.netmarble.tskgb/com.epicgames.unreal.GameActivity",
@@ -1045,10 +1081,6 @@
     {
       "id": "com.microsys.TouchScreenTest/com.embarcadero.firemonkey.FMXNativeActivity",
       "existing_drawable": "touch"
-    },
-    {
-      "id": "eu.artectrex.bunny/eu.artectrex.bunny.MainActivity",
-      "existing_drawable": "discord"
     },
     {
       "id": "com.urdu.quran.kanzul.iman/com.urdu.quran.kanzul.iman.SplashActivity",
@@ -1151,10 +1183,6 @@
       "existing_drawable": "carrefour"
     },
     {
-      "id": "com.polaris.iot/com.polaris.iot.presentation.MainActivity",
-      "existing_drawable": "polaris"
-    },
-    {
       "id": "com.metro.metrocnccard/com.metro.metrocnccard.activities.SplashActivity",
       "existing_drawable": "metro"
     },
@@ -1211,14 +1239,6 @@
       "existing_drawable": "generic_shell"
     },
     {
-      "id": "com.pdfscanner.pdfscannerandroid/com.pdfscanner.pdfscannerandroid.activity.MainActivity",
-      "existing_drawable": "pdfgear"
-    },
-    {
-      "id": "com.eivaagames.RealPool3DFree/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "real"
-    },
-    {
       "id": "de.kamibox.zipzap/com.ansca.corona.CoronaActivity",
       "existing_drawable": "zip"
     },
@@ -1231,12 +1251,52 @@
       "existing_drawable": "anz"
     },
     {
-      "id": "ru.ra66it.updaterforspotify/ru.ra66it.updaterforspotify.presentation.ui.activity.MainActivity",
-      "existing_drawable": "updater"
-    },
-    {
       "id": "com.tid.enjoy/com.pdi.mca.go.login.activities.SplashActivity",
       "existing_drawable": "vivo"
+    },
+    {
+      "id": "com.lge.app1/com.lge.app1.activity.SplashActivity",
+      "existing_drawable": "lg_smartworld"
+    },
+    {
+      "id": "com.smarttech.smartmirrorapp/com.smarttech.smartmirrorapp.MainActivity",
+      "existing_drawable": "smart"
+    },
+    {
+      "id": "com.google.android.apps.agentspace/com.google.android.apps.cloud.sparkmobile.MainActivity",
+      "existing_drawable": "gemini"
+    },
+    {
+      "id": "org.forkgram.classic/org.telegram.messenger.DefaultIcon",
+      "existing_drawable": "telegram"
+    },
+    {
+      "id": "com.claro.claromusica.latam/com.amco.activities.NewSplashActivity",
+      "existing_drawable": "claro"
+    },
+    {
+      "id": "br.com.flashapp/br.com.flashapp.MainActivity",
+      "existing_drawable": "generic_shell"
+    },
+    {
+      "id": "com.ar.claropay.app/com.ar.claropay.app.MainActivity",
+      "existing_drawable": "claro"
+    },
+    {
+      "id": "io.music_assistant.client/io.music_assistant.client.MainActivity",
+      "existing_drawable": "apple_music"
+    },
+    {
+      "id": "dev.cybercat.adbappcontrol/dev.cybercat.adbappcontrol.presentation.activities.MainActivity",
+      "existing_drawable": "ladb"
+    },
+    {
+      "id": "com.rockstar.maxpayne/com.rockstargames.max.DownloaderActivity",
+      "existing_drawable": "max"
+    },
+    {
+      "id": "ru.ra66it.updaterforspotify/ru.ra66it.updaterforspotify.presentation.ui.activity.MainActivity",
+      "existing_drawable": "updater"
     },
     {
       "id": "com.taptapsend/com.taptapsend.MainActivity",
@@ -1271,10 +1331,6 @@
       "existing_drawable": "generic_rotation"
     },
     {
-      "id": "com.lge.app1/com.lge.app1.activity.SplashActivity",
-      "existing_drawable": "lg_smartworld"
-    },
-    {
       "id": "com.catinthebox.dnsspeedtest/com.catinthebox.dnsspeedtest.ui.MainActivity",
       "existing_drawable": "dns"
     },
@@ -1299,10 +1355,6 @@
       "existing_drawable": "swiss"
     },
     {
-      "id": "com.smarttech.smartmirrorapp/com.smarttech.smartmirrorapp.MainActivity",
-      "existing_drawable": "smart"
-    },
-    {
       "id": "com.orange.orangemoney/com.orange.orangemoney.ui.splash.SplashActivity",
       "existing_drawable": "orange"
     },
@@ -1313,10 +1365,6 @@
     {
       "id": "com.usaa.mobile.android.safedriving/com.usaa.mobile.android.safedriving.MainActivity",
       "existing_drawable": "usaa"
-    },
-    {
-      "id": "com.google.android.apps.agentspace/com.google.android.apps.cloud.sparkmobile.MainActivity",
-      "existing_drawable": "gemini"
     },
     {
       "id": "voicechanger.voiceeffects.soundeffects.voiceavatar/app.better.voicechange.activity.SplashActivity",
@@ -1351,10 +1399,6 @@
       "existing_drawable": "rakuten"
     },
     {
-      "id": "org.forkgram.classic/org.telegram.messenger.DefaultIcon",
-      "existing_drawable": "telegram"
-    },
-    {
       "id": "bible.wordgame.words.connect.crossword.cookies/com.meevii.soniclib.MainActivity",
       "existing_drawable": "generic_bible"
     },
@@ -1381,10 +1425,6 @@
     {
       "id": "com.yango.saft/com.yango.saft.host.internal.host.impl.ui.LauncherActivity",
       "existing_drawable": "yango"
-    },
-    {
-      "id": "com.nestle.nespresso.nespresso/com.nestle.nespresso.nespresso.main.MainActivity",
-      "existing_drawable": "nespresso"
     },
     {
       "id": "com.lotuschess.app/com.lotuschess.app.MainActivity",
@@ -1463,10 +1503,6 @@
       "existing_drawable": "edge"
     },
     {
-      "id": "com.shallotgames.coffeegolf/com.singular.unitybridge.SingularUnityActivity",
-      "existing_drawable": "coffee"
-    },
-    {
       "id": "com.square_enix.android_googleplay.chrono/org.cocos2dx.cpp.AppActivity",
       "existing_drawable": "chrono"
     },
@@ -1491,10 +1527,6 @@
       "existing_drawable": "touch"
     },
     {
-      "id": "com.claro.claromusica.latam/com.amco.activities.NewSplashActivity",
-      "existing_drawable": "claro"
-    },
-    {
       "id": "com.alphaone.doodle.iconpack/com.alphaone.doodle.iconpack.MainActivity",
       "existing_drawable": "doodle"
     },
@@ -1505,10 +1537,6 @@
     {
       "id": "moonbear.PocketBuild/com.unity3d.player.UnityPlayerActivity",
       "existing_drawable": "pocket"
-    },
-    {
-      "id": "br.com.flashapp/br.com.flashapp.MainActivity",
-      "existing_drawable": "generic_shell"
     },
     {
       "id": "com.emby.embyserver/crc64d513692d06de7687.MainActivity",
@@ -1539,6 +1567,94 @@
       "existing_drawable": "voice"
     },
     {
+      "id": "animatable.widgets.mibrahim/animatable.widgets.mibrahim.MainActivity",
+      "existing_drawable": "material"
+    },
+    {
+      "id": "com.neilturner.aerialviews/com.neilturner.aerialviews.ui.MainActivity",
+      "existing_drawable": "aerial"
+    },
+    {
+      "id": "com.chesskid/com.chesskid.ui.activities.MainFragmentFaceActivity",
+      "existing_drawable": "generic_chess"
+    },
+    {
+      "id": "com.nexttoppers.app/com.appsquadz.educrypt.splash.SplashActivity",
+      "existing_drawable": "next"
+    },
+    {
+      "id": "com.nestle.us.nespresso.nespressosmartmachines/com.nestle.us.nespresso.nespressosmartmachines.ui.main.MainActivity",
+      "existing_drawable": "nespresso"
+    },
+    {
+      "id": "com.playdigious.pol/com.playdigious.CustomPlugin.CustomUnityActivity",
+      "existing_drawable": "planet"
+    },
+    {
+      "id": "com.playgendary.kickthebuddy/com.lllibset.LLActivity.LLActivity",
+      "existing_drawable": "kick"
+    },
+    {
+      "id": "com.chessking.android.learn/com.convekta.android.peshka.ui.MainActivity",
+      "existing_drawable": "generic_chess"
+    },
+    {
+      "id": "ro.delhaize/com.aholddelhaize.whitelabel.LaunchActivity",
+      "existing_drawable": "mega"
+    },
+    {
+      "id": "brownmonster.app.game.rushrally2/brownmonster.app.game.rushrally2.RushRally2Activity",
+      "existing_drawable": "rush"
+    },
+    {
+      "id": "com.lascade.measure/com.lascade.armeasure.ui.SplashActivity",
+      "existing_drawable": "smart"
+    },
+    {
+      "id": "com.linepaytw.upay/com.linepaytw.upay.biz.main.LaunchActivity",
+      "existing_drawable": "line"
+    },
+    {
+      "id": "com.lotuschess.app/com.example.chess_learning.MainActivity",
+      "existing_drawable": "lotus"
+    },
+    {
+      "id": "com.yango.maps.android/ru.yandex.yandexmaps.SplashScreen",
+      "existing_drawable": "yango"
+    },
+    {
+      "id": "com.zplay.willhero/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "will"
+    },
+    {
+      "id": "com.centralbank.retail.omni/com.iexceed.SplashScreen",
+      "existing_drawable": "cent"
+    },
+    {
+      "id": "org.biblegt.android/org.biblegt.android.MainActivity",
+      "existing_drawable": "parallel"
+    },
+    {
+      "id": "com.pocket.sort.coin.puzzle.game/by.saygames.SayKitActivity",
+      "existing_drawable": "pocket"
+    },
+    {
+      "id": "com.dong.multirun/com.dong.multirun.app.main.MainActivity",
+      "existing_drawable": "multi"
+    },
+    {
+      "id": "vpn.ukraine_tap2free/com.vpn.lib.feature.splash.SplashActivity",
+      "existing_drawable": "vpn_super_unlimited_proxy"
+    },
+    {
+      "id": "jp.co.goodroid.hyper.puzzle.arrows3dcubepuzzle/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "arrow"
+    },
+    {
+      "id": "com.gartic.garticphone/com.gartic.garticphone.MainActivity",
+      "existing_drawable": "gartic"
+    },
+    {
       "id": "tidynotes.notepad.notes.notebook.note.checklist.todolist/com.easynote.v1.activity.StartActivity",
       "existing_drawable": "tidy"
     },
@@ -1553,10 +1669,6 @@
     {
       "id": "ru.thelv.joy/ru.thelv.joy.ActivityMain",
       "existing_drawable": "touch"
-    },
-    {
-      "id": "com.ar.claropay.app/com.ar.claropay.app.MainActivity",
-      "existing_drawable": "claro"
     },
     {
       "id": "com.pocketchamps.game/com.google.firebase.MessagingUnityPlayerActivity",
@@ -1579,10 +1691,6 @@
       "existing_drawable": "sss"
     },
     {
-      "id": "animatable.widgets.mibrahim/animatable.widgets.mibrahim.MainActivity",
-      "existing_drawable": "material"
-    },
-    {
       "id": "com.jndapp.lux.red.iconpack/com.jndapp.lux.red.iconpack.MainActivity",
       "existing_drawable": "lux"
     },
@@ -1595,16 +1703,8 @@
       "existing_drawable": "tandem"
     },
     {
-      "id": "io.music_assistant.client/io.music_assistant.client.MainActivity",
-      "existing_drawable": "apple_music"
-    },
-    {
       "id": "com.hingehealth.phoenix/com.hingehealth.phoenix.MainActivity",
       "existing_drawable": "hinge"
-    },
-    {
-      "id": "com.neilturner.aerialviews/com.neilturner.aerialviews.ui.MainActivity",
-      "existing_drawable": "aerial"
     },
     {
       "id": "com.mobilesrepublic.appy/com.ss.android.application.app.mainpage.BottomTabMainActivity",
@@ -1703,10 +1803,6 @@
       "existing_drawable": "real"
     },
     {
-      "id": "com.chesskid/com.chesskid.ui.activities.MainFragmentFaceActivity",
-      "existing_drawable": "generic_chess"
-    },
-    {
       "id": "com.kddi.market/com.kddi.market.activity.ActivityMain",
       "existing_drawable": "au"
     },
@@ -1717,10 +1813,6 @@
     {
       "id": "cz.mallpay/cz.mallpay.MainActivity",
       "existing_drawable": "just_eat"
-    },
-    {
-      "id": "com.proxy.videowidget/com.proxy.videowidget.presentation.app.MainActivity",
-      "existing_drawable": "generic_player"
     },
     {
       "id": "gr.boxnow.customer/gr.boxnow.customer.StartingActivity",
@@ -1759,14 +1851,6 @@
       "existing_drawable": "smart"
     },
     {
-      "id": "com.nexttoppers.app/com.appsquadz.educrypt.splash.SplashActivity",
-      "existing_drawable": "next"
-    },
-    {
-      "id": "com.nestle.us.nespresso.nespressosmartmachines/com.nestle.us.nespresso.nespressosmartmachines.ui.main.MainActivity",
-      "existing_drawable": "nespresso"
-    },
-    {
       "id": "com.lenovoimage.MotoZXPrint/com.gb.print.dbprint.WelcomeActivity",
       "existing_drawable": "moto"
     },
@@ -1795,18 +1879,6 @@
       "existing_drawable": "ninja"
     },
     {
-      "id": "com.playdigious.pol/com.playdigious.CustomPlugin.CustomUnityActivity",
-      "existing_drawable": "planet"
-    },
-    {
-      "id": "dev.cybercat.adbappcontrol/dev.cybercat.adbappcontrol.presentation.activities.MainActivity",
-      "existing_drawable": "ladb"
-    },
-    {
-      "id": "ru.ozon.select/ru.ozon.app.android.select.feature.entry.OzonSelectActivity",
-      "existing_drawable": "ozon"
-    },
-    {
       "id": "com.Panic.PowerOfPower/com.unity3d.player.UnityPlayerActivity",
       "existing_drawable": "generic_power"
     },
@@ -1821,10 +1893,6 @@
     {
       "id": "com.epicoro.castleclashers/com.google.firebase.MessagingUnityPlayerActivity",
       "existing_drawable": "castle"
-    },
-    {
-      "id": "com.playgendary.kickthebuddy/com.lllibset.LLActivity.LLActivity",
-      "existing_drawable": "kick"
     },
     {
       "id": "com.chess.dice/com.unity3d.player.UnityPlayerActivity",
@@ -1859,10 +1927,6 @@
       "existing_drawable": "generic_mahjong"
     },
     {
-      "id": "com.chessking.android.learn/com.convekta.android.peshka.ui.MainActivity",
-      "existing_drawable": "generic_chess"
-    },
-    {
       "id": "com.trendyol.go/com.trendyol.go.Default",
       "existing_drawable": "trendyol"
     },
@@ -1885,14 +1949,6 @@
     {
       "id": "com.mypostnordapp/com.mypostnordapp.MainActivity",
       "existing_drawable": "postnord"
-    },
-    {
-      "id": "com.rockstar.maxpayne/com.rockstargames.max.DownloaderActivity",
-      "existing_drawable": "max"
-    },
-    {
-      "id": "ro.delhaize/com.aholddelhaize.whitelabel.LaunchActivity",
-      "existing_drawable": "mega"
     },
     {
       "id": "app.web.rironriron.link/app.web.rironriron.link.MainActivity",
@@ -1943,14 +1999,6 @@
       "existing_drawable": "apna"
     },
     {
-      "id": "brownmonster.app.game.rushrally2/brownmonster.app.game.rushrally2.RushRally2Activity",
-      "existing_drawable": "rush"
-    },
-    {
-      "id": "com.lascade.measure/com.lascade.armeasure.ui.SplashActivity",
-      "existing_drawable": "smart"
-    },
-    {
       "id": "com.aomatatech.datatransferapp.filesharing/com.aomata.beam.dashboard.activities.splash.SplashActivity",
       "existing_drawable": "smart"
     },
@@ -1993,10 +2041,6 @@
     {
       "id": "com.crystal.usad/com.epicgames.ue4.SplashActivity",
       "existing_drawable": "crystal"
-    },
-    {
-      "id": "com.linepaytw.upay/com.linepaytw.upay.biz.main.LaunchActivity",
-      "existing_drawable": "line"
     },
     {
       "id": "one.oktw.muzeipixivsource/one.oktw.muzeipixivsource.activity.SettingsActivity",
@@ -2139,10 +2183,6 @@
       "existing_drawable": "nexo"
     },
     {
-      "id": "com.lotuschess.app/com.example.chess_learning.MainActivity",
-      "existing_drawable": "lotus"
-    },
-    {
       "id": "com.pantheraplay.soulhuntress/com.unity3d.player.UnityPlayerActivity",
       "existing_drawable": "soul"
     },
@@ -2191,16 +2231,8 @@
       "existing_drawable": "orange"
     },
     {
-      "id": "com.yango.maps.android/ru.yandex.yandexmaps.SplashScreen",
-      "existing_drawable": "yango"
-    },
-    {
       "id": "com.orange.pl.orangetvgo/pl.orange.ypt.guinew.activity.splash.SplashActivity",
       "existing_drawable": "orange"
-    },
-    {
-      "id": "com.zplay.willhero/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "will"
     },
     {
       "id": "com.powersmart/com.powersmart.MainActivity",
@@ -2223,10 +2255,6 @@
       "existing_drawable": "generic_chess"
     },
     {
-      "id": "com.centralbank.retail.omni/com.iexceed.SplashScreen",
-      "existing_drawable": "cent"
-    },
-    {
       "id": "com.intelbras.isiclite/com.intelbras.isiclite.modules.root.RootActivity",
       "existing_drawable": "isic"
     },
@@ -2245,14 +2273,6 @@
     {
       "id": "com.FNBPA.mobilebanking/nz.co.mcom.phone.shared.activities.MobilitiActivity",
       "existing_drawable": "fnb"
-    },
-    {
-      "id": "org.biblegt.android/org.biblegt.android.MainActivity",
-      "existing_drawable": "parallel"
-    },
-    {
-      "id": "com.easybrain.brick.balls.blast/com.easybrain.brick.balls.blast.SplashActivity",
-      "existing_drawable": "copy"
     },
     {
       "id": "jp.konami.mps/jp.konami.mps.BerettaJNI",
@@ -2291,12 +2311,132 @@
       "existing_drawable": "geekbench"
     },
     {
-      "id": "com.pocket.sort.coin.puzzle.game/by.saygames.SayKitActivity",
-      "existing_drawable": "pocket"
-    },
-    {
       "id": "com.rakuten.ai/com.rakuten.ai.agex.ui.MainActivity",
       "existing_drawable": "rakuten"
+    },
+    {
+      "id": "com.unlimited.hotspot.vpnbrazil.secure.proxy/com.unlimited.hotspot.vpnbrazil.secure.proxy.MainActivity",
+      "existing_drawable": "vpn_super_unlimited_proxy"
+    },
+    {
+      "id": "com.jndapp.lux.blue.iconpack/com.jndapp.lux.blue.iconpack.MainActivity",
+      "existing_drawable": "lux"
+    },
+    {
+      "id": "com.DagArtGames_Roc/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "real"
+    },
+    {
+      "id": "com.atomicmail/com.atomicmail.MainActivity",
+      "existing_drawable": "atomic"
+    },
+    {
+      "id": "team.opay.pay.merchant.service/team.opay.core.account.lockpin.LockPinActivity",
+      "existing_drawable": "opay"
+    },
+    {
+      "id": "cu.axel.smartdock/cu.axel.smartdock.activities.MainActivity",
+      "existing_drawable": "smart"
+    },
+    {
+      "id": "floralkwgt.kustom.pack/floralkwgt.kustom.pack.MainActivity",
+      "existing_drawable": "floral"
+    },
+    {
+      "id": "com.motorola.cn.devicemigration/com.motorola.cn.devicemigration.common.MainActivity",
+      "existing_drawable": "moto"
+    },
+    {
+      "id": "com.nzua.clientapp/com.nzua.clientapp.MainActivity",
+      "existing_drawable": "nz_ua"
+    },
+    {
+      "id": "ba.bhtelecom.mojbhtelecom/ba.bhtelecom.mojbhtelecom.MainActivity",
+      "existing_drawable": "moj"
+    },
+    {
+      "id": "com.tummygames.sliceit/com.google.firebase.MessagingUnityPlayerActivity",
+      "existing_drawable": "slice"
+    },
+    {
+      "id": "com.google.android.apps.handwriting.ime/com.google.android.apps.handwriting.ime.WelcomeActivity",
+      "existing_drawable": "google"
+    },
+    {
+      "id": "com.zomato.delivery/com.carthero.driver.splash.SplashActivity",
+      "existing_drawable": "zomato"
+    },
+    {
+      "id": "flashlight.flashalertoncall.torchlight.ledtext/com.tech.MainActivity",
+      "existing_drawable": "flashlight"
+    },
+    {
+      "id": "de.kamibox.baconbacon/com.unity3d.player.UnityPlayerGameActivity",
+      "existing_drawable": "bacon"
+    },
+    {
+      "id": "com.earahgkfhudio.arjgiwsnap/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "arrow"
+    },
+    {
+      "id": "com.nikita4ever.sccpsd/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "simple"
+    },
+    {
+      "id": "com.winterpixel.rocketbotroyale/com.godot.game.GodotApp",
+      "existing_drawable": "rocket"
+    },
+    {
+      "id": "com.gabzin1.Granny2Reimagined/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "granny"
+    },
+    {
+      "id": "co.movistar.go/com.pdi.mca.go.login.activities.SplashActivity",
+      "existing_drawable": "movistar"
+    },
+    {
+      "id": "com.kwalee.drawit/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "pencil"
+    },
+    {
+      "id": "com.android.camerb/com.android.camerb.Camera",
+      "existing_drawable": "generic_camera"
+    },
+    {
+      "id": "com.motionvolt.flipbounce/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "flip"
+    },
+    {
+      "id": "com.translator.morse_code/com.translator.morse_code.MainActivity",
+      "existing_drawable": "morse"
+    },
+    {
+      "id": "com.easybrain.arrow.puzzle3d/com.easybrain.template.SplashActivity",
+      "existing_drawable": "arrow"
+    },
+    {
+      "id": "phonetracker.locationtracker.gpstracker.familylocator/phonetracker.locationtracker.gpstracker.familylocator.activity.SplashActivity",
+      "existing_drawable": "rastreador"
+    },
+    {
+      "id": "com.lemon.ccpadpro/com.bytedance.lvpro.LVActivity",
+      "existing_drawable": "capcut"
+    },
+    {
+      "id": "com.zamzam.deenbuddy/com.zamzam.deenbuddy.MainActivity",
+      "existing_drawable": "deen"
+    },
+    {
+      "id": "com.roundsalmon4.appverifier/dev.soupslurpr.appverifier.MainActivity",
+      "existing_drawable": "appverifier"
+    },
+    {
+      "id": "com.blackview.focusmode/com.blackview.focusmode.activity.MainActivity",
+      "existing_drawable": "focus"
+    },
+    {
+      "id": "com.hippogames.ludosaga/com.hippogames.ludosaga.AppActivity",
+      "existing_drawable": "ludo_king"
     },
     {
       "id": "eu.markustegelane.bssp/eu.markustegelane.bssp.MainActivity",
@@ -2331,10 +2471,6 @@
       "existing_drawable": "qnb"
     },
     {
-      "id": "com.unlimited.hotspot.vpnbrazil.secure.proxy/com.unlimited.hotspot.vpnbrazil.secure.proxy.MainActivity",
-      "existing_drawable": "vpn_super_unlimited_proxy"
-    },
-    {
       "id": "com.lyft.android.driver/com.lyft.android.driver.app.ui.DriverMainActivity",
       "existing_drawable": "lyft"
     },
@@ -2353,10 +2489,6 @@
     {
       "id": "ru.demax.rhythmerr/ru.demax.rhythmerr.ui.splash.SplashActivity",
       "existing_drawable": "rhythm"
-    },
-    {
-      "id": "com.jndapp.lux.blue.iconpack/com.jndapp.lux.blue.iconpack.MainActivity",
-      "existing_drawable": "lux"
     },
     {
       "id": "app.dwrv.android.youtube/com.google.android.youtube.app.honeycomb.Shell$HomeActivity",
@@ -2469,10 +2601,6 @@
     {
       "id": "com.WetGrass.PhoneSimulator3DMaker/com.unity3d.player.UnityPlayerActivity",
       "existing_drawable": "generic_dialer"
-    },
-    {
-      "id": "com.DagArtGames_Roc/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "real"
     },
     {
       "id": "com.digitaltool.mobiletoolbox.smarttoolbox/com.digitaltool.mobiletoolbox.smarttoolbox.activity.MainActivity",
@@ -2791,20 +2919,12 @@
       "existing_drawable": "generic_power"
     },
     {
-      "id": "com.atomicmail/com.atomicmail.MainActivity",
-      "existing_drawable": "atomic"
-    },
-    {
       "id": "com.battlelancer.seriesguide.x/com.battlelancer.seriesguide.migration.MigrationActivity",
       "existing_drawable": "seriesguide"
     },
     {
       "id": "download.video.tiktok.nowatermark.tiktokdownloader/download.video.tiktok.nowatermark.tiktokdownloader.ui.activities.SplashActivity",
       "existing_drawable": "generic_player"
-    },
-    {
-      "id": "com.dong.multirun/com.dong.multirun.app.main.MainActivity",
-      "existing_drawable": "multi"
     },
     {
       "id": "com.avanza.credimaxapp.prod/com.avanza.credimaxapp.MainActivity",
@@ -2875,10 +2995,6 @@
       "existing_drawable": "booksy"
     },
     {
-      "id": "team.opay.pay.merchant.service/team.opay.core.account.lockpin.LockPinActivity",
-      "existing_drawable": "opay"
-    },
-    {
       "id": "com.rocketlawyer.mobile.android/com.rocketlawyer.mobile.android.MainActivity",
       "existing_drawable": "rocket"
     },
@@ -2935,20 +3051,12 @@
       "existing_drawable": "toolbox"
     },
     {
-      "id": "cu.axel.smartdock/cu.axel.smartdock.activities.MainActivity",
-      "existing_drawable": "smart"
-    },
-    {
       "id": "info.martinmarinov.aerialtv/info.martinmarinov.aerialtv.activities.splash.SplashScreen",
       "existing_drawable": "aerial"
     },
     {
       "id": "com.Bright_Blue_LED.PocketTalkbox/com.Bright_Blue_LED.PocketTalkbox.RunnerActivity",
       "existing_drawable": "pocket"
-    },
-    {
-      "id": "floralkwgt.kustom.pack/floralkwgt.kustom.pack.MainActivity",
-      "existing_drawable": "floral"
     },
     {
       "id": "com.gcam.downloader.camera/com.gcam.downloader.camera.MainActivity",
@@ -3015,10 +3123,6 @@
       "existing_drawable": "lux"
     },
     {
-      "id": "com.motorola.cn.devicemigration/com.motorola.cn.devicemigration.common.MainActivity",
-      "existing_drawable": "moto"
-    },
-    {
       "id": "com.wuangxkee.graduationproject/com.wuangxkee.graduationproject.views.home.ListStyleHomeActivity",
       "existing_drawable": "generic_shell"
     },
@@ -3045,10 +3149,6 @@
     {
       "id": "cs14.pixelperfect.iconpack.novadark/com.one4studio.iconpack.MainActivity",
       "existing_drawable": "nova"
-    },
-    {
-      "id": "com.nzua.clientapp/com.nzua.clientapp.MainActivity",
-      "existing_drawable": "nz_ua"
     },
     {
       "id": "com.okx.wallet/com.okinc.core.ok_app.homepage.ui.welcome.WelcomeActivity",
@@ -3151,10 +3251,6 @@
       "existing_drawable": "cook"
     },
     {
-      "id": "ba.bhtelecom.mojbhtelecom/ba.bhtelecom.mojbhtelecom.MainActivity",
-      "existing_drawable": "moj"
-    },
-    {
       "id": "com.riseupgames.proshotevaluator/com.riseupgames.proshotevaluator.InitialScanHardwareRequestActivity",
       "existing_drawable": "proshot"
     },
@@ -3201,10 +3297,6 @@
     {
       "id": "com.wiretun/com.wiretun.SplashScreen",
       "existing_drawable": "wire"
-    },
-    {
-      "id": "com.tummygames.sliceit/com.google.firebase.MessagingUnityPlayerActivity",
-      "existing_drawable": "slice"
     },
     {
       "id": "jp.naver.linecamera.android/jp.naver.linecamera.android.activity.ProxyActivity",
@@ -3489,10 +3581,6 @@
     {
       "id": "com.Game.SpongeArt/com.google.firebase.MessagingUnityPlayerActivity",
       "existing_drawable": "sponge"
-    },
-    {
-      "id": "com.google.android.apps.handwriting.ime/com.google.android.apps.handwriting.ime.WelcomeActivity",
-      "existing_drawable": "google"
     },
     {
       "id": "pl.epoint.car.twa.prd.ua/com.google.androidbrowserhelper.trusted.LauncherActivity",
@@ -3831,10 +3919,6 @@
       "existing_drawable": "sushi"
     },
     {
-      "id": "vpn.ukraine_tap2free/com.vpn.lib.feature.splash.SplashActivity",
-      "existing_drawable": "vpn_super_unlimited_proxy"
-    },
-    {
       "id": "com.mounttwentyapps.edgecontrol/com.mounttwentyapps.edgecontrol.MainActivity",
       "existing_drawable": "edge"
     },
@@ -3909,10 +3993,6 @@
     {
       "id": "com.jdmakes.prisma_qr/com.jdmakes.prisma_qr.MainActivity",
       "existing_drawable": "prisma"
-    },
-    {
-      "id": "com.zomato.delivery/com.carthero.driver.splash.SplashActivity",
-      "existing_drawable": "zomato"
     },
     {
       "id": "jp.co.drecom.wizardry.daphne/com.google.firebase.MessagingUnityPlayerActivity",
@@ -4063,10 +4143,6 @@
       "existing_drawable": "aisle"
     },
     {
-      "id": "jp.co.goodroid.hyper.puzzle.arrows3dcubepuzzle/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "arrow"
-    },
-    {
       "id": "com.tile.match.blockpuzzle/com.mflib.base.MFLaunchActivity",
       "existing_drawable": "tile"
     },
@@ -4187,10 +4263,6 @@
       "existing_drawable": "zip"
     },
     {
-      "id": "flashlight.flashalertoncall.torchlight.ledtext/com.tech.MainActivity",
-      "existing_drawable": "flashlight"
-    },
-    {
       "id": "ar.drawing.sketch.trace.draw.anime/com.nk.nexzen.ar.drawing.ui.splash.SplashActivity",
       "existing_drawable": "pencil"
     },
@@ -4251,10 +4323,6 @@
       "existing_drawable": "generic_chess"
     },
     {
-      "id": "de.kamibox.baconbacon/com.unity3d.player.UnityPlayerGameActivity",
-      "existing_drawable": "bacon"
-    },
-    {
       "id": "com.mobilefork.hermesagent/com.mobilefork.hermesagent.MainActivity",
       "existing_drawable": "hermes"
     },
@@ -4289,10 +4357,6 @@
     {
       "id": "co.au.WeatherAssistantWidget/co.activeuser.weatherwidget.ui.modules.intro.SplashActivity",
       "existing_drawable": "yahoo_weather"
-    },
-    {
-      "id": "com.earahgkfhudio.arjgiwsnap/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "arrow"
     },
     {
       "id": "com.vpncapa.vpnmaster.free.unblock.vpn/com.vpncapa.vpn.tool.SplashActivity",
@@ -4367,20 +4431,12 @@
       "existing_drawable": "themes"
     },
     {
-      "id": "com.nikita4ever.sccpsd/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "simple"
-    },
-    {
       "id": "com.amityonline_new.besocial/com.amityonline_new.besocial.MainActivity",
       "existing_drawable": "be"
     },
     {
       "id": "com.adam.aslfms/com.adam.aslfms.SettingsActivity",
       "existing_drawable": "simple"
-    },
-    {
-      "id": "com.winterpixel.rocketbotroyale/com.godot.game.GodotApp",
-      "existing_drawable": "rocket"
     },
     {
       "id": "xyz.be.cake/xyz.be.cake.MainActivity",
@@ -4499,10 +4555,6 @@
       "existing_drawable": "generic_power"
     },
     {
-      "id": "com.gabzin1.Granny2Reimagined/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "granny"
-    },
-    {
       "id": "com.LGC.G3remake/com.unity3d.player.UnityPlayerActivity",
       "existing_drawable": "granny"
     },
@@ -4521,10 +4573,6 @@
     {
       "id": "com.mavenpilot.mavenevo/com.mavenpilot.mavenevo.MainActivity",
       "existing_drawable": "maven"
-    },
-    {
-      "id": "co.movistar.go/com.pdi.mca.go.login.activities.SplashActivity",
-      "existing_drawable": "movistar"
     },
     {
       "id": "net.pnhdroid.ime.viet/com.android.inputmethod.latin.setup.SetupActivity",
@@ -4559,10 +4607,6 @@
       "existing_drawable": "facemoji"
     },
     {
-      "id": "com.kwalee.drawit/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "pencil"
-    },
-    {
       "id": "com.svcapp.magic.new/com.master.apps.manager.presentation.activity.MainActivity",
       "existing_drawable": "seven"
     },
@@ -4587,10 +4631,6 @@
       "existing_drawable": "be"
     },
     {
-      "id": "com.android.camerb/com.android.camerb.Camera",
-      "existing_drawable": "generic_camera"
-    },
-    {
       "id": "com.honoki.mtoki/com.honoki.motoki.MainActivity",
       "existing_drawable": "momo"
     },
@@ -4609,10 +4649,6 @@
     {
       "id": "com.mage.goalbattle/com.unity3d.player.UnityPlayerActivity",
       "existing_drawable": "goal"
-    },
-    {
-      "id": "com.motionvolt.flipbounce/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "flip"
     },
     {
       "id": "weatherradar.livemaps.free/weatherradar.livemaps.free.activities.Splash",
@@ -4644,10 +4680,6 @@
     },
     {
       "id": "digital.dong.morsechat/digital.dong.morsechat.MainActivity",
-      "existing_drawable": "morse"
-    },
-    {
-      "id": "com.translator.morse_code/com.translator.morse_code.MainActivity",
       "existing_drawable": "morse"
     },
     {
@@ -4689,10 +4721,6 @@
     {
       "id": "com.dudiaryapp/com.dudiaryapp.MainActivity",
       "existing_drawable": "du"
-    },
-    {
-      "id": "com.easybrain.arrow.puzzle3d/com.easybrain.template.SplashActivity",
-      "existing_drawable": "arrow"
     },
     {
       "id": "com.kasumic.vpndetector/com.kasumic.vpndetector.MainActivity",
@@ -4765,10 +4793,6 @@
     {
       "id": "com.joinblob.clash/com.unity3d.player.UnityPlayerActivity",
       "existing_drawable": "join"
-    },
-    {
-      "id": "phonetracker.locationtracker.gpstracker.familylocator/phonetracker.locationtracker.gpstracker.familylocator.activity.SplashActivity",
-      "existing_drawable": "rastreador"
     },
     {
       "id": "com.adfone.timfun/com.akross.rewardapps.MainActivity",
@@ -4869,10 +4893,6 @@
     {
       "id": "com.geminiman.wellness.companion/com.geminiman.wellness.companion.MainActivity",
       "existing_drawable": "geminiman"
-    },
-    {
-      "id": "com.lemon.ccpadpro/com.bytedance.lvpro.LVActivity",
-      "existing_drawable": "capcut"
     },
     {
       "id": "com.nuevatel.vivaapp/org.chromium.chrome.browser.SplashScreenActivity",
@@ -5159,10 +5179,6 @@
       "existing_drawable": "trendyol"
     },
     {
-      "id": "com.zamzam.deenbuddy/com.zamzam.deenbuddy.MainActivity",
-      "existing_drawable": "deen"
-    },
-    {
       "id": "com.devsisters.crg/com.devsisters.CookieRunForKakao.OvenbreakX",
       "existing_drawable": "cookierun"
     },
@@ -5257,10 +5273,6 @@
     {
       "id": "com.thegosa.multithemes/com.thegosa.multithemes.GenActivity",
       "existing_drawable": "multi"
-    },
-    {
-      "id": "com.gartic.garticphone/com.gartic.garticphone.MainActivity",
-      "existing_drawable": "gartic"
     },
     {
       "id": "br.net.btco.soroban/br.net.btco.soroban.MainActivity",
@@ -5543,10 +5555,6 @@
       "existing_drawable": "dw"
     },
     {
-      "id": "com.roundsalmon4.appverifier/dev.soupslurpr.appverifier.MainActivity",
-      "existing_drawable": "appverifier"
-    },
-    {
       "id": "moe.rukamori.archivetune.nightly/moe.rukamori.archivetune.nightly.launcher.DefaultIconAlias",
       "existing_drawable": "archivetune"
     },
@@ -5639,10 +5647,6 @@
       "existing_drawable": "generic_shell"
     },
     {
-      "id": "com.blackview.focusmode/com.blackview.focusmode.activity.MainActivity",
-      "existing_drawable": "focus"
-    },
-    {
       "id": "brighthr.blip/brighthr.blip.features.compose.login.presentation.LoginActivity",
       "existing_drawable": "blip"
     },
@@ -5677,10 +5681,6 @@
     {
       "id": "peru.easy.loan.viva.credito/com.peeep.eeeppp.ui.splash.PeeSplashActivity",
       "existing_drawable": "generic_player"
-    },
-    {
-      "id": "com.hippogames.ludosaga/com.hippogames.ludosaga.AppActivity",
-      "existing_drawable": "ludo_king"
     },
     {
       "id": "com.rockstar.maxpayne/com.rockstar.maxpayne.MyApp",

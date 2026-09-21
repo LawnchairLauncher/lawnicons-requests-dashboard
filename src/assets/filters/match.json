@@ -15,12 +15,24 @@
       "existing_drawable": "pix_material_you_icons"
     },
     {
+      "id": "com.nuvio.app/com.nuvio.app.launcher.AppIconDefault",
+      "existing_drawable": "nuvio"
+    },
+    {
       "id": "me.yuki.folk/me.bmax.apatch.ui.MainActivityDefault",
       "existing_drawable": "apatch"
     },
     {
       "id": "br.com.brainweb.ifood/br.com.brainweb.ifood.AppIconClub",
       "existing_drawable": "ifood"
+    },
+    {
+      "id": "com.tokopedia.tkpd/com.ss.android.ugc.aweme.splash.SplashActivity",
+      "existing_drawable": "tokopedia"
+    },
+    {
+      "id": "com.roblox.client/com.roblox.client.startup.LauncherAliasClassic",
+      "existing_drawable": "roblox"
     },
     {
       "id": "com.iqoo.website/com.vivo.website.feedback.HotQuestionEntry",
@@ -43,6 +55,14 @@
       "existing_drawable": "sms_organizer"
     },
     {
+      "id": "com.luna.music/com.luna.biz.main.main.MainActivity",
+      "existing_drawable": "soundcloud"
+    },
+    {
+      "id": "com.xiaomi.market/com.xiaomi.market.ui.DefaultLauncherIcon",
+      "existing_drawable": "getapps"
+    },
+    {
       "id": "iad1tya.echo.music/iad1tya.echo.music.MainActivityStatic",
       "existing_drawable": "echo_music"
     },
@@ -51,16 +71,8 @@
       "existing_drawable": "idle_fish"
     },
     {
-      "id": "com.luna.music/com.luna.biz.main.main.MainActivity",
-      "existing_drawable": "soundcloud"
-    },
-    {
       "id": "com.graytsar.livewallpaper/com.graytsar.livewallpaper.ui.ReibuActivity",
       "existing_drawable": "generic_player"
-    },
-    {
-      "id": "com.xiaomi.market/com.xiaomi.market.ui.DefaultLauncherIcon",
-      "existing_drawable": "getapps"
     },
     {
       "id": "io.zenzy.applock/io.zenzy.applock.DefaultLauncher",
@@ -79,10 +91,6 @@
       "existing_drawable": "kernelsu"
     },
     {
-      "id": "com.tokopedia.tkpd/com.ss.android.ugc.aweme.splash.SplashActivity",
-      "existing_drawable": "tokopedia"
-    },
-    {
       "id": "com.dot.gallery/com.dot.gallery.Launcher_Gallery_GalleryLogo",
       "existing_drawable": "refra"
     },
@@ -95,16 +103,32 @@
       "existing_drawable": "youtube"
     },
     {
-      "id": "com.radolyn.ayugram/com.exteragram.messenger.AuroraIcon",
-      "existing_drawable": "ayugram"
-    },
-    {
       "id": "com.scaleup.chatai/com.scaleup.chatai.MainActivity",
       "existing_drawable": "nova"
     },
     {
       "id": "de.edeka.genuss/de.edeka.app.mobile.MainActivity",
       "existing_drawable": "edeka"
+    },
+    {
+      "id": "com.zhiliaoapp.musically/com.windukk.mod.icon.metal",
+      "existing_drawable": "tiktok"
+    },
+    {
+      "id": "com.safaricom.mpesa.lifestyle/com.huawei.digitalpayment.consumer.basic.ui.activity.SplashActivity",
+      "existing_drawable": "m_pesa"
+    },
+    {
+      "id": "com.hihonor.appmarket/com.hihonor.appmarket.launcher.entrance.shortcut.LauncherHotAppActivity",
+      "existing_drawable": "huawei_appgallery"
+    },
+    {
+      "id": "com.hihonor.appmarket/com.hihonor.appmarket.launcher.entrance.shortcut.LauncherHotGameActivity",
+      "existing_drawable": "huawei_appgallery"
+    },
+    {
+      "id": "com.radolyn.ayugram/com.exteragram.messenger.AuroraIcon",
+      "existing_drawable": "ayugram"
     },
     {
       "id": "com.jingyao.easybike/com.hellobike.atlas.business.portal.MainActivityDefaultIcon",
@@ -143,12 +167,28 @@
       "existing_drawable": "hma_oss"
     },
     {
-      "id": "com.zhiliaoapp.musically/com.windukk.mod.icon.metal",
-      "existing_drawable": "tiktok"
-    },
-    {
       "id": "com.radolyn.ayugram/com.exteragram.messenger.SunsetIcon",
       "existing_drawable": "ayugram"
+    },
+    {
+      "id": "com.bluelight.computer.winlauncher.prolauncher/com.bluelight.computer.winlauncher.prolauncher.ui.activity.SplashActivity",
+      "existing_drawable": "generic_clock"
+    },
+    {
+      "id": "com.nonnonstop.apimate/leakcanary.internal.activity.LeakLauncherActivity",
+      "existing_drawable": "apimater"
+    },
+    {
+      "id": "org.fossify.paint/org.fossify.paint.activities.SplashActivity.Yellow",
+      "existing_drawable": "fossify_paint"
+    },
+    {
+      "id": "co.amo.android.location/co.amo.location.appicons.AppIconActivityAlt5",
+      "existing_drawable": "bump"
+    },
+    {
+      "id": "moe.rukamori.archivetune/moe.rukamori.archivetune.launcher.IconAliasd31cf09f615e039e347c6a84",
+      "existing_drawable": "archivetune"
     },
     {
       "id": "ir.ilmili.telegraph/org.telegram.messenger.PremiumIcon",
@@ -157,10 +197,6 @@
     {
       "id": "co.amo.android.location/co.amo.location.appicons.AppIconActivityAlt7",
       "existing_drawable": "bump"
-    },
-    {
-      "id": "com.bluelight.computer.winlauncher.prolauncher/com.bluelight.computer.winlauncher.prolauncher.ui.activity.SplashActivity",
-      "existing_drawable": "generic_clock"
     },
     {
       "id": "org.telegram.messenger/com.exteragram.messenger.AyuTyan",
@@ -297,10 +333,6 @@
     {
       "id": "de.blitzer.plus/com.eifrig.blitzerde.activity.splash.SplashActivityAlias10",
       "existing_drawable": "blitzer_de_pro"
-    },
-    {
-      "id": "com.safaricom.mpesa.lifestyle/com.huawei.digitalpayment.consumer.basic.ui.activity.SplashActivity",
-      "existing_drawable": "m_pesa"
     },
     {
       "id": "ru.libappc/ru.libapp.ui.main.MainActivity",
@@ -491,20 +523,8 @@
       "existing_drawable": "orange"
     },
     {
-      "id": "com.hihonor.appmarket/com.hihonor.appmarket.launcher.entrance.shortcut.LauncherHotAppActivity",
-      "existing_drawable": "huawei_appgallery"
-    },
-    {
-      "id": "com.hihonor.appmarket/com.hihonor.appmarket.launcher.entrance.shortcut.LauncherHotGameActivity",
-      "existing_drawable": "huawei_appgallery"
-    },
-    {
       "id": "app.gamenative/app.gamenative.MainActivityAliasAlt",
       "existing_drawable": "gamenative"
-    },
-    {
-      "id": "com.nonnonstop.apimate/leakcanary.internal.activity.LeakLauncherActivity",
-      "existing_drawable": "apimater"
     },
     {
       "id": "com.hearthborn.studios.ncalc/com.hearthborn.studios.ncalc.MainActivity",
@@ -535,14 +555,6 @@
       "existing_drawable": "keepsafe"
     },
     {
-      "id": "org.fossify.paint/org.fossify.paint.activities.SplashActivity.Yellow",
-      "existing_drawable": "fossify_paint"
-    },
-    {
-      "id": "com.nuvio.app/com.nuvio.app.launcher.AppIconDefault",
-      "existing_drawable": "nuvio"
-    },
-    {
       "id": "com.emui.huawei.themess/com.emui.huawei.themess.MainActivity",
       "existing_drawable": "huawei_themes"
     },
@@ -559,20 +571,12 @@
       "existing_drawable": "netto"
     },
     {
-      "id": "com.roblox.client/com.roblox.client.startup.LauncherAliasClassic",
-      "existing_drawable": "roblox"
-    },
-    {
       "id": "com.gmail.heagoo.apkeditor.pro/com.gmail.heagoo.apkeditor.pro.SplashActivity",
       "existing_drawable": "apk_editor_pro"
     },
     {
       "id": "com.luckydeveloper.apkshare/com.luckydeveloper.shareit.ui.activities.MainActivity",
       "existing_drawable": "apk_share_bluetooth"
-    },
-    {
-      "id": "co.amo.android.location/co.amo.location.appicons.AppIconActivityAlt5",
-      "existing_drawable": "bump"
     },
     {
       "id": "br.com.neon/br.eXsz71.cPIYq5.jGayW9.qTQxu5.pJLD23.zLjjn2",
@@ -585,10 +589,6 @@
     {
       "id": "com.antutu.benchmark.full/com.xj.app.DeepLinkRouterActivity",
       "existing_drawable": "antutu_benchmark"
-    },
-    {
-      "id": "moe.rukamori.archivetune/moe.rukamori.archivetune.launcher.IconAliasd31cf09f615e039e347c6a84",
-      "existing_drawable": "archivetune"
     },
     {
       "id": "com.mobilefootie.wc2010/com.fotmob.android.icons.AppIconFotMobPlus",
@@ -661,6 +661,14 @@
     {
       "id": "com.ea.games.r3_row/com.byfen.archiver.MainActivity",
       "existing_drawable": "real_racing_3"
+    },
+    {
+      "id": "com.alaskaairlines.android/com.alaskaairlines.android.AlaskaHawaiianNightAlias",
+      "existing_drawable": "alaska_airlines"
+    },
+    {
+      "id": "app.morphe.android.apps.youtube.music/app.morphe.android.apps.youtube.music.morphe_play_black_1",
+      "existing_drawable": "morphe"
     }
   ]
 }
