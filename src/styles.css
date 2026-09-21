@@ -2000,6 +2000,14 @@ input[type="checkbox"]:indeterminate::after {
   .goal-bar-text span:last-child {
     display: none;
   }
+  .goal-bar-wrapper .goal-bar-action {
+    width: 48px;
+    padding: 0;
+    justify-content: center;
+  }
+  .goal-bar-action span {
+    display: none;
+  }
 
   /* Switch Header to Stacked Layout */
   .header {
@@ -2145,6 +2153,24 @@ input[type="checkbox"]:indeterminate::after {
 .goal-bar-wrapper .goal-bar {
   flex: 1;
   margin-bottom: 0;
+}
+
+.goal-bar-action {
+  width: auto;
+  padding: 0 var(--space-lg);
+  gap: var(--space-sm);
+  white-space: nowrap;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.goal-bar-action:hover {
+  text-decoration: none;
+}
+
+.goal-bar-action svg {
+  width: 24px;
+  height: 24px;
 }
 
 /* Icon Library Results */
