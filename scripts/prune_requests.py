@@ -729,11 +729,7 @@ def calculate_roi_scores():
             if countries:
                 max_loss = max(USER_LOSS.get(c, 0) for c in countries)
                 return max_loss / MAX_LOSS
-        
-        # com domain without graph — presumed US
-        if domain == 'com':
-            return USER_LOSS.get('us', 0) / MAX_LOSS
-        
+
         return 0
     
     def local_impact(comp, installs=0):
@@ -780,24 +776,7 @@ def calculate_roi_scores():
 
             if impacts:
                 return sum(impacts) / len(impacts)
-                    
-        # com domain without graph — presumed US
-        if domain == 'com':
-            stats = domain_stats.get('us', {})
-            requests = stats.get('requests', 0)
-            total = stats.get('total', 0)
-            pop = POPULATION.get('us', 1)
-            actual_installs = installs if installs > 0 else avg_installs_by_country.get('us', 0)
-            
-            # Skip if installs exceed population (global installs, not local)
-            if actual_installs / 1_000_000 > pop:
-                return 0.01
-            
-            if pop > 0 and actual_installs > 0 and total > 0:
-                uncovered_ratio = requests / total
-                affected = (actual_installs / 1_000_000) * uncovered_ratio
-                return (affected / pop) * 100
-        
+
         # Fallback
         return 0.01
     
@@ -829,16 +808,7 @@ def calculate_roi_scores():
                     if total > 0:
                         gaps.append(requests / total)
                 return max(gaps) if gaps else 1.0
-        
-        # com domain without graph — presumed US
-        if domain == 'com':
-            stats = domain_stats.get('us', {})
-            requests = stats.get('requests', 0)
-            done = stats.get('done', 0)
-            total = requests + done
-            if total > 0:
-                return requests / total
-        
+
         return 1.0
     
     # Finisher scores — count screens that request closes (size = 1)
