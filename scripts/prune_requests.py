@@ -923,22 +923,22 @@ def calculate_roi_scores():
         
         scores_list.append((app, score))
     
-    # Calculate priority thresholds
-    all_scores = sorted([score for _, score in scores_list if score > 0], reverse=True)
-    total = len(all_scores)
-    
-    p1 = all_scores[int(total * 0.01)] if total > 100 else 0
-    p5 = all_scores[int(total * 0.05)] if total > 20 else 0
-    p25 = all_scores[int(total * 0.25)] if total > 4 else 0
+    # Priority thresholds based on Pareto distribution:
+    # - Critical: natural break at top-100
+    # - High: first 50% of total score
+    # - Medium: first 80% of total score
+    CRITICAL_THRESHOLD = 28_000
+    HIGH_THRESHOLD = 7_000
+    MEDIUM_THRESHOLD = 2_000
     
     def get_priority(score):
         if score <= 0:
             return None
-        if score > p1:
+        if score > CRITICAL_THRESHOLD:
             return 'Critical'
-        if score > p5:
+        if score > HIGH_THRESHOLD:
             return 'High'
-        if score > p25:
+        if score > MEDIUM_THRESHOLD:
             return 'Medium'
         return 'Low'
     
