@@ -685,7 +685,10 @@ def calculate_roi_scores():
         'am': 137,'tn': 135, 'kz': 117, 'la': 109
     }
     
-    MAX_LOSS = max(USER_LOSS.values())
+    loss_values = sorted(USER_LOSS.values(), reverse=True)
+    idx_80 = max(0, int(len(loss_values) * 0.20) - 1)
+    REF_LOSS = loss_values[idx_80]
+    LOG_REF_LOSS = math.log(REF_LOSS + 1)
     POPULATION = domain_stats.get('_population', {})
     
     ISO_COUNTRIES = {'ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','co','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','ne','ng','ni','nl','no','np','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','uk','us','uy','uz','vc','ve','vi','vn','ye','za','zm','zw'}
@@ -717,7 +720,7 @@ def calculate_roi_scores():
         # Direct geo domain
         domain = comp.split('/')[0].split('.')[0]
         if domain in USER_LOSS:
-            return USER_LOSS[domain] / MAX_LOSS
+            return math.log(USER_LOSS[domain] + 1) / LOG_REF_LOSS
         
         # Presumed through graph
         if comp in graph:
@@ -728,7 +731,7 @@ def calculate_roi_scores():
                     countries.add(nd)
             if countries:
                 max_loss = max(USER_LOSS.get(c, 0) for c in countries)
-                return max_loss / MAX_LOSS
+                return math.log(max_loss + 1) / LOG_REF_LOSS
 
         return 0
     
