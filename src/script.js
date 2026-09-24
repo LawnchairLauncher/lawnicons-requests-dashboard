@@ -427,15 +427,11 @@ const Utils = {
    * @returns {{ text: string; tags: Set<string>, isSet: boolean }}
    */
   parseSearchQuery(rawQuery) {
-    const result = { text: '', tags: new Set(), isSet: false };
+    const result = { text: '', tags: new Set() };
     const tokenRegex = /\b(?:is|tag|in):([a-z0-9-_]+)\b/gi;
 
     const cleanQuery = rawQuery.replace(tokenRegex, (_, tag) => {
       const lowerTag = tag.toLowerCase();
-      if (lowerTag === 'set') {
-        result.isSet = true;
-        return '';
-      }
       // Check if tag exists in config
       if (CONFIG.data.filters.includes(lowerTag)) {
         result.tags.add(lowerTag);
@@ -2168,13 +2164,6 @@ const Data = {
           );
         }
       }
-    }
-
-    // Set filter
-    if (query.isSet) {
-      data = data.filter((app) =>
-        App.state.setsStats[app.componentName.split('/')[0]] !== undefined
-      );
     }
 
     // Sort
