@@ -427,17 +427,13 @@ const Utils = {
    * @returns {{ text: string; tags: Set<string>, isSet: boolean }}
    */
   parseSearchQuery(rawQuery) {
-    const result = { text: '', tags: new Set(), isSet: false, isLocalImpact: false };
+    const result = { text: '', tags: new Set(), isSet: false };
     const tokenRegex = /\b(?:is|tag|in):([a-z0-9-_]+)\b/gi;
 
     const cleanQuery = rawQuery.replace(tokenRegex, (_, tag) => {
       const lowerTag = tag.toLowerCase();
       if (lowerTag === 'set') {
         result.isSet = true;
-        return '';
-      }
-      if (lowerTag === 'li') {
-        result.isLocalImpact = true;
         return '';
       }
       // Check if tag exists in config
@@ -2179,41 +2175,6 @@ const Data = {
       data = data.filter((app) =>
         App.state.setsStats[app.componentName.split('/')[0]] !== undefined
       );
-    }
-
-    // Local impact filter — top 5 per country by ROI
-    if (query.isLocalImpact) {
-      const graph = App.state.requestsGraph || {};
-      const byCountry = {};
-      
-      data.forEach(app => {
-        const comp = app.componentName;
-        const domain = comp.split('/')[0].split('.')[0];
-        let countries = [];
-        
-        if (ISO_COUNTRIES.has(domain)) {
-          countries = [domain];
-        } else if (graph[comp]) {
-          countries = Object.keys(graph[comp])
-            .map(n => n.split('/')[0].split('.')[0])
-            .filter(d => ISO_COUNTRIES.has(d));
-        } else if (domain === 'com') {
-          countries = ['us'];
-        }
-        
-        countries.forEach(c => {
-          if (!byCountry[c]) byCountry[c] = [];
-          byCountry[c].push(app);
-        });
-      });
-      
-      const topIds = new Set();
-      Object.entries(byCountry).forEach(([domain, apps]) => {
-        apps.sort((a, b) => (b.roi_score || 0) - (a.roi_score || 0));
-        apps.slice(0, 5).forEach(app => topIds.add(app.componentName));
-      });
-      
-      data = data.filter(app => topIds.has(app.componentName));
     }
 
     // Sort
