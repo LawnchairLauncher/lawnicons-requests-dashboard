@@ -5265,7 +5265,7 @@ renderContributionMode() {
         0,
       ]);
 
-    entries = entries.filter(([, , requests, total]) => total - requests > 5);
+    entries = entries.filter(([, , requests, total]) => (total - requests) >= 1 && total >= 10);
 
     /** @type {Record<string, number>} */
     const avgInstalls = App.state._domainAvgInstalls ?? {};
