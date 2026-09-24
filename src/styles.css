@@ -281,12 +281,6 @@ body:has(.context-menu:popover-open) {
   text-decoration-color: var(--primary);
 }
 
-.header-links {
-  margin-left: auto;
-  display: flex;
-  gap: var(--space-sm);
-}
-
 .header-link {
   border-radius: var(--shape-xlarge);
   background: var(--surface-container);
@@ -857,34 +851,6 @@ select:hover,
   background-color: var(--surface-container-high);
 }
 
-.control-group-btn {
-  height: 32px;
-  padding: 4px 8px;
-  gap: 4px;
-  background-color: var(--surface);
-  border: 1px solid var(--outline-variant);
-  border-radius: var(--shape-small);
-  color: var(--on-surface-variant);
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.control-group-btn:hover {
-  background-color: var(--surface-container-high);
-}
-
-.control-group-btn svg {
-  width: 20px;
-  height: 20px;
-  color: var(--on-surface-variant);
-}
-
-.control-group-btn svg.active {
-  color: var(--primary);
-}
-
 /* Filter Tags */
 .filter-tags {
   display: flex;
@@ -949,14 +915,6 @@ grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px minmax(14
 }
 
 /* Icon review */
-.icon-review-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 60vh;
-  position: relative;
-}
 
 .icon-review-overlay {
   position: fixed;
@@ -1111,35 +1069,15 @@ grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px minmax(14
   background: var(--secondary-container-hover);
 }
 
-#contributionBtn,
+
 #contributionBackBtn,
-#lowQualityBtn,
 #lowQualityBackBtn,
-#iconReviewBtn,
 #iconReviewBackBtn {
   border: none;
   cursor: pointer;
   width: 48px;
   height: 48px;
   flex-shrink: 0;
-}
-
-.contribution-count-badge {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    min-width: 16px;
-    height: 16px;
-    padding: 0 4px;
-    border-radius: var(--shape-full);
-    background: var(--secondary-container);
-    color: var(--on-secondary-container);
-    font-size: 10px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
 }
 
 .country-autocomplete { position: relative; }
@@ -1228,11 +1166,6 @@ grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px minmax(14
   font-family: monospace;
   text-align: left;
   width: 100%;
-}
-
-.header-link-wrapper {
-    position: relative;
-    display: inline-flex;
 }
 
 #contributionDomainsCard {
