@@ -5,6 +5,14 @@ const fflate = /** @type {* & {fflate: any}} */ (window).fflate;
 /** @typedef {[string, number, number, number, number, number]} DomainEntry */
 
 /**
+ * @typedef {Object} FulfillmentHistory
+ * @property {number} firstAppearance
+ * @property {number} fulfilled
+ * @property {number} popularity
+ * @property {number} label_factor
+ */
+
+/**
  * LAWNICONS REQUEST DASHBOARD
  */
 
@@ -43,7 +51,7 @@ const CONFIG = {
   },
   label_factors: {
     stale: 0.1,
-    unlabeled: 1,
+    unlabeled: 2,
     nameinuse: 1,
     easy: 3,
     match: 5,
@@ -1887,16 +1895,26 @@ const Data = {
 
           App.state._fulfillmentData = history;
 
-          /** @type {number[]} */
-          const ttfs = history
-              .filter(h => h.label_factor !== 5 && h.label_factor !== 1)
-              .map(h => (h.fulfilled - h.firstAppearance) / 86400)
-              .sort((a, b) => a - b);
+          /** @type {FulfillmentHistory[]} */
+          const filtered = history.filter(h => h.label_factor !== 5 && h.label_factor !== 1);
 
-          if (ttfs.length > 0) {
-            const medianIndex = Math.floor(ttfs.length / 2);
-            App.state.medianTTF = Math.round(ttfs[medianIndex]);
-            App.state.medianTTFCount = ttfs.length;
+          if (filtered.length > 0) {
+              /** @type {number[]} */
+              const ttfs = filtered
+                  .map(h => (h.fulfilled - h.firstAppearance) / 86400)
+                  .sort((a, b) => a - b);
+              App.state.medianTTF = Math.round(ttfs[Math.floor(ttfs.length / 2)]);
+              App.state.medianTTFCount = ttfs.length;
+
+              // Icons per day: last 30 days from the latest fulfilled date
+              const dates = filtered.map(h => h.fulfilled).filter(Boolean);
+              const latestDate = Math.max(...dates);
+              const cutoff = latestDate - 30 * 86400;
+              const last30 = filtered.filter(h => h.fulfilled >= cutoff);
+
+              App.state.iconsPerDay = (last30.length / 30).toFixed(1);
+              App.state.iconsPerDayCount = last30.length;
+              App.state.iconsPerDaySpan = 30;
           }
 
           const supTTFs = history
@@ -5458,9 +5476,9 @@ renderContributionMode() {
     }
 
     const paceEl = document.getElementById('activityPace');
-    if (paceEl && App.state.medianTTF !== undefined) {
-      paceEl.textContent = `${App.state.medianTTF}d from ask to icon`;
-      paceEl.title = `Median time from request to icon, based on ${App.state.medianTTFCount} fulfilled requests.`;
+    if (paceEl && App.state.iconsPerDay !== null) {
+        paceEl.textContent = `${App.state.iconsPerDay} new icons per day`;
+        paceEl.title = `${App.state.iconsPerDayCount} icons over the last 30 days (excluding matches and name-in-use).`;
     }
 
     /** @type {SVGElement | null} */

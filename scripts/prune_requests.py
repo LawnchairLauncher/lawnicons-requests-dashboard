@@ -537,12 +537,12 @@ def update_activity_stats(
 
 label_factors = {
     "stale": 0.1,
-    "unlabeled": 1,
+    "unlabeled": 2,
     "nameinuse": 1,
     "easy": 3,
     "match": 5,
     "supported": 6,
-    "rare": 1,
+    "rare": 2,
 }
 
 def update_fulfillment_history(removed_components: set[str], old_apps: dict) -> int:
