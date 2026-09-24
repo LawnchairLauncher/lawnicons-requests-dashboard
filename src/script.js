@@ -1906,8 +1906,14 @@ const Data = {
               App.state.medianTTF = Math.round(ttfs[Math.floor(ttfs.length / 2)]);
               App.state.medianTTFCount = ttfs.length;
 
-              // Icons per day: last 30 days from the latest fulfilled date
+              // Date range + icons per day
               const dates = filtered.map(h => h.fulfilled).filter(Boolean);
+              const minDate = new Date(Math.min(...dates) * 1000);
+              const maxDate = new Date(Math.max(...dates) * 1000);
+              const fmt = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+              App.state.dateRange = `${fmt(minDate)} – ${fmt(maxDate)}`;
+
+              // Icons per day: last 30 days from the latest fulfilled date
               const latestDate = Math.max(...dates);
               const cutoff = latestDate - 30 * 86400;
               const last30 = filtered.filter(h => h.fulfilled >= cutoff);
@@ -1930,7 +1936,7 @@ const Data = {
               if (App.state.supportedSpeedup) {
                   const descEl = document.getElementById('supportedDesc');
                   if (descEl) {
-                      const titleText = `Supported requests: ~${App.state.supMedian} days median (${App.state.supCount} requests)\nRegular requests: ~${App.state.medianTTF} days median (${App.state.medianTTFCount} requests)`;
+                      const titleText = `Supported requests: ~${App.state.supMedian} days median\nRegular requests: ~${App.state.medianTTF} days median\nStatistics period: ${App.state.dateRange}`;
                       descEl.innerHTML = `Supported requests are fulfilled at least <span style="color: var(--on-teal-container); font-weight: 700;" title="${titleText}">${App.state.supportedSpeedup}x faster</span>.`;
                   }
               }
