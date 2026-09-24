@@ -1987,8 +1987,8 @@ input[type="checkbox"]:indeterminate::after {
 
   .header-compact {
     grid-template-rows: auto;
-    padding-bottom: 0;
-    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-xl);
+    margin-bottom: 0;
   }
 
   .header-compact .header-right {
