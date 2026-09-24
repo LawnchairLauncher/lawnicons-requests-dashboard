@@ -37,7 +37,6 @@ const CONFIG = {
     // Order matters for UI
     filters: [
       'plan',
-      'tbd',
       'rare',
       'supported',
       'easy',
@@ -598,11 +597,6 @@ const Templates = {
       }
     }
 
-    const isTbd = App.state.appTags.get(id)?.has('tbd');
-    const idLine = isTbd
-      ? `<a class="link" href="https://app.sensortower.com/overview/${pkg}" target="_blank" rel="noopener">Find country</a> • ID: ${idPrefix}${id}`
-      : `ID: ${idPrefix}${id}`;
-
     const isUnknown = app.drawable === 'unknown' || name === '(Unknown App)';
     const existingDrawable = App.state.existingSvgs
       ? App.state.existingSvgs.get(id)
@@ -679,7 +673,7 @@ const Templates = {
                 ${tagHtml}
                 <span class="${appNameClass}">${name}</span>
               </div>
-              <span class="item-sub" title="${idPrefix}${id}">${idLine}</span>
+              <span class="item-sub" title="${id}">ID: ${idPrefix}${id}</span>
             </div>
           </div>
         </div>
@@ -950,19 +944,6 @@ const Templates = {
                       </div>
                       <span class="item-sub" title="${id}">ID: ${id}</span>
                   </div>
-              </div>
-              <div class="col country">
-                <div class="country-autocomplete" data-id="${id}">
-                  <input 
-                    type="text" 
-                    class="contribution-country-input"
-                    value="${countryDisplay}"
-                    autocomplete="off"
-                    data-id="${id}"
-                  />
-                  <input type="hidden" class="contribution-country-value" value="${country}" />
-                </div>
-                <span class="item-sub"><a class="link" href="https://app.sensortower.com/overview/${pkg}" target="_blank" rel="noopener">Find country</a></span>
               </div>
               <div class="col svg-name">
                   <input type="text" class="contribution-svg-input" value="${drawable}" data-id="${id}" data-field="drawable" oninput="UI.updateContributionField(this)" title="SVG name" />
@@ -4304,7 +4285,6 @@ renderContributionMode() {
               <div class="col mode">Mode</div>
               <div class="col icon">Icon</div>
               <div class="col name">Name</div>
-              <div class="col country">Country</div>
               <div class="col svg-name">SVG name</div>
               <div class="col library-icon"></div>
               <div class="col actions"></div>  

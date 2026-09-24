@@ -950,7 +950,7 @@ grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px minmax(14
 .contribution-header,
 .contribution-row {
   display: grid;
-  grid-template-columns: 104px 80px minmax(180px, 260px) 240px minmax(160px, 280px) 40px minmax(160px, auto);
+  grid-template-columns: 104px 80px minmax(180px, 260px) minmax(160px, 280px) 40px minmax(160px, auto);
   align-items: center;
   padding: var(--space-md) var(--space-lg);
   border-bottom: 1px solid var(--outline-variant);
@@ -1425,11 +1425,6 @@ grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px minmax(14
 .status-match {
   background: var(--pine-container);
   color: var(--on-pine-container);
-}
-
-.status-tbd {
-  background: var(--graphite-container);
-  color: var(--on-graphite-container);
 }
 
 .status-stale {
