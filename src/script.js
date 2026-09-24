@@ -71,8 +71,6 @@ const CONFIG = {
 
 const ISO_COUNTRIES = new Set(['ad','ae','af','ag','al','am','ao','ar','at','au','az','ba','bb','bd','be','bf','bg','bh','bi','bj','bo','br','bs','bw','by','bz','ca','cd','cf','cg','ch','ci','cl','cm','cn','co','cr','cu','cv','cy','cz','de','dj','dk','dm','do','dz','ec','ee','eg','er','es','et','fi','fj','fr','ga','ge','gh','gm','gn','gq','gr','gt','gw','gy','hk','hn','hr','ht','hu','id','ie','il','in','iq','ir','it','jm','jo','jp','ke','kg','kh','km','kn','kp','kr','kw','ky','kz','la','lb','lc','li','lk','lr','ls','lt','lu','lv','ly','ma','mc','md','mg','mk','ml','mm','mn','mr','mt','mu','mv','mw','mx','my','mz','na','ne','ng','ni','nl','no','np','nz','om','pa','pe','pg','ph','pk','pl','pr','ps','pt','py','qa','ro','rs','ru','rw','sa','sc','sd','se','sg','si','sk','sl','sm','sn','so','sr','ss','sv','sy','sz','td','tg','th','tj','tl','tm','tn','tr','tt','tw','tz','ua','ug','uk','us','uy','uz','vc','ve','vi','vn','ye','za','zm','zw']);
 
-const GOAL_START = 8095;
-const TOP_COUNTRIES = ['br', 'de', 'in', 'ru', 'us'];
 const COUNTRIES = {
   "ad": "Andorra",
   "ae": "United Arab Emirates",
@@ -2435,7 +2433,6 @@ const UI = {
     this.updateContributionBadge();
     this.renderDomainStats();
     this.renderActivityCard();
-    this.renderGoalBar();
     this.generateFilters();
     this.initObserver();
     this.initRegexAutocomplete();
@@ -3362,24 +3359,20 @@ const UI = {
   },
 
   render() {
-    const goalBar = document.querySelector('.goal-bar-wrapper');
     
     if (App.state.lowQualityActive) {
-      goalBar?.classList.add('is-hidden');
       document.getElementById('sectionTitle')?.classList.add('is-hidden');
       this.renderLowQualityMode();
       return;
     }
 
     if (App.state.iconReviewActive) {
-      goalBar?.classList.add('is-hidden');
       document.getElementById('sectionTitle')?.classList.add('is-hidden');
       this.renderIconReview();
       return;
     }
 
     if (App.state.contributionActive) {
-      goalBar?.classList.add('is-hidden');
       document.getElementById('sectionTitle')?.classList.add('is-hidden');
       this.renderContributionMode();
       return;
@@ -3936,7 +3929,6 @@ layoutMasonry() {
     document.getElementById('search-wrapper')?.classList.add('is-hidden');
     document.querySelector('.header')?.classList.add('header-compact');
     document.getElementById('mainTabs')?.classList.add('is-hidden');
-    document.querySelector('.goal-bar-wrapper')?.classList.add('is-hidden');
     App.dom.screenSortBtn.classList.add('is-hidden');
     App.dom.listHeader.style.display = 'none';
     App.dom.sentinel.style.display = 'none';
@@ -4059,7 +4051,6 @@ layoutMasonry() {
     document.getElementById('search-wrapper')?.classList.add('is-hidden')
     document.querySelector('.header')?.classList.add('header-compact');
     document.getElementById('mainTabs')?.classList.add('is-hidden');
-    document.querySelector('.goal-bar-wrapper')?.classList.add('is-hidden');
     App.dom.screenSortBtn.classList.add('is-hidden');
     App.dom.listHeader.style.display = 'none';
     App.dom.sentinel.style.display = 'none';
@@ -4255,7 +4246,6 @@ renderContributionMode() {
     document.querySelector('.header')?.classList.add('header-compact');
     document.getElementById('mainTabs')?.classList.add('is-hidden');
     document.getElementById('lowQualityBtn')?.parentElement?.classList.add('is-hidden');
-    document.querySelector('.goal-bar-wrapper')?.classList.add('is-hidden');
     App.dom.screenSortBtn.classList.add('is-hidden');
     const contributionCountBadge = document.getElementById(
       'contributionCountBadge',
@@ -5544,23 +5534,6 @@ renderContributionMode() {
     });
   },
 
-  async renderGoalBar() {
-    const tbd = await Data.fetchJson('assets/filters/tbd.json', { tbd: [] });
-    const total = GOAL_START;
-    const remaining = tbd.tbd.length;
-    const located = Math.max(0, total - remaining);
-    const pct = total > 0 ? (located / total) * 100 : 0;
-    
-    const fill = document.getElementById('goalFill');
-    const left = document.getElementById('goalLeft');
-    
-    if (fill) fill.style.width = `${pct}%`;
-    if (left) {
-      left.textContent = 
-        `${Utils.compactNumber(located)} / ${Utils.compactNumber(total)} requests located`;
-    }
-  },
-
   initRegexAutocomplete() {
     const input = App.dom.inputSearch;
     const wrapper = document.getElementById('search-wrapper');
@@ -5657,7 +5630,6 @@ renderContributionMode() {
     const s = App.state;
     const container = document.getElementById('iconLibraryResults');
     const cardsRow = document.querySelector('.cards-row');
-    const goalBar = document.querySelector('.goal-bar-wrapper');
 
     if (!container || !cardsRow) return;
 
@@ -5666,7 +5638,6 @@ renderContributionMode() {
     if (!query || !s.existingIcons || s.existingIcons.length === 0) {
       Utils.setHidden(container, true);
       Utils.setHidden(cardsRow, false);
-      Utils.setHidden(goalBar, false);
       return;
     }
 
@@ -5684,7 +5655,6 @@ renderContributionMode() {
     if (matches.length === 0) {
       Utils.setHidden(container, true);
       Utils.setHidden(cardsRow, false);
-      Utils.setHidden(goalBar, false);
       return;
     }
 
@@ -5710,7 +5680,6 @@ renderContributionMode() {
 
     Utils.setHidden(cardsRow, true);
     Utils.setHidden(container, false);
-    Utils.setHidden(goalBar, true);
 
     const title = container.querySelector('.library-title');
     if (title) {

@@ -1955,19 +1955,7 @@ input[type="checkbox"]:indeterminate::after {
   .screen-preview {
     grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)) !important;
   }
-
-  .goal-bar-text span:last-child {
-    display: none;
-  }
-  .goal-bar-wrapper .goal-bar-action {
-    width: 48px;
-    padding: 0;
-    justify-content: center;
-  }
-  .goal-bar-action span {
-    display: none;
-  }
-
+  
   /* Switch Header to Stacked Layout */
   .header {
     grid-template-columns: 1fr auto;
@@ -2082,67 +2070,6 @@ input[type="checkbox"]:indeterminate::after {
       transform: translateX(0) translateY(0);
   }
 
-}
-
-/* Goal bar */
-.goal-bar {
-  position: relative;
-  height: 48px;
-  background: var(--surface-container-low);
-  border-radius: 32px;
-  overflow: hidden;
-  margin-bottom: var(--space-lg);
-}
-
-.goal-bar-fill {
-  position: absolute;
-  inset: 0 auto 0 0;
-  background: var(--on-secondary);
-  width: 0%;
-  transition: width 0.3s;
-}
-
-.goal-bar-text {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  padding: 0 var(--space-xl);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--on-surface);
-}
-
-.goal-bar-wrapper {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
-}
-
-.goal-bar-wrapper .goal-bar {
-  flex: 1;
-  margin-bottom: 0;
-}
-
-.goal-bar-action {
-  width: auto;
-  padding: 0 var(--space-lg);
-  gap: var(--space-sm);
-  white-space: nowrap;
-  font-size: 15px;
-  text-decoration: none;
-}
-
-.goal-bar-action:hover {
-  text-decoration: none;
-}
-
-.goal-bar-action svg {
-  width: 24px;
-  height: 24px;
 }
 
 /* Icon Library Results */
