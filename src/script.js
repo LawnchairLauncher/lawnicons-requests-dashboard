@@ -3369,6 +3369,7 @@ const UI = {
 
     document.querySelector('.header-icon')?.classList.remove('is-hidden');
     document.getElementById('search-wrapper')?.classList.remove('is-hidden');
+    document.querySelector('.header')?.classList.remove('header-compact');
     document.getElementById('sectionTitle')?.classList.remove('is-hidden');
     document.querySelector('.list-viewport')?.classList.remove('is-hidden');
     App.dom.header.textContent = App.dom.defaultHeader;
@@ -3906,6 +3907,7 @@ layoutMasonry() {
     document.querySelector('.controls')?.classList.add('is-hidden');
     document.getElementById('iconLibraryResults')?.classList.add('is-hidden');
     document.getElementById('search-wrapper')?.classList.add('is-hidden');
+    document.querySelector('.header')?.classList.add('header-compact');
     document.getElementById('mainTabs')?.classList.add('is-hidden');
     document.querySelector('.goal-bar-wrapper')?.classList.add('is-hidden');
     App.dom.screenSortBtn.classList.add('is-hidden');
@@ -4027,7 +4029,8 @@ layoutMasonry() {
     document.querySelector('.header-icon')?.classList.add('is-hidden');
     document.querySelector('.controls')?.classList.add('is-hidden');
     document.getElementById('iconLibraryResults')?.classList.add('is-hidden');
-    document.getElementById('search-wrapper')?.classList.add('is-hidden');
+    document.getElementById('search-wrapper')?.classList.add('is-hidden')
+    document.querySelector('.header')?.classList.add('header-compact');
     document.getElementById('mainTabs')?.classList.add('is-hidden');
     document.querySelector('.goal-bar-wrapper')?.classList.add('is-hidden');
     App.dom.screenSortBtn.classList.add('is-hidden');
@@ -4222,6 +4225,7 @@ renderContributionMode() {
     document.querySelector('.controls')?.classList.add('is-hidden');
     document.getElementById('iconLibraryResults')?.classList.add('is-hidden');
     document.getElementById('search-wrapper')?.classList.add('is-hidden');
+    document.querySelector('.header')?.classList.add('header-compact');
     document.getElementById('mainTabs')?.classList.add('is-hidden');
     document.getElementById('lowQualityBtn')?.parentElement?.classList.add('is-hidden');
     document.querySelector('.goal-bar-wrapper')?.classList.add('is-hidden');

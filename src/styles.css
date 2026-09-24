@@ -1985,6 +1985,19 @@ input[type="checkbox"]:indeterminate::after {
     max-width: none;
   }
 
+  .header-compact {
+    grid-template-rows: auto;
+    padding-bottom: 0;
+    margin-bottom: var(--space-lg);
+  }
+
+  .header-compact .header-right {
+    grid-column: 2;
+    grid-row: 1;
+    max-width: none;
+    gap: 0;
+  }
+
   /* Reset fixed width on mobile to prevent overflow */
   .header-sub {
     width: auto;
