@@ -44,13 +44,17 @@
         <div class="input-icon">
           <svg id="searchIcon"><use href="#ic-search"/></svg>
         </div>
-        <input id="searchInput" placeholder="Search apps and IDs" />
+        <input id="searchInput" placeholder="Search apps and IDs" aria-describedby="searchHint" />
         <button id="clearSearchBtn" class="input-icon is-hidden" title="Clear search">
           <svg><use href="#ic-close"/></svg>
         </button>
         <button id="regexBtn" class="input-icon" title="Use regular expression">
           <svg><use href="#ic-regex"/></svg>
         </button>
+        <div id="searchHint" class="search-hint is-hidden" role="tooltip">
+          <div><strong>scr-1</strong> for requests from a specific screen.</div>
+          <div><strong>#1234</strong> for requests linked to a supported issue.</div>
+        </div>
       </div>
       <a href="https://github.com/LawnchairLauncher/lawnicons" class="header-link" title="Lawnicons on GitHub">
         <svg><use href="#ic-github"></use></svg>

@@ -2456,6 +2456,23 @@ const UI = {
       },
     );
 
+    const searchHint = document.getElementById('searchHint');
+
+    App.dom.inputSearch.addEventListener('focus', () => {
+      if (!App.dom.inputSearch.value) {
+        Utils.setHidden(searchHint, false);
+      }
+    });
+
+    App.dom.inputSearch.addEventListener('input', () => {
+      const isEmpty = !App.dom.inputSearch.value;
+      Utils.setHidden(searchHint, !isEmpty);
+    });
+
+    App.dom.inputSearch.addEventListener('blur', () => {
+      Utils.setHidden(searchHint, true);
+    });
+
     const activeMode = App.state.domainStatsMode;
     const activeSvg = document.querySelector(
       `[data-action='domain-stats-mode'][data-mode='${activeMode}']`,

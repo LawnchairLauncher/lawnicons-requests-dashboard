@@ -326,6 +326,7 @@ body:has(.context-menu:popover-open) {
 #search-wrapper {
   flex: 1;
   min-width: 0;
+  position: relative;
 }
 
 #search-wrapper .input-icon {
@@ -352,6 +353,31 @@ body:has(.context-menu:popover-open) {
 
 .input-wrapper input::placeholder {
   color: var(--on-surface-variant);
+}
+
+.search-hint {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  background: var(--surface-container-high);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--shape-small);
+  box-shadow: var(--elevation-3);
+  padding: var(--space-md);
+  font-size: 14px;
+  color: var(--on-surface-variant);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: max-content;
+  max-width: 100%;
+}
+
+.search-hint strong {
+  color: var(--on-surface);
+  font-weight: 600;
+  font-family: monospace;
 }
 
 /* Icon Button (Inside Input) */
