@@ -96455,11 +96455,12 @@
       "drawable": "opacha_mda",
       "requestCount": 2,
       "firstAppearance": 1718142215.0,
-      "lastRequested": 1767028499.0,
+      "lastRequested": 1790390247.1865072,
       "label": "Opacha-mda",
       "componentName": "yio.tro.opacha/yio.tro.opacha.AndroidLauncher",
       "installs": "100,000+",
-      "roi_score": 0
+      "roi_score": 23,
+      "priority": "Low"
     },
     {
       "drawable": "fly_challenge_build_a_plane",
@@ -129100,10 +129101,12 @@
       "drawable": "rooktv_1",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
-      "lastRequested": 1762586824.0,
+      "lastRequested": 1790390464.247883,
       "label": "RookTV",
       "componentName": "com.nyxio.tenebroj/com.nyxio.tenebroj.module_home.HomeActivityNew",
-      "roi_score": 0
+      "roi_score": 23,
+      "installs": "1,000,000+",
+      "priority": "Low"
     },
     {
       "drawable": "yylive",
