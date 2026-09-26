@@ -12,6 +12,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 LOCAL_APPFILTER = REPO_ROOT / "src/assets/appfilter.xml"
 REQUESTS_JSON = REPO_ROOT / "src/assets/requests.json"
+DEAD_PATH = REPO_ROOT / "src/assets/dead_links.json"
 EXTRACTED_IMAGE_DIR = REPO_ROOT / "src/extracted_images"
 FILTERS_DIR = REPO_ROOT / "src/assets/filters"
 
@@ -309,6 +310,33 @@ def generate_stale_list() -> int:
     stale_components.sort()
 
     stale_file_path = FILTERS_DIR / "stale.json"
+
+    # Load previous stale to detect newly added ones
+    old_stale = set()
+    if stale_file_path.exists():
+        try:
+            with open(stale_file_path, "r", encoding="utf-8") as f:
+                old_stale = set(json.load(f).get("stale", []))
+        except Exception:
+            pass
+
+    newly_stale = set(stale_components) - old_stale
+
+    # Remove newly stale packages from dead_links for one re-check
+    if newly_stale and DEAD_PATH.exists():
+        try:
+            with open(DEAD_PATH, "r", encoding="utf-8") as f:
+                dead = set(json.load(f))
+            newly_stale_pkgs = {c.split('/')[0] for c in newly_stale}
+            removed = dead & newly_stale_pkgs
+            if removed:
+                new_dead = dead - removed
+                with open(DEAD_PATH, "w", encoding="utf-8") as f:
+                    json.dump(sorted(new_dead), f, indent=2)
+                print(f"Removed {len(removed)} newly stale packages from dead_links for re-check")
+        except Exception as e:
+            print(f"Warning: failed to update dead_links: {e}")
+
     output_data = {
         "label": "Stale",
         "description": "Requests on death row. Double-check if the app is still around.",
