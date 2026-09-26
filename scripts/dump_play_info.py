@@ -209,10 +209,9 @@ def main():
         if pkg in DEAD_SET: continue
         
         skip_icon = app['componentName'] in nameinuse_ids or app['componentName'] in match_ids or pkg in sets_pkgs
-        needs_installs = 'installs' not in app
         needs_icon = not skip_icon and (app.get('drawable') == 'unknown' or is_small_image(app.get('drawable')))
         is_stale = app['componentName'] in stale_ids
-        if not needs_installs and not needs_icon and not is_stale: continue
+        if not needs_icon and not is_stale: continue
 
         attempted += 1
 
