@@ -1043,6 +1043,7 @@ const Templates = {
    */
   domainStatsTooltip(domain, done, requests, total, mode, extraValue, population, global) {
     const pct = total ? (done / total * 100).toFixed(1) : 0;
+    const countryName = COUNTRIES[/** @type {keyof typeof COUNTRIES} */ (domain)] || domain;
     let extra = '';
     if (mode === 'local' && extraValue && population > 0) {
       const pctLocals = (extraValue / 1_000_000 / population * 100).toFixed(1);
@@ -1054,7 +1055,7 @@ const Templates = {
     if (global > 0) {
       globalHtml = `<div class="tooltip-value">${global} non-geo</div>`;
     }
-    return `<div class="tooltip-label">${domain}</div>
+    return `<div class="tooltip-label">${countryName}</div>
       ${globalHtml}
       <div class="tooltip-value">${requests - global} local ${requests - global === 1 ? 'request' : 'requests'}</div>
       <div class="tooltip-value">${done} done (${pct}%)</div>${extra}`;
