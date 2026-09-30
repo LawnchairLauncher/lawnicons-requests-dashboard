@@ -554,6 +554,14 @@ button.input-icon.active {
   vector-effect: non-scaling-stroke;
 }
 
+.activity-supported {
+  stroke: var(--on-teal-container);
+}
+
+.tooltip-value-supported {
+  color: var(--on-teal-container);
+}
+
 .activity-zero {
   stroke: var(--outline);
   stroke-width: 1;
@@ -574,7 +582,7 @@ button.input-icon.active {
 }
 
 .activity-added-dot {
-  fill: var(--primary);
+  fill: var(--on-surface-variant);
 }
 
 .activity-removed {
@@ -644,7 +652,7 @@ button.input-icon.active {
 }
 
 .tooltip-value-primary {
-  color: var(--primary);
+  color: var(--on-surface-variant);
 }
 
 .tooltip-value-resolved {

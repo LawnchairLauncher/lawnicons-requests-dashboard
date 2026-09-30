@@ -1063,15 +1063,17 @@ const Templates = {
 
   /**
    * @param {string} pathResolved
+   * @param {string} pathSupported
    * @param {string} addedDots
    * @param {string} dayLabels
    * @returns {string}
    */
-  activityCard(pathResolved, addedDots, dayLabels) {
+  activityCard(pathResolved, pathSupported, addedDots, dayLabels) {
     return `<div class="card-chart activity-card-chart">
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="activity-svg">
         <line x1="0" y1="100" x2="100" y2="100" class="activity-zero" />
         <path d="${pathResolved}" class="activity-line activity-removed" />
+        ${pathSupported ? `<path d="${pathSupported}" class="activity-line activity-supported" />` : ''}
       </svg>
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="activity-dots-svg">
         ${addedDots}
@@ -1094,15 +1096,16 @@ const Templates = {
    * @param {number} fulfilled
    * @returns {string}
    */
-  activityTooltip(formattedDate, added, fulfilled) {
+  activityTooltip(formattedDate, added, fulfilled, supported = 0) {
     let html = `<div class="tooltip-label">${formattedDate}</div>`;
     if (added > 0) {
-      html +=
-        `<div class="tooltip-value tooltip-value-primary">${added} new</div>`;
+      html += `<div class="tooltip-value tooltip-value-primary">${added} new</div>`;
     }
     if (fulfilled > 0) {
-      html +=
-        `<div class="tooltip-value tooltip-value-resolved">${fulfilled} fulfilled</div>`;
+      html += `<div class="tooltip-value tooltip-value-resolved">${fulfilled} regular done</div>`;
+    }
+    if (supported > 0) {
+      html += `<div class="tooltip-value tooltip-value-supported">${supported} supported done</div>`;
     }
     return html;
   },
@@ -1892,6 +1895,16 @@ const Data = {
               const maxDate = new Date(Math.max(...dates) * 1000);
               const fmt = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
               App.state.dateRange = `${fmt(minDate)} – ${fmt(maxDate)}`;
+
+              // Supported by day (from fulfillment_history)
+              App.state.supportedByDay = {};
+              for (const h of history) {
+                  if (h.label_factor !== 6) continue;
+                  const ts = h.fulfilled;
+                  if (!ts) continue;
+                  const day = new Date(ts * 1000).toISOString().slice(0, 10);
+                  App.state.supportedByDay[day] = (App.state.supportedByDay[day] || 0) + 1;
+              }
 
               // Icons per day: last 30 days from the latest fulfilled date
               const latestDate = Math.max(...dates);
@@ -5102,15 +5115,27 @@ renderContributionMode() {
     const totalNew = days.reduce((sum, d) => sum + (d.added || 0), 0);
 
     // Resolved as main line
-    const maxRemoved = Math.max(...days.map((d) => d.fulfilled || 0), 1);
+    const supByDay = App.state.supportedByDay || {};
+
+    const overallValues = days.map(d => Math.max(0, (d.fulfilled || 0) - (supByDay[d.date] || 0)));
+    const supportedValues = days.map(d => supByDay[d.date] || 0);
+
+    const maxOverall = Math.max(...overallValues, 1);
+    const maxSupported = Math.max(...supportedValues, 1);
+
     const resolvedPoints = days.map((d, i) => ({
-      x: i / (days.length - 1) * 100,
-      y: 100 - (d.fulfilled || 0) / maxRemoved * 100,
+        x: i / (days.length - 1) * 100,
+        y: 100 - overallValues[i] / maxOverall * 100,
+    }));
+
+    const supportedPoints = days.map((d, i) => ({
+        x: i / (days.length - 1) * 100,
+        y: 100 - supportedValues[i] / maxSupported * 100,
     }));
 
     const maxAdded = Math.max(...days.map((d) => d.added || 0), 1);
 
-    if (maxRemoved === 0 && maxAdded === 0) return;
+    if (maxOverall === 0 && maxAdded === 0) return;
 
     const makePath = (/** @type {{x: number, y: number}[]} */ points) => {
       if (points.length < 2) return '';
@@ -5128,6 +5153,7 @@ renderContributionMode() {
     };
 
     const pathResolved = makePath(resolvedPoints);
+    const pathSupported = makePath(supportedPoints);
 
     const monthNames = [
       'Jan',
@@ -5158,7 +5184,7 @@ renderContributionMode() {
         <span class="chart-label">${lastLabel}</span>
     `;
 
-    container.innerHTML = Templates.activityCard(pathResolved, '', dayLabels);
+    container.innerHTML = Templates.activityCard(pathResolved, pathSupported, '', dayLabels);
 
     const dotsSvg = container.querySelector('.activity-dots-svg');
     if (dotsSvg) {
@@ -5235,18 +5261,19 @@ renderContributionMode() {
       vLine.style.display = '';
 
       const added = days[clamped].added || 0;
-      const fulfilled = days[clamped].fulfilled || 0;
+      const supported = supByDay[days[clamped].date] || 0;
+      const fulfilled = Math.max(0, (days[clamped].fulfilled || 0) - supported);
 
-      if (added === 0 && fulfilled === 0) {
-        Components.Tooltip.hide(tooltip);
-        return;
+      if (added === 0 && fulfilled === 0 && supported === 0) {
+          Components.Tooltip.hide(tooltip);
+          return;
       }
 
       const dateParts = days[clamped].date.toString().split('-');
       const formattedDate = `${monthNames[parseInt(dateParts[1]) - 1]} ${
         parseInt(dateParts[2])
       }`;
-      const html = Templates.activityTooltip(formattedDate, added, fulfilled);
+      const html = Templates.activityTooltip(formattedDate, added, fulfilled, supported);
 
       const left = snapX / 100 * svgRect.width + 12;
 
