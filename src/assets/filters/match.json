@@ -115,6 +115,10 @@
       "existing_drawable": "huawei_appgallery"
     },
     {
+      "id": "dev.allofus.starlight/dev.allofus.starlight.StarlightActivity",
+      "existing_drawable": "starlight"
+    },
+    {
       "id": "com.radolyn.ayugram/com.exteragram.messenger.AuroraIcon",
       "existing_drawable": "ayugram"
     },
@@ -571,8 +575,16 @@
       "existing_drawable": "antutu_benchmark"
     },
     {
+      "id": "dev.allofus.starlight/dev.allofus.starlight.StarlightActivityIconOld",
+      "existing_drawable": "starlight"
+    },
+    {
       "id": "com.mobilefootie.wc2010/com.fotmob.android.icons.AppIconFotMobPlus",
       "existing_drawable": "fotmob"
+    },
+    {
+      "id": "dev.allofus.starlight/dev.allofus.starlight.StarlightActivityDefault",
+      "existing_drawable": "starlight"
     },
     {
       "id": "com.google.android.apps.tips/com.google.android.apps.tips.fortnite.p11.blk",
