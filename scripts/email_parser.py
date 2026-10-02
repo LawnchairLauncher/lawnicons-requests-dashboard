@@ -66,20 +66,8 @@ def extract_xml(zip_file: zipfile.ZipFile) -> ET.Element:
     xml_string = zip_file.read('!appfilter.xml')
     return ET.fromstring(xml_string)
 
-def is_better_image(new_data: bytes, old_path: Path) -> bool:
-    """Return True if new image has more pixels than existing one."""
-    if not old_path.exists():
-        return True
-    try:
-        new_img = Image.open(io.BytesIO(new_data))
-        old_img = Image.open(old_path)
-        return (new_img.width * new_img.height) > (old_img.width * old_img.height)
-    except Exception:
-        return True
-
 def extract_image(zip_file: zipfile.ZipFile, drawable_name: str, out_dir: Path,
-                target_name: str | None = None, overwrite: bool = False,
-                only_if_better: bool = False) -> str:
+                target_name: str | None = None, overwrite: bool = False) -> str:
     base_name = target_name or drawable_name
     candidate_name = base_name
     try:
@@ -89,10 +77,6 @@ def extract_image(zip_file: zipfile.ZipFile, drawable_name: str, out_dir: Path,
                     image_data = source_file.read()
                 
                 image_path = out_dir / f"{candidate_name}.webp"
-                
-                if only_if_better and image_path.exists():
-                    if not is_better_image(image_data, image_path):
-                        return candidate_name
                 
                 if not overwrite:
                     count = 1
@@ -197,7 +181,6 @@ def parse_item_tag(item: ET.Element, msg: Message, zip_file: zipfile.ZipFile,
             image_out_dir,
             target_name=existing_drawable,
             overwrite=True,
-            only_if_better=True,
         )
 
         # Ensure firstAppearance exists (legacy migration safety)
@@ -206,10 +189,6 @@ def parse_item_tag(item: ET.Element, msg: Message, zip_file: zipfile.ZipFile,
         
         # In case we process an older email later, capture the earliest date
         entry["firstAppearance"] = min(entry["firstAppearance"], req_time)
-        
-        # Optional: Update label if the new one is "better"? 
-        # For now, keep the first one seen or maybe update to most recent? 
-        # Keeping first seen is safer for consistency.
         
         return apps
 
