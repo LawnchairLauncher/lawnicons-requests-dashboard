@@ -1,0 +1,20 @@
+{
+  "description": "Dynamic package prefixes and dead apps to exclude from dashboard.",
+  "dynamic": [
+    "br.com.gabba.Caixa",
+    "br.com.livelo.app",
+    "com.TotalPlay.totalplay",
+    "com.cinepolis.go",
+    "com.coppel.coppelapp",
+    "com.discoverfinancial.mobile",
+    "com.supervielle",
+    "com.yellowpepper.pichincha",
+    "id.co.bankbkemobile.digitalbank",
+    "ba.raiffeisenbank.mobile.prod",
+    "com.F2Games.GBDE"
+  ],
+  "dead": [
+    "com.google.android.apps.podcasts",
+    "com.skype.raider"
+  ]
+}

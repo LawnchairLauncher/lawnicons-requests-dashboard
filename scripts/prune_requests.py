@@ -19,7 +19,7 @@ FILTERS_DIR = REPO_ROOT / "src/assets/filters"
 UPSTREAM_APPFILTER = "https://raw.githubusercontent.com/LawnchairLauncher/lawnicons/develop/app/assets/appfilter.xml"
 
 COMPONENT_PATTERN = re.compile(r"ComponentInfo\{([^}]+)}")
-DYNAMIC_PACKAGES_PATH = REPO_ROOT / "src/assets/dynamic_packages.json"
+EXCLUDED_PACKAGES_PATH = REPO_ROOT / "src/assets/excluded_packages.json"
 
 
 def set_workflow_output(name: str, value: str) -> None:
@@ -68,16 +68,19 @@ def load_upstream_components(xml_bytes: bytes) -> set[str]:
 
     return components
 
-def load_dynamic_packages() -> set[str]:
-    if not DYNAMIC_PACKAGES_PATH.exists():
-        return set()
+def load_excluded_packages() -> dict[str, list[str]]:
+    if not EXCLUDED_PACKAGES_PATH.exists():
+        return {"dynamic": [], "dead": []}
     try:
-        with open(DYNAMIC_PACKAGES_PATH, "r", encoding="utf-8") as f:
+        with open(EXCLUDED_PACKAGES_PATH, "r", encoding="utf-8") as f:
             data = json.load(f)
-        return set(data.get("packages", []))
+        return {
+            "dynamic": data.get("dynamic", []),
+            "dead": data.get("dead", []),
+        }
     except Exception as e:
-        print(f"Warning: could not load dynamic_packages.json: {e}")
-        return set()
+        print(f"Warning: could not load excluded_packages.json: {e}")
+        return {"dynamic": [], "dead": []}
 
 def delete_drawable_image(drawable_name: str) -> bool:
     if not drawable_name:
@@ -1096,22 +1099,23 @@ def main() -> int:
     print(f"Removed expired requests: {expired_removed}")
     print(f"Deleted extracted images (expired): {expired_deleted}")
 
-    # --- Dynamic packages cleanup ---
-    dynamic_packages = load_dynamic_packages()
-    if dynamic_packages:
+    # --- Excluded packages cleanup (dynamic + dead) ---
+    excluded = load_excluded_packages()
+    excluded_pkgs = set(excluded.get("dynamic", [])) | set(excluded.get("dead", []))
+    if excluded_pkgs:
         with open(REQUESTS_JSON, "r", encoding="utf-8") as f:
             requests_data = json.load(f)
         apps = requests_data.get("apps", [])
         kept_apps = []
-        removed_dynamic = []
+        removed_excluded = []
         for app in apps:
             pkg = app.get("componentName", "").split("/")[0]
-            if pkg in dynamic_packages:
-                removed_dynamic.append(app)
+            if pkg in excluded_pkgs:
+                removed_excluded.append(app)
             else:
                 kept_apps.append(app)
         
-        if removed_dynamic:
+        if removed_excluded:
             requests_data["apps"] = kept_apps
             requests_data["count"] = len(kept_apps)
             requests_data["lastUpdate"] = time.strftime("%Y-%m-%d")
@@ -1119,15 +1123,15 @@ def main() -> int:
                 json.dump(requests_data, f, indent=2)
             
             seen_drawables = set()
-            for app in removed_dynamic:
+            for app in removed_excluded:
                 drawable = app.get("drawable", "")
                 if drawable and drawable not in seen_drawables:
                     seen_drawables.add(drawable)
                     delete_drawable_image(drawable)
             
-            for app in removed_dynamic:
-                print(f"  Dynamic package removed: {app.get('label', '?')} ({app.get('componentName', '')})")
-            print(f"Removed {len(removed_dynamic)} requests from dynamic packages")
+            for app in removed_excluded:
+                print(f"  Excluded package removed: {app.get('label', '?')} ({app.get('componentName', '')})")
+            print(f"Removed {len(removed_excluded)} requests from excluded packages")
 
     # Load requests for later use
     with open(REQUESTS_JSON, "r") as f:
