@@ -1099,23 +1099,23 @@ def main() -> int:
     print(f"Removed expired requests: {expired_removed}")
     print(f"Deleted extracted images (expired): {expired_deleted}")
 
-    # --- Excluded packages cleanup (dynamic + dead) ---
+    # --- Dead packages cleanup ---
     excluded = load_excluded_packages()
-    excluded_pkgs = set(excluded.get("dynamic", [])) | set(excluded.get("dead", []))
-    if excluded_pkgs:
+    dead_pkgs = set(excluded.get("dead", []))
+    if dead_pkgs:
         with open(REQUESTS_JSON, "r", encoding="utf-8") as f:
             requests_data = json.load(f)
         apps = requests_data.get("apps", [])
         kept_apps = []
-        removed_excluded = []
+        removed_dead = []
         for app in apps:
             pkg = app.get("componentName", "").split("/")[0]
-            if pkg in excluded_pkgs:
-                removed_excluded.append(app)
+            if pkg in dead_pkgs:
+                removed_dead.append(app)
             else:
                 kept_apps.append(app)
         
-        if removed_excluded:
+        if removed_dead:
             requests_data["apps"] = kept_apps
             requests_data["count"] = len(kept_apps)
             requests_data["lastUpdate"] = time.strftime("%Y-%m-%d")
@@ -1123,15 +1123,15 @@ def main() -> int:
                 json.dump(requests_data, f, indent=2)
             
             seen_drawables = set()
-            for app in removed_excluded:
+            for app in removed_dead:
                 drawable = app.get("drawable", "")
                 if drawable and drawable not in seen_drawables:
                     seen_drawables.add(drawable)
                     delete_drawable_image(drawable)
             
-            for app in removed_excluded:
-                print(f"  Excluded package removed: {app.get('label', '?')} ({app.get('componentName', '')})")
-            print(f"Removed {len(removed_excluded)} requests from excluded packages")
+            for app in removed_dead:
+                print(f"  Dead package removed: {app.get('label', '?')} ({app.get('componentName', '')})")
+            print(f"Removed {len(removed_dead)} requests from dead packages")
 
     # Load requests for later use
     with open(REQUESTS_JSON, "r") as f:
