@@ -27,7 +27,8 @@ const fflate = /** @type {* & {fflate: any}} */ (window).fflate;
 
 const CONFIG = {
   data: {
-    endpoint: 'assets/requests.json',
+    endpoint: 'assets/requests-core.json',
+    endpointLow: 'assets/requests-low.json',
     requestsGraphPath: 'assets/requests_graph.json',
     screensGraphPath: 'assets/screens_graph.json',
     setsStatsPath: 'assets/stats/sets_stats.json',
@@ -310,6 +311,8 @@ const App = {
     renderedCount: 0,
     currentData: [],
     existingIcons: [],
+    lowLoaded: false,
+    lowLoading: false,
 
     actionMode: 'new',
     lowQualityActive: false,
@@ -1369,7 +1372,11 @@ const Actions = {
     App.state.sort = nextSort;
     const opt = UI.sortOptions.find((o) => o.value === nextSort);
     App.dom.sortLabel.textContent = opt ? opt.label : nextSort;
-    UI.render();
+    if (!App.state.lowLoaded) {
+      Data.loadLowRequests().then(() => UI.render());
+    } else {
+      UI.render();
+    }
   },
 
   clearAllSelections() {
@@ -1831,6 +1838,7 @@ const Data = {
       ]);
 
       App.data = json.apps;
+      App.state.totalRequests = json.totalCount || App.data.length;
       App.state.setsStats = setsStats;
       App.state.domainStats = domainStats;
       App.state.activityStats = activityStats;
@@ -2052,6 +2060,23 @@ const Data = {
 
     if (App.state.search) UI.renderIconLibrary();
     if (App.state.contributionActive) UI.renderContributionMode();
+  },
+
+  async loadLowRequests() {
+      if (App.state.lowLoaded || App.state.lowLoading) return;
+      App.state.lowLoading = true;
+      try {
+          const data = await this.fetchJson(CONFIG.data.endpointLow, {});
+          const apps = data.apps || [];
+          App.data = App.data.concat(apps);
+          apps.forEach(app => App.state.idMap.set(app.componentName, app));
+          App.state.lowLoaded = true;
+          console.log(`Loaded ${apps.length} low-priority requests`);
+      } catch (e) {
+          console.error('Failed to load low requests:', e);
+      } finally {
+          App.state.lowLoading = false;
+      }
   },
 
   /**
@@ -2522,16 +2547,19 @@ const UI = {
     /** @type {number | undefined} */
     let searchTimeout;
     App.dom.inputSearch.addEventListener('input', (e) => {
-      const target = /** @type HTMLInputElement */ (e.target);
-      const val = target.value;
-      App.state.search = val;
-      Utils.setHidden(App.dom.clearBtn, val.length === 0);
-      this.renderIconLibrary();
-      
-      clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(() => {
-        this.render();
-      }, 300);
+        const target = /** @type HTMLInputElement */ (e.target);
+        const val = target.value;
+        App.state.search = val;
+        Utils.setHidden(App.dom.clearBtn, val.length === 0);
+        this.renderIconLibrary();
+
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(async () => {
+            if (val && !App.state.lowLoaded) {
+                await Data.loadLowRequests();
+            }
+            this.render();
+        }, 300);
     });
 
     App.dom.clearBtn.addEventListener('click', () => {
@@ -2911,7 +2939,11 @@ const UI = {
           App.state.sort = value;
           App.dom.sortLabel.textContent = actionEl.textContent.trim() || value;
           App.dom.sortMenu.hidePopover();
-          this.render();
+          if (!App.state.lowLoaded) {
+            Data.loadLowRequests().then(() => this.render());
+          } else {
+            this.render();
+          }
           return;
         }
 
@@ -2950,7 +2982,11 @@ const UI = {
           if (!id) return;
           const s = App.state.activeFilters;
           Utils.mutualExclusiveTags(id, s);
-          this.render();
+          if (!App.state.lowLoaded) {
+            Data.loadLowRequests().then(() => this.render());
+          } else {
+            this.render();
+          }
           return;
         }
 
@@ -2959,8 +2995,15 @@ const UI = {
           if (!id) return;
           const s = App.state.activeFilters;
           Utils.mutualExclusiveTags(id, s);
-          this.render();
-          this.showMobileFilterPopover();
+          if (!App.state.lowLoaded) {
+            Data.loadLowRequests().then(() => {
+              this.render();
+              this.showMobileFilterPopover();
+            });
+          } else {
+            this.render();
+            this.showMobileFilterPopover();
+          }
           return;
         }
 
@@ -2989,7 +3032,11 @@ const UI = {
           App.state.search = `^${domain}\\.`;
           App.dom.inputSearch.value = App.state.search;
           Utils.setHidden(App.dom.clearBtn, false);
-          UI.render();
+          if (!App.state.lowLoaded) {
+            Data.loadLowRequests().then(() => UI.render());
+          } else {
+            UI.render();
+          }
           return;
         }
 
@@ -3279,11 +3326,17 @@ const UI = {
   },
 
   initObserver() {
-    this.observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        const more = this.loadMore();
-        App.dom.sentinel.style.opacity = more ? '1' : '0';
-      }
+    this.observer = new IntersectionObserver(async (entries) => {
+        if (entries[0].isIntersecting) {
+            // Load low-priority on scroll if not loaded
+            if (!App.state.lowLoaded && !App.state.lowLoading) {
+                await Data.loadLowRequests();
+                UI.render();
+                return;
+            }
+            const more = this.loadMore();
+            App.dom.sentinel.style.opacity = more ? '1' : '0';
+        }
     }, { rootMargin: '400px' });
     this.observer.observe(App.dom.sentinel);
   },
@@ -3366,7 +3419,10 @@ const UI = {
 
     const sectionTitle = document.getElementById('sectionTitle');
     if (sectionTitle) {
-      sectionTitle.innerHTML = `Community requests <span style="color: var(--on-surface-variant); margin-left: var(--space-xs)">${Utils.compactNumber(s.currentData.length)}</span>`;
+      const total = App.state.lowLoaded
+        ? s.currentData.length
+        : (App.state.totalRequests || s.currentData.length);
+      sectionTitle.innerHTML = `Community requests <span style="color: var(--on-surface-variant); margin-left: var(--space-xs)">${Utils.compactNumber(total)}</span>`;
     }
 
     if (App.state.activeTab === 'screens') {

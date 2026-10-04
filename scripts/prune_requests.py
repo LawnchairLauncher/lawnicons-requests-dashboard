@@ -1005,6 +1005,34 @@ def calculate_roi_scores():
     
     print(f"Calculated ROI scores for {len(apps)} requests ({changed} changed)")
     return len(apps)
+
+def split_requests_by_priority() -> tuple[int, int]:
+    """Split requests.json into core (Critical/High/Medium) and low (rest) files for the dashboard."""
+    with open(REQUESTS_JSON, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    apps = data.get("apps", [])
+    core_priorities = {"Critical", "High", "Medium"}
+    core = []
+    low = []
+    for a in apps:
+        if a.get("priority") in core_priorities or a.get("requestCount", 0) >= 10:
+            core.append(a)
+        else:
+            low.append(a)
+
+    total_count = len(apps)
+    for name, subset in [("requests-core.json", core), ("requests-low.json", low)]:
+        out = dict(data)
+        out["apps"] = subset
+        out["count"] = len(subset)
+        out["totalCount"] = total_count
+        path = REPO_ROOT / f"src/assets/{name}"
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(out, f, indent=2)
+        print(f"Wrote {path.name}: {len(subset)} entries (total: {total_count})")
+
+    return len(core), len(low)
     
 def main() -> int:
 
@@ -1185,6 +1213,10 @@ def main() -> int:
     # --- Calculate ROI scores (after installs updated and stale refreshed) ---
     roi_count = calculate_roi_scores()
     print(f"ROI scores calculated: {roi_count}")
+
+    # --- Split requests for dashboard (core + low) ---
+    core_count, low_count = split_requests_by_priority()
+    print(f"Split: {core_count} core, {low_count} low")
 
     # --- Workflow outputs ---
     has_changes = appfilter_changed or expired_removed > 0
