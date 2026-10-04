@@ -14,10 +14,6 @@ METADATA = {
     "match": {
         "label": "Match",
         "desc": "Requests with an existing package."
-    },
-    "akin": {
-        "label": "Akin",
-        "desc": "Requests potentially related to existing single-word names."
     }
 }
 
@@ -42,11 +38,10 @@ def get_core_package(pkg):
 def load_appfilter_data(appfilter_path):
     existing_packages = {}  # package → drawable
     existing_names = {}     # sanitized_name → drawable
-    existing_single_words = {}  # single word → drawable
 
     if not os.path.exists(appfilter_path):
         print(f"Warning: {appfilter_path} not found. Auto-tags will be empty.")
-        return existing_packages, existing_names, existing_single_words
+        return existing_packages, existing_names
 
     try:
         tree = ET.parse(appfilter_path)
@@ -66,13 +61,11 @@ def load_appfilter_data(appfilter_path):
             if raw_name:
                 sanitized = sanitize_drawable_name(raw_name)
                 existing_names[sanitized] = drawable
-                if len(sanitized.split()) == 1:
-                    existing_single_words[sanitized] = drawable
                 
     except Exception as e:
         print(f"Error parsing appfilter: {e}")
 
-    return existing_packages, existing_names, existing_single_words
+    return existing_packages, existing_names
 
 def write_json(output_dir, filename, key, data_list):
     path = os.path.join(output_dir, filename)
@@ -97,11 +90,10 @@ def main(input_file, output_dir, appfilter_path):
         return
 
     # 2. Load Appfilter (Source of Truth)
-    existing_packages, existing_names, existing_single_words = load_appfilter_data(appfilter_path)
+    existing_packages, existing_names = load_appfilter_data(appfilter_path)
     
     nameinuse_data = []
     match_data = []
-    akin_data = []
     matched_ids = set()
     nameinuse_ids = set()
 
@@ -131,15 +123,9 @@ def main(input_file, output_dir, appfilter_path):
             nameinuse_data.append((app_id, existing_names[req_name]))
             nameinuse_ids.add(app_id)
 
-        # --- Rule C: Akin ---
-        first_word = req_name.split()[0] if req_name else ''
-        if first_word in existing_single_words and app_id not in matched_ids and app_id not in nameinuse_ids and not is_pwa:
-            akin_data.append((app_id, existing_single_words[first_word]))
-
     # 3. Output
     write_json(output_dir, "nameinuse.json", "nameinuse", nameinuse_data)
     write_json(output_dir, "match.json", "match", match_data)
-    write_json(output_dir, "akin.json", "akin", akin_data)
 
     # Propagate easy tag to all components of the same package
     easy_path = os.path.join(output_dir, "easy.json")
@@ -169,7 +155,7 @@ def main(input_file, output_dir, appfilter_path):
                 json.dump(easy_data, f, indent=2)
             print(f"Propagated easy tag to {added} additional components in same packages")    
     
-    print(f"Generated tags: {len(nameinuse_data)} nameinuses, {len(match_data)} matches, {len(akin_data)} akin.")
+    print(f"Generated tags: {len(nameinuse_data)} nameinuses, {len(match_data)} matches.")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate automatic tags based on appfilter.xml")

@@ -34,7 +34,6 @@ const CONFIG = {
     setsStatsPath: 'assets/stats/sets_stats.json',
     domainStatsPath: 'assets/stats/domain_stats.json',
     activityStatsPath: 'assets/stats/activity_stats.json',
-    contestPath: 'assets/contest.json',
     assetsPath: 'extracted_images/',
     iconExtension: '.webp',
     filterPath: 'assets/filters/',
@@ -43,13 +42,12 @@ const CONFIG = {
     // Order matters for UI
     filters: [
       'plan',
-      'rare',
       'supported',
+      'rare',
       'easy',
       'foss',
       'nameinuse',
       'match',
-      'akin',
       'stale',
       'unlabeled',
     ],
@@ -1871,7 +1869,6 @@ const Data = {
 
       App.state.screensData = await this.fetchJson(CONFIG.data.screensGraphPath, {});
       App.state.requestsGraph = await this.fetchJson(CONFIG.data.requestsGraphPath, {});
-      App.state.contestData = await this.fetchJson(CONFIG.data.contestPath, []);
       App.state.supportedIssues = await this.fetchJson(CONFIG.data.supportedIssuesPath, {});
       
       // Load optional data
@@ -2531,10 +2528,6 @@ const UI = {
       this.renderDomainStats();
       this.renderActivityCard();
       if (App.state.activeTab === 'screens') {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => UI.layoutMasonry(), 100);
-      }
-      if (App.state.activeTab === 'contest') {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => UI.layoutMasonry(), 100);
       }
@@ -3847,65 +3840,6 @@ layoutMasonry() {
     });
 
     this.layoutMasonry();
-  },
-
-  renderContest() {
-    App.dom.container.innerHTML = '';
-    const entries = App.state.contestData;
-    if (!entries || entries.length === 0) {
-      App.dom.container.innerHTML = '<div class="empty-state"><h3>No submissions yet</h3><p>Submissions will appear after the contest starts.</p></div>';
-      document.getElementById('mainTabs')?.classList.remove('is-hidden');
-      return;
-    }    
-    App.dom.container.className = 'screens-grid';
-    App.dom.sbBar.classList.remove('visible');
-    document.querySelector('.controls')?.classList.add('is-hidden');
-    App.dom.screenSortBtn.classList.add('is-hidden');
-    App.dom.listHeader.style.display = 'none';
-    App.dom.sentinel.style.display = 'none';
-    document.getElementById('contestSection')?.classList.remove('is-hidden');
-
-    entries.forEach(entry => {
-      const card = document.createElement('div');
-      card.className = 'screen-card';
-      card.innerHTML = `
-        <div class="screen-preview" style="grid-template-columns:1fr; grid-auto-rows:auto;">
-          <img src="${entry.url}" loading="lazy" alt="Entry #${entry.id}" style="width:100%; height:auto; border-radius:var(--shape-small);" onclick="window.open('${entry.url}')" />
-        </div>
-        <div class="screen-card-header"><span>#${entry.id}</span></div>
-        <div class="screen-card-description">${entry.author}</div>
-      `;
-      card.addEventListener('click', () => {
-        window.open(entry.url);
-      });
-      App.dom.container.appendChild(card);
-    });
-
-    const images = App.dom.container.querySelectorAll('img');
-    let loaded = 0;
-    const total = images.length;
-
-    if (total === 0) {
-      this.layoutMasonry();
-    } else {
-      images.forEach(img => {
-        const onDone = () => {
-          loaded++;
-          if (loaded === total) {
-            setTimeout(() => {
-              this.layoutMasonry();
-              setTimeout(() => this.layoutMasonry(), 100);
-            }, 200);
-          }
-        };
-        if (img.naturalWidth > 0) {
-          onDone();
-        } else {
-          img.onload = onDone;
-          img.onerror = onDone;
-        }
-      });
-    }
   },
 
   renderLowQualityMode() {

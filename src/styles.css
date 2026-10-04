@@ -1395,11 +1395,6 @@ grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px minmax(14
   color: var(--on-slate-container);
 }
 
-.status-akin {
-  background: var(--rose-container);
-  color: var(--on-rose-container);
-}
-
 .status-nameinuse {
   background: var(--orange-container);
   color: var(--on-orange-container);
