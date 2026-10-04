@@ -980,6 +980,11 @@ def calculate_roi_scores():
             changed += 1
         
         priority = get_priority(new_score)
+        
+        # Supported requests are at least Medium
+        if app.get('componentName') in supported and priority == 'Low':
+            priority = 'Medium'
+        
         if priority is None:
             if 'priority' in app:
                 del app['priority']
