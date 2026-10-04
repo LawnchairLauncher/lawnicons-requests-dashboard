@@ -1,6 +1,6 @@
 {
-  "count": 28897,
-  "lastUpdate": "2026-10-03",
+  "count": 28895,
+  "lastUpdate": "2026-10-04",
   "apps": [
     {
       "drawable": "happ",
@@ -87694,17 +87694,6 @@
       "installs": "1,000,000+",
       "roi_score": 2415,
       "priority": "Medium"
-    },
-    {
-      "drawable": "starlight_1",
-      "label": "Starlight",
-      "componentName": "dev.allofus.starlight/dev.allofus.starlight.StarlightActivity",
-      "requestCount": 2,
-      "firstAppearance": 1775331448.0,
-      "lastRequested": 1782559335.0,
-      "installs": "50,000+",
-      "roi_score": 74,
-      "priority": "Low"
     },
     {
       "drawable": "circons_1",
@@ -297447,17 +297436,6 @@
       "lastRequested": 1787812968.0,
       "roi_score": 29,
       "priority": "Low"
-    },
-    {
-      "drawable": "starlight",
-      "label": "Starlight",
-      "componentName": "dev.allofus.starlight/dev.allofus.starlight.StarlightActivityIconOld",
-      "requestCount": 1,
-      "firstAppearance": 1788017087.0,
-      "lastRequested": 1788017087.0,
-      "roi_score": 70,
-      "priority": "Low",
-      "installs": "100,000+"
     },
     {
       "drawable": "bluelink_1",
