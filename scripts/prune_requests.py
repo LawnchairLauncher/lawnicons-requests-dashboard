@@ -1022,7 +1022,7 @@ def split_requests_by_priority() -> tuple[int, int]:
             low.append(a)
 
     total_count = len(apps)
-    for name, subset in [("requests-core.json", core), ("requests-low.json", low)]:
+    for name, subset in [("requests_core.json", core), ("requests_low.json", low)]:
         out = dict(data)
         out["apps"] = subset
         out["count"] = len(subset)

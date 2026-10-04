@@ -27,8 +27,8 @@ const fflate = /** @type {* & {fflate: any}} */ (window).fflate;
 
 const CONFIG = {
   data: {
-    endpoint: 'assets/requests-core.json',
-    endpointLow: 'assets/requests-low.json',
+    endpoint: 'assets/requests_core.json',
+    endpointLow: 'assets/requests_low.json',
     requestsGraphPath: 'assets/requests_graph.json',
     screensGraphPath: 'assets/screens_graph.json',
     setsStatsPath: 'assets/stats/sets_stats.json',
