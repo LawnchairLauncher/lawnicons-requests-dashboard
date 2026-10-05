@@ -1921,24 +1921,6 @@ const Data = {
               App.state.iconsPerDaySpan = 30;
           }
 
-          const supTTFs = history
-              .filter(h => h.label_factor === 6)
-              .map(h => (h.fulfilled - h.firstAppearance) / 86400)
-              .sort((a, b) => a - b);
-
-          if (supTTFs.length > 0) {
-              const supMedian = supTTFs[Math.floor(supTTFs.length / 2)];
-              App.state.supMedian = Math.round(supMedian);
-              App.state.supCount = supTTFs.length;
-              App.state.supportedSpeedup = App.state.medianTTF ? (App.state.medianTTF / supMedian).toFixed(1) : null;
-              if (App.state.supportedSpeedup) {
-                  const descEl = document.getElementById('supportedDesc');
-                  if (descEl) {
-                      const titleText = `Supported requests: ~${App.state.supMedian} days median\nRegular requests: ~${App.state.medianTTF} days median\nStatistics period: ${App.state.dateRange}`;
-                      descEl.innerHTML = `Supported requests are fulfilled at least <span style="color: var(--on-teal-container); font-weight: 700;" title="${titleText}">${App.state.supportedSpeedup}x faster</span>.`;
-                  }
-              }
-          }
         })(),
         (async () => {
           /** @type {TrendingBaseline} */
