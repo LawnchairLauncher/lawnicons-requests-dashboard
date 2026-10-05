@@ -3387,11 +3387,6 @@ const UI = {
     this.updateHeader();
     this.renderIconLibrary();
 
-    const desc = document.getElementById('supportedDesc');
-    const link = document.getElementById('supportedLink');
-    Utils.setHidden(desc, false);
-    Utils.setHidden(link, false);
-
     const sectionTitle = document.getElementById('sectionTitle');
     if (sectionTitle) {
       const total = App.state.lowLoaded
