@@ -87,9 +87,9 @@
   --rose-container: #6d2745;
   --on-rose-container: #ffd8e7;
 
-/* Source: #424242 */
---graphite-container: #383838;
---on-graphite-container: #e8e8f0;
+  /* Source: #424242 */
+  --graphite-container: #383838;
+  --on-graphite-container: #e8e8f0;
 
   /* Pie chart colors */
   --chart-1: #8CB4FF;
@@ -168,8 +168,6 @@ body {
   cursor: pointer;
   margin-top: 0;
   align-self: center;
-  font-size: inherit;
-  cursor: pointer;
 }
 
 /* Scrollbar */
@@ -629,7 +627,6 @@ button.input-icon.active {
   transition: opacity 0.05s ease-out, transform 0.05s ease-out,
       display 0.05s allow-discrete;
     visibility: hidden;
-  pointer-events: none;
 }
   
 .tooltip.visible {
