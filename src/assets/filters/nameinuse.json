@@ -235,6 +235,10 @@
       "existing_drawable": "hd_camera"
     },
     {
+      "id": "su.happ.proxyutility/su.happ.proxyutility.feature.main.MainActivity",
+      "existing_drawable": "happ"
+    },
+    {
       "id": "com.psma.videosplitter/com.psma.videosplitter.main.SplashActivity",
       "existing_drawable": "video_splitter"
     },
@@ -1567,6 +1571,10 @@
       "existing_drawable": "flow"
     },
     {
+      "id": "at.ottoversand.shop/com.empiriecom.app.start.SplashActivity",
+      "existing_drawable": "otto"
+    },
+    {
       "id": "io.parity.signer/io.parity.signer.MainActivity",
       "existing_drawable": "vault"
     },
@@ -2141,6 +2149,10 @@
     {
       "id": "com.hmct.secretlauncher/com.hmct.secretlauncher.activities.AliasActivity",
       "existing_drawable": "private_space"
+    },
+    {
+      "id": "br.com.dmcard.contadigital/br.com.dmcard.internalcontadigital.MainActivity",
+      "existing_drawable": "dm"
     },
     {
       "id": "com.jivubaa.wavetolockunlockscreen/com.jivubaa.wavetolockunlockscreen.COM_JIVUBAA_SplashActivity",
