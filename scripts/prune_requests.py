@@ -673,9 +673,6 @@ def calculate_roi_scores():
 
     with open(REPO_ROOT / "src/assets/filters/supported.json") as f:
         supported = set(json.load(f).get("supported", []))
-
-    with open(REPO_ROOT / "src/assets/filters/easy.json") as f:
-        easy = set(json.load(f).get("easy", []))
     
     with open(REPO_ROOT / "src/assets/filters/foss.json") as f:
         foss = set(json.load(f).get("foss", []))
@@ -886,10 +883,7 @@ def calculate_roi_scores():
         finisher = finisher_scores.get(comp, 0)
         trend = trending_deltas.get(comp, 0)
         
-        is_easy = comp in easy
         is_foss = comp in foss
-        
-        complexity = 1 if is_easy else 10
 
         is_supported = comp in supported
         supported_multiplier = 15.0 if is_supported else 1.0
@@ -950,7 +944,7 @@ def calculate_roi_scores():
             (1 + trend_log) *
             installs_penalty *
             supported_multiplier
-        ) / complexity
+        )
         
         scores_list.append((app, score))
     
@@ -958,9 +952,9 @@ def calculate_roi_scores():
     # - Critical: natural break at top-100
     # - High: first 50% of total score
     # - Medium: first 80% of total score
-    CRITICAL_THRESHOLD = 28_000
-    HIGH_THRESHOLD = 7_000
-    MEDIUM_THRESHOLD = 2_000
+    CRITICAL_THRESHOLD = 127_000
+    HIGH_THRESHOLD = 27_000
+    MEDIUM_THRESHOLD = 6_900
     
     def get_priority(score):
         if score <= 0:
