@@ -1,31 +1,31 @@
 {
   "com": {
-    "requests": 20056,
-    "done": 14570,
-    "total": 34626,
+    "requests": 20050,
+    "done": 14579,
+    "total": 34629,
     "global": 0,
     "global_installs": 0
   },
   "de": {
-    "requests": 3086,
-    "done": 506,
+    "requests": 3085,
+    "done": 507,
     "total": 3592,
-    "global": 2744,
-    "global_installs": 14438702397
+    "global": 2743,
+    "global_installs": 14438602397
   },
   "ru": {
-    "requests": 3168,
+    "requests": 3167,
     "done": 387,
-    "total": 3555,
-    "global": 2819,
-    "global_installs": 18280300593
+    "total": 3554,
+    "global": 2818,
+    "global_installs": 18280300543
   },
   "in": {
-    "requests": 2437,
+    "requests": 2436,
     "done": 149,
-    "total": 2586,
-    "global": 2348,
-    "global_installs": 24951762441
+    "total": 2585,
+    "global": 2347,
+    "global_installs": 24951662441
   },
   "org": {
     "requests": 1339,
@@ -35,11 +35,11 @@
     "global_installs": 0
   },
   "jp": {
-    "requests": 2105,
+    "requests": 2103,
     "done": 189,
-    "total": 2294,
-    "global": 1795,
-    "global_installs": 10592366171
+    "total": 2292,
+    "global": 1793,
+    "global_installs": 10592266171
   },
   "us": {
     "requests": 1750,
@@ -56,10 +56,10 @@
     "global_installs": 11321724260
   },
   "cn": {
-    "requests": 1445,
+    "requests": 1443,
     "done": 71,
-    "total": 1516,
-    "global": 1379,
+    "total": 1514,
+    "global": 1377,
     "global_installs": 3536656460
   },
   "it": {
@@ -70,18 +70,18 @@
     "global_installs": 5480615855
   },
   "fr": {
-    "requests": 801,
+    "requests": 799,
     "done": 69,
-    "total": 870,
-    "global": 704,
-    "global_installs": 3515823182
+    "total": 868,
+    "global": 702,
+    "global_installs": 3515823132
   },
   "pl": {
-    "requests": 685,
+    "requests": 684,
     "done": 150,
-    "total": 835,
-    "global": 584,
-    "global_installs": 4370897650
+    "total": 834,
+    "global": 583,
+    "global_installs": 4370897600
   },
   "se": {
     "requests": 756,
@@ -91,11 +91,11 @@
     "global_installs": 3220719336
   },
   "uk": {
-    "requests": 642,
+    "requests": 641,
     "done": 56,
-    "total": 698,
-    "global": 557,
-    "global_installs": 2467796901
+    "total": 697,
+    "global": 556,
+    "global_installs": 2467696901
   },
   "ar": {
     "requests": 635,
@@ -120,8 +120,8 @@
   },
   "app": {
     "requests": 302,
-    "done": 315,
-    "total": 617,
+    "done": 318,
+    "total": 620,
     "global": 0,
     "global_installs": 0
   },
@@ -162,8 +162,8 @@
   },
   "nl": {
     "requests": 413,
-    "done": 101,
-    "total": 514,
+    "done": 102,
+    "total": 515,
     "global": 310,
     "global_installs": 1572927600
   },
@@ -217,8 +217,8 @@
     "global_installs": 1478814110
   },
   "at": {
-    "requests": 251,
-    "done": 68,
+    "requests": 250,
+    "done": 69,
     "total": 319,
     "global": 204,
     "global_installs": 2094348861
@@ -231,10 +231,10 @@
     "global_installs": 751064800
   },
   "my": {
-    "requests": 299,
+    "requests": 298,
     "done": 15,
-    "total": 314,
-    "global": 260,
+    "total": 313,
+    "global": 259,
     "global_installs": 572674010
   },
   "ir": {
@@ -253,8 +253,8 @@
   },
   "dev": {
     "requests": 112,
-    "done": 155,
-    "total": 267,
+    "done": 156,
+    "total": 268,
     "global": 0,
     "global_installs": 0
   },
@@ -336,10 +336,10 @@
     "global_installs": 261475000
   },
   "ma": {
-    "requests": 146,
+    "requests": 145,
     "done": 2,
-    "total": 148,
-    "global": 140,
+    "total": 147,
+    "global": 139,
     "global_installs": 36275100
   },
   "tw": {
@@ -503,19 +503,19 @@
     "global": 42,
     "global_installs": 1288671001
   },
-  "tn": {
-    "requests": 68,
-    "done": 5,
-    "total": 73,
-    "global": 67,
-    "global_installs": 30402000
-  },
   "ec": {
     "requests": 70,
     "done": 2,
     "total": 72,
     "global": 66,
     "global_installs": 601109200
+  },
+  "tn": {
+    "requests": 67,
+    "done": 5,
+    "total": 72,
+    "global": 66,
+    "global_installs": 30402000
   },
   "tv": {
     "requests": 32,
@@ -1064,8 +1064,8 @@
     "global_installs": 0
   },
   "su": {
-    "requests": 10,
-    "done": 3,
+    "requests": 9,
+    "done": 4,
     "total": 13,
     "global": 0,
     "global_installs": 0

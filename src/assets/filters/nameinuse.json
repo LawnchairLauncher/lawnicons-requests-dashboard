@@ -235,10 +235,6 @@
       "existing_drawable": "hd_camera"
     },
     {
-      "id": "su.happ.proxyutility/su.happ.proxyutility.feature.main.MainActivity",
-      "existing_drawable": "happ"
-    },
-    {
       "id": "com.psma.videosplitter/com.psma.videosplitter.main.SplashActivity",
       "existing_drawable": "video_splitter"
     },
@@ -615,6 +611,10 @@
       "existing_drawable": "yahoo_weather"
     },
     {
+      "id": "ca.psiphon.conduit/ca.psiphon.conduit.MainActivity",
+      "existing_drawable": "conduit"
+    },
+    {
       "id": "com.samsung.android.videolist/com.samsung.android.videolist.list.activity.VideoList",
       "existing_drawable": "generic_player"
     },
@@ -913,6 +913,10 @@
     {
       "id": "com.risingcabbage.hd.camera/com.lightcone.procamera.activity.splash.SplashActivity",
       "existing_drawable": "hd_camera"
+    },
+    {
+      "id": "app.cogwheel.conduit/app.cogwheel.conduit.MainActivity",
+      "existing_drawable": "conduit"
     },
     {
       "id": "com.vertmedia.haven/com.vertmedia.haven.MainActivity",
@@ -1569,10 +1573,6 @@
     {
       "id": "com.kenstarry.flow/com.kenstarry.flow.MainActivity",
       "existing_drawable": "flow"
-    },
-    {
-      "id": "at.ottoversand.shop/com.empiriecom.app.start.SplashActivity",
-      "existing_drawable": "otto"
     },
     {
       "id": "io.parity.signer/io.parity.signer.MainActivity",
