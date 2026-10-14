@@ -1,4 +1,4 @@
-# python3 scripts/update_foss_tags.py
+# python3 -u scripts/update_foss_tags.py
 
 import json
 import os
