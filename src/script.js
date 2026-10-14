@@ -2050,7 +2050,9 @@ const Data = {
           App.data = App.data.concat(apps);
           apps.forEach(app => App.state.idMap.set(app.componentName, app));
           App.state.lowLoaded = true;
-          console.log(`Loaded ${apps.length} low-priority requests`);
+          
+          // Re-compute unlabeled for all data
+          this.computeUnlabeled('unlabeled');
       } catch (e) {
           console.error('Failed to load low requests:', e);
       } finally {
