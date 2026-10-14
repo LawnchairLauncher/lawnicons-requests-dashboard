@@ -2635,32 +2635,12 @@
       "existing_drawable": "manage_apps_shortcut"
     },
     {
-      "id": "com.pultec.tobyfoxundertale/com.pultec.tobyfoxundertale.RunnerActivity",
-      "existing_drawable": "undertale"
-    },
-    {
       "id": "com.quickshare.file.share.transfer/com.quickshare.file.share.transfer.SplashActivityNew",
       "existing_drawable": "quick_share_google_shortcuts_launcher"
     },
     {
-      "id": "sdevtech.original/com.mojang.minecraftpe.MainActivity",
-      "existing_drawable": "minecraft"
-    },
-    {
-      "id": "com.WEKA.MATRIX/com.exteragram.messenger.DefaultIcon",
-      "existing_drawable": "ayugram"
-    },
-    {
-      "id": "com.sngict.dominoes/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "dominoes"
-    },
-    {
       "id": "echo.music.iad1tya/echo.music.iad1tya.MainActivityLegacy",
       "existing_drawable": "echo_music"
-    },
-    {
-      "id": "com.omnicore.adidas.ua/com.omnicore.adidas.ua.presentation.activities.LaunchActivity",
-      "existing_drawable": "adidas"
     },
     {
       "id": "ktbcs.netbank/th.co.ktb.next.ui.splash.SplashActivity",
@@ -2669,18 +2649,6 @@
     {
       "id": "fr.pixelprose.game2048/fr.pixelprose.game2048.Application2048$StarterActivity",
       "existing_drawable": "_2048"
-    },
-    {
-      "id": "page.puzzak.material2048/page.puzzak.material2048.MainActivity",
-      "existing_drawable": "_2048"
-    },
-    {
-      "id": "com.arlosoft.macrodroid.clone/com.arlosoft.macrodroid.intro.IntroActivity",
-      "existing_drawable": "macrodroid"
-    },
-    {
-      "id": "com.trianguloy.urlchecker.clone/com.trianguloy.urlchecker.activities.MainActivity",
-      "existing_drawable": "urlcheck"
     },
     {
       "id": "com.b3bl1.standfade/com.google.firebase.MessagingUnityPlayerActivity",
@@ -2727,10 +2695,6 @@
       "existing_drawable": "dictionary"
     },
     {
-      "id": "com.edenred.tw.myedenred/com.edenred.tw.myedenred.MainActivity",
-      "existing_drawable": "edenred"
-    },
-    {
       "id": "com.androidapps.unitconverter/com.androidapps.unitconverter.IconDefault",
       "existing_drawable": "unit_converter"
     },
@@ -2757,10 +2721,6 @@
     {
       "id": "com.softwinner.camera2/com.softwinner.camera2.CameraLauncher",
       "existing_drawable": "generic_camera"
-    },
-    {
-      "id": "com.rk.axion/com.rk.activities.main.MainActivity",
-      "existing_drawable": "xed_editor"
     },
     {
       "id": "de.szalkowski.activitylauncher.pro/de.szalkowski.activitylauncher.entrypoint.MainActivity",
@@ -2795,40 +2755,16 @@
       "existing_drawable": "tasks"
     },
     {
-      "id": "com.piksoft.turboscan/com.piksoft.turboscan.ui.LauncherActivity",
-      "existing_drawable": "simple_scan"
-    },
-    {
       "id": "com.spaid/com.spaid.MainActivityDefault",
       "existing_drawable": "rally"
-    },
-    {
-      "id": "biblia.habla.hoy.AOVGMDRFUVODNBOFPU/king.james.bible.android.activity.LaunchActivity",
-      "existing_drawable": "generic_bible"
     },
     {
       "id": "ac.voicenote.voicerecorder.audio/com.kyungeun.timer.activities.SplashActivity",
       "existing_drawable": "generic_microphone"
     },
     {
-      "id": "com.gamma.checkers/com.unity3d.player.UnityPlayerActivity",
-      "existing_drawable": "generic_checkers"
-    },
-    {
-      "id": "com.vskit.lite/com.transsion.subroom.activity.SplashActivity",
-      "existing_drawable": "moviebox"
-    },
-    {
       "id": "au.com.macquarie.authenticator/au.com.macquarie.authenticator.splash.view.activity.SplashActivity",
       "existing_drawable": "generic_shell"
-    },
-    {
-      "id": "com.lemon.lvoverseas.morphe/com.vega.launcher.precondition.PreInstallConfirmActivity",
-      "existing_drawable": "capcut"
-    },
-    {
-      "id": "com.discord.morphe/com.discord.main.MainDefault",
-      "existing_drawable": "discord"
     },
     {
       "id": "com.appmusicdownloader.fdownloadmusicfree2/com.appmusicdownloader.fdownloadmusicfree2.ui.SplashActivity",
@@ -2859,16 +2795,8 @@
       "existing_drawable": "headphones"
     },
     {
-      "id": "com.stationdm.bluelink/com.stationdm.bluelink.kotlin.ui.auth.splash.SDMSplashActivity",
-      "existing_drawable": "hyundai_care"
-    },
-    {
       "id": "pe.indigital.tunki.user/pe.riHOE3.nFiWX3.paS603.g4y5E3.bLzv50.dKQXX9.pRCmi4",
       "existing_drawable": "agora"
-    },
-    {
-      "id": "com.community.moviebox/com.transsion.subroom.activity.SplashActivity",
-      "existing_drawable": "moviebox"
     },
     {
       "id": "com.devexpert.weatheradfree/com.devexpert.weatheradfree.view.MainActivity",
@@ -2891,24 +2819,12 @@
       "existing_drawable": "echo_music"
     },
     {
-      "id": "com.ovz.russcanner/carScannerXamarinForms.Droid.MainActivity",
-      "existing_drawable": "generic_engine"
-    },
-    {
-      "id": "com.imaginstudio.imagetools.pixellac/com.imaginstudio.imagetools.pixellac.MainActivity",
-      "existing_drawable": "pixellab"
-    },
-    {
       "id": "com.surfline.android/com.surfline.android.MainActivity",
       "existing_drawable": "generic_compass"
     },
     {
       "id": "pl.bk20.forest/pl.bk20.forest.core.presentation.SplashActivity",
       "existing_drawable": "forest"
-    },
-    {
-      "id": "com.kanna.bible/com.kanna.bible.activities.StartActivity",
-      "existing_drawable": "generic_bible"
     },
     {
       "id": "com.fujitsu.mobile_phone.camera/com.android.camera.CameraLauncher",
@@ -2927,20 +2843,8 @@
       "existing_drawable": "generic_camera"
     },
     {
-      "id": "org.cryptomator.freemium/org.cryptomator.presentation.ui.activity.VaultListActivity",
-      "existing_drawable": "cryptomator"
-    },
-    {
       "id": "arc.beam/arc.beam.RootActivity",
       "existing_drawable": "beam"
-    },
-    {
-      "id": "com.banyac.midrive.app.na/com.banyac.midrive.app.start.splash.SplashActivity",
-      "existing_drawable": "_70mai"
-    },
-    {
-      "id": "com.mtn1app/com.comviva.webaxn.ui.WebAxnActivity",
-      "existing_drawable": "mymtn"
     },
     {
       "id": "com.henzerboss.sudokuapp/com.henzerboss.sudokuapp.MainActivity",
@@ -2957,14 +2861,6 @@
     {
       "id": "dinnerdeal.android.customer/aws.android.customer.ListActivity",
       "existing_drawable": "eatclub"
-    },
-    {
-      "id": "com.europark.mobilparkering/com.europark.mobilparkering.MainActivity",
-      "existing_drawable": "apcoa_flow"
-    },
-    {
-      "id": "no.santanderconsumer.mobilbank/com.netbankmobile.MainActivity",
-      "existing_drawable": "santander"
     },
     {
       "id": "com.furyform.floatingclock/com.furyform.floatingclock.HomeActivity",
@@ -2985,14 +2881,6 @@
     {
       "id": "com.gamemalt.applocker/com.gamemalt.applocker.LauncherActivity_Main",
       "existing_drawable": "applock"
-    },
-    {
-      "id": "de.theorie24.fs.auto/de.theorie24.fs.auto.MainActivity",
-      "existing_drawable": "fuhrerschein"
-    },
-    {
-      "id": "bg.emag.android/ro.emag.android.cleancode.app.ActivityStart",
-      "existing_drawable": "emag"
     },
     {
       "id": "com.gallery.android/com.gallery.android.MainActivity",
