@@ -1,5 +1,5 @@
 {
-  "count": 27363,
+  "count": 27364,
   "lastUpdate": "2026-10-14",
   "apps": [
     {
@@ -5518,8 +5518,8 @@
       "lastRequested": 1790668146.0,
       "label": "Ninja Arashi 2",
       "componentName": "com.blackpanther.ninjaarashi2/com.unity3d.player.UnityPlayerActivity",
-      "installs": "10,000,000+",
-      "roi_score": 2362,
+      "installs": "50,000,000+",
+      "roi_score": 5004,
       "priority": "Low"
     },
     {
@@ -5662,17 +5662,6 @@
       "componentName": "leafly.android/com.leafly.android.activities.home.MainActivity",
       "installs": "5,000,000+",
       "roi_score": 1325,
-      "priority": "Low"
-    },
-    {
-      "drawable": "oraimo_store",
-      "requestCount": 8,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1791822025.0,
-      "label": "oraimo store",
-      "componentName": "com.transsion.oraimostore/com.transsion.oraimostore.module.LaunchActivity",
-      "installs": "1,000,000+",
-      "roi_score": 6851,
       "priority": "Low"
     },
     {
@@ -5971,8 +5960,8 @@
       "requestCount": 9,
       "firstAppearance": 1781856414.0,
       "lastRequested": 1791561967.0,
-      "installs": "10,000+",
-      "roi_score": 2319,
+      "installs": "50,000+",
+      "roi_score": 2981,
       "priority": "Low"
     },
     {
@@ -7343,6 +7332,17 @@
       "label": "Payload Dumper Android",
       "componentName": "com.rajmani7584.payloaddumper/com.rajmani7584.payloaddumper.MainActivity",
       "roi_score": 2015,
+      "priority": "Low"
+    },
+    {
+      "drawable": "weezer",
+      "label": "Weezer",
+      "componentName": "com.weezer.newplayer.song/music.tzh.zzyy.weezer.ui.acti.MaimiSplash",
+      "requestCount": 8,
+      "firstAppearance": 1774630856.0,
+      "lastRequested": 1790444084.0,
+      "installs": null,
+      "roi_score": 1257,
       "priority": "Low"
     },
     {
@@ -12486,8 +12486,8 @@
       "requestCount": 6,
       "firstAppearance": 1781857969.0,
       "lastRequested": 1790736180.0,
-      "installs": "5,000+",
-      "roi_score": 753,
+      "installs": "10,000+",
+      "roi_score": 808,
       "priority": "Low"
     },
     {
@@ -17036,8 +17036,8 @@
       "requestCount": 6,
       "firstAppearance": 1781626551.0,
       "lastRequested": 1789466503.0,
-      "installs": "500+",
-      "roi_score": 1323,
+      "installs": "1,000+",
+      "roi_score": 1357,
       "priority": "Low"
     },
     {
@@ -23661,8 +23661,8 @@
       "lastRequested": 1790990032.7596526,
       "label": "Typi",
       "componentName": "com.shapun.typi/com.shapun.typi.ui.activity.MainActivity",
-      "installs": "50,000+",
-      "roi_score": 235,
+      "installs": null,
+      "roi_score": 137,
       "priority": "Low"
     },
     {
@@ -25971,8 +25971,8 @@
       "requestCount": 5,
       "firstAppearance": 1766686619.0,
       "lastRequested": 1791738157.0,
-      "installs": "500,000+",
-      "roi_score": 3175,
+      "installs": "1,000,000+",
+      "roi_score": 4069,
       "priority": "Low"
     },
     {
@@ -26059,8 +26059,8 @@
       "lastRequested": 1790334862.0,
       "label": "Film Cam",
       "componentName": "filmcamera.vintagecamera.digitalcamera.retrocamera/filmcamera.vintagecamera.digitalcamera.retrocamera.activity.splash.SplashActivity",
-      "installs": "500,000+",
-      "roi_score": 435,
+      "installs": "1,000,000+",
+      "roi_score": 558,
       "priority": "Low"
     },
     {
@@ -36088,6 +36088,17 @@
       "priority": "Low"
     },
     {
+      "drawable": "bear_vpn",
+      "requestCount": 5,
+      "firstAppearance": 1745020800.0,
+      "lastRequested": 1791811929.0,
+      "label": "Bear VPN",
+      "componentName": "com.bear.vpn.super.fast.unlimited.connect/com.bear.vpn.connect.app.start.StartupActivity",
+      "installs": null,
+      "roi_score": 1874,
+      "priority": "Low"
+    },
+    {
       "drawable": "michaels",
       "requestCount": 3,
       "firstAppearance": 1718492337.0,
@@ -36860,8 +36871,8 @@
       "lastRequested": 1790931438.0,
       "label": "Pebblebee",
       "componentName": "com.pebblebee.pebblebeeplus/com.pebblebee.pebblebeeplus.main.MainActivity",
-      "installs": "10,000+",
-      "roi_score": 2024,
+      "installs": "100,000+",
+      "roi_score": 3034,
       "priority": "Low"
     },
     {
@@ -55392,8 +55403,8 @@
       "requestCount": 4,
       "firstAppearance": 1782476754.0,
       "lastRequested": 1790085123.0,
-      "installs": "100+",
-      "roi_score": 814,
+      "installs": "1,000+",
+      "roi_score": 865,
       "priority": "Low"
     },
     {
@@ -55403,8 +55414,8 @@
       "requestCount": 4,
       "firstAppearance": 1783838758.0,
       "lastRequested": 1791736996.0,
-      "installs": "100+",
-      "roi_score": 1198,
+      "installs": "1,000+",
+      "roi_score": 1273,
       "priority": "Low"
     },
     {
