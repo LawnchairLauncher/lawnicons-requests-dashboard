@@ -3,6 +3,10 @@
   "description": "Requests with an existing package.",
   "match": [
     {
+      "id": "com.glx.bhnd/com.glx.personal.SettingActivityPersonal",
+      "existing_drawable": "samsung_galaxy_themes"
+    },
+    {
       "id": "com.zhiliaoapp.musically/com.windukk.mod.icon.default",
       "existing_drawable": "tiktok"
     },
@@ -29,6 +33,10 @@
     {
       "id": "com.iqoo.website/com.vivo.website.feedback.HotQuestionEntry",
       "existing_drawable": "iqoo_store"
+    },
+    {
+      "id": "com.resukisu.resukisu/com.resukisu.resukisu.ui.MainActivity",
+      "existing_drawable": "bakasu"
     },
     {
       "id": "org.mozilla.firefox/org.mozilla.firefox.AppMomo",
@@ -99,6 +107,10 @@
       "existing_drawable": "edeka"
     },
     {
+      "id": "org.onekash.kashcal/org.onekash.kashcal.MainActivitySupporterCalendar",
+      "existing_drawable": "kashcal"
+    },
+    {
       "id": "com.zhiliaoapp.musically/com.windukk.mod.icon.metal",
       "existing_drawable": "tiktok"
     },
@@ -121,6 +133,10 @@
     {
       "id": "ru.libappc/ru.libapp.LauncherAnimeLib",
       "existing_drawable": "mangalib"
+    },
+    {
+      "id": "org.onekash.kashcal/org.onekash.kashcal.MainActivity",
+      "existing_drawable": "kashcal"
     },
     {
       "id": "com.microsoft.copilot/com.aincrad.application.MainActivity",
@@ -217,6 +233,10 @@
     {
       "id": "com.vyroai.aiart/com.google.android.archive.ReactivateActivity",
       "existing_drawable": "imagineart"
+    },
+    {
+      "id": "com.resukisu.resukisu/com.resukisu.resukisu.ui.MainActivityAlias",
+      "existing_drawable": "bakasu"
     },
     {
       "id": "com.superb.launcher/com.games.launcher.GamesActivity",

@@ -599,10 +599,6 @@
       "existing_drawable": "face_unlock"
     },
     {
-      "id": "org.onekash.kashcal/org.onekash.kashcal.MainActivitySupporterCalendar",
-      "existing_drawable": "calendar"
-    },
-    {
       "id": "com.stash.app/com.stash.app.MainActivity",
       "existing_drawable": "stash"
     },
@@ -745,6 +741,10 @@
     {
       "id": "com.external.castle/com.gxgx.daqiandy.ui.splash.SplashActivity",
       "existing_drawable": "castle"
+    },
+    {
+      "id": "com.aryan.reader/com.aryan.reader.MainActivity",
+      "existing_drawable": "episteme"
     },
     {
       "id": "com.lego.education.spikenext/com.lego.flipper.flipperandroid.MainActivity",
