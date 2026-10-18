@@ -2098,6 +2098,50 @@ input[type="checkbox"]:indeterminate::after {
   filter: brightness(0) invert(0.9);
 }
 
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.section-header-row .library-title {
+  margin-bottom: 0;
+}
+
+#copyDynamicMatchesBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--surface-container-low);
+  border: none;
+  border-radius: var(--shape-small);
+  color: var(--on-surface);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+#copyDynamicMatchesBtn:hover {
+  background: var(--surface-container-high);
+}
+
+#copyDynamicMatchesBtn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  color: var(--on-surface-variant);
+  transition: color 0.2s;
+}
+
+#copyDynamicMatchesBtn:hover svg {
+  color: var(--on-surface);
+}
+
 /* Screens */
 .screens-grid {
   display: block;

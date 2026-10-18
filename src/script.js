@@ -29,6 +29,7 @@ const CONFIG = {
   data: {
     endpoint: 'assets/requests_core.json',
     endpointLow: 'assets/requests_low.json',
+    excludedPackagesPath: 'assets/excluded_packages.json',
     requestsGraphPath: 'assets/requests_graph.json',
     screensGraphPath: 'assets/screens_graph.json',
     setsStatsPath: 'assets/stats/sets_stats.json',
@@ -2103,6 +2104,60 @@ const Data = {
     App.state.appTags.get(id)?.add(tag);
   },
 
+  async getDynamicMatches() {
+    const excluded = await this.fetchJson(CONFIG.data.excludedPackagesPath, {});
+    const dynamicPkgs = new Set(excluded.dynamic || []);
+    if (dynamicPkgs.size === 0) return [];
+
+    const [core, low] = await Promise.all([
+      this.fetchJson(CONFIG.data.endpoint, {}),
+      this.fetchJson(CONFIG.data.endpointLow, {})
+    ]);
+    const allRequests = [...(core.apps || []), ...(low.apps || [])];
+
+    const openRequests = allRequests.filter(app => {
+      const pkg = app.componentName.split('/')[0];
+      return dynamicPkgs.has(pkg);
+    });
+
+    if (openRequests.length === 0) return [];
+
+    let appfilterIcons = App.state.existingIcons;
+    if (!appfilterIcons || appfilterIcons.length === 0) {
+      try {
+        const res = await fetch('assets/appfilter.xml');
+        const text = await res.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(text, 'text/xml');
+        appfilterIcons = Array.from(xmlDoc.querySelectorAll('item')).map(item => {
+          const comp = item.getAttribute('component') || '';
+          const match = comp.match(/ComponentInfo\{([^}]+)}/);
+          return {
+            component: match ? match[1] : comp,
+            drawable: item.getAttribute('drawable') || '',
+            name: item.getAttribute('name') || ''
+          };
+        });
+      } catch (e) {
+        console.error('Failed to load appfilter.xml for matches', e);
+        return [];
+      }
+    }
+
+    const commands = [];
+    for (const app of openRequests) {
+      const existing = appfilterIcons.find(i => i.component.startsWith(app.componentName.split('/')[0] + '/'));
+      
+      const drawable = existing ? existing.drawable : (app.drawable || Utils.sanitizeDrawableName(app.label));
+      const label = existing ? existing.name : app.label;
+      const safeLabel = label.replace(/'/g, "'\\''");
+      
+      commands.push(`python3 ./icontool.py link "${drawable}.svg" ${app.componentName} '${safeLabel}'`);
+    }
+
+    return commands;
+  },
+
   process() {
     let data = App.data;
     const s = App.state;
@@ -2452,6 +2507,15 @@ const UI = {
       App.state.lowQualityActive = true;
       this.render();
       Data.syncUrlState();
+    });
+
+    document.getElementById('copyDynamicMatchesBtn')?.addEventListener('click', async () => {
+      const commands = await Data.getDynamicMatches();
+      if (commands.length === 0) return;
+
+      navigator.clipboard.writeText(commands.join('\n')).then(() => {
+        Components.Toast.show('Copied!');
+      });
     });
 
     document.querySelectorAll("[data-action='domain-stats-mode']").forEach(
@@ -3388,6 +3452,18 @@ const UI = {
         ? s.currentData.length
         : (App.state.totalRequests || s.currentData.length);
       sectionTitle.innerHTML = `Community requests <span style="color: var(--on-surface-variant); margin-left: var(--space-xs)">${Utils.compactNumber(total)}</span>`;
+    }
+
+    const copyMatchesBtn = document.getElementById('copyDynamicMatchesBtn');
+    if (copyMatchesBtn) {
+      Data.getDynamicMatches().then(commands => {
+        if (commands.length > 0) {
+          copyMatchesBtn.querySelector('.copy-count').textContent = `${commands.length}`;
+          copyMatchesBtn.classList.remove('is-hidden');
+        } else {
+          copyMatchesBtn.classList.add('is-hidden');
+        }
+      });
     }
 
     if (App.state.activeTab === 'screens') {
