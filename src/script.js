@@ -32,7 +32,7 @@ const CONFIG = {
     excludedPackagesPath: 'assets/excluded_packages.json',
     requestsGraphPath: 'assets/requests_graph.json',
     screensGraphPath: 'assets/screens_graph.json',
-    prioritiesPath: 'assets/priorities.json',
+    prioritiesPath: 'assets/iconsyouneedmost.json',
     setsStatsPath: 'assets/stats/sets_stats.json',
     domainStatsPath: 'assets/stats/domain_stats.json',
     activityStatsPath: 'assets/stats/activity_stats.json',
