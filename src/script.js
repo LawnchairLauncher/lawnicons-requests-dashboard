@@ -691,24 +691,24 @@ const Templates = {
     }</div>
         <div class="col roi priority-${(app.priority || 'low').toLowerCase()}" title="ROI: ${app.roi_score ? Utils.compactNumber(app.roi_score) : '—'}">${app.priority || '—'}</div>
         ${(() => {
-          const votes = App.state.prioritiesData?.[id] || null;
-          if (!votes) return '<div class="col votes">—</div>';
+          const points = App.state.prioritiesData?.[id] || null;
+          if (!points) return '<div class="col points">—</div>';
           
-          const sum = votes.sum || 0;
-          const count = votes.count || 0;
+          const sum = points.sum || 0;
+          const count = points.count || 0;
           const suffixes = { '5': '1st', '4': '2nd', '3': '3rd', '2': '4th', '1': '5th' };
           
           const parts = ['5', '4', '3', '2', '1']
-            .filter(k => votes[k] > 0)
-            .map(k => `${votes[k]} for ${suffixes[/** @type {keyof typeof suffixes} */ (k)]}`);
+            .filter(k => points[k] > 0)
+            .map(k => `${points[k]} for ${suffixes[/** @type {keyof typeof suffixes} */ (k)]}`);
             
-          let details = parts.length > 0 ? parts.join(', ') : 'No votes';
+          let details = parts.length > 0 ? parts.join(', ') : 'No points';
           
           if (count > 1) {
-            details += ` (${count} votes)`;
+            details += ` (${count} points)`;
           }
             
-          return `<div class="col votes" title="${details}">${sum}</div>`;
+          return `<div class="col points" title="${details}">${sum}</div>`;
         })()}
         <div class="col install" title="${installsTitle}">${displayInstalls}</div>
         <div class="col first date-col">
@@ -1378,7 +1378,7 @@ const Actions = {
       name: 'asc',
       req: 'desc',
       roi: 'desc',
-      votes: 'desc',
+      points: 'desc',
       install: 'desc',
       time: 'desc',
     };
@@ -2307,7 +2307,7 @@ const Data = {
         },
         'roi-desc': (a, b) => (b.roi_score || 0) - (a.roi_score || 0),
         'roi-asc': (a, b) => (a.roi_score || 0) - (b.roi_score || 0),
-        'votes-desc': (a, b) => {
+        'points-desc': (a, b) => {
           const pA = App.state.prioritiesData?.[a.componentName] || {};
           const pB = App.state.prioritiesData?.[b.componentName] || {};
           const fivesA = pA['5'] || 0;
@@ -2315,7 +2315,7 @@ const Data = {
           if (fivesA !== fivesB) return fivesB - fivesA;
           return (pB.sum || 0) - (pA.sum || 0);
         },
-        'votes-asc': (a, b) => {
+        'points-asc': (a, b) => {
           const pA = App.state.prioritiesData?.[a.componentName] || {};
           const pB = App.state.prioritiesData?.[b.componentName] || {};
           const fivesA = pA['5'] || 0;
@@ -2458,8 +2458,8 @@ const UI = {
     { value: 'req-asc', label: 'Least requested' },
     { value: 'roi-desc', label: 'Highest priority' },
     { value: 'roi-asc', label: 'Lowest priority' },
-    { value: 'votes-desc', label: 'Most voted' },
-    { value: 'votes-asc', label: 'Least voted' },
+    { value: 'points-desc', label: 'Most points' },
+    { value: 'points-asc', label: 'Least points' },
     { value: 'install-desc', label: 'Most installed' },
     { value: 'install-asc', label: 'Least installed' },
     { value: 'time-desc', label: 'Newest' },
@@ -2764,7 +2764,7 @@ const UI = {
       '.col.name': 'name',
       '.col.req': 'req',
       '.col.roi': 'roi',
-      '.col.votes': 'votes',
+      '.col.points': 'points',
       '.col.install': 'install',
       '.col.first': 'time',
     };

@@ -1213,7 +1213,7 @@ select:hover,
 .list-header .col.name,
 .list-header .col.req,
 .list-header .col.roi,
-.list-header .col.votes,
+.list-header .col.points,
 .list-header .col.install,
 .list-header .col.first {
   cursor: pointer;
@@ -1225,7 +1225,7 @@ select:hover,
 .list-header .col.name:hover,
 .list-header .col.req:hover,
 .list-header .col.roi:hover,
-.list-header .col.votes:hover,
+.list-header .col.points:hover,
 .list-header .col.install:hover,
 .list-header .col.first:hover {
   color: var(--primary);
