@@ -32,6 +32,7 @@ const CONFIG = {
     excludedPackagesPath: 'assets/excluded_packages.json',
     requestsGraphPath: 'assets/requests_graph.json',
     screensGraphPath: 'assets/screens_graph.json',
+    prioritiesPath: 'assets/priorities.json',
     setsStatsPath: 'assets/stats/sets_stats.json',
     domainStatsPath: 'assets/stats/domain_stats.json',
     activityStatsPath: 'assets/stats/activity_stats.json',
@@ -689,6 +690,26 @@ const Templates = {
         : ''
     }</div>
         <div class="col roi priority-${(app.priority || 'low').toLowerCase()}" title="ROI: ${app.roi_score ? Utils.compactNumber(app.roi_score) : '—'}">${app.priority || '—'}</div>
+        ${(() => {
+          const votes = App.state.prioritiesData?.[id] || null;
+          if (!votes) return '<div class="col votes">—</div>';
+          
+          const sum = votes.sum || 0;
+          const count = votes.count || 0;
+          const suffixes = { '5': '1st', '4': '2nd', '3': '3rd', '2': '4th', '1': '5th' };
+          
+          const parts = ['5', '4', '3', '2', '1']
+            .filter(k => votes[k] > 0)
+            .map(k => `${votes[k]} for ${suffixes[/** @type {keyof typeof suffixes} */ (k)]}`);
+            
+          let details = parts.length > 0 ? parts.join(', ') : 'No votes';
+          
+          if (count > 1) {
+            details += ` (${count} votes)`;
+          }
+            
+          return `<div class="col votes" title="${details}">${sum}</div>`;
+        })()}
         <div class="col install" title="${installsTitle}">${displayInstalls}</div>
         <div class="col first date-col">
           <div>${firstStr}</div>
@@ -1357,6 +1378,7 @@ const Actions = {
       name: 'asc',
       req: 'desc',
       roi: 'desc',
+      votes: 'desc',
       install: 'desc',
       time: 'desc',
     };
@@ -1827,12 +1849,16 @@ const Data = {
         setsStats,
         domainStats,
         activityStats,
+        excludedData,
+        prioritiesData,
         ...filterObjects
       ] = await Promise.all([
         this.fetchJson(CONFIG.data.endpoint),
         this.fetchJson(CONFIG.data.setsStatsPath, {}),
         this.fetchJson(CONFIG.data.domainStatsPath, {}),
         this.fetchJson(CONFIG.data.activityStatsPath, []),
+        this.fetchJson(CONFIG.data.excludedPackagesPath, {}),
+        this.fetchJson(CONFIG.data.prioritiesPath, {}),
         ...CONFIG.data.filters.map((id) => this.fetchFilterData(id)),
       ]);
 
@@ -1842,6 +1868,7 @@ const Data = {
       App.state.domainStats = domainStats;
       App.state.activityStats = activityStats;
       App.state.lastUpdate = json.lastUpdate;
+      App.state.prioritiesData = prioritiesData;
 
       App.state.idMap = new Map();
       App.data.forEach((app) => App.state.idMap.set(app.componentName, app));
@@ -2280,6 +2307,22 @@ const Data = {
         },
         'roi-desc': (a, b) => (b.roi_score || 0) - (a.roi_score || 0),
         'roi-asc': (a, b) => (a.roi_score || 0) - (b.roi_score || 0),
+        'votes-desc': (a, b) => {
+          const pA = App.state.prioritiesData?.[a.componentName] || {};
+          const pB = App.state.prioritiesData?.[b.componentName] || {};
+          const fivesA = pA['5'] || 0;
+          const fivesB = pB['5'] || 0;
+          if (fivesA !== fivesB) return fivesB - fivesA;
+          return (pB.sum || 0) - (pA.sum || 0);
+        },
+        'votes-asc': (a, b) => {
+          const pA = App.state.prioritiesData?.[a.componentName] || {};
+          const pB = App.state.prioritiesData?.[b.componentName] || {};
+          const fivesA = pA['5'] || 0;
+          const fivesB = pB['5'] || 0;
+          if (fivesA !== fivesB) return fivesA - fivesB;
+          return (pA.sum || 0) - (pB.sum || 0);
+        },
         'install-desc': (a, b) =>
           Utils.parseInstalls(b.installs) - Utils.parseInstalls(a.installs) ||
           getPop(b) - getPop(a) ||
@@ -2415,6 +2458,8 @@ const UI = {
     { value: 'req-asc', label: 'Least requested' },
     { value: 'roi-desc', label: 'Highest priority' },
     { value: 'roi-asc', label: 'Lowest priority' },
+    { value: 'votes-desc', label: 'Most voted' },
+    { value: 'votes-asc', label: 'Least voted' },
     { value: 'install-desc', label: 'Most installed' },
     { value: 'install-asc', label: 'Least installed' },
     { value: 'time-desc', label: 'Newest' },
@@ -2719,6 +2764,7 @@ const UI = {
       '.col.name': 'name',
       '.col.req': 'req',
       '.col.roi': 'roi',
+      '.col.votes': 'votes',
       '.col.install': 'install',
       '.col.first': 'time',
     };

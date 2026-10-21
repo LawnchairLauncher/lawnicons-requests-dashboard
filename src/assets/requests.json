@@ -1,5 +1,5 @@
 {
-  "count": 31074,
+  "count": 31082,
   "lastUpdate": "2026-10-21",
   "apps": [
     {
@@ -2711,9 +2711,9 @@
       "drawable": "obtainx",
       "label": "ObtainX",
       "componentName": "dev.bikram.obtainx/dev.imranr.obtainium.MainActivity",
-      "requestCount": 24,
+      "requestCount": 25,
       "firstAppearance": 1781441683.0,
-      "lastRequested": 1791622411.0,
+      "lastRequested": 1792455534.0,
       "roi_score": 11523,
       "priority": "Medium",
       "installs": "50,000+"
@@ -12521,9 +12521,9 @@
     },
     {
       "drawable": "mbcompass",
-      "requestCount": 11,
+      "requestCount": 12,
       "firstAppearance": 1718538347.0,
-      "lastRequested": 1790918673.0,
+      "lastRequested": 1792455534.0,
       "label": "MBCompass",
       "componentName": "com.mubarak.mbcompass/com.mubarak.mbcompass.MainActivity",
       "roi_score": 8412,
@@ -12556,9 +12556,9 @@
       "drawable": "zenith",
       "label": "Zenith",
       "componentName": "com.etrisad.zenith/com.etrisad.zenith.MainActivity",
-      "requestCount": 12,
+      "requestCount": 13,
       "firstAppearance": 1781090688.0,
-      "lastRequested": 1791357562.0,
+      "lastRequested": 1792455534.0,
       "roi_score": 4157,
       "priority": "Low"
     },
@@ -20142,9 +20142,9 @@
     },
     {
       "drawable": "rebootnya",
-      "requestCount": 8,
+      "requestCount": 9,
       "firstAppearance": 1745020800.0,
-      "lastRequested": 1789312568.0,
+      "lastRequested": 1792455534.0,
       "label": "RebootNya",
       "componentName": "github.daisukikaffuchino.rebootnya/github.daisukikaffuchino.rebootnya.MainActivity",
       "roi_score": 2303,
@@ -20604,9 +20604,9 @@
     },
     {
       "drawable": "powerline",
-      "requestCount": 7,
+      "requestCount": 8,
       "firstAppearance": 1718629622.0,
-      "lastRequested": 1761477562.0,
+      "lastRequested": 1792455534.0,
       "label": "PowerLine",
       "componentName": "com.urbandroid.inline/com.urbandroid.inline.MainActivity",
       "installs": "500,000+",
@@ -102520,9 +102520,9 @@
       "drawable": "speakthat",
       "label": "SpeakThat!",
       "componentName": "com.micoyc.speakthat/com.micoyc.speakthat.MainActivity",
-      "requestCount": 2,
+      "requestCount": 3,
       "firstAppearance": 1774346836.0,
-      "lastRequested": 1776025033.0,
+      "lastRequested": 1792455534.0,
       "installs": "1,000+",
       "roi_score": 54,
       "priority": "Low"
@@ -326170,9 +326170,9 @@
       "drawable": "duckassist_1",
       "label": "duckAssist",
       "componentName": "org.duckassist.app/org.duckassist.app.MainActivity",
-      "requestCount": 1,
+      "requestCount": 2,
       "firstAppearance": 1789753565.0,
-      "lastRequested": 1789753565.0,
+      "lastRequested": 1792455534.0,
       "roi_score": 281,
       "priority": "Low"
     },
@@ -333575,6 +333575,70 @@
       "lastRequested": 1790159124.0,
       "roi_score": 328,
       "priority": "Low"
+    },
+    {
+      "drawable": "chogan",
+      "label": "Chogan",
+      "componentName": "io.github.choganhq.chogan/io.github.choganhq.chogan.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0
+    },
+    {
+      "drawable": "defang",
+      "label": "Defang",
+      "componentName": "com.defang.launcher/com.defang.launcher.ui.launcher.LauncherActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0
+    },
+    {
+      "drawable": "enclavd",
+      "label": "Enclavd",
+      "componentName": "com.enclavd.app/com.enclavd.app.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0
+    },
+    {
+      "drawable": "heartwood",
+      "label": "Heartwood",
+      "componentName": "dev.easonhuang.heartwood/dev.easonhuang.heartwood.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0
+    },
+    {
+      "drawable": "identiconizer",
+      "label": "Identiconizer!",
+      "componentName": "com.germainz.identiconizer/com.germainz.identiconizer.IdenticonsSettings",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0
+    },
+    {
+      "drawable": "kairos",
+      "label": "Kairos",
+      "componentName": "com.skohscripts.kairos/com.skohscripts.kairos.android.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0
+    },
+    {
+      "drawable": "marmalade_stt",
+      "label": "Marmalade STT",
+      "componentName": "app.marmalade.stt/app.marmalade.stt.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0
+    },
+    {
+      "drawable": "vanilla_2",
+      "label": "Vanilla",
+      "componentName": "com.sosauce.cutecalc/com.sosauce.vanilla.app.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0
     }
   ]
 }

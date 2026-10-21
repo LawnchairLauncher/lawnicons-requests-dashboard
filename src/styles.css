@@ -892,7 +892,7 @@ select:hover,
 .list-header,
 .list-row {
   display: grid;
-grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px minmax(140px, 1fr) 140px;
+  grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px 80px minmax(140px, 1fr) 140px;
   align-items: center;
   padding: var(--space-md) var(--space-lg);
   border-bottom: 1px solid var(--outline-variant);
@@ -1213,6 +1213,7 @@ grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px minmax(14
 .list-header .col.name,
 .list-header .col.req,
 .list-header .col.roi,
+.list-header .col.votes,
 .list-header .col.install,
 .list-header .col.first {
   cursor: pointer;
@@ -1224,6 +1225,7 @@ grid-template-columns: 40px 72px minmax(240px, 400px) 100px 100px 80px minmax(14
 .list-header .col.name:hover,
 .list-header .col.req:hover,
 .list-header .col.roi:hover,
+.list-header .col.votes:hover,
 .list-header .col.install:hover,
 .list-header .col.first:hover {
   color: var(--primary);
