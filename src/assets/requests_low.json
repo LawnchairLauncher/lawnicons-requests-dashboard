@@ -1,5 +1,5 @@
 {
-  "count": 27237,
+  "count": 27240,
   "lastUpdate": "2026-10-21",
   "apps": [
     {
@@ -30,7 +30,7 @@
       "label": "iPear",
       "componentName": "com.eatos.ipux/com.eatos.ipux.MainActivity",
       "installs": "10,000+",
-      "roi_score": 2861,
+      "roi_score": 2860,
       "priority": "Low"
     },
     {
@@ -3101,12 +3101,12 @@
     },
     {
       "drawable": "rebootnya",
-      "requestCount": 8,
+      "requestCount": 9,
       "firstAppearance": 1745020800.0,
-      "lastRequested": 1789312568.0,
+      "lastRequested": 1792455534.0,
       "label": "RebootNya",
       "componentName": "github.daisukikaffuchino.rebootnya/github.daisukikaffuchino.rebootnya.MainActivity",
-      "roi_score": 2303,
+      "roi_score": 2509,
       "priority": "Low"
     },
     {
@@ -3449,17 +3449,6 @@
       "componentName": "org.unifiedpush.distributor.fcm/org.unifiedpush.distributor.fcm.activities.MainActivity",
       "installs": "1,000+",
       "roi_score": 163,
-      "priority": "Low"
-    },
-    {
-      "drawable": "powerline",
-      "requestCount": 7,
-      "firstAppearance": 1718629622.0,
-      "lastRequested": 1761477562.0,
-      "label": "PowerLine",
-      "componentName": "com.urbandroid.inline/com.urbandroid.inline.MainActivity",
-      "installs": "500,000+",
-      "roi_score": 5886,
       "priority": "Low"
     },
     {
@@ -3934,7 +3923,7 @@
       "label": "Saarfahrplan",
       "componentName": "de.hafas.android.vgs/de.hafas.main.HafasApp",
       "installs": "100,000+",
-      "roi_score": 3739,
+      "roi_score": 3738,
       "priority": "Low"
     },
     {
@@ -4443,7 +4432,7 @@
       "label": "Shelly Smart Control",
       "componentName": "cloud.shelly.smartcontrol/cloud.shelly.smartcontrol.activities.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 6655,
+      "roi_score": 6654,
       "priority": "Low"
     },
     {
@@ -12631,16 +12620,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "kulturpass_de",
-      "requestCount": 5,
-      "firstAppearance": 1710639893.0,
-      "lastRequested": 1760986886.0,
-      "label": "KulturPass DE",
-      "componentName": "de.bkm.kulturpass/de.bkm.kulturpass.MainActivity",
-      "installs": "100,000+",
-      "roi_score": 0
-    },
-    {
       "drawable": "giga_icon",
       "requestCount": 5,
       "firstAppearance": 1718516094.0,
@@ -15937,7 +15916,7 @@
       "label": "SPORTSCHAU",
       "componentName": "de.apptelligence.sportschau.android/com.sportschaunext.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 6583,
+      "roi_score": 6582,
       "priority": "Low"
     },
     {
@@ -18868,7 +18847,7 @@
       "label": "Days Counter",
       "componentName": "com.arkadiusz.dayscounter/com.arkadiusz.dayscounter.ui.main.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 5737,
+      "roi_score": 5736,
       "priority": "Low"
     },
     {
@@ -20075,7 +20054,7 @@
       "label": "Night Screen: Ultra Dim Mode",
       "componentName": "com.androxus.screendimmer/com.androxus.screendimmer.activities.MainActivity",
       "installs": "500,000+",
-      "roi_score": 4987,
+      "roi_score": 4986,
       "priority": "Low"
     },
     {
@@ -22896,7 +22875,7 @@
       "label": "Breath Companion",
       "componentName": "com.SoftwareNotion.BreathCompanion/com.SoftwareNotion.BreathCompanion.SplashScreen",
       "installs": "1,000,000+",
-      "roi_score": 6228,
+      "roi_score": 6227,
       "priority": "Low"
     },
     {
@@ -29663,7 +29642,7 @@
       "label": "StadtRAD Hamburg",
       "componentName": "de.stadtrad.hamburg/de.bahn.callabike.MainActivity",
       "installs": "100,000+",
-      "roi_score": 2888,
+      "roi_score": 2887,
       "priority": "Low"
     },
     {
@@ -32016,7 +31995,7 @@
       "firstAppearance": 1784504269.0,
       "lastRequested": 1791647927.0,
       "installs": "1,000,000+",
-      "roi_score": 2587,
+      "roi_score": 2586,
       "priority": "Low"
     },
     {
@@ -36526,7 +36505,7 @@
       "label": "BVB",
       "componentName": "de.bvb09.android/de.bvb09.android.screens.splash.SplashActivity",
       "installs": "500,000+",
-      "roi_score": 5080,
+      "roi_score": 5079,
       "priority": "Low"
     },
     {
@@ -39106,7 +39085,7 @@
       "label": "Litchi for DJI Drones",
       "componentName": "com.aryuthere.visionplus/com.aryuthere.visionplus.VisionPlusActivity",
       "installs": "100,000+",
-      "roi_score": 2638,
+      "roi_score": 2637,
       "priority": "Low"
     },
     {
@@ -53014,7 +52993,7 @@
       "firstAppearance": 1771147221.0,
       "lastRequested": 1785102879.0,
       "installs": "10,000,000+",
-      "roi_score": 5602,
+      "roi_score": 5601,
       "priority": "Low"
     },
     {
@@ -53164,7 +53143,7 @@
       "firstAppearance": 1771699865.0,
       "lastRequested": 1785019760.0,
       "installs": "10,000,000+",
-      "roi_score": 5523,
+      "roi_score": 5522,
       "priority": "Low"
     },
     {
@@ -55820,7 +55799,7 @@
       "firstAppearance": 1783505840.0,
       "lastRequested": 1784890866.0,
       "installs": "100,000+",
-      "roi_score": 751,
+      "roi_score": 750,
       "priority": "Low"
     },
     {
@@ -62591,7 +62570,7 @@
       "label": "MOIN-CARD",
       "componentName": "de.buenting.moincard/de.buenting.moincard.MainActivity",
       "installs": "100,000+",
-      "roi_score": 1857,
+      "roi_score": 1856,
       "priority": "Low"
     },
     {
@@ -65804,11 +65783,11 @@
       "drawable": "speakthat",
       "label": "SpeakThat!",
       "componentName": "com.micoyc.speakthat/com.micoyc.speakthat.MainActivity",
-      "requestCount": 2,
+      "requestCount": 3,
       "firstAppearance": 1774346836.0,
-      "lastRequested": 1776025033.0,
+      "lastRequested": 1792455534.0,
       "installs": "1,000+",
-      "roi_score": 54,
+      "roi_score": 100,
       "priority": "Low"
     },
     {
@@ -74433,7 +74412,7 @@
       "firstAppearance": 1776275388.0,
       "lastRequested": 1787995072.0,
       "installs": "500,000+",
-      "roi_score": 1585,
+      "roi_score": 1584,
       "priority": "Low"
     },
     {
@@ -80022,16 +80001,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "zepto_cafe",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1760996104.0,
-      "label": "Zepto Cafe",
-      "componentName": "com.zeptoconsumerapp.cafe/com.zeptoconsumerapp.MainActivity",
-      "installs": "1,000,000+",
-      "roi_score": 0
-    },
-    {
       "drawable": "mahfil_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -83940,15 +83909,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "lg_pay",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1760998995.0,
-      "label": "LG Pay",
-      "componentName": "com.lge.lgpay/com.lge.lgpay.view.EntryActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "tally_counter",
       "requestCount": 2,
       "firstAppearance": 1745020800.0,
@@ -84200,16 +84160,6 @@
       "installs": "5,000+",
       "roi_score": 66,
       "priority": "Low"
-    },
-    {
-      "drawable": "meludia",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1760996104.0,
-      "label": "Meludia",
-      "componentName": "com.Meludia.MicroMelody/com.unity3d.player.UnityPlayerActivity",
-      "installs": "50,000+",
-      "roi_score": 0
     },
     {
       "drawable": "philips_piano_academy_2",
@@ -85871,7 +85821,7 @@
       "label": "Famories",
       "componentName": "com.famories.app/com.famories.app.MainActivity",
       "installs": "5,000+",
-      "roi_score": 681,
+      "roi_score": 680,
       "priority": "Low"
     },
     {
@@ -242199,7 +242149,7 @@
       "label": "Avira PWM",
       "componentName": "com.avira.passwordmanager/com.avira.passwordmanager.activities.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 2924,
+      "roi_score": 2923,
       "priority": "Low"
     },
     {
@@ -284132,10 +284082,10 @@
       "drawable": "duckassist_1",
       "label": "duckAssist",
       "componentName": "org.duckassist.app/org.duckassist.app.MainActivity",
-      "requestCount": 1,
+      "requestCount": 2,
       "firstAppearance": 1789753565.0,
-      "lastRequested": 1789753565.0,
-      "roi_score": 281,
+      "lastRequested": 1792455534.0,
+      "roi_score": 462,
       "priority": "Low"
     },
     {
@@ -291504,7 +291454,88 @@
       "lastRequested": 1790159124.0,
       "roi_score": 328,
       "priority": "Low"
+    },
+    {
+      "drawable": "chogan",
+      "label": "Chogan",
+      "componentName": "io.github.choganhq.chogan/io.github.choganhq.chogan.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0,
+      "roi_score": 23,
+      "priority": "Low"
+    },
+    {
+      "drawable": "defang",
+      "label": "Defang",
+      "componentName": "com.defang.launcher/com.defang.launcher.ui.launcher.LauncherActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0,
+      "roi_score": 23,
+      "priority": "Low"
+    },
+    {
+      "drawable": "enclavd",
+      "label": "Enclavd",
+      "componentName": "com.enclavd.app/com.enclavd.app.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0,
+      "installs": "10+",
+      "roi_score": 24,
+      "priority": "Low"
+    },
+    {
+      "drawable": "heartwood",
+      "label": "Heartwood",
+      "componentName": "dev.easonhuang.heartwood/dev.easonhuang.heartwood.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0,
+      "roi_score": 23,
+      "priority": "Low"
+    },
+    {
+      "drawable": "identiconizer",
+      "label": "Identiconizer!",
+      "componentName": "com.germainz.identiconizer/com.germainz.identiconizer.IdenticonsSettings",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0,
+      "roi_score": 23,
+      "priority": "Low"
+    },
+    {
+      "drawable": "kairos",
+      "label": "Kairos",
+      "componentName": "com.skohscripts.kairos/com.skohscripts.kairos.android.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0,
+      "roi_score": 23,
+      "priority": "Low"
+    },
+    {
+      "drawable": "marmalade_stt",
+      "label": "Marmalade STT",
+      "componentName": "app.marmalade.stt/app.marmalade.stt.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0,
+      "roi_score": 23,
+      "priority": "Low"
+    },
+    {
+      "drawable": "vanilla_2",
+      "label": "Vanilla",
+      "componentName": "com.sosauce.cutecalc/com.sosauce.vanilla.app.MainActivity",
+      "requestCount": 1,
+      "firstAppearance": 1792455534.0,
+      "lastRequested": 1792455534.0,
+      "roi_score": 23,
+      "priority": "Low"
     }
   ],
-  "totalCount": 31074
+  "totalCount": 31078
 }
