@@ -705,6 +705,14 @@
     {
       "id": "com.sosauce.cutecalc/com.sosauce.vanilla.app.MainActivity",
       "existing_drawable": "cutecalc"
+    },
+    {
+      "id": "au.com.shiftyjelly.pocketcasts/au.com.shiftyjelly.pocketcasts.ui.MainActivityDefault",
+      "existing_drawable": "pocket_casts"
+    },
+    {
+      "id": "com.pcfinancial.mobile/com.pcfinancial.mobile.MainActivity",
+      "existing_drawable": "simplii"
     }
   ]
 }
