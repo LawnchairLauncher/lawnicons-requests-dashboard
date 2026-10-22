@@ -702,13 +702,14 @@ const Templates = {
             .filter(k => points[k] > 0)
             .map(k => `${points[k]} for ${suffixes[/** @type {keyof typeof suffixes} */ (k)]}`);
             
-          let details = parts.length > 0 ? parts.join(', ') : 'No points';
-          
-          if (count > 1) {
-            details += ` (${count} points)`;
-          }
+          const details = parts.length > 0 ? parts.join(', ') : 'No votes';
             
-          return `<div class="col points" title="${details}">${sum}</div>`;
+          return `
+            <div class="col points date-col" title="${details}">
+              <div>${sum}</div>
+              <div>${count} vote${count !== 1 ? 's' : ''}</div>
+            </div>
+          `;
         })()}
         <div class="col install" title="${installsTitle}">${displayInstalls}</div>
         <div class="col first date-col">
@@ -2310,17 +2311,35 @@ const Data = {
         'points-desc': (a, b) => {
           const pA = App.state.prioritiesData?.[a.componentName] || {};
           const pB = App.state.prioritiesData?.[b.componentName] || {};
+          
+          // 1. Number of 5s
           const fivesA = pA['5'] || 0;
           const fivesB = pB['5'] || 0;
           if (fivesA !== fivesB) return fivesB - fivesA;
+
+          // 2. Total votes (count)
+          const countA = pA.count || 0;
+          const countB = pB.count || 0;
+          if (countA !== countB) return countB - countA;
+
+          // 3. Total sum
           return (pB.sum || 0) - (pA.sum || 0);
         },
         'points-asc': (a, b) => {
           const pA = App.state.prioritiesData?.[a.componentName] || {};
           const pB = App.state.prioritiesData?.[b.componentName] || {};
+          
+          // 1. Number of 5s
           const fivesA = pA['5'] || 0;
           const fivesB = pB['5'] || 0;
           if (fivesA !== fivesB) return fivesA - fivesB;
+
+          // 2. Total votes (count)
+          const countA = pA.count || 0;
+          const countB = pB.count || 0;
+          if (countA !== countB) return countA - countB;
+
+          // 3. Total sum
           return (pA.sum || 0) - (pB.sum || 0);
         },
         'install-desc': (a, b) =>
