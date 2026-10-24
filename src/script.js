@@ -5552,10 +5552,43 @@ layoutMasonry() {
     }
 
     const grid = container.querySelector('.library-grid');
-    if (grid) {
+    const expandBtn = document.getElementById('expandLibraryBtn');
+    let isExpanded = false;
+
+    if (grid && expandBtn) {
       grid.innerHTML = matches.slice(0, 20).map((icon) =>
         Templates.libraryIconCard(icon)
       ).join('');
+
+      if (matches.length > 20) {
+        expandBtn.classList.remove('is-hidden');
+        expandBtn.querySelector('.copy-count').textContent = 'Show all';
+        expandBtn.title = `Show all ${matches.length} icons`;
+
+        expandBtn.onclick = null;
+        expandBtn.onclick = (e) => {
+          e.stopPropagation();
+          isExpanded = !isExpanded;
+          
+          if (isExpanded) {
+            grid.innerHTML = matches.map((icon) =>
+              Templates.libraryIconCard(icon)
+            ).join('');
+            container.classList.add('expanded'); // <-- Добавляем класс
+            expandBtn.querySelector('.copy-count').textContent = 'Show less';
+            expandBtn.title = 'Show less';
+          } else {
+            grid.innerHTML = matches.slice(0, 20).map((icon) =>
+              Templates.libraryIconCard(icon)
+            ).join('');
+            container.classList.remove('expanded'); // <-- Убираем класс
+            expandBtn.querySelector('.copy-count').textContent = 'Show all';
+            expandBtn.title = `Show all ${matches.length} icons`;
+          }
+        };
+      } else {
+        expandBtn.classList.add('is-hidden');
+      }
     }
   },
 

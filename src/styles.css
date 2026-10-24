@@ -2111,12 +2111,12 @@ input[type="checkbox"]:indeterminate::after {
   margin-bottom: 0;
 }
 
-#copyDynamicMatchesBtn {
+#copyDynamicMatchesBtn,
+#expandLibraryBtn {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: var(--space-xs);
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
   background: var(--surface-container-low);
   border: none;
   border-radius: var(--shape-small);
@@ -2128,20 +2128,35 @@ input[type="checkbox"]:indeterminate::after {
   white-space: nowrap;
 }
 
-#copyDynamicMatchesBtn:hover {
+#copyDynamicMatchesBtn:hover,
+#expandLibraryBtn:hover {
   background: var(--surface-container-high);
 }
 
-#copyDynamicMatchesBtn svg {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
+#copyDynamicMatchesBtn svg,
+#expandLibraryBtn svg {
+  width: 20px;
+  height: 20px;
   color: var(--on-surface-variant);
   transition: color 0.2s;
 }
 
-#copyDynamicMatchesBtn:hover svg {
+#copyDynamicMatchesBtn:hover svg,
+#expandLibraryBtn:hover svg {
   color: var(--on-surface);
+}
+
+.icon-library-results.expanded .library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+  gap: var(--space-sm);
+  overflow-x: visible;
+  padding-bottom: var(--space-md);
+}
+
+.icon-library-results.expanded {
+  max-height: none;
+  overflow: visible;
 }
 
 /* Screens */
