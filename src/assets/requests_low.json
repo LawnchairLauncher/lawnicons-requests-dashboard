@@ -1,6 +1,6 @@
 {
-  "count": 27118,
-  "lastUpdate": "2026-10-25",
+  "count": 27106,
+  "lastUpdate": "2026-10-26",
   "apps": [
     {
       "drawable": "velune",
@@ -1267,7 +1267,7 @@
       "label": "Zettel Notes",
       "componentName": "org.eu.thedoc.zettelnotes/org.eu.thedoc.zettelnotes.screens.MainActivity",
       "installs": "50,000+",
-      "roi_score": 4295,
+      "roi_score": 4294,
       "priority": "Low"
     },
     {
@@ -7688,15 +7688,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "materialos",
-      "requestCount": 6,
-      "firstAppearance": 1710900576.0,
-      "lastRequested": 1761395044.0,
-      "label": "MaterialOS",
-      "componentName": "org.materialos.icons/com.afollestad.polar.ui.SplashScreen",
-      "roi_score": 0
-    },
-    {
       "drawable": "rekhta",
       "requestCount": 6,
       "firstAppearance": 1719746846.0,
@@ -8408,7 +8399,7 @@
       "label": "Learn German with flashcards!",
       "componentName": "ru.poas.words_de_ru/ru.poas.englishwords.splash.SplashActivity",
       "installs": "100,000+",
-      "roi_score": 4254,
+      "roi_score": 4253,
       "priority": "Low"
     },
     {
@@ -8430,7 +8421,7 @@
       "label": "Learn Spanish with flashcards!",
       "componentName": "ru.poas.spanishwords/ru.poas.englishwords.splash.SplashActivity",
       "installs": "100,000+",
-      "roi_score": 4254,
+      "roi_score": 4253,
       "priority": "Low"
     },
     {
@@ -17651,15 +17642,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "fdroid_shizuku_privileged_extension",
-      "requestCount": 4,
-      "firstAppearance": 1728711175.0,
-      "lastRequested": 1761395044.0,
-      "label": "F-Droid Shizuku Privileged Extension",
-      "componentName": "org.fdroid.fdroid.privileged/org.fdroid.fdroid.privileged.RequestPermissionActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "simpletune",
       "requestCount": 4,
       "firstAppearance": 1743605068.0,
@@ -25601,7 +25583,7 @@
       "label": "Learn Japanese JLPT vocabulary",
       "componentName": "ru.poas.learn.japanese.jlpt.katakana.kana.hiragana.kanji.romaji/ru.poas.englishwords.splash.SplashActivity",
       "installs": "50,000+",
-      "roi_score": 3578,
+      "roi_score": 3577,
       "priority": "Low"
     },
     {
@@ -26834,7 +26816,7 @@
       "label": "myPhotoVault",
       "componentName": "com.asurion.android.mediabackup.vault.cricket/com.asurion.android.mediabackup.vault.activity.SplashActivity",
       "installs": "100,000+",
-      "roi_score": 3919,
+      "roi_score": 3918,
       "priority": "Low"
     },
     {
@@ -27656,24 +27638,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "autodark",
-      "requestCount": 3,
-      "firstAppearance": 1726232895.0,
-      "lastRequested": 1761395044.0,
-      "label": "AutoDark",
-      "componentName": "me.ranko.autodark/me.ranko.autodark.ui.MainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "igexperiments",
-      "requestCount": 3,
-      "firstAppearance": 1718508890.0,
-      "lastRequested": 1761395044.0,
-      "label": "IGexperiments",
-      "componentName": "com.chacha.igexperiments/com.chacha.igexperiments.MainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "bitvelo_2",
       "requestCount": 3,
       "firstAppearance": 1722987420.0,
@@ -28093,15 +28057,6 @@
       "installs": "1,000,000+",
       "roi_score": 4483,
       "priority": "Low"
-    },
-    {
-      "drawable": "thextech",
-      "requestCount": 3,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761407135.0,
-      "label": "TheXTech",
-      "componentName": "ru.wohlsoft.thextech.fdroid/ru.wohlsoft.thextech.Launcher",
-      "roi_score": 0
     },
     {
       "drawable": "moorgen_life",
@@ -30065,7 +30020,7 @@
       "label": "Assistant - remote management",
       "componentName": "ru.safib.assistant/ru.safib.assistant.MainActivity",
       "installs": "50,000+",
-      "roi_score": 2466,
+      "roi_score": 2465,
       "priority": "Low"
     },
     {
@@ -35304,7 +35259,7 @@
       "label": "\u041e\u043d\u043b\u0430\u0439\u043d \u0430\u043f\u0442\u0435\u043a\u0430 \u0420\u0438\u0433\u043b\u0430: \u043b\u0435\u043a\u0430\u0440\u0441\u0442\u0432\u0430",
       "componentName": "ru.rigla.client.android/ru.rigla.client.android.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 5822,
+      "roi_score": 5821,
       "priority": "Low"
     },
     {
@@ -41657,7 +41612,7 @@
       "requestCount": 3,
       "firstAppearance": 1775888210.0,
       "lastRequested": 1788080976.0,
-      "roi_score": 734,
+      "roi_score": 733,
       "priority": "Low"
     },
     {
@@ -43348,24 +43303,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "kernel_adiutor",
-      "requestCount": 2,
-      "firstAppearance": 1729710537.0,
-      "lastRequested": 1761386100.0,
-      "label": "Kernel Adiutor",
-      "componentName": "com.grarak.kerneladiutor/com.grarak.kerneladiutor.activities.StartActivityMaterial",
-      "roi_score": 0
-    },
-    {
-      "drawable": "eq_bluetooth",
-      "requestCount": 2,
-      "firstAppearance": 1718868625.0,
-      "lastRequested": 1761386100.0,
-      "label": "EQ Bluetooth",
-      "componentName": "io.audiosmaxs.bassboostermusic/com.equalizer.lite.ui.activity.Splash",
-      "roi_score": 0
-    },
-    {
       "drawable": "sonicwall_2",
       "requestCount": 2,
       "firstAppearance": 1725779717.0,
@@ -44338,15 +44275,6 @@
       "installs": "100,000+",
       "roi_score": 2491,
       "priority": "Low"
-    },
-    {
-      "drawable": "betaflight_configurator_debug_build",
-      "requestCount": 2,
-      "firstAppearance": 1724222419.0,
-      "lastRequested": 1761375742.0,
-      "label": "Betaflight Configurator (Debug Build)",
-      "componentName": "com.betaflight.betaflight_configurator_debug/com.betaflight.betaflight_configurator_debug.MainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "honor_band_6_watch_faces",
@@ -50928,7 +50856,7 @@
       "label": "UseePlus",
       "componentName": "com.i4season.useeplus/com.i4season.useeplus.uirelated.maininitframe.InitFrameActivity",
       "installs": "500,000+",
-      "roi_score": 3042,
+      "roi_score": 3041,
       "priority": "Low"
     },
     {
@@ -65518,7 +65446,7 @@
       "firstAppearance": 1774190401.0,
       "lastRequested": 1776881525.0,
       "installs": "1,000,000+",
-      "roi_score": 1896,
+      "roi_score": 1895,
       "priority": "Low"
     },
     {
@@ -66544,7 +66472,7 @@
       "firstAppearance": 1773166755.0,
       "lastRequested": 1780047932.0,
       "installs": "1,000,000+",
-      "roi_score": 2131,
+      "roi_score": 2130,
       "priority": "Low"
     },
     {
@@ -85294,15 +85222,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "astro_party",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761381385.0,
-      "label": "Astro Party",
-      "componentName": "com.noodlecake.astroparty/com.apportable.activity.VerdeActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "tarbi_targalt_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -85589,15 +85508,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "__",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761379221.0,
-      "label": "\u041a\u043b\u0430\u0441\u0441 \u0412\u044b\u0441\u0448\u0435\u0439 \u041f\u0440\u043e\u0434\u0443\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u0438",
-      "componentName": "com.oto.topperclass/org.renpy.android.PythonSDLActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "cleanpay_mobile",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -85838,15 +85748,6 @@
       "installs": "100,000+",
       "roi_score": 107,
       "priority": "Low"
-    },
-    {
-      "drawable": "100_free_games",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761374717.0,
-      "label": "100% Free Games",
-      "componentName": "com.gameloft.android.GloftPZOR/com.gameloft.android.GloftPZOR.Start",
-      "roi_score": 0
     },
     {
       "drawable": "bananaclub_2",
@@ -86097,15 +85998,6 @@
       "installs": "100,000+",
       "roi_score": 107,
       "priority": "Low"
-    },
-    {
-      "drawable": "smartpack",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761386100.0,
-      "label": "SmartPack",
-      "componentName": "com.smartpack.kernelmanager2/com.smartpack.kernelmanager.activities.StartActivity",
-      "roi_score": 0
     },
     {
       "drawable": "trackworld_2",
@@ -128885,7 +128777,7 @@
       "firstAppearance": 1767169292.0,
       "lastRequested": 1790989989.4588716,
       "installs": "50,000+",
-      "roi_score": 852,
+      "roi_score": 851,
       "priority": "Low"
     },
     {
@@ -290427,5 +290319,5 @@
       "priority": "Low"
     }
   ],
-  "totalCount": 30936
+  "totalCount": 30924
 }
