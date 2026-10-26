@@ -3337,9 +3337,6 @@
   "com.skybornegames.travellerscafe/com.unity3d.player.UnityPlayerActivity": {
     "de.empfohlen/com.testerup_mobile_app.MainActivity": 1
   },
-  "com.barnesandnoble.app/com.barnesandnoble.app.MainActivity": {
-    "de.empfohlen/com.testerup_mobile_app.MainActivity": 1
-  },
   "com.leisure.global/com.game_engine_bridge.v2.UnityPlayerActivity": {
     "de.empfohlen/com.testerup_mobile_app.MainActivity": 1
   },
@@ -20152,11 +20149,6 @@
     "in.snapcore.screen_alive/in.snapcore.screen_alive.view.FreeActivity": 3,
     "de.schliweb.makeacopy/de.schliweb.makeacopy.MainActivity": 2
   },
-  "com.kfteausa.mobile/com.kfteausa.mobile.MainActivity": {
-    "ch.misterwhale.far/com.unity3d.player.UnityPlayerActivity": 1,
-    "in.snapcore.screen_alive/in.snapcore.screen_alive.view.FreeActivity": 3,
-    "de.schliweb.makeacopy/de.schliweb.makeacopy.MainActivity": 2
-  },
   "com.talklittle.android.tildes/com.talklittle.android.tildes.MainActivity": {
     "ch.misterwhale.far/com.unity3d.player.UnityPlayerActivity": 1,
     "in.snapcore.screen_alive/in.snapcore.screen_alive.view.FreeActivity": 3,
@@ -31507,21 +31499,6 @@
     "pl.oksystem/pl.medicoversport.ui.start.StartActivity": 1,
     "pl.pansa.dronetower/pl.pansa.dronetower.MainActivity": 1,
     "pl.resident.walbrzych/pl.resident.walbrzych.MainActivity": 1
-  },
-  "app.murinelauncher/com.android.launcher3.Launcher": {
-    "jp.nonbili.nora/jp.nonbili.nora.MainActivity": 1,
-    "de.schliweb.makeacopy/de.schliweb.makeacopy.MainActivity": 1,
-    "de.markusfisch.android.shadereditor/de.markusfisch.android.shadereditor.activity.SplashActivity": 1,
-    "de.rainerhock.eightbitwonders/de.rainerhock.eightbitwonders.MainActivity": 1,
-    "jp.pokemon.pokemonfriends/com.test.unityplugin.OverrideActivity": 1,
-    "jp.pokemon.poketoru/com.havok.Vision.NativeLibLoader": 1,
-    "se.nullable.flickboard/se.nullable.flickboard.MainActivity": 1,
-    "rs.ruffle/rs.ruffle.MainActivity": 1,
-    "in.codingfrontend.termux/in.codingfrontend.termux.MainActivity": 1,
-    "ch.icoaching.typewise/ch.icoaching.ionic.MainActivity": 1,
-    "jp.pokemon.pokemoncafemix/com.geniussonority.app.TartNativeActivity": 1,
-    "ca.ilianokokoro.umihi.music/ca.ilianokokoro.umihi.music.MainActivity": 1,
-    "it.fast4x.riplay/it.fast4x.riplay.MainActivity": 1
   },
   "com.darusc.mousedroid/com.darusc.mousedroid.MainActivity": {
     "jp.nonbili.nora/jp.nonbili.nora.MainActivity": 1,
@@ -55609,14 +55586,6 @@
     "fr.free.moncomptefree/presentation.newfree.root.common.ui.ApplicationMainActivity": 1,
     "fr.pretapousser.lilo/fr.pretapousser.lilo.FirstStartActivity": 1,
     "fr.credit_agricole.pacifica.shootproof/fr.pacifica.shootproof.activity.pub.SplashPubActivity": 1
-  },
-  "io.keybase.ossifrage/io.keybase.ossifrage.MainActivity": {
-    "fr.gouv.franceidentite/fr.gouv.franceidentite.features.app.ui.activity.AppActivity": 1,
-    "fr.henner/com.ekino.henner.core.refonte.presentation.splashscreen.SplashScreenActivity": 1,
-    "fr.free.moncomptefree/presentation.newfree.root.common.ui.ApplicationMainActivity": 1,
-    "fr.pretapousser.lilo/fr.pretapousser.lilo.FirstStartActivity": 1,
-    "fr.credit_agricole.pacifica.shootproof/fr.pacifica.shootproof.activity.pub.SplashPubActivity": 1,
-    "in.fudr.nbc/in.fudr.nbc.MainActivity": 1
   },
   "com.ultrapremiumdirect.companion/com.ultrapremiumdirect.companion.MainActivity": {
     "fr.gouv.franceidentite/fr.gouv.franceidentite.features.app.ui.activity.AppActivity": 1,
@@ -82294,11 +82263,6 @@
     "de.tum.in.tumcampus/de.tum.in.tumcampus.MainActivity": 1,
     "co.anny.app/co.anny.app.MainActivity": 1
   },
-  "com.rover.android/com.rover.android.deeplink.DeepLinkWithSplashActivity": {
-    "tr.gov.egm.egmmobil/tr.gov.egm.egmmobil.SplashActivity": 1,
-    "de.tum.in.tumcampus/de.tum.in.tumcampus.MainActivity": 1,
-    "co.anny.app/co.anny.app.MainActivity": 1
-  },
   "com.makingfun.mageandminions/com.makingfun.mageandminions.Main": {
     "tr.gov.egm.egmmobil/tr.gov.egm.egmmobil.SplashActivity": 1,
     "de.tum.in.tumcampus/de.tum.in.tumcampus.MainActivity": 1,
@@ -85577,14 +85541,6 @@
   },
   "com.bishopcider.cidercade/com.bishopcider.cidercade.MainActivity": {
     "jp.co.gagex.rigel/com.google.firebase.MessagingUnityPlayerActivity": 1
-  },
-  "com.axs.android/com.axs.android.ui.content.main.MainActivity": {
-    "jp.co.gagex.rigel/com.google.firebase.MessagingUnityPlayerActivity": 1,
-    "it.Ettore.raspcontroller/it.Ettore.raspcontroller.ui.pages.various.ActivitySplash": 1,
-    "de.humatic.tdaw/de.humatic.tdaw.TouchDAW": 1,
-    "jp.co.roland.boss_fs_1_wl/jp.co.roland.quattro.MainActivity": 1,
-    "jp.co.roland.bosstuner/jp.co.roland.bosstuner.MainActivity": 1,
-    "jp.co.korg.kaossilator.android/jp.co.korg.kaossilator.kaossilatorActivity": 1
   },
   "org.chromium.webapk.a68e144fdfdd366dc_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity": {
     "jp.co.gagex.rigel/com.google.firebase.MessagingUnityPlayerActivity": 1
@@ -95516,9 +95472,6 @@
   "com.InkosGames.HoleIn/com.unity3d.player.UnityPlayerActivity": {
     "us.community.identified/parsing.result": 1
   },
-  "com.PalmCourt.Wavelength/com.google.firebase.MessagingUnityPlayerActivity": {
-    "us.community.identified/parsing.result": 1
-  },
   "com.YoStarEN.AzurLane/com.manjuu.azurlane.PrePermissionActivity": {
     "us.community.identified/parsing.result": 1
   },
@@ -95544,12 +95497,6 @@
     "fr.pixelprose.game2048/fr.pixelprose.game2048.Application2048$StarterActivity": 1
   },
   "com.appleyou.klwp/com.appleyou.klwp.MainActivity": {
-    "us.community.identified/parsing.result": 1
-  },
-  "com.apptionlabs.meater_app/com.apptionlabs.meater_app.qsg.ui.base.QSGActivity": {
-    "us.community.identified/parsing.result": 1
-  },
-  "com.apptionlabs.meater_app/com.apptionlabs.meater_app.MainActivity": {
     "us.community.identified/parsing.result": 1
   },
   "com.arijit.pomodoro/com.arijit.pomodoro.MainActivity": {
@@ -95661,9 +95608,6 @@
     "us.community.identified/parsing.result": 1
   },
   "com.newsblur/com.newsblur.activity.InitActivity": {
-    "us.community.identified/parsing.result": 1
-  },
-  "com.onpointcommunitycreditunion5123.mobile/com.q2.app.core.ui.LauncherActivity": {
     "us.community.identified/parsing.result": 1
   },
   "com.participantmobileapp/com.participantmobileapp.SplashActivity": {
@@ -100193,9 +100137,6 @@
   "com.desamobi.sdcardfilemanager/com.desamobi.sdcardfilemanager.MainActivity": {
     "mt.community.identified/parsing.result": 1
   },
-  "com.Majorariatto.Pureya/com.unity3d.player.UnityPlayerActivity": {
-    "mx.community.identified/parsing.result": 1
-  },
   "com.astourdev.guidelineshelperpool/com.astourdev.guidelineshelperpool.LaunchActivity": {
     "mx.community.identified/parsing.result": 1
   },
@@ -100310,9 +100251,6 @@
     "us.community.identified/parsing.result": 1
   },
   "com.fxroyale.app/com.fxroyale.app.android.MainActivity": {
-    "us.community.identified/parsing.result": 1
-  },
-  "com.healthequity.healthequitymobile/rEJ4B3.otJxw6.pltby4.baPc22.myGOR9": {
     "us.community.identified/parsing.result": 1
   },
   "com.hellosimply.simplysingdroid/com.hellosimply.simplysingdroid.MainActivity": {
@@ -108563,9 +108501,6 @@
     "co.tapcart.app.npQt0DXZpj/co.tapcart.app.npQt0DXZpj.MainActivity": 1
   },
   "com.dcp.travelrewards/com.dcp.travelrewards.MainActivity": {
-    "co.tapcart.app.npQt0DXZpj/co.tapcart.app.npQt0DXZpj.MainActivity": 1
-  },
-  "com.healthequity.healthequitymobile/gbAqU7.cByf33.debrr7.byEgo4.dgZya6": {
     "co.tapcart.app.npQt0DXZpj/co.tapcart.app.npQt0DXZpj.MainActivity": 1
   },
   "com.philo.philo.google/com.philo.philo.ui.activity.MainActivity": {

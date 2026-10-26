@@ -235,6 +235,10 @@
       "existing_drawable": "hd_camera"
     },
     {
+      "id": "com.app.onpointapp/com.app.onpointapp.MainActivity",
+      "existing_drawable": "onpoint"
+    },
+    {
       "id": "com.psma.videosplitter/com.psma.videosplitter.main.SplashActivity",
       "existing_drawable": "video_splitter"
     },
@@ -1629,6 +1633,10 @@
     {
       "id": "com.fonts.emoji.fontkeyboard.free/com.fonts.emoji.fontkeyboard.free.ui.splash.SplashActivity",
       "existing_drawable": "fonts_keyboard"
+    },
+    {
+      "id": "com.crunchyroll.gv.inbento/com.unity3d.player.UnityPlayerActivity",
+      "existing_drawable": "inbento"
     },
     {
       "id": "com.akslabs.pixelscreenshots/com.akslabs.pixelscreenshots.MainActivity",
