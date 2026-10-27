@@ -1,6 +1,6 @@
 {
-  "count": 30896,
-  "lastUpdate": "2026-10-26",
+  "count": 30889,
+  "lastUpdate": "2026-10-27",
   "apps": [
     {
       "drawable": "manus",
@@ -78861,16 +78861,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "youcat_daily",
-      "requestCount": 2,
-      "firstAppearance": 1727501495.0,
-      "lastRequested": 1761457459.0,
-      "label": "YOUCAT Daily",
-      "componentName": "com.youcat.daily/com.youcat.daily.MainActivity",
-      "installs": "500,000+",
-      "roi_score": 0
-    },
-    {
       "drawable": "quran__warsh",
       "requestCount": 2,
       "firstAppearance": 1715393486.0,
@@ -78902,15 +78892,6 @@
       "installs": "1,000,000+",
       "roi_score": 24155,
       "priority": "Medium"
-    },
-    {
-      "drawable": "launchbox",
-      "requestCount": 2,
-      "firstAppearance": 1724054197.0,
-      "lastRequested": 1761485857.0,
-      "label": "LaunchBox",
-      "componentName": "com.unbrokensoftware.launchbox/crc640d6c5ebcc48c6177.MainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "dynamic_notification_bar",
@@ -117738,15 +117719,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "unsplash",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761457459.0,
-      "label": "Unsplash",
-      "componentName": "org.chromium.webapk.a88b8f155a693f044_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "indobara_smart_services_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -117767,15 +117739,6 @@
       "installs": "100,000+",
       "roi_score": 1290,
       "priority": "Low"
-    },
-    {
-      "drawable": "ai_studio",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761467059.0,
-      "label": "AI Studio",
-      "componentName": "org.chromium.webapk.aaf3d7d39ee51419e_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "clipboard_manager_2",
@@ -117821,15 +117784,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "motywy",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761499170.0,
-      "label": "Motywy",
-      "componentName": "com.aidroid.change/com.aidroid.change.ui.LocalMainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "parkside_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -117850,15 +117804,6 @@
       "installs": "50,000+",
       "roi_score": 91,
       "priority": "Low"
-    },
-    {
-      "drawable": "lisoflix",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761499716.0,
-      "label": "LisoFlix",
-      "componentName": "com.lisoflix.filmes.series.animes/com.lisoflix.filmes.series.animes.MainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "konnect",
@@ -124320,15 +124265,6 @@
       "installs": "1,000,000+",
       "roi_score": 2634,
       "priority": "Low"
-    },
-    {
-      "drawable": "visa_benefits",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761477325.0,
-      "label": "Visa Benefits",
-      "componentName": "org.chromium.webapk.a170469c05c502c90_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "ctronics_2",
