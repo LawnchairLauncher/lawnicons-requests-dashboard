@@ -611,10 +611,6 @@
       "existing_drawable": "auto_text"
     },
     {
-      "id": "net.west_hino.app_assist/net.west_hino.app_assist.ui.ActivityMain",
-      "existing_drawable": "ladb"
-    },
-    {
       "id": "com.kii.safe/com.kii.safe.FrontDoorActivity",
       "existing_drawable": "keepsafe"
     },
@@ -685,18 +681,6 @@
     {
       "id": "com.harry.stokiepro/com.harry.stokie.shell.StokieHostActivity",
       "existing_drawable": "stokie_pro"
-    },
-    {
-      "id": "com.sosauce.cutecalc/com.sosauce.vanilla.app.MainActivity",
-      "existing_drawable": "cutecalc"
-    },
-    {
-      "id": "au.com.shiftyjelly.pocketcasts/au.com.shiftyjelly.pocketcasts.ui.MainActivityDefault",
-      "existing_drawable": "pocket_casts"
-    },
-    {
-      "id": "com.pcfinancial.mobile/com.pcfinancial.mobile.MainActivity",
-      "existing_drawable": "simplii"
     }
   ]
 }
