@@ -1,6 +1,6 @@
 {
-  "count": 27076,
-  "lastUpdate": "2026-10-28",
+  "count": 27068,
+  "lastUpdate": "2026-10-29",
   "apps": [
     {
       "drawable": "velune",
@@ -28068,15 +28068,6 @@
       "installs": "5,000+",
       "roi_score": 1273,
       "priority": "Low"
-    },
-    {
-      "drawable": "puzzle_pets",
-      "requestCount": 3,
-      "firstAppearance": 1720577921.0,
-      "lastRequested": 1761653477.0,
-      "label": "Puzzle Pets",
-      "componentName": "com.gameloft.android.GloftDBMF/com.gameloft.android.GloftDBMF.Start",
-      "roi_score": 0
     },
     {
       "drawable": "buffbuff",
@@ -80163,33 +80154,6 @@
       "roi_score": 0
     },
     {
-      "drawable": "jumbo",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761676646.0,
-      "label": "Jumbo",
-      "componentName": "com.joinjumbo/com.joinjumbo.MainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "my11circle",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761676646.0,
-      "label": "My11Circle",
-      "componentName": "com.games24x7.my11circle.fantasycricket/com.games24x7.dynamic_rn.rncore.ui.RNActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "vision11",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761676646.0,
-      "label": "Vision11",
-      "componentName": "com.vision11/com.vision11.MainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "aeroitalia",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -86359,15 +86323,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "solvearn",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761633873.0,
-      "label": "Solvearn",
-      "componentName": "org.chromium.webapk.a1aa7fcc93f712822_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "prison_escape_journey",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -86529,15 +86484,6 @@
       "roi_score": 0
     },
     {
-      "drawable": "league11",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761676646.0,
-      "label": "League11",
-      "componentName": "com.league11/com.league11.MainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "clikbus",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -86691,15 +86637,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "dragon_mania",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761653477.0,
-      "label": "Dragon Mania",
-      "componentName": "com.gameloft.android.GloftPDMF/com.gameloft.android.GloftPDMF.Start",
-      "roi_score": 0
-    },
-    {
       "drawable": "huawei_p30_pro_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -86709,15 +86646,6 @@
       "installs": "5,000+",
       "roi_score": 66,
       "priority": "Low"
-    },
-    {
-      "drawable": "kingdoms",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1761653477.0,
-      "label": "Kingdoms",
-      "componentName": "com.gameloft.android.GloftDMKF/com.gameloft.android.GloftDMKF.Start",
-      "roi_score": 0
     },
     {
       "drawable": "phone_simulator_3d_maker",
@@ -290033,5 +289961,5 @@
       "priority": "Low"
     }
   ],
-  "totalCount": 30850
+  "totalCount": 30842
 }
