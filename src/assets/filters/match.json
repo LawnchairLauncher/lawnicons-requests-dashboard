@@ -15,6 +15,10 @@
       "existing_drawable": "pix_material_you_icons"
     },
     {
+      "id": "com.bitmavrick.lumolight/com.bitmavrick.lumolight.activity.MainActivity",
+      "existing_drawable": "lumolight"
+    },
+    {
       "id": "me.yuki.folk/me.bmax.apatch.ui.MainActivityDefault",
       "existing_drawable": "apatch"
     },
@@ -277,10 +281,6 @@
     {
       "id": "com.eljur.client/com.eljur.client.feature.splash.view.SplashActivityAlias4",
       "existing_drawable": "eljur_student"
-    },
-    {
-      "id": "com.github.libretube.debug/com.github.libretube.IconGradient",
-      "existing_drawable": "libretube"
     },
     {
       "id": "com.eljur.client/com.eljur.client.feature.splash.view.SplashActivityAlias7",
