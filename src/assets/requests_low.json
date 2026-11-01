@@ -1,6 +1,6 @@
 {
-  "count": 27017,
-  "lastUpdate": "2026-10-31",
+  "count": 27016,
+  "lastUpdate": "2026-11-01",
   "apps": [
     {
       "drawable": "velune",
@@ -2342,7 +2342,7 @@
       "label": "Showcase Cinemas - UK",
       "componentName": "nz.co.vista.android.movie.showcase/nz.co.vista.android.movie.abc.feature.splash.SplashActivity",
       "installs": "100,000+",
-      "roi_score": 220,
+      "roi_score": 219,
       "priority": "Low"
     },
     {
@@ -11181,7 +11181,7 @@
       "label": "FitBook",
       "componentName": "com.presley.fit_book/com.presley.fit_book.MainActivity",
       "installs": "1,000+",
-      "roi_score": 116,
+      "roi_score": 115,
       "priority": "Low"
     },
     {
@@ -12196,7 +12196,7 @@
       "label": "Data Clock",
       "componentName": "nz.co.twodegreesmobile.comptelfwd.smpl/nz.co.twodegreesmobile.comptelfwd.smpl.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 2921,
+      "roi_score": 2908,
       "priority": "Low"
     },
     {
@@ -21057,7 +21057,7 @@
       "label": "Golden 1",
       "componentName": "com.golden1.mobilebanking/nz.co.mcom.phone.login.SplashscreenActivity",
       "installs": "500,000+",
-      "roi_score": 370,
+      "roi_score": 369,
       "priority": "Low"
     },
     {
@@ -25620,7 +25620,7 @@
       "label": "Trade Me: Property, Jobs, Shop",
       "componentName": "nz.co.trademe.trademe/nz.co.trademe.trademe.feature.navigation.intentfilter.IntentFilterActivity",
       "installs": "1,000,000+",
-      "roi_score": 2382,
+      "roi_score": 2371,
       "priority": "Low"
     },
     {
@@ -32402,7 +32402,7 @@
       "firstAppearance": 1766930823.0,
       "lastRequested": 1786482841.0,
       "installs": "100,000+",
-      "roi_score": 138,
+      "roi_score": 137,
       "priority": "Low"
     },
     {
@@ -32572,7 +32572,7 @@
       "firstAppearance": 1774349049.0,
       "lastRequested": 1786883687.0,
       "installs": "50,000+",
-      "roi_score": 77,
+      "roi_score": 76,
       "priority": "Low"
     },
     {
@@ -37040,7 +37040,7 @@
       "label": "New World",
       "componentName": "nz.co.newworld.clubcard/nz.co.newworld.clubcard.MainActivity",
       "installs": "500,000+",
-      "roi_score": 1060,
+      "roi_score": 1056,
       "priority": "Low"
     },
     {
@@ -38247,7 +38247,7 @@
       "label": "Instant Guard",
       "componentName": "com.asus.asusinstantguard/com.asus.asusinstantguard.MainActivity2",
       "installs": "100,000+",
-      "roi_score": 194,
+      "roi_score": 193,
       "priority": "Low"
     },
     {
@@ -46694,7 +46694,7 @@
       "label": "PB Tech",
       "componentName": "com.silvermoonapps.pbtech/com.silvermoonapps.pbtech.LauncherActivity",
       "installs": "100,000+",
-      "roi_score": 150,
+      "roi_score": 149,
       "priority": "Low"
     },
     {
@@ -52146,7 +52146,7 @@
       "firstAppearance": 1766930823.0,
       "lastRequested": 1786482841.0,
       "installs": "1,000,000+",
-      "roi_score": 172,
+      "roi_score": 171,
       "priority": "Low"
     },
     {
@@ -57760,7 +57760,7 @@
       "label": "Skinny",
       "componentName": "com.nextbyteapps.selfcare/com.nextbyteapps.selfcare.activities.SplashScreen",
       "installs": "1,000,000+",
-      "roi_score": 307,
+      "roi_score": 306,
       "priority": "Low"
     },
     {
@@ -64344,7 +64344,7 @@
       "firstAppearance": 1766930823.0,
       "lastRequested": 1776271280.0,
       "installs": "1,000,000+",
-      "roi_score": 756,
+      "roi_score": 753,
       "priority": "Low"
     },
     {
@@ -90148,7 +90148,7 @@
       "label": "NZeTA",
       "componentName": "nz.govt.mbie.eta/nz.govt.mbie.eta.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 885,
+      "roi_score": 881,
       "priority": "Low"
     },
     {
@@ -129013,7 +129013,7 @@
       "firstAppearance": 1766930823.0,
       "lastRequested": 1788264299.6780565,
       "installs": "1,000,000+",
-      "roi_score": 649,
+      "roi_score": 646,
       "priority": "Low"
     },
     {
@@ -200351,17 +200351,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "facelab",
-      "label": "FaceLab",
-      "componentName": "com.appslab.watchfaces.marketplace/com.appslab.watchfaces.marketplace.MainActivity",
-      "requestCount": 1,
-      "firstAppearance": 1784741970.0,
-      "lastRequested": 1784741970.0,
-      "installs": "50,000+",
-      "roi_score": 29,
-      "priority": "Low"
-    },
-    {
       "drawable": "hungrypanda",
       "label": "HungryPanda",
       "componentName": "com.hungrypanda.waimai/com.haya.app.pandah4a.ui.other.start.LoadingActivity",
@@ -238403,7 +238392,7 @@
       "requestCount": 1,
       "firstAppearance": 1786482841.0,
       "lastRequested": 1786482841.0,
-      "roi_score": 385,
+      "roi_score": 383,
       "installs": "1,000,000+",
       "priority": "Low"
     },
@@ -238436,7 +238425,7 @@
       "requestCount": 1,
       "firstAppearance": 1786482841.0,
       "lastRequested": 1786482841.0,
-      "roi_score": 385,
+      "roi_score": 383,
       "installs": "1,000,000+",
       "priority": "Low"
     },
@@ -289450,5 +289439,5 @@
       "priority": "Low"
     }
   ],
-  "totalCount": 30756
+  "totalCount": 30755
 }
