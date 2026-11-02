@@ -717,8 +717,9 @@ const Templates = {
           <div>Last: ${lastStr}</div>
         </div>
         <div class="actions-col">
-          <a class="action-btn" data-action="download-image" data-url="${iconUrl}" data-drawable="${app.drawable}" title="Download image"
-              tabindex="0" role="button" aria-label="Download">${ICONS.downloadImage}</a>
+          <a class="action-btn" href="https://www.google.com/search?q=%22${pkg}%22" target="_blank" title="Google Search">
+              <svg><use href="#ic-web-search"/></svg>
+          </a>
           <a class="action-btn" href="${CONFIG.urls.playStore}${pkg}" target="_blank" title="Play Store"
             tabindex="0" role="button" aria-label="Play Store" >${ICONS.play}</a>
           <div class="action-btn ctx-trigger" title="More actions"
