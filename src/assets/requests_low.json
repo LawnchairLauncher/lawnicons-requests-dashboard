@@ -1,5 +1,5 @@
 {
-  "count": 26999,
+  "count": 26997,
   "lastUpdate": "2026-11-02",
   "apps": [
     {
@@ -28133,15 +28133,6 @@
       "roi_score": 0
     },
     {
-      "drawable": "drawpile",
-      "requestCount": 3,
-      "firstAppearance": 1719023356.0,
-      "lastRequested": 1762037318.0,
-      "label": "Drawpile",
-      "componentName": "net.drawpile/org.qtproject.qt5.android.bindings.QtActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "superliminal",
       "requestCount": 3,
       "firstAppearance": 1722698482.0,
@@ -43402,15 +43393,6 @@
       "installs": "100,000+",
       "roi_score": 2181,
       "priority": "Low"
-    },
-    {
-      "drawable": "pxerstudio",
-      "requestCount": 2,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762037318.0,
-      "label": "PxerStudio",
-      "componentName": "com.benny.pxerstudio/com.benny.pxerstudio.activity.SplashActivity",
-      "roi_score": 0
     },
     {
       "drawable": "sauces",
@@ -289273,5 +289255,5 @@
       "priority": "Low"
     }
   ],
-  "totalCount": 30738
+  "totalCount": 30736
 }
