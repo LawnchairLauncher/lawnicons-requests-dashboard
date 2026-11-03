@@ -1,30 +1,30 @@
 {
   "com": {
-    "requests": 21311,
+    "requests": 21300,
     "done": 14845,
-    "total": 36156,
+    "total": 36145,
     "global": 0,
     "global_installs": 0
   },
   "de": {
-    "requests": 3575,
+    "requests": 3574,
     "done": 515,
-    "total": 4090,
-    "global": 3218,
+    "total": 4089,
+    "global": 3217,
     "global_installs": 15342551359
   },
   "ru": {
-    "requests": 3641,
+    "requests": 3640,
     "done": 388,
-    "total": 4029,
-    "global": 3245,
+    "total": 4028,
+    "global": 3244,
     "global_installs": 21490463098
   },
   "in": {
-    "requests": 2769,
+    "requests": 2768,
     "done": 151,
-    "total": 2920,
-    "global": 2675,
+    "total": 2919,
+    "global": 2674,
     "global_installs": 30370139341
   },
   "jp": {
@@ -35,9 +35,9 @@
     "global_installs": 11249569493
   },
   "org": {
-    "requests": 1421,
+    "requests": 1420,
     "done": 1272,
-    "total": 2693,
+    "total": 2692,
     "global": 0,
     "global_installs": 0
   },
@@ -133,9 +133,9 @@
     "global_installs": 3924522215
   },
   "io": {
-    "requests": 357,
+    "requests": 355,
     "done": 309,
-    "total": 666,
+    "total": 664,
     "global": 0,
     "global_installs": 0
   },
@@ -161,10 +161,10 @@
     "global_installs": 0
   },
   "id": {
-    "requests": 514,
+    "requests": 513,
     "done": 49,
-    "total": 563,
-    "global": 470,
+    "total": 562,
+    "global": 469,
     "global_installs": 2150557351
   },
   "mx": {
@@ -259,10 +259,10 @@
     "global_installs": 0
   },
   "li": {
-    "requests": 285,
+    "requests": 284,
     "done": 1,
-    "total": 286,
-    "global": 277,
+    "total": 285,
+    "global": 276,
     "global_installs": 674526200
   },
   "me": {
@@ -1616,13 +1616,6 @@
     "global": 0,
     "global_installs": 0
   },
-  "kalp": {
-    "requests": 3,
-    "done": 3,
-    "total": 6,
-    "global": 0,
-    "global_installs": 0
-  },
   "life": {
     "requests": 4,
     "done": 2,
@@ -1801,6 +1794,13 @@
   "intl": {
     "requests": 0,
     "done": 5,
+    "total": 5,
+    "global": 0,
+    "global_installs": 0
+  },
+  "kalp": {
+    "requests": 2,
+    "done": 3,
     "total": 5,
     "global": 0,
     "global_installs": 0
