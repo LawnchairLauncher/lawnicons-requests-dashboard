@@ -1,6 +1,6 @@
 {
-  "count": 26982,
-  "lastUpdate": "2026-11-03",
+  "count": 26962,
+  "lastUpdate": "2026-11-04",
   "apps": [
     {
       "drawable": "velune",
@@ -28047,15 +28047,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "httpcanary",
-      "requestCount": 3,
-      "firstAppearance": 1723226304.0,
-      "lastRequested": 1762188466.0,
-      "label": "HttpCanary",
-      "componentName": "com.guoshi.httpcanary/com.guoshi.httpcanary.ui.SplashActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "tap_tap_reloaded",
       "requestCount": 3,
       "firstAppearance": 1738766021.0,
@@ -28063,15 +28054,6 @@
       "label": "Tap Tap Reloaded",
       "componentName": "com.partycubed.taptapreloaded/com.unity3d.player.UnityPlayerActivity",
       "installs": "100,000+",
-      "roi_score": 0
-    },
-    {
-      "drawable": "halflife_2_ep12",
-      "requestCount": 3,
-      "firstAppearance": 1726298153.0,
-      "lastRequested": 1762146102.0,
-      "label": "Half-Life 2 EP1,2",
-      "componentName": "com.valvesoftware.source.episodic/me.nillerusr.LauncherActivity",
       "roi_score": 0
     },
     {
@@ -28095,15 +28077,6 @@
       "installs": "10,000+",
       "roi_score": 150,
       "priority": "Low"
-    },
-    {
-      "drawable": "pica_comic",
-      "requestCount": 3,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762168784.0,
-      "label": "Pica Comic",
-      "componentName": "com.github.pacalini.pica_comic/com.github.pacalini.pica_comic.MainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "superliminal",
@@ -44370,15 +44343,6 @@
       "roi_score": 0
     },
     {
-      "drawable": "santa_tracker",
-      "requestCount": 2,
-      "firstAppearance": 1723045277.0,
-      "lastRequested": 1762192214.0,
-      "label": "Santa Tracker",
-      "componentName": "com.google.android.apps.santatracker/com.google.android.apps.santatracker.activities.SantaActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "noteshelf",
       "requestCount": 2,
       "firstAppearance": 1719784692.0,
@@ -44417,16 +44381,6 @@
       "installs": "10,000+",
       "roi_score": 108,
       "priority": "Low"
-    },
-    {
-      "drawable": "az_mobile_id",
-      "requestCount": 2,
-      "firstAppearance": 1723924286.0,
-      "lastRequested": 1762181890.0,
-      "label": "AZ Mobile ID",
-      "componentName": "com.idemia.mobileid.us.az/com.morphotrust.eid.ui.welcome.WelcomeActivity",
-      "installs": "500,000+",
-      "roi_score": 0
     },
     {
       "drawable": "srp_mpower",
@@ -44469,15 +44423,6 @@
       "installs": "1,000,000+",
       "roi_score": 4308,
       "priority": "Low"
-    },
-    {
-      "drawable": "honor_",
-      "requestCount": 2,
-      "firstAppearance": 1727296892.0,
-      "lastRequested": 1762123895.0,
-      "label": "Honor \u043c\u0430\u0433\u0430\u0437\u0438\u043d",
-      "componentName": "com.honor.global/com.honor.global.activity.LandingActivity",
-      "roi_score": 0
     },
     {
       "drawable": "neo_pat",
@@ -80779,24 +80724,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "marketplace",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762192214.0,
-      "label": "Marketplace",
-      "componentName": "com.wMarketplace_19234727/com.appsgeyser.multiTabApp.MainNavigationActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "mobiroller_app",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762192214.0,
-      "label": "Mobiroller app",
-      "componentName": "com.wMobirollerapp_19234745/com.appsgeyser.multiTabApp.MainNavigationActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "morayfield",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -80817,15 +80744,6 @@
       "installs": "100,000+",
       "roi_score": 1015,
       "priority": "Low"
-    },
-    {
-      "drawable": "spacetalk_mobile",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762192214.0,
-      "label": "Spacetalk Mobile",
-      "componentName": "org.chromium.webapk.ae0b9966ff8d37fc3_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "cloudya_2",
@@ -80859,24 +80777,6 @@
       "installs": "500,000+",
       "roi_score": 1748,
       "priority": "Low"
-    },
-    {
-      "drawable": "snapp_driver",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762166044.0,
-      "label": "Snapp Driver",
-      "componentName": "cab.snapp.driver/cab.snapp.driver.MainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "sepino",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762166044.0,
-      "label": "Sepino",
-      "componentName": "app.sepino/com.sky.app.MainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "elevate_2",
@@ -81337,16 +81237,6 @@
       "installs": "10,000+",
       "roi_score": 1007,
       "priority": "Low"
-    },
-    {
-      "drawable": "alumni_perks",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762146920.0,
-      "label": "Alumni Perks",
-      "componentName": "com.alumniperks.app.fanshawe/com.alumniperks.app.fanshawe.MainActivity",
-      "installs": "5,000+",
-      "roi_score": 0
     },
     {
       "drawable": "iscrap_2",
@@ -88984,15 +88874,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "myadmedika",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762161645.0,
-      "label": "MyAdMedika",
-      "componentName": "com.admedika/com.admedika.MainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "simpool_mobile_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -89013,43 +88894,6 @@
       "installs": "1,000,000+",
       "roi_score": 3098,
       "priority": "Low"
-    },
-    {
-      "drawable": "orbit",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762163558.0,
-      "label": "Orbit",
-      "componentName": "com.orbit/com.orbit.MainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "nothing_system_service",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762188466.0,
-      "label": "Nothing system service",
-      "componentName": "com.nothing.appservice/com.nothing.appservice.MainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "medanta_eclinic",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762128110.0,
-      "label": "Medanta eCLINIC",
-      "componentName": "com.mds.medanta/app.ui.new_user.home.SplashScreenActivity",
-      "installs": "500,000+",
-      "roi_score": 0
-    },
-    {
-      "drawable": "passion_kwgt",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762128110.0,
-      "label": "Passion Kwgt",
-      "componentName": "passionkwgt.kustom.pack/org.kustom.api.dashboard.DashboardActivity",
-      "roi_score": 0
     },
     {
       "drawable": "my_d_a_life",
@@ -89620,15 +89464,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "curated_visualization_presets",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762176137.0,
-      "label": "Curated Visualization Presets",
-      "componentName": "com.poweramp.v3.vispresets.curatedvizsets/com.poweramp.v3.vispresets.curatedvizsets.InfoActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "kit_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -89691,15 +89526,6 @@
       "installs": "10,000+",
       "roi_score": 71,
       "priority": "Low"
-    },
-    {
-      "drawable": "radar_game",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762166044.0,
-      "label": "Radar Game",
-      "componentName": "org.dustcorps.radargame/com.example.radarpro.MainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "business_card",
@@ -90942,15 +90768,6 @@
       "installs": "500,000+",
       "roi_score": 171,
       "priority": "Low"
-    },
-    {
-      "drawable": "exploitdb",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762181890.0,
-      "label": "ExploitDB",
-      "componentName": "org.chromium.webapk.a258e653d470d0c8b_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "flamme_2",
@@ -289119,5 +288936,5 @@
       "priority": "Low"
     }
   ],
-  "totalCount": 30721
+  "totalCount": 30701
 }

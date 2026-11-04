@@ -1,8 +1,8 @@
 {
   "com": {
-    "requests": 21300,
+    "requests": 21286,
     "done": 14845,
-    "total": 36145,
+    "total": 36131,
     "global": 0,
     "global_installs": 0
   },
@@ -35,9 +35,9 @@
     "global_installs": 11249569493
   },
   "org": {
-    "requests": 1420,
+    "requests": 1417,
     "done": 1272,
-    "total": 2692,
+    "total": 2689,
     "global": 0,
     "global_installs": 0
   },
@@ -140,9 +140,9 @@
     "global_installs": 0
   },
   "app": {
-    "requests": 318,
+    "requests": 317,
     "done": 332,
-    "total": 650,
+    "total": 649,
     "global": 0,
     "global_installs": 0
   },
@@ -2456,13 +2456,6 @@
     "global": 1,
     "global_installs": 5000000
   },
-  "cab": {
-    "requests": 1,
-    "done": 2,
-    "total": 3,
-    "global": 0,
-    "global_installs": 0
-  },
   "calculation": {
     "requests": 3,
     "done": 0,
@@ -3369,6 +3362,13 @@
   "business": {
     "requests": 1,
     "done": 1,
+    "total": 2,
+    "global": 0,
+    "global_installs": 0
+  },
+  "cab": {
+    "requests": 0,
+    "done": 2,
     "total": 2,
     "global": 0,
     "global_installs": 0
@@ -12628,13 +12628,6 @@
     "global_installs": 0
   },
   "party": {
-    "requests": 1,
-    "done": 0,
-    "total": 1,
-    "global": 0,
-    "global_installs": 0
-  },
-  "passionkwgt": {
     "requests": 1,
     "done": 0,
     "total": 1,
