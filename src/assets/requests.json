@@ -1,6 +1,6 @@
 {
-  "count": 30701,
-  "lastUpdate": "2026-11-04",
+  "count": 30688,
+  "lastUpdate": "2026-11-05",
   "apps": [
     {
       "drawable": "manus",
@@ -77087,15 +77087,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "animo_fanz",
-      "requestCount": 2,
-      "firstAppearance": 1724032698.0,
-      "lastRequested": 1762258072.0,
-      "label": "Animo Fanz",
-      "componentName": "com.animoapp.animfanapp/com.animfanz.animapp.activities.HomeActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "satori_reader",
       "requestCount": 2,
       "firstAppearance": 1743830404.0,
@@ -77116,15 +77107,6 @@
       "installs": "100,000+",
       "roi_score": 210,
       "priority": "Low"
-    },
-    {
-      "drawable": "syncopoli",
-      "requestCount": 2,
-      "firstAppearance": 1725864725.0,
-      "lastRequested": 1762245619.0,
-      "label": "Syncopoli",
-      "componentName": "org.amoradi.syncopoli/org.amoradi.syncopoli.BackupActivity",
-      "roi_score": 0
     },
     {
       "drawable": "bateponto",
@@ -78426,15 +78408,6 @@
       "installs": "5,000,000+",
       "roi_score": 9134,
       "priority": "Medium"
-    },
-    {
-      "drawable": "sd_contacts",
-      "requestCount": 2,
-      "firstAppearance": 1723212877.0,
-      "lastRequested": 1762264813.0,
-      "label": "SD Contacts",
-      "componentName": "cx.vmx.sdcontacts/cx.vmx.sdcontacts.MainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "noteshelf",
@@ -118085,16 +118058,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "poptube",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762258072.0,
-      "label": "Poptube",
-      "componentName": "io.poptube.app/io.poptube.app.ui.activity.LauncherAc",
-      "installs": "500,000+",
-      "roi_score": 0
-    },
-    {
       "drawable": "radio_japan_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -127247,15 +127210,6 @@
       "priority": "Medium"
     },
     {
-      "drawable": "crown_coins_casino",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762231484.0,
-      "label": "Crown Coins Casino",
-      "componentName": "com.crowncoinscasino/com.crowncoinscasino.MainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "jackpot_friends_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -127265,15 +127219,6 @@
       "installs": "5,000,000+",
       "roi_score": 422,
       "priority": "Low"
-    },
-    {
-      "drawable": "phone_cleaner",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762231484.0,
-      "label": "Phone Cleaner",
-      "componentName": "app.mpdcreations.speedbooster/app.codeword.cleanermaster.screen.splash.SplashActivity",
-      "roi_score": 0
     },
     {
       "drawable": "slots__house_of_fun",
@@ -127525,51 +127470,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "kanji_companion__kanji_and_vocabulary_practice_for_the_jlpt_exam__quizzes_to_help_guide_your_study",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762258072.0,
-      "label": "Kanji Companion - Kanji and vocabulary Practice for the JLPT exam & quizzes to help guide your study",
-      "componentName": "org.chromium.webapk.ad782092c8af5190c_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "kanji_quizzer",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762258072.0,
-      "label": "Kanji Quizzer",
-      "componentName": "org.chromium.webapk.abf2d43f91a3da4ef_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "language_reactor",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762258072.0,
-      "label": "Language Reactor",
-      "componentName": "org.chromium.webapk.a4db0c17dceb7364f_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "mcmoney",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762258072.0,
-      "label": "McMoney",
-      "componentName": "com.cmtelecom.texter/com.cmtelecom.texter.ui.splash.SplashActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "money_sms",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762258072.0,
-      "label": "Money SMS",
-      "componentName": "com.milos.design/com.milos.design.ui.splashscreen.SplashscreenActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "nhk_easy_news_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -127590,15 +127490,6 @@
       "installs": "1,000,000+",
       "roi_score": 219,
       "priority": "Low"
-    },
-    {
-      "drawable": "wanikani",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762258072.0,
-      "label": "WaniKani",
-      "componentName": "org.chromium.webapk.a0e0c5d0b533dd8fc_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "anime_tv_2",
@@ -127872,15 +127763,6 @@
       "installs": "5,000,000+",
       "roi_score": 422,
       "priority": "Low"
-    },
-    {
-      "drawable": "geesports",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762242032.0,
-      "label": "GeeSports",
-      "componentName": "com.live.geesports/com.live.geesports.SplashActivity",
-      "roi_score": 0
     },
     {
       "drawable": "hrone_inbox_v2",
