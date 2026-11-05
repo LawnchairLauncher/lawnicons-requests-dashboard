@@ -1,8 +1,8 @@
 {
   "com": {
-    "requests": 21286,
+    "requests": 21281,
     "done": 14845,
-    "total": 36131,
+    "total": 36126,
     "global": 0,
     "global_installs": 0
   },
@@ -35,9 +35,9 @@
     "global_installs": 11249569493
   },
   "org": {
-    "requests": 1417,
+    "requests": 1412,
     "done": 1272,
-    "total": 2689,
+    "total": 2684,
     "global": 0,
     "global_installs": 0
   },
@@ -133,16 +133,16 @@
     "global_installs": 3924522215
   },
   "io": {
-    "requests": 355,
+    "requests": 354,
     "done": 309,
-    "total": 664,
+    "total": 663,
     "global": 0,
     "global_installs": 0
   },
   "app": {
-    "requests": 317,
+    "requests": 316,
     "done": 332,
-    "total": 649,
+    "total": 648,
     "global": 0,
     "global_installs": 0
   },
@@ -1406,13 +1406,6 @@
     "global": 0,
     "global_installs": 0
   },
-  "cx": {
-    "requests": 4,
-    "done": 3,
-    "total": 7,
-    "global": 0,
-    "global_installs": 0
-  },
   "deezer": {
     "requests": 0,
     "done": 7,
@@ -1577,6 +1570,13 @@
   "come": {
     "requests": 2,
     "done": 4,
+    "total": 6,
+    "global": 0,
+    "global_installs": 0
+  },
+  "cx": {
+    "requests": 3,
+    "done": 3,
     "total": 6,
     "global": 0,
     "global_installs": 0
