@@ -79,10 +79,6 @@
       "existing_drawable": "ping"
     },
     {
-      "id": "com.zui.weather/com.zui.weather.ui2.MainPageActivity",
-      "existing_drawable": "yahoo_weather"
-    },
-    {
       "id": "com.zui.recorder/com.zui.recorder.SoundRecorder",
       "existing_drawable": "generic_voice_recorder_waves"
     },
@@ -361,10 +357,6 @@
     {
       "id": "com.xjs.ehviewer/com.hippo.ehviewer.ui.splash.SplashActivity",
       "existing_drawable": "ehviewer"
-    },
-    {
-      "id": "com.mx.apps.iconchanger.customizeicon/com.mx.apps.iconchanger.customizeicon.ads.ump.UmpSplashScreenActivity2",
-      "existing_drawable": "icon_changer"
     },
     {
       "id": "com.plumhq.employee.production/com.plumhq.employee.core.presentation.views.activities.MainActivity",
@@ -907,6 +899,14 @@
       "existing_drawable": "adv_screen_recorder"
     },
     {
+      "id": "com.mobiletrendyapps.speaker.cleaner.remove.water/com.zipoapps.premiumhelper.ui.splash.PHSplashActivity",
+      "existing_drawable": "speaker_cleaner"
+    },
+    {
+      "id": "speaker.cleaner.water.remover.water.eject.liquid.remover.dust/speaker.cleaner.water.remover.water.eject.liquid.remover.dust.ui.activity.SplashActivity",
+      "existing_drawable": "speaker_cleaner"
+    },
+    {
       "id": "water.sort.puzzle.game.color.sorting.free/com.google.firebase.OrientationUnityPlayerActivity",
       "existing_drawable": "water_sort_puzzle"
     },
@@ -1381,6 +1381,10 @@
     {
       "id": "com.hydroapp.englishdictionary.advance.english.offline/com.englishdictionary.advance.english.presentation.splash.SplashActivity",
       "existing_drawable": "english_dictionary"
+    },
+    {
+      "id": "com.an.speakercleaner.water.eject.remove.dust.sounds/com.panda.speakercleaner2.ui.activity.MainActivityV2",
+      "existing_drawable": "speaker_cleaner"
     },
     {
       "id": "com.dice.app.jobs/com.dice.app.ui.jobs.activities.RoutingActivity",
@@ -1967,6 +1971,10 @@
       "existing_drawable": "messages"
     },
     {
+      "id": "ioapp.speaker.dustwater/com.zipoapps.premiumhelper.ui.splash.PHSplashActivity",
+      "existing_drawable": "speaker_cleaner"
+    },
+    {
       "id": "nl.tango/com.comarch.clm.mobile.tango.TangoBaseActivity",
       "existing_drawable": "tango"
     },
@@ -2089,6 +2097,10 @@
     {
       "id": "com.mohammed.alrehaili.ayah/com.yourname.ayah.MainActivity",
       "existing_drawable": "ayah"
+    },
+    {
+      "id": "com.speakercleaner.waterremover/com.speakercleaner.waterremover.ui.component.splash.SplashActivity",
+      "existing_drawable": "speaker_cleaner"
     },
     {
       "id": "com.vagujhelyigergely.calculatorm3/com.vagujhelyigergely.calculatorm3.MainActivity",
@@ -2221,6 +2233,10 @@
     {
       "id": "com.hesheng.flashlight/com.hesheng.flashlight.activity.FlashLightActivity",
       "existing_drawable": "flashlight"
+    },
+    {
+      "id": "com.alibaba.nano/com.github.kr328.clash.MainActivityAlias",
+      "existing_drawable": "meta"
     },
     {
       "id": "com.gimica.nonocross/com.unity3d.player.UnityPlayerActivity",
@@ -2807,6 +2823,10 @@
       "existing_drawable": "echo_music"
     },
     {
+      "id": "com.supersonic.heartrate/com.supersonic.heartrate.screens.MainActivity",
+      "existing_drawable": "heart_rate"
+    },
+    {
       "id": "com.surfline.android/com.surfline.android.MainActivity",
       "existing_drawable": "generic_compass"
     },
@@ -2849,6 +2869,10 @@
     {
       "id": "dinnerdeal.android.customer/aws.android.customer.ListActivity",
       "existing_drawable": "eatclub"
+    },
+    {
+      "id": "com.speaker.cleaner.remove.water.eject/com.speaker.cleaner.remove.water.eject.ui.activities.SplashActivity",
+      "existing_drawable": "speaker_cleaner"
     },
     {
       "id": "com.furyform.floatingclock/com.furyform.floatingclock.HomeActivity",
