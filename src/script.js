@@ -769,7 +769,7 @@ const Templates = {
     return `
       <div class="grid-card ${
       isSelected ? 'selected' : ''
-    }" data-id="${id}" title="${label}\nFirst time: ${Utils.formatDate(app.firstAppearance)}"
+    }" data-id="${id}" title="${label}\nRequests: ${app.requestCount ?? 0}\nImpact: ${app.priority || '—'}\nPoints: ${App.state.prioritiesData?.[id]?.sum ?? '—'}\nFirst time: ${Utils.formatDate(app.firstAppearance)}"
         tabindex="0" role="checkbox" aria-checked="${isSelected}">
         ${contentHtml}
         <div class="grid-overlay-tags">${tagHtml}</div>
@@ -5512,14 +5512,14 @@ layoutMasonry() {
             grid.innerHTML = matches.map((icon) =>
               Templates.libraryIconCard(icon)
             ).join('');
-            container.classList.add('expanded'); // <-- Добавляем класс
+            container.classList.add('expanded');
             expandBtn.querySelector('.copy-count').textContent = 'Show less';
             expandBtn.title = 'Show less';
           } else {
             grid.innerHTML = matches.slice(0, 20).map((icon) =>
               Templates.libraryIconCard(icon)
             ).join('');
-            container.classList.remove('expanded'); // <-- Убираем класс
+            container.classList.remove('expanded');
             expandBtn.querySelector('.copy-count').textContent = 'Show all';
             expandBtn.title = `Show all ${matches.length} icons`;
           }
