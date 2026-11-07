@@ -639,6 +639,10 @@
       "existing_drawable": "woolworths"
     },
     {
+      "id": "com.mk.awake/com.mk.awake.ui.app.screens.main.MainActivity",
+      "existing_drawable": "awake"
+    },
+    {
       "id": "com.pspdfkit.viewer/com.pspdfkit.viewer.ui.activity.MainActivity",
       "existing_drawable": "generic_pdf_file"
     },
@@ -1789,6 +1793,10 @@
     {
       "id": "ua.ws.bible.bibleandroid.en/ua.ws.bible.bibleandroid.activities.MainActivity",
       "existing_drawable": "generic_bible"
+    },
+    {
+      "id": "com.sarkaripravesh.speed.math/com.sarkaripravesh.speed.math.MainActivity",
+      "existing_drawable": "speed_math"
     },
     {
       "id": "systems.sieber.fsclock/systems.sieber.fsclock.FullscreenActivity",

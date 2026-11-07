@@ -1,5 +1,5 @@
 {
-  "count": 3697,
+  "count": 3695,
   "lastUpdate": "2026-11-07",
   "apps": [
     {
@@ -32,7 +32,7 @@
       "label": "Ozon \u0411\u0430\u043d\u043a",
       "componentName": "ru.ozon.fintech.finance/ru.ozon.fintech.features.tabber.presentation.finance.FinanceActivity",
       "installs": "10,000,000+",
-      "roi_score": 160461,
+      "roi_score": 160458,
       "priority": "Critical"
     },
     {
@@ -75,7 +75,7 @@
       "label": "\u0413\u043e\u0441\u043a\u043b\u044e\u0447",
       "componentName": "ru.gosuslugi.goskey/idpoint.application.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 279338,
+      "roi_score": 279333,
       "priority": "Critical"
     },
     {
@@ -108,7 +108,7 @@
       "label": "Survivor.io",
       "componentName": "com.dxx.firenow/com.unity3d.player.UnityPlayerActivityOverride",
       "installs": "10,000,000+",
-      "roi_score": 84065,
+      "roi_score": 84064,
       "priority": "High"
     },
     {
@@ -119,7 +119,7 @@
       "label": "Home Depot",
       "componentName": "com.thehomedepot/com.thehomedepot.startup.activities.StartupActivity",
       "installs": "10,000,000+",
-      "roi_score": 113283,
+      "roi_score": 113282,
       "priority": "High"
     },
     {
@@ -151,7 +151,7 @@
       "lastRequested": 1789001217.0,
       "label": "Tomato",
       "componentName": "com.tomatos.clientapp/com.tomatos.clientapp.SplashActivity",
-      "roi_score": 7459,
+      "roi_score": 7458,
       "priority": "Medium"
     },
     {
@@ -173,7 +173,7 @@
       "label": "Super Bear Adventure",
       "componentName": "com.Earthkwak.Platformer/com.unity3d.player.UnityPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 680229,
+      "roi_score": 680218,
       "priority": "Critical"
     },
     {
@@ -184,7 +184,7 @@
       "label": "Readest",
       "componentName": "com.bilingify.readest/com.bilingify.readest.MainActivity",
       "installs": "10,000+",
-      "roi_score": 30896,
+      "roi_score": 30895,
       "priority": "High"
     },
     {
@@ -217,7 +217,7 @@
       "label": "RFS",
       "componentName": "it.rortos.realflightsimulator/com.unity3d.player.UnityPlayerActivity",
       "installs": "5,000,000+",
-      "roi_score": 277997,
+      "roi_score": 277985,
       "priority": "Critical"
     },
     {
@@ -425,7 +425,7 @@
       "label": "Dan The Man",
       "componentName": "com.halfbrick.dantheman/com.halfbrick.mortar.MortarGameLauncherActivity",
       "installs": "100,000,000+",
-      "roi_score": 227632,
+      "roi_score": 227630,
       "priority": "Critical"
     },
     {
@@ -480,7 +480,7 @@
       "label": "ADPMobile",
       "componentName": "com.adpmobile.android/com.adpmobile.android.auth.ui.AuthAppActivity",
       "installs": "10,000,000+",
-      "roi_score": 140992,
+      "roi_score": 140991,
       "priority": "Critical"
     },
     {
@@ -579,7 +579,7 @@
       "label": "Compte ameli",
       "componentName": "fr.cnamts.it.activity/fr.cnamts.it.activity.LoginActivity",
       "installs": "10,000,000+",
-      "roi_score": 210890,
+      "roi_score": 210879,
       "priority": "Critical"
     },
     {
@@ -590,7 +590,7 @@
       "label": "au PAY",
       "componentName": "jp.auone.wallet/jp.auone.wallet.activity.AppStartActivity",
       "installs": "10,000,000+",
-      "roi_score": 233423,
+      "roi_score": 233415,
       "priority": "Critical"
     },
     {
@@ -601,7 +601,7 @@
       "label": "\u041d\u0430\u043b\u043e\u0433\u0438 \u0424\u041b",
       "componentName": "ru.fns.lkfl/ru.fns.lkfl.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 157016,
+      "roi_score": 157014,
       "priority": "Critical"
     },
     {
@@ -613,17 +613,6 @@
       "componentName": "com.ttterbagames.businesssimulator/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
       "roi_score": 46392,
-      "priority": "High"
-    },
-    {
-      "drawable": "bloons_td_6_netflix",
-      "requestCount": 29,
-      "firstAppearance": 1718596646.0,
-      "lastRequested": 1788250223.0,
-      "label": "Bloons TD 6 NETFLIX",
-      "componentName": "com.netflix.NGP.BloonsTDSix/com.unity3d.player.UnityPlayerActivity",
-      "installs": "5,000,000+",
-      "roi_score": 35480,
       "priority": "High"
     },
     {
@@ -645,7 +634,7 @@
       "label": "Snake.io",
       "componentName": "com.amelosinteractive.snake/com.kooapps.unity.CustomUnityPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 430755,
+      "roi_score": 430752,
       "priority": "Critical"
     },
     {
@@ -688,7 +677,7 @@
       "label": "\u041a\u0440\u0430\u0441\u043d\u043e\u0435&\u0411\u0435\u043b\u043e\u0435: \u043f\u0440\u043e\u0434\u0443\u043a\u0442\u044b, \u0430\u043a\u0446\u0438\u0438",
       "componentName": "ru.napoleonit.kb/ru.napoleonit.kb.screens.root.RootActivity",
       "installs": "10,000,000+",
-      "roi_score": 124050,
+      "roi_score": 124047,
       "priority": "High"
     },
     {
@@ -710,7 +699,7 @@
       "label": "Skullgirls",
       "componentName": "com.autumn.skullgirls/com.prime31.UnityPlayerNativeActivity",
       "installs": "10,000,000+",
-      "roi_score": 171353,
+      "roi_score": 171352,
       "priority": "Critical"
     },
     {
@@ -938,7 +927,7 @@
       "label": "IMSS Digital",
       "componentName": "st.android.imsspublico/crc642176304cdb761b92.Splash",
       "installs": "10,000,000+",
-      "roi_score": 118457,
+      "roi_score": 118456,
       "priority": "High"
     },
     {
@@ -953,17 +942,6 @@
       "priority": "Medium"
     },
     {
-      "drawable": "aria",
-      "requestCount": 27,
-      "firstAppearance": 1713896095.0,
-      "lastRequested": 1791691346.0,
-      "label": "Aria",
-      "componentName": "com.poppingmoon.aria/com.ryanheise.audioservice.AudioServiceActivity",
-      "installs": "5,000+",
-      "roi_score": 12435,
-      "priority": "Medium"
-    },
-    {
       "drawable": "ipatente",
       "requestCount": 26,
       "firstAppearance": 1723436116.0,
@@ -971,7 +949,7 @@
       "label": "iPatente",
       "componentName": "it.iwikiphone.portaleautomobilista2/it.iwikiphone.portaleautomobilista2.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 12563,
+      "roi_score": 12562,
       "priority": "Medium"
     },
     {
@@ -982,7 +960,7 @@
       "label": "My au",
       "componentName": "com.kddi.cs.app001/com.kddi.cs.app001.Agreement",
       "installs": "10,000,000+",
-      "roi_score": 47812,
+      "roi_score": 47811,
       "priority": "High"
     },
     {
@@ -1004,7 +982,7 @@
       "label": "Cursed house Multiplayer(GMM)",
       "componentName": "com.UnityUserco.EscapeHauntedHouseOnline/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 71213,
+      "roi_score": 71212,
       "priority": "High"
     },
     {
@@ -1036,7 +1014,7 @@
       "label": "Planet Fitness",
       "componentName": "com.planetfitness/crc646aa1cfe11af761d6.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 43026,
+      "roi_score": 43025,
       "priority": "High"
     },
     {
@@ -1102,7 +1080,7 @@
       "label": "iliad",
       "componentName": "it.iliad/it.iliad.presentation.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 22450,
+      "roi_score": 22449,
       "priority": "Medium"
     },
     {
@@ -1210,7 +1188,7 @@
       "label": "Tower War",
       "componentName": "games.vaveda.militaryoverturn/by.saygames.SayKitActivity",
       "installs": "100,000,000+",
-      "roi_score": 332688,
+      "roi_score": 332682,
       "priority": "Critical"
     },
     {
@@ -1221,7 +1199,7 @@
       "label": "Addons",
       "componentName": "com.kayenworks.mcpeaddons/com.kayenworks.mcpeaddons.SplashActivity",
       "installs": "50,000,000+",
-      "roi_score": 251086,
+      "roi_score": 251085,
       "priority": "Critical"
     },
     {
@@ -1232,7 +1210,7 @@
       "label": "Al Cambio",
       "componentName": "com.alcambio.app/com.alcambio.app.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 47718,
+      "roi_score": 47717,
       "priority": "High"
     },
     {
@@ -1254,7 +1232,7 @@
       "label": "WINDTRE",
       "componentName": "it.wind.myWind/it.wind.windtre.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 372161,
+      "roi_score": 372144,
       "priority": "Critical"
     },
     {
@@ -1298,7 +1276,7 @@
       "label": "Turboprop Flight Simulator",
       "componentName": "com.AXgamesoft.TurbopropFS/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 63199,
+      "roi_score": 63196,
       "priority": "High"
     },
     {
@@ -1364,7 +1342,7 @@
       "label": "GRID\u2122 Autosport",
       "componentName": "com.feralinteractive.gridas/com.feralinteractive.gridas.MainActivity",
       "installs": "100,000+",
-      "roi_score": 13863,
+      "roi_score": 13862,
       "priority": "Medium"
     },
     {
@@ -1396,7 +1374,7 @@
       "label": "NASA",
       "componentName": "gov.nasa/gov.nasa.ui.activities.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 101768,
+      "roi_score": 101767,
       "priority": "High"
     },
     {
@@ -1407,7 +1385,7 @@
       "label": "Retro Bowl",
       "componentName": "com.newstargames.retrobowl/com.newstargames.retrobowl.RunnerActivity",
       "installs": "5,000,000+",
-      "roi_score": 80453,
+      "roi_score": 80450,
       "priority": "High"
     },
     {
@@ -1429,7 +1407,7 @@
       "label": "VIDAA",
       "componentName": "com.universal.remote.multi/com.universal.remote.multi.U6MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 82881,
+      "roi_score": 82879,
       "priority": "High"
     },
     {
@@ -1505,7 +1483,7 @@
       "label": "Fluffy Fall",
       "componentName": "com.whatgames.android.ANMP.FAHM/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 80231,
+      "roi_score": 80230,
       "priority": "High"
     },
     {
@@ -1560,7 +1538,7 @@
       "label": "ITVX",
       "componentName": "air.ITVMobilePlayer/com.candyspace.itvplayer.ui.launcher.LauncherActivity",
       "installs": "10,000,000+",
-      "roi_score": 64998,
+      "roi_score": 64996,
       "priority": "High"
     },
     {
@@ -1646,7 +1624,7 @@
       "label": "HMRC",
       "componentName": "uk.gov.hmrc.ptcalc/uk.gov.hmrc.ptcalc.presentation.splash.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 434469,
+      "roi_score": 434438,
       "priority": "Critical"
     },
     {
@@ -1721,7 +1699,7 @@
       "label": "Pixel Gun 3D",
       "componentName": "com.pixel.gun3d/com.pixelgun.MessagingAndPrime31UnityPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 98943,
+      "roi_score": 98938,
       "priority": "High"
     },
     {
@@ -1852,7 +1830,7 @@
       "label": "Circle to Search",
       "componentName": "com.circletosearch.android/com.circletosearch.android.activity.SetupActivity",
       "installs": "500,000+",
-      "roi_score": 11834,
+      "roi_score": 11833,
       "priority": "Medium"
     },
     {
@@ -1927,7 +1905,7 @@
       "label": "Spin Premia",
       "componentName": "com.digitalfemsa_spinplus/com.digitalfemsa_spinplus.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 95533,
+      "roi_score": 95532,
       "priority": "High"
     },
     {
@@ -1938,7 +1916,7 @@
       "label": "Insta360",
       "componentName": "com.arashivision.insta360akiko/com.arashivision.insta360akiko.app.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 25682,
+      "roi_score": 25680,
       "priority": "Medium"
     },
     {
@@ -1960,7 +1938,7 @@
       "label": "Dude Theft Wars",
       "componentName": "com.PoxelStudios.DudeTheftAuto/com.unity3d.player.UnityPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 259877,
+      "roi_score": 259868,
       "priority": "Critical"
     },
     {
@@ -1982,7 +1960,7 @@
       "label": "vidIQ",
       "componentName": "com.vidiq.app/com.vidiq.app.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 64862,
+      "roi_score": 64861,
       "priority": "High"
     },
     {
@@ -2145,7 +2123,7 @@
       "label": "Rider Worlds",
       "componentName": "com.ketchapp.rider.evolution.world.race.car.bike.flip/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 40826,
+      "roi_score": 40825,
       "priority": "High"
     },
     {
@@ -2287,7 +2265,7 @@
       "label": "Shell",
       "componentName": "com.shell.sitibv.motorist.america/com.mobgen.fireblade.presentation.splash.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 22795,
+      "roi_score": 22794,
       "priority": "Medium"
     },
     {
@@ -2298,7 +2276,7 @@
       "label": "JioJoin",
       "componentName": "com.jio.jse/com.jio.jse.mobile.ui.activity.SplashScreenActivity",
       "installs": "10,000,000+",
-      "roi_score": 116407,
+      "roi_score": 116405,
       "priority": "High"
     },
     {
@@ -2353,7 +2331,7 @@
       "label": "Hungry Shark",
       "componentName": "com.fgol.HungrySharkEvolution/com.unity3d.player.UnityPlayerActivity",
       "installs": "500,000,000+",
-      "roi_score": 246029,
+      "roi_score": 246025,
       "priority": "Critical"
     },
     {
@@ -2471,7 +2449,7 @@
       "lastRequested": 1786251589.0,
       "label": "Cube ACR Helper",
       "componentName": "com.catalinagroup.callrecorder.helper/com.catalinagroup.callrecorder.AppListActivityAlias",
-      "roi_score": 3232,
+      "roi_score": 3231,
       "priority": "Low"
     },
     {
@@ -2482,7 +2460,7 @@
       "label": "Cats&Soup",
       "componentName": "com.hidea.cat/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 38977,
+      "roi_score": 38976,
       "priority": "High"
     },
     {
@@ -2581,7 +2559,7 @@
       "label": "Nobodies: MurderCleaner",
       "componentName": "com.blyts.nobodies/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 16937,
+      "roi_score": 16936,
       "priority": "Medium"
     },
     {
@@ -2592,7 +2570,7 @@
       "label": "Maxizoo / Fressnapf",
       "componentName": "com.fressnapf.mobileapp/com.fressnapf.app.ui.main.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 43341,
+      "roi_score": 43339,
       "priority": "High"
     },
     {
@@ -2603,7 +2581,7 @@
       "label": "Experian",
       "componentName": "com.experian.android/com.experian.activities.LandingActivity",
       "installs": "10,000,000+",
-      "roi_score": 31136,
+      "roi_score": 31135,
       "priority": "High"
     },
     {
@@ -2614,7 +2592,7 @@
       "label": "Parkster",
       "componentName": "se.parkster.client.android/se.parkster.client.android.base.feature.start.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 328329,
+      "roi_score": 328312,
       "priority": "Critical"
     },
     {
@@ -2624,7 +2602,7 @@
       "lastRequested": 1791278377.0,
       "label": "SherpaTTS",
       "componentName": "org.woheller69.ttsengine/com.k2fsa.sherpa.onnx.tts.engine.MainActivity",
-      "roi_score": 11868,
+      "roi_score": 11867,
       "priority": "Medium",
       "installs": "100,000+"
     },
@@ -2647,7 +2625,7 @@
       "label": "Master Duel",
       "componentName": "jp.konami.masterduel/jp.konami.masterduel.plugins.YgomdMainActivity",
       "installs": "5,000,000+",
-      "roi_score": 62770,
+      "roi_score": 62768,
       "priority": "High"
     },
     {
@@ -2712,7 +2690,7 @@
       "label": "Royal Mail",
       "componentName": "com.royalmail.app.droid/crc64f7852c3a8749d057.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 28447,
+      "roi_score": 28445,
       "priority": "High"
     },
     {
@@ -2745,7 +2723,7 @@
       "label": "FitCloudPro",
       "componentName": "com.topstep.fitcloudpro/com.topstep.fitcloud.pro.ui.LaunchActivity",
       "installs": "10,000,000+",
-      "roi_score": 102954,
+      "roi_score": 102953,
       "priority": "High"
     },
     {
@@ -2921,7 +2899,7 @@
       "label": "Antimatter Dimensions",
       "componentName": "kajfosz.antimatterdimensions/kajfosz.antimatterdimensions.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 11009,
+      "roi_score": 11007,
       "priority": "Medium"
     },
     {
@@ -2942,7 +2920,7 @@
       "lastRequested": 1789398107.0,
       "label": "PxView R",
       "componentName": "com.utopia.pxviewr/com.utopia.pxviewr.MainActivity",
-      "roi_score": 3593,
+      "roi_score": 3592,
       "priority": "Low"
     },
     {
@@ -2986,7 +2964,7 @@
       "label": "\u30dc\u30af\u3068\u535a\u7269\u9928",
       "componentName": "jp.oridio.museum/jp.oridio.museum.AdsActivity",
       "installs": "5,000,000+",
-      "roi_score": 33822,
+      "roi_score": 33821,
       "priority": "High"
     },
     {
@@ -2997,7 +2975,7 @@
       "label": "au\u30bb\u30eb\u30d5\u30b1\u30a2",
       "componentName": "com.kddi.selfcare.client/com.kddi.selfcare.client.StartupActivity",
       "installs": "10,000,000+",
-      "roi_score": 37875,
+      "roi_score": 37874,
       "priority": "High"
     },
     {
@@ -3106,7 +3084,7 @@
       "label": "Aruba PEC",
       "componentName": "it.aruba.pec.mobile/it.aruba.mobile.uxlib.loginUx.LoginActivity",
       "installs": "5,000,000+",
-      "roi_score": 454994,
+      "roi_score": 454973,
       "priority": "Critical"
     },
     {
@@ -3150,7 +3128,7 @@
       "label": "SpecialForcesGroup2",
       "componentName": "com.ForgeGames.SpecialForcesGroup2/com.epicgames.ue4.SplashActivity",
       "installs": "100,000,000+",
-      "roi_score": 194466,
+      "roi_score": 194463,
       "priority": "Critical"
     },
     {
@@ -3182,7 +3160,7 @@
       "label": "Indomaret Poinku",
       "componentName": "mypoin.indomaret.android/mypoin.indomaret.android.ui.splash.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 37875,
+      "roi_score": 37874,
       "priority": "High"
     },
     {
@@ -3237,7 +3215,7 @@
       "label": "\u932c\u91d1\u8853",
       "componentName": "com.ilyin.alchemy/com.ilyin.app_google_core.GoogleAppActivity",
       "installs": "10,000,000+",
-      "roi_score": 38163,
+      "roi_score": 38162,
       "priority": "High"
     },
     {
@@ -3412,7 +3390,7 @@
       "label": "JoyRide Superapp",
       "componentName": "com.joyride.rider/com.joyride.rider.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 31291,
+      "roi_score": 31290,
       "priority": "High"
     },
     {
@@ -3445,7 +3423,7 @@
       "label": "Swordash",
       "componentName": "com.fattoy.swordash.android/com.unity3d.player.UnityPlayerActivity",
       "installs": "5,000,000+",
-      "roi_score": 50615,
+      "roi_score": 50614,
       "priority": "High"
     },
     {
@@ -3467,7 +3445,7 @@
       "label": "Skinseed",
       "componentName": "com.africasunrise.skinseed/com.africasunrise.skinseed.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 31072,
+      "roi_score": 31071,
       "priority": "High"
     },
     {
@@ -3498,7 +3476,7 @@
       "label": "Ponta\u30d1\u30b9",
       "componentName": "com.kddi.android.smartpass/com.kddi.android.smartpass.Main",
       "installs": "10,000,000+",
-      "roi_score": 35964,
+      "roi_score": 35963,
       "priority": "High"
     },
     {
@@ -3530,7 +3508,7 @@
       "label": "Rusty Lake Hotel",
       "componentName": "air.com.RustyLake.RustyLakeHotel/air.com.RustyLake.RustyLakeHotel.AIRAppEntry",
       "installs": "100,000+",
-      "roi_score": 11675,
+      "roi_score": 11674,
       "priority": "Medium"
     },
     {
@@ -3585,7 +3563,7 @@
       "label": "CSR Racing 2",
       "componentName": "com.naturalmotion.customstreetracer2/com.bossalien.racer02.CSRPlayerActivity",
       "installs": "50,000,000+",
-      "roi_score": 76741,
+      "roi_score": 76738,
       "priority": "High"
     },
     {
@@ -3596,7 +3574,7 @@
       "label": "Minecraft Education",
       "componentName": "com.mojang.minecraftedu/com.mojang.minecraftpe.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 36726,
+      "roi_score": 36717,
       "priority": "High"
     },
     {
@@ -3607,7 +3585,7 @@
       "label": "Samsara Room",
       "componentName": "air.com.RustyLake.SamsaraRoom/air.com.RustyLake.SamsaraRoom.AIRAppEntry",
       "installs": "5,000,000+",
-      "roi_score": 26435,
+      "roi_score": 26434,
       "priority": "Medium"
     },
     {
@@ -3629,7 +3607,7 @@
       "label": "Fender Tune",
       "componentName": "com.fender.tuner/com.fender.tuner.activities.HomeActivity",
       "installs": "5,000,000+",
-      "roi_score": 25004,
+      "roi_score": 25003,
       "priority": "Medium"
     },
     {
@@ -3651,7 +3629,7 @@
       "label": "NetShare",
       "componentName": "kha.prog.mikrotik/kha.prog.mikrotik.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 62042,
+      "roi_score": 62041,
       "priority": "High"
     },
     {
@@ -3738,7 +3716,7 @@
       "label": "\u0414\u043d\u0435\u0432\u043d\u0438\u043a",
       "componentName": "ru.mes.dnevnik.fgis/ru.mes.dnevnik.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 30210,
+      "roi_score": 30209,
       "priority": "High"
     },
     {
@@ -3815,7 +3793,7 @@
       "label": "Empik",
       "componentName": "com.empik.empikapp/com.empik.empikapp.entry.view.EntryActivity",
       "installs": "5,000,000+",
-      "roi_score": 21880,
+      "roi_score": 21879,
       "priority": "Medium"
     },
     {
@@ -3846,7 +3824,7 @@
       "lastRequested": 1761494998.0,
       "label": "SuperTux",
       "componentName": "org.lethargik.supertux2/org.lethargik.supertux2.MainActivity",
-      "roi_score": 2115,
+      "roi_score": 2114,
       "priority": "Low"
     },
     {
@@ -3933,7 +3911,7 @@
       "lastRequested": 1791746393.0,
       "label": "OBS Blade",
       "componentName": "com.kounex.obsBlade/com.kounex.obsBlade.MainActivity",
-      "roi_score": 7933,
+      "roi_score": 7932,
       "priority": "Medium"
     },
     {
@@ -4009,7 +3987,7 @@
       "label": "gStrings",
       "componentName": "org.cohortor.gstrings/org.cohortor.gstrings.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 41889,
+      "roi_score": 41888,
       "priority": "High"
     },
     {
@@ -4020,7 +3998,7 @@
       "label": "GMX Mail",
       "componentName": "de.gmx.mobile.android.mail/com.unitedinternet.portal.ui.HostActivity",
       "installs": "10,000,000+",
-      "roi_score": 188939,
+      "roi_score": 188930,
       "priority": "Critical"
     },
     {
@@ -4086,7 +4064,7 @@
       "label": "Nicegram",
       "componentName": "app.nicegram/org.telegram.messenger.DefaultIcon",
       "installs": "5,000,000+",
-      "roi_score": 28117,
+      "roi_score": 28116,
       "priority": "High"
     },
     {
@@ -4152,7 +4130,7 @@
       "label": "Rusty Lake Roots",
       "componentName": "air.com.RustyLake.RustyLakeRoots/air.com.RustyLake.RustyLakeRoots.AIRAppEntry",
       "installs": "100,000+",
-      "roi_score": 11468,
+      "roi_score": 11467,
       "priority": "Medium"
     },
     {
@@ -4163,7 +4141,7 @@
       "label": "NexiPay",
       "componentName": "it.icbpi.mobile/it.icbpi.mobile.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 224014,
+      "roi_score": 224004,
       "priority": "Critical"
     },
     {
@@ -4195,7 +4173,7 @@
       "label": "Cartes IGN",
       "componentName": "fr.ign.geoportail/fr.ign.geoportail.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 14412,
+      "roi_score": 14411,
       "priority": "Medium"
     },
     {
@@ -4206,7 +4184,7 @@
       "label": "WiGLE WiFi Wardriving",
       "componentName": "net.wigle.wigleandroid/net.wigle.wigleandroid.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 15173,
+      "roi_score": 15172,
       "priority": "Medium"
     },
     {
@@ -4239,7 +4217,7 @@
       "label": "\u0414\u0438\u043a\u0442\u043e\u0444\u043e\u043d - URecorder",
       "componentName": "voicerecorder.audiorecorder.voice/voicerecorder.audiorecorder.voice.activity.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 74747,
+      "roi_score": 74746,
       "priority": "High"
     },
     {
@@ -4336,7 +4314,7 @@
       "label": "IPTV",
       "componentName": "ru.iptvremote.android.iptv/ru.iptvremote.android.iptv.ChannelsActivity",
       "installs": "10,000,000+",
-      "roi_score": 99566,
+      "roi_score": 99564,
       "priority": "High"
     },
     {
@@ -4358,7 +4336,7 @@
       "label": "VR Banking - einfach sicher",
       "componentName": "de.fiduciagad.banking.vr/de.fiduciagad.banking.screens.navigation.NavigationActivity",
       "installs": "5,000,000+",
-      "roi_score": 125912,
+      "roi_score": 125907,
       "priority": "High"
     },
     {
@@ -4511,7 +4489,7 @@
       "label": "Smart Tools - All In One",
       "componentName": "com.pcmehanik.smarttoolbox/com.pcmehanik.smarttoolsutilities.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 26652,
+      "roi_score": 26651,
       "priority": "Medium"
     },
     {
@@ -4599,7 +4577,7 @@
       "label": "My Tom 2",
       "componentName": "com.outfit7.mytalkingtom2/com.outfit7.felis.SplashActivity",
       "installs": "1,000,000,000+",
-      "roi_score": 242246,
+      "roi_score": 242238,
       "priority": "Critical"
     },
     {
@@ -4610,7 +4588,7 @@
       "label": "Last War",
       "componentName": "com.fun.lastwar.gp/com.im30.aps.debug.UnityPlayerActivityCustom",
       "installs": "50,000,000+",
-      "roi_score": 57050,
+      "roi_score": 57047,
       "priority": "High"
     },
     {
@@ -4621,7 +4599,7 @@
       "label": "State.io \u2014 Conquer the World",
       "componentName": "io.state.fight/com.unity3d.player.UnityPlayerActivity",
       "installs": "50,000,000+",
-      "roi_score": 206526,
+      "roi_score": 206525,
       "priority": "Critical"
     },
     {
@@ -4676,7 +4654,7 @@
       "label": "Elements Merge",
       "componentName": "com.build.succeeded.mergeelements/com.unity3d.player.UnityPlayerActivity",
       "installs": "100,000+",
-      "roi_score": 6420,
+      "roi_score": 6419,
       "priority": "Low"
     },
     {
@@ -4687,7 +4665,7 @@
       "label": "eBike Flow",
       "componentName": "com.bosch.ebike.onebikeapp/com.bosch.ebike.onebikeapp.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 19915,
+      "roi_score": 19914,
       "priority": "Medium"
     },
     {
@@ -4753,7 +4731,7 @@
       "label": "BookmarkFolder",
       "componentName": "com.coconuts.webnavigator/com.coconuts.webnavigator.ActMain",
       "installs": "500,000+",
-      "roi_score": 10283,
+      "roi_score": 10282,
       "priority": "Medium"
     },
     {
@@ -4774,7 +4752,7 @@
       "label": "Collection2",
       "componentName": "jp.nicolet.collection2/com.unity3d.player.UnityPlayerActivity",
       "installs": "100,000+",
-      "roi_score": 5106,
+      "roi_score": 5105,
       "priority": "Low"
     },
     {
@@ -4807,7 +4785,7 @@
       "label": "Hero Rescue 2",
       "componentName": "com.herorescue2.pullpin.howtoloot/com.unity3d.player.UnityPlayerActivity",
       "installs": "5,000,000+",
-      "roi_score": 25394,
+      "roi_score": 25393,
       "priority": "Medium"
     },
     {
@@ -4818,7 +4796,7 @@
       "label": "Nobodies: Silent Blood",
       "componentName": "com.blyts.nobodiescrypto/com.unity3d.player.UnityPlayerActivity",
       "installs": "100,000+",
-      "roi_score": 6420,
+      "roi_score": 6419,
       "priority": "Low"
     },
     {
@@ -4840,7 +4818,7 @@
       "label": "PastNotifications",
       "componentName": "com.coconuts.pastnotifications/com.coconuts.pastnotifications.views.MainActivity",
       "installs": "100,000+",
-      "roi_score": 6420,
+      "roi_score": 6419,
       "priority": "Low"
     },
     {
@@ -4873,7 +4851,7 @@
       "label": "Rusty Lake Paradise",
       "componentName": "air.com.RustyLake.RustyLakeParadise/air.com.RustyLake.RustyLakeParadise.AIRAppEntry",
       "installs": "100,000+",
-      "roi_score": 6420,
+      "roi_score": 6419,
       "priority": "Low"
     },
     {
@@ -4884,7 +4862,7 @@
       "label": "The Past Within",
       "componentName": "com.RustyLake.ThePastWithin/com.unity3d.player.UnityPlayerActivity",
       "installs": "100,000+",
-      "roi_score": 6420,
+      "roi_score": 6419,
       "priority": "Low"
     },
     {
@@ -4895,7 +4873,7 @@
       "label": "Underground Blossom",
       "componentName": "air.com.RustyLake.UndergroundBlossom/air.com.RustyLake.UndergroundBlossom.AIRAppEntry",
       "installs": "100,000+",
-      "roi_score": 6420,
+      "roi_score": 6419,
       "priority": "Low"
     },
     {
@@ -4906,7 +4884,7 @@
       "label": "\u30a2\u30eb\u30d5\u30a1\u5c0f\u8aac\u6295\u7a3f",
       "componentName": "jp.co.alphapolis.novel_manage/jp.co.alphapolis.novel_manage.activities.MainActivity",
       "installs": "50,000+",
-      "roi_score": 4378,
+      "roi_score": 4377,
       "priority": "Low"
     },
     {
@@ -4917,7 +4895,7 @@
       "label": "\u30b5\u30af\u30c3\u3068\u30bd\u30ea\u30c6\u30a3\u30a2\u30b7\u30c6\u30a3",
       "componentName": "com.stickyhands.android.solitaire/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "500,000+",
-      "roi_score": 10283,
+      "roi_score": 10282,
       "priority": "Medium"
     },
     {
@@ -4928,7 +4906,7 @@
       "label": "\u30b7\u30e3\u30a4\u30cb\u30ad",
       "componentName": "com.papegames.nn4.jp/com.nikki.nn4lib.NN4PlayerActivity",
       "installs": "100,000+",
-      "roi_score": 6420,
+      "roi_score": 6419,
       "priority": "Low"
     },
     {
@@ -4939,7 +4917,7 @@
       "label": "\u30bd\u30ea\u30c6\u30a3\u30a2\u30af\u30c3\u30ad\u30f3\u30b0\u30bf\u30ef\u30fc",
       "componentName": "com.stickyhands.cookingtown/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "500,000+",
-      "roi_score": 10283,
+      "roi_score": 10282,
       "priority": "Medium"
     },
     {
@@ -4961,7 +4939,7 @@
       "label": "\u30c7\u30b8\u30e9\u30a2\u30d7\u30ea",
       "componentName": "com.kddi.datacharge/com.kddi.dezilla.activity.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 34547,
+      "roi_score": 34546,
       "priority": "High"
     },
     {
@@ -4981,7 +4959,7 @@
       "label": "\u5b89\u5426\u78ba\u8a8d2",
       "componentName": "com.cstap.anpi2/anpi.ui.MainActivity",
       "installs": "500,000+",
-      "roi_score": 10283,
+      "roi_score": 10282,
       "priority": "Medium"
     },
     {
@@ -5003,7 +4981,7 @@
       "label": "\u732b\u3068\u79d8\u5bc6\u306e\u68ee",
       "componentName": "air.net.ideasam.games.cat/air.net.ideasam.games.cat.AIRAppEntry",
       "installs": "5,000,000+",
-      "roi_score": 24459,
+      "roi_score": 24458,
       "priority": "Medium"
     },
     {
@@ -5079,7 +5057,7 @@
       "label": "Bullet Echo: PVP Shooter",
       "componentName": "com.zeptolab.bulletecho.google/com.zf3.GameActivity",
       "installs": "10,000,000+",
-      "roi_score": 31327,
+      "roi_score": 31326,
       "priority": "High"
     },
     {
@@ -5134,7 +5112,7 @@
       "label": "Z\u00e9 Delivery",
       "componentName": "com.cerveceriamodelo.modelonow/com.cerveceriamodelo.modelonow.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 36184,
+      "roi_score": 36182,
       "priority": "High"
     },
     {
@@ -5155,7 +5133,7 @@
       "lastRequested": 1789398107.0,
       "label": "MD Connectivity Helper",
       "componentName": "com.arlosoft.macrodroid.connectivityhelper/com.arlosoft.macrodroid.helper.ui.HomeScreenActivity",
-      "roi_score": 3158,
+      "roi_score": 3157,
       "priority": "Low"
     },
     {
@@ -5188,7 +5166,7 @@
       "label": "Angry Birds Friends",
       "componentName": "com.rovio.angrybirdsfriends/com.amazon.securebrowser.SecureBrowserActivity",
       "installs": "100,000,000+",
-      "roi_score": 274433,
+      "roi_score": 274432,
       "priority": "Critical"
     },
     {
@@ -5210,7 +5188,7 @@
       "label": "FeedFlow",
       "componentName": "com.prof18.feedflow/com.prof18.feedflow.android.MainActivity",
       "installs": "10,000+",
-      "roi_score": 7892,
+      "roi_score": 7891,
       "priority": "Medium"
     },
     {
@@ -5309,7 +5287,7 @@
       "label": "\u0427\u0430\u0442 NektoMe",
       "componentName": "com.nektome.talk/com.nektome.talk.main.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 63893,
+      "roi_score": 63892,
       "priority": "High"
     },
     {
@@ -5374,7 +5352,7 @@
       "label": "\u8ff7\u60d1\u30e1\u30c3\u30bb\u30fc\u30b8\u30fb\u96fb\u8a71\u30d6\u30ed\u30c3\u30af",
       "componentName": "com.tobila.tobilaphone.mobile.android.au/com.tobila.tobilaphone.mobile.android.activity.TPSplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 23702,
+      "roi_score": 23701,
       "priority": "Medium"
     },
     {
@@ -5385,7 +5363,7 @@
       "label": "\u9060\u9694\u64cd\u4f5c\u30b5\u30dd\u30fc\u30c8",
       "componentName": "com.kddi.android.remotesupport/com.kddi.android.remotesupport.activity.MainControllerActivity",
       "installs": "5,000,000+",
-      "roi_score": 23702,
+      "roi_score": 23701,
       "priority": "Medium"
     },
     {
@@ -5593,7 +5571,7 @@
       "label": "\u30de\u30eb\u30c1\u30b3\u30d4\u30fc",
       "componentName": "com.fujifilm.fb.mcopy/com.fujifilm.fb.mcopy.splash.activities.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 15125,
+      "roi_score": 15124,
       "priority": "Medium"
     },
     {
@@ -5646,7 +5624,7 @@
       "label": "\u0414\u0435\u043b\u0438\u0432\u0435\u0440\u0438",
       "componentName": "com.deliveryclub/com.deliveryclub.MdMainActivity",
       "installs": "10,000,000+",
-      "roi_score": 29417,
+      "roi_score": 29416,
       "priority": "High"
     },
     {
@@ -5657,7 +5635,7 @@
       "label": "Otherworld Legends",
       "componentName": "com.chillyroom.zhmr.gp/com.chillyroomsdk.sdkbridge.BasePlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 31649,
+      "roi_score": 31648,
       "priority": "High"
     },
     {
@@ -5690,7 +5668,7 @@
       "label": "Touchscreen Repair",
       "componentName": "apps.redpi.touchscreenrepair/apps.redpi.touchscreenrepair.view.screen.NavActivity",
       "installs": "10,000,000+",
-      "roi_score": 26898,
+      "roi_score": 26897,
       "priority": "Medium"
     },
     {
@@ -5745,7 +5723,7 @@
       "label": "Monefy - Budget & Expenses app",
       "componentName": "com.monefy.app.lite/com.monefy.activities.main.MainActivity_",
       "installs": "5,000,000+",
-      "roi_score": 19929,
+      "roi_score": 19928,
       "priority": "Medium"
     },
     {
@@ -5756,7 +5734,7 @@
       "label": "HabitKit",
       "componentName": "com.roehl.habitkit/com.roehl.habitkit.MainActivity",
       "installs": "500,000+",
-      "roi_score": 14382,
+      "roi_score": 14381,
       "priority": "Medium"
     },
     {
@@ -5908,7 +5886,7 @@
       "label": "Azur Lane",
       "componentName": "com.YoStarEN.AzurLane/com.manjuu.azurlane.PrePermissionActivity",
       "installs": "5,000,000+",
-      "roi_score": 41069,
+      "roi_score": 41068,
       "priority": "High"
     },
     {
@@ -5941,7 +5919,7 @@
       "label": "SAMEDAY",
       "componentName": "com.sameday.client.mobile/com.sameday.client.mobile.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 11278,
+      "roi_score": 11277,
       "priority": "Medium"
     },
     {
@@ -5996,7 +5974,7 @@
       "label": "Getaway 2",
       "componentName": "com.pixelbite.ga2/com.pixelbite.bite.BiteNativeActivity",
       "installs": "50,000,000+",
-      "roi_score": 144411,
+      "roi_score": 144410,
       "priority": "Critical"
     },
     {
@@ -6062,7 +6040,7 @@
       "label": "Claro drive",
       "componentName": "com.clarodrive.android/com.owncloud.android.ui.splash.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 93328,
+      "roi_score": 93326,
       "priority": "High"
     },
     {
@@ -6095,7 +6073,7 @@
       "label": "Mods, maps skins for Minecraft",
       "componentName": "com.mods.maps.mine/com.mods.maps.mine.ui.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 62819,
+      "roi_score": 62818,
       "priority": "High"
     },
     {
@@ -6289,7 +6267,7 @@
       "label": "Pony Town - Social MMORPG",
       "componentName": "town.pony.game/town.pony.game.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 27972,
+      "roi_score": 27971,
       "priority": "High"
     },
     {
@@ -6332,7 +6310,7 @@
       "label": "Fake Call - Prank Friends",
       "componentName": "com.fungame.fakecall.prankfriend/com.fungame.fakecall.prankfriend.ui.activity.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 25112,
+      "roi_score": 25111,
       "priority": "Medium"
     },
     {
@@ -6430,7 +6408,7 @@
       "label": "SeatGeek",
       "componentName": "com.seatgeek.android/com.seatgeek.android.ui.activities.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 38210,
+      "roi_score": 38209,
       "priority": "High"
     },
     {
@@ -6834,7 +6812,7 @@
       "label": "Aurora",
       "componentName": "com.jrustonapps.myauroraforecast/com.jrustonapps.myauroraforecast.controllers.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 20964,
+      "roi_score": 20963,
       "priority": "Medium"
     },
     {
@@ -6853,7 +6831,7 @@
       "lastRequested": 1782039408.0,
       "label": "\u8baf\u98de\u8f93\u5165\u6cd5",
       "componentName": "com.iflytek.inputmethod/com.iflytek.inputmethod.LauncherActivity",
-      "roi_score": 3047,
+      "roi_score": 3046,
       "priority": "Low"
     },
     {
@@ -6864,7 +6842,7 @@
       "label": "MyNetDiary",
       "componentName": "com.fourtechnologies.mynetdiary.ad/com.mynetdiary.auth.AuthActivity",
       "installs": "5,000,000+",
-      "roi_score": 24566,
+      "roi_score": 24565,
       "priority": "Medium"
     },
     {
@@ -6930,7 +6908,7 @@
       "label": "NHL",
       "componentName": "com.nhl.gc1112.free/com.nhl.mobile.android.main.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 23590,
+      "roi_score": 23589,
       "priority": "Medium"
     },
     {
@@ -7288,7 +7266,7 @@
       "label": "MoshUp",
       "componentName": "com.pytebyte.moshup/com.pytebyte.moshup.StartScreen",
       "installs": "10,000+",
-      "roi_score": 4157,
+      "roi_score": 4156,
       "priority": "Low"
     },
     {
@@ -7450,7 +7428,7 @@
       "label": "Zotero",
       "componentName": "org.zotero.android/org.zotero.android.screens.root.RootActivity",
       "installs": "100,000+",
-      "roi_score": 10997,
+      "roi_score": 10996,
       "priority": "Medium"
     },
     {
@@ -7559,7 +7537,7 @@
       "label": "Wordle",
       "componentName": "com.vottzapps.wordle/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 38736,
+      "roi_score": 38735,
       "priority": "High"
     },
     {
@@ -7614,7 +7592,7 @@
       "label": "Remitly",
       "componentName": "com.remitly.androidapp/com.remitly.androidapp.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 42714,
+      "roi_score": 42712,
       "priority": "High"
     },
     {
@@ -7647,7 +7625,7 @@
       "label": "CeX",
       "componentName": "com.cex.android/com.cex.android.view.activities.ParentHomeActivity",
       "installs": "1,000,000+",
-      "roi_score": 8115,
+      "roi_score": 8114,
       "priority": "Medium"
     },
     {
@@ -7658,7 +7636,7 @@
       "label": "Dollar General",
       "componentName": "com.dollargeneral.android/dgapp2.dollargeneral.com.dgapp2_android.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 45972,
+      "roi_score": 45970,
       "priority": "High"
     },
     {
@@ -7909,7 +7887,7 @@
       "label": "DaTuner",
       "componentName": "com.bork.dsp.datuna/com.applicaudia.dsp.datuner.activities.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 62525,
+      "roi_score": 62524,
       "priority": "High"
     },
     {
@@ -7920,7 +7898,7 @@
       "label": "Grand Mountain Adventure",
       "componentName": "com.toppluva.grandmountain/com.toppluva.grandmountain.PortisNativeActivity",
       "installs": "10,000,000+",
-      "roi_score": 31326,
+      "roi_score": 31325,
       "priority": "High"
     },
     {
@@ -7952,7 +7930,7 @@
       "label": "USB Camera",
       "componentName": "com.shenyaocn.android.usbcamera/com.shenyaocn.android.usbcamera.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 62165,
+      "roi_score": 62164,
       "priority": "High"
     },
     {
@@ -7963,7 +7941,7 @@
       "label": "Mes Comptes",
       "componentName": "net.bnpparibas.mescomptes/net.bnpparibas.mescomptes.legacy.splashscreen.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 19168,
+      "roi_score": 19167,
       "priority": "Medium"
     },
     {
@@ -8017,7 +7995,7 @@
       "label": "Burrito Bison",
       "componentName": "com.kongregate.mobile.burritobison3.google/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 30385,
+      "roi_score": 30384,
       "priority": "High"
     },
     {
@@ -8125,7 +8103,7 @@
       "label": "BYKEA",
       "componentName": "com.bykea.pk/com.bykea.pk.screens.activities.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 25803,
+      "roi_score": 25802,
       "priority": "Medium"
     },
     {
@@ -8147,7 +8125,7 @@
       "label": "Evri",
       "componentName": "com.hermes.hercules/com.hermes.hercules.ui.startup.StartupActivity",
       "installs": "5,000,000+",
-      "roi_score": 21680,
+      "roi_score": 21679,
       "priority": "Medium"
     },
     {
@@ -8180,7 +8158,7 @@
       "label": "MakeACopy",
       "componentName": "de.schliweb.makeacopy/de.schliweb.makeacopy.MainActivity",
       "installs": "10,000+",
-      "roi_score": 5911,
+      "roi_score": 5910,
       "priority": "Low"
     },
     {
@@ -8223,7 +8201,7 @@
       "label": "Detsky Mir",
       "componentName": "ru.detmir.dmbonus/ru.detmir.dmbonus.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 51113,
+      "roi_score": 51112,
       "priority": "High"
     },
     {
@@ -8365,7 +8343,7 @@
       "label": "NETGEAR Nighthawk WiFi Router",
       "componentName": "com.netgear.netgearup/com.netgear.netgearup.LauncherActivity",
       "installs": "5,000,000+",
-      "roi_score": 43556,
+      "roi_score": 43555,
       "priority": "High"
     },
     {
@@ -8376,7 +8354,7 @@
       "label": "Last Day on Earth: Survival",
       "componentName": "zombie.survival.craft.z/ru.kv3dunityext.permissions.MainActivity",
       "installs": "100,000,000+",
-      "roi_score": 143626,
+      "roi_score": 143624,
       "priority": "Critical"
     },
     {
@@ -8387,7 +8365,7 @@
       "label": "Zvukom\u011br",
       "componentName": "com.ktwapps.soundmeter/com.ktwapps.soundmeter.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 20274,
+      "roi_score": 20273,
       "priority": "Medium"
     },
     {
@@ -8398,7 +8376,7 @@
       "label": "Regen Alarm",
       "componentName": "de.mdiener.rain.usa/de.mdiener.rain.usa.MainMaps2",
       "installs": "10,000,000+",
-      "roi_score": 285334,
+      "roi_score": 285321,
       "priority": "Critical"
     },
     {
@@ -8475,7 +8453,7 @@
       "label": "Le Monde, Live News",
       "componentName": "com.lemonde.androidapp/com.lemonde.androidapp.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 21008,
+      "roi_score": 21007,
       "priority": "Medium"
     },
     {
@@ -8574,7 +8552,7 @@
       "label": "Goodnotes",
       "componentName": "com.goodnotes.android.app/com.goodnotes.android.app.twa.GoodnotesLauncherActivity",
       "installs": "5,000,000+",
-      "roi_score": 43578,
+      "roi_score": 43576,
       "priority": "High"
     },
     {
@@ -8636,7 +8614,7 @@
       "label": "Xbox Family Settings",
       "componentName": "com.microsoft.xboxfamily/com.xboxfamily.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 9496,
+      "roi_score": 9495,
       "priority": "Medium"
     },
     {
@@ -8658,7 +8636,7 @@
       "label": "atvTools",
       "componentName": "dev.vodik7.atvtools/dev.vodik7.atvtools.MainActivity",
       "installs": "100,000+",
-      "roi_score": 10079,
+      "roi_score": 10078,
       "priority": "Medium"
     },
     {
@@ -8679,7 +8657,7 @@
       "label": "Dadish",
       "componentName": "com.thomasyoung.gooddadish/com.thomasyoung.gooddadish.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 13054,
+      "roi_score": 13051,
       "priority": "Medium"
     },
     {
@@ -8712,7 +8690,7 @@
       "label": "mixi2",
       "componentName": "social.mixi/social.mixi.MainActivity",
       "installs": "100,000+",
-      "roi_score": 2633,
+      "roi_score": 2632,
       "priority": "Low"
     },
     {
@@ -8755,7 +8733,7 @@
       "label": "Pulse Music",
       "componentName": "com.hardcodecoder.pulse/com.hardcodecoder.pulse.SplashActivity",
       "installs": "500,000+",
-      "roi_score": 8890,
+      "roi_score": 8889,
       "priority": "Medium"
     },
     {
@@ -8809,7 +8787,7 @@
       "label": "Mill",
       "componentName": "com.calcitem.sanmill/com.calcitem.sanmill.MainActivity",
       "installs": "100,000+",
-      "roi_score": 7321,
+      "roi_score": 7320,
       "priority": "Medium"
     },
     {
@@ -8896,7 +8874,7 @@
       "label": "HUK Mein Auto",
       "componentName": "de.hdd.telematik/de.hdd.telematik.app.core.RootActivity",
       "installs": "1,000,000+",
-      "roi_score": 10469,
+      "roi_score": 10468,
       "priority": "Medium"
     },
     {
@@ -8962,7 +8940,7 @@
       "label": "Image & Video Date Fixer",
       "componentName": "eu.duong.imagedatefixer/eu.duong.imagedatefixer.activities.MainActivity",
       "installs": "100,000+",
-      "roi_score": 5338,
+      "roi_score": 5337,
       "priority": "Low"
     },
     {
@@ -8984,7 +8962,7 @@
       "label": "DailyArt - Daily Dose of Art",
       "componentName": "com.moiseum.dailyart2/com.moiseum.dailyart2.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 47204,
+      "roi_score": 47203,
       "priority": "High"
     },
     {
@@ -9082,7 +9060,7 @@
       "label": "Conquer Countries",
       "componentName": "com.ridgge.conquercountries/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 28808,
+      "roi_score": 28807,
       "priority": "High"
     },
     {
@@ -9093,7 +9071,7 @@
       "firstAppearance": 1766943063.0,
       "lastRequested": 1785639608.0,
       "installs": "5,000,000+",
-      "roi_score": 11603,
+      "roi_score": 11602,
       "priority": "Medium"
     },
     {
@@ -9104,7 +9082,7 @@
       "label": "Ages of Conflict World War Sim",
       "componentName": "com.JoySparkGames.AgesofConflict/com.unity3d.player.UnityPlayerActivity",
       "installs": "1,000,000+",
-      "roi_score": 28980,
+      "roi_score": 28979,
       "priority": "High"
     },
     {
@@ -9115,7 +9093,7 @@
       "label": "ACNH Pocket Guide",
       "componentName": "com.acnh.pocket_guide/com.acnh.pocket_guide.MainActivity",
       "installs": "500,000+",
-      "roi_score": 10102,
+      "roi_score": 10101,
       "priority": "Medium"
     },
     {
@@ -9159,7 +9137,7 @@
       "label": "MyBluebird",
       "componentName": "com.seatech.bluebird/com.seatech.bluebird.ui.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 42853,
+      "roi_score": 42852,
       "priority": "High"
     },
     {
@@ -9367,7 +9345,7 @@
       "label": "UK VPN",
       "componentName": "com.helalik.uk.vpn/com.utils.SplashActivity",
       "installs": "500,000+",
-      "roi_score": 7006,
+      "roi_score": 7005,
       "priority": "Medium"
     },
     {
@@ -9378,7 +9356,7 @@
       "label": "EMERGENCY HQ: firefighter game",
       "componentName": "com.sgs.emhq.android/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 24264,
+      "roi_score": 24263,
       "priority": "Medium"
     },
     {
@@ -9411,7 +9389,7 @@
       "label": "Camera Remote",
       "componentName": "com.fujifilm_dsc.app.remoteshooter/com.fujifilm_dsc.app.remoteshooter.InitializeActivity",
       "installs": "5,000,000+",
-      "roi_score": 15748,
+      "roi_score": 15747,
       "priority": "Medium"
     },
     {
@@ -9542,7 +9520,7 @@
       "label": "MH Now",
       "componentName": "com.nianticlabs.monsterhunter/com.nianticproject.magellan.MagellanUnityPlayerActivity",
       "installs": "5,000,000+",
-      "roi_score": 35188,
+      "roi_score": 35186,
       "priority": "High"
     },
     {
@@ -9553,7 +9531,7 @@
       "label": "MySosh",
       "componentName": "com.orange.mysosh/com.orange.care.core.ui.SplashScreenActivity",
       "installs": "5,000,000+",
-      "roi_score": 20656,
+      "roi_score": 20655,
       "priority": "Medium"
     },
     {
@@ -9574,7 +9552,7 @@
       "label": "QuickDic Dictionary",
       "componentName": "de.reimardoeffinger.quickdic/com.hughes.android.dictionary.DictionaryManagerActivity",
       "installs": "100,000+",
-      "roi_score": 6294,
+      "roi_score": 6293,
       "priority": "Low"
     },
     {
@@ -9673,7 +9651,7 @@
       "label": "Cup Heroes",
       "componentName": "com.studio501.cuphero/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 30175,
+      "roi_score": 30174,
       "priority": "High"
     },
     {
@@ -9706,7 +9684,7 @@
       "label": "Freebox Files",
       "componentName": "fr.freebox.download/downloadapp.presentation.main.ui.MainActivity",
       "installs": "500,000+",
-      "roi_score": 7122,
+      "roi_score": 7121,
       "priority": "Medium"
     },
     {
@@ -9717,7 +9695,7 @@
       "label": "Lunar",
       "componentName": "com.lunarway.app/app.lunar.feature.intro.ui.IntroActivity",
       "installs": "1,000,000+",
-      "roi_score": 9757,
+      "roi_score": 9756,
       "priority": "Medium"
     },
     {
@@ -9750,7 +9728,7 @@
       "label": "U.S. Bank",
       "componentName": "com.usbank.mobilebanking/com.usb.module.environment.ui.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 27417,
+      "roi_score": 27416,
       "priority": "High"
     },
     {
@@ -9858,7 +9836,7 @@
       "firstAppearance": 1781928448.0,
       "lastRequested": 1791892812.0,
       "installs": "5,000,000+",
-      "roi_score": 32130,
+      "roi_score": 32129,
       "priority": "High"
     },
     {
@@ -9869,7 +9847,7 @@
       "label": "nanaco",
       "componentName": "jp.nanaco.android/jp.nanaco.android.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 22554,
+      "roi_score": 22553,
       "priority": "Medium"
     },
     {
@@ -9902,7 +9880,7 @@
       "label": "Black Desert Mobile",
       "componentName": "com.pearlabyss.blackdesertm.gl/com.pearlabyss.blackdesertm.Loader",
       "installs": "10,000,000+",
-      "roi_score": 37068,
+      "roi_score": 37067,
       "priority": "High"
     },
     {
@@ -9935,7 +9913,7 @@
       "label": "clever-tanken",
       "componentName": "de.mobilesoftwareag.clevertanken/de.mobilesoftwareag.clevertanken.activities.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 307834,
+      "roi_score": 307820,
       "priority": "Critical"
     },
     {
@@ -9957,7 +9935,7 @@
       "label": "Baba Is You",
       "componentName": "org.hempuli.baba/org.hempuli.baba.ChowdrenActivity",
       "installs": "100,000+",
-      "roi_score": 4968,
+      "roi_score": 4967,
       "priority": "Low"
     },
     {
@@ -9990,7 +9968,7 @@
       "label": "SeTracker2",
       "componentName": "com.tgelec.setracker/com.tgelec.aqsh.ui.fun.welcome.WelcomeActivity",
       "installs": "10,000,000+",
-      "roi_score": 32471,
+      "roi_score": 32470,
       "priority": "High"
     },
     {
@@ -10043,7 +10021,7 @@
       "label": "Horizon Live Wallpapers",
       "componentName": "com.seresk.horizon.realtime.live.wallpapers/com.seresk.horizon.wallpaper.activities.HorizonWallpaperMainActivity",
       "installs": "500,000+",
-      "roi_score": 6651,
+      "roi_score": 6650,
       "priority": "Low"
     },
     {
@@ -10129,7 +10107,7 @@
       "label": "The Powder Toy",
       "componentName": "uk.co.powdertoy.tpt/uk.co.powdertoy.tpt.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 10580,
+      "roi_score": 10579,
       "priority": "Medium"
     },
     {
@@ -10294,7 +10272,7 @@
       "label": "Leonardo.Ai",
       "componentName": "ai.leonardo.leonardo/ai.leonardo.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 53686,
+      "roi_score": 53685,
       "priority": "High"
     },
     {
@@ -10391,7 +10369,7 @@
       "label": "Odd Bot Out",
       "componentName": "com.martinmagni.oddbotout/com.martinmagni.oddbotout.OddBotOut",
       "installs": "5,000,000+",
-      "roi_score": 21449,
+      "roi_score": 21448,
       "priority": "Medium"
     },
     {
@@ -10649,7 +10627,7 @@
       "label": "Air+",
       "componentName": "com.philips.ph.homecare/com.philips.ph.homecare.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 24153,
+      "roi_score": 24152,
       "priority": "Medium"
     },
     {
@@ -10788,7 +10766,7 @@
       "label": "Only You Are Here",
       "componentName": "tser.omolgame.free/com.unity3d.player.UnityPlayerActivity",
       "installs": "5,000,000+",
-      "roi_score": 18824,
+      "roi_score": 18823,
       "priority": "Medium"
     },
     {
@@ -10886,7 +10864,7 @@
       "label": "SUSH",
       "componentName": "app.grotinou.sushi/app.grotinou.sushi.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 29395,
+      "roi_score": 29394,
       "priority": "High"
     },
     {
@@ -11060,7 +11038,7 @@
       "label": "Almost A Hero",
       "componentName": "com.beesquare.almostahero/com.unity3d.player.UnityPlayerActivity",
       "installs": "5,000,000+",
-      "roi_score": 20799,
+      "roi_score": 20798,
       "priority": "Medium"
     },
     {
@@ -11202,7 +11180,7 @@
       "label": "Fuel Flash",
       "componentName": "de.mwwebwork.benzinpreisblitz/de.mwwebwork.benzinpreisblitz.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 69230,
+      "roi_score": 69227,
       "priority": "High"
     },
     {
@@ -11334,7 +11312,7 @@
       "label": "Free TV",
       "componentName": "net.oqee.androidmobile/net.oqee.android.ui.main.splash.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 5083,
+      "roi_score": 5082,
       "priority": "Low"
     },
     {
@@ -11455,7 +11433,7 @@
       "label": "Mantis Gamepad Pro Beta",
       "componentName": "app.mantispro.gamepad/app.mantispro.gamepad.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 21331,
+      "roi_score": 21330,
       "priority": "Medium"
     },
     {
@@ -11509,7 +11487,7 @@
       "label": "Count Master",
       "componentName": "freeplay.crowdrun.com/com.unity3d.player.UnityPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 85639,
+      "roi_score": 85638,
       "priority": "High"
     },
     {
@@ -11542,7 +11520,7 @@
       "label": "Tradera",
       "componentName": "com.tradera/com.tradera.tradera.screens.home.HomeActivity",
       "installs": "1,000,000+",
-      "roi_score": 11247,
+      "roi_score": 11246,
       "priority": "Medium"
     },
     {
@@ -11575,7 +11553,7 @@
       "label": "Pizza Boy C Pro",
       "componentName": "it.dbtecno.pizzaboypro/it.dbtecno.pizzaboypro.MainActivity",
       "installs": "50,000+",
-      "roi_score": 3445,
+      "roi_score": 3444,
       "priority": "Low"
     },
     {
@@ -11652,7 +11630,7 @@
       "label": "\u3042\u3093\u3057\u3093\u30d5\u30a3\u30eb\u30bf\u30fc for au",
       "componentName": "jp.netstar.familysmile/jp.netstar.familysmile.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 132272,
+      "roi_score": 132267,
       "priority": "Critical"
     },
     {
@@ -11707,7 +11685,7 @@
       "label": "Caff\u00e8 Nero",
       "componentName": "com.yoyowallet.caffenero/com.yoyowallet.yoyowallet.ui.activities.EntryActivity",
       "installs": "1,000,000+",
-      "roi_score": 9172,
+      "roi_score": 9171,
       "priority": "Medium"
     },
     {
@@ -11729,7 +11707,7 @@
       "label": "Leghe Fantacalcio\u00ae Serie A",
       "componentName": "it.quadronica.leghe/it.quadronica.leghe.ui.feature.composebridge.ComposeBridgeActivity",
       "installs": "1,000,000+",
-      "roi_score": 7827,
+      "roi_score": 7826,
       "priority": "Medium"
     },
     {
@@ -11806,7 +11784,7 @@
       "label": "BASEBALL 9",
       "componentName": "us.kr.baseballnine/com.engine.platformsystemaos.MainActivity",
       "installs": "50,000,000+",
-      "roi_score": 431466,
+      "roi_score": 431463,
       "priority": "Critical"
     },
     {
@@ -11914,7 +11892,7 @@
       "label": "IPVanish",
       "componentName": "com.ixolit.ipvanish/com.ixolit.ipvanish.presentation.features.launch.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 32201,
+      "roi_score": 32200,
       "priority": "High"
     },
     {
@@ -12055,7 +12033,7 @@
       "label": "PK XD: Fun, friends & games",
       "componentName": "com.movile.playkids.pkxd/com.movile.playkids.pkxd.base.UnityPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 73508,
+      "roi_score": 73505,
       "priority": "High"
     },
     {
@@ -12218,7 +12196,7 @@
       "label": "Metr\u00f4nomo F\u00e1cil",
       "componentName": "com.digipom.easymetronome/com.digipom.easymetronome.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 9682,
+      "roi_score": 9681,
       "priority": "Medium"
     },
     {
@@ -12361,7 +12339,7 @@
       "label": "Snake Clash",
       "componentName": "io.supercent.linkedcubic/com.unity3d.player.UnityPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 74133,
+      "roi_score": 74131,
       "priority": "High"
     },
     {
@@ -12394,7 +12372,7 @@
       "label": "BMX 2",
       "componentName": "se.illusionlabs.touchgrindbmx2/se.illusionlabs.touchgrindbmx2.B2Activity",
       "installs": "50,000,000+",
-      "roi_score": 187607,
+      "roi_score": 187598,
       "priority": "Critical"
     },
     {
@@ -12427,7 +12405,7 @@
       "label": "SAS",
       "componentName": "se.sas.android/se.sas.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 70486,
+      "roi_score": 70483,
       "priority": "High"
     },
     {
@@ -12449,7 +12427,7 @@
       "label": "Sniper",
       "componentName": "com.squareenixmontreal.hitmansniperandroid/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 82956,
+      "roi_score": 82955,
       "priority": "High"
     },
     {
@@ -12460,7 +12438,7 @@
       "label": "GOV.UK ID Check",
       "componentName": "uk.gov.documentchecking/uk.gov.idcheck.app.onboarding.OnboardingActivity",
       "installs": "1,000,000+",
-      "roi_score": 18176,
+      "roi_score": 18175,
       "priority": "Medium"
     },
     {
@@ -12471,7 +12449,7 @@
       "label": "Takashi Ninja Samurai Game",
       "componentName": "com.hg.takashi.ninjagames/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 30301,
+      "roi_score": 30300,
       "priority": "High"
     },
     {
@@ -12599,7 +12577,7 @@
       "label": "AudioStretch",
       "componentName": "com.bandlab.audiostretch/com.bandlab.audiostretch.navigation.AudioStretchNavigationActivity",
       "installs": "1,000,000+",
-      "roi_score": 12018,
+      "roi_score": 12017,
       "priority": "Medium"
     },
     {
@@ -12653,7 +12631,7 @@
       "firstAppearance": 1779522632.0,
       "lastRequested": 1791472887.0,
       "installs": "5,000,000+",
-      "roi_score": 125560,
+      "roi_score": 125554,
       "priority": "High"
     },
     {
@@ -12694,7 +12672,7 @@
       "label": "GN\u00c7",
       "componentName": "com.solidict.gnc2/com.solidict.gnc2.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 33217,
+      "roi_score": 33216,
       "priority": "High"
     },
     {
@@ -12716,7 +12694,7 @@
       "label": "ZTELink",
       "componentName": "com.zte.linkpro/com.zte.linkpro.ui.startup.StartupActivity",
       "installs": "1,000,000+",
-      "roi_score": 11627,
+      "roi_score": 11626,
       "priority": "Medium"
     },
     {
@@ -12771,7 +12749,7 @@
       "label": "\u0414\u043d\u0435\u0432\u043d\u0438\u043a.\u0440\u0443",
       "componentName": "ru.dnevnik.app/ru.dnevnik.app.ui.main.general.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 21446,
+      "roi_score": 21445,
       "priority": "Medium"
     },
     {
@@ -12903,7 +12881,7 @@
       "label": "DAK App",
       "componentName": "de.dak.dak_app/de.dak.startup.StartUpActivity",
       "installs": "1,000,000+",
-      "roi_score": 8969,
+      "roi_score": 8968,
       "priority": "Medium"
     },
     {
@@ -13034,7 +13012,7 @@
       "label": "Panasonic Image App",
       "componentName": "com.panasonic.avc.cng.imageapp/com.panasonic.avc.cng.application.ImageAppLauncher",
       "installs": "5,000,000+",
-      "roi_score": 18433,
+      "roi_score": 18432,
       "priority": "Medium"
     },
     {
@@ -13144,7 +13122,7 @@
       "label": "FreePrints",
       "componentName": "com.planetart.fpuk/com.photoaffections.freeprints.workflow.pages.home.StartActivity",
       "installs": "10,000,000+",
-      "roi_score": 30060,
+      "roi_score": 30058,
       "priority": "High"
     },
     {
@@ -13243,7 +13221,7 @@
       "label": "Digital Clock Widget",
       "componentName": "com.maize.digitalClock/com.maize.digitalClock.SettingsActivity",
       "installs": "10,000,000+",
-      "roi_score": 24155,
+      "roi_score": 24154,
       "priority": "Medium"
     },
     {
@@ -13287,7 +13265,7 @@
       "label": "Sea Battle 2",
       "componentName": "com.byril.seabattle2/com.byril.seabattle2.AndroidActivity",
       "installs": "50,000,000+",
-      "roi_score": 50765,
+      "roi_score": 50764,
       "priority": "High"
     },
     {
@@ -13364,7 +13342,7 @@
       "label": "Lufthansa",
       "componentName": "com.lufthansa.android.lufthansa/com.lhgroup.lhgroupapp.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 19026,
+      "roi_score": 19025,
       "priority": "Medium"
     },
     {
@@ -13418,7 +13396,7 @@
       "label": "Vodobanka Demo",
       "componentName": "yio.tro.vodobanka/yio.tro.vodobanka.AndroidLauncher",
       "installs": "1,000,000+",
-      "roi_score": 9061,
+      "roi_score": 9060,
       "priority": "Medium"
     },
     {
@@ -13462,7 +13440,7 @@
       "label": "Post-it\u00ae",
       "componentName": "com.mmm.postit/com.mmm.postit.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 10403,
+      "roi_score": 10402,
       "priority": "Medium"
     },
     {
@@ -13495,7 +13473,7 @@
       "label": "POSTIDENT",
       "componentName": "de.deutschepost.postident/de.post.ident.ui.WelcomeActivity",
       "installs": "5,000,000+",
-      "roi_score": 96505,
+      "roi_score": 96500,
       "priority": "High"
     },
     {
@@ -13583,7 +13561,7 @@
       "label": "AY Outlet",
       "componentName": "de.aboutyou.outlet.app/de.aboutyou.outlet.app.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 102173,
+      "roi_score": 102168,
       "priority": "High"
     },
     {
@@ -13594,7 +13572,7 @@
       "label": "Pro Metronome",
       "componentName": "com.eumlab.android.prometronome/com.eumlab.prometronome.activity.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 24959,
+      "roi_score": 24958,
       "priority": "Medium"
     },
     {
@@ -13616,7 +13594,7 @@
       "label": "Rav-Kav Online Rav-Kav Loading",
       "componentName": "com.pcentra.ravkavonlinemobile/com.pcentra.ravkavonlinemobile.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 8655,
+      "roi_score": 8653,
       "priority": "Medium"
     },
     {
@@ -13693,7 +13671,7 @@
       "label": "Bluetooth Volume Manager",
       "componentName": "eu.darken.bluemusic/eu.darken.bluemusic.main.ui.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 10378,
+      "roi_score": 10377,
       "priority": "Medium"
     },
     {
@@ -13737,7 +13715,7 @@
       "label": "Harmony",
       "componentName": "com.logitech.harmonyhub/com.logitech.harmonyhub.ui.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 10796,
+      "roi_score": 10795,
       "priority": "Medium"
     },
     {
@@ -13811,7 +13789,7 @@
       "label": "That Level Again",
       "componentName": "ru.iamtagir.game.android/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 51206,
+      "roi_score": 51205,
       "priority": "High"
     },
     {
@@ -13897,7 +13875,7 @@
       "label": "HomeWhiz",
       "componentName": "com.homewhiz.global/com.homewhiz.global.landing.LandingActivity",
       "installs": "1,000,000+",
-      "roi_score": 12860,
+      "roi_score": 12859,
       "priority": "Medium"
     },
     {
@@ -13950,7 +13928,7 @@
       "label": "Volume Booster - Sound Booster",
       "componentName": "volumebooster.soundspeaker.louder/volumebooster.soundspeaker.louder.splash.SplashActivity",
       "installs": "50,000,000+",
-      "roi_score": 66430,
+      "roi_score": 66429,
       "priority": "High"
     },
     {
@@ -13983,7 +13961,7 @@
       "label": "pogoda24",
       "componentName": "com.wetter.androidclient/com.wetter.androidclient.entry.EntryActivity",
       "installs": "10,000,000+",
-      "roi_score": 30699,
+      "roi_score": 30698,
       "priority": "High"
     },
     {
@@ -14027,7 +14005,7 @@
       "label": "MotoGP",
       "componentName": "com.dorna.officialmotogp/com.dorna.officialmotogp.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 21454,
+      "roi_score": 21453,
       "priority": "Medium"
     },
     {
@@ -14049,7 +14027,7 @@
       "label": "Pingo by Findmykids",
       "componentName": "org.findmykids.child/org.findmykids.app.presentation.screens.launcher.presentation.LauncherActivity",
       "installs": "10,000,000+",
-      "roi_score": 34158,
+      "roi_score": 34157,
       "priority": "High"
     },
     {
@@ -14148,7 +14126,7 @@
       "label": "Goose Goose Duck",
       "componentName": "com.Gaggle.fun.GooseGooseDuck/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 32705,
+      "roi_score": 32704,
       "priority": "High"
     },
     {
@@ -14181,7 +14159,7 @@
       "label": "Basic-Fit",
       "componentName": "com.basicfit.trainingApp/com.basicfit.trainingApp.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 16657,
+      "roi_score": 16645,
       "priority": "Medium"
     },
     {
@@ -14203,7 +14181,7 @@
       "label": "ASolver",
       "componentName": "ru.bnice.asolver/ru.bnice.asolver.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 45155,
+      "roi_score": 45154,
       "priority": "High"
     },
     {
@@ -14225,7 +14203,7 @@
       "label": "FortiToken Mobile",
       "componentName": "com.fortinet.android.ftm/com.fortinet.android.ftm.StartActivity",
       "installs": "1,000,000+",
-      "roi_score": 9985,
+      "roi_score": 9984,
       "priority": "Medium"
     },
     {
@@ -14324,7 +14302,7 @@
       "label": "Fortuneo Banque & Bourse",
       "componentName": "com.fortuneo.android/com.fortuneo.android.activities.entry.EntryActivity",
       "installs": "1,000,000+",
-      "roi_score": 9294,
+      "roi_score": 9293,
       "priority": "Medium"
     },
     {
@@ -14357,7 +14335,7 @@
       "label": "Storyteller",
       "componentName": "com.netflix.NGP.Storyteller/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 37476,
+      "roi_score": 37475,
       "priority": "High"
     },
     {
@@ -14456,7 +14434,7 @@
       "label": "\u697d\u5929\u30ab\u30fc\u30c9\uff1a\u660e\u7d30\u78ba\u8a8d\u30fb\u5bb6\u8a08\u7c3f\u30a2\u30d7\u30ea",
       "componentName": "jp.co.rakuten.kc.rakutencardapp.android/jp.co.rakuten.kc.rakutencardapp.android.common.view.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 161314,
+      "roi_score": 161308,
       "priority": "Critical"
     },
     {
@@ -14478,7 +14456,7 @@
       "label": "Perfect Viewer",
       "componentName": "com.rookiestudio.perfectviewer/com.rookiestudio.perfectviewer.TStartup",
       "installs": "5,000,000+",
-      "roi_score": 16340,
+      "roi_score": 16339,
       "priority": "Medium"
     },
     {
@@ -14621,7 +14599,7 @@
       "label": "TinyPrint",
       "componentName": "com.frogtosea.tinyPrint/com.activity.StartUpPageActivity",
       "installs": "1,000,000+",
-      "roi_score": 8476,
+      "roi_score": 8475,
       "priority": "Medium"
     },
     {
@@ -14643,7 +14621,7 @@
       "label": "Meme Maker - Mematic",
       "componentName": "net.trilliarden.mematic/net.trilliarden.mematic.mainmenu.MainMenuActivity",
       "installs": "1,000,000+",
-      "roi_score": 8258,
+      "roi_score": 8257,
       "priority": "Medium"
     },
     {
@@ -14775,7 +14753,7 @@
       "label": "Rasathane",
       "componentName": "edu.boun.rasathane/edu.boun.rasathane.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 9280,
+      "roi_score": 9279,
       "priority": "Medium"
     },
     {
@@ -14819,7 +14797,7 @@
       "label": "Haunted Dorm",
       "componentName": "com.haunteddorm.mihuan/demo.MainActivity",
       "installs": "50,000,000+",
-      "roi_score": 47207,
+      "roi_score": 47205,
       "priority": "High"
     },
     {
@@ -14885,7 +14863,7 @@
       "label": "Marvel Unlimited",
       "componentName": "com.marvel.unlimited/com.disney.bootstrap.activity.bootstrap.BootstrapActivity",
       "installs": "5,000,000+",
-      "roi_score": 16503,
+      "roi_score": 16499,
       "priority": "Medium"
     },
     {
@@ -14929,7 +14907,7 @@
       "label": "Tokyo Disney Resort App",
       "componentName": "jp.tokyodisneyresort.portalapp/jp.tokyodisneyresort.portalapp.ui.main.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 25994,
+      "roi_score": 25993,
       "priority": "Medium"
     },
     {
@@ -14973,7 +14951,7 @@
       "label": "Shark Clean",
       "componentName": "com.sharkninja.shark/com.sharkninja.shark.v2.LaunchActivity",
       "installs": "1,000,000+",
-      "roi_score": 9125,
+      "roi_score": 9124,
       "priority": "Medium"
     },
     {
@@ -15006,7 +14984,7 @@
       "label": "AG Auto Clicker",
       "componentName": "com.tapassistant.autoclicker/com.tapassistant.autoclicker.ui.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 25008,
+      "roi_score": 25007,
       "priority": "Medium"
     },
     {
@@ -15072,7 +15050,7 @@
       "label": "Light-It Up",
       "componentName": "com.crazylabs.light.it.up/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 26055,
+      "roi_score": 26054,
       "priority": "Medium"
     },
     {
@@ -15149,7 +15127,7 @@
       "label": "Mafia City",
       "componentName": "com.yottagames.mafiawar/com.yottagames.mafiawar.MainActivity",
       "installs": "100,000,000+",
-      "roi_score": 59670,
+      "roi_score": 59669,
       "priority": "High"
     },
     {
@@ -15215,7 +15193,7 @@
       "label": "\u0411\u0438\u043b\u0435\u0442\u044b \u041f\u0414\u0414 2026 \u0438 \u042d\u043a\u0437\u0430\u043c\u0435\u043d \u041f\u0414\u0414",
       "componentName": "ru.drom.pdd.android.app/ru.drom.pdd.android.app.splash.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 50779,
+      "roi_score": 50778,
       "priority": "High"
     },
     {
@@ -15424,7 +15402,7 @@
       "label": "Soul Knight Prequel",
       "componentName": "com.chillyroom.soulknightprequel/com.chillyroomsdk.sdkbridge.privacy.BasePrivacyActivity",
       "installs": "1,000,000+",
-      "roi_score": 8546,
+      "roi_score": 8545,
       "priority": "Medium"
     },
     {
@@ -15490,7 +15468,7 @@
       "label": "Touchgrind Skate 2",
       "componentName": "se.illusionlabs.skate2/se.illusionlabs.skate2.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 25267,
+      "roi_score": 25266,
       "priority": "Medium"
     },
     {
@@ -15501,7 +15479,7 @@
       "label": "3B Meteo - Weather Forecasts",
       "componentName": "com.Meteosolutions.Meteo3b/com.Meteosolutions.Meteo3b.activity.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 22334,
+      "roi_score": 22333,
       "priority": "Medium"
     },
     {
@@ -15523,7 +15501,7 @@
       "label": "Satchel One",
       "componentName": "uk.co.smhw.android/uk.co.smhw.android.ui.DefaultMainActivity",
       "installs": "1,000,000+",
-      "roi_score": 8820,
+      "roi_score": 8819,
       "priority": "Medium"
     },
     {
@@ -15567,7 +15545,7 @@
       "label": "\u30b5\u30f3\u30c7\u30fc\u3046\u3047\u3076\u308a",
       "componentName": "jp.co.shogakukan.sunday_webry/jp.co.shogakukan.sunday_webry.presentation.rootnavigation.RootNavigationActivity",
       "installs": "5,000,000+",
-      "roi_score": 25380,
+      "roi_score": 25379,
       "priority": "Medium"
     },
     {
@@ -15578,7 +15556,7 @@
       "label": "No Humanity - The Hardest Game",
       "componentName": "com.sweatychair.lastofhumanity/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 38160,
+      "roi_score": 38150,
       "priority": "High"
     },
     {
@@ -15633,7 +15611,7 @@
       "label": "\u65e5\u7d4c\u96fb\u5b50\u7248",
       "componentName": "com.nikkei.newspaper/com.nikkei.newsnext.ui.activity.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 8999,
+      "roi_score": 8998,
       "priority": "Medium"
     },
     {
@@ -15743,7 +15721,7 @@
       "label": "MySSS",
       "componentName": "com.sss.gov.mysssmobileapp/com.sssgov.mysssmobileapp.app.shared.view.activity.SplashScreenActivity",
       "installs": "5,000,000+",
-      "roi_score": 16214,
+      "roi_score": 16213,
       "priority": "Medium"
     },
     {
@@ -15776,7 +15754,7 @@
       "label": "Age of Empires Mobile",
       "componentName": "com.proximabeta.aoemobile/com.proximabeta.aoemobile.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 19292,
+      "roi_score": 19291,
       "priority": "Medium"
     },
     {
@@ -15831,7 +15809,7 @@
       "label": "Chameleon",
       "componentName": "com.noodlecake.chameleonrun/com.unity3d.player.UnityPlayerActivity",
       "installs": "500,000+",
-      "roi_score": 7149,
+      "roi_score": 7148,
       "priority": "Medium"
     },
     {
@@ -15853,7 +15831,7 @@
       "label": "iSharing",
       "componentName": "com.isharing.isharing/com.isharing.isharing.ui.IntroActivity",
       "installs": "10,000,000+",
-      "roi_score": 22576,
+      "roi_score": 22575,
       "priority": "Medium"
     },
     {
@@ -15930,7 +15908,7 @@
       "label": "Water? 2",
       "componentName": "com.disney.wheresmywater2_goo/com.disney.wheresmywater2_goo.ActivitySkuGoogle",
       "installs": "100,000,000+",
-      "roi_score": 68552,
+      "roi_score": 68549,
       "priority": "High"
     },
     {
@@ -15974,7 +15952,7 @@
       "label": "SJ",
       "componentName": "se.sj.android/se.sj.android.activity.SjNavigationDrawer",
       "installs": "1,000,000+",
-      "roi_score": 53507,
+      "roi_score": 53504,
       "priority": "High"
     },
     {
@@ -15996,7 +15974,7 @@
       "label": "Into the Dead 2",
       "componentName": "com.pikpok.dr2.play/com.pikpok.PikPokUnityActivity",
       "installs": "10,000,000+",
-      "roi_score": 31017,
+      "roi_score": 31016,
       "priority": "High"
     },
     {
@@ -16040,7 +16018,7 @@
       "label": "Idle Bee Factory Tycoon",
       "componentName": "com.gpp.beefactory/com.gpp.beefactory.RunnerActivity",
       "installs": "10,000,000+",
-      "roi_score": 31607,
+      "roi_score": 31606,
       "priority": "High"
     },
     {
@@ -16139,7 +16117,7 @@
       "label": "My Sky | TV, Broadband, Mobile",
       "componentName": "com.bskyb.skyservice/com.bskyb.skyservice.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 17431,
+      "roi_score": 17430,
       "priority": "Medium"
     },
     {
@@ -16150,7 +16128,7 @@
       "label": "ACECRAFT",
       "componentName": "com.vizta.wefly/com.moba.unityplugin.MobaGameMainActivityWithExtractor",
       "installs": "5,000,000+",
-      "roi_score": 17334,
+      "roi_score": 17333,
       "priority": "Medium"
     },
     {
@@ -16227,7 +16205,7 @@
       "label": "Frontiers",
       "componentName": "com.ironhidegames.android.kingdomrushfrontiers/com.ironhidegames.android.kr.act_game.KRGameActivity",
       "installs": "1,000,000+",
-      "roi_score": 8354,
+      "roi_score": 8348,
       "priority": "Medium"
     },
     {
@@ -16282,7 +16260,7 @@
       "label": "Pure",
       "componentName": "com.getpure.pure/com.soulplatform.pure.screen.main.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 24183,
+      "roi_score": 24182,
       "priority": "Medium"
     },
     {
@@ -16458,7 +16436,7 @@
       "label": "first direct",
       "componentName": "com.firstdirect.bankingonthego/com.firstdirect.bankingonthego.activities.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 10147,
+      "roi_score": 10146,
       "priority": "Medium"
     },
     {
@@ -16513,7 +16491,7 @@
       "label": "NatWest Rooster Money",
       "componentName": "com.roosterbank.parent/com.roosterbank.parent.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 8291,
+      "roi_score": 8290,
       "priority": "Medium"
     },
     {
@@ -16535,7 +16513,7 @@
       "label": "PowerLine",
       "componentName": "com.urbandroid.inline/com.urbandroid.inline.MainActivity",
       "installs": "500,000+",
-      "roi_score": 8798,
+      "roi_score": 8797,
       "priority": "Medium"
     },
     {
@@ -16689,7 +16667,7 @@
       "label": "Influence",
       "componentName": "com.teremok.influence/com.teremok.influence.LogoActivity",
       "installs": "1,000,000+",
-      "roi_score": 10572,
+      "roi_score": 10571,
       "priority": "Medium"
     },
     {
@@ -16854,7 +16832,7 @@
       "firstAppearance": 1773836963.0,
       "lastRequested": 1791745534.0,
       "installs": "100,000,000+",
-      "roi_score": 41462,
+      "roi_score": 41460,
       "priority": "High"
     },
     {
@@ -16887,7 +16865,7 @@
       "label": "Fnac",
       "componentName": "fr.fnac.com/com.fnac.fnacdirect.ui.splashscreen.SplashScreenActivity",
       "installs": "5,000,000+",
-      "roi_score": 92800,
+      "roi_score": 92795,
       "priority": "High"
     },
     {
@@ -16898,7 +16876,7 @@
       "label": "eNetViet",
       "componentName": "enetviet.corp.qi.enetvietnew/enetviet.corp.qi.ui.splash.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 21116,
+      "roi_score": 21115,
       "priority": "Medium"
     },
     {
@@ -16942,7 +16920,7 @@
       "label": "SELPHY",
       "componentName": "jp.co.canon.ic.photolayout/jp.co.canon.ic.photolayout.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 13399,
+      "roi_score": 13398,
       "priority": "Medium"
     },
     {
@@ -17008,7 +16986,7 @@
       "label": "Psebay",
       "componentName": "com.butakov.psebay/com.butakov.psebay.RunnerActivity",
       "installs": "5,000,000+",
-      "roi_score": 17369,
+      "roi_score": 17368,
       "priority": "Medium"
     },
     {
@@ -17041,7 +17019,7 @@
       "label": "Head Soccer",
       "componentName": "com.dnddream.headsoccer.android/com.dnddream.headsoccer.android.headsoccer",
       "installs": "50,000,000+",
-      "roi_score": 56663,
+      "roi_score": 56660,
       "priority": "High"
     },
     {
@@ -17052,7 +17030,7 @@
       "label": "Train Manager - 2026",
       "componentName": "com.trophygames.trainmanager/com.trophygames.trainmanager.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 8921,
+      "roi_score": 8920,
       "priority": "Medium"
     },
     {
@@ -17107,7 +17085,7 @@
       "label": "Paylocity",
       "componentName": "com.paylocity.paylocitymobile/com.paylocity.paylocitymobile.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 16394,
+      "roi_score": 16393,
       "priority": "Medium"
     },
     {
@@ -17118,7 +17096,7 @@
       "label": "Lamar - Idle Vlogger",
       "componentName": "com.advant.streamer/com.unity3d.player.UnityPlayerActivity",
       "installs": "50,000,000+",
-      "roi_score": 64775,
+      "roi_score": 64774,
       "priority": "High"
     },
     {
@@ -17261,7 +17239,7 @@
       "label": "Home Design 3D: Draw & Plan",
       "componentName": "fr.anuman.HomeDesign3D/fr.anuman.HomeDesign3D.HD3DActivity",
       "installs": "10,000,000+",
-      "roi_score": 78054,
+      "roi_score": 78050,
       "priority": "High"
     },
     {
@@ -17272,7 +17250,7 @@
       "label": "WebMoney Keeper",
       "componentName": "com.webmoney.my/com.webmoney.my.v3.screen.main.MasterActivity",
       "installs": "10,000,000+",
-      "roi_score": 14942,
+      "roi_score": 14941,
       "priority": "Medium"
     },
     {
@@ -17305,7 +17283,7 @@
       "label": "OpenTTD",
       "componentName": "org.openttd.sdl/org.openttd.sdl.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 9645,
+      "roi_score": 9644,
       "priority": "Medium"
     },
     {
@@ -17338,7 +17316,7 @@
       "label": "Comviq",
       "componentName": "se.comviq.android/se.comviq.app.presentation.main.ComviqMainActivity",
       "installs": "1,000,000+",
-      "roi_score": 39318,
+      "roi_score": 39316,
       "priority": "High"
     },
     {
@@ -17426,7 +17404,7 @@
       "label": "Treatwell",
       "componentName": "com.wahanda.marketplace/com.wahanda.marketplace.ui.activities.launcher.LauncherActivity",
       "installs": "1,000,000+",
-      "roi_score": 7448,
+      "roi_score": 7447,
       "priority": "Medium"
     },
     {
@@ -17448,7 +17426,7 @@
       "label": "Manchester United Official App",
       "componentName": "com.mu.muclubapp/com.manutd.ui.activity.SplashScreenActivity",
       "installs": "10,000,000+",
-      "roi_score": 21399,
+      "roi_score": 21398,
       "priority": "Medium"
     },
     {
@@ -17459,7 +17437,7 @@
       "label": "Get aCC_e55",
       "componentName": "ru.underair.getaccess/com.unity3d.player.UnityPlayerActivity",
       "installs": "1,000,000+",
-      "roi_score": 8830,
+      "roi_score": 8829,
       "priority": "Medium"
     },
     {
@@ -17536,7 +17514,7 @@
       "label": "VRoid Mobile",
       "componentName": "net.pixiv.vroid.android/net.pixiv.vroid.android.VRoidActivity",
       "installs": "5,000,000+",
-      "roi_score": 14288,
+      "roi_score": 14287,
       "priority": "Medium"
     },
     {
@@ -17569,7 +17547,7 @@
       "label": "Magic Fluids Lite - fluid sim",
       "componentName": "com.magicfluids.demo/com.magicfluids.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 24987,
+      "roi_score": 24986,
       "priority": "Medium"
     },
     {
@@ -17646,7 +17624,7 @@
       "label": "yes+",
       "componentName": "il.co.yes.yesgo/il.co.yes.yesgo.ui.activities.splash.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 39118,
+      "roi_score": 39108,
       "priority": "High"
     },
     {
@@ -17745,7 +17723,7 @@
       "label": "PLAY TOGETHER",
       "componentName": "com.haegin.playtogether/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 20579,
+      "roi_score": 20578,
       "priority": "Medium"
     },
     {
@@ -17756,7 +17734,7 @@
       "label": "Papa Johns",
       "componentName": "com.papajohns.android/com.papajohns.android.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 14399,
+      "roi_score": 14398,
       "priority": "Medium"
     },
     {
@@ -17789,7 +17767,7 @@
       "label": "Cats are Cute",
       "componentName": "com.game.kkiruk.myadorablecats/com.unity3d.player.UnityPlayerActivity",
       "installs": "5,000,000+",
-      "roi_score": 14545,
+      "roi_score": 14542,
       "priority": "Medium"
     },
     {
@@ -17855,7 +17833,7 @@
       "label": "\u30e4\u30de\u30c8\u904b\u8f38",
       "componentName": "jp.co.kuronekoyamato.KuronekoyamatoOfficialApp/jp.co.kuronekoyamato.KuronekoyamatoOfficialApp.activity.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 9187,
+      "roi_score": 9186,
       "priority": "Medium"
     },
     {
@@ -17910,7 +17888,7 @@
       "label": "Deodap",
       "componentName": "com.deodap.gallery/com.deodap.gallery.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 28340,
+      "roi_score": 28339,
       "priority": "High"
     },
     {
@@ -17987,7 +17965,7 @@
       "label": "ForkNSausage",
       "componentName": "com.kadka.forknsausage/by.saygames.SayKitActivity",
       "installs": "50,000,000+",
-      "roi_score": 46415,
+      "roi_score": 46413,
       "priority": "High"
     },
     {
@@ -18129,7 +18107,7 @@
       "label": "Goods Sorting",
       "componentName": "com.fc.goods.sort.matching.puzzle.triplemaster/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "50,000,000+",
-      "roi_score": 55498,
+      "roi_score": 55497,
       "priority": "High"
     },
     {
@@ -18217,7 +18195,7 @@
       "label": "Aquapark.io",
       "componentName": "com.cassette.aquapark/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 66646,
+      "roi_score": 66645,
       "priority": "High"
     },
     {
@@ -18327,7 +18305,7 @@
       "label": "Hooked Inc: Fishing Games",
       "componentName": "se.ace.fishinc/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 23790,
+      "roi_score": 23789,
       "priority": "Medium"
     },
     {
@@ -18338,7 +18316,7 @@
       "label": "Hexa Sort",
       "componentName": "com.gamebrain.hexasort/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 26789,
+      "roi_score": 26788,
       "priority": "Medium"
     },
     {
@@ -18371,7 +18349,7 @@
       "label": "Eurospin Family",
       "componentName": "it.eurospin.mobileapp/it.eurospin.mobileapp.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 98474,
+      "roi_score": 98470,
       "priority": "High"
     },
     {
@@ -18459,7 +18437,7 @@
       "label": "Cars Arena: Fast Race 3D",
       "componentName": "racearena.io/com.unity3d.player.UnityPlayerActivity",
       "installs": "50,000,000+",
-      "roi_score": 61914,
+      "roi_score": 61913,
       "priority": "High"
     },
     {
@@ -18503,7 +18481,7 @@
       "label": "Block Strike",
       "componentName": "com.shootergamesonline.blockstrike/com.prime31.UnityPlayerNativeActivity",
       "installs": "1,000,000+",
-      "roi_score": 8144,
+      "roi_score": 8143,
       "priority": "Medium"
     },
     {
@@ -18547,7 +18525,7 @@
       "label": "CetusPlay",
       "componentName": "com.cetusplay.remotephone/com.cetusplay.remotephone.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 30085,
+      "roi_score": 30083,
       "priority": "High"
     },
     {
@@ -18569,7 +18547,7 @@
       "label": "ASDA",
       "componentName": "com.asda.android/com.example.webview_in_flutter.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 16753,
+      "roi_score": 16752,
       "priority": "Medium"
     },
     {
@@ -18613,7 +18591,7 @@
       "label": "Go! Go! Pogo Cat",
       "componentName": "jp.co.ponos.nekohopper/jp.co.ponos.template.templateandroid.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 24419,
+      "roi_score": 24418,
       "priority": "Medium"
     },
     {
@@ -18668,7 +18646,7 @@
       "label": "Goper",
       "componentName": "cn.nubia.externdevice/cn.nubia.externdevice.start.AppStartActivity",
       "installs": "1,000,000+",
-      "roi_score": 12069,
+      "roi_score": 12068,
       "priority": "Medium"
     },
     {
@@ -18723,7 +18701,7 @@
       "label": "Sinsay - moda i zakupy online",
       "componentName": "com.lppsa.app.sinsay/com.lppsa.app.sinsay.presentation.main.LauncherActivity",
       "installs": "10,000,000+",
-      "roi_score": 30685,
+      "roi_score": 30684,
       "priority": "High"
     },
     {
@@ -18755,7 +18733,7 @@
       "label": "CamHipro",
       "componentName": "com.hichip.campro/main.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 9688,
+      "roi_score": 9687,
       "priority": "Medium"
     },
     {
@@ -18854,7 +18832,7 @@
       "label": "\u041a\u043e\u043f\u0438\u043b\u043a\u0430 - \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0430 \u0432\u044b\u0433\u043e\u0434",
       "componentName": "market.kopilka.mobile/market.kopilka.mobile.MainActivity",
       "installs": "500,000+",
-      "roi_score": 7273,
+      "roi_score": 7272,
       "priority": "Medium"
     },
     {
@@ -18909,7 +18887,7 @@
       "label": "boohooMAN",
       "componentName": "com.gpshopper.boohooman/com.boohoo.app.startup.splash.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 7462,
+      "roi_score": 7461,
       "priority": "Medium"
     },
     {
@@ -19107,7 +19085,7 @@
       "label": "Brainscape: Smarter Flashcards",
       "componentName": "com.brainscape.mobile.portal/com.brainscape.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 7574,
+      "roi_score": 7573,
       "priority": "Medium"
     },
     {
@@ -19250,7 +19228,7 @@
       "label": "NeuroNation - Brain Training",
       "componentName": "air.nn.mobile.app.main/crc646a8c19d0e07d8eea.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 33573,
+      "roi_score": 33572,
       "priority": "High"
     },
     {
@@ -19305,7 +19283,7 @@
       "label": "Lufthansa",
       "componentName": "com.lufthansa.android.lufthansa/com.lhgroup.lhgroupapp.activity.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 16074,
+      "roi_score": 16073,
       "priority": "Medium"
     },
     {
@@ -19349,7 +19327,7 @@
       "label": "NAVITIME - Map & Transfer Navi",
       "componentName": "com.navitime.local.navitime/com.navitime.local.navitime.NTMainNavitime",
       "installs": "10,000,000+",
-      "roi_score": 22080,
+      "roi_score": 22079,
       "priority": "Medium"
     },
     {
@@ -19382,7 +19360,7 @@
       "label": "Tiny Rails - Train Tycoon 2026",
       "componentName": "com.tinytitanstudios.TrainChu/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 19451,
+      "roi_score": 19450,
       "priority": "Medium"
     },
     {
@@ -19437,7 +19415,7 @@
       "label": "BAIKOH: Words",
       "componentName": "org.duckdodo.baikoh/com.unity3d.player.UnityPlayerActivity",
       "installs": "1,000,000+",
-      "roi_score": 8776,
+      "roi_score": 8775,
       "priority": "Medium"
     },
     {
@@ -19470,7 +19448,7 @@
       "label": "Maps for Minecraft PE",
       "componentName": "mnw.mcpe_maps/mnw.mcpe_maps.ActivitySplashAge",
       "installs": "50,000,000+",
-      "roi_score": 52054,
+      "roi_score": 52053,
       "priority": "High"
     },
     {
@@ -19492,7 +19470,7 @@
       "label": "Hello Neighbor",
       "componentName": "com.tinybuildgames.helloneighbor/com.epicgames.ue4.SplashActivity",
       "installs": "50,000,000+",
-      "roi_score": 54980,
+      "roi_score": 54977,
       "priority": "High"
     },
     {
@@ -19569,7 +19547,7 @@
       "firstAppearance": 1766919696.0,
       "lastRequested": 1781269109.0,
       "installs": "10,000,000+",
-      "roi_score": 11637,
+      "roi_score": 11636,
       "priority": "Medium"
     },
     {
@@ -19591,7 +19569,7 @@
       "label": "ARTE",
       "componentName": "tv.arte.plus7/tv.arte.plus7.mobile.presentation.home.HomeActivityPortraitMobile",
       "installs": "10,000,000+",
-      "roi_score": 24406,
+      "roi_score": 24405,
       "priority": "Medium"
     },
     {
@@ -19602,7 +19580,7 @@
       "label": "iLMeteo",
       "componentName": "com.ilmeteo.android.ilmeteo/com.ilmeteo.android.ilmeteo.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 20295,
+      "roi_score": 20294,
       "priority": "Medium"
     },
     {
@@ -19624,7 +19602,7 @@
       "label": "Yahoo!\u30de\u30c3\u30d7 - \u6700\u65b0\u5730\u56f3\u3001\u30ca\u30d3\u3084\u4e57\u63db\u6848\u5185\u3082",
       "componentName": "jp.co.yahoo.android.apps.map/jp.co.yahoo.android.apps.mic.maps.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 122718,
+      "roi_score": 122714,
       "priority": "High"
     },
     {
@@ -19646,7 +19624,7 @@
       "label": "IQ Dungeon",
       "componentName": "com.Hirameku.IQDungeon/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "1,000,000+",
-      "roi_score": 9007,
+      "roi_score": 9006,
       "priority": "Medium"
     },
     {
@@ -19657,7 +19635,7 @@
       "label": "Cooking Madness",
       "componentName": "com.biglime.cookingmadness/com.biglemon.cookingmadness.Main",
       "installs": "100,000,000+",
-      "roi_score": 63598,
+      "roi_score": 63595,
       "priority": "High"
     },
     {
@@ -19723,7 +19701,7 @@
       "label": "Mitra Shopee: Kirim Uang, PPOB",
       "componentName": "com.shopee.mitra.id/com.shopee.biz_base.activity.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 9808,
+      "roi_score": 9807,
       "priority": "Medium"
     },
     {
@@ -19756,7 +19734,7 @@
       "label": "UNO Wonder",
       "componentName": "com.mattel163.uno2/com.mattel163.uno2.extendlib.UNO2Activity",
       "installs": "1,000,000+",
-      "roi_score": 7319,
+      "roi_score": 7318,
       "priority": "Medium"
     },
     {
@@ -19866,7 +19844,7 @@
       "label": "Taboo",
       "componentName": "com.marmalade.taboo/uk.lgl.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 8119,
+      "roi_score": 8118,
       "priority": "Medium"
     },
     {
@@ -19954,7 +19932,7 @@
       "label": "Crumbl",
       "componentName": "crumbl.cookies/com.crumbl.ui.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 19390,
+      "roi_score": 19389,
       "priority": "Medium"
     },
     {
@@ -19987,7 +19965,7 @@
       "label": "ClassDojo",
       "componentName": "com.classdojo.android/com.classdojo.android.core.splash.ClassDojoActivity",
       "installs": "50,000,000+",
-      "roi_score": 59838,
+      "roi_score": 59837,
       "priority": "High"
     },
     {
@@ -19998,7 +19976,7 @@
       "label": "My Virgin Media",
       "componentName": "com.virginmedia.android.youraccount/com.virginmediao2.engine.dev.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 16488,
+      "roi_score": 16486,
       "priority": "Medium"
     },
     {
@@ -20009,7 +19987,7 @@
       "label": "OBS Controller",
       "componentName": "se.erikfahlen.obscontroller/se.erikfahlen.obscontroller.MainActivity",
       "installs": "500,000+",
-      "roi_score": 10453,
+      "roi_score": 10452,
       "priority": "Medium"
     },
     {
@@ -20119,7 +20097,7 @@
       "label": "\u5c06\u68cb\u30a2\u30d7\u30ea \u5c06\u7687",
       "componentName": "jp.ken1shogi/jp.ken1shogi.Ken1Shogi",
       "installs": "5,000,000+",
-      "roi_score": 22600,
+      "roi_score": 22599,
       "priority": "Medium"
     },
     {
@@ -20130,7 +20108,7 @@
       "label": "myRAC",
       "componentName": "uk.co.rac.roadside/uk.co.rac.roadside.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 7993,
+      "roi_score": 7992,
       "priority": "Medium"
     },
     {
@@ -20185,7 +20163,7 @@
       "label": "SHOWROOM-video live streaming",
       "componentName": "jp.dena.showroom/jp.dena.showroom.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 7008,
+      "roi_score": 7007,
       "priority": "Medium"
     },
     {
@@ -20229,7 +20207,7 @@
       "label": "My Hotpot Story",
       "componentName": "com.lxqd.myhotpotstroy.abroad/com.lxqd.base.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 23841,
+      "roi_score": 23840,
       "priority": "Medium"
     },
     {
@@ -20240,7 +20218,7 @@
       "label": "Japan Airlines",
       "componentName": "jp.co.jal.dom/jp.co.jal.dom.activities.StartActivity",
       "installs": "1,000,000+",
-      "roi_score": 7832,
+      "roi_score": 7831,
       "priority": "Medium"
     },
     {
@@ -20262,7 +20240,7 @@
       "label": "Varlens - DSLR in Phone",
       "componentName": "com.auramarker.varlens/com.varlens.camera.launch.CameraActivity",
       "installs": "1,000,000+",
-      "roi_score": 7936,
+      "roi_score": 7935,
       "priority": "Medium"
     },
     {
@@ -20273,7 +20251,7 @@
       "label": "Mes Comptes - LCL",
       "componentName": "fr.lcl.android.customerarea/fr.lcl.android.customerarea.activities.notconnected.SplashScreenActivity",
       "installs": "5,000,000+",
-      "roi_score": 73217,
+      "roi_score": 73213,
       "priority": "High"
     },
     {
@@ -20339,7 +20317,7 @@
       "label": "Argenta Banking",
       "componentName": "be.argenta.bankieren/be.argenta.bankieren.ui.flows.login.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 32979,
+      "roi_score": 32956,
       "priority": "High"
     },
     {
@@ -20372,7 +20350,7 @@
       "label": "Sharp's Free Voicemail App",
       "componentName": "jp.co.sharp.android.soundmemo/jp.co.sharp.android.soundmemo.SoundMemoLauncherActivity",
       "installs": "10,000,000+",
-      "roi_score": 109833,
+      "roi_score": 109830,
       "priority": "High"
     },
     {
@@ -20394,7 +20372,7 @@
       "label": "Table Tennis Touch",
       "componentName": "uk.co.yakuto.TableTennisTouch/uk.co.yakuto.TableTennisTouch.PlayPlugin.tttPlayOverridingActivity",
       "installs": "10,000,000+",
-      "roi_score": 114195,
+      "roi_score": 114187,
       "priority": "High"
     },
     {
@@ -20471,7 +20449,7 @@
       "label": "D&B Rewards",
       "componentName": "com.DB.playinstore/com.stuzo.dab.feature.main.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 9546,
+      "roi_score": 9545,
       "priority": "Medium"
     },
     {
@@ -20658,7 +20636,7 @@
       "label": "Ponta",
       "componentName": "jp.ponta.myponta/jp.ponta.myponta.presentation.activity.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 22338,
+      "roi_score": 22337,
       "priority": "Medium"
     },
     {
@@ -20669,7 +20647,7 @@
       "label": "Battery Sound Notification",
       "componentName": "com.argonremote.batterynotifier/com.argonremote.batterynotifier.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 20561,
+      "roi_score": 20560,
       "priority": "Medium"
     },
     {
@@ -20680,7 +20658,7 @@
       "label": "My docomo - \u6599\u91d1\u30fb\u901a\u4fe1\u91cf\u306e\u78ba\u8a8d",
       "componentName": "com.nttdocomo.android.mydocomo/jp.co.nttdocomo.mydocomo.activity.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 22241,
+      "roi_score": 22240,
       "priority": "Medium"
     },
     {
@@ -20691,7 +20669,7 @@
       "label": "CESCAPPS - Pay Bill",
       "componentName": "cesc.co.in/cesc.co.in.MainActivity",
       "installs": "500,000+",
-      "roi_score": 8388,
+      "roi_score": 8387,
       "priority": "Medium"
     },
     {
@@ -20713,7 +20691,7 @@
       "label": "Paiement mobile CA",
       "componentName": "fr.creditagricole.macarteca/fr.creditagricole.macarte.presentation.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 82872,
+      "roi_score": 82868,
       "priority": "High"
     },
     {
@@ -20779,7 +20757,7 @@
       "label": "Gumslinger",
       "componentName": "se.itatake.gumslinger/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 22044,
+      "roi_score": 22043,
       "priority": "Medium"
     },
     {
@@ -20834,7 +20812,7 @@
       "label": "ADAC Pannenhilfe",
       "componentName": "de.adac.mobile.pannenhilfe/de.adac.mobile.pannenhilfe.ui.splash.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 7708,
+      "roi_score": 7707,
       "priority": "Medium"
     },
     {
@@ -20856,7 +20834,7 @@
       "label": "World of Skins",
       "componentName": "com.crone.worldofskins/com.crone.worldofskins.ui.activities.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 27369,
+      "roi_score": 27367,
       "priority": "High"
     },
     {
@@ -21065,7 +21043,7 @@
       "label": "Fleet Battle",
       "componentName": "de.smuttlewerk.fleetbattle/de.smuttlewerk.fleetbattle.SmuttlewerkUnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 124815,
+      "roi_score": 124810,
       "priority": "High"
     },
     {
@@ -21087,7 +21065,7 @@
       "label": "LEO dictionary",
       "componentName": "org.leo.android.dict/org.leo.android.dict.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 19929,
+      "roi_score": 19928,
       "priority": "Medium"
     },
     {
@@ -21098,7 +21076,7 @@
       "label": "impots.gouv",
       "componentName": "fr.gouv.finances.smartphone.android/fr.gouv.finances.smartphone.android.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 78316,
+      "roi_score": 78312,
       "priority": "High"
     },
     {
@@ -21120,7 +21098,7 @@
       "label": "Pok\u00e9mon: Magikarp Jump",
       "componentName": "jp.pokemon.koiking/org.cocos2dx.cpp.AppActivity",
       "installs": "10,000,000+",
-      "roi_score": 118997,
+      "roi_score": 118993,
       "priority": "High"
     },
     {
@@ -21186,7 +21164,7 @@
       "label": "Rummikub\u00ae",
       "componentName": "com.rummikubfree/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 30199,
+      "roi_score": 30198,
       "priority": "High"
     },
     {
@@ -21241,7 +21219,7 @@
       "label": "HappyLighting",
       "componentName": "com.xiaoyu.hlight/com.qh.blelight.FristActivity",
       "installs": "5,000,000+",
-      "roi_score": 12747,
+      "roi_score": 12743,
       "priority": "Medium"
     },
     {
@@ -21285,7 +21263,7 @@
       "label": "eskimo",
       "componentName": "travel.eskimo.esim/com.hotspot.travel.hotspot.activity.PreLoaderActivity",
       "installs": "1,000,000+",
-      "roi_score": 7430,
+      "roi_score": 7429,
       "priority": "Medium"
     },
     {
@@ -21307,7 +21285,7 @@
       "label": "PeakLens",
       "componentName": "com.peaklens.ar/com.peaklens.ar.control.SplashScreenActivity",
       "installs": "1,000,000+",
-      "roi_score": 7576,
+      "roi_score": 7575,
       "priority": "Medium"
     },
     {
@@ -21505,7 +21483,7 @@
       "label": "Recycle! - Collection calendar",
       "componentName": "mobi.inthepocket.fostplus.recyclage/mobi.inthepocket.fostplus.recyclage.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 7576,
+      "roi_score": 7570,
       "priority": "Medium"
     },
     {
@@ -21571,7 +21549,7 @@
       "label": "Crazy Kick! Fun Football game",
       "componentName": "com.orbitalknight.ridiculousfreekick/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 67307,
+      "roi_score": 67303,
       "priority": "High"
     },
     {
@@ -21670,7 +21648,7 @@
       "label": "Tuning Club Online",
       "componentName": "com.twoheadedshark.tco/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 25305,
+      "roi_score": 25304,
       "priority": "Medium"
     },
     {
@@ -21692,7 +21670,7 @@
       "label": "ONE PIECE Bounty Rush",
       "componentName": "com.bandainamcoent.opbrww/com.sega.sgn.sgnfw.common.unityactivity.SgnfwUnityActivity",
       "installs": "50,000,000+",
-      "roi_score": 43024,
+      "roi_score": 43022,
       "priority": "High"
     },
     {
@@ -21769,7 +21747,7 @@
       "label": "Warcraft Rumble",
       "componentName": "com.blizzard.arc/com.blizzard.gryphon.unity.player.GryphonUnityPlayerActivity",
       "installs": "5,000,000+",
-      "roi_score": 18455,
+      "roi_score": 18454,
       "priority": "Medium"
     },
     {
@@ -22264,7 +22242,7 @@
       "label": "Dune",
       "componentName": "io.voodoo.dune/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 22326,
+      "roi_score": 22325,
       "priority": "Medium"
     },
     {
@@ -22319,7 +22297,7 @@
       "label": "Time Calculator",
       "componentName": "com.teaxapp.hourcal/com.teaxapp.hourcal.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 7700,
+      "roi_score": 7699,
       "priority": "Medium"
     },
     {
@@ -22374,7 +22352,7 @@
       "label": "Sinhala Dictionary Offline",
       "componentName": "sachith.com.dictionary.offline/sachith.com.dictionary.offline.ui.main.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 7778,
+      "roi_score": 7777,
       "priority": "Medium"
     },
     {
@@ -22528,7 +22506,7 @@
       "label": "Hoosegow: Prison Survival",
       "componentName": "com.DDreamgames.Hoosegow/com.DDreamgames.Hoosegow.MainUnityPlayerActivity",
       "installs": "5,000,000+",
-      "roi_score": 16072,
+      "roi_score": 16071,
       "priority": "Medium"
     },
     {
@@ -22583,7 +22561,7 @@
       "label": "Instant Connect \u2122",
       "componentName": "com.instantbrands.app/com.adaptics.dropkitchen.internal_features.home.HomeActivity",
       "installs": "1,000,000+",
-      "roi_score": 8760,
+      "roi_score": 8759,
       "priority": "Medium"
     },
     {
@@ -22594,7 +22572,7 @@
       "label": "Love Nudge",
       "componentName": "com.grootersproductions.challenge/com.grootersproductions.challenge.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 8760,
+      "roi_score": 8759,
       "priority": "Medium"
     },
     {
@@ -22825,7 +22803,7 @@
       "label": "Y!\u30d5\u30ea\u30de",
       "componentName": "jp.co.yahoo.android.paypayfleamarket/jp.co.yahoo.android.sparkle.presentation.HomeActivity",
       "installs": "10,000,000+",
-      "roi_score": 101557,
+      "roi_score": 101553,
       "priority": "High"
     },
     {
@@ -22858,7 +22836,7 @@
       "label": "JustPark Parking",
       "componentName": "com.justpark.jp/com.justpark.feature.splash.SplashScreenActivity",
       "installs": "1,000,000+",
-      "roi_score": 7485,
+      "roi_score": 7484,
       "priority": "Medium"
     },
     {
@@ -22880,7 +22858,7 @@
       "label": "Workforce",
       "componentName": "com.tsheets.android.hammerhead/com.tsheets.android.modules.applicationStartUp.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 9137,
+      "roi_score": 9136,
       "priority": "Medium"
     },
     {
@@ -22979,7 +22957,7 @@
       "label": "\u697d\u5929\u30dd\u30a4\u30f3\u30c8\u30af\u30e9\u30d6\u301c\u697d\u5929\u30dd\u30a4\u30f3\u30c8\u516c\u5f0f\u30a2\u30d7\u30ea\u301c",
       "componentName": "jp.co.rakuten.pointclub.android/jp.co.rakuten.pointclub.android.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 131092,
+      "roi_score": 131087,
       "priority": "Critical"
     },
     {
@@ -23023,7 +23001,7 @@
       "label": "Magnifier & Microscope",
       "componentName": "com.hantor.CozyMag/com.hantor.CozyMag.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 19245,
+      "roi_score": 19244,
       "priority": "Medium"
     },
     {
@@ -23067,7 +23045,7 @@
       "label": "Lords Mobile",
       "componentName": "com.igg.android.lordsmobile/com.igg.iggsdkbusiness.IGGSDKPlugin",
       "installs": "500,000,000+",
-      "roi_score": 136864,
+      "roi_score": 136859,
       "priority": "Critical"
     },
     {
@@ -23155,7 +23133,7 @@
       "label": "Network Cell Info Lite & Wifi",
       "componentName": "com.wilysis.cellinfolite/com.wilysis.cellinfo.Arxikh",
       "installs": "10,000,000+",
-      "roi_score": 20444,
+      "roi_score": 20443,
       "priority": "Medium"
     },
     {
@@ -23209,7 +23187,7 @@
       "label": "Insight - Play With Friends",
       "componentName": "com.jbthrd.Insight/com.jbthrd.Insight.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 7004,
+      "roi_score": 7003,
       "priority": "Medium"
     },
     {
@@ -23264,7 +23242,7 @@
       "label": "Harry Potter: Hogwarts Mystery",
       "componentName": "com.tinyco.potter/com.tinyco.potter.HPGameActivity",
       "installs": "50,000,000+",
-      "roi_score": 47064,
+      "roi_score": 47063,
       "priority": "High"
     },
     {
@@ -23275,7 +23253,7 @@
       "label": "Jigsaw Puzzles - Puzzle Games",
       "componentName": "com.easybrain.jigsaw.puzzles/com.easybrain.jigsaw.puzzles.SplashActivity",
       "installs": "100,000,000+",
-      "roi_score": 64545,
+      "roi_score": 64544,
       "priority": "High"
     },
     {
@@ -23308,7 +23286,7 @@
       "label": "Touchgrind BMX 3: Rivals",
       "componentName": "se.illusionlabs.tgx/com.illusionlabs.androidactivityextension.unity.IllusionActivity",
       "installs": "1,000,000+",
-      "roi_score": 39003,
+      "roi_score": 39001,
       "priority": "High"
     },
     {
@@ -23330,7 +23308,7 @@
       "label": "Touchscreen Calibration",
       "componentName": "redpi.apps.touchscreencalibration/redpi.apps.touchscreencalibration.view.CalibrationActivity",
       "installs": "5,000,000+",
-      "roi_score": 21148,
+      "roi_score": 21147,
       "priority": "Medium"
     },
     {
@@ -23374,7 +23352,7 @@
       "label": "Intersection Controller",
       "componentName": "se.shadowtree.software.trafficbuilder/se.shadowtree.software.trafficbuilder.AndroidLauncher",
       "installs": "1,000,000+",
-      "roi_score": 48596,
+      "roi_score": 48594,
       "priority": "High"
     },
     {
@@ -23473,7 +23451,7 @@
       "label": "MATRESHKA",
       "componentName": "com.jekmant.matrplauncher/com.matreshkarp.core.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 21593,
+      "roi_score": 21592,
       "priority": "Medium"
     },
     {
@@ -23616,7 +23594,7 @@
       "label": "BESTSECRET",
       "componentName": "com.bestsecret.main/com.bestsecret.presentation_login.splash_screen.ui.SplashScreenActivity",
       "installs": "5,000,000+",
-      "roi_score": 14613,
+      "roi_score": 14612,
       "priority": "Medium"
     },
     {
@@ -23781,7 +23759,7 @@
       "label": "NHK\u30e9\u30b8\u30aa",
       "componentName": "jp.nhk.netradio/com.sikmi.radiru_app.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 22357,
+      "roi_score": 22356,
       "priority": "Medium"
     },
     {
@@ -23902,7 +23880,7 @@
       "label": "winSIM  Servicewelt",
       "componentName": "de.winsim.servicewelt/de.serviceworld.ui.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 7320,
+      "roi_score": 7319,
       "priority": "Medium"
     },
     {
@@ -24012,7 +23990,7 @@
       "label": "ClasseViva Famiglia",
       "componentName": "eu.spaggiari.classevivafamiglia/eu.spaggiari.classeviva.classeviva.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 7031,
+      "roi_score": 7030,
       "priority": "Medium"
     },
     {
@@ -24232,7 +24210,7 @@
       "label": "ALDI US",
       "componentName": "de.apptiv.business.android.aldi_us/com.aldi.ui.launch.LaunchScreenActivity",
       "installs": "5,000,000+",
-      "roi_score": 88476,
+      "roi_score": 88472,
       "priority": "High"
     },
     {
@@ -24243,7 +24221,7 @@
       "label": "tenki.jp \u65e5\u672c\u6c17\u8c61\u5354\u4f1a\u306e\u5929\u6c17\u4e88\u5831\u30a2\u30d7\u30ea\u30fb\u96e8\u96f2\u30ec\u30fc\u30c0\u30fc",
       "componentName": "jwa.or.jp.tenkijp3/jwa.or.jp.tenkijp3.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 17156,
+      "roi_score": 17155,
       "priority": "Medium"
     },
     {
@@ -24320,7 +24298,7 @@
       "label": "Tesco Bank and Clubcard Pay+",
       "componentName": "com.tescobank.mobile/com.tescobank.mobile.ui.auth.splash.view.SplashActivity",
       "installs": "1,000,000+",
-      "roi_score": 7552,
+      "roi_score": 7551,
       "priority": "Medium"
     },
     {
@@ -24331,7 +24309,7 @@
       "label": "8bit Painter",
       "componentName": "com.onetap.bit8painter/com.onetap.bit8painter.LogoActivity",
       "installs": "1,000,000+",
-      "roi_score": 7066,
+      "roi_score": 7065,
       "priority": "Medium"
     },
     {
@@ -24606,7 +24584,7 @@
       "label": "Nordea Mobile - Sweden",
       "componentName": "se.nordea.mobilebank/com.nordea.mobilebank.start.SplashscreenActivity",
       "installs": "1,000,000+",
-      "roi_score": 41919,
+      "roi_score": 41917,
       "priority": "High"
     },
     {
@@ -24804,7 +24782,7 @@
       "label": "Burger Shop 2",
       "componentName": "com.gobit.burgershop2/com.gobit.burgershop2.BurgerShop2Google",
       "installs": "10,000,000+",
-      "roi_score": 18181,
+      "roi_score": 18180,
       "priority": "Medium"
     },
     {
@@ -24892,7 +24870,7 @@
       "label": "FUTBIN FC 26 Evolutions & More",
       "componentName": "com.futbin/com.futbin.mvp.agreement_activity.AgreementActivity",
       "installs": "10,000,000+",
-      "roi_score": 21338,
+      "roi_score": 21337,
       "priority": "Medium"
     },
     {
@@ -25035,7 +25013,7 @@
       "label": "Phone Guardian",
       "componentName": "com.distimo.phoneguardian/com.distimo.phoneguardian.launcher.LauncherActivity",
       "installs": "10,000,000+",
-      "roi_score": 17729,
+      "roi_score": 17728,
       "priority": "Medium"
     },
     {
@@ -25046,7 +25024,7 @@
       "label": "Truck Simulator : Ultimate",
       "componentName": "com.zuuks.truck.simulator.ultimate/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 71378,
+      "roi_score": 71376,
       "priority": "High"
     },
     {
@@ -25090,7 +25068,7 @@
       "label": "Next",
       "componentName": "uk.co.next.android/uk.co.next.android.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 44463,
+      "roi_score": 44460,
       "priority": "High"
     },
     {
@@ -25101,7 +25079,7 @@
       "label": "boodmo - Spare Parts Expert",
       "componentName": "com.opsway.boodmo/com.opsway.boodmo.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 20830,
+      "roi_score": 20829,
       "priority": "Medium"
     },
     {
@@ -25156,7 +25134,7 @@
       "label": "WG-Gesucht - Flats & Rooms",
       "componentName": "com.wggesucht.android/com.wggesucht.presentation.userMode.UserModeActivity",
       "installs": "1,000,000+",
-      "roi_score": 7414,
+      "roi_score": 7413,
       "priority": "Medium"
     },
     {
@@ -25167,7 +25145,7 @@
       "label": "Strike Ops",
       "componentName": "com.ta.strike.ops/com.unity3d.player.UnityPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 39426,
+      "roi_score": 39424,
       "priority": "High"
     },
     {
@@ -25266,7 +25244,7 @@
       "label": "Speak",
       "componentName": "com.selabs.speak/com.selabs.speak.SpeakActivity",
       "installs": "10,000,000+",
-      "roi_score": 21651,
+      "roi_score": 21650,
       "priority": "Medium"
     },
     {
@@ -25398,7 +25376,7 @@
       "firstAppearance": 1780594637.0,
       "lastRequested": 1791472887.0,
       "installs": "1,000,000,000+",
-      "roi_score": 113139,
+      "roi_score": 113137,
       "priority": "High"
     },
     {
@@ -25431,7 +25409,7 @@
       "label": "JBL One",
       "componentName": "com.jbl.oneapp/com.wifiaudio.app.Splash2Activity",
       "installs": "1,000,000+",
-      "roi_score": 7264,
+      "roi_score": 7263,
       "priority": "Medium"
     },
     {
@@ -25442,7 +25420,7 @@
       "label": "ZConnect",
       "componentName": "com.zucchetti.hr.hrsuite/com.zucchetti.hr.hrsuite.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 6941,
+      "roi_score": 6940,
       "priority": "Medium"
     },
     {
@@ -25497,7 +25475,7 @@
       "label": "Perfect Me -Face & Body Editor",
       "componentName": "com.accordion.perfectme/com.accordion.perfectme.activity.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 21825,
+      "roi_score": 21824,
       "priority": "Medium"
     },
     {
@@ -25508,7 +25486,7 @@
       "label": "Mini TD 2: Relax Tower Defense",
       "componentName": "net.argongames.minitd2/com.unity3d.player.UnityPlayerActivity",
       "installs": "1,000,000+",
-      "roi_score": 8114,
+      "roi_score": 8113,
       "priority": "Medium"
     },
     {
@@ -25530,7 +25508,7 @@
       "label": "Eni Plenitude",
       "componentName": "com.eni.enigaseluce/com.eni.enigaseluce.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 8917,
+      "roi_score": 8916,
       "priority": "Medium"
     },
     {
@@ -25618,7 +25596,7 @@
       "label": "Willys",
       "componentName": "se.axfood.willys/se.axfood.willys.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 35068,
+      "roi_score": 35066,
       "priority": "High"
     },
     {
@@ -25981,7 +25959,7 @@
       "firstAppearance": 1774817979.0,
       "lastRequested": 1787751092.0,
       "installs": "5,000,000+",
-      "roi_score": 7509,
+      "roi_score": 7508,
       "priority": "Medium"
     },
     {
@@ -26014,7 +25992,7 @@
       "label": "Ch\u1ee3 T\u1ed1t",
       "componentName": "com.chotot.vn/com.chotot.vn.activities.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 19030,
+      "roi_score": 19029,
       "priority": "Medium"
     },
     {
@@ -26157,7 +26135,7 @@
       "label": "Paper Wings",
       "componentName": "com.filgames.soar/com.unity3d.player.UnityPlayerActivity",
       "installs": "1,000,000+",
-      "roi_score": 8600,
+      "roi_score": 8599,
       "priority": "Medium"
     },
     {
@@ -26443,7 +26421,7 @@
       "label": "JD Sports: Trainers & Clothing",
       "componentName": "com.jd.jdsports/com.jd.jdsports.ui.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 16253,
+      "roi_score": 16252,
       "priority": "Medium"
     },
     {
@@ -26850,7 +26828,7 @@
       "label": "Proxy Browser",
       "componentName": "proxy.browser.unblock.sites.proxybrowser.unblocksites/proxy.browser.unblock.sites.proxybrowser.unblocksites.splash.SplashActivity",
       "installs": "100,000,000+",
-      "roi_score": 65576,
+      "roi_score": 65575,
       "priority": "High"
     },
     {
@@ -26971,7 +26949,7 @@
       "label": "Farm Land - Farming life game",
       "componentName": "com.loltap.farmland/com.unity3d.player.UnityPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 58787,
+      "roi_score": 58786,
       "priority": "High"
     },
     {
@@ -27136,7 +27114,7 @@
       "label": "AutoScout24",
       "componentName": "com.autoscout24/com.autoscout24.splash.StartUpActivity",
       "installs": "50,000,000+",
-      "roi_score": 33548,
+      "roi_score": 33547,
       "priority": "High"
     },
     {
@@ -27169,7 +27147,7 @@
       "label": "MWT Tank Battles",
       "componentName": "com.Shooter.ModernWarfront/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 19538,
+      "roi_score": 19537,
       "priority": "Medium"
     },
     {
@@ -27235,7 +27213,7 @@
       "label": "CookingMama",
       "componentName": "jp.co.ofcr.cm00/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "50,000,000+",
-      "roi_score": 225685,
+      "roi_score": 225677,
       "priority": "Critical"
     },
     {
@@ -27333,7 +27311,7 @@
       "label": "Save the Doge",
       "componentName": "com.miracle.savethedoge.an/org.cocos2dx.javascript.AppActivity",
       "installs": "100,000,000+",
-      "roi_score": 69872,
+      "roi_score": 69871,
       "priority": "High"
     },
     {
@@ -27366,7 +27344,7 @@
       "label": "NeuroNation - Brain Training",
       "componentName": "air.nn.mobile.app.main/crc6483d82f1d54cf67af.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 18431,
+      "roi_score": 18430,
       "priority": "Medium"
     },
     {
@@ -27377,7 +27355,7 @@
       "label": "GOAT \u2013 Sneakers & Apparel",
       "componentName": "com.airgoat.goat/com.airgoat.goat.splash.ui.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 23745,
+      "roi_score": 23744,
       "priority": "Medium"
     },
     {
@@ -27399,7 +27377,7 @@
       "label": "\u0410\u0432\u0442\u043e\u0434\u043e\u043a",
       "componentName": "ru.autodoc.autodocapp/ru.autodoc.autodocapp.modules.main.login.ui.login_activity.LoginActivity",
       "installs": "1,000,000+",
-      "roi_score": 8030,
+      "roi_score": 8029,
       "priority": "Medium"
     },
     {
@@ -27531,7 +27509,7 @@
       "label": "UEFA EURO & Nations League",
       "componentName": "com.uefa.euro2016/com.uefa.ucl.ui.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 20036,
+      "roi_score": 20035,
       "priority": "Medium"
     },
     {
@@ -27564,7 +27542,7 @@
       "label": "Next: Fashion & Homeware",
       "componentName": "uk.co.next.android/crc645233a78dffd851a1.CountrySelectActivity",
       "installs": "5,000,000+",
-      "roi_score": 81053,
+      "roi_score": 81047,
       "priority": "High"
     },
     {
@@ -27663,7 +27641,7 @@
       "label": "Electrodoc - electronics tools",
       "componentName": "it.android.demi.elettronica/it.android.demi.elettronica.MainElectroFree",
       "installs": "10,000,000+",
-      "roi_score": 102925,
+      "roi_score": 102920,
       "priority": "High"
     },
     {
@@ -27685,7 +27663,7 @@
       "label": "VPN India - get Indian IP",
       "componentName": "india.vpn_tap2free/com.vpn.lib.feature.splash.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 15538,
+      "roi_score": 15537,
       "priority": "Medium"
     },
     {
@@ -27894,7 +27872,7 @@
       "label": "Math Games for the Brain",
       "componentName": "de.softan.brainstorm/de.softan.brainstorm.ui.splash.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 103518,
+      "roi_score": 103513,
       "priority": "High"
     },
     {
@@ -27993,7 +27971,7 @@
       "label": "Tanks Blitz PVP \u0431\u0438\u0442\u0432\u044b",
       "componentName": "com.tanksblitz/com.dava.engine.DavaActivity",
       "installs": "10,000,000+",
-      "roi_score": 18859,
+      "roi_score": 18858,
       "priority": "Medium"
     },
     {
@@ -28169,7 +28147,7 @@
       "label": "Morrisons More",
       "componentName": "com.morrisons.matchandmore.app/com.morrisons.my.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 10148,
+      "roi_score": 10147,
       "priority": "Medium"
     },
     {
@@ -28334,7 +28312,7 @@
       "label": "SVT Nyheter",
       "componentName": "se.svt.svti.android.nyhetsapp/se.svt.svti.android.nyhetsapp.view.activity.SplashScreen",
       "installs": "1,000,000+",
-      "roi_score": 32767,
+      "roi_score": 32766,
       "priority": "High"
     },
     {
@@ -28356,7 +28334,7 @@
       "label": "5",
       "componentName": "com.mobileiq.demand5/com.channel5.my5.mobile.ui.main.view.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 11216,
+      "roi_score": 11215,
       "priority": "Medium"
     },
     {
@@ -28422,7 +28400,7 @@
       "label": "Yango Pro",
       "componentName": "com.yango.driver/ru.yandex.taximeter.yandex_driver.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 23385,
+      "roi_score": 23384,
       "priority": "Medium"
     },
     {
@@ -28631,7 +28609,7 @@
       "label": "AvtoLiga \u2013 Ridesharing",
       "componentName": "ru.x_cab/ru.x_cab.activities.LauncherActivity",
       "installs": "1,000,000+",
-      "roi_score": 7048,
+      "roi_score": 7047,
       "priority": "Medium"
     },
     {
@@ -28730,7 +28708,7 @@
       "label": "\u042f.\u041f\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u044f: \u041e\u0442\u0435\u043b\u0438, \u0416\u0414, \u0410\u0432\u0438\u0430",
       "componentName": "ru.yandex.travel/ru.yandex.travel.splash.presentation.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 16988,
+      "roi_score": 16987,
       "priority": "Medium"
     },
     {
@@ -28752,7 +28730,7 @@
       "label": "CUSTOM CAST",
       "componentName": "jp.customcast.cc2/com.unity3d.player.UnityPlayerActivity",
       "installs": "5,000,000+",
-      "roi_score": 17355,
+      "roi_score": 17354,
       "priority": "Medium"
     },
     {
@@ -28840,7 +28818,7 @@
       "label": "mehr-tanken",
       "componentName": "de.msg/app.activities.start.StartActivity",
       "installs": "5,000,000+",
-      "roi_score": 34922,
+      "roi_score": 34920,
       "priority": "High"
     },
     {
@@ -28928,7 +28906,7 @@
       "label": "Randonautica",
       "componentName": "com.randonautica.app/com.randonautica.app.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 25605,
+      "roi_score": 25604,
       "priority": "Medium"
     },
     {
@@ -29027,7 +29005,7 @@
       "label": "Piano Kids - Music Songs",
       "componentName": "com.orange.kidspiano.music.songs/com.ansca.corona.CoronaActivity",
       "installs": "100,000,000+",
-      "roi_score": 45786,
+      "roi_score": 45785,
       "priority": "High"
     },
     {
@@ -29093,7 +29071,7 @@
       "label": "Flat Zombies - Cleanup & Defense",
       "componentName": "com.mokvold.flatzombies_defense_free/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 36413,
+      "roi_score": 36412,
       "priority": "High"
     },
     {
@@ -29225,7 +29203,7 @@
       "label": "Learn to Read - Duolingo ABC",
       "componentName": "com.duolingo.literacy/com.duolingo.literacy.LaunchActivity",
       "installs": "10,000,000+",
-      "roi_score": 20118,
+      "roi_score": 20117,
       "priority": "Medium"
     },
     {
@@ -29313,7 +29291,7 @@
       "label": "Dynamic View AZ",
       "componentName": "com.appsgenz.dynamicisland.phone.ios/com.appsgenz.dynamicisland.phone.ios.views.activity.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 20210,
+      "roi_score": 20209,
       "priority": "Medium"
     },
     {
@@ -29467,7 +29445,7 @@
       "label": "ENGIE Smart App",
       "componentName": "be.engie.smart/com.engie.app.MainActivity",
       "installs": "500,000+",
-      "roi_score": 23632,
+      "roi_score": 23615,
       "priority": "Medium"
     },
     {
@@ -29555,7 +29533,7 @@
       "label": "Yalla Ludo",
       "componentName": "com.yalla.yallagames/com.yalla.yallagames.main.MainActivity",
       "installs": "100,000,000+",
-      "roi_score": 55064,
+      "roi_score": 55062,
       "priority": "High"
     },
     {
@@ -29588,7 +29566,7 @@
       "label": "Veepee by vente-privee outlet",
       "componentName": "com.venteprivee/com.venteprivee.features.launcher.VPInitScreen",
       "installs": "10,000,000+",
-      "roi_score": 16394,
+      "roi_score": 16393,
       "priority": "Medium"
     },
     {
@@ -29654,7 +29632,7 @@
       "label": "Simply Guitar - Learn Guitar",
       "componentName": "com.joytunes.simplyguitar/com.joytunes.simplyguitar.ui.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 28101,
+      "roi_score": 28100,
       "priority": "High"
     },
     {
@@ -29665,7 +29643,7 @@
       "label": "Taimi",
       "componentName": "com.takimi.android/com.takimi.android.MainActivityDefault",
       "installs": "10,000,000+",
-      "roi_score": 20475,
+      "roi_score": 20474,
       "priority": "Medium"
     },
     {
@@ -29764,7 +29742,7 @@
       "firstAppearance": 1776247679.0,
       "lastRequested": 1787996529.0,
       "installs": "5,000,000+",
-      "roi_score": 38928,
+      "roi_score": 38927,
       "priority": "High"
     },
     {
@@ -30006,7 +29984,7 @@
       "label": "LingoClip",
       "componentName": "com.elasthink.lyricstraining/com.elasthink.lyricstraining.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 19470,
+      "roi_score": 19469,
       "priority": "Medium"
     },
     {
@@ -30050,7 +30028,7 @@
       "label": "AnonChat",
       "componentName": "io.anonchat/io.anonchat.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 13299,
+      "roi_score": 13298,
       "priority": "Medium"
     },
     {
@@ -30160,7 +30138,7 @@
       "label": "Duet Cats",
       "componentName": "com.amanotes.gs.g06/com.yogame.security.apk.SignatureVerifier",
       "installs": "50,000,000+",
-      "roi_score": 41772,
+      "roi_score": 41771,
       "priority": "High"
     },
     {
@@ -30589,7 +30567,7 @@
       "label": "FlyVPN - Secure & Fast VPN",
       "componentName": "com.fvcorp.flyclient/com.fvcorp.android.fvclient.activity.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 15774,
+      "roi_score": 15773,
       "priority": "Medium"
     },
     {
@@ -30787,7 +30765,7 @@
       "label": "LittleBigSnake",
       "componentName": "air.com.littlebigsnake.littlebigsnake/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 13578,
+      "roi_score": 13577,
       "priority": "Medium"
     },
     {
@@ -30809,7 +30787,7 @@
       "label": "Disaster Message Board",
       "componentName": "jp.softbank.mb.dmb/jp.softbank.mb.dmb.DMBIntegrateActivity",
       "installs": "10,000,000+",
-      "roi_score": 83856,
+      "roi_score": 83853,
       "priority": "High"
     },
     {
@@ -30842,7 +30820,7 @@
       "label": "Health Monitor",
       "componentName": "jp.co.sharp.android.karadamate/jp.co.sharp.android.karadamate.PedometerMainActivity",
       "installs": "10,000,000+",
-      "roi_score": 89677,
+      "roi_score": 89674,
       "priority": "High"
     },
     {
@@ -30875,7 +30853,7 @@
       "label": "Angry Birds Dream Blast",
       "componentName": "com.rovio.dream/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 13124,
+      "roi_score": 13123,
       "priority": "Medium"
     },
     {
@@ -30908,7 +30886,7 @@
       "firstAppearance": 1774429650.0,
       "lastRequested": 1791173546.0,
       "installs": "100,000,000+",
-      "roi_score": 28840,
+      "roi_score": 28839,
       "priority": "High"
     },
     {
@@ -30985,7 +30963,7 @@
       "firstAppearance": 1772723026.0,
       "lastRequested": 1786562748.0,
       "installs": "50,000,000+",
-      "roi_score": 21123,
+      "roi_score": 21122,
       "priority": "Medium"
     },
     {
@@ -31007,7 +30985,7 @@
       "firstAppearance": 1780221725.0,
       "lastRequested": 1786681737.0,
       "installs": "50,000,000+",
-      "roi_score": 14831,
+      "roi_score": 14830,
       "priority": "Medium"
     },
     {
@@ -31073,7 +31051,7 @@
       "label": "Apartments",
       "componentName": "com.apartments.mobile.android/com.apartments.mobile.android.activities.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 13499,
+      "roi_score": 13498,
       "priority": "Medium"
     },
     {
@@ -31161,7 +31139,7 @@
       "label": "Sk\u00e5netrafiken",
       "componentName": "se.skanetrafiken.washington/se.skanetrafiken.washington.StartActivity",
       "installs": "1,000,000+",
-      "roi_score": 40379,
+      "roi_score": 40377,
       "priority": "High"
     },
     {
@@ -31249,7 +31227,7 @@
       "label": "Toy Blast",
       "componentName": "net.peakgames.amy/net.peakgames.mobile.android.inappbilling.unity.activities.IabUnityAndroidPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 54825,
+      "roi_score": 54824,
       "priority": "High"
     },
     {
@@ -31271,7 +31249,7 @@
       "label": "Endless Wander",
       "componentName": "com.FirstPickStudios.EndlessWander/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "1,000,000+",
-      "roi_score": 8803,
+      "roi_score": 8802,
       "priority": "Medium"
     },
     {
@@ -31293,7 +31271,7 @@
       "label": "Human Evolution",
       "componentName": "com.banana4apps.evolution/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 18102,
+      "roi_score": 18101,
       "priority": "Medium"
     },
     {
@@ -31370,7 +31348,7 @@
       "label": "Business Calendar",
       "componentName": "netgenius.bizcal/netgenius.bizcal.main",
       "installs": "5,000,000+",
-      "roi_score": 8707,
+      "roi_score": 8706,
       "priority": "Medium"
     },
     {
@@ -31436,7 +31414,7 @@
       "label": "Package Tracker - pkge Mobile",
       "componentName": "net.pkge.pkge/net.posylka.posylka.ui.screens.initial.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 13132,
+      "roi_score": 13131,
       "priority": "Medium"
     },
     {
@@ -31678,7 +31656,7 @@
       "label": "Paper.io 3D",
       "componentName": "io.voodoo.paper3/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "50,000,000+",
-      "roi_score": 33165,
+      "roi_score": 33164,
       "priority": "High"
     },
     {
@@ -31931,7 +31909,7 @@
       "label": "Relax Rain: sleep sounds",
       "componentName": "it.mm.android.relaxrain/it.mm.android.relaxrain.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 55983,
+      "roi_score": 55980,
       "priority": "High"
     },
     {
@@ -31964,7 +31942,7 @@
       "firstAppearance": 1766861947.0,
       "lastRequested": 1775042744.0,
       "installs": "5,000,000+",
-      "roi_score": 26899,
+      "roi_score": 26898,
       "priority": "Medium"
     },
     {
@@ -32140,7 +32118,7 @@
       "label": "Truck Simulator Indonesia",
       "componentName": "com.maleo.trucksimulatorid/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 9948,
+      "roi_score": 9947,
       "priority": "Medium"
     },
     {
@@ -32261,7 +32239,7 @@
       "label": "animal restaurant",
       "componentName": "droidhang.twgame.restaurant/org.cocos2dx.javascript.AppActivity",
       "installs": "10,000,000+",
-      "roi_score": 16877,
+      "roi_score": 16876,
       "priority": "Medium"
     },
     {
@@ -32305,7 +32283,7 @@
       "label": "Attack Hole - Black Hole Games",
       "componentName": "com.redlinegames.attackhole/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "50,000,000+",
-      "roi_score": 36242,
+      "roi_score": 36240,
       "priority": "High"
     },
     {
@@ -32382,7 +32360,7 @@
       "label": "YouCam Makeup - Selfie Editor",
       "componentName": "com.cyberlink.youcammakeup/com.cyberlink.youcammakeup.activity.SplashActivity",
       "installs": "100,000,000+",
-      "roi_score": 33759,
+      "roi_score": 33758,
       "priority": "High"
     },
     {
@@ -32415,7 +32393,7 @@
       "label": "CAT ALONE - Cat Toy",
       "componentName": "com.galbro.cataloneandroid/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 16487,
+      "roi_score": 16486,
       "priority": "Medium"
     },
     {
@@ -32448,7 +32426,7 @@
       "label": "Star Trek Fleet Command",
       "componentName": "com.scopely.startrek/com.scopely.unity.ScopelyUnityActivity",
       "installs": "10,000,000+",
-      "roi_score": 10712,
+      "roi_score": 10711,
       "priority": "Medium"
     },
     {
@@ -32459,7 +32437,7 @@
       "label": "radio.de",
       "componentName": "de.radio.android/de.radio.android.ui.AppActivity",
       "installs": "10,000,000+",
-      "roi_score": 66692,
+      "roi_score": 66689,
       "priority": "High"
     },
     {
@@ -32690,7 +32668,7 @@
       "label": "Showroom: Mode, Maison, Voyage",
       "componentName": "com.holosfind.showroom/com.holosfind.showroom.activity.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 14254,
+      "roi_score": 14253,
       "priority": "Medium"
     },
     {
@@ -32734,7 +32712,7 @@
       "label": "Status Saver",
       "componentName": "com.statussaver.statusdownloader.lite/com.statussaver.statusdownloader.lite.whatsapp.activity.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 10448,
+      "roi_score": 10447,
       "priority": "Medium"
     },
     {
@@ -32789,7 +32767,7 @@
       "firstAppearance": 1774795341.0,
       "lastRequested": 1787995072.0,
       "installs": "500,000,000+",
-      "roi_score": 44205,
+      "roi_score": 44203,
       "priority": "High"
     },
     {
@@ -32899,7 +32877,7 @@
       "firstAppearance": 1784372292.0,
       "lastRequested": 1788386283.0,
       "installs": "5,000,000+",
-      "roi_score": 24046,
+      "roi_score": 24045,
       "priority": "Medium"
     },
     {
@@ -32987,7 +32965,7 @@
       "label": "Whering:Digital Closet Stylist",
       "componentName": "com.whering.app/com.whering.app.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 6966,
+      "roi_score": 6965,
       "priority": "Medium"
     },
     {
@@ -33306,7 +33284,7 @@
       "firstAppearance": 1766925551.0,
       "lastRequested": 1788727698.0,
       "installs": "50,000,000+",
-      "roi_score": 20578,
+      "roi_score": 20577,
       "priority": "Medium"
     },
     {
@@ -33559,7 +33537,7 @@
       "label": "Pocket Champs",
       "componentName": "com.pocketchamps.game/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "50,000,000+",
-      "roi_score": 40581,
+      "roi_score": 40580,
       "priority": "High"
     },
     {
@@ -33757,7 +33735,7 @@
       "firstAppearance": 1774270386.0,
       "lastRequested": 1785012905.0,
       "installs": "10,000,000+",
-      "roi_score": 31057,
+      "roi_score": 31056,
       "priority": "High"
     },
     {
@@ -33834,7 +33812,7 @@
       "label": "\u30bd\u30cb\u30fc\u306e\u96fb\u5b50\u66f8\u7c4dReader\u2122 \u6f2b\u753b\u30fb\u5c0f\u8aac\u3001\u52d5\u753b\u30fb\u97f3\u58f0\u5bfe\u5fdc\uff01",
       "componentName": "com.sony.drbd.reader.other.jp/com.sony.drbd.reader.other.jp.main",
       "installs": "5,000,000+",
-      "roi_score": 8617,
+      "roi_score": 8616,
       "priority": "Medium"
     },
     {
@@ -33889,7 +33867,7 @@
       "label": "\u5168\u6c11\u5065\u4fdd\u884c\u52d5\u5feb\u6613\u901a | \u5065\u5eb7\u5b58\u647a",
       "componentName": "com.nhiApp.v1/com.nhiApp.v1.features.StartActivity",
       "installs": "5,000,000+",
-      "roi_score": 13515,
+      "roi_score": 13514,
       "priority": "Medium"
     },
     {
@@ -34109,7 +34087,7 @@
       "firstAppearance": 1771372549.0,
       "lastRequested": 1791691346.0,
       "installs": "5,000,000+",
-      "roi_score": 8835,
+      "roi_score": 8834,
       "priority": "Medium"
     },
     {
@@ -34142,7 +34120,7 @@
       "firstAppearance": 1774270386.0,
       "lastRequested": 1785012905.0,
       "installs": "10,000,000+",
-      "roi_score": 31057,
+      "roi_score": 31056,
       "priority": "High"
     },
     {
@@ -34153,7 +34131,7 @@
       "firstAppearance": 1774270386.0,
       "lastRequested": 1785012905.0,
       "installs": "10,000,000+",
-      "roi_score": 31057,
+      "roi_score": 31056,
       "priority": "High"
     },
     {
@@ -34285,7 +34263,7 @@
       "firstAppearance": 1783412977.0,
       "lastRequested": 1785692309.0,
       "installs": "1,000,000+",
-      "roi_score": 7340,
+      "roi_score": 7334,
       "priority": "Medium"
     },
     {
@@ -34296,7 +34274,7 @@
       "firstAppearance": 1783679322.0,
       "lastRequested": 1787342896.0,
       "installs": "10,000,000+",
-      "roi_score": 26810,
+      "roi_score": 26809,
       "priority": "Medium"
     },
     {
@@ -34307,7 +34285,7 @@
       "firstAppearance": 1781605025.0,
       "lastRequested": 1791691346.0,
       "installs": "10,000,000+",
-      "roi_score": 37908,
+      "roi_score": 37906,
       "priority": "High"
     },
     {
@@ -34351,7 +34329,7 @@
       "firstAppearance": 1783507250.0,
       "lastRequested": 1785019760.0,
       "installs": "100,000,000+",
-      "roi_score": 14493,
+      "roi_score": 14492,
       "priority": "Medium"
     },
     {
@@ -34395,7 +34373,7 @@
       "label": "Critical Strike",
       "componentName": "com.critical.strike2/com.critical.strike2.SplashActivity",
       "installs": "100,000,000+",
-      "roi_score": 46029,
+      "roi_score": 46028,
       "priority": "High"
     },
     {
@@ -34637,7 +34615,7 @@
       "label": "Forza",
       "componentName": "se.footballaddicts.livescore/com.forzafootball.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 61105,
+      "roi_score": 61102,
       "priority": "High"
     },
     {
@@ -34714,7 +34692,7 @@
       "label": "\u30ce\u30b8\u30de",
       "componentName": "jp.mnoji.app/com.nojima.customer.loyalty.MnojiBrowser",
       "installs": "5,000,000+",
-      "roi_score": 13829,
+      "roi_score": 13828,
       "priority": "Medium"
     },
     {
@@ -34802,7 +34780,7 @@
       "label": "Volvo Cars",
       "componentName": "se.volvo.vcc/se.volvo.vcc.ui.compose.MainComposeActivity",
       "installs": "1,000,000+",
-      "roi_score": 22295,
+      "roi_score": 22294,
       "priority": "Medium"
     },
     {
@@ -34934,7 +34912,7 @@
       "label": "Mon compte retraite",
       "componentName": "fr.agircarrco.smartretraite/fr.agircarrco.smartretraite.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 38826,
+      "roi_score": 38824,
       "priority": "High"
     },
     {
@@ -35231,7 +35209,7 @@
       "label": "Stone Grass: Mowing Simulator",
       "componentName": "com.frph.stonegrass/com.unity3d.player.UnityPlayerActivity",
       "installs": "50,000,000+",
-      "roi_score": 29838,
+      "roi_score": 29837,
       "priority": "High"
     },
     {
@@ -35330,7 +35308,7 @@
       "label": "Powder Game",
       "componentName": "jp.danball.powdergameviewer/jp.danball.powdergameviewer.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 11261,
+      "roi_score": 11260,
       "priority": "Medium"
     },
     {
@@ -35451,7 +35429,7 @@
       "label": "Airline Commander: Flight Game",
       "componentName": "it.rortos.realflight/com.unity3d.player.UnityPlayerActivity",
       "installs": "50,000,000+",
-      "roi_score": 20624,
+      "roi_score": 20623,
       "priority": "Medium"
     },
     {
@@ -35506,7 +35484,7 @@
       "firstAppearance": 1771372549.0,
       "lastRequested": 1774006696.0,
       "installs": "10,000,000+",
-      "roi_score": 25040,
+      "roi_score": 25039,
       "priority": "Medium"
     },
     {
@@ -35649,7 +35627,7 @@
       "firstAppearance": 1775890700.0,
       "lastRequested": 1776395207.0,
       "installs": "50,000,000+",
-      "roi_score": 10981,
+      "roi_score": 10980,
       "priority": "Medium"
     },
     {
@@ -35682,7 +35660,7 @@
       "label": "Systembolaget",
       "componentName": "se.systembolaget.android/se.systembolaget.android.gatekeeper.GatekeeperActivity",
       "installs": "1,000,000+",
-      "roi_score": 12489,
+      "roi_score": 12488,
       "priority": "Medium"
     },
     {
@@ -35792,7 +35770,7 @@
       "label": "Racing in Car 2",
       "componentName": "com.ffgames.racingincar2/com.unity3d.player.UnityPlayerActivity",
       "installs": "100,000,000+",
-      "roi_score": 30363,
+      "roi_score": 30362,
       "priority": "High"
     },
     {
@@ -35847,7 +35825,7 @@
       "firstAppearance": 1766919696.0,
       "lastRequested": 1791691346.0,
       "installs": "5,000,000+",
-      "roi_score": 9600,
+      "roi_score": 9599,
       "priority": "Medium"
     },
     {
@@ -35935,7 +35913,7 @@
       "firstAppearance": 1772792375.0,
       "lastRequested": 1781168371.0,
       "installs": "100,000,000+",
-      "roi_score": 13922,
+      "roi_score": 13921,
       "priority": "Medium"
     },
     {
@@ -35968,7 +35946,7 @@
       "firstAppearance": 1774745954.0,
       "lastRequested": 1783507250.0,
       "installs": "50,000,000+",
-      "roi_score": 12693,
+      "roi_score": 12692,
       "priority": "Medium"
     },
     {
@@ -36023,7 +36001,7 @@
       "firstAppearance": 1780346889.0,
       "lastRequested": 1791172170.0,
       "installs": "10,000,000+",
-      "roi_score": 12791,
+      "roi_score": 12790,
       "priority": "Medium"
     },
     {
@@ -36034,7 +36012,7 @@
       "firstAppearance": 1781431524.0,
       "lastRequested": 1781435701.0,
       "installs": "5,000,000+",
-      "roi_score": 17178,
+      "roi_score": 17177,
       "priority": "Medium"
     },
     {
@@ -36067,7 +36045,7 @@
       "firstAppearance": 1780299073.0,
       "lastRequested": 1782460967.0,
       "installs": "10,000,000+",
-      "roi_score": 26952,
+      "roi_score": 26951,
       "priority": "Medium"
     },
     {
@@ -36100,7 +36078,7 @@
       "firstAppearance": 1781453584.0,
       "lastRequested": 1781896926.0,
       "installs": "100,000,000+",
-      "roi_score": 11317,
+      "roi_score": 11315,
       "priority": "Medium"
     },
     {
@@ -36122,7 +36100,7 @@
       "firstAppearance": 1781936022.0,
       "lastRequested": 1782135379.0,
       "installs": "10,000,000+",
-      "roi_score": 23233,
+      "roi_score": 23232,
       "priority": "Medium"
     },
     {
@@ -36154,7 +36132,7 @@
       "requestCount": 2,
       "firstAppearance": 1785776391.0,
       "lastRequested": 1787418447.0,
-      "roi_score": 11998,
+      "roi_score": 11997,
       "installs": "100,000,000+",
       "priority": "Medium"
     },
@@ -36254,7 +36232,7 @@
       "label": "Bed Wars Lite",
       "componentName": "com.sandboxol.indiegame.bedwar/com.sandboxol.blockymods.view.activity.flash.SplashActivity",
       "installs": "100,000,000+",
-      "roi_score": 32045,
+      "roi_score": 32044,
       "priority": "High"
     },
     {
@@ -36309,7 +36287,7 @@
       "label": "Slice It All!",
       "componentName": "com.tummygames.sliceit/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 8909,
+      "roi_score": 8908,
       "priority": "Medium"
     },
     {
@@ -36441,7 +36419,7 @@
       "firstAppearance": 1776231502.0,
       "lastRequested": 1788978511.0,
       "installs": "10,000,000+",
-      "roi_score": 7244,
+      "roi_score": 7243,
       "priority": "Medium"
     },
     {
@@ -36518,7 +36496,7 @@
       "firstAppearance": 1779548876.0,
       "lastRequested": 1787682707.0,
       "installs": "10,000,000+",
-      "roi_score": 28188,
+      "roi_score": 28186,
       "priority": "High"
     },
     {
@@ -36529,7 +36507,7 @@
       "firstAppearance": 1779486662.0,
       "lastRequested": 1790569548.0,
       "installs": "50,000,000+",
-      "roi_score": 14430,
+      "roi_score": 14429,
       "priority": "Medium"
     },
     {
@@ -36671,7 +36649,7 @@
       "requestCount": 2,
       "firstAppearance": 1787328912.0,
       "lastRequested": 1789059036.0,
-      "roi_score": 14482,
+      "roi_score": 14481,
       "installs": "100,000,000+",
       "priority": "Medium"
     },
@@ -36704,7 +36682,7 @@
       "requestCount": 2,
       "firstAppearance": 1786248962.0,
       "lastRequested": 1788870416.0,
-      "roi_score": 7415,
+      "roi_score": 7409,
       "installs": "1,000,000+",
       "priority": "Medium"
     },
@@ -36771,7 +36749,7 @@
       "label": "Burgerprofiel",
       "componentName": "be.burgerprofiel.vlaanderen/be.burgerprofiel.MainActivity",
       "installs": "500,000+",
-      "roi_score": 12475,
+      "roi_score": 12466,
       "priority": "Medium"
     },
     {
@@ -36859,7 +36837,7 @@
       "label": "Bestie",
       "componentName": "us.pinguo.selfie/us.pinguo.selfie.module.newhome.MainActivity",
       "installs": "50,000,000+",
-      "roi_score": 106228,
+      "roi_score": 106227,
       "priority": "High"
     },
     {
@@ -36892,7 +36870,7 @@
       "label": "3DLUT",
       "componentName": "com.lutmobile.lut/com.lutmobile.lut.activities.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 6961,
+      "roi_score": 6960,
       "priority": "Medium"
     },
     {
@@ -37068,7 +37046,7 @@
       "label": "Galaxy",
       "componentName": "ru.mobstudio.andgalaxy/ru.mobstudio.andgalaxy.activities.AcGalaxyLogin",
       "installs": "10,000,000+",
-      "roi_score": 11159,
+      "roi_score": 11158,
       "priority": "Medium"
     },
     {
@@ -37156,7 +37134,7 @@
       "label": "Multicaixa",
       "componentName": "com.sibsint.mcxwallet/com.seven.mobilewallet.activity.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 8799,
+      "roi_score": 8798,
       "priority": "Medium"
     },
     {
@@ -37431,7 +37409,7 @@
       "label": "Dinosaur Universe",
       "componentName": "io.supercent.ageofdinosaurs/co.ab180.airbridge.unity.AirbridgeActivity",
       "installs": "10,000,000+",
-      "roi_score": 7768,
+      "roi_score": 7767,
       "priority": "Medium"
     },
     {
@@ -37442,7 +37420,7 @@
       "label": "Paltalk",
       "componentName": "com.paltalk.chat.android/com.paltalk.chat.main.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 7768,
+      "roi_score": 7767,
       "priority": "Medium"
     },
     {
@@ -37706,7 +37684,7 @@
       "label": "Text Repeater",
       "componentName": "com.kapidhvaj.textrepeater/com.kapidhvaj.textrepeater.Activity.SplashActivity",
       "installs": "10,000,000+",
-      "roi_score": 7230,
+      "roi_score": 7229,
       "priority": "Medium"
     },
     {
@@ -37717,7 +37695,7 @@
       "firstAppearance": 1766552609.0,
       "lastRequested": 1788252343.4458039,
       "installs": "1,000,000+",
-      "roi_score": 10480,
+      "roi_score": 10479,
       "priority": "Medium"
     },
     {
@@ -37750,7 +37728,7 @@
       "firstAppearance": 1784112418.0,
       "lastRequested": 1784112418.0,
       "installs": "5,000,000+",
-      "roi_score": 10588,
+      "roi_score": 10587,
       "priority": "Medium"
     },
     {
@@ -37849,7 +37827,7 @@
       "label": "Extreme Landings",
       "componentName": "it.rortos.extremelandings/com.google.firebase.MessagingUnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 36740,
+      "roi_score": 36738,
       "priority": "High"
     },
     {
@@ -38058,7 +38036,7 @@
       "label": "WOW",
       "componentName": "de.sky.online/com.peacocktv.legacy.monolith.main.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 42300,
+      "roi_score": 42298,
       "priority": "High"
     },
     {
@@ -38102,7 +38080,7 @@
       "label": "Tchibo",
       "componentName": "de.tchibo.app/de.tchibo.beta.MainActivity",
       "installs": "5,000,000+",
-      "roi_score": 27165,
+      "roi_score": 27164,
       "priority": "High"
     },
     {
@@ -38190,7 +38168,7 @@
       "firstAppearance": 1766861947.0,
       "lastRequested": 1788264310.8729796,
       "installs": "5,000,000+",
-      "roi_score": 19186,
+      "roi_score": 19185,
       "priority": "Medium"
     },
     {
@@ -38212,7 +38190,7 @@
       "firstAppearance": 1766948476.0,
       "lastRequested": 1788264396.3980525,
       "installs": "10,000,000+",
-      "roi_score": 25906,
+      "roi_score": 25904,
       "priority": "Medium"
     },
     {
@@ -38278,7 +38256,7 @@
       "firstAppearance": 1771517642.0,
       "lastRequested": 1771517642.0,
       "installs": "10,000,000+",
-      "roi_score": 15276,
+      "roi_score": 15275,
       "priority": "Medium"
     },
     {
@@ -38498,7 +38476,7 @@
       "firstAppearance": 1774419530.0,
       "lastRequested": 1790396849.0,
       "installs": "10,000,000+",
-      "roi_score": 7722,
+      "roi_score": 7721,
       "priority": "Medium"
     },
     {
@@ -38531,7 +38509,7 @@
       "firstAppearance": 1774270386.0,
       "lastRequested": 1774270386.0,
       "installs": "10,000,000+",
-      "roi_score": 15276,
+      "roi_score": 15275,
       "priority": "Medium"
     },
     {
@@ -38641,7 +38619,7 @@
       "firstAppearance": 1774187112.0,
       "lastRequested": 1774187112.0,
       "installs": "50,000,000+",
-      "roi_score": 41372,
+      "roi_score": 41371,
       "priority": "High"
     },
     {
@@ -38816,7 +38794,7 @@
       "firstAppearance": 1775114918.0,
       "lastRequested": 1775114918.0,
       "installs": "10,000,000+",
-      "roi_score": 15872,
+      "roi_score": 15871,
       "priority": "Medium"
     },
     {
@@ -39014,7 +38992,7 @@
       "label": "Relax Rain",
       "componentName": "it.mm.android.relaxrain/it.mm.android.relaxrain.SplashActivity",
       "installs": "5,000,000+",
-      "roi_score": 15640,
+      "roi_score": 15639,
       "priority": "Medium"
     },
     {
@@ -39091,7 +39069,7 @@
       "firstAppearance": 1780258777.0,
       "lastRequested": 1790519499.0,
       "installs": "5,000,000+",
-      "roi_score": 22841,
+      "roi_score": 22840,
       "priority": "Medium"
     },
     {
@@ -39102,7 +39080,7 @@
       "firstAppearance": 1780240787.0,
       "lastRequested": 1780240787.0,
       "installs": "10,000,000+",
-      "roi_score": 14786,
+      "roi_score": 14785,
       "priority": "Medium"
     },
     {
@@ -39223,7 +39201,7 @@
       "firstAppearance": 1782527188.0,
       "lastRequested": 1782527188.0,
       "installs": "10,000,000+",
-      "roi_score": 15872,
+      "roi_score": 15871,
       "priority": "Medium"
     },
     {
@@ -39256,7 +39234,7 @@
       "firstAppearance": 1783834342.0,
       "lastRequested": 1783834342.0,
       "installs": "10,000,000+",
-      "roi_score": 15276,
+      "roi_score": 15275,
       "priority": "Medium"
     },
     {
@@ -39454,7 +39432,7 @@
       "firstAppearance": 1781605025.0,
       "lastRequested": 1791691346.0,
       "installs": "10,000,000+",
-      "roi_score": 30570,
+      "roi_score": 30569,
       "priority": "High"
     },
     {
@@ -39465,7 +39443,7 @@
       "firstAppearance": 1782503845.0,
       "lastRequested": 1782503845.0,
       "installs": "10,000,000+",
-      "roi_score": 16676,
+      "roi_score": 16675,
       "priority": "Medium"
     },
     {
@@ -39542,7 +39520,7 @@
       "firstAppearance": 1780390441.0,
       "lastRequested": 1780390441.0,
       "installs": "50,000,000+",
-      "roi_score": 41372,
+      "roi_score": 41371,
       "priority": "High"
     },
     {
@@ -39585,7 +39563,7 @@
       "requestCount": 1,
       "firstAppearance": 1785012905.0,
       "lastRequested": 1785012905.0,
-      "roi_score": 15276,
+      "roi_score": 15275,
       "installs": "10,000,000+",
       "priority": "Medium"
     },
@@ -39607,7 +39585,7 @@
       "requestCount": 1,
       "firstAppearance": 1785012905.0,
       "lastRequested": 1785012905.0,
-      "roi_score": 15276,
+      "roi_score": 15275,
       "installs": "10,000,000+",
       "priority": "Medium"
     },
@@ -39618,7 +39596,7 @@
       "requestCount": 1,
       "firstAppearance": 1785012905.0,
       "lastRequested": 1785012905.0,
-      "roi_score": 15276,
+      "roi_score": 15275,
       "installs": "10,000,000+",
       "priority": "Medium"
     },
@@ -39651,7 +39629,7 @@
       "requestCount": 1,
       "firstAppearance": 1785951588.0,
       "lastRequested": 1785951588.0,
-      "roi_score": 10588,
+      "roi_score": 10587,
       "installs": "5,000,000+",
       "priority": "Medium"
     },
@@ -39662,7 +39640,7 @@
       "requestCount": 1,
       "firstAppearance": 1785951588.0,
       "lastRequested": 1785951588.0,
-      "roi_score": 10588,
+      "roi_score": 10587,
       "installs": "5,000,000+",
       "priority": "Medium"
     },
@@ -39673,7 +39651,7 @@
       "requestCount": 1,
       "firstAppearance": 1785951588.0,
       "lastRequested": 1785951588.0,
-      "roi_score": 14786,
+      "roi_score": 14785,
       "installs": "10,000,000+",
       "priority": "Medium"
     },
@@ -39805,7 +39783,7 @@
       "requestCount": 2,
       "firstAppearance": 1787328912.0,
       "lastRequested": 1790230504.0,
-      "roi_score": 9380,
+      "roi_score": 9379,
       "installs": "50,000,000+",
       "priority": "Medium"
     },
@@ -39838,7 +39816,7 @@
       "requestCount": 1,
       "firstAppearance": 1785313467.0,
       "lastRequested": 1785313467.0,
-      "roi_score": 15276,
+      "roi_score": 15275,
       "installs": "10,000,000+",
       "priority": "Medium"
     },
@@ -39849,7 +39827,7 @@
       "requestCount": 1,
       "firstAppearance": 1781269109.0,
       "lastRequested": 1781269109.0,
-      "roi_score": 9126,
+      "roi_score": 9125,
       "installs": "100,000,000+",
       "priority": "Medium"
     },
@@ -39860,7 +39838,7 @@
       "requestCount": 1,
       "firstAppearance": 1787342896.0,
       "lastRequested": 1787342896.0,
-      "roi_score": 15872,
+      "roi_score": 15871,
       "installs": "10,000,000+",
       "priority": "Medium"
     },
@@ -39915,7 +39893,7 @@
       "requestCount": 1,
       "firstAppearance": 1787127602.0,
       "lastRequested": 1787127602.0,
-      "roi_score": 19104,
+      "roi_score": 19103,
       "installs": "500,000,000+",
       "priority": "Medium"
     },
@@ -39927,7 +39905,7 @@
       "label": "Apoteket",
       "componentName": "se.apoteket.recept/com.mittapotek.MainActivity",
       "installs": "1,000,000+",
-      "roi_score": 11918,
+      "roi_score": 11917,
       "priority": "Medium"
     },
     {
@@ -39971,7 +39949,7 @@
       "label": "Binomo",
       "componentName": "com.marketly.trading/AppIcon.Default",
       "installs": "10,000,000+",
-      "roi_score": 10784,
+      "roi_score": 10783,
       "priority": "Medium"
     },
     {
@@ -39993,7 +39971,7 @@
       "label": "VTMGO",
       "componentName": "be.vmma.vtm.zenderapp/be.persgroep.vtmgo.VtmGoMainActivity",
       "installs": "1,000,000+",
-      "roi_score": 8736,
+      "roi_score": 8730,
       "priority": "Medium"
     },
     {
@@ -40091,7 +40069,7 @@
       "requestCount": 1,
       "firstAppearance": 1787682707.0,
       "lastRequested": 1787682707.0,
-      "roi_score": 14786,
+      "roi_score": 14785,
       "priority": "Medium",
       "installs": "10,000,000+"
     },
@@ -40136,7 +40114,7 @@
       "firstAppearance": 1788625814.0,
       "lastRequested": 1788625814.0,
       "installs": "10,000,000+",
-      "roi_score": 14786,
+      "roi_score": 14785,
       "priority": "Medium"
     },
     {
@@ -40179,7 +40157,7 @@
       "requestCount": 1,
       "firstAppearance": 1787995072.0,
       "lastRequested": 1787995072.0,
-      "roi_score": 23321,
+      "roi_score": 23320,
       "priority": "Medium",
       "installs": "1,000,000,000+"
     },
@@ -40223,7 +40201,7 @@
       "requestCount": 1,
       "firstAppearance": 1788978511.0,
       "lastRequested": 1788978511.0,
-      "roi_score": 58270,
+      "roi_score": 58269,
       "priority": "High",
       "installs": "100,000,000+"
     },
@@ -40333,7 +40311,7 @@
       "requestCount": 2,
       "firstAppearance": 1788870416.0,
       "lastRequested": 1791622411.0,
-      "roi_score": 7443,
+      "roi_score": 7438,
       "priority": "Medium",
       "installs": "1,000,000+"
     },
@@ -40366,7 +40344,7 @@
       "requestCount": 1,
       "firstAppearance": 1788444519.0,
       "lastRequested": 1788444519.0,
-      "roi_score": 15872,
+      "roi_score": 15871,
       "priority": "Medium",
       "installs": "10,000,000+"
     },
@@ -40388,7 +40366,7 @@
       "requestCount": 1,
       "firstAppearance": 1788628598.0,
       "lastRequested": 1788628598.0,
-      "roi_score": 9010,
+      "roi_score": 9009,
       "priority": "Medium",
       "installs": "100,000,000+"
     },
@@ -40399,7 +40377,7 @@
       "requestCount": 1,
       "firstAppearance": 1788628598.0,
       "lastRequested": 1788628598.0,
-      "roi_score": 9010,
+      "roi_score": 9009,
       "priority": "Medium",
       "installs": "100,000,000+"
     },
@@ -40410,7 +40388,7 @@
       "requestCount": 1,
       "firstAppearance": 1788628598.0,
       "lastRequested": 1788628598.0,
-      "roi_score": 9010,
+      "roi_score": 9009,
       "priority": "Medium",
       "installs": "100,000,000+"
     },
@@ -40421,7 +40399,7 @@
       "requestCount": 1,
       "firstAppearance": 1788628598.0,
       "lastRequested": 1788628598.0,
-      "roi_score": 19787,
+      "roi_score": 19786,
       "priority": "Medium",
       "installs": "500,000,000+"
     },
@@ -40487,7 +40465,7 @@
       "requestCount": 1,
       "firstAppearance": 1790176802.0,
       "lastRequested": 1790176802.0,
-      "roi_score": 15276,
+      "roi_score": 15275,
       "priority": "Medium",
       "installs": "10,000,000+"
     },
@@ -40525,5 +40503,5 @@
       "installs": "100,000,000+"
     }
   ],
-  "totalCount": 30588
+  "totalCount": 30585
 }
