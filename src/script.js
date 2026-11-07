@@ -769,7 +769,7 @@ const Templates = {
     return `
       <div class="grid-card ${
       isSelected ? 'selected' : ''
-    }" data-id="${id}" title="${label}\nRequests: ${app.requestCount ?? 0}\nImpact: ${app.priority || '—'}\nPoints: ${App.state.prioritiesData?.[id]?.sum ?? '—'}\nFirst time: ${Utils.formatDate(app.firstAppearance)}"
+    }" data-id="${id}" title="${label}\nRequests: ${app.requestCount ?? 0}\nImpact: ${app.priority || '—'}\nPoints: ${App.state.prioritiesData?.[id]?.sum ?? '—'}\nInstalls: ${app.installs ? new Intl.NumberFormat('en', { notation: 'compact' }).format(parseInt(app.installs.replace(/[,+]/g, ''))) + '+' : '—'}\nFirst time: ${Utils.formatDate(app.firstAppearance)}"
         tabindex="0" role="checkbox" aria-checked="${isSelected}">
         ${contentHtml}
         <div class="grid-overlay-tags">${tagHtml}</div>
