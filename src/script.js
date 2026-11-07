@@ -1365,6 +1365,35 @@ const Actions = {
     scrollTo(0, scrollY);
   },
 
+  /**
+   * @param {SortKeys} key
+   */
+  toggleSortHeader(key) {
+    const current = App.state.sort;
+    const [currKey, currDir] = current.split('-');
+
+    /** @type {Record<SortKeys, 'asc' | 'desc'>} */
+    const defaults = {
+      name: 'asc',
+      req: 'desc',
+      roi: 'desc',
+      points: 'desc',
+      install: 'desc',
+      time: 'desc',
+    };
+
+    let nextSort = '';
+    if (currKey === key) {
+      nextSort = `${key}-${currDir === 'asc' ? 'desc' : 'asc'}`;
+    } else {
+      nextSort = `${key}-${defaults[key]}`;
+    }
+
+    App.state.sort = nextSort;
+    const opt = UI.sortOptions.find((o) => o.value === nextSort);
+    App.dom.sortLabel.textContent = opt ? opt.label : nextSort;
+    UI.render();
+  },
 
   clearAllSelections() {
     if (App.state.selected.size === 0) return;
