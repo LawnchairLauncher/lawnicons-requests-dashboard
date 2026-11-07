@@ -27,8 +27,7 @@ const fflate = /** @type {* & {fflate: any}} */ (window).fflate;
 
 const CONFIG = {
   data: {
-    endpoint: 'assets/requests_core.json',
-    endpointLow: 'assets/requests_low.json',
+    endpoint: 'assets/requests.json',
     excludedPackagesPath: 'assets/excluded_packages.json',
     requestsGraphPath: 'assets/requests_graph.json',
     screensGraphPath: 'assets/screens_graph.json',
@@ -311,8 +310,6 @@ const App = {
     renderedCount: 0,
     currentData: [],
     existingIcons: [],
-    lowLoaded: false,
-    lowLoading: false,
 
     actionMode: 'new',
     lowQualityActive: false,
@@ -1368,39 +1365,6 @@ const Actions = {
     scrollTo(0, scrollY);
   },
 
-  /**
-   * @param {SortKeys} key
-   */
-  toggleSortHeader(key) {
-    const current = App.state.sort;
-    const [currKey, currDir] = current.split('-');
-
-    /** @type {Record<SortKeys, 'asc' | 'desc'>} */
-    const defaults = {
-      name: 'asc',
-      req: 'desc',
-      roi: 'desc',
-      points: 'desc',
-      install: 'desc',
-      time: 'desc',
-    };
-
-    let nextSort = '';
-    if (currKey === key) {
-      nextSort = `${key}-${currDir === 'asc' ? 'desc' : 'asc'}`;
-    } else {
-      nextSort = `${key}-${defaults[key]}`;
-    }
-
-    App.state.sort = nextSort;
-    const opt = UI.sortOptions.find((o) => o.value === nextSort);
-    App.dom.sortLabel.textContent = opt ? opt.label : nextSort;
-    if (!App.state.lowLoaded) {
-      Data.loadLowRequests().then(() => UI.render());
-    } else {
-      UI.render();
-    }
-  },
 
   clearAllSelections() {
     if (App.state.selected.size === 0) return;
@@ -2070,26 +2034,7 @@ const Data = {
     if (App.state.search) UI.renderIconLibrary();
     if (App.state.contributionActive) UI.renderContributionMode();
   },
-
-  async loadLowRequests() {
-      if (App.state.lowLoaded || App.state.lowLoading) return;
-      App.state.lowLoading = true;
-      try {
-          const data = await this.fetchJson(CONFIG.data.endpointLow, {});
-          const apps = data.apps || [];
-          App.data = App.data.concat(apps);
-          apps.forEach(app => App.state.idMap.set(app.componentName, app));
-          App.state.lowLoaded = true;
-          
-          // Re-compute unlabeled for all data
-          this.computeUnlabeled('unlabeled');
-      } catch (e) {
-          console.error('Failed to load low requests:', e);
-      } finally {
-          App.state.lowLoading = false;
-      }
-  },
-
+  
   /**
    * @param {string} id
    * @returns {Promise<any>}
@@ -2138,11 +2083,8 @@ const Data = {
     const dynamicPkgs = new Set(excluded.dynamic || []);
     if (dynamicPkgs.size === 0) return [];
 
-    const [core, low] = await Promise.all([
-      this.fetchJson(CONFIG.data.endpoint, {}),
-      this.fetchJson(CONFIG.data.endpointLow, {})
-    ]);
-    const allRequests = [...(core.apps || []), ...(low.apps || [])];
+    const data = await this.fetchJson(CONFIG.data.endpoint, {});
+    const allRequests = data.apps || [];
 
     const openRequests = allRequests.filter(app => {
       const pkg = app.componentName.split('/')[0];
@@ -2654,9 +2596,6 @@ const UI = {
 
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(async () => {
-            if (val && !App.state.lowLoaded) {
-                await Data.loadLowRequests();
-            }
             this.render();
         }, 300);
     });
@@ -3039,11 +2978,7 @@ const UI = {
           App.state.sort = value;
           App.dom.sortLabel.textContent = actionEl.textContent.trim() || value;
           App.dom.sortMenu.hidePopover();
-          if (!App.state.lowLoaded) {
-            Data.loadLowRequests().then(() => this.render());
-          } else {
-            this.render();
-          }
+          this.render();
           return;
         }
 
@@ -3082,11 +3017,7 @@ const UI = {
           if (!id) return;
           const s = App.state.activeFilters;
           Utils.mutualExclusiveTags(id, s);
-          if (!App.state.lowLoaded) {
-            Data.loadLowRequests().then(() => this.render());
-          } else {
-            this.render();
-          }
+          this.render();
           return;
         }
 
@@ -3095,15 +3026,8 @@ const UI = {
           if (!id) return;
           const s = App.state.activeFilters;
           Utils.mutualExclusiveTags(id, s);
-          if (!App.state.lowLoaded) {
-            Data.loadLowRequests().then(() => {
-              this.render();
-              this.showMobileFilterPopover();
-            });
-          } else {
-            this.render();
-            this.showMobileFilterPopover();
-          }
+          this.render();
+          this.showMobileFilterPopover();
           return;
         }
 
@@ -3132,11 +3056,7 @@ const UI = {
           App.state.search = `^${domain}\\.`;
           App.dom.inputSearch.value = App.state.search;
           Utils.setHidden(App.dom.clearBtn, false);
-          if (!App.state.lowLoaded) {
-            Data.loadLowRequests().then(() => UI.render());
-          } else {
-            UI.render();
-          }
+          UI.render();
           return;
         }
 
@@ -3426,14 +3346,8 @@ const UI = {
   },
 
   initObserver() {
-    this.observer = new IntersectionObserver(async (entries) => {
+    this.observer = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-            // Load low-priority on scroll if not loaded
-            if (!App.state.lowLoaded && !App.state.lowLoading) {
-                await Data.loadLowRequests();
-                UI.render();
-                return;
-            }
             const more = this.loadMore();
             App.dom.sentinel.style.opacity = more ? '1' : '0';
         }
@@ -3514,9 +3428,7 @@ const UI = {
 
     const sectionTitle = document.getElementById('sectionTitle');
     if (sectionTitle) {
-      const total = App.state.lowLoaded
-        ? s.currentData.length
-        : (App.state.totalRequests || s.currentData.length);
+      const total = s.currentData.length;
       sectionTitle.innerHTML = `Community requests <span style="color: var(--on-surface-variant); margin-left: var(--space-xs)">${Utils.compactNumber(total)}</span>`;
     }
 
@@ -4273,10 +4185,6 @@ layoutMasonry() {
   },
 
   async renderContributionMode() {
-    // Load low-priority requests so contribution plan has full data
-    if (!App.state.lowLoaded) {
-        await Data.loadLowRequests();
-    }
 
     // Clean up dead entries from contribution plan
     const beforeCount = App.state.contribution.length;
