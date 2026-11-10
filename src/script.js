@@ -908,9 +908,9 @@ const Templates = {
       name === '(Unknown App)';
 
     const rawSvg = Utils.sanitizeDrawableName(name);
-    const defaultSvg = (rawSvg === 'icon' || rawSvg === 'unknown')
-      ? ''
-      : rawSvg;
+    // In contribution plan: only latin names are valid; icon/unknown fallbacks become empty
+    const hasLatin = /[a-z]/.test(rawSvg) && rawSvg !== 'icon' && rawSvg !== 'unknown';
+    const defaultSvg = hasLatin ? rawSvg : '';
     const drawable = overrides.drawable !== undefined
       ? overrides.drawable
       : defaultSvg;
@@ -1729,7 +1729,6 @@ const Actions = {
     let xmlAppFilter = '';
     let txtCommands = '';
 
-    const usedDrawables = new Set();
     /** @type {Promise<void>[]} */
     const fetchPromises = [];
 
@@ -1768,13 +1767,7 @@ const Actions = {
           ? 'link'
           : 'new';
 
-      let uniqueDrawable = drawable;
-      let c = 2;
-      while (usedDrawables.has(uniqueDrawable)) {
-        uniqueDrawable = `${drawable}_${c}`;
-        c++;
-      }
-      usedDrawables.add(uniqueDrawable);
+      const uniqueDrawable = drawable;
 
       xmlAppFilter += Actions.buildAppFilterItem(
         app.componentName,
