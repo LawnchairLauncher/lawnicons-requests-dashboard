@@ -1,6 +1,6 @@
 {
-  "count": 30435,
-  "lastUpdate": "2026-11-10",
+  "count": 30427,
+  "lastUpdate": "2026-11-11",
   "apps": [
     {
       "drawable": "manus",
@@ -47124,15 +47124,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "ro_phim",
-      "requestCount": 4,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762798418.0,
-      "label": "R\u1ed5 phim",
-      "componentName": "com.rophim.android.mobile/com.rophim.android.mobile.ui.MainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "mec_enem",
       "requestCount": 5,
       "firstAppearance": 1745020800.0,
@@ -77131,15 +77122,6 @@
       "lastRequested": 1762874084.0,
       "label": "TELLO",
       "componentName": "com.ryzerobotics.tello/com.ryzerobotics.tello.community.activity.SplashActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "light_novel_cave_story_reader",
-      "requestCount": 2,
-      "firstAppearance": 1725841761.0,
-      "lastRequested": 1762769346.0,
-      "label": "Light Novel Cave: Story Reader",
-      "componentName": "com.storycraft.lightnovel.readerapp/com.storycraft.lightnovel.readerapp.MainActivity",
       "roi_score": 0
     },
     {
@@ -115988,15 +115970,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "vexiro",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762778487.0,
-      "label": "VEXIRO",
-      "componentName": "com.vexiro.tweak/com.vexiro.tweak.MainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "one_3d_white_icon_pack",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -122483,42 +122456,6 @@
       "priority": "High"
     },
     {
-      "drawable": "anichart",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762769346.0,
-      "label": "AniChart",
-      "componentName": "org.chromium.webapk.aa9363d16023e3ce2_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "anilist",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762769346.0,
-      "label": "AniList",
-      "componentName": "org.chromium.webapk.aa9542261bb21baea_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "f1_calendar",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762769346.0,
-      "label": "F1 Calendar",
-      "componentName": "org.chromium.webapk.a294a2a790c230bcc_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "miruro",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762769346.0,
-      "label": "Miruro",
-      "componentName": "org.chromium.webapk.a7271fca3045d48d7_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "fix_burn_in_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -122735,15 +122672,6 @@
       "installs": "100,000+",
       "roi_score": 1509,
       "priority": "Low"
-    },
-    {
-      "drawable": "pincode",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762804326.0,
-      "label": "Pincode",
-      "componentName": "com.pincode.shop/com.phonepe.shopping.compose.ui.ComposeActivity",
-      "roi_score": 0
     },
     {
       "drawable": "qwqer_partner_2",
