@@ -573,7 +573,7 @@ label_factors = {
     "easy": 3,
     "match": 5,
     "supported": 6,
-    "rare": 2,
+    "redesign": 1,
 }
 
 def update_fulfillment_history(removed_components: set[str], old_apps: dict) -> int:

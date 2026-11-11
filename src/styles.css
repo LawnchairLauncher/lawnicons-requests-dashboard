@@ -1366,7 +1366,7 @@ select:hover,
   color: var(--on-clay-container);
 }
 
-.status-rare {
+.status-redesign {
   background: var(--primary-container);
   color: var(--on-primary-container);
 }

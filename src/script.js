@@ -44,7 +44,7 @@ const CONFIG = {
     filters: [
       'plan',
       'supported',
-      'rare',
+      'redesign',
       'easy',
       'foss',
       'nameinuse',
@@ -60,7 +60,7 @@ const CONFIG = {
     easy: 3,
     match: 5,
     supported: 6,
-    rare: 1,
+    redesign: 1,
   },
   urls: {
     playStore: 'https://play.google.com/store/apps/details?id=',
