@@ -103,10 +103,6 @@
       "existing_drawable": "ir_remote"
     },
     {
-      "id": "com.transsion.audioshare/com.transsion.audioshare.MainActivity",
-      "existing_drawable": "audio_share"
-    },
-    {
       "id": "com.mixtubepro.musicplayer.create/com.tb.vanced.hook.ui.activity.SplashActivity",
       "existing_drawable": "mixtube"
     },
@@ -163,12 +159,12 @@
       "existing_drawable": "generic_shell"
     },
     {
-      "id": "com.tclhz.gallery/com.tcl.gallery.app.GalleryActivity",
-      "existing_drawable": "xgallery"
+      "id": "com.asus.rog.roggamingcenter3/com.asus.rog.roggamingcenter3.MainActivity",
+      "existing_drawable": "armoury_crate"
     },
     {
-      "id": "com.mdev.intervaltimer/com.mdev.intervaltimer.ui.MainActivity",
-      "existing_drawable": "interval_timer"
+      "id": "com.tclhz.gallery/com.tcl.gallery.app.GalleryActivity",
+      "existing_drawable": "xgallery"
     },
     {
       "id": "org.prauga.messages/org.prauga.messages.feature.main.MainActivity",
@@ -553,10 +549,6 @@
     {
       "id": "com.eden_android/com.eden_android.view.activity.intro.IntroActivity",
       "existing_drawable": "eden"
-    },
-    {
-      "id": "com.statussaver.statusdownloader.lite/com.statussaver.statusdownloader.lite.whatsapp.activity.SplashActivity",
-      "existing_drawable": "download_progress_plus_plus"
     },
     {
       "id": "com.useorigin.employee.android/com.useorigin.employee.android.MainActivity",
@@ -1211,12 +1203,20 @@
       "existing_drawable": "whatsapp"
     },
     {
+      "id": "com.pushd.client/com.pushd.client.ui.LaunchActivity",
+      "existing_drawable": "aura"
+    },
+    {
       "id": "com.bosch.sh.ui.android/com.bosch.sh.android.core.ux.launcher.LauncherActivity",
       "existing_drawable": "smart_home"
     },
     {
       "id": "com.mmb.filemanager/com.mmb.filemanager.activities.SplashActivity.Blue",
       "existing_drawable": "generic_files"
+    },
+    {
+      "id": "com.auraapp.com/com.auraapp.com.MainActivity",
+      "existing_drawable": "aura"
     },
     {
       "id": "com.zenkit.todo/com.zenkit.todo.MainActivity",
@@ -2335,6 +2335,10 @@
       "existing_drawable": "generic_grid_3x3"
     },
     {
+      "id": "fr.emersion.goguma.play/fr.emersion.goguma.MainActivity",
+      "existing_drawable": "goguma"
+    },
+    {
       "id": "com.mojang.mine1208101/com.mojang.minecraftpe.MainActivity",
       "existing_drawable": "minecraft"
     },
@@ -2673,6 +2677,10 @@
     {
       "id": "weogax.atbfxb.skiggr/weogax.atbfxb.skiggr.ui.MainActivity",
       "existing_drawable": "bakasu"
+    },
+    {
+      "id": "com.freevibe/com.freevibe.MainActivity",
+      "existing_drawable": "aura"
     },
     {
       "id": "jp.co.roland.bosstuner/jp.co.roland.bosstuner.MainActivity",
