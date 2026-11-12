@@ -1,6 +1,6 @@
 {
-  "count": 30427,
-  "lastUpdate": "2026-11-11",
+  "count": 30415,
+  "lastUpdate": "2026-11-12",
   "apps": [
     {
       "drawable": "manus",
@@ -77116,15 +77116,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "tello",
-      "requestCount": 2,
-      "firstAppearance": 1718707965.0,
-      "lastRequested": 1762874084.0,
-      "label": "TELLO",
-      "componentName": "com.ryzerobotics.tello/com.ryzerobotics.tello.community.activity.SplashActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "chivo_wallet",
       "requestCount": 2,
       "firstAppearance": 1714122089.0,
@@ -115669,15 +115660,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "exceedshare",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762874084.0,
-      "label": "ExceedShare",
-      "componentName": "com.exceedshare.mobile/com.exceedshare.mobile.ui.page.HomeActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "italian_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -115709,24 +115691,6 @@
       "installs": "100,000+",
       "roi_score": 79,
       "priority": "Low"
-    },
-    {
-      "drawable": "tellocvdronecontrol",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762874084.0,
-      "label": "tellocvdronecontrol",
-      "componentName": "com.example.tellocvdronecontrol/com.example.tellocvdronecontrol.MainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "upcycle_genius",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762874084.0,
-      "label": "upcycle_genius",
-      "componentName": "com.example.upcycle_genius/com.example.upcycle_genius.MainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "kumari_smart",
@@ -122301,15 +122265,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "bullspree",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762874084.0,
-      "label": "Bullspree",
-      "componentName": "com.app.stockcash/com.app.stockcash.MainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "calisthenics_unlimited_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -122321,15 +122276,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "chittischool",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762874084.0,
-      "label": "chitti-school",
-      "componentName": "org.chromium.webapk.abb57cc509d3377fe_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "easy_quran_hafiz_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -122339,15 +122285,6 @@
       "installs": "100,000+",
       "roi_score": 107,
       "priority": "Low"
-    },
-    {
-      "drawable": "editor__optimem",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762874084.0,
-      "label": "Editor | Optimem",
-      "componentName": "org.chromium.webapk.a2161e7486c381b71_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "future_school_2",
@@ -122405,15 +122342,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "packagemaker",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762874084.0,
-      "label": "PackageMaker",
-      "componentName": "com.example.packaging_maker/com.example.packaging_maker.MainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "retain_quran_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -122434,15 +122362,6 @@
       "installs": "10,000+",
       "roi_score": 71,
       "priority": "Low"
-    },
-    {
-      "drawable": "tello_edu",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762874084.0,
-      "label": "TELLO EDU",
-      "componentName": "com.wistron.telloedu/com.unity3d.player.UnityPlayerActivity",
-      "roi_score": 0
     },
     {
       "drawable": "vlad_niki_12_locks",
@@ -123944,15 +123863,6 @@
       "priority": "High"
     },
     {
-      "drawable": "hdhub4u",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762880892.0,
-      "label": "HDHub4u",
-      "componentName": "com.zonebj.bollywoodmovieshindi/com.zonebj.bollywoodmovieshindi.SplashsActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "kotak_mutual_fund_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -123986,15 +123896,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "myglamm",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762880892.0,
-      "label": "MyGlamm",
-      "componentName": "com.myglamm.ecommerce/com.myglamm.ecommerce.common.splash.SplashActivityAliasDefault",
-      "roi_score": 0
-    },
-    {
       "drawable": "neotrack_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -124015,16 +123916,6 @@
       "installs": "10,000+",
       "roi_score": 71,
       "priority": "Low"
-    },
-    {
-      "drawable": "passport_photo_maker",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1762880892.0,
-      "label": "Passport Photo Maker",
-      "componentName": "com.appwallet.passportphotomaker/com.appwallet.passportphotomaker.activities.SplashActivity",
-      "installs": "1,000,000+",
-      "roi_score": 0
     },
     {
       "drawable": "popeyes_1",
