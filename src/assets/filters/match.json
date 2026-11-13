@@ -383,6 +383,10 @@
       "existing_drawable": "orbot"
     },
     {
+      "id": "com.trustonic.telecoms.standard.dlc/safe.superr.key.lock.MainActivity",
+      "existing_drawable": "telecoms_client"
+    },
+    {
       "id": "org.torproject.vpn/org.torproject.vpn.ui.iconsetting.model.LauncherWeather",
       "existing_drawable": "tor_vpn"
     },
@@ -509,10 +513,6 @@
     {
       "id": "com.luckydeveloper.apkshare/com.luckydeveloper.shareit.ui.activities.MainActivity",
       "existing_drawable": "apk_share_bluetooth"
-    },
-    {
-      "id": "com.cuvora.carinfo/com.vassuperapp.MainActivity",
-      "existing_drawable": "carinfo"
     },
     {
       "id": "com.antutu.benchmark.full/com.xj.app.DeepLinkRouterActivity",
