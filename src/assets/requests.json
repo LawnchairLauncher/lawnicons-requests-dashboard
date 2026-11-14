@@ -1,6 +1,6 @@
 {
-  "count": 30304,
-  "lastUpdate": "2026-11-13",
+  "count": 30298,
+  "lastUpdate": "2026-11-14",
   "apps": [
     {
       "drawable": "manus",
@@ -1352,7 +1352,7 @@
       "lastRequested": 1790820590.0,
       "label": "Eitaa",
       "componentName": "ir.eitaa.messenger/ir.eitaa.ui.LaunchActivity",
-      "roi_score": 4709,
+      "roi_score": 4708,
       "priority": "Low"
     },
     {
@@ -2188,7 +2188,7 @@
       "lastRequested": 1788153427.0,
       "label": "Divar",
       "componentName": "ir.divar/ir.divar.view.activity.SplashActivity",
-      "roi_score": 2539,
+      "roi_score": 2538,
       "priority": "Low"
     },
     {
@@ -6703,7 +6703,7 @@
       "label": "PPCine",
       "componentName": "com.cs.cinemain/com.mgs.carparking.ui.login.splash.SplashActivity",
       "installs": "1,000+",
-      "roi_score": 2039,
+      "roi_score": 2038,
       "priority": "Low"
     },
     {
@@ -7648,7 +7648,7 @@
       "label": "Samsung TV remote",
       "componentName": "ir.remote.smg.tv/ir.remote.smg.tv.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 248608,
+      "roi_score": 248569,
       "priority": "Critical"
     },
     {
@@ -9708,7 +9708,7 @@
       "label": "Melodify",
       "componentName": "net.melodify.android/net.melodify.android.activities.SplashScreenActivity",
       "installs": "5,000,000+",
-      "roi_score": 15718,
+      "roi_score": 15715,
       "priority": "Medium"
     },
     {
@@ -12440,7 +12440,7 @@
       "label": "EShare",
       "componentName": "com.eshare.clientv2/com.eshare.clientv2.MainActivity",
       "installs": "10,000,000+",
-      "roi_score": 31166,
+      "roi_score": 31162,
       "priority": "High"
     },
     {
@@ -22966,7 +22966,7 @@
       "label": "Nut Sort: Color Sorting Game",
       "componentName": "com.zm.nuts/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 16732,
+      "roi_score": 16730,
       "priority": "Medium"
     },
     {
@@ -27886,7 +27886,7 @@
       "label": "GoFly VPN,V2ray,Trojan,sock5",
       "componentName": "com.ambrose.overwall/com.ambrose.overwall.WelcomeActivity",
       "installs": "1,000,000+",
-      "roi_score": 6578,
+      "roi_score": 6577,
       "priority": "Low"
     },
     {
@@ -32322,7 +32322,7 @@
       "label": "Asiatech",
       "componentName": "com.asiatech.android/com.asiatech.android.ui.splash.SplashActivity",
       "installs": "500,000+",
-      "roi_score": 4843,
+      "roi_score": 4842,
       "priority": "Low"
     },
     {
@@ -40482,7 +40482,7 @@
       "label": "CoinGlass - Bitcoin & Crypto",
       "componentName": "com.coinglass.android/com.coinglass.androidapp.SplashActivity",
       "installs": "500,000+",
-      "roi_score": 6081,
+      "roi_score": 6080,
       "priority": "Low"
     },
     {
@@ -41243,7 +41243,7 @@
       "requestCount": 5,
       "firstAppearance": 1782321320.0,
       "lastRequested": 1789384213.0,
-      "roi_score": 582,
+      "roi_score": 581,
       "priority": "Low"
     },
     {
@@ -57039,16 +57039,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "gbakiyem",
-      "requestCount": 3,
-      "firstAppearance": 1736151157.0,
-      "lastRequested": 1763048104.0,
-      "label": "Gbakiyem",
-      "componentName": "com.rzmobile.gbakiyem/com.rzmobile.app.activity.splash",
-      "installs": "1,000,000+",
-      "roi_score": 0
-    },
-    {
       "drawable": "oda_class",
       "requestCount": 3,
       "firstAppearance": 1728785405.0,
@@ -57354,16 +57344,6 @@
       "installs": "500,000+",
       "roi_score": 349,
       "priority": "Low"
-    },
-    {
-      "drawable": "papel",
-      "requestCount": 3,
-      "firstAppearance": 1728595835.0,
-      "lastRequested": 1763030505.0,
-      "label": "Papel",
-      "componentName": "com.papelmobile/com.papelmobile.ui.activity.RoutingActivity",
-      "installs": "500,000+",
-      "roi_score": 0
     },
     {
       "drawable": "job_bank",
@@ -74750,7 +74730,7 @@
       "label": "DigiMaze",
       "componentName": "com.vnegar.digimaze/com.vnegar.digimaze.MainActivity",
       "installs": "100,000+",
-      "roi_score": 1391,
+      "roi_score": 1390,
       "priority": "Low"
     },
     {
@@ -74960,15 +74940,6 @@
       "installs": "50,000+",
       "roi_score": 1483,
       "priority": "Low"
-    },
-    {
-      "drawable": "junior",
-      "requestCount": 2,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1763038887.0,
-      "label": "Junior",
-      "componentName": "com.samanpr.blujr/com.samanpr.blujr.MainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "vivagym",
@@ -84382,7 +84353,7 @@
       "label": "Radio Javan",
       "componentName": "com.radiojavan.androidradio/com.radiojavan.androidradio.DefaultLauncher",
       "installs": "10,000,000+",
-      "roi_score": 9354,
+      "roi_score": 9353,
       "priority": "Medium"
     },
     {
@@ -87407,7 +87378,7 @@
       "requestCount": 2,
       "firstAppearance": 1783259178.0,
       "lastRequested": 1786705040.0,
-      "roi_score": 413,
+      "roi_score": 412,
       "priority": "Low"
     },
     {
@@ -121596,15 +121567,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "constitution",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1763017411.0,
-      "label": "Constitution",
-      "componentName": "com.nikitadev.usconstitution/com.nikitadev.usconstitution.MainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "earthquake_alert",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -121966,15 +121928,6 @@
       "installs": "5,000,000+",
       "roi_score": 422,
       "priority": "Low"
-    },
-    {
-      "drawable": "meshy",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1763019127.0,
-      "label": "Meshy",
-      "componentName": "org.chromium.webapk.a38f594af48b892e5_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
     },
     {
       "drawable": "magicfleet_2",
@@ -122393,15 +122346,6 @@
       "installs": "10,000,000+",
       "roi_score": 554,
       "priority": "Low"
-    },
-    {
-      "drawable": "zybank",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1763038887.0,
-      "label": "ZyBank",
-      "componentName": "ir.zybank.app/ir.zybank.app.view.activity.SplashActivity",
-      "roi_score": 0
     },
     {
       "drawable": "rooktv_1",
@@ -131320,7 +131264,7 @@
       "firstAppearance": 1766608115.0,
       "lastRequested": 1788252346.5100393,
       "installs": "10,000,000+",
-      "roi_score": 22565,
+      "roi_score": 22561,
       "priority": "Medium"
     },
     {
@@ -151256,7 +151200,7 @@
       "firstAppearance": 1783259178.0,
       "lastRequested": 1783259178.0,
       "installs": "500,000+",
-      "roi_score": 637,
+      "roi_score": 636,
       "priority": "Low"
     },
     {
@@ -151285,7 +151229,7 @@
       "firstAppearance": 1783259178.0,
       "lastRequested": 1783259178.0,
       "installs": "500,000+",
-      "roi_score": 637,
+      "roi_score": 636,
       "priority": "Low"
     },
     {
@@ -153799,7 +153743,7 @@
       "firstAppearance": 1782746952.0,
       "lastRequested": 1782746952.0,
       "installs": "10,000,000+",
-      "roi_score": 2139,
+      "roi_score": 2138,
       "priority": "Low"
     },
     {
@@ -169219,7 +169163,7 @@
       "firstAppearance": 1771330365.0,
       "lastRequested": 1771330365.0,
       "installs": "10,000,000+",
-      "roi_score": 2139,
+      "roi_score": 2138,
       "priority": "Low"
     },
     {
@@ -211351,7 +211295,7 @@
       "firstAppearance": 1780261486.0,
       "lastRequested": 1790820590.0,
       "installs": "10,000,000+",
-      "roi_score": 4329,
+      "roi_score": 4328,
       "priority": "Low"
     },
     {
@@ -233066,7 +233010,7 @@
       "firstAppearance": 1783259178.0,
       "lastRequested": 1783259178.0,
       "installs": "500,000+",
-      "roi_score": 637,
+      "roi_score": 636,
       "priority": "Low"
     },
     {
@@ -244709,7 +244653,7 @@
       "firstAppearance": 1782746952.0,
       "lastRequested": 1782746952.0,
       "installs": "500,000+",
-      "roi_score": 637,
+      "roi_score": 636,
       "priority": "Low"
     },
     {
@@ -244720,7 +244664,7 @@
       "firstAppearance": 1782746952.0,
       "lastRequested": 1782746952.0,
       "installs": "10,000,000+",
-      "roi_score": 2139,
+      "roi_score": 2138,
       "priority": "Low"
     },
     {
@@ -274700,7 +274644,7 @@
       "requestCount": 1,
       "firstAppearance": 1787127602.0,
       "lastRequested": 1787127602.0,
-      "roi_score": 637,
+      "roi_score": 636,
       "installs": "500,000+",
       "priority": "Low"
     },
@@ -282183,7 +282127,7 @@
       "firstAppearance": 1788571667.0,
       "lastRequested": 1788571667.0,
       "installs": "10,000,000+",
-      "roi_score": 2139,
+      "roi_score": 2138,
       "priority": "Low"
     },
     {
@@ -304017,7 +303961,7 @@
       "firstAppearance": 1790688528.0,
       "lastRequested": 1790688528.0,
       "installs": "500,000+",
-      "roi_score": 637,
+      "roi_score": 636,
       "priority": "Low"
     },
     {
@@ -315988,7 +315932,7 @@
       "requestCount": 1,
       "firstAppearance": 1790820590.0,
       "lastRequested": 1790820590.0,
-      "roi_score": 637,
+      "roi_score": 636,
       "priority": "Low",
       "installs": "500,000+"
     },
