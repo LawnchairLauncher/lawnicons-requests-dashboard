@@ -275,6 +275,10 @@
       "existing_drawable": "yahoo_weather"
     },
     {
+      "id": "com.x.chat/com.x.chat.XChatMainActivity",
+      "existing_drawable": "onx_backcountry"
+    },
+    {
       "id": "com.tct.smart.notes/com.tct.smart.notes.noteList.NoteMainActivity",
       "existing_drawable": "samsung_notes"
     },
@@ -397,6 +401,10 @@
     {
       "id": "com.tcl.tct.weather/com.tct.weather.MainActivity",
       "existing_drawable": "yahoo_weather"
+    },
+    {
+      "id": "si.jakobkreft.ontime/si.jakobkreft.ontime.MainActivity",
+      "existing_drawable": "ontime"
     },
     {
       "id": "com.alpaca.android.readout/com.alpaca.android.readout.activities.MainActivity",
@@ -739,6 +747,10 @@
       "existing_drawable": "hive"
     },
     {
+      "id": "in.PrudentMedia/in.PrudentMedia.views.HomeActivity",
+      "existing_drawable": "prudent_plus"
+    },
+    {
       "id": "com.lifesolutions.backgroundplayer/com.trangdv.playit.MainActivity",
       "existing_drawable": "generic_player"
     },
@@ -1015,8 +1027,8 @@
       "existing_drawable": "komiku"
     },
     {
-      "id": "com.fadcam.beta/com.fadcam.MainActivity.MinimalIcon",
-      "existing_drawable": "fadcam"
+      "id": "dev.christopher2k.concentration/dev.christopher2k.concentration.MainActivity",
+      "existing_drawable": "concentration"
     },
     {
       "id": "com.techsial.android.unitconverter/com.techsial.android.unitconverter.SplashActivity",
@@ -1163,10 +1175,6 @@
       "existing_drawable": "vpn_super_unlimited_proxy"
     },
     {
-      "id": "com.nhstudio.smsmessenger.iosmessages.messageiphone/com.nhstudio.smsmessenger.iosmessages.messageiphone.MainActivity",
-      "existing_drawable": "messages"
-    },
-    {
       "id": "com.akinon.samsung/com.akinon.samsung.MainActivity",
       "existing_drawable": "samsung_shop"
     },
@@ -1199,6 +1207,10 @@
       "existing_drawable": "bump"
     },
     {
+      "id": "chat.revolt.app.twa/chat.revolt.app.twa.LauncherActivity",
+      "existing_drawable": "revolt"
+    },
+    {
       "id": "com.yowhatsapp/com.yowhatsapp.Icon0",
       "existing_drawable": "whatsapp"
     },
@@ -1221,6 +1233,10 @@
     {
       "id": "com.zenkit.todo/com.zenkit.todo.MainActivity",
       "existing_drawable": "tasks"
+    },
+    {
+      "id": "com.sevenbold.cadence/com.sevenbold.cadence.MainActivity",
+      "existing_drawable": "cadence"
     },
     {
       "id": "com.binghuo.currencyconverter/com.binghuo.currencyconverter.launcher.LauncherActivity",
@@ -1257,6 +1273,10 @@
     {
       "id": "com.nostr.universe/com.nostr.universe.MainActivity",
       "existing_drawable": "spring"
+    },
+    {
+      "id": "com.salfeld.cb3/com.salfeld.cb3.ui.MainActivity",
+      "existing_drawable": "kisi"
     },
     {
       "id": "com.readcube.mobile/com.readcube.mobile.MainActivity",
@@ -1641,6 +1661,10 @@
     {
       "id": "com.akslabs.pixelscreenshots/com.akslabs.pixelscreenshots.MainActivity",
       "existing_drawable": "pixel_screenshots"
+    },
+    {
+      "id": "com.skylightframe.mobile/com.skylightframe.mobile.presentation.MainActivity",
+      "existing_drawable": "skylight"
     },
     {
       "id": "co.appnation.geniechat/co.appnation.geniechat.MainActivity",
@@ -2423,10 +2447,6 @@
       "existing_drawable": "just_player"
     },
     {
-      "id": "com.cashola.loan.cash.peso/com.cashola.loan.cash.peso.ui.main.LaunchActivity",
-      "existing_drawable": "cashify"
-    },
-    {
       "id": "com.pt.auto.background.video.recorder.hidden.camera/com.zipoapps.premiumhelper.ui.splash.PHSplashActivity",
       "existing_drawable": "background_video_recorder"
     },
@@ -2565,6 +2585,14 @@
     {
       "id": "de.tum.in.tumcampus/de.tum.in.tumcampus.MainActivity",
       "existing_drawable": "campus"
+    },
+    {
+      "id": "moe.n4tsu.dextop/moe.n4tsu.dextop.DextopLauncherActivity",
+      "existing_drawable": "dextop"
+    },
+    {
+      "id": "com.allocatesoftware.loop/crc6473ff398c3d87b634.SplashActivity",
+      "existing_drawable": "loop"
     },
     {
       "id": "com.friend.ios/com.friend.ios.MainActivity",
@@ -2717,6 +2745,10 @@
     {
       "id": "com.authenticator/com.authenticator.SplashActivity",
       "existing_drawable": "generic_shell"
+    },
+    {
+      "id": "co.movistar.cloud/com.funambol.android.activities.AndroidHomeScreen",
+      "existing_drawable": "movistar_cloud"
     },
     {
       "id": "com.heethjain.apps.statussaver/com.heethjain.apps.statussaver.MainActivity",
