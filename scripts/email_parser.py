@@ -473,7 +473,7 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, image_out_path: Path, 
     if email_files:
         save_trending_snapshot("period_end", list(apps.values()), output_path)
 
-    keep_images = {a["drawable"] for a in apps.values()}
+    keep_images = {a["drawable"] for a in apps.values() if "drawable" in a}
     delete_unused_images(image_out_path, keep_images)
 
     print(f"Processed {len(email_files)} emails. Total requests: {len(apps)}")
