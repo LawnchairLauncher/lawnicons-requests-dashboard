@@ -2109,7 +2109,10 @@ const Data = {
     const allRequests = data.apps || [];
 
     const openRequests = allRequests.filter(app => {
-      const pkg = app.componentName.split('/')[0];
+      const comp = app.componentName || '';
+      // Skip malformed componentNames (non-ASCII, no slash, etc.)
+      if (!/^[a-zA-Z0-9._]+\/[a-zA-Z0-9._$]+$/.test(comp)) return false;
+      const pkg = comp.split('/')[0];
       return dynamicPkgs.has(pkg);
     });
 
