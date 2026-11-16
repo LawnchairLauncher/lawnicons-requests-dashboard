@@ -476,7 +476,7 @@
     },
     {
       "id": "com.metzger100.calculator/com.metzger100.calculator.MainActivity",
-      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
+      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
     },
     {
       "id": "sleepsounds.relaxandsleep.whitenoise/sleepsounds.relaxandsleep.whitenoise.activity.SplashActivity",
@@ -992,7 +992,7 @@
     },
     {
       "id": "my.android.calc/my.android.calc.MainActivity",
-      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
+      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
     },
     {
       "id": "com.blackview.easytrans/com.blackview.easytrans.connect.ui.activity.MainActivity",
@@ -1121,10 +1121,6 @@
     {
       "id": "com.ikeyboard.theme.blue.keyboard/com.qisi.ui.entry.EntryActivity",
       "existing_drawable": "blue"
-    },
-    {
-      "id": "com.PaLoApp.calculator2/com.PaLoApp.calculator2.Calculator",
-      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
     },
     {
       "id": "ca.autotrader.userapp/ca.autotrader.userapp.legacy.ui.phone.SplashActivity",
@@ -1324,7 +1320,7 @@
     },
     {
       "id": "com.dariaos.calculator/com.dariaos.calculator.MainActivity",
-      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
+      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
     },
     {
       "id": "com.dariaos.toolbox/com.dariaos.toolbox.ui.MainActivity",
@@ -1624,7 +1620,7 @@
     },
     {
       "id": "com.AppAuxin.ios_calculator/com.AppAuxin.ios_calculator.MainActivity",
-      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
+      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
     },
     {
       "id": "com.callassistant.android/com.callassistant.android.ui.main.MainActivity",
@@ -2100,7 +2096,7 @@
     },
     {
       "id": "com.nhstudio.icalculator/com.nhstudio.icalculator.ui.CalculatorActivity",
-      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
+      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
     },
     {
       "id": "com.nhstudio.alarmioss/com.nhstudio.alarmioss.MainActivity",
@@ -2136,7 +2132,7 @@
     },
     {
       "id": "com.vagujhelyigergely.calculatorm3/com.vagujhelyigergely.calculatorm3.MainActivity",
-      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
+      "existing_drawable": "generic_calculator_plus_minus_multi_equal"
     },
     {
       "id": "pl.upaid.gopay/pl.upaid.gopay.feature.main.presentation.MainActivity",
@@ -2943,10 +2939,6 @@
       "existing_drawable": "generic_mahjong"
     },
     {
-      "id": "com.sg.calculator/com.sg.calculator.Calculator",
-      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
-    },
-    {
       "id": "com.sg.gallery/com.sg.gallery.MainActivity",
       "existing_drawable": "xgallery"
     },
@@ -2969,10 +2961,6 @@
     {
       "id": "com.prism.music/com.prism.music.MainActivity",
       "existing_drawable": "prism"
-    },
-    {
-      "id": "ch.protonvpn.android.reproducible/ch.protonvpn.android.RoutingActivity",
-      "existing_drawable": "proton_vpn"
     },
     {
       "id": "com.cflat.blink/com.cflat.blink.ui.MainActivity",
@@ -3015,10 +3003,6 @@
       "existing_drawable": "lumo"
     },
     {
-      "id": "com.community.newroom/com.mymovie.activity.MySplashActivity",
-      "existing_drawable": "moviebox"
-    },
-    {
       "id": "com.vayunmathur.office/com.vayunmathur.office.MainActivity",
       "existing_drawable": "office"
     },
@@ -3047,20 +3031,8 @@
       "existing_drawable": "anywhere"
     },
     {
-      "id": "com.joiplay.joiplay/com.joiplay.joiplay.activities.MainActivity",
-      "existing_drawable": "joiplay"
-    },
-    {
-      "id": "io.github.codeg0blin.videowallpaper/io.github.codeg0blin.videowallpaper.MainActivity",
-      "existing_drawable": "video_live_wallpaper"
-    },
-    {
       "id": "net.pgaskin.windy/net.pgaskin.windy.MainActivity",
       "existing_drawable": "windy"
-    },
-    {
-      "id": "com.scannerreader.qrcode.creatorfree/com.scannerreader.qrcode.creatorfree.view.LoadActivity",
-      "existing_drawable": "generic_qr_reader"
     },
     {
       "id": "wifishowpassword.scanqr.wifipassword.wifianalyzer/wifishowpassword.scanqr.wifipassword.wifianalyzer.ui.activty.SplashActivity",
@@ -3211,14 +3183,6 @@
       "existing_drawable": "lensa"
     },
     {
-      "id": "com.community.mbox.in.geobypass/com.transsion.subroom.activity.SplashActivity",
-      "existing_drawable": "moviebox"
-    },
-    {
-      "id": "com.softwarebakery.drivedroid.paid/com.softwarebakery.drivedroid.MainActivity",
-      "existing_drawable": "drivedroid"
-    },
-    {
       "id": "com.vayunmathur.games.chess/com.vayunmathur.games.chess.MainActivity",
       "existing_drawable": "generic_chess"
     },
@@ -3235,10 +3199,6 @@
       "existing_drawable": "generic_shell"
     },
     {
-      "id": "com.calculatorlock.calculatorvault.photovault/com.calculatorlock.calculatorvault.photovault.ui.activity.SplashActivity",
-      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
-    },
-    {
       "id": "com.peace.Notepad/com.peace.Notepad.LaunchActivity",
       "existing_drawable": "notepad"
     },
@@ -3247,16 +3207,8 @@
       "existing_drawable": "volume_control"
     },
     {
-      "id": "com.voltasit.obdeleven.basic/com.voltasit.obdeleven.presentation.startup.StartupActivity",
-      "existing_drawable": "obdeleven"
-    },
-    {
       "id": "com.ifs.androidmobilebanking.fiid3503/com.banking.bankinglibrary.activities.SplashActivity",
       "existing_drawable": "safe"
-    },
-    {
-      "id": "com.nike.india/com.fsn.nds.app.splash.LauncherActivity",
-      "existing_drawable": "nike"
     },
     {
       "id": "ca.autotrader.userapp/com.autoscout24.splash.ui.StartUpActivity",
@@ -3287,14 +3239,6 @@
       "existing_drawable": "nonogram"
     },
     {
-      "id": "com.dns.shop.lite/com.dns.shop.lite.MainActivity",
-      "existing_drawable": "dns"
-    },
-    {
-      "id": "mobi.mobiletech.apps.android.netcom/mobi.mobiletech.apps.android.netcom.MainActivity",
-      "existing_drawable": "telia"
-    },
-    {
       "id": "no.tv2.sumo/no.tv2.android.ui.LauncherBridgeActivity",
       "existing_drawable": "tv_2_play"
     },
@@ -3311,10 +3255,6 @@
       "existing_drawable": "echo_music"
     },
     {
-      "id": "com.search.music.mp3.musicplayer/com.search.music.ui.main.MainAct",
-      "existing_drawable": "apple_music"
-    },
-    {
       "id": "com.sidhant.mahjong/com.sidhant.mahjong.MainActivity",
       "existing_drawable": "generic_mahjong"
     },
@@ -3325,14 +3265,6 @@
     {
       "id": "com.authenticator_2fa_otp_mfa_auth.app/com.authenticator_2fa_otp_mfa_auth.app.MainActivity",
       "existing_drawable": "generic_shell"
-    },
-    {
-      "id": "com.fclash.app/com.follow.clash.MainActivity",
-      "existing_drawable": "flclash"
-    },
-    {
-      "id": "py.com.claro.android/ar.com.claro.android.LauncherActivity",
-      "existing_drawable": "mi_claro"
     },
     {
       "id": "com.sky.android.control/com.sky.android.control.MainActivity",
@@ -3347,32 +3279,12 @@
       "existing_drawable": "zenith"
     },
     {
-      "id": "free.pdf.pdfdocuments.reader.pdfviewer.pdfeditor/com.brian.base_application.start.SplashActivity",
-      "existing_drawable": "generic_pdf_file"
-    },
-    {
       "id": "mp3.cutter.ringtone.maker.trimmer/mp3.cutter.ringtone.maker.trimmer.act.MainActivity",
       "existing_drawable": "generic_audio_editor"
     },
     {
-      "id": "com.mp3player.musicplayer.offlinemusicplayer.mp3music/com.mp3player.musicplayer.offlinemusicplayer.mp3music.newUI.presentation.activities.EntranceActivity",
-      "existing_drawable": "offline_music_player"
-    },
-    {
       "id": "br.com.dito.dito/br.com.dito.dito.MainActivity",
       "existing_drawable": "dito"
-    },
-    {
-      "id": "com.privatesmsbox.calc/com.privatesmsbox.ui.PrivateMainTabActivity",
-      "existing_drawable": "generic_calculator_minus_multi_plus_equal"
-    },
-    {
-      "id": "tw.mobileapp.qrcode.banner/tw.mobileapp.qrcode.banner.CaptureActivity",
-      "existing_drawable": "generic_qr_reader"
-    },
-    {
-      "id": "com.phone.dialer/com.phone.dialer.MainActivity",
-      "existing_drawable": "generic_dialer"
     },
     {
       "id": "io.github.juanluci.starling/io.github.juanluci.starling.StarlingActivity",
@@ -3443,10 +3355,6 @@
       "existing_drawable": "smart_manager"
     },
     {
-      "id": "dk.iroots.rema1000/dk.iroots.rema1000.app.activity.MainActivity",
-      "existing_drawable": "rema_1000"
-    },
-    {
       "id": "com.voltage.gamespace/com.voltage.gamespace.settings.SettingsActivity",
       "existing_drawable": "game_space"
     },
@@ -3467,10 +3375,6 @@
       "existing_drawable": "smash"
     },
     {
-      "id": "com.yozo.vivo.office/com.yozo.HomeActivity",
-      "existing_drawable": "vivo_document"
-    },
-    {
       "id": "live.wallpaper.livephoto.pic.picture.dope.anime.cool/com.wallpaper.livephoto.pic.cool.act.OpenActivity",
       "existing_drawable": "generic_player"
     },
@@ -3487,16 +3391,8 @@
       "existing_drawable": "speaker_cleaner"
     },
     {
-      "id": "com.chess.prathxm/com.chess.splash.SplashActivity",
-      "existing_drawable": "generic_chess"
-    },
-    {
       "id": "com.flashygo.app/com.flashygo.app.MainActivity",
       "existing_drawable": "flashy"
-    },
-    {
-      "id": "com.opentune.player/com.ryanheise.audioservice.AudioServiceActivity",
-      "existing_drawable": "opentune"
     }
   ]
 }
