@@ -99,6 +99,10 @@
       "existing_drawable": "generic_shell"
     },
     {
+      "id": "cards.uni.app.credit/club.uni.uni_app.MainActivity",
+      "existing_drawable": "uni"
+    },
+    {
       "id": "com.transsion.irremote/com.transsion.irremote.ui.SplashActivity",
       "existing_drawable": "ir_remote"
     },
@@ -164,7 +168,7 @@
     },
     {
       "id": "com.tclhz.gallery/com.tcl.gallery.app.GalleryActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "org.prauga.messages/org.prauga.messages.feature.main.MainActivity",
@@ -177,6 +181,10 @@
     {
       "id": "apps.syrupy.metadatacleaner/apps.syrupy.metadatacleaner.MainActivity",
       "existing_drawable": "metadata_remover"
+    },
+    {
+      "id": "com.weezer.newplayer.song/music.tzh.zzyy.weezer.ui.acti.MaimiSplash",
+      "existing_drawable": "weezer"
     },
     {
       "id": "com.havabee.pocket/com.havabee.pocket.MainActivity",
@@ -203,8 +211,8 @@
       "existing_drawable": "stop_motion_studio"
     },
     {
-      "id": "com.zte.nubrowser/com.android.browser.BrowserLauncher",
-      "existing_drawable": "generic_browser"
+      "id": "com.payjoy.status/com.payjoy.status.ui.SplashActivity",
+      "existing_drawable": "payjoy"
     },
     {
       "id": "com.huawei.himovie/com.huawei.himovie.ui.login.SplashScreenActivity",
@@ -221,6 +229,10 @@
     {
       "id": "com.app.onpointapp/com.app.onpointapp.MainActivity",
       "existing_drawable": "onpoint"
+    },
+    {
+      "id": "musica.musicfree.snaptube.weezer.mp3app/music.tzh.zzyy.weezer.ui.acti.SplashActi",
+      "existing_drawable": "weezer"
     },
     {
       "id": "com.psma.videosplitter/com.psma.videosplitter.main.SplashActivity",
@@ -355,6 +367,10 @@
       "existing_drawable": "ehviewer"
     },
     {
+      "id": "com.yyw.wangpan/com.main.partner.user.activity.LogActivity",
+      "existing_drawable": "_115"
+    },
+    {
       "id": "com.plumhq.employee.production/com.plumhq.employee.core.presentation.views.activities.MainActivity",
       "existing_drawable": "plum"
     },
@@ -368,7 +384,7 @@
     },
     {
       "id": "com.pixel.gallery/com.pixel.gallery.MainActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "air.com.bartbonte.orange/air.com.bartbonte.orange.AIRAppEntry",
@@ -444,7 +460,7 @@
     },
     {
       "id": "com.photogalleryapp.picturegallery/com.photogalleryapp.picturegallery.activities.SplashActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "privacyfriendlyshoppinglist.secuso.org.privacyfriendlyshoppinglist/privacyfriendlyshoppinglist.secuso.org.privacyfriendlyshoppinglist.ui.main.SplashActivity",
@@ -803,12 +819,8 @@
       "existing_drawable": "apple_music"
     },
     {
-      "id": "com.messenger.sms.messages/com.messenger.sms.feature.main.SplashActivity",
-      "existing_drawable": "messages"
-    },
-    {
       "id": "com.appslab.gallery/com.appslab.gallery.MainActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "com.fastsigninemail.securemail.bestemail/com.fastsigninemail.securemail.bestemail.ui.splash.SplashActivity",
@@ -920,7 +932,7 @@
     },
     {
       "id": "picture.gallery.media.photo.album/com.ijoysoft.gallery.activity.WelcomeActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "org.milkyapps.gbaemu/org.milkyapps.gbaemu.gba.initial.ui.SplashScreenActivity",
@@ -937,10 +949,6 @@
     {
       "id": "com.atanusanyal.eight/com.atanusanyal.eight.activities.MainActivity",
       "existing_drawable": "eight"
-    },
-    {
-      "id": "com.swishme.tracfone/com.mobileposse.firstapp.Launcher",
-      "existing_drawable": "swish"
     },
     {
       "id": "jp.co.canon.oip.android.opal/jp.co.canon.oip.android.opal.ui.activity.MainActivity",
@@ -1056,7 +1064,7 @@
     },
     {
       "id": "com.aks_labs.tulsi/com.aks_labs.tulsi.MainActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "com.microapps.screenmirroring/com.zipoapps.premiumhelper.ui.splash.PHSplashActivity",
@@ -1132,7 +1140,7 @@
     },
     {
       "id": "photogallery.ai.photoeditor.photo.albums/photogallery.ai.photoeditor.photo.albums.activities.SplashActivityScreen",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "com.moleskine.notes/com.moleskine.notes.ui.splash.SplashActivity",
@@ -1248,7 +1256,7 @@
     },
     {
       "id": "com.floatingimage/com.floatingimage.activity.ActivityHome",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "studio.onepixel.fakecalliphonestyle/studio.onepixel.fakecalliphonestyle.MainActivity",
@@ -1684,7 +1692,7 @@
     },
     {
       "id": "gallery.photogallery.album.editor/gallery.photogallery.album.editor.activity.CoreActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "com.apple.launcher/com.launcherios.widget.ui.splash.ActivitySplash",
@@ -1752,7 +1760,7 @@
     },
     {
       "id": "com.flir.myflir.s62/com.flir.monarch.ui.library.LibraryActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "com.motorola.messaging/com.android.messaging.ui.conversationlist.ConversationListActivity",
@@ -2244,7 +2252,7 @@
     },
     {
       "id": "org.calyxos.glimpse/org.lineageos.glimpse.MainActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "org.calyxos.twelve/org.lineageos.twelve.MainActivity",
@@ -2403,10 +2411,6 @@
       "existing_drawable": "generic_microphone"
     },
     {
-      "id": "com.photomanager.imagephotogallery/com.photomanager.imagephotogallery.Activity_Photo_Gallery.Splash_Activity_Pho",
-      "existing_drawable": "xgallery"
-    },
-    {
       "id": "com.googol.android.apps.oneplayer/com.zs.audiofy.MainActivity",
       "existing_drawable": "generic_player"
     },
@@ -2556,7 +2560,7 @@
     },
     {
       "id": "com.vyom.gallery/com.vyom.gallery.G",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "com.nati.cal/com.nati.cal.activities.SplashActivity",
@@ -2636,7 +2640,7 @@
     },
     {
       "id": "com.fairphone.apps.gallery/com.dot.gallery.feature_node.presentation.main.MainActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "stickerwhatsapp.com.stickers/stickerwhatsapp.com.stickers.MainActivity",
@@ -2899,6 +2903,10 @@
       "existing_drawable": "soccer_star"
     },
     {
+      "id": "pl.softerit.blooddonor/pl.softerit.blooddonor.MainActivity",
+      "existing_drawable": "blood_donor"
+    },
+    {
       "id": "dinnerdeal.android.customer/aws.android.customer.ListActivity",
       "existing_drawable": "eatclub"
     },
@@ -2928,7 +2936,7 @@
     },
     {
       "id": "com.gallery.android/com.gallery.android.MainActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "easy.killer.sudoku.puzzle.solver.free/com.meevii.ui.activity.SplashActivity",
@@ -2940,7 +2948,7 @@
     },
     {
       "id": "com.sg.gallery/com.sg.gallery.MainActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "com.sgtc.music/com.sgtc.music.SgtcMusicActivity",
@@ -3080,15 +3088,11 @@
     },
     {
       "id": "com.gallerypicture.photo.photomanager/com.gallerypicture.photo.photomanager.presentation.features.launcher.LauncherActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "com.chipsea.btcontrol/com.chipsea.btcontrol.MainActivity",
       "existing_drawable": "okok"
-    },
-    {
-      "id": "com.facebook.gizmo/com.facebook.gizmo.bindings.MainActivity",
-      "existing_drawable": "pocket"
     },
     {
       "id": "de.twokit.screen.recording.app/de.twokit.screen.recording.app.MainActivity",
@@ -3296,7 +3300,7 @@
     },
     {
       "id": "com.rudra.gallery/com.rudra.galleryapp.MainActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "branislav667.wallhaven/branislav667.wallhaven.StartActivity",
@@ -3344,7 +3348,7 @@
     },
     {
       "id": "com.photogallery.albummanager.blackphotos/com.albummanager.blackphotos.splash.SplashActivity",
-      "existing_drawable": "xgallery"
+      "existing_drawable": "gallery"
     },
     {
       "id": "com.mal3auto.revival/net.pierrox.lightning_launcher.activities.NotesActivity",
