@@ -1,6 +1,6 @@
 {
-  "count": 33292,
-  "lastUpdate": "2026-11-16",
+  "count": 33286,
+  "lastUpdate": "2026-11-17",
   "apps": [
     {
       "drawable": "manus",
@@ -57156,15 +57156,6 @@
       "priority": "Medium"
     },
     {
-      "drawable": "joitranslate",
-      "requestCount": 3,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1763291930.0,
-      "label": "JoiTranslate",
-      "componentName": "cyou.joiplay.translate/cyou.joiplay.translate.activity.SplashActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "verizon_visa",
       "requestCount": 3,
       "firstAppearance": 1729111671.0,
@@ -57174,24 +57165,6 @@
       "installs": "100,000+",
       "roi_score": 244,
       "priority": "Low"
-    },
-    {
-      "drawable": "istreamflare",
-      "requestCount": 3,
-      "firstAppearance": 1723697477.0,
-      "lastRequested": 1763287733.0,
-      "label": "iStreamFlare",
-      "componentName": "com.istream.flareclient/com.istream.flareclient.Splash",
-      "roi_score": 0
-    },
-    {
-      "drawable": "acteia",
-      "requestCount": 3,
-      "firstAppearance": 1721933776.0,
-      "lastRequested": 1763321429.0,
-      "label": "Acteia",
-      "componentName": "com.acteia.ateia/com.acteia.ateia.ui.splash.SplashActivity",
-      "roi_score": 0
     },
     {
       "drawable": "stick_pro_3",
@@ -115547,16 +115520,6 @@
       "roi_score": 0
     },
     {
-      "drawable": "tfwm",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1763315074.0,
-      "label": "TfWM",
-      "componentName": "com.wmca.swift.oneapp/com.zoontek.rnbootsplash.RNBootSplashActivity",
-      "installs": "100,000+",
-      "roi_score": 0
-    },
-    {
       "drawable": "goboulttrack",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -126720,24 +126683,6 @@
       "installs": "500,000+",
       "roi_score": 171,
       "priority": "Low"
-    },
-    {
-      "drawable": "adskip",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1763315074.0,
-      "label": "AdSkip",
-      "componentName": "com.cygery.adskip.xda/com.cygery.adskip.MainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "anitown4u",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1763287733.0,
-      "label": "AniTown4U",
-      "componentName": "com.anitown4u.vip/com.anitown4u.vip.SplashScreen",
-      "roi_score": 0
     },
     {
       "drawable": "solo_leveling_workout",
