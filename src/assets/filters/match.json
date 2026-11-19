@@ -95,10 +95,6 @@
       "existing_drawable": "edeka"
     },
     {
-      "id": "com.radolyn.ayugram/com.exteragram.messenger.AuroraIcon",
-      "existing_drawable": "ayugram"
-    },
-    {
       "id": "com.jingyao.easybike/com.hellobike.atlas.business.portal.MainActivityDefaultIcon",
       "existing_drawable": "hello"
     },
@@ -129,10 +125,6 @@
     {
       "id": "org.frknkrc44.hma_oss/org.frknkrc44.hma_oss.MainActivityLauncherAlt3",
       "existing_drawable": "hma_oss"
-    },
-    {
-      "id": "com.radolyn.ayugram/com.exteragram.messenger.SunsetIcon",
-      "existing_drawable": "ayugram"
     },
     {
       "id": "com.bluelight.computer.winlauncher.prolauncher/com.bluelight.computer.winlauncher.prolauncher.ui.activity.SplashActivity",
@@ -440,7 +432,7 @@
     },
     {
       "id": "com.radolyn.ayugram/com.exteragram.messenger.AyuTyan",
-      "existing_drawable": "ayugram"
+      "existing_drawable": "exteragram"
     },
     {
       "id": "com.taobao.idlefish/com.taobao.fleamarket.home.activity.AppIcon_Fisher_VIP",
@@ -691,10 +683,6 @@
       "existing_drawable": "mi_control_center"
     },
     {
-      "id": "com.radolyn.ayugram/com.exteragram.messenger.Google26Icon",
-      "existing_drawable": "ayugram"
-    },
-    {
       "id": "com.vivo.translator/com.vivo.translator.view.activity.PrivacyStatementActivity",
       "existing_drawable": "vivo_translator"
     },
@@ -737,6 +725,10 @@
     {
       "id": "org.torproject.android/org.torproject.android.main.Assistant",
       "existing_drawable": "orbot"
+    },
+    {
+      "id": "com.priceoye.app/com.priceoye.app.activities.SplashActivityAliasDefault",
+      "existing_drawable": "priceoye"
     },
     {
       "id": "com.exteraless.app/org.telegram.messenger.NothingIcon",

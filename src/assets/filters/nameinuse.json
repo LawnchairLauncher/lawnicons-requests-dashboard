@@ -63,6 +63,10 @@
       "existing_drawable": "notepad"
     },
     {
+      "id": "com.tfgm.beenetwork/com.tfgm.beenetwork.MainActivity",
+      "existing_drawable": "bee_network"
+    },
+    {
       "id": "com.zeedev.islamprayertime/com.zeedev.islamprayertime.activity.MainActivity",
       "existing_drawable": "prayer_times"
     },
@@ -2189,10 +2193,6 @@
     {
       "id": "com.tempnumber.Temp_Number.Temp_Number/com.reyhanexe.getusanumbers.ModernSplashActivity",
       "existing_drawable": "generic_email"
-    },
-    {
-      "id": "org.Ayugram.messenges/com.exteragram.messenger.ExteraIcon",
-      "existing_drawable": "ayugram"
     },
     {
       "id": "com.notes/com.notes.MainActivity",
