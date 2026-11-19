@@ -12,6 +12,7 @@ import os
 import zipfile
 import email
 import shutil
+import unicodedata
 import lxml.etree as ET
 from time import mktime
 from datetime import date
@@ -39,6 +40,21 @@ def parse_args():
     parser.add_argument("image_out_path", type=str, help="Output folder for images")
     parser.add_argument("requests_path", type=str, help="Folder containing requests.json")
     return parser.parse_args()
+
+def sanitize_name(label: str) -> str | None:
+    if not label:
+        return None
+    tilde_idx = label.find('~~')
+    if tilde_idx != -1:
+        label = label[tilde_idx + 2:].strip()
+    name = label.replace('&amp;', ' and ').replace('&', ' and ')
+    name = name.replace("'", '').replace('\u2019', '').replace('`', '')
+    name = unicodedata.normalize('NFD', name).encode('ascii', 'ignore').decode('utf-8')
+    name = re.sub(r'[^a-z0-9]+', '_', name.lower())
+    name = name.strip('_')
+    if name and name[0].isdigit():
+        name = '_' + name
+    return name or None
 
 # -------------------------------------------------------
 # FILE / EMAIL I/O
@@ -68,11 +84,11 @@ def extract_xml(zip_file: zipfile.ZipFile) -> ET.Element:
 
 def extract_image(zip_file: zipfile.ZipFile, drawable_name: str, out_dir: Path,
                 target_name: str | None = None, overwrite: bool = False) -> str:
-    base_name = target_name or drawable_name
-    candidate_name = base_name
+    search_name = drawable_name
+    candidate_name = target_name or drawable_name
     try:
         for file_info in zip_file.infolist():
-            if file_info.filename.endswith(f'{base_name}.png'):
+            if file_info.filename.endswith(f'{search_name}.png'):
                 with zip_file.open(file_info.filename) as source_file:
                     image_data = source_file.read()
                 
@@ -81,7 +97,7 @@ def extract_image(zip_file: zipfile.ZipFile, drawable_name: str, out_dir: Path,
                 if not overwrite:
                     count = 1
                     while image_path.exists():
-                        candidate_name = f"{base_name}_{count}"
+                        candidate_name = f"{target_name or drawable_name}_{count}"
                         image_path = out_dir / f"{candidate_name}.webp"
                         count += 1
 
@@ -194,11 +210,18 @@ def parse_item_tag(item: ET.Element, msg: Message, zip_file: zipfile.ZipFile,
 
     # 2. Create New
     try:
-        drawable_name = extract_image(zip_file, drawable, image_out_dir)
-        if drawable_name == 'icon' or drawable_name.startswith('icon_'):
-            pkg = component_info.split('/')[0]
-            fallback = pkg.replace('.', '_')
-            drawable_name = extract_image(zip_file, drawable, image_out_dir, target_name=fallback)
+        pkg = component_info.split('/')[0]
+        fallback = pkg.replace('.', '_')
+
+        clean = sanitize_name(app_name)
+        target = clean or fallback
+
+        drawable_name = extract_image(
+            zip_file, drawable, image_out_dir, target_name=target
+        )
+        if not (image_out_dir / f"{drawable_name}.webp").exists():
+            drawable_name = target  # no PNG, but keep the name
+
         apps[component_info] = create_app_entry(
             app_name, component_info, drawable_name, req_time)
     except Exception as e:

@@ -46,16 +46,19 @@ def signal_handler(sig, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 def sanitize_name(label):
-    if not label: return "icon"
-    label = label.replace("'", '').replace("\u2019", '').replace('`', '')
-    ascii_name = unicodedata.normalize('NFD', label).encode('ascii', 'ignore').decode("utf-8")
-    if ascii_name != label:
+    if not label:
         return None
-    name = re.sub(r'[^a-z0-9]+', '_', ascii_name.lower())
+    tilde_idx = label.find('~~')
+    if tilde_idx != -1:
+        label = label[tilde_idx + 2:].strip()
+    name = label.replace('&amp;', ' and ').replace('&', ' and ')
+    name = name.replace("'", '').replace('\u2019', '').replace('`', '')
+    name = unicodedata.normalize('NFD', name).encode('ascii', 'ignore').decode('utf-8')
+    name = re.sub(r'[^a-z0-9]+', '_', name.lower())
     name = name.strip('_')
     if name and name[0].isdigit():
-        name = "_" + name
-    return name or "icon"
+        name = '_' + name
+    return name or None
 
 def download_icon(url, filename):
     try:
