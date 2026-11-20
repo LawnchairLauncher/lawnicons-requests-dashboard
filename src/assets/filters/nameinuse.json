@@ -467,10 +467,6 @@
       "existing_drawable": "gallery"
     },
     {
-      "id": "privacyfriendlyshoppinglist.secuso.org.privacyfriendlyshoppinglist/privacyfriendlyshoppinglist.secuso.org.privacyfriendlyshoppinglist.ui.main.SplashActivity",
-      "existing_drawable": "shopping_list"
-    },
-    {
       "id": "netgenius.bizcal/netgenius.bizcal.main",
       "existing_drawable": "business_calendar"
     },
@@ -911,6 +907,10 @@
       "existing_drawable": "conduit"
     },
     {
+      "id": "com.jegulabs.manga/com.jegulabs.manga.MainActivity",
+      "existing_drawable": "mango"
+    },
+    {
       "id": "com.vertmedia.haven/com.vertmedia.haven.MainActivity",
       "existing_drawable": "terminal"
     },
@@ -1023,6 +1023,10 @@
       "existing_drawable": "samsung_notes"
     },
     {
+      "id": "com.alarm.alarmmobile.android.telus/com.alarm.alarmmobile.android.feature.auth.login.LoginActivity",
+      "existing_drawable": "smarthome"
+    },
+    {
       "id": "com.languagedrops.drops.learn.learning.speak.language.japanese.kanji.katakana.hiragana.romaji.words/com.languagedrops.drops.international.MainActivity",
       "existing_drawable": "buienalarm"
     },
@@ -1053,6 +1057,10 @@
     {
       "id": "find.out.hidden.objects.seek.puzzle.games.free/com.google.firebase.MessagingUnityPlayerActivity",
       "existing_drawable": "find_out"
+    },
+    {
+      "id": "com.browndroid.mangoui/com.browndroid.mangoui.MainActivity",
+      "existing_drawable": "mango"
     },
     {
       "id": "com.sreerag.layers/com.sreerag.layers.ToastActivity",
@@ -1732,7 +1740,7 @@
     },
     {
       "id": "office.free.documents.docx.pdf.reader.viewer.editor/com.brian.base_application.start.SplashActivity",
-      "existing_drawable": "office_reader"
+      "existing_drawable": "document_reader"
     },
     {
       "id": "com.root.rootcheck/com.root.rootcheck.MainActivity",
@@ -2437,6 +2445,10 @@
     {
       "id": "uk.co.eastcoasttrainsltd/com.firstgroup.splash.controller.SplashActivity",
       "existing_drawable": "lumo"
+    },
+    {
+      "id": "solutions.transport.cr.mango/solutions.transport.cr.mango.activites.LoginActivity",
+      "existing_drawable": "mango"
     },
     {
       "id": "com.conax.golive.dishnepal/com.android.SplashActivity",
