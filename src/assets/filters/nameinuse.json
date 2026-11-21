@@ -403,6 +403,10 @@
       "existing_drawable": "sushi"
     },
     {
+      "id": "com.neofinancial.neo/com.neofinancial.neo.base.ui.RootActivityInitial",
+      "existing_drawable": "neo"
+    },
+    {
       "id": "com.zerodha.pulse/com.zerodha.pulse.MainActivity",
       "existing_drawable": "pulse"
     },
@@ -448,7 +452,7 @@
     },
     {
       "id": "com.tcl.tct.filemanager/com.jrdcom.filemanager.activity.FileBrowserActivity",
-      "existing_drawable": "generic_files"
+      "existing_drawable": "hyperos_file_manager"
     },
     {
       "id": "com.swishapp/com.swishapp.SplashActivityDefault",
@@ -488,7 +492,7 @@
     },
     {
       "id": "cn.feelcool.superfiles/cn.feelcool.supfilem.ui.SplashActivity",
-      "existing_drawable": "generic_files"
+      "existing_drawable": "hyperos_file_manager"
     },
     {
       "id": "com.metzger100.calculator/com.metzger100.calculator.MainActivity",
@@ -851,8 +855,8 @@
       "existing_drawable": "unit_converter"
     },
     {
-      "id": "com.koodos.shelf/com.koodos.shelf.app.MainActivityDefault",
-      "existing_drawable": "shelf"
+      "id": "com.todtv.tod/com.todtv.tod.activity.SplashActivity",
+      "existing_drawable": "tod"
     },
     {
       "id": "dev.dettmer.simplenotes/dev.dettmer.simplenotes.ui.main.ComposeMainActivity",
@@ -985,10 +989,6 @@
     {
       "id": "tf.monochrome.app/tf.monochrome.app.MainActivity",
       "existing_drawable": "fwallet"
-    },
-    {
-      "id": "com.zte.gallerylockscreen/cn.nubia.gallerylockscreen.settings.GalleryPosterActivity",
-      "existing_drawable": "daily_wallpaper"
     },
     {
       "id": "cashbook.cashbook/cashbook.cashbook.LanguageActivity",
@@ -1227,6 +1227,10 @@
       "existing_drawable": "whatsapp"
     },
     {
+      "id": "dk.apotekerforeningen.apoteksapp/dk.apotekerforeningen.apoteksapp.presentation.splash.SplashScreenActivity",
+      "existing_drawable": "apoteket"
+    },
+    {
       "id": "com.pushd.client/com.pushd.client.ui.LaunchActivity",
       "existing_drawable": "aura"
     },
@@ -1396,7 +1400,7 @@
     },
     {
       "id": "usbotg.filemanager.androidfilemanager.usbfilemanager/usbotg.filemanager.androidfilemanager.usbfilemanager.NewSplashActivity",
-      "existing_drawable": "generic_files"
+      "existing_drawable": "hyperos_file_manager"
     },
     {
       "id": "com.mediastudio.allvideodownloader.downloadvideoshd.bestdownloader/video.downloader.fastdownloader.download.activities.OnBoardingActivity",
@@ -1456,7 +1460,7 @@
     },
     {
       "id": "com.cyanogenmod.filemanager/com.cyanogenmod.filemanager.activities.NavigationActivity",
-      "existing_drawable": "generic_files"
+      "existing_drawable": "hyperos_file_manager"
     },
     {
       "id": "music.basss.booster.effect.equalizer/com.equize.library.activity.ActivityWelcome",
@@ -1601,10 +1605,6 @@
     {
       "id": "ltedu.com.NewGoGoGo/com.ryanheise.audioservice.AudioServiceActivity",
       "existing_drawable": "gogogo"
-    },
-    {
-      "id": "tech.kma.smart.printer/tech.kma.smart.printer.ui.MainActivity",
-      "existing_drawable": "generic_printer"
     },
     {
       "id": "com.maf.share/com.maf.android.share.presentation.splash.MainLauncher",
@@ -2043,6 +2043,10 @@
       "existing_drawable": "generic_camera"
     },
     {
+      "id": "com.desygner.logos/com.desygner.app.LandingActivity",
+      "existing_drawable": "logo_maker"
+    },
+    {
       "id": "ua.radioplayer.app/ua.radioplayer.radioplayer.MainActivity",
       "existing_drawable": "radioplayer"
     },
@@ -2065,10 +2069,6 @@
     {
       "id": "com.sec.mygalaxy.NEBangS/com.sec.mygalaxy.NEBangS.SplashScreenActivity",
       "existing_drawable": "my_galaxy"
-    },
-    {
-      "id": "com.interswitchng.www/com.interswitchng.www.MainActivity",
-      "existing_drawable": "fidelity"
     },
     {
       "id": "dev.goodwy.calendar/dev.goodwy.calendar.activities.SplashActivity.Original",
@@ -2324,7 +2324,7 @@
     },
     {
       "id": "co.kitetech.filemanager/co.kitetech.filemanager.activity.MainActivity",
-      "existing_drawable": "generic_files"
+      "existing_drawable": "hyperos_file_manager"
     },
     {
       "id": "info.cemu.Cemu/info.cemu.Cemu.MainActivity",
@@ -2345,6 +2345,10 @@
     {
       "id": "com.easyinc.pdfviewer/com.github.barteksc.sample.Activity_Start",
       "existing_drawable": "generic_pdf_file"
+    },
+    {
+      "id": "com.createlogo.logomaker/com.createlogo.logomaker._a_splash.SplashActivity",
+      "existing_drawable": "logo_maker"
     },
     {
       "id": "co.tempo.media/co.tempo.media.MainActivity",
@@ -2528,7 +2532,7 @@
     },
     {
       "id": "com.filemanager.uncomplicated.simple.app/com.filemanager.uncomplicated.simple.app.activities.SplashActivity.Green",
-      "existing_drawable": "generic_files"
+      "existing_drawable": "hyperos_file_manager"
     },
     {
       "id": "com.oakgames.linked2248.numberpuzzle/com.unity3d.player.UnityPlayerActivity",
@@ -2537,10 +2541,6 @@
     {
       "id": "com.themes.wallpapers.widgets.starnest/com.starnest.widget.ui.main.activity.ComeBackActivity",
       "existing_drawable": "themes"
-    },
-    {
-      "id": "com.baninter/com.baninter.BancaMovilActivity",
-      "existing_drawable": "banca_movil"
     },
     {
       "id": "com.fishtailgames.sudoku/com.fishtailgames.sudoku.MainActivity",
@@ -3113,6 +3113,10 @@
     {
       "id": "at.florianschuster.conduit/at.florianschuster.conduit.MainActivity",
       "existing_drawable": "conduit"
+    },
+    {
+      "id": "zank.flash/zank.flash.MainActivity",
+      "existing_drawable": "screen_flashlight"
     },
     {
       "id": "com.soukapps.mushaf/com.soukapps.mushaf.MainActivity",
