@@ -1,8 +1,8 @@
 {
   "com": {
-    "requests": 22794,
+    "requests": 22784,
     "done": 15721,
-    "total": 38515,
+    "total": 38505,
     "global": 0,
     "global_installs": 0
   },
@@ -35,9 +35,9 @@
     "global_installs": 12843980291
   },
   "org": {
-    "requests": 1593,
+    "requests": 1592,
     "done": 1293,
-    "total": 2886,
+    "total": 2885,
     "global": 0,
     "global_installs": 0
   },
@@ -137,7 +137,7 @@
     "done": 41,
     "total": 744,
     "global": 641,
-    "global_installs": 4711633965
+    "global_installs": 4712433965
   },
   "app": {
     "requests": 369,
@@ -2155,13 +2155,6 @@
     "global": 0,
     "global_installs": 0
   },
-  "git": {
-    "requests": 2,
-    "done": 2,
-    "total": 4,
-    "global": 0,
-    "global_installs": 0
-  },
   "grant": {
     "requests": 4,
     "done": 0,
@@ -2711,6 +2704,13 @@
   "get": {
     "requests": 2,
     "done": 1,
+    "total": 3,
+    "global": 0,
+    "global_installs": 0
+  },
+  "git": {
+    "requests": 1,
+    "done": 2,
     "total": 3,
     "global": 0,
     "global_installs": 0
@@ -4053,13 +4053,6 @@
     "global_installs": 0
   },
   "kallossoft": {
-    "requests": 2,
-    "done": 0,
-    "total": 2,
-    "global": 0,
-    "global_installs": 0
-  },
-  "kamogawaisland": {
     "requests": 2,
     "done": 0,
     "total": 2,
@@ -9071,13 +9064,6 @@
     "global": 0,
     "global_installs": 0
   },
-  "five": {
-    "requests": 1,
-    "done": 0,
-    "total": 1,
-    "global": 0,
-    "global_installs": 0
-  },
   "fjalsz": {
     "requests": 1,
     "done": 0,
@@ -10885,6 +10871,13 @@
     "global_installs": 0
   },
   "kamesan": {
+    "requests": 1,
+    "done": 0,
+    "total": 1,
+    "global": 0,
+    "global_installs": 0
+  },
+  "kamogawaisland": {
     "requests": 1,
     "done": 0,
     "total": 1,
@@ -15302,13 +15295,6 @@
     "global_installs": 0
   },
   "sputnik": {
-    "requests": 1,
-    "done": 0,
-    "total": 1,
-    "global": 0,
-    "global_installs": 0
-  },
-  "spy": {
     "requests": 1,
     "done": 0,
     "total": 1,
