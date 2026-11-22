@@ -1,8 +1,8 @@
 {
   "com": {
-    "requests": 22689,
+    "requests": 22684,
     "done": 15810,
-    "total": 38499,
+    "total": 38494,
     "global": 0,
     "global_installs": 0
   },
@@ -14,18 +14,11 @@
     "global_installs": 20554883947
   },
   "de": {
-    "requests": 3953,
+    "requests": 3952,
     "done": 527,
-    "total": 4480,
-    "global": 3581,
-    "global_installs": 14867242166
-  },
-  "jp": {
-    "requests": 3058,
-    "done": 200,
-    "total": 3258,
-    "global": 2683,
-    "global_installs": 12829980291
+    "total": 4479,
+    "global": 3580,
+    "global_installs": 14867142166
   },
   "in": {
     "requests": 3102,
@@ -34,19 +27,26 @@
     "global": 2995,
     "global_installs": 30007387145
   },
+  "jp": {
+    "requests": 3057,
+    "done": 200,
+    "total": 3257,
+    "global": 2682,
+    "global_installs": 12829880291
+  },
   "org": {
-    "requests": 1590,
+    "requests": 1588,
     "done": 1295,
-    "total": 2885,
+    "total": 2883,
     "global": 0,
     "global_installs": 0
   },
   "br": {
-    "requests": 1769,
+    "requests": 1768,
     "done": 224,
-    "total": 1993,
-    "global": 1457,
-    "global_installs": 13259726270
+    "total": 1992,
+    "global": 1456,
+    "global_installs": 13259626270
   },
   "cn": {
     "requests": 1738,
@@ -98,11 +98,11 @@
     "global_installs": 3940599100
   },
   "uk": {
-    "requests": 852,
+    "requests": 851,
     "done": 56,
-    "total": 908,
-    "global": 754,
-    "global_installs": 3093875700
+    "total": 907,
+    "global": 753,
+    "global_installs": 3093775700
   },
   "nl": {
     "requests": 793,
@@ -196,11 +196,11 @@
     "global_installs": 3236478060
   },
   "mx": {
-    "requests": 512,
+    "requests": 511,
     "done": 27,
-    "total": 539,
-    "global": 461,
-    "global_installs": 2519183410
+    "total": 538,
+    "global": 460,
+    "global_installs": 2519083410
   },
   "ua": {
     "requests": 420,
@@ -266,11 +266,11 @@
     "global_installs": 0
   },
   "li": {
-    "requests": 277,
+    "requests": 276,
     "done": 2,
-    "total": 279,
-    "global": 269,
-    "global_installs": 657806200
+    "total": 278,
+    "global": 268,
+    "global_installs": 657706200
   },
   "dk": {
     "requests": 216,
@@ -433,19 +433,19 @@
     "global": 104,
     "global_installs": 241425000
   },
-  "sg": {
-    "requests": 113,
-    "done": 28,
-    "total": 141,
-    "global": 100,
-    "global_installs": 1268492610
-  },
   "bd": {
     "requests": 139,
     "done": 1,
     "total": 140,
     "global": 133,
     "global_installs": 289566000
+  },
+  "sg": {
+    "requests": 112,
+    "done": 28,
+    "total": 140,
+    "global": 99,
+    "global_installs": 1268392610
   },
   "hu": {
     "requests": 92,
