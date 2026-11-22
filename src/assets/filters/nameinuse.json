@@ -203,10 +203,6 @@
       "existing_drawable": "wordly"
     },
     {
-      "id": "telecom.televisa.com.izzi/telecom.televisa.com.izzi.MainActivity",
-      "existing_drawable": "izzi"
-    },
-    {
       "id": "com.cateater.stopmotionstudiopro/com.cateater.stopmotionstudio.MainActivity_start",
       "existing_drawable": "stop_motion_studio"
     },
@@ -249,10 +245,6 @@
     {
       "id": "uk.co.next.android/uk.co.next.android.MainActivity",
       "existing_drawable": "next"
-    },
-    {
-      "id": "secure.unblock.unlimited.proxy.snap.hotspot.shield/kiwi.unblock.proxy.activity.splash.SplashActivity",
-      "existing_drawable": "kiwi"
     },
     {
       "id": "com.balsoy.fatih.compass/com.balsoy.fatih.compass.MainActivity",
@@ -463,12 +455,20 @@
       "existing_drawable": "gallery"
     },
     {
+      "id": "com.casio.gshockmove/com.casio.gshockmove.MainActivity",
+      "existing_drawable": "move"
+    },
+    {
       "id": "netgenius.bizcal/netgenius.bizcal.main",
       "existing_drawable": "business_calendar"
     },
     {
       "id": "com.tapuniverse.videocompressor/com.tapuniverse.videocompressor.MainActivity",
       "existing_drawable": "video_compressor"
+    },
+    {
+      "id": "br.gov.fazenda.receita.mei/br.gov.fazenda.receita.mei.ui.activity.SplashActivity",
+      "existing_drawable": "mei"
     },
     {
       "id": "com.roku.rokuhome/com.hualai.home.StartActivity",
@@ -711,10 +711,6 @@
       "existing_drawable": "fonts_keyboard_themes"
     },
     {
-      "id": "com.jndapp.skyline.linex.iconpack/com.jndapp.skyline.linex.iconpack.MainActivity",
-      "existing_drawable": "skyline"
-    },
-    {
       "id": "com.weather.nold.forecast/com.weather.nold.ui.home.main.MainActivity",
       "existing_drawable": "yahoo_weather"
     },
@@ -733,6 +729,10 @@
     {
       "id": "com.lego.education.spikenext/com.lego.flipper.flipperandroid.MainActivity",
       "existing_drawable": "spike"
+    },
+    {
+      "id": "com.india.fitpass/com.india.fitpass.activity.Splash",
+      "existing_drawable": "fitpass"
     },
     {
       "id": "tr.com.basarsubasi.simplefitnessapp/tr.com.basarsubasi.simplefitnessapp.MainActivity",
@@ -981,10 +981,6 @@
     {
       "id": "cashbook.cashbook/cashbook.cashbook.LanguageActivity",
       "existing_drawable": "cashbook"
-    },
-    {
-      "id": "com.clicks.companionapp/com.android.clicks.companion.LaunchActivity",
-      "existing_drawable": "clicks"
     },
     {
       "id": "de.jeanlucmakiola.calendula/de.jeanlucmakiola.calendula.CalendarNameAlias",
@@ -1241,6 +1237,10 @@
     {
       "id": "com.sevenbold.cadence/com.sevenbold.cadence.MainActivity",
       "existing_drawable": "cadence"
+    },
+    {
+      "id": "com.tung91.flatico/com.tung91.flatico.HomeActivity",
+      "existing_drawable": "flat"
     },
     {
       "id": "com.binghuo.currencyconverter/com.binghuo.currencyconverter.launcher.LauncherActivity",
@@ -2323,6 +2323,10 @@
       "existing_drawable": "generic_email"
     },
     {
+      "id": "com.nomissingout.nomo/com.nomissingout.nomo.LauncherDefault",
+      "existing_drawable": "nomo"
+    },
+    {
       "id": "com.mixtubelite.musicpla/com.tb.vanced.hook.ui.activity.SplashActivity",
       "existing_drawable": "mixtube"
     },
@@ -2345,6 +2349,10 @@
     {
       "id": "com.lyrebirdstudio.background_eraser/com.zipoapps.premiumhelper.ui.splash.PHSplashActivity",
       "existing_drawable": "generic_background_eraser"
+    },
+    {
+      "id": "ch.smalltech.battery.free/ch.smalltech.battery.free.HomeFree",
+      "existing_drawable": "battery"
     },
     {
       "id": "com.grice.message/com.grice.mobile.MobileActivity",
@@ -2371,20 +2379,12 @@
       "existing_drawable": "minecraft"
     },
     {
-      "id": "blend.school.blend_android/www.blend.school.blend_android.ui.login.LoginActivity",
-      "existing_drawable": "blend"
-    },
-    {
       "id": "emui.magicui.com.themestore/emui.magicui.com.themestore.SplashScreen",
       "existing_drawable": "themes"
     },
     {
       "id": "er.notepad.notes.notebook.checklist.calendar/er.notepad.notes.notebook.checklist.calendar.Activity.SplashActivity",
       "existing_drawable": "notepad"
-    },
-    {
-      "id": "com.hash.prism/com.hash.prism.MainActivity",
-      "existing_drawable": "prism"
     },
     {
       "id": "com.aidetector.app/com.aidetector.app.MainActivity",
@@ -2795,6 +2795,10 @@
       "existing_drawable": "tasks"
     },
     {
+      "id": "com.india.fitpass/com.india.fitpass_v4.FitpassSplashActivity",
+      "existing_drawable": "fitpass"
+    },
+    {
       "id": "com.spaid/com.spaid.MainActivityDefault",
       "existing_drawable": "rally"
     },
@@ -3001,6 +3005,10 @@
     {
       "id": "chromahub.rhythm.play/chromahub.rhythm.app.activities.MainActivity",
       "existing_drawable": "rhythm"
+    },
+    {
+      "id": "com.fetch.global.iconchanger.widget.theme.shortcut/com.example.icm_028_theme_pack.activity.SplashActivity",
+      "existing_drawable": "themepack"
     },
     {
       "id": "com.journeykeep.app/com.journeykeep.app.MainActivity",

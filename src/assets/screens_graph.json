@@ -20,7 +20,6 @@
   ],
   "scr-4": [
     "com.plarium.mechlegion/com.plarium.unity_app.UnityMainActivity",
-    "com.cinehd/com.cinehd.MainActivity",
     "com.buyuk.sactin.depaulnh/com.buyuk.sactinapp.MainActivity",
     "com.heytap.quickgame/com.heytap.quickgame.module.others.launcher.LauncherActivity"
   ],
@@ -398,8 +397,6 @@
     "com.FYQD.BMI/com.fiveplay.mod.RMS.Recovery",
     "jp.gr.java_conf.soboku.batterymeter/jp.gr.java_conf.soboku.batterymeter.ui.SettingsActivity",
     "com.appslab.photo.widgetspro/com.appslab.photo.widgetspro.MainActivity",
-    "com.jndapp.lux.yellow.iconpack/com.jndapp.lux.yellow.iconpack.MainActivity",
-    "dev.narikdesign.nothingness/dev.narikdesign.nothingness.MainActivity",
     "ar.drawing.sketch.trace.draw.anime/com.nk.nexzen.ar.drawing.ui.splash.SplashActivity",
     "com.jndapp.purpleline.linex.iconpack/com.jndapp.purpleline.linex.iconpack.MainActivity",
     "com.AlfaBravo.CombatMaster/com.unity3d.player.UnityPlayerActivity",
@@ -408,7 +405,6 @@
     "com.flycast.emulator/com.flycast.emulator.MainActivity",
     "com.jndapp.redline.linex.iconpack/com.jndapp.redline.linex.iconpack.MainActivity",
     "com.alphaone.line.nothing.iconpack/com.alphaone.line.nothing.iconpack.MainActivity",
-    "com.jndapp.skyline.linex.iconpack/com.jndapp.skyline.linex.iconpack.MainActivity",
     "com.sbro.emucorev/com.sbro.emucorev.MainActivity",
     "com.theveloper.musik.app/com.theveloper.musik.app.MainActivity",
     "com.jndapp.limeline.linex.iconpack/com.jndapp.limeline.linex.iconpack.MainActivity"
@@ -651,7 +647,6 @@
     "org.chromium.webapk.af39f5410d7f305de_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "com.mu.muclubapp/com.mu.muclubapp.MainActivity",
     "de.walk15.pedometer/de.walk15.pedometer.MainActivity",
-    "com.cinehd/com.cinehd.MainActivity",
     "com.augustai.mobileapp/com.augustai.mobileapp.MainActivity",
     "com.africa.elephtvmob/com.mobile.brasiltv.activity.SplashAty",
     "org.chromium.webapk.ae869a9e915771e61_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
@@ -1682,7 +1677,6 @@
     "com.sidrachain.app/com.sidrachain.app.LauncherActivity",
     "com.mmb.filemanager/com.mmb.filemanager.activities.SplashActivity.Orange",
     "com.jmgamestudios.horizon.driving.simulator/com.unity3d.player.UnityPlayerActivity",
-    "com.uba.vericash/com.uba.vericash.MainActivity",
     "org.chromium.webapk.adde65749e8f95341_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "io.appflowy.appflowy/io.appflowy.appflowy.MainActivity",
     "com.gigbanc.app/com.gigbanc.app.MainActivity",
@@ -1692,7 +1686,6 @@
     "org.chromium.webapk.a17ba4792839da720_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "com.vidsync.planner/com.vidsync.planner.MainActivity",
     "org.chromium.webapk.a590148d98856bf58_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-    "com.ubanquity.redd.uba/com.example.xapp.MainActivity",
     "com.kuma.smartnotify/com.kuma.smartnotify.ContactPicker",
     "app.areada/app.areada.MainActivity",
     "com.sbro.emucorev/com.sbro.emucorev.MainActivity",
@@ -1880,7 +1873,6 @@
     "com.littlecaesars/com.littlecaesars.startup.StartUpActivity",
     "org.concertarchives/org.concertarchives.MainActivity",
     "com.mindcompany.spark/com.mindcompany.spark.MainActivity",
-    "com.cubii/com.cubii.ui.SplashActivity",
     "com.boardgamearena.bgaapp/com.boardgamearena.bgaapp.LauncherActivity"
   ],
   "scr-191": [
@@ -2321,7 +2313,6 @@
     "com.fetchrewards.fetchrewards.hop/com.fetchrewards.fetchrewards.DynamicAppIcon_default",
     "com.p97.kc/com.paytronix.client.android.app.activity.Splash_Screen",
     "com.nobexinc.wls_9793065292.rc/com.jacapps.wallaby.MainActivity",
-    "com.payready.resident/com.payready.resident.MainActivity",
     "com.priceline.android.negotiator/com.priceline.android.negotiator.Launcher",
     "com.ford.fordpass/com.ford.home.views.HomeActivity",
     "com.BisongTaiwo.Sainthood/com.unity3d.player.UnityPlayerActivity",
@@ -2828,7 +2819,6 @@
     "com.pandaexpress.app/com.pandaexpress.app.MainActivity",
     "com.michaldrabik.muzeipixelartextension/com.michaldrabik.muzeipixelartextension.SettingsActivity",
     "com.mercurycards.android.cardapp/com.creditshop.mercury.common.ui.SplashScreenActivity",
-    "inc.zerofinancial.level/inc.zerofinancial.level.app.ui.main.MainActivity",
     "com.pockettrend.neomonsters/com.unity3d.player.UnityPlayerActivity",
     "com.overdrive.mobile.android.sora/com.overdrive.mobile.android.nautilus.ui.Activity_Main",
     "com.stifdev.airfryr/com.stifdev.air_fryer_calculator.MainActivity",
@@ -2840,11 +2830,9 @@
     "com.watchfacedesigns.Vanish/com.watchfacedesigns.Vanish.MainActivity",
     "com.sameerasw.airsync/com.sameerasw.airsync.MainActivity",
     "com.internet.tvbrowser/com.internet.tvbrowser.MainActivity",
-    "com.cubii/com.cubii.ui.SplashActivity",
     "com.hardees.ordering/com.wearehathway.carlsjr.development.MainActivity",
     "com.harkaudio.podcast/com.harkaudio.podcast.MainActivity",
     "com.freakurl.apps.ollama/com.freakurl.apps.ollama.MainActivity",
-    "aurora.pass.android.app/aurora.pass.android.app.MainActivity",
     "com.Caseys.finder/com.caseys.commerce.activity.MainActivity",
     "com.suvidriel.meowface/com.suvidriel.meowface.SplashActivity",
     "com.google.android.apps.health.research.studies/com.google.android.apps.cerebra.dunlin.app.StartActivity",
@@ -2859,8 +2847,6 @@
     "com.antennasdirect.antennapoint/com.antennasdirect.antennapoint.MainActivity",
     "com.firsty.app/com.firsty.bamboo1.MainActivity",
     "com.sebas.notificationface/com.sebas.notificationface.MainActivity",
-    "com.nrubintech.finale/com.nrubintech.finale.MainActivity",
-    "com.booboo.glidey/com.booboo.glidey.PTPlayer",
     "aculix.pixelshot.app/aculix.pixelshot.app.ui.MainActivity",
     "net.cachapa.libra/net.cachapa.libra.MainActivity",
     "com.teevee.mobile/com.teevee.mobile.MainActivity",
@@ -2872,7 +2858,6 @@
     "com.openai.sora/com.openai.sora.MainActivity",
     "io.cred.roboapp.android/io.cred.roboapp.application.welcome.ui.WelcomeSplashActivity",
     "com.wendys.nutritiontool/com.wendys.nutritiontool.MainActivity",
-    "com.shortwave.android/shortwave.android.ui.MainActivity",
     "com.paltool.microwave_flutter/com.paltool.microwave_flutter.MainActivity",
     "com.sonic.sonicdrivein/com.idpwhitelabel.MainActivity",
     "com.geminiman.watchfaces/com.geminiman.watchfaces.MainActivity",
@@ -3258,8 +3243,7 @@
     "com.ihsanlabs.purepath/com.ihsanlabs.purepath.MainActivity",
     "com.ai.venice/com.ai.venice.MainActivity",
     "com.masomo.headball2/org.cocos2dx.cpp.AppActivity",
-    "com.ilmeteo.android.ilmeteo/com.ilmeteo.android.ilmeteo.SplashActivity",
-    "com.guider.guidermobile/com.guider.guidermobile.MainActivity"
+    "com.ilmeteo.android.ilmeteo/com.ilmeteo.android.ilmeteo.SplashActivity"
   ],
   "scr-294": [
     "org.fortheloss.sticknodespro/org.fortheloss.sticknodespro.AndroidLauncher",
@@ -3437,7 +3421,6 @@
     "com.tmstore.robu.in/com.tmstore.robu.in.MainActivity"
   ],
   "scr-313": [
-    "com.vidure.fitcamx/com.vidure.app.ui.activity.SplashActivity",
     "se.volvo.vcc/se.volvo.vcc.ui.compose.DefaultIcon",
     "ca.cbc.android.cbctv/tv.tou.android.splash.views.activities.SplashScreenActivity",
     "com.sunlife.ca.mysunlife/com.sunlife.ca.mysunlife.feature.splashscreen.ui.SplashActivity",
@@ -3775,7 +3758,6 @@
     "com.themesonfire.iconpack.aventura_icons.paid/com.themesonfire.iconpack.aventura_icons.paid.activities.MainActivity",
     "com.saicmotor.iov.india/com.saic.cmp.business.entrance.EntranceActivity",
     "in.swiggy.android.toing/in.swiggy.android.HomeIcon",
-    "com.angloeastern.crewapp/com.angloeastern.crewapp.MainActivity",
     "com.ipru.iciciprulife.customer.release/com.ipru.iciciprulife.splash.SplashCustomerActivity",
     "skycap.petroldiesel.fuelprice/skycap.petroldiesel.fuelprice.fuel_prices_flutter.MainActivity",
     "app.greyshirts.firewall/app.greyshirts.firewall.ui.ActivityPager",
@@ -3809,7 +3791,6 @@
     "com.latam.xp/com.latamxpapp.SplashActivity",
     "com.claro.claroclub/com.everis.claroclub.v1.view.activity.SplashScreenActivity",
     "pe.com.tarjetacencosud.canales.mitarjetacencosud/pe.com.tarjetacencosud.canales.mitarjetacencosud.MainActivity",
-    "com.sentinelperu.sentinel/com.sentinelperu.misentinel.ui.login.SplashActivity",
     "com.skyairline/com.skyairline.MainActivityDefault",
     "lac.huahlabs.com.llamafooddelivery/lac.huahlabs.com.llamafooddelivery.activities.Splash.SplashActivity",
     "pe.solera.tarjetaoh/pe.ktx0P7.qh92Z2.cZX704.a36yi6.x5KIL1.wjVy39"
@@ -3844,7 +3825,6 @@
     "com.pearlabyss.pearlapp/com.pearlabyss.pearlapp.MainActivity",
     "com.belkagames.ds/com.unity3d.player.UnityPlayerActivity",
     "com.staircase3.opensignal/com.staircase3.opensignal.goldstar.loadingconfig.LoadConfigActivity",
-    "com.innosq.soundtypeai/com.innosq.soundtypeai.MainActivity",
     "mpay.apps.kits.superapp/mpay.apps.kits.superapp.MainActivity",
     "si.modula.android.instantheartrate/com.azumio.android.argus.main_menu.launch.LaunchActivity",
     "com.ktmb.user.mobile/com.ktmb.user.mobile.ui.splash.SplashActivity",
@@ -3995,7 +3975,6 @@
   "scr-352": [
     "com.ApexCreator.localaiapp/com.ApexCreator.localaiapp.MainActivity",
     "com.myulutass.standbyme.stand_by/com.myulutass.standbyme.stand_by.MainActivity",
-    "round.screen.corner.hide.notch/round.screen.corner.hide.notch.MainActivity",
     "jj.app.cyf/com.unity3d.player.UnityPlayerActivity",
     "com.trainerize.youfit/com.trainerize.MainActivity"
   ],
@@ -4312,7 +4291,6 @@
     "se.liseberg.liseberg/se.liseberg.liseberg.splash.SplashActivity",
     "com.sociallite.android/com.sociallite.android.MainActivity",
     "es.socialpoint.DragonCity/es.socialpoint.hydra.permissions.PermissionsActivity",
-    "io.github.jqssun.airplay/io.github.jqssun.airplay.MainActivity",
     "io.github.luantak.fokuslauncher/com.lu4p.fokuslauncher.MainActivity",
     "io.github.abdurazaaqmohammed.ApkExtractor/io.github.abdurazaaqmohammed.ApkExtractor.MainActivity",
     "de.lemke.geticon/de.lemke.geticon.ui.MainActivity",
@@ -4488,7 +4466,6 @@
     "com.photoappworld.photo.sticker.creator.wastickerapps/com.photoappworld.photo.sticker.creator.wastickerapps.activity.SplashActivity",
     "com.appmaster.cakemaker/com.unity3d.player.UnityPlayerActivity",
     "org.chromium.webapk.ac81a7b904152936e_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-    "com.glassywidgets.app/com.glassywidgets.app.MainActivity",
     "com.ubecast.video/com.ubecast.video.MainActivity",
     "com.erlanggadigital.erlreader2018/com.erlanggadigital.erlreader2018.Splashscreen",
     "com.whidev.mapgame/com.whidev.mapgame.MainActivity",
@@ -4594,9 +4571,7 @@
     "com.andatsoft.myapk.fwa/com.andatsoft.app.myapk.screen.MainActivity",
     "com.Kingdee.Express/com.Kingdee.Express.module.splash.SplashActivity",
     "com.smartisanos.home/com.smartisanos.home.LauncherAlias",
-    "com.iqoo.bbs/com.iqoo.bbs.main.SplashActivity",
-    "com.ss.android.ugc.livelite/com.ss.android.ugc.aweme.splash.SplashActivity",
-    "com.tencent.mobileqq/com.tencent.mobileqq.activity.Alias2SplashActivity"
+    "com.ss.android.ugc.livelite/com.ss.android.ugc.aweme.splash.SplashActivity"
   ],
   "scr-397": [
     "com.setex.epark/com.setex.epark.EparkActivity",
@@ -4606,7 +4581,6 @@
     "es.once.juegosonce.mobile/es.once.juegosonce.mobile.core.presentation.MainActivity",
     "com.ben.istrips/com.ben.istrips.ui.SplashActivity",
     "skyview.star.map.stargazing/co.maplelabs.base.MainActivity",
-    "com.cittadigitale/com.cittadigitale.MainActivity",
     "com.divisait.hospitalreyjuancarlos/com.divisait.hospitalreyjuancarlos.MainActivity",
     "org.madrid.rgm.tarjeta/org.madrid.rgm.tarjeta.MainActivity",
     "com.google.android.apps.podcasts/com.google.android.apps.podcasts.PodcastsActivity",
@@ -4889,7 +4863,6 @@
     "com.motioncam.pro/com.motioncam.pro.LauncherActivity",
     "org.probusdev/org.probusdev.activities.MainActivity",
     "it.aruba.pec.mobile/it.aruba.mobile.uxlib.loginUx.LoginActivity",
-    "it.acea.waidy/com.android.widy.ui.start.SplashscreenActivity",
     "it.iliad/it.iliad.presentation.MainActivity"
   ],
   "scr-427": [
@@ -5006,7 +4979,6 @@
   "scr-445": [
     "com.bowerydigital.bend/com.bowerydigital.bend.app.MainActivity",
     "pt.digimobil.mydigi/pt.digimobil.mydigi.app.main.MainActivity",
-    "com.shortwave.android/shortwave.android.ui.MainActivity",
     "com.privacyhawk.app/com.privacyhawk.app.MainActivity",
     "com.bankinter.portugal.bmb/com.bankinter.portugal.bmb.app.ui.BMBPortugalSplashActivity",
     "com.s4d.telepizza_pt.prd/com.s4d.telepizza_pt.prd.MainActivity",
@@ -5587,7 +5559,6 @@
     "com.alend.cash.instant.credit.loan/com.alend.al.activity.WebActivity",
     "com.kredete.app/com.kredete.app.MainActivity",
     "app.com.cardlaxy/app.com.cardlaxy.MainActivity",
-    "com.bvndle/com.bvndle.MainActivity",
     "com.kudabank.app/com.kuda.app.ui.app_entry.AppEntryActivity",
     "com.loan.aceloan/com.loan.aceloan.ui.WelcomeActivity",
     "co.raenest.geegpay/co.raenest.geegpay.MainActivity",
@@ -5832,7 +5803,6 @@
     "com.jesusdigitalrd.jpcsim/com.jesusdigitalrd.jpcsim.RunnerActivity",
     "com.cetusplay.remotephone/com.cetusplay.remotephone.SplashActivity",
     "com.boardgames.bd.mtproto/com.boardgames.bd.mtproto.MainActivity",
-    "secure.unblock.unlimited.proxy.snap.hotspot.shield/kiwi.unblock.proxy.activity.splash.SplashActivity",
     "com.FozerGames.CrashTestSimulator3/com.unity3d.player.UnityPlayerActivity",
     "com.FozerGames.VAZCrashTestCarSimulator/com.unity3d.player.UnityPlayerActivity",
     "com.fds.infiniteflight/crc645af6daf7656fe5c1.Program",
@@ -6291,7 +6261,6 @@
     "com.sparkine.watchfaces/com.sparkine.watchfaces.activity.OnboardActivity",
     "it.Ettore.raspcontroller/it.Ettore.raspcontroller.ui.pages.various.ActivitySplash",
     "com.gumroad.app/com.gumroad.app.MainActivity",
-    "cn.ikaile.ruoshui.client/cn.ikaile.ruoshui.client.MainActivity",
     "cesc.co.in/cesc.co.in.MainActivity",
     "com.uei.ofa.smartcontrol/com.uei.ofa.smartcontrol.MainActivity",
     "com.narwal.pita_global/com.narwal.pita_global.MainActivity",
@@ -6497,8 +6466,7 @@
     "com.inspiredandroid.braincup/com.inspiredandroid.braincup.MainActivity"
   ],
   "scr-561": [
-    "com.zerch.widget/com.zerch.widget.OnboardingActivity",
-    "com.cinehd/com.cinehd.MainActivity"
+    "com.zerch.widget/com.zerch.widget.OnboardingActivity"
   ],
   "scr-562": [
     "com.ixolit.ipvanish/com.ixolit.ipvanish.presentation.features.launch.SplashActivity",
@@ -6610,7 +6578,6 @@
     "com.ecocash.superapp/com.sasai.sasaipay.MainActivity",
     "com.autodesk.fusion/com.autodesk.a360.ui.activities.launcher.A360LauncherActivity",
     "com.pgstudio.bowmasters.rpg.shooting.monster/com.unity3d.player.UnityPlayerActivity",
-    "com.innbucks.customer/com.innbucks.customer.MainActivity",
     "org.torproject.android/org.torproject.android.main.Paint"
   ],
   "scr-575": [
@@ -7011,7 +6978,6 @@
     "com.tct.weather/com.tct.weather.MainActivity",
     "com.genzee.fakeupdatescreen/com.example.fake_system_update.MainActivity",
     "com.compass.digital.direction.directionfinder/com.compass.digital.direction.directionfinder.ui.activity.entrance.EntranceActivity",
-    "com.vincent.battery/activity.MainActivity",
     "org.chromium.webapk.aa372f2a5418244dc_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "com.maxpatchs.freehepta/com.maxpatchs.freehepta.activities.MainActivity",
     "com.arumcomm.mainlineupdater/com.common.ad.cmp.CmpMainActivity",
@@ -7044,7 +7010,6 @@
     "app.anich/app.anich.MainActivity",
     "top.moeli.reader.moeli_bookreader/top.moeli.reader.moeli_bookreader.MainActivity",
     "cn.spacexc.wearbili.remake/cn.spacexc.wearbili.remake.app.MainActivity",
-    "com.dynadot.search/com.dynadot.search.activity.SplashActivity",
     "com.treefrogapps.audio.tageditor/com.treefrogapps.audio.tageditor.start.presentation.StartActivity",
     "org.torproject.vpn/org.torproject.vpn.ui.iconsetting.model.LauncherWeather",
     "com.airoha.utapp.sdk/com.airoha.utapp.sdk.MainActivity",
@@ -7193,7 +7158,6 @@
     "app.web.rironriron.link/app.web.rironriron.link.MainActivity",
     "com.ugreen.pro/com.ugreen.pro.ui.Splash",
     "com.dpc.parallaxwallpaper/com.dpc.parallaxwallpaper.MainActivity",
-    "jp.co.TNEOBANK/jp.co.netbk.t_neobank.ui.activity.SplashActivity",
     "jp.co.rakuten.video.showtimeplayer/jp.co.rakuten.video.showtimeplayer.ui.splash.SplashActivity",
     "www.valking.gg/www.valking.gg.MainActivity",
     "com.gryphline.skport/com.gryphline.skport.app.splash.SplashActivity",
@@ -7562,14 +7526,12 @@
     "com.daylightclock.android.license/com.daylightclock.android.license.GlobeActivity",
     "com.bescom.evmithra/com.bescom.evmithra.MainActivity",
     "xeus.timbre/xeus.timbre.ui.main.MainActivity",
-    "com.upskew.encode/com.upskew.encode.MainActivity",
     "hiddencamdetector.futureapps.com.hiddencamdetectoradsfree/hiddencamdetector.futureapps.com.hiddencamdetectoradsfree.HomeScreen",
     "com.drikp.core/com.drikp.core.views.activity.base.DpPanchangActivity",
     "com.dci.dev.holdmylink/com.dci.dev.holdmylink.MainActivity",
     "com.digibites.calendar/com.digibites.calendar.WeekAgendaActivity",
     "com.peakpocketstudios.lofiradio/com.peakpocketstudios.lofi.MainActivity",
     "in.dmart/in.dmart.splash.SplashActivity",
-    "jithin.com.videomate/jithin.com.videomate.activities.Start",
     "net.sarasarasa.lifeup/net.sarasarasa.lifeup.ui.simple.SplashActivity",
     "com.ng_labs.dateandtime/com.ng_labs.dateandtime.ui.SplashActivity",
     "com.revos.bolt.android/com.revos.bolt.android.bolt",
@@ -7593,7 +7555,6 @@
   "scr-652": [
     "com.gsr.gs25/com.gsr.gs25.MainActivity",
     "com.bgfcu.membership/com.bgfcu.membership.view.activity.IntroActivity",
-    "com.kbstar.kbbank/com.kbstar.kbbank.implementation.presentation.MainActivity",
     "com.everytime.v2/com.everytime.v2.SplashActivity"
   ],
   "scr-653": [
@@ -7951,7 +7912,6 @@
   "scr-671": [
     "com.lluraferi.arcaplanet/it.arcaplanet.mobile.flutter.MainActivity",
     "com.liteup.getgains/com.liteup.getgains.MainActivity",
-    "com.matipay.vending/com.sitael.vending.ui.activity.SplashScreenActivity",
     "com.franco.agenda/com.franco.agenda.activities.Options"
   ],
   "scr-672": [
@@ -8171,7 +8131,6 @@
     "lhotsekwgt.kustom.pack/dev.jahir.kuper.app.MainActivity"
   ],
   "scr-691": [
-    "com.heidihealth.scribe/com.heidihealth.scribe.MainActivity",
     "af.org.aofoundation.AOSR/af.org.aofoundation.aosr.feature.splash.SplashActivity",
     "com.megasis.android/pt.tap.tapportugal.MainActivity",
     "com.hermes.induction/com.accurx.accurx.activity.MainActivity",
@@ -8187,7 +8146,6 @@
     "com.maazm7d.termuxhub/com.maazm7d.termuxhub.MainActivity",
     "com.arachnoid.sshelper/com.arachnoid.sshelper.SSHelperActivity",
     "com.quesmed/com.quesmed.MainActivity",
-    "com.crimpd.ui/com.crimpd.ui.MainActivity",
     "com.griptonite.app/com.griptonite.app.MainActivity",
     "com.grymala.aruler/com.grymala.aruler.monetization.ConsentActivity",
     "com.ford.fordpass/com.ford.home.views.HomeActivity",
@@ -8391,7 +8349,6 @@
     "com.poleemploi.formation/poleemploi.formations.droid.activities.SplashActivity",
     "io.github.fertwbr.pixelcompass/io.github.fertwbr.pixelcompass.MainActivity",
     "com.regionsjob.android/com.regionsjob.android.ui.MainActivity",
-    "com.adecco.worker/com.adecco.worker.module.splashscreen.SplashActivity",
     "io.kibo.clarity/io.kibo.clarity.MainActivityIconBlack",
     "fr.fdj.apps.fdj/fr.fdj.splashscreen.ui.AppInitialisationActivity",
     "com.poleemploi.pemobile/crc646e9a52ba2d05cc58.MainActivity",
@@ -8443,7 +8400,6 @@
     "com.hitappsgames.wordsolitaire/com.unity3d.player.UnityPlayerActivity",
     "org.languagetransfer/org.languagetransfer.MainActivity",
     "com.weppa_app.weppa/com.weppa_app.weppa.MainActivity",
-    "com.airtm.android/com.airtm.android.presentation.ui.activity.SplashActivity",
     "com.demonlab.lune/com.demonlab.lune.ui.activities.Lune",
     "com.alcambio.app/com.alcambio.app.MainActivity",
     "com.kontigo.lat/com.kontigo.lat.MainActivity",
@@ -8700,12 +8656,10 @@
     "com.blu.de.diners.club/com.canalpersonasdce.MainActivity",
     "com.imou.partner/com.imou.partner.ui.activity.WelcomeActivity",
     "com.appdeuna.wallet/com.pichincha.bpbilletera.icon.DefaultAlias",
-    "com.airtm.android/com.airtm.android.presentation.ui.activity.SplashActivity",
     "com.riotgames.league.teamfighttactics/com.riotgames.leagueoflegends.RiotNativeActivity",
     "com.microsoft.clarity/com.microsoft.clarity.MainActivity",
     "com.paperknifeplus.app/com.paperknifeplus.app.MainActivity",
     "com.nightowlsp.nop/com.nightowlsp.nop.screens.splash.SplashActivity",
-    "app.traced/app.traced.ui.WebLinkCheckerActivity",
     "com.protectstar.antispy.android/com.protectstar.antispy.activity.ActivityFirstlaunch",
     "com.protectstar.antivirus/com.protectstar.antivirus.activity.ActivityFirstlaunch",
     "com.kasumic.vpndetector/com.kasumic.vpndetector.MainActivity",
@@ -8740,8 +8694,7 @@
     "io.github.dorumrr.privacyflip/io.github.dorumrr.privacyflip.MainActivity",
     "com.feralinteractive.hitmanbloodmoney_android/com.feralinteractive.hitmanbloodmoney_android.MainActivity",
     "com.squareenix.lis/com.epicgames.ue4.GameActivity",
-    "com.snk.acams3/com.unity3d.player.UnityPlayerActivity",
-    "br.com.brainweb.ifood/br.com.brainweb.ifood.AppIconClub"
+    "com.snk.acams3/com.unity3d.player.UnityPlayerActivity"
   ],
   "scr-742": [
     "com.juvomobileinc.tigoshop.bo/com.juvomobileinc.tigoshop.bo.MainActivity",
@@ -8972,7 +8925,6 @@
     "com.zjcs.android.us/com.joybox.overseas.activity.SdkFirstActivity",
     "com.fetchrewards.fetchrewards.hop/com.fetchrewards.fetchrewards.DynamicAppIcon_default",
     "com.p97.kc/com.paytronix.client.android.app.activity.Splash_Screen",
-    "com.payready.resident/com.payready.resident.MainActivity",
     "com.priceline.android.negotiator/com.priceline.android.negotiator.Launcher",
     "com.ford.fordpass/com.ford.home.views.HomeActivity",
     "com.sonic.sonicdrivein/com.idpwhitelabel.MainActivity",
@@ -9222,8 +9174,7 @@
     "com.perracolabs.cp/com.perracolabs.cameringo.Main",
     "fi.magille.simplejournal/fi.magille.simplejournal.ui.main.MainActivity",
     "com.mobile.sobercity/com.dev.sober.MainActivity",
-    "com.square_enix.FFIXww.android_googleplay/com.apkvision.unpackdata.MainActivity",
-    "com.cinehd/com.cinehd.SplashAdActivity"
+    "com.square_enix.FFIXww.android_googleplay/com.apkvision.unpackdata.MainActivity"
   ],
   "scr-780": [
     "com.jalglobalwallet.jgw/com.jalglobalwallet.jgw.HandleAppLinksActivityDefault",
@@ -10085,7 +10036,6 @@
     "ca.mybenefits.mobile/com.tns.NativeScriptActivity",
     "com.rbc.mobile.android/com.rbc.mobile.bud.pre_auth.common.activity.SplashActivity",
     "com.audiobookshelf.app/com.audiobookshelf.app.MainActivity",
-    "com.airthings.app.android/com.airthings.app.MainActivity",
     "com.petrocanada.my_petro_canada/suncor.com.android.ui.splash.SplashActivity",
     "io.music_assistant.client/io.music_assistant.client.MainActivity"
   ],
@@ -10145,7 +10095,6 @@
     "maa.vaporwave_editor_glitch_vhs_trippy/maa.vaporwave_editor_glitch_vhs_trippy.ui.activities.main.SplashScreenActivity",
     "com.amanyt.fpsmonitor/com.amanyt.fpsmonitor.MainActivity",
     "com.autumn.skullgirls/com.prime31.UnityPlayerNativeActivity",
-    "com.razorlabs.cpumeter/com.razorlabs.cpumeter.system.presentation.RootActivity",
     "com.trueaxis.trueskate/com.trueaxis.trueskate.TrueskateActivity",
     "com.willdev.projectbreachremastered/com.unity3d.player.UnityPlayerActivity",
     "com.example.liquidisland/com.example.liquidisland.MainActivity",
@@ -10211,7 +10160,6 @@
     "com.lego.membership/com.lego.membership.MainActivity",
     "uk.co.focusmm.DTSCombo/uk.co.focusmm.DTSCombo.MainActivity",
     "com.hermes.hercules/com.hermes.hercules.ui.startup.StartupActivity",
-    "uk.co.credabilityapp/uk.co.credabilityapptest.MainActivity",
     "com.infinitygames.merge/com.unity3d.player.UnityPlayerActivity",
     "com.boparanrestaurantgroup.slimchickens/com.twoergo.podifi.android.client.whitelabel.lib.ui.activity.SplashScreenActivity"
   ],
@@ -10950,7 +10898,6 @@
     "com.balls.crush.bricks.breaker.quest.puzzle.free/com.balls.crush.bricks.breaker.quest.puzzle.free.LongMainActivity",
     "fun.test.id/fun.test.id.MainActivity",
     "fuck.andes/fuck.andes.ui.MainActivity",
-    "com.tencent.mobileqq/com.tencent.mobileqq.activity.Alias4SplashActivity",
     "com.yuexin.panel/com.yuexin.panel.activity.MainActivity",
     "io.github.chimio.inxlocker/io.github.chimio.inxlocker.Home",
     "com.astraflow.tool/com.astraflow.tool.ui.MainActivity",
@@ -11555,7 +11502,6 @@
     "plus.zhongcheng.com/io.dcloud.PandoraEntry",
     "com.dakaola.alpa/com.dakaola.alpa.MainActivity",
     "org.billthefarmer.accordion/org.billthefarmer.accordion.MainActivity",
-    "com.myoland.miraa/com.ryanheise.audioservice.AudioServiceActivity",
     "kzs.th000.tsdm_client/kzs.th000.tsdm_client.MainActivity",
     "com.android1939.kardsapk/com.epicgames.unreal.SplashActivity",
     "com.autumnrockdev.nailthepitch/com.autumnrockdev.nailthepitch.SplashScreenActivity",
@@ -11714,8 +11660,7 @@
     "com.rsupport.rs.activity.lge.allinone/com.rsupport.rs.activity.edit.IntroActivity"
   ],
   "scr-989": [
-    "com.iqoo.website/com.vivo.website.feedback.HotQuestionEntry",
-    "com.cinehd/com.cinehd.SplashAdActivity"
+    "com.iqoo.website/com.vivo.website.feedback.HotQuestionEntry"
   ],
   "scr-990": [
     "com.openmove/com.openmove.MainActivity",
@@ -12193,7 +12138,6 @@
     "com.mycashery/com.mycashery.MainActivity",
     "com.oakever.meowdoku/com.godot.game.GodotAppLauncher",
     "com.bscotch.hmd/com.bscotch.hmd.RunnerActivity",
-    "com.devotedhealth.memberportal/com.devotedhealth.memberportal.MainActivity",
     "com.funcraft.farkle/com.google.firebase.MessagingUnityPlayerActivity",
     "ai.instaview.guardian/ai.instaview.guardian.presentation.main.MainActivity",
     "com.gimica.ballbounce/com.unity3d.player.UnityPlayerActivity",
@@ -12253,7 +12197,6 @@
     "mn.cocacola.icoke/mn.cocacola.icoke.MainActivity",
     "mn.tdb.pay/mn.tdb.pay.activity.MainServerActivity",
     "mn.mta.vatps/mn.mta.vatps.MainActivity",
-    "com.cinehd/com.cinehd.MainActivity",
     "com.yft.gamemode/com.yft.gamemode.GameActivity",
     "com.yft.chlidmode/com.yft.chlidmode.workespace.ChlidActivity",
     "com.getmodsapk.sai/com.aefyr.sai.ui.activities.MainActivity",
@@ -12707,7 +12650,6 @@
     "com.detekfit.lmcconfig/com.zipoapps.premiumhelper.ui.splash.PHSplashActivity",
     "com.teslagamesglobal.survivalist/com.unity3d.player.UnityPlayerActivity",
     "com.music.downloadfreeapp4you_26/com.music.downloadfreeapp4you_26.SplashActivity",
-    "com.rtech.crediko.CREDIKOFINAL/com.rtech.crediko.CREDIKOFINAL.MainActivity",
     "open.chat.gpt.aichat.bot.free.app/open.chat.gpt.aichat.bot.free.app.page.splash.LauncherActivity",
     "com.baiboly.katolika/com.baiboly.katolika.MainActivity",
     "com.q4u.ruler.measurement.measure.ar.tape.camera.ai/com.zipoapps.premiumhelper.ui.splash.PHSplashActivity",
@@ -13351,7 +13293,6 @@
     "jp.co.rakuten.video.showtimeplayer/jp.co.rakuten.video.showtimeplayer.ui.splash.SplashActivity",
     "net.townwork.recruit/jp.co.recruit.hr.townwork_temp.hone.view.MainActivity",
     "com.athuman.haij/com.haji.speaking.MainActivity",
-    "com.techsip.noid/com.techsip.noid.MainActivity",
     "com.mayhub.jlpt/com.mayhub.jlpt.modules.launch.LaunchActivity",
     "com.fujitsu.mobile_phone.Recommend/com.fujitsu.mobile_phone.Recommend.MainActivity",
     "jp.co.matsuyafoods.officialapp.dis/jp.co.matsuyafoods.officialapp.dis.MainActivity",
@@ -13383,7 +13324,6 @@
     "app.web.rironriron.povo/app.web.rironriron.povo.MainActivity",
     "li.yapp.appBC309FE6/li.yapp.sdk.YLSplashActivity",
     "jp.co.ishinban.WithWellness/jp.co.ishinban.WithWellness.activityes.SplashActivity",
-    "com.backcn.ss/com.backcn.ss.ui.activity.MainActivity",
     "com.rakuten.ai/com.rakuten.ai.agex.ui.MainActivity",
     "com.fujitsu.mobile_phone.healthcare/com.fujitsu.mobile_phone.healthcare.MainActivity",
     "jp.co.rakuten.personalfinance/jp.co.rakuten.personalfinance.ui.activity.single.SingleActivity",
@@ -13402,7 +13342,6 @@
     "com.moomoo.trade.jp/cn.futu.trader.launch.activity.LaunchActivity",
     "jp.weblio.smpapp.www/jp.weblio.smpapp.viewer.MainActivity",
     "com.bilingify.readest/com.bilingify.readest.MainActivity",
-    "dokoka.jp/dokoka.jp.MainActivity",
     "com.fobwifi.transocks/com.fobwifi.transocks.ui.main.MainActivity",
     "com.fcnt.mobile_phone.gamelauncher/com.fcnt.mobile_phone.gamelauncher.activity.LauncherMainActivity",
     "jp.co.rakuten.travel.andro/jp.co.rakuten.travel.andro.MainActivity",
@@ -14181,7 +14120,6 @@
   "scr-1169": [
     "com.binarypax.oiiaicat/com.binarypax.oiiaicat.MainActivity",
     "org.horubrain.anomalouscoffeemachine/com.godot.game.GodotApp",
-    "com.jndapp.skyline.linex.iconpack/com.jndapp.skyline.linex.iconpack.MainActivity",
     "com.omarkarimli.disco/com.omarkarimli.disco.MainActivity",
     "com.movistar.musica/com.movistar.musica.MainActivity",
     "com.HelloCrime.LovelyCraftPiston/com.unity3d.player.UnityPlayerActivity",
@@ -14349,7 +14287,6 @@
     "com.square_enix.android_googleplay.ffxivcomapp_e/com.ffxiv.sight.view.SplashActivity",
     "com.babelfrance.loueragile/com.babelfrance.loueragile.MainActivity",
     "sangui.io.philippe/sangui.boitephilippe.ui.MainActivity",
-    "com.linak.deskcontrol/com.linak.deskcontrol.ui.CoreActivity",
     "com.clocknotionstudio.lasoundbox2/com.clocknotionstudio.lasoundbox2.SplashActivity",
     "com.mtoolstec.mtoolsLite/com.mtoolstec.mtoolslite.MainActivity",
     "net.oqee.androidmobile/net.oqee.android.ui.splash.SplashActivity",
@@ -14491,7 +14428,6 @@
     "com.xiaozhen.beauty.hnd/com.xiaozhen.beauty.ui.activity.SplashActivity",
     "pl.gov.mf.eus/crc640aad142aff4ebed7.MainActivity",
     "pl.primesoft.mrreceipt/pl.primesoft.mrreceipt.scenes.splash.SplashActivity",
-    "com.creative.apps.creative/com.creative.apps.creative.SplashActivity",
     "pl.org.chmiel.BruttoNetto/pl.org.chmiel.BruttoNetto.BruttoNetto",
     "pl.orlen.paczka/pl.orlen.paczka.MainActivity",
     "com.italiano.glassyround/com.italiano.glassyround.activities.MainActivity",
@@ -14587,8 +14523,7 @@
     "com.avance.consumer/com.avance.consumer.MainActivity"
   ],
   "scr-1207": [
-    "com.sidsfarm.customer/com.sidsfarm.customer.MainActivity",
-    "io.nexquare.parent/io.nexquare.parent.MainActivity"
+    "com.sidsfarm.customer/com.sidsfarm.customer.MainActivity"
   ],
   "scr-1208": [
     "com.InsignisGames.GamesTycoon/com.unity3d.player.UnityPlayerActivity",
@@ -14676,14 +14611,12 @@
   ],
   "scr-1210": [
     "jp.co.japannetbank.smtapp.balance/jp.co.paypay.bank.SplashActivity",
-    "jp.fesapp/jp.co.rockinon.fesapp.ui.main.MainActivity",
     "jp.tokyodisneyresort.portalapp/jp.tokyodisneyresort.portalapp.ui.main.MainActivity",
     "com.glico.map.seventeenice.app/com.glico.map.seventeenice.app.ui.MainActivity",
     "nhk.app.tep/com.sunagalab.nhkbxclient.MainActivity",
     "com.navitime.local.navitime/com.navitime.local.navitime.NTMainNavitime",
     "jp.co.skylark.app.gusto/jp.co.skylark.launcher.ui.LauncherComposeActivity",
     "jp.co.bookoff.bookoffapp/jp.co.bookoff.bookoffapp.activity.SplashActivity",
-    "blend.school.blend_android/www.blend.school.blend_android.ui.login.LoginActivity",
     "jp.co.rakuten_sec.ispeed/jp.co.rakuten_sec.ispeed.SplashActivity",
     "jp.studyplus.android.app/jp.studyplus.android.app.MainActivity",
     "jp.jrewallet/jp.jrewallet.MainActivity",
@@ -14957,7 +14890,6 @@
     "com.lightweight.WordCounter.free/com.lightweight.WordCounter.free.InitActivity",
     "com.turkcellplatinum.main/com.turkcellplatinum.main.MainActivity",
     "face.yoga.exercise.massage.skincare/face.yoga.exercise.massage.skincare.activity.SplashActivity",
-    "co.beije.mobile/co.beije.mobile.Default",
     "tr.gov.dbys.mobile/com.dias.depozitoapp.LauncherActivity",
     "com.solidict.catalog4p/com.solidict.onegb.MainActivity",
     "com.solidict.gnc2/com.solidict.gnc2.Summer",
@@ -15343,7 +15275,6 @@
     "com.tgc.wanxiang/cn.ommiao.iconpacktemplate.SplashActivity",
     "com.bilibili.studio/com.bcut.homepage.widget.SplashActivity",
     "com.example.xiaoji/com.template.iconpack.MainActivity",
-    "com.weather.mjweather/com.moji.home.ui.launcher.LauncherActivity",
     "com.idaodan.clean.master/com.idaodan.clean.master.ui.activity.global.SplashActivity",
     "com.fungus.iconpack.mirrorscope/com.fungus.iconpack.mirrorscope.activities.MainActivity",
     "com.cmbchina.ccd.pluto.cmbActivity/com.cmbchina.ccd.pluto.cmbActivity.SplashActivity",
@@ -15371,7 +15302,6 @@
     "com.mobile.canaraepassbook/com.mobile.canaraepassbook.EbookSplashActivity",
     "com.ttec.fastcharging/com.nuotec.fastcharger.features.main.LoadingActivity",
     "com.keplerians.icescream8/com.unity3d.player.UnityPlayerActivity",
-    "com.hash.prism/com.hash.prism.MainActivity",
     "com.measureprotocol.contributor.production/com.measureprotocol.contributor.production.MainActivity",
     "com.elder.iconpack.hyperos/com.elder.iconpack.hyperos.activities.MainActivity",
     "com.cga.cloudgame.platform/com.jzbro.cloudgame.main.jiaozi.MainJZ2SplashActivity",
@@ -15404,7 +15334,6 @@
     "com.mvsep.mvsep/com.mvsep.mvsep.MainActivity",
     "com.devone.filetreesize/com.devone.filetreesize.activity.MainActivity",
     "com.voicecloner.celebritycloner/com.voicecloner.celebritycloner.MainActivity",
-    "com.leo.lockify/com.leo.lockify.LauncherLockify",
     "com.instagram.moonshot/com.instagram.moonshot.mainactivity.MoonshotActivity",
     "com.example.savefromNew/net.savefrom.helper.splash.SplashActivity",
     "com.wakeup.howear/com.wakeup.howear.view.app.SplashActivity",
@@ -15627,7 +15556,6 @@
     "sa.com.SP/com.splonline.services.MainActivity",
     "me.eternal.purrfect/me.eternal.purrfect.ui.manager.MainActivity",
     "com.enjaz.enjazpay/com.enjaz.enjazpay.EnjazPay",
-    "com.Izam.tanqeebKsa/tanqeeb.com.app.MainActivity",
     "com.rajmani7584.payloaddumper/com.rajmani7584.payloaddumper.MainActivity"
   ],
   "scr-1275": [
@@ -15754,7 +15682,6 @@
     "com.simplywerx.compass3d/com.simplywerx.mobile.MainMobileActivity",
     "com.shanling.eddictplayer/com.shanling.eddictplayer.gui.Activity.SplashActivity",
     "com.moto.iconpack/com.moto.iconpack.MainActivity",
-    "com.playlab.bussolaagil/com.playlab.bussolaagil.MainActivity",
     "com.github.axet.binauralbeats/com.github.axet.binauralbeats.activities.MainActivity",
     "org.chromium.webapk.ad0bb9960fab1040f_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "com.audiophile.player/com.audiophile.player.IconRose",
@@ -15899,7 +15826,6 @@
     "com.eggpuzzle.platformer.run/com.google.firebase.MessagingUnityPlayerActivity",
     "com.mymobiblib.android/com.mobib.ui.splash.SplashActivity",
     "com.rodo.fakeupdate/com.rodo.fakeupdate.LaunchKotlin",
-    "com.panshen.motioncure/com.panshen.motioncure.SplashActivity",
     "com.dnamobile.modlymodmanager/com.dnamobile.modlymodmanager.ui.EntryActivity",
     "com.appslab.depth.studio/com.appslab.depth.studio.MainActivity",
     "com.moh.sh.app.shade/com.moh.sh.app.shade.presentation.MainActivity",
@@ -16380,7 +16306,6 @@
   ],
   "scr-1337": [
     "eu.darken.myperm/eu.darken.myperm.main.ui.MainActivity",
-    "com.anonimno.dateonstatusbar/com.anonimno.dateonstatusbar.MainActivity",
     "com.ginoskos.biblicallanguages/com.ginoskos.biblicallanguages.views.LauncherActivity",
     "k4ustu3h.monocons.izzy/k4ustu3h.monocons.MainActivity",
     "com.vishaltelangre.nerdcalci/com.vishaltelangre.nerdcalci.ui.MainActivity",
@@ -16388,7 +16313,6 @@
     "com.qitech.webreader/com.qitech.webreader.WebReader",
     "com.hyperionics.avar/com.hyperionics.avar.SpeakReferenceActivity",
     "com.ghisler.tcplugins.totaldrip/com.android.tcplugins.FileSystem.AboutActivity",
-    "se.infospread.android.mobitime.r.lto/se.infospread.android.mobitime.SplashActivity",
     "org.billthefarmer.diary/org.billthefarmer.diary.Diary",
     "com.joaomgcd.autocontacts/com.joaomgcd.autoapps.ActivityLaunchApp",
     "com.artestasis.orthodox_calendar/com.artestasis.orthodox_calendar.MainActivity",
@@ -16534,7 +16458,6 @@
     "org.languagetransfer/org.languagetransfer.MainActivity",
     "com.alcambio.app/com.alcambio.app.MainActivity",
     "com.hitappsgames.wordsolitaire/com.unity3d.player.UnityPlayerActivity",
-    "com.airtm.android/com.airtm.android.presentation.ui.activity.SplashActivity",
     "com.bcodigital.bcoapp/com.bcodigital.bcoapp.MainActivity",
     "com.kontigo.lat/com.kontigo.lat.MainActivity"
   ],
@@ -16725,7 +16648,6 @@
     "com.kidde.android.monitor1/com.homeboy.view.SplashActivity",
     "org.sanfordhealth.patient/org.sanfordhealth.patient.SplashActivity",
     "com.ktiv.android.weather/com.wsi.android.weather.ui.SplashScreen",
-    "com.airthings.app.android/com.airthings.app.MainActivity",
     "net.orb.orb/net.orb.orb.MainActivity",
     "com.awesome.puzzlehexasort/by.saygames.SayKitActivity",
     "com.molink.john.hummingbird/com.molink.john.hummingbird.activity.SplashActivity",
@@ -17365,7 +17287,6 @@
     "ai.app.ai/ai.app.ai.MainActivity",
     "com.fantapelis.videotrailer/com.fantapelis.videotrailer.MainActivity",
     "com.highsecure.stickermaker/com.highsecure.stickermaker.features_base.feature_splash.ui.SplashActivity",
-    "com.runwayml.prod/com.runwayml.prod.MainActivity",
     "com.thmobile.logomaker/com.thmobile.logomaker.ui.splash.NewSplashActivity"
   ],
   "scr-1406": [
@@ -17654,7 +17575,6 @@
   ],
   "scr-1427": [
     "org.chucklefish.wargroove/org.chucklefish.wargroove2.Game",
-    "com.clicks.companionapp/com.android.clicks.companion.LaunchActivity",
     "com.razer.bianca/com.razer.bianca.ui.splash.SplashActivity",
     "com.singtel.mysingtel/com.singtel.mysingtel.MainActivity",
     "com.dbs.dbspaylah/com.dbs.dbspaylah.Views.Activities.SplashActivity",
@@ -17805,7 +17725,6 @@
   "scr-1440": [
     "com.catsbit.oxidesurvivalisland/com.catsbit.oxidesurvivalisland.OxideActivity",
     "cn.nubia.inspiredwallpaper/cn.nubia.inspiredwallpaper.base.AppStartIntentActivity",
-    "com.iconchanger.widget.theme.shortcut/com.iconchanger.shortcut.SplashActivityDefault",
     "com.google.android.apps.podcasts/com.google.android.apps.podcasts.PodcastsActivity",
     "com.zte.voicetranslate/com.zte.halo.app.translate.ui.DialogueTranslate",
     "ar.com.bna.digital/ar.g\u0646\u03a4\u03c2\u062a\u03bd.e\u042f\u0410\u05d7\u062b\u0398.o\u0397\u03b6\u0444\u05d2\u03a4.o\u05e3\u0428\u0623\u03b5\u0442",
@@ -17909,7 +17828,6 @@
   ],
   "scr-1454": [
     "com.walmartmexico.wallet/com.walmartmexico.wallet.launcher_c2f6adc3f24188589e5b4917eac9eaf3604cbb079f05b88ff4145e56d956454f",
-    "telecom.televisa.com.izzi/telecom.televisa.com.izzi.MainActivity",
     "com.yscoco.havi/com.yscoco.havit.ui.activity.SplashActivity",
     "com.ayd.sadm/com.ayd.sadm.MainActivity",
     "cjvg.santabiblia/cjvg.santabiblia.SplashActivity",
@@ -18049,7 +17967,6 @@
     "com.puma.newstore.app/com.highstreet.core.activities.MainActivity",
     "com.point4more.android.mpr.user.prod/com.point4more.android.mpr.user.test.MainActivity",
     "com.pumapumatrac/com.pumapumatrac.ui.splash.SplashActivity",
-    "com.unibail.minto/com.unibail.minto.MainActivity",
     "com.marktguru.mg2.de/com.marktguru.app.ui.LauncherAliasDefault",
     "com.Gthpro.namazsureleri/com.Gthpro.namazsureleri.MainActivity",
     "com.wetter.androidclient/com.wetter.androidclient.entry.EntryActivity",
@@ -18385,7 +18302,6 @@
     "club.playus/club.playus.MainActivity",
     "com.google.android.apps.podcasts/com.google.android.apps.podcasts.PodcastsActivity",
     "com.read.image.pdf.pdfreader.pdfviewer/com.mtgapp.image2pdf.view.activity.SplashActivity",
-    "com.smarttech.smartmirrorapp/com.smarttech.smartmirrorapp.MainActivity",
     "com.wowthemes.neonwhitetheme.one/com.theme.launcher.SplashActivity"
   ],
   "scr-1500": [
@@ -18571,7 +18487,6 @@
     "touse.aqucomaclip.com/touse.aqucomaclip.com.app.QCOT",
     "com.hw.arrow.rush3d/com.unity3d.player.UnityPlayerActivity",
     "com.felicitygames.arrowmaze/com.google.firebase.MessagingUnityPlayerActivity",
-    "com.iconchanger.widget.theme.shortcut/com.iconchanger.shortcut.SplashActivityDefault",
     "ig.com.pixel.blast/com.unity3d.player.UnityPlayerActivity",
     "arrow.cube.escape3d/com.unity3d.player.UnityPlayerActivity",
     "com.planetfitness/crc646aa1cfe11af761d6.MainActivity",
@@ -18647,7 +18562,6 @@
     "com.fetchrewards.fetchrewards.hop/com.fetchrewards.fetchrewards.DynamicAppIcon_default",
     "com.starnest.notecute/com.starnest.notecute.ui.main.activity.SplashActivity",
     "com.binsoft.trackyunex/com.binsoft.trackyunex.MainActivity",
-    "com.mei/com.mei.messaging.ui.activities.MainActivity",
     "com.codeway.aitutor/com.codeway.aitutor.MainActivity",
     "com.cga.my.color.note.notepad/com.thalia.note.activities.loadingActivity.LoadingActivity"
   ],
@@ -18830,7 +18744,6 @@
     "com.wallapers.sillysmiles.live.wallpaper/com.wallapers.sillysmiles.live.wallpaper.ui.homescreen.HomeScreenActivity",
     "com.vlarpe.kate/com.perm.kate.MainActivity",
     "com.outfit7.mytalkingtomfree/com.outfit7.felis.SplashActivityFour",
-    "secure.unblock.unlimited.proxy.snap.hotspot.shield/kiwi.unblock.proxy.activity.splash.SplashActivity",
     "com.lailaixiong.funnyprint/cn.lailaixiong.funnyprint.MainActivity",
     "de.hp.volume/de.hp.volume.Main",
     "com.disney.wheresmywater2_goo/com.disney.wheresmywater2_goo.ActivitySkuGoogle",
@@ -18844,7 +18757,6 @@
     "ru.sutochno_redesign/ru.sutochno.android.ui.activity.LauncherActivity"
   ],
   "scr-1526": [
-    "moctale.android.app/moctale.android.app.MainActivity",
     "com.tcs.lpp.finverselos/com.tcs.lpp.finverselos.prelogin.activities.SplashScreenActivity",
     "com.netflix.NGP.Storyteller/com.unity3d.player.UnityPlayerActivity",
     "com.dealshare/com.dealshare.MainActivity",
@@ -19121,7 +19033,6 @@
     "com.dave/com.dave.MainActivity"
   ],
   "scr-1547": [
-    "moctale.android.app/moctale.android.app.MainActivity",
     "org.levimc.launcher/org.levimc.launcher.ui.activities.SplashActivity",
     "com.supernova.networkswitch/com.supernova.networkswitch.presentation.ui.activity.MainActivity",
     "com.arlosoft.macrodroid.connectivityhelper/com.arlosoft.macrodroid.helper.ui.HomeScreenActivity",
@@ -19321,7 +19232,6 @@
     "in.fudr.nbc/in.fudr.nbc.MainActivity",
     "com.macrovideo.ap4g/com.macrovideo.ap4g.activities.LaunchActivityWithoutADCustomized",
     "com.engross/com.engross.MainActivity",
-    "com.revcel.mobile/com.revcel.mobile.MainActivity",
     "com.mipay.wallet.in/com.mipay.home.ui.SplashActivity"
   ],
   "scr-1562": [
@@ -19461,7 +19371,6 @@
     "se.axfood.hemkop/se.axfood.hemkop.MainActivity",
     "com.boappa.app/com.boappa.app.MainActivity",
     "com.teliasonera.telia.playplus/se.telia.teliaplay.mobile.NavigationActivity",
-    "se.tvmatchen.android/com.livesportontv.MainActivity",
     "ba.bhtelecom.mojbhtelecom/ba.bhtelecom.mojbhtelecom.MainActivity",
     "se.sas.android/se.sas.MainActivity",
     "se.tv4.tv4playtab/se.tv4.tv4playtab.MainActivity",
@@ -19494,7 +19403,6 @@
     "com.tkskoapps.preciosmedicamentos/com.tkskoapps.preciosmedicamentos.ui.activity.SplashActivity",
     "com.medscape.android/com.medscape.android.welcome.WelcomeActivity",
     "ar.com.bna.digital/ar.g\u0646\u03a4\u03c2\u062a\u03bd.e\u042f\u0410\u05d7\u062b\u0398.o\u0397\u03b6\u0444\u05d2\u03a4.o\u05e3\u0428\u0623\u03b5\u0442",
-    "com.sancor.cliente/com.sancor.cliente.MainActivity",
     "com.limon.screamingbrothers.atm/com.limon.screamingbrothers.atm.screen.LaunchActivity",
     "com.takenos/com.takenos.MainActivity",
     "am.sure.mobile/am.sure.mobile.MainActivity",
@@ -19551,7 +19459,6 @@
   ],
   "scr-1584": [
     "com.playsidestudios.egs.dumbwaystodraw/com.unity3d.player.UnityPlayerActivity",
-    "dev.narikdesign.nothingness/dev.narikdesign.nothingness.MainActivity",
     "cu.axel.smartdock/cu.axel.smartdock.activities.MainActivity",
     "xyz.bytedz.pclink/xyz.bytedz.pclink.MainActivity",
     "com.panda.widgetcove/com.panda.widgetcove.MainActivity",
@@ -19667,7 +19574,6 @@
     "com.hanshow.cart.oemconfig/com.hanshow.cart.oemconfig.MainActivity",
     "com.azacodes.dubaivpn/com.azacodes.dubaivpn.SplashActivity",
     "com.xia.familylife/com.unity3d.player.UnityPlayerActivity",
-    "com.parktechnology.purse/com.parktechnology.purse.MainActivity",
     "ai.mainfunc.genspark/ai.mainfunc.genspark.MainActivity",
     "com.onebutton.mrsuper/com.onebutton.cpp.AppActivity",
     "ru.jibwjigr.xhueqismo/ru.jibwjigr.xhueqismo.MainActivity1",
@@ -20723,7 +20629,6 @@
     "com.ustwo.monumentvalley2/com.unity3d.player.UnityPlayerActivity"
   ],
   "scr-1653": [
-    "com.clicks.companionapp/com.android.clicks.companion.LaunchActivity",
     "com.enduringword.commentary/com.enduringword.commentary.MainActivity",
     "app.couponcrowd.couponcrowdapp/app.couponcrowd.couponcrowdapp.MainActivity",
     "com.flocbit.sonuby/com.flocbit.sonuby.MainActivity",
@@ -20740,8 +20645,6 @@
     "com.botb.winyourdreamcar/com.botb.dreamcaruk.MainActivity",
     "brighthr.blip/brighthr.blip.features.compose.login.presentation.LoginActivity",
     "ai.ai1min.application/ai.ai1min.application.MainActivity",
-    "com.aimer.lectionary/com.lectionary.MainActivity",
-    "com.mymhealth.hybrid/com.mymhealth.hybrid.MainActivity",
     "com.m2mcloud.biketrac/crc64f41aa68cbf05e079.MainActivity",
     "com.hilight.studio/com.hilight.studio.MainActivity",
     "org.englishheritage.app/org.englishheritage.app.MainActivity",
@@ -20767,7 +20670,6 @@
     "com.fishbrain.app/com.fishbrain.app.presentation.bottombar.MainBottomNavigationActivity",
     "com.hindsightlabs.paprika.android.v3/crc643325d1bb1b05bab5.PaprikaActivity",
     "uk.gov.documentchecking/uk.gov.idcheck.app.onboarding.OnboardingActivity",
-    "com.compasswearable/com.compasswearable.MainActivity",
     "com.app.voicenotes/com.app.voicenotes.MainActivity",
     "com.friend.ios/com.friend.ios.MainActivity",
     "com.livelent/com.livelent.MainActivity",
@@ -20857,8 +20759,7 @@
   ],
   "scr-1659": [
     "com.movieblast/com.movieblast.ui.splash.SplashActivity",
-    "com.noise.audio/com.noise.audio.ui.splash.SplashActivity",
-    "com.cinehd/com.cinehd.MainActivity"
+    "com.noise.audio/com.noise.audio.ui.splash.SplashActivity"
   ],
   "scr-1660": [
     "com.hexin.plat.android/com.hexin.plat.android.LogoEmptyActivity",
@@ -20998,7 +20899,6 @@
     "com.musicplayer.music/com.musicplayer.music.ui.splash.SplashActivity",
     "com.music.taptile.rhythmcat.free/com.unity3d.player.UnityPlayerActivity",
     "com.playvalve.dominoes/com.unity3d.player.UnityPlayerActivity",
-    "dev.kraimoz.kanx.android/dev.kraimoz.kanx.android.MainActivity",
     "com.desygner.pdf/com.template.app.MainActivity",
     "peru.easy.loan.viva.credito/com.peeep.eeeppp.ui.splash.PeeSplashActivity",
     "puzzle.snakes.puzzle.slithereat.gaming/com.unity3d.player.UnityPlayerActivity",
@@ -21037,7 +20937,6 @@
   "scr-1669": [
     "com.limi.baton/com.limi.baton.MainActivity",
     "com.trekound.tallycounter/com.trekound.tallycounter.MainActivity",
-    "com.cinehd/com.cinehd.MainActivity",
     "com.gameloft.android.ANMP.GloftSIHM/com.nosecurity.HomeActivity",
     "com.rockstar.maxpayne/com.rockstar.maxpayne.MyApp",
     "zm.co.debonairs.android/com.yumbi.MainActivity",
@@ -21225,7 +21124,6 @@
     "com.binary.hyperdroid/com.binary.hyperdroid.SplashActivity",
     "com.anonlab.voidlauncher/app.lawnchair.LawnchairLauncher",
     "com.Astrelix.Ellipse/com.unity3d.player.UnityPlayerActivity",
-    "com.panshen.motioncure/com.panshen.motioncure.SplashActivity",
     "com.gabama.monopostolite/com.unity3d.player.UnityPlayerActivity",
     "com.example.liquiddictaphone/com.example.liquiddictaphone.MainActivity",
     "com.burakgon.netoptimizer/com.burakgon.netoptimizer.AppLauncher",
@@ -21324,7 +21222,6 @@
     "com.izipa.lmc84gcam/com.izipa.lmc84gcam.MainActivity",
     "com.DazadGame.LocalWarfareRePortable/com.unity3d.player.UnityPlayerActivity",
     "com.android.MGC_8_4_600/com.android.camera.CameraLauncher",
-    "com.rtech.crediko.CREDIKOFINAL/com.rtech.crediko.CREDIKOFINAL.MainActivity",
     "in.playsimple.triple.tile.matchgame.pair.three.puzzle.object.royale/in.playsimple.AppActivity",
     "com.learnsolo.malagasydictionaryoffline/com.learnsolo.malagasydictionaryoffline.firstmoduleactivities.SplashActivity",
     "com.easybrain.arrow.puzzle.game/com.easybrain.template.SplashActivity",
@@ -21609,7 +21506,6 @@
     "net.smartlauncher.beakynews/net.smartlauncher.beakynews.MainActivity",
     "com.dea.user/com.dea.user.MainActivity",
     "it.italotreno/it.italotreno.MainActivity",
-    "it.tinaba.app/com.tinabanextreact.MainActivity",
     "com.prof18.feedflow/com.prof18.feedflow.android.MainActivity",
     "com.hesung.dreo/com.hesung.dreo.activity.SplashScreenActivity",
     "com.centropaghe.cpeople/com.centropaghe.cpeople.MainActivity",
@@ -21735,7 +21631,6 @@
     "com.dvtonder.chronus/com.dvtonder.chronus.preference.PreferencesMain",
     "com.kalshi.mobile/com.kalshi.mobileapp.MainActivity",
     "com.mortgagenewsdaily.rates.app/com.mortgagenewsdaily.rates.app.MainActivity",
-    "com.yazam.empower.passenger/com.yazam.empower.passenger.feature.launch.LauncherActivity",
     "com.har.androidapp/com.har.ui.dashboard.DashboardActivity",
     "com.noodlecake.gettingoverit/com.unity3d.player.UnityPlayerActivity",
     "com.playletterlike.letterlike/com.playletterlike.letterlike.MainActivity",
@@ -21888,7 +21783,6 @@
   ],
   "scr-1732": [
     "com.salute.smarthome.prod/ru.sberbank.sdakit.companion.main.impl.presentation.screen.CompanionMainActivity",
-    "com.italankin.fifteen2/com.italankin.fifteen2.ui.main.MainActivity",
     "com.lyjru.huawei/com.hwplaygame.activity.SplashActivity",
     "com.multicastgames.butcher/com.unity3d.player.UnityPlayerActivity",
     "com.gaijingames.wtm/com.gaijingames.wtm.wtm",
@@ -22034,7 +21928,6 @@
     "com.jndapp.line.neon.iconpack/com.jndapp.line.neon.iconpack.MainActivity",
     "dev.lknninex.oneuiglass/dev.lknninex.oneuiglass.MainActivity",
     "ai.seaart.seasoul/ai.seaart.seasoul.MainActivity",
-    "dev.narikdesign.nothingness/dev.narikdesign.nothingness.MainActivity",
     "kz.altel.app/kz.sardarpro.altel.ui.launcher.LauncherActivity",
     "com.kleientertainment.doNotStarveShipwrecked/com.kleientertainment.doNotStarveShipwrecked.DoNotStarveActivity",
     "kz.smsbus/kz.smsbus.MainActivity",
@@ -22410,7 +22303,6 @@
     "com.pay4vend.bapp/com.pay4vend.bapp.splashscreen.SplashscreenActivity",
     "com.bwt.home.app/com.bwt.home.app.MainActivity",
     "it.despar.despartribu/it.despar.despartribu.MainActivity",
-    "com.matipay.vending/com.sitael.vending.ui.activity.SplashScreenActivity",
     "com.lluraferi.arcaplanet/it.arcaplanet.mobile.flutter.MainActivity",
     "eu.dedalus.easygru/bitdrome.dedalusER.ui.splash.SplashActivity",
     "it.aruba.pec.mobile/it.aruba.mobile.uxlib.loginUx.LoginActivity",
@@ -22679,18 +22571,15 @@
     "com.yukon.streamvision2/by.orangesoft.streamvision.ui.MainActivity",
     "com.viofo.viofo/com.viofo.wr1.activity.HomeActivity",
     "com.astroloop.game/com.astroloop.game.MainActivity",
-    "com.cinehd/com.cinehd.MainActivity",
     "com.theparkingspot.tpscustomer/com.theparkingspot.tpscustomer.ui.splashscreen.SplashScreenActivity",
     "com.adpmobile.android/com.adpmobile.android.auth.ui.AuthAppActivity",
     "com.emerson.checkncharge/com.emersonclimate.checkncharge.base.StartActivity",
-    "com.elan.icsmobile.elanapp/com.usb.module.environment.ui.SplashActivity",
     "com.kitsumed.shizucallrecorder/com.kitsumed.shizucallrecorder.MainActivity",
     "com.hexamob.drivers/com.hexamob.drivers.principalesclases.SplashActivity",
     "app.podiumpodcasts.podium/app.podiumpodcasts.podium.Default",
     "com.ecnetwork.crma/com.ecnetwork.crma.SplashScreen",
     "com.yukon.ballisticcalculator/by.orangesoft.ballisticcalculator.ui.splash.SplashActivity",
     "com.nima.openbooksdownloader/com.nima.openbooksdownloader.MainActivity",
-    "com.optery.mobile/com.optery.mobile.MainActivity",
     "com.statefair.minnesota/com.statefair.minnesota.MainActivity",
     "com.digitalinsight.cma.fiid01002/com.tyfone.nfinia.MCBActivity",
     "com.automateddecision.decom.fp/com.automateddecision.decom.fp.MainActivity",
@@ -22711,7 +22600,6 @@
   "scr-1809": [
     "org.chromium.webapk.a41904a442775117b_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "com.anand.noize/com.anand.noize.MainActivity",
-    "com.motorola.mdmclient.rel/com.motorola.mdmclient.MainActivity",
     "sa.com.stcbank/sa.com.stcbank.launcher_2b606adb666777f84e927553eb800eaf19a5b2ecbc7fa70b9f4fc9793737efac",
     "com.dima.shoppingstore/com.dima.shoppingstore.SplashActivity",
     "com.transsion.oraimohealth/com.transsion.oraimohealth.module.launch.LaunchActivity",
@@ -22737,7 +22625,6 @@
     "com.tlsvpn.tlstunnel/com.tlsvpn.tlstunnel.gfaoolmymhulg",
     "com.hosting.hosting/com.hosting.hosting.MainActivity",
     "com.raouf.routerchef/com.raouf.routerchef.SplashScreen",
-    "secure.unblock.unlimited.proxy.snap.hotspot.shield/kiwi.unblock.proxy.activity.splash.SplashActivity",
     "com.genkimedia.recebersms/com.genkimedia.recebersms.MainActivity",
     "com.tempnumber.Temp_Number.Temp_Number/com.reyhanexe.getusanumbers.ModernSplashActivity",
     "com.game.bakasa/com.game.bakasa.MainActivity"
@@ -22874,7 +22761,6 @@
   ],
   "scr-1827": [
     "io.finnmobile/com.rocky.android.authentication.preflight.SplashActivity",
-    "com.paiduaytech.dayworkapp/com.paiduaytech.dayworkapp.MainActivity",
     "th.co.mimotech.android.GOMOThailand/th.com.mimotech.android.gomomobile.module.splashscreen.SplashScreenActivity",
     "th.co.b2w.temp/th.co.b2w.temp.MainActivity",
     "com.lotuss.oneapp/com.lotuss.oneapp.NewMainActivity_Default",
@@ -23046,7 +22932,6 @@
     "com.clubvips.app/oHZBc2.hgDN25.pkH8C7",
     "com.movistar.base/com.movistar.base.ui.splash.SplashActivity",
     "com.clubjoseluisjoyerias.app/crc644b92e37ca9e02bf3.MainActivity",
-    "com.metaposta.app/com.example.metaposta.MainActivity",
     "com.mapfre.mapfreapp/com.mapfre.mapfreapp.SplashActivity"
   ],
   "scr-1839": [
@@ -23399,7 +23284,6 @@
     "com.profec.farmacofichas/com.profec.farmacofichas.MenuActivity",
     "ao.co.aki/com.mwangobrain.aki.ui.SplashScreenActivity",
     "com.appplayysmartt/com.contenthub.platform.v2.ui.activities.SplashActivity",
-    "com.airtm.android/com.airtm.android.presentation.ui.activity.SplashActivity",
     "ao.unitel.MyAppUnitel/ao.unitel.MyAppUnitel.MainActivity",
     "com.tgtap.gtacheats/com.tgtap.gtacheats.LaunchScreen",
     "com.medicalgroupsoft.medical.refdiseases.eng.free/com.medicalgroupsoft.medical.app.ui.splashscreen.FirstPrepare",
@@ -23482,7 +23366,6 @@
     "com.facebook.aura/com.facebook.aura.main.AuraMainActivity",
     "com.remitly.androidapp/com.remitly.androidapp.MainActivity",
     "com.ace.shell.production/com.ace.shell.ui.launcher.LauncherActivity",
-    "com.goenumerate.engage/com.goenumerate.engage.MainActivity",
     "com.adt.adtplus.prod/com.adt.adtplus.startup.StartupActivityDefault",
     "com.verisign.mvip.main/com.verisign.mvip.main.MainActivity",
     "com.imglobal.mobile.android/com.imglobal.mobile.android.MainActivity",
@@ -23498,7 +23381,6 @@
     "ain_defla.cloudroutes.devcloud/ain_defla.cloudroutes.devcloud.MainActivity",
     "com.locker.lockscreen.os12/com.locker.lockscreen.os12.ui.splash.SplashActivity",
     "com.mahmoudzadah.app.darkifysolid/com.app.dashboard.glassify.SplashActivity",
-    "com.glassywidgets.app/com.glassywidgets.app.MainActivity",
     "com.google.android.apps.podcasts/com.google.android.apps.podcasts.PodcastsActivity",
     "com.mahmoudzadah.app.arabic.wallpapers/com.mahmoudzadah.app.arabic.wallpapers.Activitys.SplashActivity",
     "com.mahmoudzadah.glassifywidgets/com.mahmoudzadah.glassifywidgets.MainActivity"
@@ -23722,7 +23604,6 @@
   "scr-1887": [
     "org.chromium.webapk.a76362554d8bc7ac8_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "com.anvaysoft.typerush/com.anvaysoft.typerush.MainActivity",
-    "com.tapuniverse.aiphotoeditor/com.tapuniverse.aiphotoeditor.MainActivity",
     "com.baca.reader/com.baca.reader.MainActivity",
     "app.materialclock/app.materialclock.MainActivity",
     "app.gyrolet.mpvrx/app.gyrolet.mpvrx.MainActivity",
@@ -23964,7 +23845,6 @@
   "scr-1914": [
     "com.diy.glow.neon.fluid.live.wallpaper.fun.art.magic/com.app.live_wallpaper.ui.main.MainActivity",
     "com.payjoy.status/com.payjoy.status.ui.SplashActivity",
-    "telecom.televisa.com.izzi/telecom.televisa.com.izzi.MainActivity",
     "dif.tech.plata/dif.tech.plata.platform.feature.root.RootActivity.Main",
     "com.digitalfemsa_spinplus/com.digitalfemsa_spinplus.MainActivity",
     "com.combineinc.streetracing.driftthreeD/com.android.client.UnityPlayerActivity",
@@ -24316,7 +24196,6 @@
     "com.naxclow.v720/com.naxclow.activity.SplashActivity",
     "com.vjsjlqvlmp.wearewarriors/com.singular.unitybridge.SingularUnityActivity",
     "com.rbt.android/com.onmobile.baseline3_flutter.MainActivity",
-    "com.nomotrade.app/com.nomotrade.app.MainActivity",
     "com.tools.office.reader.xlsx.excel/com.win.pdf.reader.ui.activity.SplashActivity"
   ],
   "scr-1935": [
@@ -24340,7 +24219,6 @@
   "scr-1938": [
     "com.tensei.upscale/com.tensei.upscale.MainActivity",
     "com.aio.video_downloader/app.ui.others.startup.LauncherActivity",
-    "com.vividcast.viewingpleasure/com.example.vividcast.MainActivity",
     "com.mrs.wear_file_explorer/com.mrs.wear_file_explorer.FileChooserMobile",
     "net.mobigame.edge/net.mobigame.edge.EdgeActivity",
     "com.electricals.basicelectronics/com.electricals.basicelectronics.activities.SplashActivity",
@@ -25131,7 +25009,6 @@
     "com.siroza.threadbound/com.unity3d.player.UnityPlayerActivity",
     "com.musicgpt.app.android/com.musicgpt.app.android.MainActivity",
     "com.skailogames.cupheadmobile/com.skailogames.cupheadmobile.MainActivity",
-    "com.innbucks.customer/com.innbucks.customer.MainActivity",
     "com.nippt.shona.free.bible/com.nippt.bible.free.SplashScreen",
     "app.boppy.android/com.rork.boppy.MainActivity",
     "com.DazadGame.LocalWarfareRePortable/com.unity3d.player.UnityPlayerActivity",
@@ -25163,7 +25040,6 @@
     "com.narwal.pita_global/com.narwal.pita_global.MainActivity",
     "it.doctorapp.paziente/it.doctorapp.paziente.MainActivity",
     "com.bwt.home.app/com.bwt.home.app.MainActivity",
-    "com.matipay.vending/com.sitael.vending.ui.activity.SplashScreenActivity",
     "it.previnet.perseosirio/it.previmedical.product.ui.activities.splash.SplashActivity",
     "eu.dedalus.easygru/bitdrome.dedalusER.ui.splash.SplashActivity",
     "com.pebblebee.pebblebeeplus/com.pebblebee.pebblebeeplus.main.MainActivity",
@@ -25464,7 +25340,6 @@
     "com.joaomgcd.autocast/com.joaomgcd.autoapps.ActivityLaunchApp",
     "com.cyphercove.audioglowfs/com.cyphercove.audioglowfs.FullScreenLWP",
     "com.playstation.ohana.android/com.playstation.ohana.android.TopActivity",
-    "com.blackbird.laketran/com.blackbird.laketran.LaketranActivity",
     "com.planeth.rhythm/com.planeth.rhythm.GstomperInit",
     "com.ukg.oneapp/com.ukg.oneapp.shell.PreLaunchActivity",
     "com.syf.amazonstorecard/com.synchronyfinancial.plugin.SynchronyPlugInActivity",
@@ -25563,7 +25438,6 @@
   "scr-2021": [
     "com.outfit7.talkingtomgoldrun/com.outfit7.felis.SplashActivityChangeableIcon",
     "com.tct.smart.switchphone/com.tct.smart.switchphone.subview.OldOrNewDeviceActivity",
-    "dev.kraimoz.kanx.android/dev.kraimoz.kanx.android.MainActivity",
     "com.tcl.tct.soundrecorder/com.tct.soundrecorder.SoundRecorder",
     "com.tcl.tct.weather/com.tct.weather.MainActivity",
     "com.tcl.gamezone/com.tcl.gamezone.activity.MainGameActivity",
@@ -26376,7 +26250,6 @@
     "com.pulselive.spl/com.deltatre.spl.presentation.MainActivity",
     "com.waveline.dawry/com.waveline.dawry.MainActivity",
     "hu.app2u.pingpongscoreboard/hu.app2u.pingpongscoreboard.MainActivity",
-    "com.player.tebariplayer/com.player.tebariplayer.MainActivity",
     "zbr.pedro.panotournament/zbr.pedro.panotournament.AccueilAct",
     "com.phonekeyboardpromax.keyboardforphone13promax/com.phonekeyboardpromax.keyboardforphone13promax.activities.SplashActivity",
     "com.accurate.channel.forecast.live.weather/com.accurate.channel.forecast.live.weather.ui.activity.MainActivity",
@@ -26799,7 +26672,6 @@
     "com.rkbapps.gdealz/com.rkbapps.gdealz.activity.MainActivity"
   ],
   "scr-2115": [
-    "com.vitesia.cantabria.citaprevia/com.vitesia.cantabria.citaprevia.MainActivity",
     "com.divinelink.scenepeek/com.divinelink.scenepeek.MainActivity",
     "com.occident.app/com.seguroscatalanaoccidente.app.presentation.login.splash.MainActivity",
     "com.mutua.mutua/com.elparking.ecosistema.activity.RoutingActivity",
@@ -26868,7 +26740,6 @@
     "com.luma_touch.lumafusion/com.solbegsoft.luma.ui.main.MainActivity",
     "com.anime0t4ku.mister_companion_mobile/com.anime0t4ku.mister_companion_mobile.MainActivity",
     "jp.co.capcom.gyakusai123/com.unity3d.player.UnityPlayerActivity",
-    "air.ITVMobilePlayer/com.candyspace.itvplayer.ui.launcher.LauncherActivity",
     "com.unbrokensoftware.launchbox/com.unbrokensoftware.launchbox.MainActivity",
     "dev.wizzo.tapto/dev.wizzo.tapto.MainActivity",
     "com.dishii.soh/com.dishii.soh.MainActivity"
@@ -27152,8 +27023,7 @@
     "com.hipobuy.shop.google/com.hipobuy.shop.google.MainActivity",
     "com.Laxarus.TigerBall/com.unity3d.player.UnityPlayerActivity",
     "com.MallatEntertainment.ClubLegend/com.unity3d.player.UnityPlayerActivity",
-    "com.app.ufit365.karol.gym/com.app.ufit365.karol.gym.MainActivity",
-    "com.glassywidgets.app/com.glassywidgets.app.MainActivity"
+    "com.app.ufit365.karol.gym/com.app.ufit365.karol.gym.MainActivity"
   ],
   "scr-2138": [
     "global.nature.remo/global.nature.remo.MainActivity",
@@ -28098,7 +27968,6 @@
     "org.chromium.webapk.a7e8713758d06d716_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "com.praveen.bchat/com.praveen.bchat.MainActivity",
     "com.diegoyarza.screenawake/com.diegoyarza.screenawake.MainActivity",
-    "com.revcel.mobile/com.revcel.mobile.MainActivity",
     "com.transitfe/com.transitfe.MainActivity",
     "com.hdfcergo.here/com.hdfcergo.here.MainActivityAlias",
     "com.cyberlog69.passgen/com.cyberlog69.passgen.MainActivity",
@@ -28122,7 +27991,6 @@
   "scr-2220": [
     "com.hughjeffreyssoftware.iTest/com.hughjeffreyssoftware.iTest.MainActivity",
     "shirantech.android.nepaltelecom/shirantech.android.nepaltelecom.MainActivity",
-    "th.co.the1.the1app/th.co.the1.the1app.MainActivity",
     "com.infodev.nchl_android/com.infodev.nchl_android.ui.splash.mvp.SplashActivity",
     "com.tdcm.trueidapp/com.truedigital.features.splashscreen.ui.SplashActivity",
     "com.makromangoapp.production/com.makromangoapp.MainActivity13",
@@ -28194,7 +28062,6 @@
     "com.clock.countdown.alarm.timer.fliqlo/com.clock.countdown.alarm.timer.fliqlo.MainActivity",
     "com.feniksklein.secimsimulasyonu/com.ercan.secimsimulasyonu.MainActivity",
     "com.tusbuddy.app/com.tusbuddy.app.MainActivity",
-    "secure.unblock.unlimited.proxy.snap.hotspot.shield/kiwi.unblock.proxy.activity.splash.SplashActivity",
     "com.ofsayt.offside/com.ofsayt.offside.presentation.MainActivity",
     "com.arslandaim.playtube/com.arslandaim.playtube.MainActivity",
     "com.moiseum.dailyart2/com.moiseum.dailyart2.MainActivity",
@@ -28234,7 +28101,6 @@
     "com.android1939.kards/com.epicgames.unreal.SplashActivity",
     "com.ogonconnect.app/com.ogonconnect.app.MainActivity",
     "com.hihonor.magictranslate/com.hihonor.magictranslate.facetoface.ui.activity.FaceToFaceMainActivity",
-    "com.italankin.fifteen2/com.italankin.fifteen2.ui.main.MainActivity",
     "ru.drom.pdd.android.app/ru.drom.pdd.android.app.splash.SplashActivity",
     "ru.sber.telecom/ru.sberbank.sbermobile.common.activity.main.MainActivity",
     "com.hihonor.magicvoice/com.hihonor.magicvoice.aipanel.ui.activity.AiPanelWelcomeActivity",
@@ -28345,7 +28211,6 @@
     "ar.com.osde.ads/ar.kteVR2.hIiej2.aA1pr3.u7FpC1",
     "inc.trilokia.gfxtool/inc.trilokia.gfxtool.activity.SplashActivity",
     "inc.trilokia.addon.graphics.manager/inc.trilokia.addon.graphics.manager.activities.DefaultActivity",
-    "com.buscojobs.buscojobsapp/com.buscojobs.buscojobsapp.MainActivity",
     "com.bumex.android.bumeran/com.navent.MainActivity",
     "ru.thelv.joy/ru.thelv.joy.ActivityMain",
     "jooble.org/jooble.org.MainActivity",
@@ -28723,7 +28588,6 @@
     "com.photoroulette/com.photoroulette.MainActivity",
     "jp.co.ana.android.tabidachi/jp.co.ana.android.tabidachi.home.SplashActivity",
     "com.condor.buchung/com.thomascook.mobileapp.MainActivity",
-    "com.polleverywhere.mobile/com.polleverywhere.participant.main.MainActivity",
     "ai.homebase.resident/ai.homebase.resident.app.ui.SplashActivity",
     "kr.airport.android.smartpass/kr.airport.android.smartpass.ui.main.SplashActivity",
     "com.leica_camera.app/com.leicacamera.oneleicaapp.feature.home.EntryActivity",
@@ -29026,7 +28890,6 @@
     "trai.gov.in.dnd/trai.gov.in.dnd.MainActivity",
     "com.ionicframework.cursosdegraca/com.ionicframework.cursosdegraca.MainActivity",
     "com.lcode.kblmbank/com.lcode.kblmbank.activity.ui.SplashActivity",
-    "moctale.android.app/moctale.android.app.MainActivity",
     "com.nsdcindia.skillindiaplatform/com.nsdcindia.skillindiaplatform.MainActivity",
     "lv.mcprotector.mcpro24fps/lv.mcprotector.mcpro24fps.MainActivity",
     "net.oxdb.Celsius2/net.oxdb.Celsius2.Act"
@@ -29112,7 +28975,6 @@
     "co.kuroiru.twa/co.kuroiru.twa.LauncherActivity",
     "com.JOTE.ABiteAtFreddys/com.godot.game.GodotApp",
     "com.sec.android.app.sbrowser.webapk.w97c26f18820a4d5841c6a3ffe9d1087b1/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-    "com.iconchanger.widget.theme.shortcut/com.iconchanger.shortcut.SplashActivityDefault",
     "com.natewren.linesgoldfree/com.natewren.dashboard.MainActivity",
     "com.natewren.thegridfree/com.natewren.dashboard.MainActivity",
     "com.natewren.glasspackfree/com.natewren.dashboard.MainActivity",
@@ -29175,7 +29037,6 @@
     "dev.renkinProject.renkin/dev.renkinProject.renkin.MainActivity",
     "com.digidust.elokence.akinator.paid/com.fiveplay.mod.RMS.Recovery",
     "com.wood.bolt.wordle.screw.nuts.puzzle/com.lifepulse.screwwood.MainActivity",
-    "com.innosq.soundtypeai/com.innosq.soundtypeai.MainActivity",
     "su.sovietgames.everlasting_summer/org.renpy.android.PythonSDLActivity",
     "com.aldagames.zombieshooter/com.unity3d.player.UnityPlayerActivity",
     "autoclicker.clicker.autoclickerapp.autoclickerforgames/autoclicker.clicker.clickerapp.autoclickerforgames.ui.SplashActivity",
@@ -29684,7 +29545,6 @@
     "kika.emoji.keyboard.teclados.clavier/com.qisi.ikeyboarduirestruct.NavigationActivity",
     "com.hiro.vpn/com.hiro.vpn.SplashActivity",
     "com.anonlab.voidlauncher/app.lawnchair.LawnchairLauncher",
-    "com.clicks.companionapp/com.android.clicks.companion.LaunchActivity",
     "app.onevpn.sigma/app.vpn.ui.MainActivity",
     "com.whalevpn.freevpnmaster2026.supervpnProxy.vpn/com.whalevpn.freevpnmaster2026.supervpnProxy.vpn.activity.SplashActivity",
     "com.zsskxsw.android.zclientapp/com.zsskxsw.android.zclientapp.LoadingActivity",
@@ -30378,8 +30238,7 @@
   ],
   "scr-2374": [
     "com.leadaxe.lxbox/com.leadaxe.lxbox.MainActivity",
-    "com.panasonic.technicsaudioconnect/com.panasonic.audioconnect.ui.view.SplashActivity",
-    "com.plunien.poloniex/com.plunien.poloniex.main.WelcomeActivity"
+    "com.panasonic.technicsaudioconnect/com.panasonic.audioconnect.ui.view.SplashActivity"
   ],
   "scr-2375": [
     "com.chillyroom.zhmr.gp/com.chillyroomsdk.sdkbridge.BasePlayerActivity",
@@ -31347,7 +31206,6 @@
     "com.mmbox.xbrowser.pro/com.mmbox.xbrowser.BrowserActivity",
     "com.netease.filmlytv/com.netease.filmlytv.activity.LaunchActivity",
     "com.netguard.security.assistant/com.github.kr328.clash.MainActivityAlias",
-    "com.clicks.companionapp/com.android.clicks.companion.LaunchActivity",
     "com.netease.mobimail/com.netease.mail.biz.main.DefaultSplashActivity",
     "cn.com.weilaihui3/com.nio.nioapp.cn.helper.ui.activity.SplashActivity"
   ],
@@ -31358,7 +31216,6 @@
     "com.tencent.tmgp.codev/com.epicgames.ue4.SplashActivity",
     "com.dmapps.mindcal/com.dmapps.mindcal.SplashActivity",
     "dev.bikram.obtainx/dev.imranr.obtainium.MainActivity",
-    "moctale.android.app/moctale.android.app.MainActivity",
     "com.termux.tools/com.termux.tools.MainActivity"
   ],
   "scr-2448": [
@@ -31382,7 +31239,6 @@
   ],
   "scr-2451": [
     "org.chromium.webapk.a93ae91245bff61e5_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-    "bio.aum.opsready.nexsis/bio.aum.opsready.MainActivity",
     "fr.cts.strasbourg.ugo/fr.cts.strasbourg.ugo.MainActivity"
   ],
   "scr-2452": [
@@ -31610,7 +31466,6 @@
     "com.madeeasy.prime.app/com.madeeasy.prime.app.ui.activities.SplashActivity",
     "com.ubisoft.rainbowsixmobile.r6.fps.pvp.shooter/com.unity3d.player.MagnumPlayerActivity",
     "com.forms.editor.reader/com.forms.app.LauncherActivity",
-    "com.retryapps.game.maps.irl/com.retryapps.game.maps.irl.MainActivity",
     "com.brainrot.android/com.brainrot.android.MainActivity",
     "com.buta.caculator/com.buta.caculator.ui.SplashActivity",
     "com.app.cricketapp/com.app.cricketapp.features.main.MainActivity",
@@ -32068,7 +31923,6 @@
     "am.beeline.odp/am.beeline.odp.ui.splash.SplashActivity",
     "ru.yandex.cloud/ru.yandex.cloud.pages.MainActivity",
     "am.staff.androidapp/am.staff.androidapp.MainActivity",
-    "com.banqr.ameriabank/com.banqr.ameriabank.launch.LaunchActivity",
     "com.gic.idpay/com.gic.idpay.ui.splash.SplashActivity",
     "com.efes.insurance/com.efes.insurance.main_screen.presentation.MainActivity",
     "ru.yandex_team.calendar_app/ru.yandex.team.app.clean.app.AppActivity"
@@ -32579,7 +32433,6 @@
     "com.hscnapps.bubblelevel/com.hscnapps.bubblelevel.ui.main.MainActivity",
     "com.fapytech.latasa/com.fapytech.latasa.MainActivity",
     "com.farmatodo.app.ve/com.farmatodo.app.ve.DEFAULT",
-    "com.airtm.android/com.airtm.android.presentation.ui.activity.SplashActivity",
     "com.bancamiga/com.bancamiga.MainActivity",
     "com.zinli.app/com.mftechp2pmobile.MainActivity",
     "com.mercantilbanco.mercantilmovil/com.mercantilbanco.mercantilmovil.mmpx",
@@ -32840,7 +32693,6 @@
     "com.vcgames.bus.master.traffic.jam/com.unity3d.player.UnityPlayerActivity",
     "com.unimob.stickman.master.shadow.premium/com.unity3d.player.UnityPlayerActivity",
     "com.fansipan.epic.stickman.survival.rpg.idle.game/com.unity3d.player.UnityPlayerActivity",
-    "com.OxtailGames.IdleSpaceRaces/com.google.firebase.MessagingUnityPlayerActivity",
     "com.oakever.meowdoku/com.godot.game.GodotAppLauncher",
     "com.igniteskylabs.ridemap/com.igniteskylabs.ridemap.MainActivity",
     "com.appmind.radios.in/com.appmind.countryradios.screens.splash.SplashActivity",
@@ -32942,7 +32794,6 @@
     "com.mysugr.android.companion/com.mysugr.logbook.product.LogbookProductActivity",
     "br.com.mobilebus/br.com.mobilebus.SplashActivity",
     "br.com.cpfl.android.autoatendimento/br.com.cpfl.android.autoatendimento.MainActivity",
-    "br.com.brainweb.ifood/br.com.brainweb.ifood.AppIconClub",
     "br.com.gold360.skeelo/br.com.gold360.goldebooks.launcher.SkeeloweenIconAlias"
   ],
   "scr-2556": [
@@ -33507,7 +33358,6 @@
     "com.spanishcoders.pepephone/com.spanishcoders.pepephone.MainActivity",
     "cube.run/cube.run.GameActivity",
     "com.aaronjwood.portauthority/com.aaronjwood.portauthority.activity.MainActivity",
-    "com.zendesk.android/com.zendesk.android.login.LoginActivity",
     "com.ferlagod.rocinante/com.ferlagod.rocinante.MainActivity",
     "cat.atm.cartera/es.smarting.tmobilitatwus.framework.ui.splash.SplashActivity",
     "net.vantulder.tessel/net.vantulder.tessel.MainActivity",
@@ -33519,7 +33369,6 @@
     "com.cocode.battleship/com.cocode.battleship.MainActivity",
     "com.pixelfed.loops/com.pixelfed.loops.MainActivity",
     "com.jmercier.wavio/com.jmercier.wavio.MainActivity",
-    "com.gianlu.dnshero/com.gianlu.dnshero.LoadingActivity",
     "com.indra.itecban.triodosbank.mobile.banking/com.indra.triodos.desktop.SplashActivity",
     "es.sesametime.mobile.v2/es.sesametime.mobile.v2.MainActivity",
     "cat.gencat.mobi.lamevasalut/cat.gencat.lamevasalut.MainActivity"
@@ -33612,7 +33461,6 @@
     "com.demonlab.lune/com.demonlab.lune.ui.activities.Lune",
     "com.rama.mako/com.rama.mako.activities.MainActivity",
     "com.gabama.monopostolite/com.unity3d.player.UnityPlayerActivity",
-    "com.subtracks/com.subtracks.MainActivity",
     "de.jeanlucmakiola.calendula/de.jeanlucmakiola.calendula.DefaultNameAlias",
     "com.cudy.cloudapp/com.cudy.cloud.ui.SplashActivity"
   ],
@@ -33676,7 +33524,6 @@
     "jp.co.fablic.fril/jp.co.fablic.fril.ui.start.MainActivity",
     "jp.co.jal.dom/com.accenture.renewal.jal.app.MainActivity",
     "jp.co.itoen.vm/jp.co.renosys.cm_app_base_flutter.MainActivity",
-    "jp.co.TNEOBANK/jp.co.netbk.t_neobank.ui.activity.SplashActivity",
     "com.huawei.smartaudio/com.huawei.smartaudio.ui.view.SplashActivity",
     "jp.co.toyotaconnected.tlbsapp/jp.co.toyotaconnected.tlbsapp.activity.MainActivity",
     "com.pasoya.orbis/com.pasoya.orbis.MainActivity",
@@ -34413,7 +34260,6 @@
   ],
   "scr-2664": [
     "com.jeramo.supaman/com.jeramo.supanator.MainActivity",
-    "com.revcel.mobile/com.revcel.mobile.MainActivity",
     "org.chromium.webapk.a7371bc343b822ddd_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "org.chromium.webapk.abea7a7aafabbbd12_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "com.imtaqin.andropi/com.imtaqin.andropi.MainActivity",
@@ -34439,7 +34285,6 @@
     "com.oh.bro/com.oh.bro.activity.MainActivity",
     "com.rhmsoft.omnia/com.rhmsoft.omnia.MainActivity",
     "org.chromium.webapk.ac11e2c4092c612f1_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-    "com.zendesk.android/com.zendesk.android.login.LoginActivity",
     "org.chromium.webapk.ac8988435841be346_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "org.chromium.webapk.ae256138a9d45f68e_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "af.hesab.app/af.hesab.app.MainActivity",
@@ -34810,7 +34655,6 @@
     "com.pay4vend.pay4vend/com.pay4vend.pay4vend.splashscreen.SplashscreenActivity",
     "com.fastemulator.gbafree/com.fastemulator.gba.MainActivity",
     "com.sagales.appcorporativa/com.sagales.appcorporativa.MainActivity",
-    "com.brothapps.esmorzapp/com.brothapps.esmorzapp.MainActivity",
     "com.mapfre.tarjetadesalud/com.mapfre.tarjetadesalud.SplashActivity",
     "com.mapfre.mapfreapp/com.mapfre.mapfreapp.SplashActivity"
   ],
@@ -35001,8 +34845,7 @@
     "com.jbgsoft.ambio/com.jbgsoft.ambio.MainActivity",
     "com.neutroncode.rc/com.neutroncode.mp.NeutronMPCore",
     "org.chromium.webapk.abbccee5267aae9ee_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-    "org.chromium.webapk.aed5394b9691c2534_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-    "br.com.brainweb.ifood/br.com.brainweb.ifood.AppIconClub"
+    "org.chromium.webapk.aed5394b9691c2534_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity"
   ],
   "scr-2713": [
     "com.w2a.jcg6/com.webtoapp.ui.shell.ShellActivity",
@@ -35153,7 +34996,6 @@
     "io.github.artcraftandroid.filmcraft/io.github.artcraftandroid.filmcraft.MainActivity",
     "com.geargames.aow/com.trophit.MyUnityPlayerActivity",
     "com.mubarak.mbcompass/com.mubarak.mbcompass.MainActivity",
-    "com.leo.lockify/com.leo.lockify.LauncherLockify",
     "com.corpai.explore/com.corpai.explore.MainActivity",
     "com.ripple.chat/com.ripple.chat.MainActivity",
     "com.aw.huda/com.aw.huda.MainActivity",
@@ -35512,7 +35354,6 @@
     "com.vinsontech.smarttoolkit/com.vinsontech.smarttoolkit.SplashActivity",
     "ru.vsms/ru.uxapps.writebyvoice.MainActivity",
     "com.appslab.depth.studio/com.appslab.depth.studio.MainActivity",
-    "com.hash.prism/com.hash.prism.MainActivity",
     "com.light.textwidget/com.light.textwidget.MainActivity",
     "com.screencraft.app/com.screencraft.app.ui.SplashActivity",
     "com.appslab.liquidglass.widgets/com.appslab.liquidglass.widgets.MainActivity",
@@ -35531,7 +35372,6 @@
     "com.moonshot.digitel.app/com.moonshot.digitel.app.MainActivity"
   ],
   "scr-2747": [
-    "com.innosq.soundtypeai/com.innosq.soundtypeai.MainActivity",
     "com.jayazone.battery.charge.alarm/com.jayazone.battery.charge.alarm.DummyActivity",
     "com.andi.waktusholatdankiblat/com.andi.waktusholatdankiblat.ActivityHome",
     "com.androidapps.unitconverter/com.androidapps.unitconverter.IconDefault",
@@ -35679,7 +35519,6 @@
     "com.olivera.iglass/com.olivera.iglass.activities.MainActivity",
     "com.potato.debug/com.potato.player.MainActivity",
     "com.potato.player/com.potato.player.MainActivity",
-    "in.mohalla.quicktv/in.mohalla.sharechat.home.main.HomeActivity",
     "com.ishafoundation.app/com.ishafoundation.app.MainActivity",
     "xyz.mpv.rex/app.marlboroadvance.mpvex.MainActivity",
     "com.ironwill/com.ironwill.MainActivity",
@@ -35787,7 +35626,6 @@
     "fr.cnamts.it.activity/fr.cnamts.it.activity.LoginActivity",
     "com.venteprivee/com.venteprivee.features.launcher.VPInitScreen",
     "com.microsoft.amp.apps.bingweather/com.microsoft.amp.apps.bingweather.MainActivity",
-    "com.is.android.modalis/com.moovit.app.home.HomeActivity",
     "com.infotbm.tbm/com.infotbm.tbm.MainActivity",
     "com.sudouest.android/com.sudouest.android.MainActivity",
     "com.pysae.info/com.pysae.info.MainActivity",
@@ -35918,7 +35756,6 @@
     "com.bosl.mobile.android.ui/crc64cd36bfb76b837c25.MainActivity",
     "com.allegra.visareward/com.allegra.visareward.MainActivity",
     "com.islandcommerce.cimobile/com.islandcommerce.cimobile.Splash",
-    "com.cinehd/com.cinehd.MainActivity",
     "jp.pokemon.pokemonchampions/com.unity3d.player.UnityPlayerActivity"
   ],
   "scr-2785": [
@@ -36198,7 +36035,6 @@
     "app.anivortex.mobile/app.anivortex.mobile.MainActivity",
     "com.tenada.android/com.unity3d.player.UnityPlayerActivity",
     "org.chromium.webapk.add903803257565d2_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-    "com.prime.player/com.prime.media.MainActivity",
     "com.akshaykadam.pixelboard/com.google.android.libraries.inputmethod.launcher.LauncherActivity",
     "com.altersend.mobile/com.altersend.mobile.MainActivity",
     "org.chromium.webapk.a4d9f2626c73be74c_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
@@ -36210,7 +36046,6 @@
     "com.kinecut.app/com.kinecut.app.MainActivity",
     "org.chromium.webapk.a2fb97c63fc33a134_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
     "com.darkxvenom.airbeats/com.darkxvenom.airbeats.launcher.DefaultIcon",
-    "com.techsip.noid/com.techsip.noid.MainActivity",
     "com.mixapplications.rufus/com.mixapplications.rufus.MainActivity",
     "com.pnkj.keyflow/com.pnkj.keyflow.MainActivity",
     "com.dhananjaytech.pdfchef/com.dhananjaytech.zenpdf_allpdftoolsinoneplace.MainActivity",
@@ -36290,7 +36125,6 @@
     "com.tnvr.chaosarena/com.webtoapp.ui.shell.ShellActivity",
     "com.webtoapp/com.webtoapp.ui.MainActivity",
     "io.kitsuri.mayape/io.kitsuri.mayape.application.MainActivity",
-    "com.panshen.motioncure/com.panshen.motioncure.SplashActivity",
     "io.github.yashoncode.metube/com.liskovsoft.smartyoutubetv2.tv.ui.main.SplashActivity"
   ],
   "scr-2814": [
@@ -36763,7 +36597,6 @@
     "com.mmbox.xbrowser.pro/com.mmbox.xbrowser.BrowserActivity",
     "com.netease.filmlytv/com.netease.filmlytv.activity.LaunchActivity",
     "com.netguard.security.assistant/com.github.kr328.clash.MainActivityAlias",
-    "com.clicks.companionapp/com.android.clicks.companion.LaunchActivity",
     "com.netease.mobimail/com.netease.mail.biz.main.DefaultSplashActivity",
     "cn.com.weilaihui3/com.nio.nioapp.cn.helper.ui.activity.SplashActivity"
   ],
@@ -37631,7 +37464,6 @@
     "com.dolar_colombia.dolarcolombia/com.dolar_colombia.dolarcolombia.MainActivity",
     "com.start.app.start/com.start.app.start.MainActivity",
     "com.google.android.apps.podcasts/com.google.android.apps.podcasts.PodcastsActivity",
-    "com.airtm.android/com.airtm.android.presentation.ui.activity.SplashActivity",
     "com.bancamiga/com.bancamiga.MainActivity",
     "com.music.couple.diary/com.music.couple.diary.MainActivity",
     "com.alcambio.app/com.alcambio.app.MainActivity",
