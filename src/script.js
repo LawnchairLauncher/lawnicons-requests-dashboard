@@ -40,6 +40,7 @@ const CONFIG = {
     filterPath: 'assets/filters/',
     supportedIssuesPath: 'assets/supported_issues.json',
     svgPath: 'assets/qa_issues/svgs/',
+    homeScreensPath: 'assets/home_screens/entries.json',
     // Order matters for UI
     filters: [
       'plan',
@@ -326,6 +327,7 @@ const App = {
     activeTab: 'requests',
     screensData: {},
     screenSort: 'req-desc',
+    homeScreensData: [],
   },
 
   dom: {
@@ -1886,6 +1888,7 @@ const Data = {
       App.state.screensData = await this.fetchJson(CONFIG.data.screensGraphPath, {});
       App.state.requestsGraph = await this.fetchJson(CONFIG.data.requestsGraphPath, {});
       App.state.supportedIssues = await this.fetchJson(CONFIG.data.supportedIssuesPath, {});
+      App.state.homeScreensData = await this.fetchJson(CONFIG.data.homeScreensPath, []);
       
       // Load optional data
       await Promise.all([
@@ -2377,6 +2380,8 @@ const Data = {
         App.state.contributionActive = true;
       } else if (page === 'icon-review') {
         App.state.iconReviewActive = true;
+      } else if (page === 'home-screens') {
+        App.state.homeScreensActive = true;
       }
     }
   },
@@ -2407,6 +2412,8 @@ const Data = {
       params.set('page', 'contribution-plan');
     } else if (App.state.iconReviewActive) {
       params.set('page', 'icon-review');
+    } else if (App.state.homeScreensActive) {
+      params.set('page', 'home-screens');
     } else {
       params.delete('page');
     }
@@ -2537,6 +2544,12 @@ const UI = {
 
     document.getElementById('toolsLowQuality')?.addEventListener('click', () => {
       App.state.lowQualityActive = true;
+      this.render();
+      Data.syncUrlState();
+    });
+
+    document.getElementById('toolsHomeScreens')?.addEventListener('click', () => {
+      App.state.activeTab = 'homescreens';
       this.render();
       Data.syncUrlState();
     });
@@ -3400,6 +3413,12 @@ const UI = {
       return;
     }
 
+    if (App.state.homeScreensActive) {
+      document.getElementById('sectionTitle')?.classList.add('is-hidden');
+      this.renderHomeScreens();
+      return;
+    }
+
     const lowQualityBackBtn = document.getElementById('lowQualityBackBtn');
     if (lowQualityBackBtn) lowQualityBackBtn.remove();
 
@@ -3891,6 +3910,65 @@ layoutMasonry() {
     });
 
     this.layoutMasonry();
+  },
+
+  renderHomeScreens() {
+    App.dom.container.innerHTML = '';
+    const entries = [...(App.state.homeScreensData || [])].reverse();
+    if (!entries || entries.length === 0) {
+      App.dom.container.innerHTML = '<div class="empty-state"><h3>No home screens yet</h3><p>Submissions will appear here.</p></div>';
+      document.getElementById('mainTabs')?.classList.remove('is-hidden');
+      return;
+    }
+    App.dom.container.className = 'screens-grid';
+    App.dom.sbBar.classList.remove('visible');
+    document.querySelector('.controls')?.classList.add('is-hidden');
+    App.dom.screenSortBtn.classList.add('is-hidden');
+    App.dom.listHeader.style.display = 'none';
+    App.dom.sentinel.style.display = 'none';
+
+    entries.forEach(entry => {
+      const imgUrl = `assets/home_screens/images/${entry.image}.webp`;
+      const card = document.createElement('div');
+      card.className = 'screen-card';
+      card.innerHTML = `
+        <div class="screen-preview" style="grid-template-columns:1fr; grid-auto-rows:auto;">
+          <img src="${imgUrl}" loading="lazy" alt="${entry.author}" style="width:100%; height:auto; border-radius:var(--shape-small);" />
+        </div>
+        <div class="screen-card-header"><span>${entry.author}</span></div>
+        ${entry.description ? `<div class="screen-card-description">${entry.description}</div>` : ''}
+      `;
+      card.addEventListener('click', () => {
+        window.open(imgUrl);
+      });
+      App.dom.container.appendChild(card);
+    });
+
+    const images = App.dom.container.querySelectorAll('img');
+    let loaded = 0;
+    const total = images.length;
+
+    if (total === 0) {
+      this.layoutMasonry();
+    } else {
+      images.forEach(img => {
+        const onDone = () => {
+          loaded++;
+          if (loaded === total) {
+            setTimeout(() => {
+              this.layoutMasonry();
+              setTimeout(() => this.layoutMasonry(), 100);
+            }, 200);
+          }
+        };
+        if (img.naturalWidth > 0) {
+          onDone();
+        } else {
+          img.onload = onDone;
+          img.onerror = onDone;
+        }
+      });
+    }
   },
 
   renderLowQualityMode() {
