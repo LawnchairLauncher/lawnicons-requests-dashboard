@@ -262,10 +262,6 @@ const COUNTRIES = {
   "zw": "Zimbabwe"
 };
 
-const COUNTRY_ALIASES = {
-  'tr': ['turkey', 'türkiye', 'turkiye'],
-};
-
 const ICONS = {
   check: `<svg><use href="#ic-check"/></svg>`,
   download: `<svg><use href="#ic-download"/></svg>`,
