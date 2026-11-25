@@ -963,6 +963,7 @@ select:hover,
   position: relative;
   overflow: hidden;
   border-radius: var(--shape-small);
+  border: 1px solid var(--inverse-on-surface);
   cursor: pointer;
   break-inside: avoid;
   margin-bottom: 12px;
@@ -980,10 +981,11 @@ select:hover,
   inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  align-items: flex-end;
   padding: 16px;
   background: linear-gradient(
-    to top,
+    to bottom,
     rgba(0, 0, 0, 0.75) 0%,
     rgba(0, 0, 0, 0.25) 50%,
     transparent 100%
@@ -1001,6 +1003,7 @@ select:hover,
   font-weight: 600;
   font-size: 1rem;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  text-align: right;
 }
 
 .home-screen-card-desc {
@@ -1008,6 +1011,7 @@ select:hover,
   font-size: 0.85rem;
   margin-top: 4px;
   line-height: 1.3;
+  text-align: right;
 }
 
 /* Icon review */
@@ -2269,17 +2273,52 @@ input[type="checkbox"]:indeterminate::after {
 }
 
 /* Screens */
+.community-screens-container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 16px !important;
+  position: relative !important;
+  height: auto !important;
+  width: 100% !important;
+}
+
+.community-screens-container > * {
+  /* Сбрасываем любые инлайн-стили у всех прямых потомков */
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  width: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
 .screens-grid {
-  display: block;
   position: relative;
 }
 
-.screen-card {
+.screens-grid:not(.view-screens) {
+  display: block;
+}
+
+.screens-grid.view-screens {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 16px !important;
+  height: auto !important;
+}
+
+.screens-grid.view-screens .screen-card {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  width: auto !important;
+  transform: none !important;
+  margin: 0 !important;
+  height: 100%;
+  box-sizing: border-box;
   background: var(--surface-container-low);
   border-radius: var(--shape-medium);
   padding: var(--space-lg);
-  cursor: pointer;
-  transition: background 0.2s;
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
@@ -2296,10 +2335,9 @@ input[type="checkbox"]:indeterminate::after {
 }
 
 .screen-preview {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-sm);
-  justify-content: start;
-  grid-auto-rows: 56px;
   margin-bottom: var(--space-sm);
 }
 

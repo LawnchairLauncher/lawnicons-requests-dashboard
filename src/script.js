@@ -2537,7 +2537,14 @@ const UI = {
 
     document.querySelectorAll('#mainTabs .tab').forEach(tab => {
       tab.addEventListener('click', () => {
-        App.state.activeTab = tab.dataset.tab;
+        const tabName = tab.dataset.tab;
+        App.state.activeTab = tabName;
+        
+        if (tabName === 'homescreens') {
+          App.state.view = 'list';
+          App.dom.viewLabel.textContent = 'Table';
+        }
+        
         document.querySelectorAll('#mainTabs .tab').forEach(t =>
           t.classList.toggle('active', t === tab)
         );
@@ -2623,7 +2630,7 @@ const UI = {
     addEventListener('resize', () => {
       this.renderDomainStats();
       this.renderActivityCard();
-      if (App.state.activeTab === 'screens' || App.state.activeTab === 'homescreens') {
+      if (App.state.activeTab === 'homescreens') {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => UI.layoutMasonry(), 100);
       }
@@ -3007,7 +3014,7 @@ const UI = {
         if (action === 'view-option') {
           const value = actionEl.dataset.value;
           if (value === 'screens') {
-            App.state.activeTab = 'screens';
+            App.state.activeTab = 'requests';
             App.state.view = 'screens';
             App.dom.viewLabel.textContent = 'Screens';
           } else {
@@ -3404,6 +3411,8 @@ const UI = {
   },
 
   async render() {
+    App.state.homeRenderId = (App.state.homeRenderId || 0) + 1;
+
     App.dom.container.style.position = '';
     App.dom.container.style.height = '';
     
@@ -3498,7 +3507,7 @@ const UI = {
       });
     }
 
-    if (App.state.activeTab === 'screens') {
+    if (App.state.view === 'screens' && App.state.activeTab === 'requests') {
       App.dom.sortBtn.classList.add('is-hidden');
       App.dom.screenSortBtn.classList.remove('is-hidden');
       document.getElementById('filterContainer')?.classList.add('is-hidden');
@@ -3582,43 +3591,46 @@ const UI = {
     return true;
   },
 
-layoutMasonry() {
-  const container = App.dom.container;
-  const cards = Array.from(container.children);
-  if (cards.length === 0) return;
+  layoutMasonry() {
+    if (App.state.activeTab !== 'homescreens') return;
 
-  // Batch style reads before writes
-  const gap = parseFloat(getComputedStyle(container).gap) || 16;
-  const containerWidth = container.offsetWidth;
-  const isMobile = containerWidth < 500;
-  const columnCount = isMobile ? 2 : Math.max(1, Math.floor((containerWidth + gap) / (216 + gap)));
-  const cardWidth = (containerWidth - (columnCount - 1) * gap) / columnCount;
+    const container = App.dom.container;
+    
+    if (!container.classList.contains('screens-grid')) return;
 
-  // Reset all at once
-  container.style.cssText = `position: relative; height: 0`;
-  
-  // Set width first, then measure heights
-  cards.forEach(c => {
-    c.style.cssText = `width: ${cardWidth}px`;
-  });
+    const targetCards = container.querySelectorAll('.home-screen-card');
+    if (targetCards.length === 0) return;
 
-  // Calculate positions
-  const colHeights = new Array(columnCount).fill(0);
-  const positions = cards.map(card => {
-    const shortestCol = colHeights.reduce((min, h, i) => h < colHeights[min] ? i : min, 0);
-    const top = colHeights[shortestCol];
-    const left = shortestCol * (cardWidth + gap);
-    colHeights[shortestCol] += card.offsetHeight + gap;
-    return { left, top };
-  });
+    const cards = Array.from(targetCards);
+    const gap = parseFloat(getComputedStyle(container).gap) || 16;
+    const containerWidth = container.offsetWidth;
+    if (containerWidth === 0) return;
 
-  // Batch style writes
-  cards.forEach((card, i) => {
-    card.style.cssText += `; position: absolute; left: ${positions[i].left}px; top: ${positions[i].top}px`;
-  });
+    const isMobile = containerWidth < 500;
+    const columnCount = isMobile ? 2 : Math.max(1, Math.floor((containerWidth + gap) / (216 + gap)));
+    const cardWidth = (containerWidth - (columnCount - 1) * gap) / columnCount;
 
-  container.style.height = `${Math.max(...colHeights)}px`;
-},
+    container.style.cssText = `position: relative; height: 0`;
+    
+    cards.forEach(c => {
+      c.style.cssText = `width: ${cardWidth}px`;
+    });
+
+    const colHeights = new Array(columnCount).fill(0);
+    const positions = cards.map(card => {
+      const shortestCol = colHeights.reduce((min, h, i) => h < colHeights[min] ? i : min, 0);
+      const top = colHeights[shortestCol];
+      const left = shortestCol * (cardWidth + gap);
+      colHeights[shortestCol] += card.offsetHeight + gap;
+      return { left, top };
+    });
+
+    cards.forEach((card, i) => {
+      card.style.cssText += `; position: absolute; left: ${positions[i].left}px; top: ${positions[i].top}px`;
+    });
+
+    container.style.height = `${Math.max(...colHeights)}px`;
+  },
 
   showSortMenu() {
     const menu = App.dom.sortMenu;
@@ -3759,8 +3771,11 @@ layoutMasonry() {
 
   renderScreens() {
     const s = App.state;
+    
     App.dom.container.innerHTML = '';
-    App.dom.container.className = 'screens-grid';
+    App.dom.container.removeAttribute('style');
+    App.dom.container.className = 'screens-grid view-screens'; 
+    
     App.dom.sbBar.classList.remove('visible');
 
     const screens = s.screensData;
@@ -3785,7 +3800,8 @@ layoutMasonry() {
         const tags = s.appTags.get(comp);
         if (tags?.has('easy')) easyCount++;
         if (tags?.has('supported')) supportedCount++;
-        if (previewIcons.length < 9) {
+        
+        if (previewIcons.length < 4) {
           previewIcons.push({
             drawable: app.drawable,
             label: app.label,
@@ -3794,14 +3810,14 @@ layoutMasonry() {
       });
 
       return {
-          id,
-          ids,
-          count: ids.length,
-          sumReq: totalReq,
-          sumInst: totalInst,
-          easyPct: ids.length ? Math.round(easyCount / ids.length * 100) : 0,
-          supportedCount,
-          previewIcons,
+        id,
+        ids,
+        count: ids.length,
+        sumReq: totalReq,
+        sumInst: totalInst,
+        easyPct: ids.length ? Math.round(easyCount / ids.length * 100) : 0,
+        supportedCount,
+        previewIcons,
       };
     });
 
@@ -3815,7 +3831,6 @@ layoutMasonry() {
       return sortDir === 'desc' ? -cmp : cmp;
     });
 
-    // Apply search and filters to screen cards
     const query = Utils.parseSearchQuery(s.search);
     const activeFilters = new Set([...s.activeFilters, ...query.tags]);
 
@@ -3850,8 +3865,7 @@ layoutMasonry() {
       card.className = 'screen-card';
       card.dataset.screenId = screen.id;
 
-      const cols = Math.min(screen.previewIcons.length, 3);
-      let previewHtml = '<div class="screen-preview" style="grid-template-columns:repeat(' + cols + ',56px);">';
+      let previewHtml = '<div class="screen-preview">';
       screen.previewIcons.forEach(icon => {
         previewHtml += '<img src="' + CONFIG.data.assetsPath + icon.drawable + CONFIG.data.iconExtension + '" class="screen-preview-icon" loading="lazy" onerror="this.style.display=\'none\'" alt="' + icon.label + '" />';
       });
@@ -3890,7 +3904,8 @@ layoutMasonry() {
         })() +
         '<div class="screen-card-description">' + screen.count + ' ' + iconLabel + '</div>' +
         '<div class="screen-card-description">' + Utils.compactNumber(screen.sumReq) + ' ' + reqLabel + '</div>' +
-        (screen.sumInst > 0 ? '<div class="screen-card-description">' + Utils.compactNumber(screen.sumInst) + ' installs</div>' : '') +   (screen.easyPct > 0 ? '<div class="screen-card-description">' + screen.easyPct + '% easy</div>' : '') +
+        (screen.sumInst > 0 ? '<div class="screen-card-description">' + Utils.compactNumber(screen.sumInst) + ' installs</div>' : '') +   
+        (screen.easyPct > 0 ? '<div class="screen-card-description">' + screen.easyPct + '% easy</div>' : '') +
         '<button class="screen-card-add-to-plan" data-action="screen-add-to-plan" data-screen-id="' + screen.id + '" title="Add to plan"><svg><use href="#ic-add-to-plan"/></svg></button>';
 
       card.addEventListener('click', (e) => {
@@ -3907,19 +3922,32 @@ layoutMasonry() {
 
       App.dom.container.appendChild(card);
     });
-
-    this.layoutMasonry();
   },
 
   renderHomeScreens() {
+    const oldImages = App.dom.container.querySelectorAll('img');
+    oldImages.forEach(img => {
+      img.onload = null;
+      img.onerror = null;
+      img.src = '';
+    });
+
+    App.state.homeRenderId = (App.state.homeRenderId || 0) + 1;
+    const currentId = App.state.homeRenderId;
+
     App.dom.container.innerHTML = '';
+    App.dom.container.removeAttribute('style');
+
+    App.dom.container.style.opacity = '0';
 
     const entries = [...(App.state.homeScreensData || [])].reverse();
     if (!entries || entries.length === 0) {
       App.dom.container.innerHTML = '<div class="empty-state"><h3>No home screens yet</h3><p>Submissions will appear here.</p></div>';
+      App.dom.container.style.opacity = '1';
       document.getElementById('mainTabs')?.classList.remove('is-hidden');
       return;
     }
+
     App.dom.container.className = 'screens-grid';
     App.dom.sbBar.classList.remove('visible');
     document.querySelector('.controls')?.classList.add('is-hidden');
@@ -3948,20 +3976,43 @@ layoutMasonry() {
     let loaded = 0;
     const total = images.length;
 
+    // Функция показа контейнера
+    const reveal = () => {
+      if (App.state.homeRenderId !== currentId) return;
+      App.dom.container.style.opacity = '1';
+    };
+
     if (total === 0) {
       this.layoutMasonry();
+      reveal();
     } else {
+      // Fallback: показать через 2 секунды даже если картинки не загрузились
+      const fallbackTimer = setTimeout(() => {
+        if (App.state.homeRenderId !== currentId) return;
+        this.layoutMasonry();
+        reveal();
+      }, 2000);
+
       images.forEach(img => {
         const onDone = () => {
+          if (App.state.homeRenderId !== currentId) return;
+          
           loaded++;
           if (loaded === total) {
+            clearTimeout(fallbackTimer);
             setTimeout(() => {
+              if (App.state.homeRenderId !== currentId) return;
               this.layoutMasonry();
-              setTimeout(() => this.layoutMasonry(), 100);
+              setTimeout(() => {
+                if (App.state.homeRenderId !== currentId) return;
+                this.layoutMasonry();
+                reveal();  // ← показываем после финальной раскладки
+              }, 100);
             }, 200);
           }
         };
-        if (img.naturalWidth > 0) {
+        
+        if (img.complete && img.naturalWidth > 0) {
           onDone();
         } else {
           img.onload = onDone;
