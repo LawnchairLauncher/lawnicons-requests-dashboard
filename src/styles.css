@@ -215,6 +215,7 @@ body:has(.context-menu:popover-open) {
 .icon-sprite {
   display: none;
 }
+
 /* =========================================
    3. HEADER
    ========================================= */
@@ -955,6 +956,58 @@ select:hover,
 .list-header .col.sel {
   display: flex;
   align-items: center;
+}
+
+/* Home screens */
+.home-screen-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--shape-small);
+  cursor: pointer;
+  break-inside: avoid;
+  margin-bottom: 12px;
+}
+
+.home-screen-card-bg {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.home-screen-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.25) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.home-screen-card:hover .home-screen-card-overlay {
+  opacity: 1;
+}
+
+.home-screen-card-author {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.home-screen-card-desc {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  margin-top: 4px;
+  line-height: 1.3;
 }
 
 /* Icon review */

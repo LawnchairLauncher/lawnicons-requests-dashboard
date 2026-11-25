@@ -2623,7 +2623,7 @@ const UI = {
     addEventListener('resize', () => {
       this.renderDomainStats();
       this.renderActivityCard();
-      if (App.state.activeTab === 'screens') {
+      if (App.state.activeTab === 'screens' || App.state.activeTab === 'homescreens') {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => UI.layoutMasonry(), 100);
       }
@@ -3404,6 +3404,8 @@ const UI = {
   },
 
   async render() {
+    App.dom.container.style.position = '';
+    App.dom.container.style.height = '';
     
     if (App.state.lowQualityActive) {
       document.getElementById('sectionTitle')?.classList.add('is-hidden');
@@ -3581,52 +3583,41 @@ const UI = {
   },
 
 layoutMasonry() {
-    const container = App.dom.container;
-    const cards = [...container.children].filter(c => c instanceof HTMLElement);
-    if (cards.length === 0) return;
+  const container = App.dom.container;
+  const cards = Array.from(container.children);
+  if (cards.length === 0) return;
 
-    cards.forEach(c => {
-      c.style.position = '';
-      c.style.width = '';
-      c.style.left = '';
-      c.style.top = '';
-    });
-    container.style.position = '';
-    container.style.height = '';
+  // Batch style reads before writes
+  const gap = parseFloat(getComputedStyle(container).gap) || 16;
+  const containerWidth = container.offsetWidth;
+  const isMobile = containerWidth < 500;
+  const columnCount = isMobile ? 2 : Math.max(1, Math.floor((containerWidth + gap) / (216 + gap)));
+  const cardWidth = (containerWidth - (columnCount - 1) * gap) / columnCount;
 
-    const gap = parseFloat(getComputedStyle(container).columnGap) || parseFloat(getComputedStyle(container).gap) || 16;
-    const containerParent = container.parentElement;
-    if (!containerParent) return;
-    const containerWidth = containerParent.getBoundingClientRect().width;
+  // Reset all at once
+  container.style.cssText = `position: relative; height: 0`;
+  
+  // Set width first, then measure heights
+  cards.forEach(c => {
+    c.style.cssText = `width: ${cardWidth}px`;
+  });
 
-    if (containerWidth < 500) {
-      cards.forEach(c => {
-        c.style.marginBottom = `${gap}px`;
-      });
-      return;
-    }
+  // Calculate positions
+  const colHeights = new Array(columnCount).fill(0);
+  const positions = cards.map(card => {
+    const shortestCol = colHeights.reduce((min, h, i) => h < colHeights[min] ? i : min, 0);
+    const top = colHeights[shortestCol];
+    const left = shortestCol * (cardWidth + gap);
+    colHeights[shortestCol] += card.offsetHeight + gap;
+    return { left, top };
+  });
 
-    const columnCount = Math.max(1, Math.floor((containerWidth + gap) / (216 + gap)));
-    const cardWidth = (containerWidth - (columnCount - 1) * gap) / columnCount;
+  // Batch style writes
+  cards.forEach((card, i) => {
+    card.style.cssText += `; position: absolute; left: ${positions[i].left}px; top: ${positions[i].top}px`;
+  });
 
-    cards.forEach(c => {
-      c.style.width = `${cardWidth}px`;
-    });
-
-    const heights = cards.map(c => c.getBoundingClientRect().height);
-
-    container.style.position = 'relative';
-    const colHeights = new Array(columnCount).fill(0);
-
-    cards.forEach((card, i) => {
-      card.style.position = 'absolute';
-      const shortestCol = colHeights.indexOf(Math.min(...colHeights));
-      card.style.left = `${shortestCol * (cardWidth + gap)}px`;
-      card.style.top = `${colHeights[shortestCol]}px`;
-      colHeights[shortestCol] += heights[i] + gap;
-    });
-
-    container.style.height = `${Math.max(...colHeights)}px`;
+  container.style.height = `${Math.max(...colHeights)}px`;
 },
 
   showSortMenu() {
@@ -3939,13 +3930,13 @@ layoutMasonry() {
     entries.forEach(entry => {
       const imgUrl = `assets/home_screens/images/${entry.image}.webp`;
       const card = document.createElement('div');
-      card.className = 'screen-card';
+      card.className = 'home-screen-card';
       card.innerHTML = `
-        <div class="screen-preview" style="grid-template-columns:1fr; grid-auto-rows:auto;">
-          <img src="${imgUrl}" loading="lazy" alt="${entry.author}" style="width:100%; height:auto; border-radius:var(--shape-small);" />
+        <img class="home-screen-card-bg" src="${imgUrl}" loading="lazy" alt="${entry.author}" />
+        <div class="home-screen-card-overlay">
+          <span class="home-screen-card-author">${entry.author}</span>
+          ${entry.description ? `<p class="home-screen-card-desc">${entry.description}</p>` : ''}
         </div>
-        <div class="screen-card-header"><span>${entry.author}</span></div>
-        ${entry.description ? `<div class="screen-card-description">${entry.description}</div>` : ''}
       `;
       card.addEventListener('click', () => {
         window.open(imgUrl);
