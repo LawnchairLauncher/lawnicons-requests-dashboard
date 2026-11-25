@@ -840,6 +840,7 @@ button.input-icon.active {
 }
 
 .tab-count {
+  display: none;
   color: var(--on-surface-variant);
   font-weight: 400;
   font-size: 18px;
