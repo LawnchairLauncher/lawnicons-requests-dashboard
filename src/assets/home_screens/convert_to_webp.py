@@ -1,4 +1,4 @@
-# python3 scripts/convert_to_webp.py
+# python3 src/assets/home_screens/convert_to_webp.py
 
 from pathlib import Path
 from PIL import Image
