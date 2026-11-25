@@ -827,6 +827,35 @@ const Templates = {
   /**
    * @returns {string}
    */
+  addHomeScreenCard() {
+    const subreddits = [
+      'AndroidHomescreen',
+      'androidthemes',
+      'LawnchairLauncher',
+      'SmartLauncher',
+      'OneUIHomescreens',
+      'NiagaraLauncher',
+    ];
+
+    const redditLinks = subreddits.map((name) =>
+      `<a class="link" href="https://www.reddit.com/r/${name}/" target="_blank" rel="noopener">r/${name}</a>`
+    ).join('');
+
+    return `
+      <div class="card add-home-screen-card">
+        <div class="card-header">
+          <span class="card-title">Share your home screen</span>
+        </div>
+        <p class="card-sub">We add the best setups you share to our Discord and relevant subreddits.</p>
+        <a class="link" href="https://discord.gg/3x8qNWxgGZ" target="_blank" rel="noopener">#home-screens in Discord</a>
+        <div class="reddit-links">${redditLinks}</div>
+      </div>
+    `;
+  },
+
+  /**
+   * @returns {string}
+   */
   emptyState() {
     return `
       <div class="empty-state">
@@ -3594,7 +3623,7 @@ const UI = {
     
     if (!container.classList.contains('screens-grid')) return;
 
-    const targetCards = container.querySelectorAll('.home-screen-card');
+    const targetCards = container.querySelectorAll('.home-screen-card, .add-home-screen-card');
     if (targetCards.length === 0) return;
 
     const cards = Array.from(targetCards);
@@ -3933,12 +3962,18 @@ const UI = {
 
     App.dom.container.innerHTML = '';
     App.dom.container.removeAttribute('style');
+    App.dom.container.className = '';
 
     App.dom.container.style.opacity = '0';
 
     const entries = [...(App.state.homeScreensData || [])].reverse();
     if (!entries || entries.length === 0) {
-      App.dom.container.innerHTML = '<div class="empty-state"><h3>No home screens yet</h3><p>Submissions will appear here.</p></div>';
+      App.dom.container.innerHTML = `
+        <div class="home-screens-empty">
+          ${Templates.addHomeScreenCard()}
+          <div class="empty-state"><h3>No home screens yet</h3><p>Submissions will appear here.</p></div>
+        </div>
+      `;
       App.dom.container.style.opacity = '1';
       document.getElementById('mainTabs')?.classList.remove('is-hidden');
       return;
@@ -3950,6 +3985,13 @@ const UI = {
     App.dom.screenSortBtn.classList.add('is-hidden');
     App.dom.listHeader.style.display = 'none';
     App.dom.sentinel.style.display = 'none';
+
+    const fragment = document.createDocumentFragment();
+    const addCardWrapper = document.createElement('div');
+    addCardWrapper.innerHTML = Templates.addHomeScreenCard().trim();
+    while (addCardWrapper.firstChild) {
+      fragment.appendChild(addCardWrapper.firstChild);
+    }
 
     entries.forEach(entry => {
       const imgUrl = `assets/home_screens/images/${entry.image}.webp`;
@@ -3965,8 +4007,9 @@ const UI = {
       card.addEventListener('click', () => {
         window.open(imgUrl);
       });
-      App.dom.container.appendChild(card);
+      fragment.appendChild(card);
     });
+    App.dom.container.appendChild(fragment);
 
     const images = App.dom.container.querySelectorAll('img');
     let loaded = 0;
