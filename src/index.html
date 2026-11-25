@@ -81,7 +81,6 @@
         <div class="tools-links">
           <a href="#" id="toolsContribution" class="link"><span>Contribution plan</span> <span class="card-sub" id="toolsContributionCount"></span></a>
           <a href="#" id="toolsLowQuality" class="link"><span>Low quality icons</span> <span class="card-sub" id="toolsLowQualityCount"></span></a>
-          <a href="#" id="toolsHomeScreens" class="link is-hidden"><span>Home screens</span></a>
         </div>
       </div>
 
@@ -123,7 +122,10 @@
   </div>
 
   <div class="section-header-row">
-    <div class="library-title" id="sectionTitle"></div>
+    <div class="tabs" id="mainTabs">
+      <button class="tab active" data-tab="requests">Community requests <span class="tab-count" id="requestsCount"></span></button>
+      <button class="tab" data-tab="homescreens">Home screens</button>
+    </div>
     <button id="copyDynamicMatchesBtn" class="is-hidden" title="Copy dynamic matches">
       <svg><use href="#ic-copy"/></svg>
       <span class="copy-count"></span>

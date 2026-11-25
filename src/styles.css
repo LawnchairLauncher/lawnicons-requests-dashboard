@@ -811,6 +811,44 @@ button.input-icon.active {
   gap: var(--space-sm);
 }
 
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: baseline;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: var(--on-surface-variant);
+  font: inherit;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.tab:hover {
+  color: var(--on-surface);
+}
+
+.tab.active {
+  color: var(--on-surface);
+}
+
+.tab-count {
+  color: var(--on-surface-variant);
+  font-weight: 400;
+  font-size: 18px;
+  margin-left: var(--space-xs);
+}
+
+.tab.active .tab-count {
+  color: var(--on-surface-variant);
+}
+
 /* Dropdowns & Chips */
 .chip,
 select,
@@ -1956,6 +1994,24 @@ input[type="checkbox"]:indeterminate::after {
     grid-row: 1;
     max-width: none;
     gap: 0;
+  }
+
+  .tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--space-md);
+    margin: 0 calc(-1 * var(--space-lg));
+    padding: 0 var(--space-lg);
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   /* Reset fixed width on mobile to prevent overflow */
