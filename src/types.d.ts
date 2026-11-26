@@ -157,6 +157,8 @@ declare global {
     currentData: AppEntry[];
     /** Array of currently loaded or available icon objects. */
     existingIcons: Icon[];
+    /** Memoized icontool commands for dynamic package matches. */
+    _dynamicMatchesCache?: string[] | null;
 
     // Actions & Contributions
     /** The current action state or mode. */
