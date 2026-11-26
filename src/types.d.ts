@@ -2,9 +2,9 @@ declare global {
   type InitTuple = [
     AppRequests,
     Record<string, number>,
-    CreationOdds[],
     DomainStats,
     ActivityStats[],
+    Record<string, Record<string, number>>,
     ...Filter[],
   ];
 

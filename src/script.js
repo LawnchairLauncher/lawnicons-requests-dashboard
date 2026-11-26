@@ -267,12 +267,9 @@ const ICONS = {
   download: `<svg><use href="#ic-download"/></svg>`,
   play: `<svg><use href="#ic-play"/></svg>`,
   dots: `<svg><use href="#ic-dots"/></svg>`,
-  copy: `<svg><use href="#ic-copy"/></svg>`,
   fDroid: `<svg><use href="#ic-fdroid"/></svg>`,
   izzyOnDroid: `<svg><use href="#ic-izzyondroid"/></svg>`,
   galaxyStore: `<svg><use href="#ic-galaxystore"/></svg>`,
-  regex: `<svg><use href="#ic-regex"/></svg>`,
-  downloadImage: `<svg><use href="#ic-download-image"/></svg>`,
 };
 
 const DEFAULTS = {
@@ -1864,7 +1861,6 @@ const Data = {
         setsStats,
         domainStats,
         activityStats,
-        excludedData,
         prioritiesData,
         ...filterObjects
       ] = await Promise.all([
@@ -1872,13 +1868,11 @@ const Data = {
         this.fetchJson(CONFIG.data.setsStatsPath, {}),
         this.fetchJson(CONFIG.data.domainStatsPath, {}),
         this.fetchJson(CONFIG.data.activityStatsPath, []),
-        this.fetchJson(CONFIG.data.excludedPackagesPath, {}),
         this.fetchJson(CONFIG.data.prioritiesPath, {}),
         ...CONFIG.data.filters.map((id) => this.fetchFilterData(id)),
       ]);
 
       App.data = json.apps;
-      App.state.totalRequests = json.totalCount || App.data.length;
       App.state.setsStats = setsStats;
       App.state.domainStats = domainStats;
       App.state.activityStats = activityStats;
@@ -1923,7 +1917,7 @@ const Data = {
             'assets/stats/fulfillment_history.json',
             [],
           );
-          if (!(history && history.length >= 3)) return;
+          if (!(history.length >= 3)) return;
 
           App.state._fulfillmentData = history;
 
@@ -1931,19 +1925,9 @@ const Data = {
           const filtered = history.filter(h => h.label_factor !== 5 && h.label_factor !== 1);
 
           if (filtered.length > 0) {
-              /** @type {number[]} */
-              const ttfs = filtered
-                  .map(h => (h.fulfilled - h.firstAppearance) / 86400)
-                  .sort((a, b) => a - b);
-              App.state.medianTTF = Math.round(ttfs[Math.floor(ttfs.length / 2)]);
-              App.state.medianTTFCount = ttfs.length;
 
               // Date range + icons per day
               const dates = filtered.map(h => h.fulfilled).filter(Boolean);
-              const minDate = new Date(Math.min(...dates) * 1000);
-              const maxDate = new Date(Math.max(...dates) * 1000);
-              const fmt = (d) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-              App.state.dateRange = `${fmt(minDate)} – ${fmt(maxDate)}`;
 
               // Supported by day (from fulfillment_history)
               App.state.supportedByDay = {};
@@ -1988,7 +1972,7 @@ const Data = {
             }
           }
         })(),
-      ]).catch(() => {/* no-op */});
+      ]);
     } catch (error) {
       console.error('Critical initialization failure:', error);
       Components.Toast.show('Failed to load data', 'error');
