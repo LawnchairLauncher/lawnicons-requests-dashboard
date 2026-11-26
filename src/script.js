@@ -1,6 +1,43 @@
 // @ts-check
-/** @type {typeof import('fflate')} */
-const fflate = /** @type {* & {fflate: any}} */ (window).fflate;
+/** @type {typeof import('fflate') | undefined} */
+let fflate = /** @type {* & {fflate: any}} */ (window).fflate;
+
+/** @type {Promise<typeof import('fflate')> | null} */
+let fflateLoadPromise = null;
+
+/**
+ * Load the vendored fflate copy on first export instead of blocking startup.
+ * @returns {Promise<typeof import('fflate')>}
+ */
+function loadFflate() {
+  if (fflate) return Promise.resolve(fflate);
+  if (fflateLoadPromise) return fflateLoadPromise;
+
+  fflateLoadPromise = /** @type {Promise<typeof import('fflate')>} */ (
+    new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'fflate.umd.js';
+      script.async = true;
+      script.onload = () => {
+        const loaded = /** @type {* & {fflate: any}} */ (window).fflate;
+        if (!loaded) {
+          reject(new Error('fflate library missing after load'));
+          return;
+        }
+        fflate = loaded;
+        resolve(loaded);
+      };
+      script.onerror = () => reject(new Error('Failed to load fflate'));
+      document.head.appendChild(script);
+    })
+  ).catch((err) => {
+    // Allow a retry on the next export attempt.
+    fflateLoadPromise = null;
+    throw err;
+  });
+
+  return fflateLoadPromise;
+}
 
 /** @typedef {[string, number, number, number, number, number]} DomainEntry */
 
@@ -1671,7 +1708,12 @@ const Actions = {
   },
 
   async downloadBundle() {
-    if (typeof fflate === 'undefined') {
+    /** @type {typeof import('fflate')} */
+    let fflateLib;
+    try {
+      fflateLib = await loadFflate();
+    } catch (e) {
+      console.error(e);
       Components.Toast.show('fflate library missing', 'error');
       return;
     }
@@ -1764,7 +1806,7 @@ const Actions = {
       await Promise.all(fetchPromises);
 
       // 1. XML
-      zipData['appfilter.xml'] = fflate.strToU8(xmlAppFilter);
+      zipData['appfilter.xml'] = fflateLib.strToU8(xmlAppFilter);
 
       // 2. Config
       const filterConfig = {
@@ -1772,20 +1814,20 @@ const Actions = {
         'description': 'Sample description',
         'selection': selectedApps.map((a) => a.componentName),
       };
-      zipData['filter_config.json'] = fflate.strToU8(
+      zipData['filter_config.json'] = fflateLib.strToU8(
         JSON.stringify(filterConfig, null, 2),
       );
 
       // 3. Commands
       if (txtCommands) {
-        zipData['icontool_commands.txt'] = fflate.strToU8(
+        zipData['icontool_commands.txt'] = fflateLib.strToU8(
           Actions.withIcontoolInstructions(txtCommands),
         );
       }
 
       // 4. Zip & Download
       const content =
-        /** @type {BlobPart} */ (fflate.zipSync(zipData, { level: 6 }));
+        /** @type {BlobPart} */ (fflateLib.zipSync(zipData, { level: 6 }));
 
       const date = new Date().toISOString().slice(5, 10); // MM-DD
       const name = mode === 'new'
@@ -1802,7 +1844,12 @@ const Actions = {
   },
 
   async downloadContributionBundle() {
-    if (typeof fflate === 'undefined') {
+    /** @type {typeof import('fflate')} */
+    let fflateLib;
+    try {
+      fflateLib = await loadFflate();
+    } catch (e) {
+      console.error(e);
       Components.Toast.show('fflate library missing', 'error');
       return;
     }
@@ -1880,17 +1927,17 @@ const Actions = {
       }
     });
 
-    zipData['appfilter.xml'] = fflate.strToU8(xmlAppFilter);
+    zipData['appfilter.xml'] = fflateLib.strToU8(xmlAppFilter);
 
     if (txtCommands) {
-      zipData['icontool_commands.txt'] = fflate.strToU8(
+      zipData['icontool_commands.txt'] = fflateLib.strToU8(
         Actions.withIcontoolInstructions(txtCommands),
       );
     }
 
     await Promise.all(fetchPromises);
     const content =
-      /** @type {BlobPart} */ (fflate.zipSync(zipData, { level: 6 }));
+      /** @type {BlobPart} */ (fflateLib.zipSync(zipData, { level: 6 }));
 
     const date = new Date().toISOString().slice(5, 10);
     Actions.downloadZip(content, `lawnicons-contribution-${date}.zip`);
