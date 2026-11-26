@@ -157,6 +157,12 @@ declare global {
     currentData: AppEntry[];
     /** Array of currently loaded or available icon objects. */
     existingIcons: Icon[];
+    /** Screen membership graph used by screen and regex searches. */
+    screensData: Record<string, string[]>;
+    /** Component-to-component request graph used by geo and regex searches. */
+    requestsGraph: Record<string, Record<string, number>>;
+    /** GitHub issue key to component list mapping. */
+    supportedIssues: Record<string, string[]>;
     /** Memoized icontool commands for dynamic package matches. */
     _dynamicMatchesCache?: string[] | null;
     /** Precomputed component ID -> geo prefix used by list rows. */

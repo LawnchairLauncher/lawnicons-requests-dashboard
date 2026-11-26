@@ -421,6 +421,8 @@ const App = {
     lastUpdate: null,
     activeTab: 'requests',
     screensData: {},
+    requestsGraph: {},
+    supportedIssues: {},
     screenSort: 'req-desc',
   },
 
@@ -1999,99 +2001,154 @@ const Data = {
       });
 
       this._processFilters(filterObjects, App.state.filterMetadata);
-
-      App.state.screensData = await this.fetchJson(CONFIG.data.screensGraphPath, {});
-      App.state.requestsGraph = await this.fetchJson(CONFIG.data.requestsGraphPath, {});
-      this.buildGeoPrefixIndex();
-      App.state.supportedIssues = await this.fetchJson(CONFIG.data.supportedIssuesPath, {});
-      this.buildIssueIndex();
-      App.state.homeScreensData = await this.fetchJson(CONFIG.data.homeScreensPath, []);
-      
-      // Load optional data
-      await Promise.all([
-        (async () => {
-          /** @type {FulfillmentHistory[]} */
-          const history = await this.fetchJson(
-            'assets/stats/fulfillment_history.json',
-            [],
-          );
-          if (!(history.length >= 3)) return;
-
-          App.state._fulfillmentData = history;
-
-          /** @type {FulfillmentHistory[]} */
-          const filtered = history.filter(h => h.label_factor !== 5 && h.label_factor !== 1);
-
-          if (filtered.length > 0) {
-
-              // Date range + icons per day
-              const dates = filtered.map(h => h.fulfilled).filter(Boolean);
-
-              // Supported by day (from fulfillment_history)
-              App.state.supportedByDay = {};
-              for (const h of history) {
-                  if (h.label_factor !== 6) continue;
-                  const ts = h.fulfilled;
-                  if (!ts) continue;
-                  const day = new Date(ts * 1000).toISOString().slice(0, 10);
-                  App.state.supportedByDay[day] = (App.state.supportedByDay[day] || 0) + 1;
-              }
-
-              // Icons per day: last 30 days from the latest fulfilled date
-              const latestDate = Math.max(...dates);
-              const cutoff = latestDate - 30 * 86400;
-              const last30 = filtered.filter(h => h.fulfilled >= cutoff);
-
-              App.state.iconsPerDay = (last30.length / 30).toFixed(1);
-              App.state.iconsPerDayCount = last30.length;
-              App.state.iconsPerDaySpan = 30;
-          }
-
-        })(),
-        (async () => {
-          /** @type {TrendingBaseline} */
-          const baseline = await this.fetchJson(
-            'assets/stats/trending_baseline.json',
-            {},
-          );
-          if (
-            !(baseline?.period_start?.snapshot &&
-              baseline?.period_end?.snapshot)
-          ) return;
-
-          const startSnapshot = baseline.period_start.snapshot;
-          const endSnapshot = baseline.period_end.snapshot;
-          App.state.trendingDeltas = {};
-          for (const [comp, endCount] of Object.entries(endSnapshot)) {
-            const startCount = startSnapshot[comp] || 0;
-            const delta = endCount - startCount;
-            if (delta > 0) {
-              App.state.trendingDeltas[comp] = delta;
-            }
-          }
-        })(),
-      ]);
     } catch (error) {
       console.error('Critical initialization failure:', error);
       Components.Toast.show('Failed to load data', 'error');
       return;
     }
 
+    // URL is the source of truth on page load — resolve it before any render.
     this.loadUrlState();
 
-    Promise.all([
+    // Only deep links that genuinely need the graphs wait for them.
+    const query = Utils.parseSearchQuery(App.state.search).text;
+    const needsGraphData =
+      (App.state.regexMode && query.length > 0) ||
+      /^scr-\d+$/.test(query) ||
+      /^#\d+$/.test(query) ||
+      App.state.view === 'screens' ||
+      App.state.activeTab === 'homescreens';
+
+    if (needsGraphData) {
+      try {
+        await this.loadGraphData();
+      } catch (err) {
+        console.error('Graph data initialization failure:', err);
+      }
+    }
+
+    // Everything else arrives after the first table rows are on screen.
+    UI.init();
+
+    const scheduleDeferred = (/** @type {() => void} */ cb) => {
+      if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(cb, { timeout: 500 });
+      } else {
+        setTimeout(cb, 0);
+      }
+    };
+
+    scheduleDeferred(async () => {
+      try {
+        const tasks = [
+          this.loadOptionalStats(),
+          this.loadReviewIssues(),
+          this.loadAppfilterXml(),
+        ];
+        if (!needsGraphData) tasks.push(this.loadGraphData());
+        await Promise.all(tasks);
+      } catch (err) {
+        console.error('Deferred data initialization failure:', err);
+      } finally {
+        UI.refreshAfterDeferredData();
+      }
+    });
+  },
+
+  /** Load graph datasets and rebuild the indices derived from them. */
+  async loadGraphData() {
+    const [
+      screensData,
+      requestsGraph,
+      supportedIssues,
+      homeScreensData,
+    ] = await Promise.all([
+      this.fetchJson(CONFIG.data.screensGraphPath, {}),
+      this.fetchJson(CONFIG.data.requestsGraphPath, {}),
+      this.fetchJson(CONFIG.data.supportedIssuesPath, {}),
+      this.fetchJson(CONFIG.data.homeScreensPath, []),
+    ]);
+
+    App.state.screensData = screensData;
+    App.state.requestsGraph = requestsGraph;
+    App.state.supportedIssues = supportedIssues;
+    App.state.homeScreensData = homeScreensData;
+    this.buildGeoPrefixIndex();
+    this.buildIssueIndex();
+  },
+
+  /** Load stats that enrich cards and row badges. */
+  async loadOptionalStats() {
+    await Promise.all([
       (async () => {
-        App.state.lowQualityData = await this.fetchJson(
-          'assets/qa_issues/review_issues.json',
+        /** @type {FulfillmentHistory[]} */
+        const history = await this.fetchJson(
+          'assets/stats/fulfillment_history.json',
           [],
         );
-        UI.updateLowQualityBadge();
+        if (!(history.length >= 3)) return;
+
+        App.state._fulfillmentData = history;
+
+        /** @type {FulfillmentHistory[]} */
+        const filtered = history.filter(h => h.label_factor !== 5 && h.label_factor !== 1);
+
+        if (filtered.length > 0) {
+
+            // Date range + icons per day
+            const dates = filtered.map(h => h.fulfilled).filter(Boolean);
+
+            // Supported by day (from fulfillment_history)
+            App.state.supportedByDay = {};
+            for (const h of history) {
+                if (h.label_factor !== 6) continue;
+                const ts = h.fulfilled;
+                if (!ts) continue;
+                const day = new Date(ts * 1000).toISOString().slice(0, 10);
+                App.state.supportedByDay[day] = (App.state.supportedByDay[day] || 0) + 1;
+            }
+
+            // Icons per day: last 30 days from the latest fulfilled date
+            const latestDate = Math.max(...dates);
+            const cutoff = latestDate - 30 * 86400;
+            const last30 = filtered.filter(h => h.fulfilled >= cutoff);
+
+            App.state.iconsPerDay = (last30.length / 30).toFixed(1);
+            App.state.iconsPerDayCount = last30.length;
+            App.state.iconsPerDaySpan = 30;
+        }
       })(),
-      this.loadAppfilterXml(),
-    ]).finally(() => {
-      UI.init();
-      UI.updateLowQualityBadge();
-    });
+      (async () => {
+        /** @type {TrendingBaseline} */
+        const baseline = await this.fetchJson(
+          'assets/stats/trending_baseline.json',
+          {},
+        );
+        if (
+          !(baseline?.period_start?.snapshot &&
+            baseline?.period_end?.snapshot)
+        ) return;
+
+        const startSnapshot = baseline.period_start.snapshot;
+        const endSnapshot = baseline.period_end.snapshot;
+        App.state.trendingDeltas = {};
+        for (const [comp, endCount] of Object.entries(endSnapshot)) {
+          const startCount = startSnapshot[comp] || 0;
+          const delta = endCount - startCount;
+          if (delta > 0) {
+            App.state.trendingDeltas[comp] = delta;
+          }
+        }
+      })(),
+    ]);
+  },
+
+  /** Load low-quality review issues used by the tools badge. */
+  async loadReviewIssues() {
+    App.state.lowQualityData = await this.fetchJson(
+      'assets/qa_issues/review_issues.json',
+      [],
+    );
   },
 
   /**
@@ -2161,11 +2218,8 @@ const Data = {
 
     App.state.existingIcons = icons;
     App.state._dynamicMatchesCache = null;
-
-    if (App.state.existingIcons.length === 0) return;
-
-    if (App.state.search) UI.renderIconLibrary();
-    if (App.state.contributionActive) UI.renderContributionMode();
+    // UI.refreshAfterDeferredData() owns the single re-render after all
+    // background datasets have arrived.
   },
   
   /**
@@ -3722,6 +3776,33 @@ const UI = {
     App.dom.sentinel.style.display = '';
     App.dom.screenSortBtn.classList.add('is-hidden');
     document.querySelector('.controls')?.classList.remove('is-hidden');
+  },
+
+  /**
+   * Re-run the views affected by background datasets, keeping the user's
+   * place in the list when the refresh happens mid-scroll.
+   */
+  async refreshAfterDeferredData() {
+    this.renderActivityCard();
+    this.renderPriorityChart();
+    this.updateLowQualityBadge();
+
+    const s = App.state;
+    const isList =
+      !s.lowQualityActive &&
+      !s.iconReviewActive &&
+      !s.contributionActive &&
+      s.activeTab === 'requests' &&
+      s.view !== 'screens';
+    const renderedCount = isList ? s.renderedCount : 0;
+    const scrollY = window.scrollY;
+
+    await this.render();
+
+    if (isList) {
+      while (s.renderedCount < renderedCount && this.loadMore()) { /* restore */ }
+      if (window.scrollY !== scrollY) window.scrollTo(0, scrollY);
+    }
   },
 
   /**
