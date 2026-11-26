@@ -2712,6 +2712,51 @@ const UI = {
     });
   },
 
+  /**
+   * Restore the shared chrome that tool pages hide. This runs at the start of
+   * every render so all main views get it, including renderHomeScreens()
+   * which returns before the old restoration block. Tool pages re-apply
+   * their own state immediately afterwards.
+   */
+  restoreMainChrome() {
+    document.getElementById('mainTabs')?.classList.remove('is-hidden');
+    document.querySelector('.controls')?.classList.remove('is-hidden');
+    document.getElementById('lowQualityBtn')?.parentElement
+      ?.classList.remove('is-hidden');
+    const contributionCountBadge = document.getElementById(
+      'contributionCountBadge',
+    );
+    if (contributionCountBadge) contributionCountBadge.style.display = '';
+    Utils.setHidden(document.getElementById('iconLibraryResults'), true);
+
+    document.getElementById('lowQualityBackBtn')?.remove();
+    document.getElementById('contributionBackBtn')?.remove();
+    document.getElementById('iconReviewBackBtn')?.remove();
+
+    document.querySelector('.header-icon')?.classList.remove('is-hidden');
+    document.getElementById('search-wrapper')?.classList.remove('is-hidden');
+    document.querySelector('.header')?.classList.remove('header-compact');
+    document.querySelector('.list-viewport')?.classList.remove('is-hidden');
+    document.getElementById('sectionTitle')?.classList.remove('is-hidden');
+    App.dom.header.textContent = App.dom.defaultHeader;
+    App.dom.headerCount.textContent = '';
+
+    const headerRight = document.querySelector('.header-right');
+    headerRight?.querySelectorAll('a:not(#appfilterLink)')?.forEach((a) =>
+      a.classList.remove('is-hidden')
+    );
+    document.getElementById('appfilterLink')?.classList.add('is-hidden');
+    document.getElementById('guidesLink')?.classList.add('is-hidden');
+
+    document.querySelector('.cards-row')?.classList.remove('is-hidden');
+    document.getElementById('mainCards')?.classList.remove('is-hidden');
+    document.getElementById('contributionCards')?.classList.add('is-hidden');
+
+    this.updateContributionBadge();
+    this.updateLowQualityBadge();
+    this.syncTabState();
+  },
+
   init() {
     if (App.state.regexMode) {
       App.dom.regexBtn.classList.add('active');
@@ -3646,6 +3691,7 @@ const UI = {
 
   async render() {
     App.state.homeRenderId = (App.state.homeRenderId || 0) + 1;
+    this.restoreMainChrome();
 
     App.dom.container.style.position = '';
     App.dom.container.style.height = '';
@@ -3672,37 +3718,6 @@ const UI = {
       this.renderHomeScreens();
       return;
     }
-
-    const lowQualityBackBtn = document.getElementById('lowQualityBackBtn');
-    if (lowQualityBackBtn) lowQualityBackBtn.remove();
-
-    const backBtn = document.getElementById('contributionBackBtn');
-    if (backBtn) backBtn.remove();
-
-    const iconReviewBackBtn = document.getElementById('iconReviewBackBtn');
-    if (iconReviewBackBtn) iconReviewBackBtn.remove();
-
-    document.querySelector('.header-icon')?.classList.remove('is-hidden');
-    document.getElementById('search-wrapper')?.classList.remove('is-hidden');
-    document.querySelector('.header')?.classList.remove('header-compact');
-    document.getElementById('sectionTitle')?.classList.remove('is-hidden');
-    document.querySelector('.list-viewport')?.classList.remove('is-hidden');
-    App.dom.header.textContent = App.dom.defaultHeader;
-    this.updateContributionBadge();
-    this.updateLowQualityBadge();
-
-    const headerRight = document.querySelector('.header-right');
-    headerRight?.querySelectorAll('a:not(#appfilterLink)')?.forEach((a) =>
-      a.classList.remove('is-hidden')
-    );
-    const appfilterLink = document.getElementById('appfilterLink');
-    if (appfilterLink) appfilterLink.classList.add('is-hidden');
-    document.getElementById('guidesLink')?.classList.add('is-hidden');
-
-    document.querySelector('.cards-row')?.classList.remove('is-hidden');
-    document.getElementById('mainCards')?.classList.remove('is-hidden');
-    const contribCards = document.getElementById('contributionCards');
-    if (contribCards) contribCards.classList.add('is-hidden');
 
     const s = App.state;
     if (s.view === 'screens') {
