@@ -5359,9 +5359,8 @@ const UI = {
       /** @type {HTMLCanvasElement | null} */ (
         document.getElementById('priorityPie')
       );
-    const card = document.getElementById('priorityCard');
     const tooltip = document.getElementById('priorityTooltip');
-    if (!canvas || !card || !tooltip) return;
+    if (!canvas || !tooltip) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -5456,44 +5455,45 @@ const UI = {
     });
 
     const tooltipHtml = Templates.priorityTooltip(entries);
+    const hideTooltip = () => Components.Tooltip.hide(tooltip);
 
-    /**
-     * @param {number} left
-     * @param {number} top
-     */
-    const showTooltip = (left, top) => {
-      Components.Tooltip.show(tooltip, tooltipHtml, left, top, card);
-    };
+    // The tooltip is anchored to the pie, not to the cursor, so it doesn't jump
+    // between the right and left side while the pointer moves across the chart.
+    const showTooltip = () => {
+      if (tooltip.classList.contains('visible')) return;
 
-    canvas.onmousemove = (e) => {
+      Components.Tooltip.show(tooltip, tooltipHtml, 0, 0);
       const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left - size / 2;
-      const y = e.clientY - rect.top - size / 2;
-      if (Math.sqrt(x * x + y * y) > size / 2 - 1) {
-        Components.Tooltip.hide(tooltip);
-        return;
+      const width = tooltip.offsetWidth;
+      const height = tooltip.offsetHeight;
+
+      let left = rect.right + 4;
+      if (left + width > innerWidth - 10) {
+        left = rect.left - width - 4;
       }
+      left = Math.max(10, Math.min(left, innerWidth - width - 10));
 
-      const cardRect = card.getBoundingClientRect();
-      showTooltip(e.clientX - cardRect.left + 12, e.clientY - cardRect.top);
-    };
-
-    canvas.onmouseleave = () => Components.Tooltip.hide(tooltip);
-
-    canvas.onfocus = () => {
-      const canvasRect = canvas.getBoundingClientRect();
-      const cardRect = card.getBoundingClientRect();
-      showTooltip(
-        canvasRect.right - cardRect.left + 4,
-        canvasRect.top - cardRect.top + canvasRect.height / 2,
+      // .tooltip is vertically centered on its top coordinate.
+      const top = Math.max(
+        10 + height / 2,
+        Math.min(rect.top + rect.height / 2, innerHeight - 10 - height / 2),
       );
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
     };
 
-    canvas.onblur = () => Components.Tooltip.hide(tooltip);
-
+    canvas.onmouseenter = showTooltip;
+    canvas.onmouseleave = hideTooltip;
+    canvas.onfocus = showTooltip;
+    canvas.onblur = hideTooltip;
     canvas.onkeydown = (e) => {
-      if (e.key === 'Escape') Components.Tooltip.hide(tooltip);
+      if (e.key === 'Escape') hideTooltip();
     };
+
+    // Fixed positioning keeps the tooltip out of the scrollable cards row,
+    // but its anchor can move when the page is scrolled or resized.
+    addEventListener('scroll', hideTooltip, true);
+    addEventListener('resize', hideTooltip);
   },
 
   renderActivityCard() {
