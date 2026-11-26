@@ -445,20 +445,6 @@ button.input-icon.active {
   min-width: 0px;
 }
 
-/* Supported card */
-#supportedCard {
-  flex: 0 0 auto;
-  width: 220px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-#supportedCard .card-header {
-  justify-content: space-between;
-  margin-bottom: var(--space-sm);
-}
-
 /* Tools card */
 #toolsCard {
   flex: 0 0 auto;
@@ -2228,12 +2214,6 @@ input[type="checkbox"]:indeterminate::after {
     width: 85vw;
     min-width: 280px;
     flex-shrink: 0;
-  }
-
-  #supportedCard {
-    width: 220px;
-    min-width: 220px;
-    flex: 0 0 220px;
   }
 
   #toolsCard {
