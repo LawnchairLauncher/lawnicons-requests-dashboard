@@ -22,6 +22,7 @@ declare global {
     firstAppearance: number;
     lastRequested: number;
     installs?: string;
+    priority?: string;
   }
 
   type SortKeys = 'name' | 'req' | 'odds' | 'install' | 'time';

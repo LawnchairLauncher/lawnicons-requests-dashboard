@@ -499,6 +499,30 @@ button.input-icon.active {
   text-decoration-color: var(--primary);
 }
 
+/* Priority card */
+#priorityCard {
+  flex: 0 0 120px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+#priorityPie {
+  width: 88px;
+  height: 88px;
+  flex-shrink: 0;
+  outline: none;
+  cursor: crosshair;
+}
+
+#priorityPie:focus-visible {
+  outline: 1px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: var(--shape-full);
+}
+
 /* Activity card */
 #activityCard {
   display: flex;
@@ -655,6 +679,36 @@ button.input-icon.active {
 
 .tooltip-value-resolved {
   color: var(--on-pine-container);
+}
+
+.priority-tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.priority-tooltip-row .tooltip-swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--slice-color);
+  flex-shrink: 0;
+}
+
+.priority-tooltip-row > span:nth-child(2) {
+  flex: 1;
+}
+
+.priority-tooltip-value {
+  margin-left: var(--space-lg);
+}
+
+#priorityTooltip {
+  background: var(--surface-container-highest);
+}
+
+#priorityTooltip .tooltip-label {
+  font-weight: 600;
 }
 
 .card-chart-empty {
@@ -2184,6 +2238,12 @@ input[type="checkbox"]:indeterminate::after {
     width: 180px;
     min-width: 180px;
     flex: 0 0 180px;
+  }
+
+  #priorityCard {
+    width: 120px;
+    min-width: 120px;
+    flex: 0 0 120px;
   }
 
   .selection-bar {

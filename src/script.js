@@ -279,6 +279,49 @@ const DEFAULTS = {
   regex: false,
 };
 
+/** @typedef {{ key: string, label: string, short: string, colorVar: string }} PrioritySlice */
+/** @typedef {PrioritySlice & { count: number, color: string }} PriorityChartEntry */
+
+/** @type {PrioritySlice[]} */
+const PRIORITY_SLICES = [
+  {
+    key: 'Done',
+    label: 'Done',
+    short: 'Done',
+    colorVar: '--chart-6',
+  },
+  {
+    key: 'Critical',
+    label: 'Critical',
+    short: 'Crit',
+    colorVar: '--chart-5',
+  },
+  {
+    key: 'High',
+    label: 'High',
+    short: 'High',
+    colorVar: '--chart-4',
+  },
+  {
+    key: 'Medium',
+    label: 'Medium',
+    short: 'Med',
+    colorVar: '--chart-10',
+  },
+  {
+    key: 'Low',
+    label: 'Low',
+    short: 'Low',
+    colorVar: '--chart-1',
+  },
+  {
+    key: '—',
+    label: '—',
+    short: '—',
+    colorVar: '--outline',
+  },
+];
+
 // ==========================================
 // 2. STATE & DOM
 // ==========================================
@@ -1105,6 +1148,22 @@ const Templates = {
       ${globalHtml}
       <div class="tooltip-value">${requests - global} local ${requests - global === 1 ? 'request' : 'requests'}</div>
       <div class="tooltip-value">${done} done (${pct}%)</div>${extra}`;
+  },
+
+  /**
+   * @param {PriorityChartEntry[]} entries
+   * @returns {string}
+   */
+  priorityTooltip(entries) {
+    return `<div class="tooltip-label">Icon requests</div>${
+      entries.map((entry) =>
+        `<div class="tooltip-value priority-tooltip-row">
+          <span class="tooltip-swatch" style="--slice-color: ${entry.color}"></span>
+          <span>${entry.label}</span>
+          <span class="priority-tooltip-value">${Utils.compactNumber(entry.count)}</span>
+        </div>`
+      ).join('')
+    }`;
   },
 
   /**
@@ -2546,6 +2605,7 @@ const UI = {
     this.updateContributionBadge();
     this.renderDomainStats();
     this.renderActivityCard();
+    this.renderPriorityChart();
     this.generateFilters();
     this.initObserver();
     this.initRegexAutocomplete();
@@ -5292,6 +5352,148 @@ const UI = {
     container.addEventListener('mouseleave', () => {
       Components.Tooltip.hide(tooltip);
     });
+  },
+
+  renderPriorityChart() {
+    const canvas =
+      /** @type {HTMLCanvasElement | null} */ (
+        document.getElementById('priorityPie')
+      );
+    const card = document.getElementById('priorityCard');
+    const tooltip = document.getElementById('priorityTooltip');
+    if (!canvas || !card || !tooltip) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    /** @type {Set<string>} */
+    const packages = new Set();
+    App.state.existingIcons.forEach((icon) => {
+      const pkg = icon.component.split('/')[0];
+      if (pkg) packages.add(pkg);
+    });
+
+    /** @type {Record<string, number>} */
+    const counts = {
+      Done: packages.size,
+      Critical: 0,
+      High: 0,
+      Medium: 0,
+      Low: 0,
+      '—': 0,
+    };
+    /** @type {Record<string, string>} */
+    const byPriority = {
+      critical: 'Critical',
+      high: 'High',
+      medium: 'Medium',
+      low: 'Low',
+    };
+    App.data.forEach((app) => {
+      const key = byPriority[(app.priority || '').trim().toLowerCase()] || '—';
+      counts[key]++;
+    });
+
+    /** @type {PriorityChartEntry[]} */
+    const entries = PRIORITY_SLICES.map((slice) => ({
+      ...slice,
+      count: counts[slice.key] || 0,
+      color: '',
+    }));
+
+    canvas.setAttribute('aria-label', PRIORITY_SLICES.map((slice) => {
+      const unit = slice.key === 'Done' ? 'packages' : 'requests';
+      return `${slice.label}: ${(counts[slice.key] || 0).toLocaleString()} ${unit}`;
+    }).join('; '));
+
+    const style = getComputedStyle(document.documentElement);
+    entries.forEach((entry) => {
+      entry.color = style.getPropertyValue(entry.colorVar).trim();
+    });
+
+    const size = 88;
+    const dpr = devicePixelRatio || 1;
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    canvas.style.width = `${size}px`;
+    canvas.style.height = `${size}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, size, size);
+
+    const total = entries.reduce((sum, entry) => sum + entry.count, 0);
+    if (total === 0) {
+      canvas.setAttribute('aria-label', 'No priority data');
+      return;
+    }
+
+    let angle = -Math.PI / 2;
+    entries.forEach((entry) => {
+      if (entry.count === 0) return;
+      const slice = entry.count / total * Math.PI * 2;
+      const midAngle = angle + slice / 2;
+
+      ctx.beginPath();
+      ctx.moveTo(size / 2, size / 2);
+      ctx.arc(size / 2, size / 2, size / 2 - 1, angle, angle + slice);
+      ctx.closePath();
+      ctx.fillStyle = entry.color;
+      ctx.fill();
+
+      if (entry.count / total >= 0.2) {
+        const labelR = size / 2 * 0.6;
+        ctx.fillStyle = style.getPropertyValue('--surface').trim();
+        ctx.font = `600 10px ${style.getPropertyValue('--font-main').trim()}`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(
+          entry.short,
+          size / 2 + Math.cos(midAngle) * labelR,
+          size / 2 + Math.sin(midAngle) * labelR,
+        );
+      }
+
+      angle += slice;
+    });
+
+    const tooltipHtml = Templates.priorityTooltip(entries);
+
+    /**
+     * @param {number} left
+     * @param {number} top
+     */
+    const showTooltip = (left, top) => {
+      Components.Tooltip.show(tooltip, tooltipHtml, left, top, card);
+    };
+
+    canvas.onmousemove = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      if (Math.sqrt(x * x + y * y) > size / 2 - 1) {
+        Components.Tooltip.hide(tooltip);
+        return;
+      }
+
+      const cardRect = card.getBoundingClientRect();
+      showTooltip(e.clientX - cardRect.left + 12, e.clientY - cardRect.top);
+    };
+
+    canvas.onmouseleave = () => Components.Tooltip.hide(tooltip);
+
+    canvas.onfocus = () => {
+      const canvasRect = canvas.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      showTooltip(
+        canvasRect.right - cardRect.left + 4,
+        canvasRect.top - cardRect.top + canvasRect.height / 2,
+      );
+    };
+
+    canvas.onblur = () => Components.Tooltip.hide(tooltip);
+
+    canvas.onkeydown = (e) => {
+      if (e.key === 'Escape') Components.Tooltip.hide(tooltip);
+    };
   },
 
   renderActivityCard() {
