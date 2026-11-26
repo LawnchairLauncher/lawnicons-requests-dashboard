@@ -279,6 +279,21 @@ const DEFAULTS = {
   regex: false,
 };
 
+// Shared Intl instances — constructing these per rendered row is expensive.
+/** @type {Intl.DateTimeFormat} */
+const DATE_FORMATTER = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+});
+/** @type {Intl.NumberFormat} */
+const COMPACT_NUMBER_FORMATTER = new Intl.NumberFormat(
+  'en',
+  /** @type {Intl.NumberFormatOptions} */ ({ notation: 'compact' }),
+);
+/** @type {Intl.NumberFormat} */
+const NUMBER_FORMATTER = new Intl.NumberFormat();
+
 /** @typedef {{ key: string, label: string, short: string, colorVar: string }} PrioritySlice */
 /** @typedef {PrioritySlice & { count: number, color: string }} PriorityChartEntry */
 
@@ -349,6 +364,10 @@ const App = {
     existingIcons: [],
     /** Memoized icontool commands for dynamic package matches. */
     _dynamicMatchesCache: null,
+    /** Precomputed component ID -> geo prefix used by list rows. */
+    _geoPrefixById: null,
+    /** Precomputed component ID -> issue key used by supported rows. */
+    _issueByComponent: null,
 
     actionMode: 'new',
     lowQualityActive: false,
@@ -435,11 +454,7 @@ const Utils = {
    */
   formatDate(unix) {
     if (!unix) return '—';
-    return new Date(unix * 1000).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
+    return DATE_FORMATTER.format(new Date(unix * 1000));
   },
 
   /**
@@ -626,20 +641,7 @@ const Templates = {
     const id = app.componentName;
     const name = app.label;
     const pkg = id.split('/')[0];
-
-    const domain = id.split('/')[0].split('.')[0];
-    let idPrefix = '';
-    if (!ISO_COUNTRIES.has(domain) && App.state.requestsGraph[id]) {
-      const neighbors = Object.keys(App.state.requestsGraph[id]);
-      const geoCountries = [...new Set(neighbors.map(n => n.split('/')[0].split('.')[0]).filter(d => ISO_COUNTRIES.has(d)))];
-      if (geoCountries.length === 1) {
-        idPrefix = geoCountries[0] + ' • ';
-      } else if (geoCountries.length >= 2 && geoCountries.length <= 3) {
-        idPrefix = geoCountries.join(', ') + ' • ';
-      } else if (geoCountries.length >= 4) {
-        idPrefix = 'global • ';
-      }
-    }
+    const idPrefix = App.state._geoPrefixById?.get(id) || '';
 
     const isUnknown = app.drawable === 'unknown' || name === '(Unknown App)';
     const existingDrawable = App.state.existingSvgs
@@ -649,13 +651,11 @@ const Templates = {
 
     const tagHtml = tags.map((tagId) => {
       if (tagId === 'supported') {
-        const issueEntry = Object.entries(App.state.supportedIssues || {}).find(([name, comps]) =>
-          name.startsWith('#') && comps.includes(id)
-        );
-        if (issueEntry) {
-          const issueNum = issueEntry[0].slice(1);
+        const issueKey = App.state._issueByComponent?.get(id);
+        if (issueKey) {
+          const issueNum = issueKey.slice(1);
           const issueUrl = `https://github.com/LawnchairLauncher/lawnicons/issues/${issueNum}`;
-          return `<a class="status-pill status-supported" href="${issueUrl}" target="_blank" rel="noopener" title="Issue #${issueNum}">${issueEntry[0]}</a>`;
+          return `<a class="status-pill status-supported" href="${issueUrl}" target="_blank" rel="noopener" title="Issue #${issueNum}">${issueKey}</a>`;
         }
       }
       const meta = App.state.filterMetadata.get(tagId);
@@ -682,10 +682,7 @@ const Templates = {
 
     const installsRaw = app.installs ? app.installs.replace(/[,+]/g, '') : null;
     const displayInstalls = installsRaw
-      ? new Intl.NumberFormat('en', /** @type {Intl.NumberFormatOptions} */ {
-        notation: 'compact',
-      })
-        .format(parseInt(installsRaw)) + '+'
+      ? COMPACT_NUMBER_FORMATTER.format(parseInt(installsRaw)) + '+'
       : '—';
     const installsTitle = installsRaw && installsRaw !== '0'
       ? `${app.installs} installs in Play Store`
@@ -694,8 +691,8 @@ const Templates = {
     const reqValue = App.state.setsStats[pkg] || app.requestCount;
     const isSet = App.state.setsStats[pkg] !== undefined;
     const displayReq = isSet
-      ? `<span title="Combined requests for this package.">${reqValue.toLocaleString()}S</span>`
-      : reqValue.toLocaleString();
+      ? `<span title="Combined requests for this package.">${NUMBER_FORMATTER.format(reqValue)}S</span>`
+      : NUMBER_FORMATTER.format(reqValue);
 
     return `
       <div class="list-row ${isSelected ? 'selected' : ''}"
@@ -809,7 +806,7 @@ const Templates = {
     return `
       <div class="grid-card ${
       isSelected ? 'selected' : ''
-    }" data-id="${id}" title="${label}\nRequests: ${app.requestCount ?? 0}\nImpact: ${app.priority || '—'}\nPoints: ${App.state.prioritiesData?.[id]?.sum ?? '—'}\nInstalls: ${app.installs ? new Intl.NumberFormat('en', { notation: 'compact' }).format(parseInt(app.installs.replace(/[,+]/g, ''))) + '+' : '—'}\nFirst time: ${Utils.formatDate(app.firstAppearance)}"
+    }" data-id="${id}" title="${label}\nRequests: ${app.requestCount ?? 0}\nImpact: ${app.priority || '—'}\nPoints: ${App.state.prioritiesData?.[id]?.sum ?? '—'}\nInstalls: ${app.installs ? COMPACT_NUMBER_FORMATTER.format(parseInt(app.installs.replace(/[,+]/g, ''))) + '+' : '—'}\nFirst time: ${Utils.formatDate(app.firstAppearance)}"
         tabindex="0" role="checkbox" aria-checked="${isSelected}">
         ${contentHtml}
         <div class="grid-overlay-tags">${tagHtml}</div>
@@ -1958,7 +1955,9 @@ const Data = {
 
       App.state.screensData = await this.fetchJson(CONFIG.data.screensGraphPath, {});
       App.state.requestsGraph = await this.fetchJson(CONFIG.data.requestsGraphPath, {});
+      this.buildGeoPrefixIndex();
       App.state.supportedIssues = await this.fetchJson(CONFIG.data.supportedIssuesPath, {});
+      this.buildIssueIndex();
       App.state.homeScreensData = await this.fetchJson(CONFIG.data.homeScreensPath, []);
       
       // Load optional data
@@ -2163,6 +2162,45 @@ const Data = {
   addTag(id, tag) {
     if (!App.state.appTags.has(id)) App.state.appTags.set(id, new Set());
     App.state.appTags.get(id)?.add(tag);
+  },
+
+  /** Precompute geo prefixes for list rows from the requests graph. */
+  buildGeoPrefixIndex() {
+    /** @type {Map<string, string>} */
+    const prefixes = new Map();
+    for (const [id, neighbors] of Object.entries(App.state.requestsGraph)) {
+      const domain = id.split('/')[0].split('.')[0];
+      if (ISO_COUNTRIES.has(domain)) continue;
+
+      const geoCountries = [...new Set(
+        Object.keys(neighbors || {})
+          .map(n => n.split('/')[0].split('.')[0])
+          .filter(d => ISO_COUNTRIES.has(d)),
+      )];
+      let prefix = '';
+      if (geoCountries.length === 1) {
+        prefix = geoCountries[0] + ' • ';
+      } else if (geoCountries.length >= 2 && geoCountries.length <= 3) {
+        prefix = geoCountries.join(', ') + ' • ';
+      } else if (geoCountries.length >= 4) {
+        prefix = 'global • ';
+      }
+      if (prefix) prefixes.set(id, prefix);
+    }
+    App.state._geoPrefixById = prefixes;
+  },
+
+  /** Precompute issue keys by component for supported rows. */
+  buildIssueIndex() {
+    /** @type {Map<string, string>} */
+    const issues = new Map();
+    for (const [name, comps] of Object.entries(App.state.supportedIssues || {})) {
+      if (!name.startsWith('#') || !Array.isArray(comps)) continue;
+      for (const comp of /** @type {string[]} */ (comps)) {
+        if (!issues.has(comp)) issues.set(comp, name);
+      }
+    }
+    App.state._issueByComponent = issues;
   },
 
   async getDynamicMatches() {
@@ -3651,8 +3689,8 @@ const UI = {
       s.currentData.length,
     );
     const batch = s.currentData.slice(s.renderedCount, end);
-    const fragment = document.createDocumentFragment();
-    const tempDiv = document.createElement('div');
+    /** @type {string[]} */
+    const htmlParts = [];
 
     batch.forEach((app) => {
       const id = app.componentName;
@@ -3675,11 +3713,16 @@ const UI = {
         html = Templates.gridCard(app, tags, isSelected, iconUrl);
       }
 
-      tempDiv.innerHTML = html.trim();
-      while (tempDiv.firstChild) {
-        fragment.appendChild(tempDiv.firstChild);
-      }
+      htmlParts.push(html.trim());
     });
+
+    // Parse the whole batch once instead of 500 separate innerHTML assignments.
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlParts.join('');
+    const fragment = document.createDocumentFragment();
+    while (tempDiv.firstChild) {
+      fragment.appendChild(tempDiv.firstChild);
+    }
 
     App.dom.container.appendChild(fragment);
     s.renderedCount = end;

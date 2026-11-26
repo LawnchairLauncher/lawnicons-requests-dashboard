@@ -159,6 +159,10 @@ declare global {
     existingIcons: Icon[];
     /** Memoized icontool commands for dynamic package matches. */
     _dynamicMatchesCache?: string[] | null;
+    /** Precomputed component ID -> geo prefix used by list rows. */
+    _geoPrefixById?: Map<string, string> | null;
+    /** Precomputed component ID -> issue key used by supported rows. */
+    _issueByComponent?: Map<string, string> | null;
 
     // Actions & Contributions
     /** The current action state or mode. */
