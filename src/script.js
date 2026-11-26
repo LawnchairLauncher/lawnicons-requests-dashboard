@@ -316,7 +316,7 @@ const PRIORITY_SLICES = [
   },
   {
     key: '—',
-    label: '—',
+    label: 'Stale',
     short: '—',
     colorVar: '--outline',
   },
@@ -1155,8 +1155,12 @@ const Templates = {
    * @returns {string}
    */
   priorityTooltip(entries) {
+    const rows = [
+      ...entries.filter((entry) => entry.key !== 'Done'),
+      ...entries.filter((entry) => entry.key === 'Done'),
+    ];
     return `<div class="tooltip-label">Icon requests</div>${
-      entries.map((entry) =>
+      rows.map((entry) =>
         `<div class="tooltip-value priority-tooltip-row">
           <span class="tooltip-swatch" style="--slice-color: ${entry.color}"></span>
           <span>${entry.label}</span>
