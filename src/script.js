@@ -996,10 +996,10 @@ const Templates = {
           <div class="col num balance" role="cell">${points(row.balance)}</div>
         </div>
       `).join('')
-      : '<div class="contributor-empty" role="row">No contributor points yet.</div>';
+      : '<div class="contributor-empty" role="row">No points recorded yet.</div>';
 
     return `
-      <div class="contributor-table" role="table" aria-label="Contributor points leaderboard">
+      <div class="contributor-table" role="table" aria-label="Points leaderboard">
         <div class="contributor-header" role="row">${header}</div>
         ${body}
       </div>
@@ -2106,7 +2106,7 @@ const Data = {
     const needsGraphData =
       (App.state.regexMode && query.length > 0) ||
       /^scr-\d+$/.test(query) ||
-      (App.state.view === 'screens' && App.state.activeTab !== 'contributors') ||
+      (App.state.view === 'screens' && App.state.activeTab !== 'points-leaderboard') ||
       App.state.activeTab === 'homescreens';
 
     if (needsGraphData) {
@@ -2652,13 +2652,17 @@ const Data = {
     }
     if (params.has('tab')) {
       const t = params.get('tab');
-      if (t === 'requests' || t === 'contributors' || t === 'homescreens') {
+      if (
+        t === 'requests' ||
+        t === 'points-leaderboard' ||
+        t === 'homescreens'
+      ) {
         App.state.activeTab = t;
       }
     }
     if (params.has('sort')) {
       const value = params.get('sort') || '';
-      if (App.state.activeTab === 'contributors') {
+      if (App.state.activeTab === 'points-leaderboard') {
         const opt = UI.contributorSortOptions.find((o) => o.value === value);
         App.state.contributorSort = opt ? opt.value : DEFAULTS.contributorSort;
         App.dom.sortLabel.textContent = opt ? opt.label : App.state.contributorSort;
@@ -2679,9 +2683,9 @@ const Data = {
     if (s.view !== DEFAULTS.view) params.set('view', s.view);
     else params.delete('view');
     const activeSort =
-      s.activeTab === 'contributors' ? s.contributorSort : s.sort;
+      s.activeTab === 'points-leaderboard' ? s.contributorSort : s.sort;
     const defaultSort =
-      s.activeTab === 'contributors'
+      s.activeTab === 'points-leaderboard'
         ? DEFAULTS.contributorSort
         : DEFAULTS.sort;
     if (activeSort !== defaultSort) params.set('sort', activeSort);
@@ -2898,7 +2902,7 @@ const UI = {
         const tabName = tab.dataset.tab;
         App.state.activeTab = tabName;
         
-        if (tabName === 'homescreens' || tabName === 'contributors') {
+        if (tabName === 'homescreens' || tabName === 'points-leaderboard') {
           App.state.view = 'list';
           App.dom.viewLabel.textContent = 'Table';
         }
@@ -3790,7 +3794,7 @@ const UI = {
       return;
     }
 
-    if (App.state.activeTab === 'contributors') {
+    if (App.state.activeTab === 'points-leaderboard') {
       this.renderContributorPoints();
       return;
     }
