@@ -2,7 +2,8 @@ name: Prune Requests
 
 on:
   schedule:
-    - cron: '17 1 * * *'
+    # Run after the Lawnicons contributor-points job (03:00 UTC / 06:00 MSK).
+    - cron: '43 6 * * *'
       timezone: Europe/Moscow
   workflow_dispatch:
 
@@ -24,6 +25,16 @@ jobs:
 
       - name: Install dependencies
         run: pip install requests google-play-scraper lxml Pillow svgelements
+
+      - name: Checkout Lawnicons
+        uses: actions/checkout@v6
+        with:
+          repository: LawnchairLauncher/lawnicons
+          ref: develop
+          path: lawnicons
+
+      - name: Sync contributor points
+        run: python scripts/sync_contributor_points.py --lawnicons lawnicons
 
       - name: Prune requests
         id: prune_requests

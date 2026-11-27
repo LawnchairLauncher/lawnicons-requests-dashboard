@@ -56,6 +56,8 @@ Excluded (non-goals):
 - `assets/stats/activity_stats.json`: activity card.
 - `assets/stats/fulfillment_history.json`: icons/day for the activity card.
 - `assets/stats/trending_baseline.json`: `trending` sort deltas.
+- `assets/iconsyouneedmost_emails.json`: source of email-based priority ranks. `scripts/sync_contributor_points.py` combines it with Lawnicons `contribution-points/*.txt` to generate `assets/iconsyouneedmost.json`.
+- `assets/contributor_points.json`: derived `earned` / `spent` / `balance` summary per contributor, used by the leaderboard.
 - `assets/qa_issues/review_issues.json`: low-quality badge and QA page.
 - `assets/qa_issues/review_pass.json`, `assets/qa_issues/svgs/`: build-time QA data/SVGs (not part of the dashboard startup).
 - `assets/dead_links.json`: build-time input for `scripts/dump_play_info.py`, not fetched by the dashboard.
