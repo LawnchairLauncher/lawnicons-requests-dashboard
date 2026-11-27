@@ -691,6 +691,29 @@ def calculate_roi_scores():
     
     with open(REPO_ROOT / "src/assets/stats/trending_baseline.json") as f:
         trending = json.load(f)
+
+    with open(REPO_ROOT / "src/assets/iconsyouneedmost.json", encoding="utf-8") as f:
+        points_data = json.load(f)
+
+    POINT_RANK_WEIGHTS = {
+        "5": 5.0,  # 1st place
+        "4": 3.0,  # 2nd place
+        "3": 2.0,  # 3rd place
+        "2": 0.5,  # 4th place
+        "1": 0.1,  # 5th place
+    }
+    POINTS_SCORE_WEIGHT = 1000
+
+    def points_score(comp):
+        p = points_data.get(comp) or {}
+        effective = sum(
+            POINT_RANK_WEIGHTS[r] * int(p.get(r, 0))
+            for r in POINT_RANK_WEIGHTS
+        )
+        if effective <= 0:
+            return 0.0
+        # Explicit user priority; sqrt damps very large vote totals.
+        return POINTS_SCORE_WEIGHT * math.sqrt(effective)
     
     # 90d May-July 2026
     # Some countries estimated from median loss/requests ratio (2.05)
@@ -882,6 +905,7 @@ def calculate_roi_scores():
         gap = coverage_gap(comp)
         finisher = finisher_scores.get(comp, 0)
         trend = trending_deltas.get(comp, 0)
+        points_bonus = points_score(comp)
         
         is_foss = comp in foss
 
@@ -944,7 +968,7 @@ def calculate_roi_scores():
             (1 + trend_log) *
             installs_penalty *
             supported_multiplier
-        )
+        ) + points_bonus
         
         scores_list.append((app, score))
     
