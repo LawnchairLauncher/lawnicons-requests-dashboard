@@ -414,6 +414,7 @@ const App = {
     domainStats: {},
     domainStatsMode: 'requests',
     activityStats: [],
+    prioritiesData: {},
     trendingDeltas: {},
     lastUpdate: null,
     activeTab: 'requests',
@@ -1947,6 +1948,37 @@ const Data = {
     }
   },
 
+  /**
+   * @param {RawPriorities} raw
+   * @returns {Record<string, PriorityVotes>}
+   */
+  normalizePriorities(raw) {
+    /** @type {Record<string, PriorityVotes>} */
+    const result = {};
+    const ranks = /** @type {(keyof RawPriorities)[]} */ ([
+      '5',
+      '4',
+      '3',
+      '2',
+      '1',
+    ]);
+
+    for (const rank of ranks) {
+      for (const id of raw[rank] || []) {
+        /** @type {PriorityVotes} */
+        const p = result[id] || { sum: 0, count: 0 };
+
+        p[rank] = (p[rank] || 0) + 1;
+        p.sum += Number(rank);
+        p.count += 1;
+
+        result[id] = p;
+      }
+    }
+
+    return result;
+  },
+
   async init() {
     try {
       /** @type {InitTuple} */
@@ -1971,7 +2003,7 @@ const Data = {
       App.state.domainStats = domainStats;
       App.state.activityStats = activityStats;
       App.state.lastUpdate = json.lastUpdate;
-      App.state.prioritiesData = prioritiesData;
+      App.state.prioritiesData = this.normalizePriorities(prioritiesData);
 
       App.state.idMap = new Map();
       App.data.forEach((app) => App.state.idMap.set(app.componentName, app));

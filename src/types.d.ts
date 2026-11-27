@@ -4,7 +4,7 @@ declare global {
     Record<string, number>,
     DomainStats,
     ActivityStats[],
-    Record<string, Record<string, number>>,
+    RawPriorities,
     ...Filter[],
   ];
 
@@ -12,6 +12,24 @@ declare global {
     count: number;
     lastUpdate: string;
     apps: AppEntry[];
+  }
+
+  interface RawPriorities {
+    '1'?: string[];
+    '2'?: string[];
+    '3'?: string[];
+    '4'?: string[];
+    '5'?: string[];
+  }
+
+  interface PriorityVotes {
+    '1'?: number;
+    '2'?: number;
+    '3'?: number;
+    '4'?: number;
+    '5'?: number;
+    sum: number;
+    count: number;
   }
 
   interface AppEntry {
@@ -191,6 +209,8 @@ declare global {
     domainStatsMode: string;
     /** Historical or timeline array tracking application activity. */
     activityStats: ActivityStats[];
+    /** Ranked priority votes with derived sum/count totals. */
+    prioritiesData: Record<string, PriorityVotes>;
     /** Numeric delta changes tracking trending items. */
     trendingDeltas: Record<string, number>;
     /** ISO timestamp or string representing the last data refresh. */

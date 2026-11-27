@@ -695,6 +695,12 @@ def calculate_roi_scores():
     with open(REPO_ROOT / "src/assets/iconsyouneedmost.json", encoding="utf-8") as f:
         points_data = json.load(f)
 
+    points_by_comp = {}
+    for rank, comps in points_data.items():
+        for comp in comps:
+            bucket = points_by_comp.setdefault(comp, {})
+            bucket[rank] = bucket.get(rank, 0) + 1
+
     POINT_RANK_WEIGHTS = {
         "5": 5.0,  # 1st place
         "4": 3.0,  # 2nd place
@@ -705,7 +711,7 @@ def calculate_roi_scores():
     POINTS_SCORE_WEIGHT = 1000
 
     def points_score(comp):
-        p = points_data.get(comp) or {}
+        p = points_by_comp.get(comp) or {}
         effective = sum(
             POINT_RANK_WEIGHTS[r] * int(p.get(r, 0))
             for r in POINT_RANK_WEIGHTS
