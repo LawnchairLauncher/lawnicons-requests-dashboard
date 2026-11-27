@@ -54,7 +54,7 @@ Excluded (non-goals):
 - `assets/stats/sets_stats.json`: popularity overrides for sorting.
 - `assets/stats/domain_stats.json`: domain breakdown card, tooltip, `_population`.
 - `assets/stats/activity_stats.json`: activity card.
-- `assets/stats/fulfillment_history.json`: icons/day and supported/day for the activity card.
+- `assets/stats/fulfillment_history.json`: icons/day for the activity card.
 - `assets/stats/trending_baseline.json`: `trending` sort deltas.
 - `assets/qa_issues/review_issues.json`: low-quality badge and QA page.
 - `assets/qa_issues/review_pass.json`, `assets/qa_issues/svgs/`: build-time QA data/SVGs (not part of the dashboard startup).
@@ -212,7 +212,7 @@ Error Handling:
 
 - **Primary data:** `requests.json`.
 - **Filters:** `CONFIG.data.filters` defines load and display order; each filter needs a JSON file except synthesized `plan` and computed `unlabeled`.
-- **Analytics:** `sets_stats.json` (popularity), `domain_stats.json` (domain card/tooltips), `activity_stats.json` (activity card), `iconsyouneedmost.json` (priority chart/points sort), `fulfillment_history.json` (icons/day, supported/day, TTF), `trending_baseline.json` (trending sort), `review_issues.json` (QA badge/page).
+- **Analytics:** `sets_stats.json` (popularity), `domain_stats.json` (domain card/tooltips), `activity_stats.json` (activity card), `iconsyouneedmost.json` (priority chart/points sort), `fulfillment_history.json` (icons/day, TTF), `trending_baseline.json` (trending sort), `review_issues.json` (QA badge/page).
 - **Graphs:** `requests_graph.json` and `screens_graph.json` power geo prefixes, screen searches, and regex domain matching.
 - **Local UI persistence:** `localStorage` keys `lawnicons_contribution*`; selected rows are runtime-only.
 - **URL:** query parameters listed in section 2 act as environment state.
