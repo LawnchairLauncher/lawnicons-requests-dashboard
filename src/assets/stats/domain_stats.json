@@ -1,8 +1,8 @@
 {
   "com": {
-    "requests": 22456,
+    "requests": 22432,
     "done": 15946,
-    "total": 38402,
+    "total": 38378,
     "global": 0,
     "global_installs": 0
   },
@@ -11,12 +11,12 @@
     "done": 403,
     "total": 4580,
     "global": 3748,
-    "global_installs": 20542038947
+    "global_installs": 20582538947
   },
   "de": {
-    "requests": 3925,
+    "requests": 3924,
     "done": 528,
-    "total": 4453,
+    "total": 4452,
     "global": 3555,
     "global_installs": 14760047066
   },
@@ -25,7 +25,7 @@
     "done": 157,
     "total": 3236,
     "global": 2974,
-    "global_installs": 30003967145
+    "global_installs": 30004016145
   },
   "jp": {
     "requests": 3020,
@@ -35,9 +35,9 @@
     "global_installs": 12715869291
   },
   "org": {
-    "requests": 1542,
+    "requests": 1537,
     "done": 1302,
-    "total": 2844,
+    "total": 2839,
     "global": 0,
     "global_installs": 0
   },
@@ -46,7 +46,7 @@
     "done": 226,
     "total": 1989,
     "global": 1454,
-    "global_installs": 13258526270
+    "global_installs": 13308526270
   },
   "us": {
     "requests": 1768,
@@ -139,17 +139,17 @@
     "global": 623,
     "global_installs": 4704873865
   },
-  "app": {
-    "requests": 362,
-    "done": 353,
-    "total": 715,
-    "global": 0,
-    "global_installs": 0
-  },
   "io": {
     "requests": 393,
     "done": 321,
     "total": 714,
+    "global": 0,
+    "global_installs": 0
+  },
+  "app": {
+    "requests": 360,
+    "done": 353,
+    "total": 713,
     "global": 0,
     "global_installs": 0
   },
@@ -259,9 +259,9 @@
     "global_installs": 0
   },
   "co": {
-    "requests": 193,
+    "requests": 192,
     "done": 114,
-    "total": 307,
+    "total": 306,
     "global": 0,
     "global_installs": 0
   },
@@ -347,12 +347,12 @@
     "done": 13,
     "total": 184,
     "global": 152,
-    "global_installs": 1317880001
+    "global_installs": 1321880001
   },
   "pt": {
-    "requests": 110,
+    "requests": 109,
     "done": 56,
-    "total": 166,
+    "total": 165,
     "global": 95,
     "global_installs": 291661500
   },
@@ -1966,13 +1966,6 @@
     "global": 0,
     "global_installs": 0
   },
-  "prod": {
-    "requests": 3,
-    "done": 2,
-    "total": 5,
-    "global": 0,
-    "global_installs": 0
-  },
   "proton": {
     "requests": 0,
     "done": 5,
@@ -2291,6 +2284,13 @@
   "player": {
     "requests": 1,
     "done": 3,
+    "total": 4,
+    "global": 0,
+    "global_installs": 0
+  },
+  "prod": {
+    "requests": 2,
+    "done": 2,
     "total": 4,
     "global": 0,
     "global_installs": 0
