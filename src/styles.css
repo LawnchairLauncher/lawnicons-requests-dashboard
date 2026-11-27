@@ -925,13 +925,13 @@ select:hover,
 }
 
 .contributor-table {
-  min-width: 828px;
+  min-width: 840px;
 }
 
 .contributor-header,
 .contributor-row {
   display: grid;
-  grid-template-columns: 48px minmax(180px, 260px) 90px repeat(3, 120px);
+  grid-template-columns: 48px minmax(180px, 260px) 90px 120px 132px 120px;
   align-items: center;
   justify-content: start;
   padding: var(--space-md) var(--space-lg);
@@ -975,8 +975,20 @@ select:hover,
   color: var(--on-surface);
 }
 
-.contributor-row:hover {
+.contributor-row {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.contributor-row:hover,
+.contributor-row:focus-visible {
   background-color: var(--surface-container-high);
+}
+
+.contributor-row:focus-visible {
+  outline: 1px solid var(--primary);
+  outline-offset: -1px;
 }
 
 .contributor-header .num,
@@ -985,12 +997,18 @@ select:hover,
   font-variant-numeric: tabular-nums;
 }
 
+.contributor-header .col.spent,
+.contributor-row .col.spent {
+  padding-left: var(--space-md);
+}
+
 .contributor-link {
   display: block;
+  color: inherit;
   text-decoration: none;
 }
 
-.contributor-link:hover {
+.contributor-row:hover .contributor-link {
   color: var(--primary);
   text-decoration: underline;
 }

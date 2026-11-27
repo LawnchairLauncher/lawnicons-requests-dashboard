@@ -950,8 +950,12 @@ const Templates = {
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
+    const exactWithUnit = (
+      /** @type {number} */ value,
+      /** @type {string} */ unit,
+    ) => `${NUMBER_FORMATTER.format(value)} ${unit}${value === 1 ? '' : 's'}`;
     const points = (/** @type {number} */ value) =>
-      `${NUMBER_FORMATTER.format(value)} ${value === 1 ? 'point' : 'points'}`;
+      `${Utils.compactNumber(value)} ${value === 1 ? 'point' : 'points'}`;
 
     const columns = [
       { key: 'rank', label: '#', numeric: false, sortable: false },
@@ -982,20 +986,24 @@ const Templates = {
     }).join('');
 
     const body = rows.length
-      ? rows.map((row) => `
-        <div class="contributor-row" role="row">
+      ? rows.map((row) => {
+        const nick = escape(row.nick);
+        const profileUrl = `https://github.com/${encodeURIComponent(row.nick)}`;
+        return `
+        <a class="contributor-row" role="row" href="${profileUrl}"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Open ${nick} on GitHub">
           <div class="col rank${row.rank <= 3 ? ` top-${row.rank}` : ''}" role="cell">${row.rank}</div>
           <div class="col nick" role="cell">
-            <a class="contributor-link app-name"
-               href="https://github.com/${encodeURIComponent(row.nick)}"
-               target="_blank" rel="noopener noreferrer">${escape(row.nick)}</a>
+            <span class="contributor-link app-name">${nick}</span>
           </div>
-          <div class="col num icons" role="cell">${NUMBER_FORMATTER.format(row.icons)}</div>
-          <div class="col num earned" role="cell">${points(row.earned)}</div>
-          <div class="col num spent" role="cell">${points(row.spent)}</div>
-          <div class="col num balance" role="cell">${points(row.balance)}</div>
-        </div>
-      `).join('')
+          <div class="col num icons" role="cell" title="${exactWithUnit(row.icons, 'icon')}">${Utils.compactNumber(row.icons)}</div>
+          <div class="col num earned" role="cell" title="${exactWithUnit(row.earned, 'point')}">${points(row.earned)}</div>
+          <div class="col num spent" role="cell" title="${exactWithUnit(row.spent, 'point')}">${points(row.spent)}</div>
+          <div class="col num balance" role="cell" title="${exactWithUnit(row.balance, 'point')}">${points(row.balance)}</div>
+        </a>
+      `;
+      }).join('')
       : '<div class="contributor-empty" role="row">No points recorded yet.</div>';
 
     return `

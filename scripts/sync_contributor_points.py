@@ -26,7 +26,8 @@ APP_ID_RE = re.compile(
     re.IGNORECASE,
 )
 AWARD_RE = re.compile(
-    r"\+(\d+)\s+points\s+for\s+pr\s+(\d+)\s+with\s+(\d+)\s+(?:icons?|updates?)"
+    r"\+(\d+)\s+points\s+for\s+pr\s+(\d+)\s+with\s+(\d+)\s+"
+    r"(?:icons?/updates?|icons?|updates?)"
 )
 
 
