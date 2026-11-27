@@ -1206,7 +1206,7 @@ const Templates = {
     return `<div class="card-chart activity-card-chart">
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="activity-svg">
         <line x1="0" y1="100" x2="100" y2="100" class="activity-zero" />
-        <path d="${pathResolved}" class="activity-line activity-removed" />
+        <path d="${pathResolved}" class="activity-line activity-done" />
       </svg>
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="activity-dots-svg">
         ${addedDots}
@@ -1235,7 +1235,7 @@ const Templates = {
       html += `<div class="tooltip-value tooltip-value-primary">${added} new</div>`;
     }
     if (fulfilled > 0) {
-      html += `<div class="tooltip-value tooltip-value-resolved">${fulfilled} done</div>`;
+      html += `<div class="tooltip-value tooltip-value-done">${fulfilled} done</div>`;
     }
     return html;
   },
