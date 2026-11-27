@@ -434,7 +434,7 @@ const App = {
     /** @type {HTMLInputElement} */
     headerCheck: /** @type {any} */ (document.getElementById('headerCheck')),
     /** @type {HTMLDivElement} */
-    headerCount: /** @type {any} */ (document.getElementById('headerCount')),
+    headerSubtitle: /** @type {any} */ (document.getElementById('headerSubtitle')),
     /** @type {HTMLDivElement} */
     sentinel: /** @type {any} */ (document.getElementById('scrollSentinel')),
 
@@ -2713,10 +2713,10 @@ const UI = {
   },
 
   /**
-   * Restore the shared chrome that tool pages hide. This runs at the start of
-   * every render so all main views get it, including renderHomeScreens()
-   * which returns before the old restoration block. Tool pages re-apply
-   * their own state immediately afterwards.
+   * Restore the shared chrome that tool pages hide (including the header
+   * subtitle). This runs at the start of every render so all main views get
+   * it, including renderHomeScreens() which returns before the old
+   * restoration block. Tool pages re-apply their own state afterwards.
    */
   restoreMainChrome() {
     document.getElementById('mainTabs')?.classList.remove('is-hidden');
@@ -2739,7 +2739,7 @@ const UI = {
     document.querySelector('.list-viewport')?.classList.remove('is-hidden');
     document.getElementById('sectionTitle')?.classList.remove('is-hidden');
     App.dom.header.textContent = App.dom.defaultHeader;
-    App.dom.headerCount.textContent = '';
+    this.updateHeaderSubtitle();
 
     const headerRight = document.querySelector('.header-right');
     headerRight?.querySelectorAll('a:not(#appfilterLink)')?.forEach((a) =>
@@ -3994,11 +3994,9 @@ const UI = {
     });
   },
 
-  updateHeader() {
-    const total = App.state.currentData.length;
-
-    // Text
-    const countEl = App.dom.headerCount;
+  /** Restore the shared "Updated …" subtitle used by all main views. */
+  updateHeaderSubtitle() {
+    const subtitleEl = App.dom.headerSubtitle;
     if (App.state.lastUpdate) {
       const timeAgo = Utils.timeAgo(App.state.lastUpdate);
       const fullDate = new Date(App.state.lastUpdate + 'T00:00:00')
@@ -4006,11 +4004,18 @@ const UI = {
       const displayText = timeAgo === 'Today'
         ? 'Updated today'
         : `Updated ${timeAgo} ago`;
-      countEl.innerHTML =
+      subtitleEl.innerHTML =
         `<a href="https://github.com/LawnchairLauncher/lawnicons-requests-dashboard" target="_blank" title="Last update: ${fullDate}">${displayText}</a>`;
     } else {
-      countEl.innerHTML = '';
+      subtitleEl.innerHTML = '';
     }
+  },
+
+  updateHeader() {
+    const total = App.state.currentData.length;
+
+    // Text
+    this.updateHeaderSubtitle();
 
     // Checkbox
     const hc = App.dom.headerCheck;
@@ -4329,7 +4334,7 @@ const UI = {
     App.dom.sentinel.style.display = 'none';
 
     App.dom.header.textContent = 'Low quality icons';
-    App.dom.headerCount.textContent = '';
+    App.dom.headerSubtitle.textContent = '';
     App.dom.sbBar.classList.remove('visible');
     App.dom.container.className = '';
 
@@ -4356,7 +4361,7 @@ const UI = {
     const count = App.state.lowQualityData
       ? App.state.lowQualityData.length
       : 0;
-    App.dom.headerCount.textContent = `${count} icon${count !== 1 ? 's' : ''}`;
+    App.dom.headerSubtitle.textContent = `${count} icon${count !== 1 ? 's' : ''}`;
     headerRight?.querySelectorAll('a')?.forEach((a) =>
       a.classList.add('is-hidden')
     );
@@ -4383,7 +4388,7 @@ const UI = {
         const data = /** @type {ReviewIssues[]} */ (d);
         App.state.lowQualityData = data;
         const count = data.length;
-        App.dom.headerCount.textContent = `${count} icon${
+        App.dom.headerSubtitle.textContent = `${count} icon${
           count !== 1 ? 's' : ''
         }`;
         if (data.length === 0) {
@@ -4425,7 +4430,7 @@ const UI = {
       })
       .catch(() => {
         App.state.lowQualityData = [];
-        App.dom.headerCount.textContent = '0 icons';
+        App.dom.headerSubtitle.textContent = '0 icons';
         UI.updateLowQualityBadge();
       });
   },
@@ -4451,7 +4456,7 @@ const UI = {
     App.dom.sentinel.style.display = 'none';
 
     App.dom.header.textContent = 'Icon review';
-    App.dom.headerCount.textContent = 'Beta • Core checks only';
+    App.dom.headerSubtitle.textContent = 'Beta • Core checks only';
     App.dom.sbBar.classList.remove('visible');
     App.dom.container.className = '';
 
@@ -4936,7 +4941,7 @@ const UI = {
     const hasIcons = App.state.contribution.length > 0;
     if (!hasIcons) {
       document.getElementById('contributionCards')?.classList.add('is-hidden');
-      App.dom.headerCount.textContent = '0 icons';
+      App.dom.headerSubtitle.textContent = '0 icons';
       
       App.dom.container.innerHTML = `
         <div id="contributionDrop" class="empty-state">
@@ -4963,7 +4968,7 @@ const UI = {
     if (linkCount > 0) {
       parts.push(`${linkCount} link${linkCount !== 1 ? 's' : ''}`);
     }
-    App.dom.headerCount.textContent = parts.join(' \u2022 ') || '0 icons';
+    App.dom.headerSubtitle.textContent = parts.join(' \u2022 ') || '0 icons';
 
     const clearHtml = hasIcons
       ? `
@@ -5198,7 +5203,7 @@ const UI = {
     if (linkCount > 0) {
       parts.push(`${linkCount} link${linkCount !== 1 ? 's' : ''}`);
     }
-    App.dom.headerCount.textContent = parts.join(' \u2022 ') || '0 icons';
+    App.dom.headerSubtitle.textContent = parts.join(' \u2022 ') || '0 icons';
 
     return issueCounts;
   },
