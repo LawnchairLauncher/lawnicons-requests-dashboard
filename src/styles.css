@@ -440,7 +440,6 @@ button.input-icon.active {
   height: 88px;
   flex-shrink: 0;
   outline: none;
-  cursor: crosshair;
 }
 
 #priorityPie:focus-visible {
