@@ -5,6 +5,7 @@ declare global {
     DomainStats,
     ActivityStats[],
     RawPriorities,
+    Record<string, ContributorPoints>,
     ...Filter[],
   ];
 
@@ -30,6 +31,12 @@ declare global {
     '5'?: number;
     sum: number;
     count: number;
+  }
+
+  interface ContributorPoints {
+    earned: number;
+    spent: number;
+    balance: number;
   }
 
   interface AppEntry {
@@ -151,6 +158,10 @@ declare global {
     view: 'list' | 'grid';
     /** The current sorting key and direction (e.g., "req-desc"). */
     sort: string;
+    /** Sorting key and direction used by the contributor leaderboard. */
+    contributorSort: string;
+    /** Currently selected main tab. */
+    activeTab: 'requests' | 'screens' | 'contributors' | 'homescreens';
     /** The current search query string. */
     search: string;
     /** Whether the search query should be treated as a Regular Expression. */
@@ -211,6 +222,8 @@ declare global {
     activityStats: ActivityStats[];
     /** Ranked priority votes with derived sum/count totals. */
     prioritiesData: Record<string, PriorityVotes>;
+    /** Derived contributor balances from Lawnicons point files. */
+    contributorPoints: Record<string, ContributorPoints>;
     /** Numeric delta changes tracking trending items. */
     trendingDeltas: Record<string, number>;
     /** ISO timestamp or string representing the last data refresh. */

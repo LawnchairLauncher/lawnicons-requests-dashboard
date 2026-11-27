@@ -69,6 +69,7 @@ const CONFIG = {
     requestsGraphPath: 'assets/requests_graph.json',
     screensGraphPath: 'assets/screens_graph.json',
     prioritiesPath: 'assets/iconsyouneedmost.json',
+    contributorPointsPath: 'assets/contributor_points.json',
     setsStatsPath: 'assets/stats/sets_stats.json',
     domainStatsPath: 'assets/stats/domain_stats.json',
     activityStatsPath: 'assets/stats/activity_stats.json',
@@ -311,6 +312,7 @@ const ICONS = {
 const DEFAULTS = {
   view: 'list',
   sort: 'req-desc',
+  contributorSort: 'balance-desc',
   search: '',
   regex: false,
 };
@@ -415,9 +417,12 @@ const App = {
     domainStatsMode: 'requests',
     activityStats: [],
     prioritiesData: {},
+    /** @type {Record<string, ContributorPoints>} */
+    contributorPoints: {},
     trendingDeltas: {},
     lastUpdate: null,
     activeTab: 'requests',
+    contributorSort: DEFAULTS.contributorSort,
     screensData: {},
     requestsGraph: {},
     screenSort: 'req-desc',
@@ -929,6 +934,74 @@ const Templates = {
         <svg><use href="#ic-search"/></svg>
         <h3>No requests found</h3>
         <p>Try adjusting your search or filters.</p>
+      </div>
+    `;
+  },
+
+  /**
+   * @param {{ rank: number, nick: string, earned: number, spent: number, balance: number, icons: number }[]} rows
+   * @param {string} sort
+   * @returns {string}
+   */
+  contributorLeaderboard(rows, sort) {
+    const escape = (/** @type {string} */ value) => String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+    const points = (/** @type {number} */ value) =>
+      `${NUMBER_FORMATTER.format(value)} ${value === 1 ? 'point' : 'points'}`;
+
+    const columns = [
+      { key: 'rank', label: '#', numeric: false, sortable: false },
+      { key: 'nick', label: 'Contributor', numeric: false, sortable: true },
+      { key: 'icons', label: 'Icons', numeric: true, sortable: true },
+      { key: 'earned', label: 'Earned', numeric: true, sortable: true },
+      { key: 'spent', label: 'Spent', numeric: true, sortable: true },
+      { key: 'balance', label: 'Balance', numeric: true, sortable: true },
+    ];
+    const [activeKey, activeDir] = sort.split('-');
+
+    const header = columns.map((col) => {
+      if (!col.sortable) {
+        return `<div class="col rank" role="columnheader" title="Position by balance">${col.label}</div>`;
+      }
+      const isActive = col.key === activeKey;
+      const ariaSort = isActive
+        ? activeDir === 'asc' ? 'ascending' : 'descending'
+        : 'none';
+      return `
+        <div class="col ${col.key}${col.numeric ? ' num' : ''}"
+             data-action="contributor-sort" data-key="${col.key}"
+             tabindex="0" role="columnheader" aria-sort="${ariaSort}"
+             title="Sort by ${col.label}">
+          ${col.label}
+        </div>
+      `;
+    }).join('');
+
+    const body = rows.length
+      ? rows.map((row) => `
+        <div class="contributor-row" role="row">
+          <div class="col rank${row.rank <= 3 ? ` top-${row.rank}` : ''}" role="cell">${row.rank}</div>
+          <div class="col nick" role="cell">
+            <a class="contributor-link app-name"
+               href="https://github.com/${encodeURIComponent(row.nick)}"
+               target="_blank" rel="noopener noreferrer">${escape(row.nick)}</a>
+          </div>
+          <div class="col num icons" role="cell">${NUMBER_FORMATTER.format(row.icons)}</div>
+          <div class="col num earned" role="cell">${points(row.earned)}</div>
+          <div class="col num spent" role="cell">${points(row.spent)}</div>
+          <div class="col num balance" role="cell">${points(row.balance)}</div>
+        </div>
+      `).join('')
+      : '<div class="contributor-empty" role="row">No contributor points yet.</div>';
+
+    return `
+      <div class="contributor-table" role="table" aria-label="Contributor points leaderboard">
+        <div class="contributor-header" role="row">${header}</div>
+        ${body}
       </div>
     `;
   },
@@ -1988,6 +2061,7 @@ const Data = {
         domainStats,
         activityStats,
         prioritiesData,
+        contributorPoints,
         ...filterObjects
       ] = await Promise.all([
         this.fetchJson(CONFIG.data.endpoint),
@@ -1995,6 +2069,7 @@ const Data = {
         this.fetchJson(CONFIG.data.domainStatsPath, {}),
         this.fetchJson(CONFIG.data.activityStatsPath, []),
         this.fetchJson(CONFIG.data.prioritiesPath, {}),
+        this.fetchJson(CONFIG.data.contributorPointsPath, {}),
         ...CONFIG.data.filters.map((id) => this.fetchFilterData(id)),
       ]);
 
@@ -2004,6 +2079,7 @@ const Data = {
       App.state.activityStats = activityStats;
       App.state.lastUpdate = json.lastUpdate;
       App.state.prioritiesData = this.normalizePriorities(prioritiesData);
+      App.state.contributorPoints = contributorPoints || {};
 
       App.state.idMap = new Map();
       App.data.forEach((app) => App.state.idMap.set(app.componentName, app));
@@ -2030,7 +2106,7 @@ const Data = {
     const needsGraphData =
       (App.state.regexMode && query.length > 0) ||
       /^scr-\d+$/.test(query) ||
-      App.state.view === 'screens' ||
+      (App.state.view === 'screens' && App.state.activeTab !== 'contributors') ||
       App.state.activeTab === 'homescreens';
 
     if (needsGraphData) {
@@ -2555,11 +2631,6 @@ const Data = {
         }
       }
     }
-    if (params.has('sort')) {
-      App.state.sort = params.get('sort') || DEFAULTS.sort;
-      const opt = UI.sortOptions.find((o) => o.value === App.state.sort);
-      App.dom.sortLabel.textContent = opt ? opt.label : App.state.sort;
-    }
     if (params.has('regex')) {
       App.state.regexMode = true;
       App.dom.regexBtn.classList.add('active');
@@ -2581,8 +2652,20 @@ const Data = {
     }
     if (params.has('tab')) {
       const t = params.get('tab');
-      if (t === 'requests' || t === 'homescreens') {
+      if (t === 'requests' || t === 'contributors' || t === 'homescreens') {
         App.state.activeTab = t;
+      }
+    }
+    if (params.has('sort')) {
+      const value = params.get('sort') || '';
+      if (App.state.activeTab === 'contributors') {
+        const opt = UI.contributorSortOptions.find((o) => o.value === value);
+        App.state.contributorSort = opt ? opt.value : DEFAULTS.contributorSort;
+        App.dom.sortLabel.textContent = opt ? opt.label : App.state.contributorSort;
+      } else {
+        App.state.sort = value || DEFAULTS.sort;
+        const opt = UI.sortOptions.find((o) => o.value === App.state.sort);
+        App.dom.sortLabel.textContent = opt ? opt.label : App.state.sort;
       }
     }
   },
@@ -2595,7 +2678,13 @@ const Data = {
     else params.delete('q');
     if (s.view !== DEFAULTS.view) params.set('view', s.view);
     else params.delete('view');
-    if (s.sort !== DEFAULTS.sort) params.set('sort', s.sort);
+    const activeSort =
+      s.activeTab === 'contributors' ? s.contributorSort : s.sort;
+    const defaultSort =
+      s.activeTab === 'contributors'
+        ? DEFAULTS.contributorSort
+        : DEFAULTS.sort;
+    if (activeSort !== defaultSort) params.set('sort', activeSort);
     else params.delete('sort');
     if (s.regexMode) params.set('regex', '1');
     else params.delete('regex');
@@ -2675,6 +2764,19 @@ const UI = {
     { value: 'easy-asc', label: 'Hardest' },
   ],
 
+  contributorSortOptions: [
+    { value: 'balance-desc', label: 'Highest balance' },
+    { value: 'balance-asc', label: 'Lowest balance' },
+    { value: 'icons-desc', label: 'Most icons' },
+    { value: 'icons-asc', label: 'Least icons' },
+    { value: 'earned-desc', label: 'Most earned' },
+    { value: 'earned-asc', label: 'Least earned' },
+    { value: 'spent-desc', label: 'Most spent' },
+    { value: 'spent-asc', label: 'Least spent' },
+    { value: 'nick-asc', label: 'Contributor (A-Z)' },
+    { value: 'nick-desc', label: 'Contributor (Z-A)' },
+  ],
+
   syncTabState() {
     const activeTab = App.state.activeTab === 'screens'
       ? 'requests'
@@ -2695,6 +2797,7 @@ const UI = {
   restoreMainChrome() {
     document.getElementById('mainTabs')?.classList.remove('is-hidden');
     document.querySelector('.controls')?.classList.remove('is-hidden');
+    document.getElementById('viewBtn')?.classList.remove('is-hidden');
     document.getElementById('lowQualityBtn')?.parentElement
       ?.classList.remove('is-hidden');
     const contributionCountBadge = document.getElementById(
@@ -2795,7 +2898,7 @@ const UI = {
         const tabName = tab.dataset.tab;
         App.state.activeTab = tabName;
         
-        if (tabName === 'homescreens') {
+        if (tabName === 'homescreens' || tabName === 'contributors') {
           App.state.view = 'list';
           App.dom.viewLabel.textContent = 'Table';
         }
@@ -3273,6 +3376,12 @@ const UI = {
           return;
         }
 
+        if (action === 'contributor-sort') {
+          const key = actionEl.dataset.key;
+          if (key) this.toggleContributorSort(key);
+          return;
+        }
+
         if (action === 'screen-sort-option') {
           const value = actionEl.dataset.value;
           if (!value) return;
@@ -3517,6 +3626,16 @@ const UI = {
 
         if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
 
+        if (
+          target.dataset.action === 'contributor-sort' &&
+          (e.key === 'Enter' || e.key === ' ')
+        ) {
+          e.preventDefault();
+          const key = target.dataset.key;
+          if (key) this.toggleContributorSort(key);
+          return;
+        }
+
         // --- 1. Selection & Actions (Enter/Space) ---
         if (!(e.ctrlKey || e.metaKey) && e.key === 'Enter' || e.key === ' ') {
           // A. Row/Card Selection
@@ -3668,6 +3787,11 @@ const UI = {
     if (App.state.contributionActive) {
       document.getElementById('sectionTitle')?.classList.add('is-hidden');
       await this.renderContributionMode();
+      return;
+    }
+
+    if (App.state.activeTab === 'contributors') {
+      this.renderContributorPoints();
       return;
     }
 
@@ -3868,6 +3992,27 @@ const UI = {
     });
 
     container.style.height = `${Math.max(...colHeights)}px`;
+  },
+
+  /**
+   * @param {string} key
+   */
+  toggleContributorSort(key) {
+    const defaults = {
+      nick: 'asc',
+      earned: 'desc',
+      spent: 'desc',
+      balance: 'desc',
+      icons: 'desc',
+    };
+    if (!Object.hasOwn(defaults, key)) return;
+
+    const [currKey, currDir] = App.state.contributorSort.split('-');
+    const dir = currKey === key
+      ? currDir === 'asc' ? 'desc' : 'asc'
+      : defaults[/** @type {keyof typeof defaults} */ (key)];
+    App.state.contributorSort = `${key}-${dir}`;
+    this.render();
   },
 
   showSortMenu() {
@@ -4165,6 +4310,74 @@ const UI = {
 
       App.dom.container.appendChild(card);
     });
+  },
+
+  renderContributorPoints() {
+    App.state.homeRenderId = (App.state.homeRenderId || 0) + 1;
+
+    App.dom.container.innerHTML = '';
+    App.dom.container.removeAttribute('style');
+    App.dom.container.className = 'contributor-leaderboard';
+
+    document.querySelector('.controls')?.classList.add('is-hidden');
+    document.getElementById('copyDynamicMatchesBtn')?.classList.add('is-hidden');
+    App.dom.viewBtn.classList.add('is-hidden');
+    App.dom.sortBtn.classList.add('is-hidden');
+    App.dom.screenSortBtn.classList.add('is-hidden');
+    App.dom.listHeader.style.display = 'none';
+    App.dom.sentinel.style.display = 'none';
+    App.dom.sbBar.classList.remove('visible');
+
+    const countEl = document.getElementById('contributorsCount');
+    if (countEl) {
+      countEl.textContent = String(
+        Object.keys(App.state.contributorPoints || {}).length,
+      );
+    }
+
+    const [key, dir] = App.state.contributorSort.split('-');
+    const rows = Object.entries(App.state.contributorPoints || {}).map(
+      ([nick, points]) => {
+        const earned = Number(points?.earned) || 0;
+        return {
+          rank: 0,
+          nick,
+          earned,
+          spent: Number(points?.spent) || 0,
+          balance: Number(points?.balance) || 0,
+          icons: Math.floor(earned / 5),
+        };
+      },
+    );
+
+    const rankByNick = new Map(
+      [...rows]
+        .sort((a, b) => b.balance - a.balance || a.nick.localeCompare(b.nick))
+        .map((row, index) => /** @type {[string, number]} */ ([row.nick, index + 1])),
+    );
+    rows.forEach((row) => {
+      row.rank = rankByNick.get(row.nick) || 0;
+    });
+
+    const sorters = {
+      nick: (/** @type {typeof rows[number]} */ a, /** @type {typeof rows[number]} */ b) =>
+        a.nick.localeCompare(b.nick),
+      earned: (a, b) => a.earned - b.earned,
+      spent: (a, b) => a.spent - b.spent,
+      balance: (a, b) => a.balance - b.balance,
+      icons: (a, b) => a.icons - b.icons,
+    };
+    const sorter = sorters[/** @type {keyof typeof sorters} */ (key)] || sorters.balance;
+    rows.sort((a, b) => {
+      const result = sorter(a, b);
+      return (dir === 'asc' ? result : -result) || a.nick.localeCompare(b.nick);
+    });
+
+    App.dom.container.innerHTML = Templates.contributorLeaderboard(
+      rows,
+      App.state.contributorSort,
+    );
+    Data.syncUrlState();
   },
 
   renderHomeScreens() {

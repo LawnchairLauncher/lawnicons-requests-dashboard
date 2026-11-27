@@ -919,6 +919,88 @@ select:hover,
   align-items: center;
 }
 
+/* Contributor leaderboard */
+.contributor-leaderboard {
+  min-height: 240px;
+}
+
+.contributor-table {
+  min-width: 828px;
+}
+
+.contributor-header,
+.contributor-row {
+  display: grid;
+  grid-template-columns: 48px minmax(180px, 260px) 90px repeat(3, 120px);
+  align-items: center;
+  justify-content: start;
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+.contributor-header {
+  color: var(--on-surface);
+  font-weight: 700;
+}
+
+.contributor-header .col[data-action='contributor-sort'] {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.contributor-header .col[data-action='contributor-sort']:hover {
+  color: var(--primary);
+}
+
+.contributor-header .col[data-action='contributor-sort']:focus-visible {
+  outline: 1px solid var(--outline-variant);
+  outline-offset: 2px;
+}
+
+.contributor-header .col.rank,
+.contributor-row .col.rank {
+  color: var(--on-surface-variant);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.contributor-row .col.rank.top-1 {
+  color: var(--primary);
+}
+
+.contributor-row .col.rank.top-2,
+.contributor-row .col.rank.top-3 {
+  color: var(--on-surface);
+}
+
+.contributor-row:hover {
+  background-color: var(--surface-container-high);
+}
+
+.contributor-header .num,
+.contributor-row .num {
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+
+.contributor-link {
+  display: block;
+  text-decoration: none;
+}
+
+.contributor-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.contributor-empty {
+  padding: var(--space-xl);
+  color: var(--on-surface-variant);
+  text-align: center;
+}
+
 /* Home screens */
 .add-home-screen-card {
   display: flex;
@@ -2319,6 +2401,12 @@ input[type="checkbox"]:indeterminate::after {
     margin: 0 calc(-1 * var(--space-lg));
     padding: 0 var(--space-lg);
     -webkit-overflow-scrolling: touch;
+  }
+
+  .contributor-header,
+  .contributor-row {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
   }
 
   /* Grid */

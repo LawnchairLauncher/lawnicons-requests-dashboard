@@ -37,8 +37,8 @@ Excluded (non-goals):
 - **Data flow:** JSON/XML → `Data.init()` → `App.state` maps/indices → `Data.process()` → `UI.render()` / `UI.loadMore()` → `Templates` / DOM.
 
 ### Loading Phases
-- **Critical (before first render):** `requests.json`, `assets/filters/*.json`, `assets/stats/sets_stats.json`, `domain_stats.json`, `activity_stats.json`, `assets/iconsyouneedmost.json`, then `idMap`, `appTags`, `filterMetadata`.
-- **URL resolution:** `Data.loadUrlState()` runs before any render. If the URL genuinely needs graphs (`regex` with text, `q=scr-N`, `view=screens`, `tab=homescreens`), `Data.loadGraphData()` is awaited before `UI.init()`.
+- **Critical (before first render):** `requests.json`, `assets/filters/*.json`, `assets/stats/sets_stats.json`, `domain_stats.json`, `activity_stats.json`, `assets/iconsyouneedmost.json`, `assets/contributor_points.json`, then `idMap`, `appTags`, `filterMetadata`.
+- **URL resolution:** `Data.loadUrlState()` runs before any render. If the URL genuinely needs graphs (`regex` with text, `q=scr-N`, `view=screens` unless `tab=contributors`, `tab=homescreens`), `Data.loadGraphData()` is awaited before `UI.init()`.
 - **First paint:** `UI.init()` renders the first batch immediately after critical data (and required graphs) are ready.
 - **Deferred:** scheduled after the first frame via `requestIdleCallback` (fallback `setTimeout`): graph datasets, optional stats, review issues, and `appfilter.xml`. A single `UI.refreshAfterDeferredData()` updates cards/badges and re-renders while preserving `renderedCount` and scroll position.
 - **On demand:** `excluded_packages.json` is fetched and memoized by `Data.getDynamicMatches()`. Failures in optional datasets are non-fatal.
@@ -112,16 +112,16 @@ Each filter file is an object with `label`, `description`, and an array under th
 | --- | --- |
 | `q` | Search text, regex, or `scr-N` query |
 | `view` | `list` (default), `grid`, or `screens` |
-| `sort` | Any key from `UI.sortOptions`; screens view uses `UI.screenSortOptions` |
+| `sort` | Any key from `UI.sortOptions`; screens view uses `UI.screenSortOptions`, and `tab=contributors` uses `UI.contributorSortOptions` |
 | `regex` | `1` enables regex mode |
 | `filters` | Comma-separated active filter IDs |
 | `page` | `low-quality-icons`, `contribution-plan`, `icon-review` |
-| `tab` | `requests` (default) or `homescreens` |
+| `tab` | `requests` (default), `contributors`, or `homescreens` |
 
 There is no `geo` URL parameter. Geo information is derived from `requests_graph` into `App.state._geoPrefixById` and shown as row prefixes; there is no separate geo-batch mode.
 
 ### UI Modes
-- **Main tabs:** `requests` and `homescreens`. `view=screens` also selects the screens presentation.
+- **Main tabs:** `requests`, `contributors`, and `homescreens`. `view=screens` also selects the screens presentation. The contributor tab renders a sortable leaderboard from `assets/contributor_points.json`, defaulting to `balance-desc`; `Icons` is derived as `earned / 5`. The leading position is the rank by balance and stays fixed when another column is sorted.
 - **Views:** `list`, `grid`, `screens` (separate `screenSort` state).
 - **Tool pages:** low-quality QA, contribution plan, icon review. These replace the main content; `page` records the active one.
 - **Contribution plan:** stored in `localStorage` keys `lawnicons_contribution`, `lawnicons_contribution_overrides`, `lawnicons_contribution_active`; entries receive the `plan` tag.
