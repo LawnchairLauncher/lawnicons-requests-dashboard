@@ -292,18 +292,10 @@ def run_pipeline(folder_path: Path, appfilter_path: Path, image_out_path: Path,
     existing_supported = parse_existing_supported_json(supported_path)
 
     all_new_components = set()
-    unknown_counter = 0
 
-    for zip_name, zip_components, apps in parse_zips(
+    for _zip_name, zip_components, apps in parse_zips(
         zip_files, apps, image_out_path, output_path.parent, appfilter_path
     ):
-        issue_num = input(f"Issue number for {zip_name} (e.g. 1234): ").strip().lstrip('#')
-        if issue_num:
-            issue_key = f"#{issue_num}"
-        else:
-            unknown_counter += 1
-            issue_key = f"#???{unknown_counter}"
-        update_supported_issues(output_path.parent, issue_key, list(zip_components))
         all_new_components |= zip_components
 
     if appfilter_path.exists():
@@ -381,22 +373,6 @@ def update_requests_graph(output_dir: Path, component_ids: list[str]):
     
     with open(graph_path, 'w') as f:
         json.dump(graph, f, indent=2)
-
-def update_supported_issues(output_dir: Path, issue_name: str, component_ids: list[str]):
-    issues_path = output_dir / "supported_issues.json"
-    if issues_path.exists():
-        with open(issues_path) as f:
-            issues = json.load(f)
-    else:
-        issues = {}
-    
-    issues[issue_name] = list(set(component_ids))
-    
-    issues_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(issues_path, 'w') as f:
-        json.dump(issues, f, indent=2)
-    
-    print(f"Updated supported_issues.json with {issue_name}: {len(component_ids)} components")
 
 # -------------------------------------------------------
 # MAIN

@@ -38,7 +38,7 @@ Excluded (non-goals):
 
 ### Loading Phases
 - **Critical (before first render):** `requests.json`, `assets/filters/*.json`, `assets/stats/sets_stats.json`, `domain_stats.json`, `activity_stats.json`, `assets/iconsyouneedmost.json`, then `idMap`, `appTags`, `filterMetadata`.
-- **URL resolution:** `Data.loadUrlState()` runs before any render. If the URL genuinely needs graphs (`regex` with text, `q=scr-N`, `q=#N`, `view=screens`, `tab=homescreens`), `Data.loadGraphData()` is awaited before `UI.init()`.
+- **URL resolution:** `Data.loadUrlState()` runs before any render. If the URL genuinely needs graphs (`regex` with text, `q=scr-N`, `view=screens`, `tab=homescreens`), `Data.loadGraphData()` is awaited before `UI.init()`.
 - **First paint:** `UI.init()` renders the first batch immediately after critical data (and required graphs) are ready.
 - **Deferred:** scheduled after the first frame via `requestIdleCallback` (fallback `setTimeout`): graph datasets, optional stats, review issues, and `appfilter.xml`. A single `UI.refreshAfterDeferredData()` updates cards/badges and re-renders while preserving `renderedCount` and scroll position.
 - **On demand:** `excluded_packages.json` is fetched and memoized by `Data.getDynamicMatches()`. Failures in optional datasets are non-fatal.
@@ -48,7 +48,6 @@ Excluded (non-goals):
 - `assets/filters/{supported,redesign,easy,foss,nameinuse,match,stale}.json`: filter membership + metadata. `plan` is synthesized in code and persisted in `localStorage`; `unlabeled` is computed at runtime. A `plan.json` 404 is expected.
 - `assets/requests_graph.json`: component → neighboring components (geo regex/screen matching).
 - `assets/screens_graph.json`: screen ID (`scr-N`) → component list.
-- `assets/supported_issues.json`: GitHub issue key (`#N`) → component list.
 - `assets/home_screens/entries.json` and `images/*.webp`: home-screen cards.
 - `assets/appfilter.xml`: canonical existing icon list (`ComponentInfo{...}` items).
 - `assets/excluded_packages.json`: `dynamic` and `dead` package lists for dynamic-match commands.
@@ -109,7 +108,7 @@ Each filter file is an object with `label`, `description`, and an array under th
 
 | Parameter | Meaning |
 | --- | --- |
-| `q` | Search text, regex, `scr-N`, or `#N` query |
+| `q` | Search text, regex, or `scr-N` query |
 | `view` | `list` (default), `grid`, or `screens` |
 | `sort` | Any key from `UI.sortOptions`; screens view uses `UI.screenSortOptions` |
 | `regex` | `1` enables regex mode |
@@ -143,7 +142,7 @@ Forbidden:
 Functional:
 - URL parameters are the source of truth on page load for `q`, `view`, `sort`, `regex`, `filters`, `page`, and `tab`.
 - `App.state.selected` (keyed by `componentName`) must persist through search, filter, sort, view, tool-page changes, and the deferred-data refresh.
-- Regex mode, special queries (`scr-N`, `#N`), and screens/home-screen deep links must wait for their graph data before the first render; other URLs must not wait.
+- Regex mode, `scr-N` queries, and screens/home-screen deep links must wait for their graph data before the first render; other URLs must not wait.
 - Invalid regex input must degrade safely to zero results, not crash the app.
 - Optional-data fetch failures must be non-fatal and leave usable defaults in `App.state`.
 
@@ -158,7 +157,7 @@ Architectural:
 - String HTML fragments live in `Templates`; direct DOM creation is acceptable for small controls, observers, tooltips, and focus plumbing.
 - Incremental rendering builds one HTML string per batch, parses it once, and appends through a `DocumentFragment` (`UI.loadMore()`).
 - `App.state.idMap` keeps O(1) lookup for all loaded apps.
-- `App.state.appTags`, `filterMetadata`, `existingSvgs`, `_geoPrefixById`, `_issueByComponent`, and analytics maps are the canonical lookup sources after initialization.
+- `App.state.appTags`, `filterMetadata`, `existingSvgs`, `_geoPrefixById`, and analytics maps are the canonical lookup sources after initialization.
 - Deferred datasets trigger exactly one coordinated refresh (`UI.refreshAfterDeferredData()`), never separate per-dataset re-renders.
 
 Performance:
@@ -202,7 +201,7 @@ Error Handling:
   - Confirm first rows appear before graph/XML requests; confirm deep links that need graphs still wait for them.
   - Verify shift-click range selection and keyboard selection in list and grid views.
   - Verify URL restore for `q`, `view`, `sort`, `regex`, `filters`, `page`, and `tab`.
-  - Verify plain search, invalid regex, `scr-N`, `#N`, and graph-backed domain regex queries.
+  - Verify plain search, invalid regex, `scr-N`, and graph-backed domain regex queries.
   - Verify deferred data refresh preserves selection, already-rendered rows, and scroll position.
   - Verify screens view sorting, home-screen cards/images, and tab switching.
   - Verify low-quality badge, contribution plan persistence/import, and icon-review linting.
