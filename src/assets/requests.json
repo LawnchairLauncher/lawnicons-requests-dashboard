@@ -1,6 +1,6 @@
 {
-  "count": 32456,
-  "lastUpdate": "2026-11-27",
+  "count": 32446,
+  "lastUpdate": "2026-11-28",
   "apps": [
     {
       "drawable": "manus",
@@ -27339,7 +27339,7 @@
       "label": "Zombie Hill Racing: Earn Climb",
       "componentName": "sk.inlogic.hillzombieracingearntodie/com.unity3d.player.UnityPlayerActivity",
       "installs": "10,000,000+",
-      "roi_score": 1890,
+      "roi_score": 1889,
       "priority": "Low"
     },
     {
@@ -56859,15 +56859,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "cctalk",
-      "requestCount": 3,
-      "firstAppearance": 1722925088.0,
-      "lastRequested": 1764255730.0,
-      "label": "CCtalk",
-      "componentName": "com.hujiang.cctalk/com.hujiang.cctalk.LoadingActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "flipclock_2",
       "requestCount": 3,
       "firstAppearance": 1726644737.0,
@@ -56993,16 +56984,6 @@
       "lastRequested": 1764869543.0,
       "label": "AnkiDroid Companion",
       "componentName": "com.ankidroid.companion/com.ankidroid.companion.MainActivity",
-      "roi_score": 0
-    },
-    {
-      "drawable": "next_track",
-      "requestCount": 3,
-      "firstAppearance": 1725556021.0,
-      "lastRequested": 1764290485.0,
-      "label": "Next Track",
-      "componentName": "com.flar2.volumeskip/a.b",
-      "installs": "100,000+",
       "roi_score": 0
     },
     {
@@ -63894,11 +63875,11 @@
       "drawable": "flight_pro_icon_pack",
       "requestCount": 3,
       "firstAppearance": 1718678538.0,
-      "lastRequested": 1772081564.0,
+      "lastRequested": 1795862825.8583453,
       "label": "Flight Pro - Icon Pack",
       "componentName": "com.natewren.flight/com.natewren.dashboard.SplashScreen",
       "installs": "50,000+",
-      "roi_score": 202,
+      "roi_score": 259,
       "priority": "Low"
     },
     {
@@ -77425,9 +77406,9 @@
       "componentName": "com.sk.redconnect/com.sk.redconnect.layout.activity.IntroActivity",
       "requestCount": 2,
       "firstAppearance": 1771517642.0,
-      "lastRequested": 1772062140.0,
+      "lastRequested": 1795862819.1847937,
       "installs": "1,000,000+",
-      "roi_score": 1466,
+      "roi_score": 2568,
       "priority": "Low"
     },
     {
@@ -86880,24 +86861,6 @@
       "roi_score": 0
     },
     {
-      "drawable": "cool_reader",
-      "requestCount": 2,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1764255730.0,
-      "label": "Cool Reader",
-      "componentName": "org.coolreader.fdroid/org.coolreader.CoolReader",
-      "roi_score": 0
-    },
-    {
-      "drawable": "degrees_of_lewdity",
-      "requestCount": 2,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1764255730.0,
-      "label": "Degrees of Lewdity",
-      "componentName": "com.vrelnir.DegreesOfLewdityWE/com.vrelnir.DegreesOfLewdityWE.MainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "hervormd_putten",
       "requestCount": 2,
       "firstAppearance": 1745020800.0,
@@ -90357,7 +90320,7 @@
       "label": "Slovnaft Move",
       "componentName": "sk.slovnaft.move/hu.mol.core.controller.splash.SplashActivity",
       "installs": "500,000+",
-      "roi_score": 1013,
+      "roi_score": 1012,
       "priority": "Low"
     },
     {
@@ -90628,9 +90591,9 @@
       "componentName": "com.epidgames.trickcalrevive/com.google.firebase.MessagingUnityPlayerActivity",
       "requestCount": 2,
       "firstAppearance": 1771517642.0,
-      "lastRequested": 1772062140.0,
-      "installs": "500,000+",
-      "roi_score": 114,
+      "lastRequested": 1795862824.7079248,
+      "installs": "1,000,000+",
+      "roi_score": 256,
       "priority": "Low"
     },
     {
@@ -118709,7 +118672,7 @@
       "label": "eKool",
       "componentName": "eu.ekool.app/eu.ekool.app.MainActivity",
       "installs": "100,000+",
-      "roi_score": 1642,
+      "roi_score": 1641,
       "priority": "Low"
     },
     {
@@ -125171,15 +125134,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "fastguard",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1764257104.0,
-      "label": "FastGuard",
-      "componentName": "org.chromium.webapk.a0fd0c55f74ea2336_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "savo_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -125472,15 +125426,6 @@
       "installs": "100,000+",
       "roi_score": 103,
       "priority": "Low"
-    },
-    {
-      "drawable": "vos",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1764265243.0,
-      "label": "VOS",
-      "componentName": "com.vos.app/com.qusion.vos.ui.launch.LaunchActivity",
-      "roi_score": 0
     },
     {
       "drawable": "voyo_2",
@@ -129490,9 +129435,9 @@
       "componentName": "com.d4rk.lowbrightness/com.d4rk.lowbrightness.app.main.ui.MainActivity",
       "requestCount": 1,
       "firstAppearance": 1772073224.0,
-      "lastRequested": 1772073224.0,
-      "installs": "1,000+",
-      "roi_score": 26,
+      "lastRequested": 1795862818.2491028,
+      "installs": "5,000+",
+      "roi_score": 51,
       "priority": "Low"
     },
     {
@@ -148550,15 +148495,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "mangafire",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1764294623.0,
-      "label": "MangaFire",
-      "componentName": "org.chromium.webapk.a8031955ee1d8b74a_v2/org.chromium.webapk.shell_apk.h2o.H2OOpaqueMainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "network_travels_2",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -150374,16 +150310,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "pocket_mortys",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1764257104.0,
-      "label": "Pocket Mortys",
-      "componentName": "com.turner.pocketmorties/com.braze.unity.prime31compatible.BrazeUnityPlayerActivity",
-      "installs": "10,000,000+",
-      "roi_score": 0
-    },
-    {
       "drawable": "the_ball_blast_colorful_bricks_3d",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -151174,15 +151100,6 @@
       "priority": "Low"
     },
     {
-      "drawable": "karta_vyhod",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1764265243.0,
-      "label": "Karta v\u00fdhod",
-      "componentName": "sk.moebelix.ccapp/at.xxxlutz.ccapp.MainActivity",
-      "roi_score": 0
-    },
-    {
       "drawable": "kosice_peace_marathon",
       "requestCount": 1,
       "firstAppearance": 1745020800.0,
@@ -151247,15 +151164,6 @@
       "installs": "5,000,000+",
       "roi_score": 27329,
       "priority": "High"
-    },
-    {
-      "drawable": "the_stoic",
-      "requestCount": 1,
-      "firstAppearance": 1745020800.0,
-      "lastRequested": 1764265243.0,
-      "label": "The Stoic",
-      "componentName": "rocks.tommylee.apps.dailystoicism/rocks.tommylee.apps.dailystoicism.ui.splash.SplashActivity",
-      "roi_score": 0
     },
     {
       "drawable": "ipsy_2",
@@ -164986,9 +164894,9 @@
       "componentName": "com.launcher.plauncher/com.p.launcher.Launcher",
       "requestCount": 1,
       "firstAppearance": 1772081564.0,
-      "lastRequested": 1772081564.0,
+      "lastRequested": 1795862820.1996326,
       "installs": "1,000,000+",
-      "roi_score": 95,
+      "roi_score": 168,
       "priority": "Low"
     },
     {
@@ -165091,8 +164999,7 @@
       "requestCount": 1,
       "firstAppearance": 1772042754.0,
       "lastRequested": 1772042754.0,
-      "roi_score": 23,
-      "priority": "Low"
+      "roi_score": 0
     },
     {
       "drawable": "spill_it_2",
@@ -165100,9 +165007,9 @@
       "componentName": "com.custom.spillit/com.unity3d.player.UnityPlayerActivity",
       "requestCount": 1,
       "firstAppearance": 1772042754.0,
-      "lastRequested": 1772042754.0,
+      "lastRequested": 1795862821.2584956,
       "installs": "10,000,000+",
-      "roi_score": 2028,
+      "roi_score": 3581,
       "priority": "Low"
     },
     {
@@ -165111,9 +165018,9 @@
       "componentName": "com.leanderoid.spoteq_15equalizerbands/com.leanderoid.spoteq_15equalizerbands.SetupEqActivity",
       "requestCount": 1,
       "firstAppearance": 1772042754.0,
-      "lastRequested": 1772042754.0,
-      "installs": "500,000+",
-      "roi_score": 74,
+      "lastRequested": 1795862822.6142266,
+      "installs": "1,000,000+",
+      "roi_score": 168,
       "priority": "Low"
     },
     {
@@ -275663,7 +275570,7 @@
       "requestCount": 1,
       "firstAppearance": 1787812968.0,
       "lastRequested": 1787812968.0,
-      "roi_score": 488,
+      "roi_score": 487,
       "priority": "Low",
       "installs": "1,000,000+"
     },

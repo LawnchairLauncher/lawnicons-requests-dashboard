@@ -1,8 +1,8 @@
 {
   "com": {
-    "requests": 22420,
+    "requests": 22415,
     "done": 15949,
-    "total": 38369,
+    "total": 38364,
     "global": 0,
     "global_installs": 0
   },
@@ -35,9 +35,9 @@
     "global_installs": 12715869291
   },
   "org": {
-    "requests": 1535,
+    "requests": 1532,
     "done": 1302,
-    "total": 2837,
+    "total": 2834,
     "global": 0,
     "global_installs": 0
   },
@@ -253,8 +253,8 @@
   },
   "dev": {
     "requests": 164,
-    "done": 162,
-    "total": 326,
+    "done": 163,
+    "total": 327,
     "global": 0,
     "global_installs": 0
   },
@@ -286,19 +286,19 @@
     "global": 0,
     "global_installs": 0
   },
-  "sk": {
-    "requests": 209,
-    "done": 24,
-    "total": 233,
-    "global": 186,
-    "global_installs": 748120050
-  },
   "by": {
     "requests": 215,
     "done": 17,
     "total": 232,
     "global": 191,
     "global_installs": 6271083100
+  },
+  "sk": {
+    "requests": 208,
+    "done": 24,
+    "total": 232,
+    "global": 186,
+    "global_installs": 748120050
   },
   "tw": {
     "requests": 189,
@@ -1105,13 +1105,6 @@
     "global": 0,
     "global_installs": 0
   },
-  "rocks": {
-    "requests": 6,
-    "done": 9,
-    "total": 15,
-    "global": 0,
-    "global_installs": 0
-  },
   "yio": {
     "requests": 14,
     "done": 1,
@@ -1150,6 +1143,13 @@
   "money": {
     "requests": 4,
     "done": 10,
+    "total": 14,
+    "global": 0,
+    "global_installs": 0
+  },
+  "rocks": {
+    "requests": 5,
+    "done": 9,
     "total": 14,
     "global": 0,
     "global_installs": 0
