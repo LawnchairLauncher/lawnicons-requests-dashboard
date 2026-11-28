@@ -332,6 +332,9 @@ const COMPACT_NUMBER_FORMATTER = new Intl.NumberFormat(
 );
 /** @type {Intl.NumberFormat} */
 const NUMBER_FORMATTER = new Intl.NumberFormat();
+/** Keep in sync with --secondary-rgb in styles.css. */
+const SECONDARY_ACCENT_RGB = [188, 199, 219];
+const SECONDARY_ACCENT = SECONDARY_ACCENT_RGB.join(', ');
 
 /** @typedef {{ key: string, label: string, short: string, colorVar: string }} PrioritySlice */
 /** @typedef {PrioritySlice & { count: number, color: string }} PriorityChartEntry */
@@ -940,11 +943,10 @@ const Templates = {
   },
 
   /**
-   * @param {{ rank: number, nick: string, earned: number, spent: number, boosted: number, balance: number, icons: number }[]} rows
-   * @param {string} sort
+   * @param {{ rank: number, nick: string, earned: number, spent: number, boosted: number, balance: number, icons: number, accent: number[] }[]} rows
    * @returns {string}
    */
-  contributorLeaderboard(rows, sort) {
+  contributorLeaderboard(rows) {
     const escape = (/** @type {string} */ value) => String(value)
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
@@ -955,76 +957,65 @@ const Templates = {
       /** @type {number} */ value,
       /** @type {string} */ unit,
     ) => `${NUMBER_FORMATTER.format(value)} ${unit}${value === 1 ? '' : 's'}`;
-    const points = (/** @type {number} */ value) =>
-      `${Utils.compactNumber(value)} ${value === 1 ? 'point' : 'points'}`;
+    const compact = (/** @type {number} */ value) => Utils.compactNumber(value);
+    const accent = (/** @type {number[]} */ value) =>
+      Array.isArray(value) && value.length === 3 &&
+        value.every((v) => Number.isInteger(v) && v >= 0 && v <= 255)
+        ? value.join(', ')
+        : SECONDARY_ACCENT;
 
-    const columns = [
-      { key: 'rank', label: '#', numeric: false, sortable: false },
-      { key: 'nick', label: 'Contributor', numeric: false, sortable: true },
-      { key: 'earned', label: 'Earned', numeric: true, sortable: true },
-      { key: 'spent', label: 'Spent', numeric: true, sortable: true },
-      { key: 'boosted', label: 'Boosted', numeric: true, sortable: true },
-      { key: 'balance', label: 'Balance', numeric: true, sortable: true },
-    ];
-    const [activeKey, activeDir] = sort.split('-');
-
-    const header = columns.map((col) => {
-      if (!col.sortable) {
-        return `<div class="col rank" role="columnheader" title="Position by balance">${col.label}</div>`;
-      }
-      const isActive = col.key === activeKey;
-      const ariaSort = isActive
-        ? activeDir === 'asc' ? 'ascending' : 'descending'
-        : 'none';
-      return `
-        <div class="col ${col.key}${col.numeric ? ' num' : ''}"
-             data-action="contributor-sort" data-key="${col.key}"
-             tabindex="0" role="columnheader" aria-sort="${ariaSort}"
-             title="Sort by ${col.label}">
-          ${col.label}
-        </div>
-      `;
-    }).join('');
-
-    const body = rows.length
+    const cards = rows.length
       ? rows.map((row) => {
         const nick = escape(row.nick);
         const login = encodeURIComponent(row.nick);
         const profileUrl = `https://github.com/${login}`;
         const initial = escape(row.nick.charAt(0).toUpperCase());
+        const cardAccent = accent(row.accent);
+        const rankClass = row.rank <= 3 ? ` rank-${row.rank}` : '';
         return `
-        <a class="contributor-row" role="row" href="${profileUrl}"
+        <a class="contributor-card" style="--leaderboard-accent: ${cardAccent};"
+           href="${profileUrl}"
            target="_blank" rel="noopener noreferrer"
            aria-label="Open ${nick} on GitHub">
-          <div class="col rank${row.rank <= 3 ? ` top-${row.rank}` : ''}" role="cell">${row.rank}</div>
-          <div class="col nick" role="cell">
-            <span class="contributor-identity">
-              <img class="contributor-avatar"
-                   src="${CONFIG.data.avatarsPath}${login}.webp"
-                   alt="" width="56" height="56" loading="lazy"
-                   data-error-mode="show-next-fallback"
-                   onerror="Utils.handleImageError(event)" />
-              <span class="contributor-avatar-fallback is-hidden" aria-hidden="true">${initial}</span>
-              <span class="contributor-names">
-                <span class="contributor-link app-name">${nick}</span>
-                <span class="contributor-icons" title="${exactWithUnit(row.icons, 'icon')}">${Utils.compactNumber(row.icons)} ${row.icons === 1 ? 'icon' : 'icons'}</span>
-              </span>
+          <span class="contributor-card-art" aria-hidden="true">
+            <img class="contributor-avatar"
+                 src="${CONFIG.data.avatarsPath}${login}.webp"
+                 alt="" width="200" height="200" loading="lazy"
+                 data-error-mode="show-next-fallback"
+                 onerror="Utils.handleImageError(event)" />
+            <span class="contributor-avatar-fallback is-hidden">${initial}</span>
+          </span>
+          <span class="contributor-card-header">
+            <span class="contributor-card-top${rankClass}">
+              <span class="contributor-card-rank">#${row.rank}</span>
+              <span class="contributor-card-icons"
+                    title="${exactWithUnit(row.icons, 'icon')}">${compact(row.icons)} ${row.icons === 1 ? 'icon' : 'icons'}</span>
             </span>
-          </div>
-          <div class="col num earned" role="cell" title="${exactWithUnit(row.earned, 'point')}">${points(row.earned)}</div>
-          <div class="col num spent" role="cell" title="${exactWithUnit(row.spent, 'point')}">${points(row.spent)}</div>
-          <div class="col num boosted" role="cell" title="${exactWithUnit(row.boosted, 'request')}">${Utils.compactNumber(row.boosted)} ${row.boosted === 1 ? 'request' : 'requests'}</div>
-          <div class="col num balance" role="cell" title="${exactWithUnit(row.balance, 'point')}">${points(row.balance)}</div>
+            <span class="contributor-card-nick" title="${nick}">${nick}</span>
+          </span>
+          <span class="contributor-card-stats">
+            <span class="contributor-stat-group">
+              <span class="stat-values">
+                <span class="stat-value" title="${exactWithUnit(row.balance, 'point')} balance">${compact(row.balance)}</span>
+                <span class="stat-value secondary" title="${exactWithUnit(row.earned, 'point')} earned">+${compact(row.earned)}</span>
+                <span class="stat-value secondary" title="${exactWithUnit(row.spent, 'point')} spent">-${compact(row.spent)}</span>
+              </span>
+              <span class="stat-label">points balance</span>
+            </span>
+            <span class="contributor-stat-group boosted">
+              <span class="stat-value" title="${exactWithUnit(row.boosted, 'request')} boosted">${compact(row.boosted)}</span>
+              <span class="stat-label">requests boosted</span>
+            </span>
+          </span>
         </a>
       `;
       }).join('')
-      : '<div class="contributor-empty" role="row">No points recorded yet.</div>';
+      : '<div class="contributor-empty">No points recorded yet.</div>';
 
     return `
-      <div class="contributor-table" role="table" aria-label="Points leaderboard">
-        <div class="contributor-header" role="row">${header}</div>
-        ${body}
-      </div>
+      <section class="contributor-card-grid" aria-label="Points leaderboard">
+        ${cards}
+      </section>
     `;
   },
 
@@ -2809,14 +2800,14 @@ const UI = {
   ],
 
   contributorSortOptions: [
+    { value: 'balance-desc', label: 'Highest balance' },
+    { value: 'balance-asc', label: 'Lowest balance' },
     { value: 'earned-desc', label: 'Most earned' },
     { value: 'earned-asc', label: 'Least earned' },
     { value: 'spent-desc', label: 'Most spent' },
     { value: 'spent-asc', label: 'Least spent' },
     { value: 'boosted-desc', label: 'Most boosted' },
     { value: 'boosted-asc', label: 'Least boosted' },
-    { value: 'balance-desc', label: 'Highest balance' },
-    { value: 'balance-asc', label: 'Lowest balance' },
     { value: 'nick-asc', label: 'Contributor (A-Z)' },
     { value: 'nick-desc', label: 'Contributor (Z-A)' },
   ],
@@ -2876,6 +2867,17 @@ const UI = {
     this.updateContributionBadge();
     this.updateLowQualityBadge();
     this.syncTabState();
+
+    const leaderboard = App.state.activeTab === 'points-leaderboard';
+    const activeSort = leaderboard
+      ? App.state.contributorSort
+      : App.state.sort;
+    const sortOptions = leaderboard
+      ? UI.contributorSortOptions
+      : UI.sortOptions;
+    const sortOption = sortOptions.find((opt) => opt.value === activeSort);
+    App.dom.sortBtn.title = leaderboard ? 'Sort leaderboard' : 'Sort by';
+    App.dom.sortLabel.textContent = sortOption?.label || activeSort;
   },
 
   init() {
@@ -3424,16 +3426,19 @@ const UI = {
         if (action === 'sort-option') {
           const value = actionEl.dataset.value;
           if (!value) return;
-          App.state.sort = value;
-          App.dom.sortLabel.textContent = actionEl.textContent.trim() || value;
+          if (App.state.activeTab === 'points-leaderboard') {
+            App.state.contributorSort = value;
+            const opt = UI.contributorSortOptions.find(
+              (o) => o.value === value,
+            );
+            App.dom.sortLabel.textContent = opt?.label || value;
+          } else {
+            App.state.sort = value;
+            const opt = UI.sortOptions.find((o) => o.value === value);
+            App.dom.sortLabel.textContent = opt?.label || value;
+          }
           App.dom.sortMenu.hidePopover();
           this.render();
-          return;
-        }
-
-        if (action === 'contributor-sort') {
-          const key = actionEl.dataset.key;
-          if (key) this.toggleContributorSort(key);
           return;
         }
 
@@ -3680,16 +3685,6 @@ const UI = {
         if (!target) return;
 
         if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
-
-        if (
-          target.dataset.action === 'contributor-sort' &&
-          (e.key === 'Enter' || e.key === ' ')
-        ) {
-          e.preventDefault();
-          const key = target.dataset.key;
-          if (key) this.toggleContributorSort(key);
-          return;
-        }
 
         // --- 1. Selection & Actions (Enter/Space) ---
         if (!(e.ctrlKey || e.metaKey) && e.key === 'Enter' || e.key === ' ') {
@@ -4049,41 +4044,33 @@ const UI = {
     container.style.height = `${Math.max(...colHeights)}px`;
   },
 
-  /**
-   * @param {string} key
-   */
-  toggleContributorSort(key) {
-    const defaults = {
-      nick: 'asc',
-      earned: 'desc',
-      spent: 'desc',
-      boosted: 'desc',
-      balance: 'desc',
-    };
-    if (!Object.hasOwn(defaults, key)) return;
-
-    const [currKey, currDir] = App.state.contributorSort.split('-');
-    const dir = currKey === key
-      ? currDir === 'asc' ? 'desc' : 'asc'
-      : defaults[/** @type {keyof typeof defaults} */ (key)];
-    App.state.contributorSort = `${key}-${dir}`;
-    this.render();
-  },
-
   showSortMenu() {
     const menu = App.dom.sortMenu;
-    const options = UI.sortOptions.filter((opt) => {
-      return !(opt.value === 'trending' &&
-        Object.keys(App.state.trendingDeltas).length === 0);
-    });
+    const leaderboard = App.state.activeTab === 'points-leaderboard';
+    const options = leaderboard
+      ? UI.contributorSortOptions
+      : UI.sortOptions.filter((opt) => {
+        return !(opt.value === 'trending' &&
+          Object.keys(App.state.trendingDeltas).length === 0);
+      });
+    const activeSort = leaderboard
+      ? App.state.contributorSort
+      : App.state.sort;
 
-    menu.innerHTML = Templates.sortMenuItems(options, App.state.sort);
+    menu.innerHTML = Templates.sortMenuItems(options, activeSort);
 
     menu.querySelectorAll('.ctx-item').forEach((i) => {
       const item = /** @type {HTMLElement} */ (i);
       item.onclick = () => {
-        if (item.dataset.value) App.state.sort = item.dataset.value;
-        App.dom.sortLabel.textContent = item.textContent.trim();
+        const value = item.dataset.value;
+        if (!value) return;
+        if (leaderboard) {
+          App.state.contributorSort = value;
+        } else {
+          App.state.sort = value;
+        }
+        const opt = options.find((o) => o.value === value);
+        App.dom.sortLabel.textContent = opt?.label || item.textContent.trim();
         menu.hidePopover();
         this.render();
       };
@@ -4374,10 +4361,13 @@ const UI = {
     App.dom.container.removeAttribute('style');
     App.dom.container.className = 'contributor-leaderboard';
 
-    document.querySelector('.controls')?.classList.add('is-hidden');
+    document.querySelector('.controls')?.classList.remove('is-hidden');
     document.getElementById('copyDynamicMatchesBtn')?.classList.add('is-hidden');
+    document.getElementById('filterContainer')?.classList.add('is-hidden');
+    App.dom.mobileFilterBtn.classList.add('is-hidden');
     App.dom.viewBtn.classList.add('is-hidden');
-    App.dom.sortBtn.classList.add('is-hidden');
+    App.dom.sortBtn.classList.remove('is-hidden');
+    App.dom.sortBtn.title = 'Sort leaderboard';
     App.dom.screenSortBtn.classList.add('is-hidden');
     App.dom.listHeader.style.display = 'none';
     App.dom.sentinel.style.display = 'none';
@@ -4401,6 +4391,7 @@ const UI = {
           spent: Number(points?.spent) || 0,
           boosted: Number(points?.boosted) || 0,
           balance: Number(points?.balance) || 0,
+          accent: points?.accent || SECONDARY_ACCENT_RGB,
           icons: Math.floor(earned / 5),
         };
       },
@@ -4429,10 +4420,7 @@ const UI = {
       return (dir === 'asc' ? result : -result) || a.nick.localeCompare(b.nick);
     });
 
-    App.dom.container.innerHTML = Templates.contributorLeaderboard(
-      rows,
-      App.state.contributorSort,
-    );
+    App.dom.container.innerHTML = Templates.contributorLeaderboard(rows);
     Data.syncUrlState();
   },
 

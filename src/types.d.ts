@@ -38,6 +38,7 @@ declare global {
     spent: number;
     boosted: number;
     balance: number;
+    accent: number[];
   }
 
   interface AppEntry {

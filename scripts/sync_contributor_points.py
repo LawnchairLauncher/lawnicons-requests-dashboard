@@ -3,7 +3,7 @@
 
 Reads every contribution-points/contributors/*.txt in the Lawnicons checkout and writes:
   - src/assets/iconsyouneedmost.json  (email base + active spends)
-  - src/assets/contributor_points.json (earned/spent/boosted/balance per login)
+  - src/assets/contributor_points.json (earned/spent/boosted/balance + avatar accent)
   - src/assets/avatars/*.webp          (GitHub avatars for the leaderboard)
 
 Only the `spends` section affects priorities. `fulfilled` and `awards` are
@@ -21,6 +21,8 @@ from io import BytesIO
 from pathlib import Path
 
 AVATAR_TIMEOUT = 20
+# Keep in sync with --secondary-rgb in src/styles.css.
+DEFAULT_ACCENT = (188, 199, 219)
 RANKS = ("5", "4", "3", "2", "1")
 HEADER_KEYS = ("earned", "spent", "balance")
 SECTIONS = ("spends", "fulfilled", "awards")
@@ -227,6 +229,47 @@ def sync_avatars(contributors: tuple[Contributor, ...], avatars_dir: Path) -> No
             stale.unlink()
 
 
+def load_avatar_accents(
+    contributors: tuple[Contributor, ...], avatars_dir: Path
+) -> dict[str, tuple[int, int, int]]:
+    """Read a dominant avatar color for each leaderboard card gradient."""
+    try:
+        from PIL import Image
+    except ImportError:
+        return {}
+
+    accents: dict[str, tuple[int, int, int]] = {}
+    for contributor in contributors:
+        path = avatars_dir / f"{contributor.login}.webp"
+        if not path.exists():
+            continue
+        try:
+            with Image.open(path) as image:
+                sample = image.convert("RGB")
+                sample.thumbnail((32, 32))
+                quantized = sample.quantize(colors=8)
+                palette = quantized.getpalette() or []
+                candidates: list[tuple[int, int, tuple[int, int, int]]] = []
+                for count, index in quantized.getcolors() or []:
+                    offset = index * 3
+                    values = tuple(palette[offset : offset + 3])
+                    if len(values) != 3:
+                        continue
+                    color = (values[0], values[1], values[2])
+                    brightness = sum(color) / 3
+                    penalty = 0 if 60 <= brightness <= 225 else 1
+                    candidates.append((count, penalty, color))
+                if not candidates:
+                    continue
+                _, _, accent = max(
+                    candidates, key=lambda item: (item[1] == 0, item[0])
+                )
+                accents[contributor.login] = accent
+        except (OSError, ValueError):
+            continue
+    return accents
+
+
 def load_email_base(path: Path) -> dict[str, list[str]]:
     if not path.exists():
         raise FormatError(f"email priority base not found: {path}")
@@ -247,10 +290,12 @@ def priority_bucket(weight: int) -> tuple[str, int]:
 
 
 def build_outputs(
-    email_base: dict[str, list[str]], contributors: tuple[Contributor, ...]
-) -> tuple[dict[str, list[str]], dict[str, dict[str, int]]]:
+    email_base: dict[str, list[str]],
+    contributors: tuple[Contributor, ...],
+    accents: dict[str, tuple[int, int, int]],
+) -> tuple[dict[str, list[str]], dict[str, dict[str, int | list[int]]]]:
     priorities = {rank: list(email_base.get(rank, [])) for rank in RANKS}
-    summary: dict[str, dict[str, int]] = {}
+    summary: dict[str, dict[str, int | list[int]]] = {}
 
     for contributor in contributors:
         summary[contributor.login] = {
@@ -258,6 +303,7 @@ def build_outputs(
             "spent": contributor.spent,
             "boosted": contributor.boosted,
             "balance": contributor.balance,
+            "accent": list(accents.get(contributor.login, DEFAULT_ACCENT)),
         }
         for spend in contributor.spends:
             rank, count = priority_bucket(spend.weight)
@@ -334,17 +380,8 @@ def main() -> int:
     try:
         contributors = load_contributors(resolve_points_dir(args.lawnicons))
         email_base = load_email_base(args.base)
-        priorities, summary = build_outputs(email_base, contributors)
     except (FormatError, json.JSONDecodeError, OSError, UnicodeDecodeError) as error:
         print(f"error: {error}", file=sys.stderr)
-        return 1
-
-    errors: list[str] = []
-    write_or_check(args.output, priorities, args.check, errors)
-    write_or_check(args.summary, summary, args.check, errors)
-    if errors:
-        for error in errors:
-            print(f"error: {error}", file=sys.stderr)
         return 1
 
     if not args.check and not args.skip_avatars:
@@ -353,6 +390,17 @@ def main() -> int:
         except FormatError as error:
             print(f"error: {error}", file=sys.stderr)
             return 1
+
+    accents = load_avatar_accents(contributors, args.avatars_dir)
+    priorities, summary = build_outputs(email_base, contributors, accents)
+
+    errors: list[str] = []
+    write_or_check(args.output, priorities, args.check, errors)
+    write_or_check(args.summary, summary, args.check, errors)
+    if errors:
+        for error in errors:
+            print(f"error: {error}", file=sys.stderr)
+        return 1
 
     active = sum(len(item.spends) for item in contributors)
     if args.check:
