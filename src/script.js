@@ -313,7 +313,7 @@ const ICONS = {
 const DEFAULTS = {
   view: 'list',
   sort: 'req-desc',
-  contributorSort: 'balance-desc',
+  contributorSort: 'earned-desc',
   search: '',
   regex: false,
 };
@@ -961,7 +961,6 @@ const Templates = {
     const columns = [
       { key: 'rank', label: '#', numeric: false, sortable: false },
       { key: 'nick', label: 'Contributor', numeric: false, sortable: true },
-      { key: 'icons', label: 'Icons', numeric: true, sortable: true },
       { key: 'earned', label: 'Earned', numeric: true, sortable: true },
       { key: 'spent', label: 'Spent', numeric: true, sortable: true },
       { key: 'boosted', label: 'Boosted', numeric: true, sortable: true },
@@ -1006,10 +1005,12 @@ const Templates = {
                    data-error-mode="show-next-fallback"
                    onerror="Utils.handleImageError(event)" />
               <span class="contributor-avatar-fallback is-hidden" aria-hidden="true">${initial}</span>
-              <span class="contributor-link app-name">${nick}</span>
+              <span class="contributor-names">
+                <span class="contributor-link app-name">${nick}</span>
+                <span class="contributor-icons" title="${exactWithUnit(row.icons, 'icon')}">${Utils.compactNumber(row.icons)} ${row.icons === 1 ? 'icon' : 'icons'}</span>
+              </span>
             </span>
           </div>
-          <div class="col num icons" role="cell" title="${exactWithUnit(row.icons, 'icon')}">${Utils.compactNumber(row.icons)}</div>
           <div class="col num earned" role="cell" title="${exactWithUnit(row.earned, 'point')}">${points(row.earned)}</div>
           <div class="col num spent" role="cell" title="${exactWithUnit(row.spent, 'point')}">${points(row.spent)}</div>
           <div class="col num boosted" role="cell" title="${exactWithUnit(row.boosted, 'request')}">${Utils.compactNumber(row.boosted)} ${row.boosted === 1 ? 'request' : 'requests'}</div>
@@ -2790,16 +2791,14 @@ const UI = {
   ],
 
   contributorSortOptions: [
-    { value: 'balance-desc', label: 'Highest balance' },
-    { value: 'balance-asc', label: 'Lowest balance' },
-    { value: 'icons-desc', label: 'Most icons' },
-    { value: 'icons-asc', label: 'Least icons' },
     { value: 'earned-desc', label: 'Most earned' },
     { value: 'earned-asc', label: 'Least earned' },
     { value: 'spent-desc', label: 'Most spent' },
     { value: 'spent-asc', label: 'Least spent' },
     { value: 'boosted-desc', label: 'Most boosted' },
     { value: 'boosted-asc', label: 'Least boosted' },
+    { value: 'balance-desc', label: 'Highest balance' },
+    { value: 'balance-asc', label: 'Lowest balance' },
     { value: 'nick-asc', label: 'Contributor (A-Z)' },
     { value: 'nick-desc', label: 'Contributor (Z-A)' },
   ],
@@ -4031,7 +4030,6 @@ const UI = {
       spent: 'desc',
       boosted: 'desc',
       balance: 'desc',
-      icons: 'desc',
     };
     if (!Object.hasOwn(defaults, key)) return;
 
@@ -4395,7 +4393,6 @@ const UI = {
       spent: (a, b) => a.spent - b.spent,
       boosted: (a, b) => a.boosted - b.boosted,
       balance: (a, b) => a.balance - b.balance,
-      icons: (a, b) => a.icons - b.icons,
     };
     const sorter = sorters[/** @type {keyof typeof sorters} */ (key)] || sorters.balance;
     rows.sort((a, b) => {

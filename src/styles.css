@@ -925,13 +925,13 @@ select:hover,
 }
 
 .contributor-table {
-  min-width: 960px;
+  min-width: 880px;
 }
 
 .contributor-header,
 .contributor-row {
   display: grid;
-  grid-template-columns: 48px minmax(180px, 260px) 90px 120px 120px 132px 120px;
+  grid-template-columns: 48px minmax(180px, 260px) 120px 120px 132px 120px;
   align-items: center;
   justify-content: start;
   padding: var(--space-md) var(--space-lg);
@@ -1007,7 +1007,7 @@ select:hover,
 .contributor-identity {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-lg);
   min-width: 0;
 }
 
@@ -1031,6 +1031,19 @@ select:hover,
   background: var(--secondary-container);
   color: var(--on-secondary-container);
   font-weight: 700;
+}
+
+.contributor-names {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.contributor-icons {
+  color: var(--on-surface-variant);
+  font-size: 15px;
+  white-space: nowrap;
 }
 
 .contributor-link {
@@ -1557,6 +1570,10 @@ select:hover,
   min-width: 0;
 }
 
+.name-details {
+  gap: var(--space-xs);
+}
+
 .app-name {
   font-weight: 600;
   color: var(--on-surface);
@@ -1570,8 +1587,7 @@ select:hover,
 
 .item-sub {
   color: var(--on-surface-variant);
-  font-size: 12px;
-  font-family: monospace;
+  font-size: 15px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

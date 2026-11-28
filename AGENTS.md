@@ -122,7 +122,7 @@ Each filter file is an object with `label`, `description`, and an array under th
 There is no `geo` URL parameter. Geo information is derived from `requests_graph` into `App.state._geoPrefixById` and shown as row prefixes; there is no separate geo-batch mode.
 
 ### UI Modes
-- **Main tabs:** `requests`, `points-leaderboard`, and `homescreens`. `view=screens` also selects the screens presentation. The points tab renders a sortable leaderboard from `assets/contributor_points.json`, defaulting to `balance-desc`; `Icons` is derived as `earned / 5` and `Boosted` shows the number of requests supported with points. The leading position is the rank by balance and stays fixed when another column is sorted. Rows link to the contributor's GitHub profile and show a build-time avatar with an initial fallback.
+- **Main tabs:** `requests`, `points-leaderboard`, and `homescreens`. `view=screens` also selects the screens presentation. The points tab renders a sortable leaderboard from `assets/contributor_points.json`, defaulting to `earned-desc`; the contributor cell shows the nick over `earned / 5` icons, and `Boosted` shows the number of requests supported with points. The leading position is the rank by balance and stays fixed when another column is sorted. Rows link to the contributor's GitHub profile and show a build-time avatar with an initial fallback.
 - **Views:** `list`, `grid`, `screens` (separate `screenSort` state).
 - **Tool pages:** low-quality QA, contribution plan, icon review. These replace the main content; `page` records the active one.
 - **Contribution plan:** stored in `localStorage` keys `lawnicons_contribution`, `lawnicons_contribution_overrides`, `lawnicons_contribution_active`; entries receive the `plan` tag.
