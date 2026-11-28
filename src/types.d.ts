@@ -163,7 +163,7 @@ declare global {
     /** Sorting key and direction used by the contributor leaderboard. */
     contributorSort: string;
     /** Currently selected main tab. */
-    activeTab: 'requests' | 'screens' | 'points-leaderboard' | 'homescreens';
+    activeTab: 'requests' | 'screens' | 'top-icon-creators' | 'homescreens';
     /** The current search query string. */
     search: string;
     /** Whether the search query should be treated as a Regular Expression. */

@@ -984,14 +984,16 @@ const Templates = {
         const nick = escape(row.nick);
         const login = encodeURIComponent(row.nick);
         const profileUrl = `https://github.com/${login}`;
+        const spendsUrl =
+          `https://github.com/LawnchairLauncher/lawnicons/blob/develop/contribution-points/contributors/${login}.txt`;
         const initial = escape(row.nick.charAt(0).toUpperCase());
         const cardAccent = accent(row.accent);
         const rankClass = row.rank <= 3 ? ` rank-${row.rank}` : '';
         return `
-        <a class="contributor-card" style="--leaderboard-accent: ${cardAccent};"
-           href="${profileUrl}"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Open ${nick} on GitHub">
+        <article class="contributor-card" style="--leaderboard-accent: ${cardAccent};">
+          <a class="contributor-card-open" href="${profileUrl}"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Open ${nick} on GitHub"></a>
           <span class="contributor-card-art" aria-hidden="true">
             <img class="contributor-avatar"
                  src="${CONFIG.data.avatarsPath}${login}.webp"
@@ -1007,6 +1009,14 @@ const Templates = {
                     title="${exactWithUnit(row.icons, 'icon')}">${compact(row.icons)} ${row.icons === 1 ? 'icon' : 'icons'}</span>
             </span>
             <span class="contributor-card-nick" title="${nick}">${nick}</span>
+            <span class="contributor-card-links">
+              <a class="contributor-card-icon-link" href="${spendsUrl}"
+                 target="_blank" rel="noopener noreferrer"
+                 title="View points"
+                 aria-label="View points">
+                <svg><use href="#ic-spends"/></svg>
+              </a>
+            </span>
           </span>
           <span class="contributor-card-stats">
             <span class="contributor-stat-group">
@@ -1022,13 +1032,13 @@ const Templates = {
               <span class="stat-label">requests boosted</span>
             </span>
           </span>
-        </a>
+        </article>
       `;
       }).join('')
       : '<div class="contributor-empty">No points recorded yet.</div>';
 
     return `
-      <section class="contributor-card-grid" aria-label="Points leaderboard">
+      <section class="contributor-card-grid" aria-label="Top icon creators">
         ${this.pointsInfoCard()}
         ${cards}
       </section>
@@ -2153,7 +2163,7 @@ const Data = {
     const needsGraphData =
       (App.state.regexMode && query.length > 0) ||
       /^scr-\d+$/.test(query) ||
-      (App.state.view === 'screens' && App.state.activeTab !== 'points-leaderboard') ||
+      (App.state.view === 'screens' && App.state.activeTab !== 'top-icon-creators') ||
       App.state.activeTab === 'homescreens';
 
     if (needsGraphData) {
@@ -2701,7 +2711,7 @@ const Data = {
       const t = params.get('tab');
       if (
         t === 'requests' ||
-        t === 'points-leaderboard' ||
+        t === 'top-icon-creators' ||
         t === 'homescreens'
       ) {
         App.state.activeTab = t;
@@ -2709,7 +2719,7 @@ const Data = {
     }
     if (params.has('sort')) {
       const value = params.get('sort') || '';
-      if (App.state.activeTab === 'points-leaderboard') {
+      if (App.state.activeTab === 'top-icon-creators') {
         const opt = UI.contributorSortOptions.find((o) => o.value === value);
         App.state.contributorSort = opt ? opt.value : DEFAULTS.contributorSort;
         App.dom.sortLabel.textContent = opt ? opt.label : App.state.contributorSort;
@@ -2730,9 +2740,9 @@ const Data = {
     if (s.view !== DEFAULTS.view) params.set('view', s.view);
     else params.delete('view');
     const activeSort =
-      s.activeTab === 'points-leaderboard' ? s.contributorSort : s.sort;
+      s.activeTab === 'top-icon-creators' ? s.contributorSort : s.sort;
     const defaultSort =
-      s.activeTab === 'points-leaderboard'
+      s.activeTab === 'top-icon-creators'
         ? DEFAULTS.contributorSort
         : DEFAULTS.sort;
     if (activeSort !== defaultSort) params.set('sort', activeSort);
@@ -2884,7 +2894,7 @@ const UI = {
     this.updateLowQualityBadge();
     this.syncTabState();
 
-    const leaderboard = App.state.activeTab === 'points-leaderboard';
+    const leaderboard = App.state.activeTab === 'top-icon-creators';
     const activeSort = leaderboard
       ? App.state.contributorSort
       : App.state.sort;
@@ -2892,7 +2902,7 @@ const UI = {
       ? UI.contributorSortOptions
       : UI.sortOptions;
     const sortOption = sortOptions.find((opt) => opt.value === activeSort);
-    App.dom.sortBtn.title = leaderboard ? 'Sort leaderboard' : 'Sort by';
+    App.dom.sortBtn.title = leaderboard ? 'Sort creators' : 'Sort by';
     App.dom.sortLabel.textContent = sortOption?.label || activeSort;
   },
 
@@ -2960,7 +2970,7 @@ const UI = {
         const tabName = tab.dataset.tab;
         App.state.activeTab = tabName;
         
-        if (tabName === 'homescreens' || tabName === 'points-leaderboard') {
+        if (tabName === 'homescreens' || tabName === 'top-icon-creators') {
           App.state.view = 'list';
           App.dom.viewLabel.textContent = 'Table';
         }
@@ -3442,7 +3452,7 @@ const UI = {
         if (action === 'sort-option') {
           const value = actionEl.dataset.value;
           if (!value) return;
-          if (App.state.activeTab === 'points-leaderboard') {
+          if (App.state.activeTab === 'top-icon-creators') {
             App.state.contributorSort = value;
             const opt = UI.contributorSortOptions.find(
               (o) => o.value === value,
@@ -3856,7 +3866,7 @@ const UI = {
       return;
     }
 
-    if (App.state.activeTab === 'points-leaderboard') {
+    if (App.state.activeTab === 'top-icon-creators') {
       this.renderContributorPoints();
       return;
     }
@@ -4062,7 +4072,7 @@ const UI = {
 
   showSortMenu() {
     const menu = App.dom.sortMenu;
-    const leaderboard = App.state.activeTab === 'points-leaderboard';
+    const leaderboard = App.state.activeTab === 'top-icon-creators';
     const options = leaderboard
       ? UI.contributorSortOptions
       : UI.sortOptions.filter((opt) => {
@@ -4383,7 +4393,7 @@ const UI = {
     App.dom.mobileFilterBtn.classList.add('is-hidden');
     App.dom.viewBtn.classList.add('is-hidden');
     App.dom.sortBtn.classList.remove('is-hidden');
-    App.dom.sortBtn.title = 'Sort leaderboard';
+    App.dom.sortBtn.title = 'Sort creators';
     App.dom.screenSortBtn.classList.add('is-hidden');
     App.dom.listHeader.style.display = 'none';
     App.dom.sentinel.style.display = 'none';

@@ -969,9 +969,21 @@ select:hover,
   background-color: var(--surface-container);
 }
 
-.contributor-card:focus-visible {
+.contributor-card-open {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.contributor-card-open:focus-visible {
   outline: 2px solid var(--primary);
-  outline-offset: 2px;
+  outline-offset: -2px;
+}
+
+.contributor-card-art,
+.contributor-card-header,
+.contributor-card-stats {
+  pointer-events: none;
 }
 
 .contributor-card-art {
@@ -1075,6 +1087,38 @@ select:hover,
   font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.contributor-card-links {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: 0;
+}
+
+.contributor-card-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--shape-small);
+  color: var(--on-surface-variant);
+  pointer-events: auto;
+}
+
+.contributor-card-icon-link svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.contributor-card-icon-link:hover {
+  color: var(--primary);
+}
+
+.contributor-card-icon-link:focus-visible {
+  outline: 1px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .contributor-card-stats {
