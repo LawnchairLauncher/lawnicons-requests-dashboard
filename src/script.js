@@ -70,6 +70,7 @@ const CONFIG = {
     screensGraphPath: 'assets/screens_graph.json',
     prioritiesPath: 'assets/iconsyouneedmost.json',
     contributorPointsPath: 'assets/contributor_points.json',
+    avatarsPath: 'assets/avatars/',
     setsStatsPath: 'assets/stats/sets_stats.json',
     domainStatsPath: 'assets/stats/domain_stats.json',
     activityStatsPath: 'assets/stats/activity_stats.json',
@@ -939,7 +940,7 @@ const Templates = {
   },
 
   /**
-   * @param {{ rank: number, nick: string, earned: number, spent: number, balance: number, icons: number }[]} rows
+   * @param {{ rank: number, nick: string, earned: number, spent: number, boosted: number, balance: number, icons: number }[]} rows
    * @param {string} sort
    * @returns {string}
    */
@@ -963,6 +964,7 @@ const Templates = {
       { key: 'icons', label: 'Icons', numeric: true, sortable: true },
       { key: 'earned', label: 'Earned', numeric: true, sortable: true },
       { key: 'spent', label: 'Spent', numeric: true, sortable: true },
+      { key: 'boosted', label: 'Boosted', numeric: true, sortable: true },
       { key: 'balance', label: 'Balance', numeric: true, sortable: true },
     ];
     const [activeKey, activeDir] = sort.split('-');
@@ -988,18 +990,29 @@ const Templates = {
     const body = rows.length
       ? rows.map((row) => {
         const nick = escape(row.nick);
-        const profileUrl = `https://github.com/${encodeURIComponent(row.nick)}`;
+        const login = encodeURIComponent(row.nick);
+        const profileUrl = `https://github.com/${login}`;
+        const initial = escape(row.nick.charAt(0).toUpperCase());
         return `
         <a class="contributor-row" role="row" href="${profileUrl}"
            target="_blank" rel="noopener noreferrer"
            aria-label="Open ${nick} on GitHub">
           <div class="col rank${row.rank <= 3 ? ` top-${row.rank}` : ''}" role="cell">${row.rank}</div>
           <div class="col nick" role="cell">
-            <span class="contributor-link app-name">${nick}</span>
+            <span class="contributor-identity">
+              <img class="contributor-avatar"
+                   src="${CONFIG.data.avatarsPath}${login}.webp"
+                   alt="" width="56" height="56" loading="lazy"
+                   data-error-mode="show-next-fallback"
+                   onerror="Utils.handleImageError(event)" />
+              <span class="contributor-avatar-fallback is-hidden" aria-hidden="true">${initial}</span>
+              <span class="contributor-link app-name">${nick}</span>
+            </span>
           </div>
           <div class="col num icons" role="cell" title="${exactWithUnit(row.icons, 'icon')}">${Utils.compactNumber(row.icons)}</div>
           <div class="col num earned" role="cell" title="${exactWithUnit(row.earned, 'point')}">${points(row.earned)}</div>
           <div class="col num spent" role="cell" title="${exactWithUnit(row.spent, 'point')}">${points(row.spent)}</div>
+          <div class="col num boosted" role="cell" title="${exactWithUnit(row.boosted, 'request')}">${Utils.compactNumber(row.boosted)} ${row.boosted === 1 ? 'request' : 'requests'}</div>
           <div class="col num balance" role="cell" title="${exactWithUnit(row.balance, 'point')}">${points(row.balance)}</div>
         </a>
       `;
@@ -2785,6 +2798,8 @@ const UI = {
     { value: 'earned-asc', label: 'Least earned' },
     { value: 'spent-desc', label: 'Most spent' },
     { value: 'spent-asc', label: 'Least spent' },
+    { value: 'boosted-desc', label: 'Most boosted' },
+    { value: 'boosted-asc', label: 'Least boosted' },
     { value: 'nick-asc', label: 'Contributor (A-Z)' },
     { value: 'nick-desc', label: 'Contributor (Z-A)' },
   ],
@@ -4014,6 +4029,7 @@ const UI = {
       nick: 'asc',
       earned: 'desc',
       spent: 'desc',
+      boosted: 'desc',
       balance: 'desc',
       icons: 'desc',
     };
@@ -4356,6 +4372,7 @@ const UI = {
           nick,
           earned,
           spent: Number(points?.spent) || 0,
+          boosted: Number(points?.boosted) || 0,
           balance: Number(points?.balance) || 0,
           icons: Math.floor(earned / 5),
         };
@@ -4376,6 +4393,7 @@ const UI = {
         a.nick.localeCompare(b.nick),
       earned: (a, b) => a.earned - b.earned,
       spent: (a, b) => a.spent - b.spent,
+      boosted: (a, b) => a.boosted - b.boosted,
       balance: (a, b) => a.balance - b.balance,
       icons: (a, b) => a.icons - b.icons,
     };

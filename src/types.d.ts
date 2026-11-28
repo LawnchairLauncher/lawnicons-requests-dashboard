@@ -36,6 +36,7 @@ declare global {
   interface ContributorPoints {
     earned: number;
     spent: number;
+    boosted: number;
     balance: number;
   }
 

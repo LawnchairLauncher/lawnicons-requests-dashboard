@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Build dashboard priority data from the email base and Lawnicons point files.
 
-Reads every contribution-points/*.txt in the Lawnicons checkout and writes:
+Reads every contribution-points/contributors/*.txt in the Lawnicons checkout and writes:
   - src/assets/iconsyouneedmost.json  (email base + active spends)
-  - src/assets/contributor_points.json (earned/spent/balance per login)
+  - src/assets/contributor_points.json (earned/spent/boosted/balance per login)
+  - src/assets/avatars/*.webp          (GitHub avatars for the leaderboard)
 
 Only the `spends` section affects priorities. `fulfilled` and `awards` are
-accounting history and are ignored by the dashboard aggregate.
+accounting history and are ignored by the dashboard aggregate. Avatar downloads
+are skipped in --check mode; missing avatars are non-fatal and get a UI fallback.
 """
 
 import argparse
@@ -15,8 +17,10 @@ import os
 import re
 import sys
 from dataclasses import dataclass
+from io import BytesIO
 from pathlib import Path
 
+AVATAR_TIMEOUT = 20
 RANKS = ("5", "4", "3", "2", "1")
 HEADER_KEYS = ("earned", "spent", "balance")
 SECTIONS = ("spends", "fulfilled", "awards")
@@ -47,6 +51,7 @@ class Contributor:
     earned: int
     spent: int
     balance: int
+    boosted: int
     spends: tuple[Spend, ...]
 
 
@@ -136,6 +141,7 @@ def parse_contributor(path: Path, seen_prs: set[int]) -> Contributor:
     spends = parse_spends("spends")
     fulfilled = parse_spends("fulfilled")
     spent = sum(item.weight for item in spends + fulfilled)
+    boosted = len(spends) + len(fulfilled)
     balance = earned - spent
     if balance < 0:
         raise FormatError(f"{path}: balance is negative ({balance})")
@@ -144,7 +150,15 @@ def parse_contributor(path: Path, seen_prs: set[int]) -> Contributor:
     if header != expected:
         raise FormatError(f"{path}: header {header} does not match events {expected}")
 
-    return Contributor(login, earned, spent, balance, spends)
+    return Contributor(login, earned, spent, balance, boosted, spends)
+
+
+def resolve_points_dir(root: Path) -> Path:
+    """Prefer contributors/, fall back to the legacy flat layout."""
+    nested = root / "contribution-points" / "contributors"
+    if any(nested.glob("*.txt")):
+        return nested
+    return root / "contribution-points"
 
 
 def load_contributors(points_dir: Path) -> tuple[Contributor, ...]:
@@ -156,6 +170,61 @@ def load_contributors(points_dir: Path) -> tuple[Contributor, ...]:
     for path in sorted(points_dir.glob("*.txt")):
         contributors.append(parse_contributor(path, seen_prs))
     return tuple(contributors)
+
+
+def sync_avatars(contributors: tuple[Contributor, ...], avatars_dir: Path) -> None:
+    """Download original-size GitHub avatars as WebP; the UI scales them down."""
+    try:
+        import requests
+        from PIL import Image
+    except ImportError as error:
+        raise FormatError(f"avatar sync requires requests and Pillow: {error}")
+
+    session = requests.Session()
+    session.headers.update({"User-Agent": "lawnicons-dashboard-sync"})
+    avatars_dir.mkdir(parents=True, exist_ok=True)
+    expected: set[str] = set()
+
+    for contributor in contributors:
+        filename = f"{contributor.login}.webp"
+        expected.add(filename)
+        path = avatars_dir / filename
+        try:
+            response = session.get(
+                f"https://github.com/{contributor.login}.png",
+                timeout=AVATAR_TIMEOUT,
+            )
+            if response.status_code == 404:
+                print(
+                    f"warning: no GitHub avatar for {contributor.login}",
+                    file=sys.stderr,
+                )
+                continue
+            response.raise_for_status()
+            with Image.open(BytesIO(response.content)) as image:
+                if min(image.size) < 56:
+                    print(
+                        f"warning: no usable GitHub avatar for {contributor.login}",
+                        file=sys.stderr,
+                    )
+                    path.unlink(missing_ok=True)
+                    continue
+                buffer = BytesIO()
+                image.convert("RGB").save(buffer, format="WEBP", quality=100, method=6)
+                content = buffer.getvalue()
+        except Exception as error:
+            print(
+                f"warning: could not sync avatar for {contributor.login}: {error}",
+                file=sys.stderr,
+            )
+            continue
+
+        if not path.exists() or path.read_bytes() != content:
+            path.write_bytes(content)
+
+    for stale in avatars_dir.glob("*.webp"):
+        if stale.name not in expected:
+            stale.unlink()
 
 
 def load_email_base(path: Path) -> dict[str, list[str]]:
@@ -187,6 +256,7 @@ def build_outputs(
         summary[contributor.login] = {
             "earned": contributor.earned,
             "spent": contributor.spent,
+            "boosted": contributor.boosted,
             "balance": contributor.balance,
         }
         for spend in contributor.spends:
@@ -220,7 +290,7 @@ def parse_args() -> argparse.Namespace:
         "--lawnicons",
         type=Path,
         default=Path(os.environ.get("LAWNICONS_DIR", "../9136")),
-        help="Lawnicons checkout containing contribution-points/",
+        help="Lawnicons checkout containing contribution-points/contributors/",
     )
     parser.add_argument(
         "--base",
@@ -241,6 +311,17 @@ def parse_args() -> argparse.Namespace:
         help="derived earned/spent/balance summary for the leaderboard",
     )
     parser.add_argument(
+        "--avatars-dir",
+        type=Path,
+        default=Path("src/assets/avatars"),
+        help="directory for downloaded GitHub avatars",
+    )
+    parser.add_argument(
+        "--skip-avatars",
+        action="store_true",
+        help="do not download avatars",
+    )
+    parser.add_argument(
         "--check",
         action="store_true",
         help="only verify that generated files are up to date",
@@ -251,7 +332,7 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     try:
-        contributors = load_contributors(args.lawnicons / "contribution-points")
+        contributors = load_contributors(resolve_points_dir(args.lawnicons))
         email_base = load_email_base(args.base)
         priorities, summary = build_outputs(email_base, contributors)
     except (FormatError, json.JSONDecodeError, OSError, UnicodeDecodeError) as error:
@@ -265,6 +346,13 @@ def main() -> int:
         for error in errors:
             print(f"error: {error}", file=sys.stderr)
         return 1
+
+    if not args.check and not args.skip_avatars:
+        try:
+            sync_avatars(contributors, args.avatars_dir)
+        except FormatError as error:
+            print(f"error: {error}", file=sys.stderr)
+            return 1
 
     active = sum(len(item.spends) for item in contributors)
     if args.check:

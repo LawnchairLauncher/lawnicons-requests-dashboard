@@ -56,8 +56,9 @@ Excluded (non-goals):
 - `assets/stats/activity_stats.json`: activity card.
 - `assets/stats/fulfillment_history.json`: icons/day for the activity card.
 - `assets/stats/trending_baseline.json`: `trending` sort deltas.
-- `assets/iconsyouneedmost_emails.json`: source of email-based priority ranks. `scripts/sync_contributor_points.py` combines it with Lawnicons `contribution-points/*.txt` to generate `assets/iconsyouneedmost.json`.
-- `assets/contributor_points.json`: derived `earned` / `spent` / `balance` summary per contributor, used by the leaderboard.
+- `assets/iconsyouneedmost_emails.json`: source of email-based priority ranks. `scripts/sync_contributor_points.py` combines it with Lawnicons `contribution-points/contributors/*.txt` to generate `assets/iconsyouneedmost.json`.
+- `assets/contributor_points.json`: derived `earned` / `spent` / `boosted` / `balance` summary per contributor, used by the leaderboard. `boosted` counts the requests supported with points (active `spends` plus `fulfilled`; repeat app IDs count separately).
+- `assets/avatars/*.webp`: build-time original-size GitHub avatars keyed by contributor login, saved as WebP quality 100 by `scripts/sync_contributor_points.py` and displayed at 56x56 via CSS; a missing file falls back to the login initial.
 - `assets/qa_issues/review_issues.json`: low-quality badge and QA page.
 - `assets/qa_issues/review_pass.json`, `assets/qa_issues/svgs/`: build-time QA data/SVGs (not part of the dashboard startup).
 - `assets/dead_links.json`: build-time input for `scripts/dump_play_info.py`, not fetched by the dashboard.
@@ -121,7 +122,7 @@ Each filter file is an object with `label`, `description`, and an array under th
 There is no `geo` URL parameter. Geo information is derived from `requests_graph` into `App.state._geoPrefixById` and shown as row prefixes; there is no separate geo-batch mode.
 
 ### UI Modes
-- **Main tabs:** `requests`, `points-leaderboard`, and `homescreens`. `view=screens` also selects the screens presentation. The points tab renders a sortable leaderboard from `assets/contributor_points.json`, defaulting to `balance-desc`; `Icons` is derived as `earned / 5`. The leading position is the rank by balance and stays fixed when another column is sorted.
+- **Main tabs:** `requests`, `points-leaderboard`, and `homescreens`. `view=screens` also selects the screens presentation. The points tab renders a sortable leaderboard from `assets/contributor_points.json`, defaulting to `balance-desc`; `Icons` is derived as `earned / 5` and `Boosted` shows the number of requests supported with points. The leading position is the rank by balance and stays fixed when another column is sorted. Rows link to the contributor's GitHub profile and show a build-time avatar with an initial fallback.
 - **Views:** `list`, `grid`, `screens` (separate `screenSort` state).
 - **Tool pages:** low-quality QA, contribution plan, icon review. These replace the main content; `page` records the active one.
 - **Contribution plan:** stored in `localStorage` keys `lawnicons_contribution`, `lawnicons_contribution_overrides`, `lawnicons_contribution_active`; entries receive the `plan` tag.

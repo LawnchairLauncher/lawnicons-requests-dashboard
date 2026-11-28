@@ -925,13 +925,13 @@ select:hover,
 }
 
 .contributor-table {
-  min-width: 840px;
+  min-width: 960px;
 }
 
 .contributor-header,
 .contributor-row {
   display: grid;
-  grid-template-columns: 48px minmax(180px, 260px) 90px 120px 132px 120px;
+  grid-template-columns: 48px minmax(180px, 260px) 90px 120px 120px 132px 120px;
   align-items: center;
   justify-content: start;
   padding: var(--space-md) var(--space-lg);
@@ -998,8 +998,39 @@ select:hover,
 }
 
 .contributor-header .col.spent,
-.contributor-row .col.spent {
+.contributor-row .col.spent,
+.contributor-header .col.boosted,
+.contributor-row .col.boosted {
   padding-left: var(--space-md);
+}
+
+.contributor-identity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+.contributor-avatar,
+.contributor-avatar-fallback {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.contributor-avatar {
+  object-fit: cover;
+  background: var(--surface-container-high);
+}
+
+.contributor-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+  font-weight: 700;
 }
 
 .contributor-link {
