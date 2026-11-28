@@ -1138,19 +1138,28 @@ select:hover,
 }
 
 /* Home screens */
-.add-home-screen-card {
+.add-home-screen-card,
+.add-points-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   box-sizing: border-box;
   margin-bottom: 0;
+}
+
+.add-home-screen-card {
+  justify-content: space-between;
+}
+
+.add-points-card {
+  min-height: 188px;
 }
 
 .home-screens-empty {
   max-width: 240px;
 }
 
-.add-home-screen-card .card-header {
+.add-home-screen-card .card-header,
+.add-points-card .card-header {
   margin-bottom: var(--space-xs);
 }
 
@@ -1160,12 +1169,25 @@ select:hover,
   line-height: 1.45;
 }
 
-.add-home-screen-card .link {
+.add-points-card .card-sub {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.add-home-screen-card .link,
+.add-points-card .link {
   display: inline;
-  margin-top: 0;
   font-size: 12px;
   line-height: 1.4;
   font-weight: 600;
+}
+
+.add-home-screen-card .link {
+  margin-top: 0;
+}
+
+.add-points-card .link {
+  margin-top: auto;
 }
 
 .add-home-screen-card .reddit-links {

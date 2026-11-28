@@ -932,6 +932,21 @@ const Templates = {
   /**
    * @returns {string}
    */
+  pointsInfoCard() {
+    return `
+      <div class="card add-points-card">
+        <div class="card-header">
+          <span class="card-title">Boost the requests you care about</span>
+        </div>
+        <p class="card-sub">Contributors earn points for adding new icons to Lawnicons. You can spend points to raise the priority of any request right from the dashboard.</p>
+        <a class="link" href="https://github.com/LawnchairLauncher/lawnicons/blob/develop/contribution-points/README.md" target="_blank" rel="noopener">Contributor points</a>
+      </div>
+    `;
+  },
+
+  /**
+   * @returns {string}
+   */
   emptyState() {
     return `
       <div class="empty-state">
@@ -1014,6 +1029,7 @@ const Templates = {
 
     return `
       <section class="contributor-card-grid" aria-label="Points leaderboard">
+        ${this.pointsInfoCard()}
         ${cards}
       </section>
     `;
